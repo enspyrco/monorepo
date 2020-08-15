@@ -12,6 +12,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  firebase_auth:
 
 dev_dependencies:
   flutter_test:
