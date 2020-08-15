@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,7 +32,32 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
+  void _incrementCounter() async {
+    final appleIdCredential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+      webAuthenticationOptions: WebAuthenticationOptions(
+        clientId: 'co.enspyr.flireator.service',
+        redirectUri: Uri.parse(
+          'https://amused-wave-hydrogen.glitch.me/callbacks/sign_in_with_apple',
+        ),
+      ),
+    );
+
+    // get an OAuthCredential
+    final credential = OAuthProvider(providerId: 'apple.com').getCredential(
+      idToken: appleIdCredential.identityToken,
+      accessToken: appleIdCredential.authorizationCode,
+    );
+
+    // use the credential to sign in to firebase
+    final authResult =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
+    print(authResult);
+
     setState(() {
       _counter++;
     });

@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   
+  sign_in_with_apple:
   firebase_auth:
 
 dev_dependencies:
