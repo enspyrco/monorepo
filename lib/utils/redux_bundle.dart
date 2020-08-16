@@ -1,4 +1,6 @@
+import 'package:flireator/middleware/app_middleware.dart';
 import 'package:flireator/models/app/app_state.dart';
+import 'package:flireator/reducers/app_reducer.dart';
 import 'package:flireator/utils/services_bundle.dart';
 import 'package:redux/redux.dart';
 

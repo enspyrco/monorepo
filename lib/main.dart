@@ -1,93 +1,21 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flireator/utils/redux_bundle.dart';
+import 'package:flireator/utils/services_bundle.dart';
+import 'package:flireator/widgets/app.dart';
 import 'package:flutter/material.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 void main() {
-  runApp(MyApp());
-}
+  /// The [Firestore] plugin requires binding is initialized.
+  WidgetsFlutterBinding.ensureInitialized();
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
+  /// A [GlobalKey], shared between the [NavigationService] and [MaterialApp]
+  /// widget, allows the service to perform navigation with a [BuildContext]
+  final navKey = GlobalKey<NavigatorState>();
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  /// All the app services bundled together
+  final services = ServicesBundle(navKey: navKey);
 
-  final String title;
+  // Create the redux bundle (services, middleware, store)
+  final redux = ReduxBundle(services);
 
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() async {
-    final appleIdCredential = await SignInWithApple.getAppleIDCredential(
-      scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-      ],
-      webAuthenticationOptions: WebAuthenticationOptions(
-        clientId: 'co.enspyr.flireator.service',
-        redirectUri: Uri.parse(
-          'https://amused-wave-hydrogen.glitch.me/callbacks/sign_in_with_apple',
-        ),
-      ),
-    );
-
-    // get an OAuthCredential
-    final credential = OAuthProvider(providerId: 'apple.com').getCredential(
-      idToken: appleIdCredential.identityToken,
-      accessToken: appleIdCredential.authorizationCode,
-    );
-
-    // use the credential to sign in to firebase
-    final authResult =
-        await FirebaseAuth.instance.signInWithCredential(credential);
-
-    print(authResult);
-
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
-    );
-  }
+  runApp(FlireatorApp(redux.store, navKey));
 }

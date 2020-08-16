@@ -16,10 +16,18 @@ dependencies:
   built_value:
   built_collection:
   redux:
-  flutter_redux: 
+  flutter_redux:
 
   sign_in_with_apple:
   firebase_auth:
+  url_launcher:
+  oauth2:
+
+  # access github with a graphql client
+  github_graphql_client:
+    git: https://github.com/Adventures-In/github_graphql_client.git
+
+  cloud_firestore:
 
 dev_dependencies:
   flutter_test:
