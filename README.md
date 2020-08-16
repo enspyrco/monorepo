@@ -19,3 +19,10 @@ A project creation tool for Flutter projects with a Firebase backend, stored on 
 - create a project 
 - add backend components (auth, database, cloud functions, etc)
 - download config files 
+
+# Common Commands 
+
+```sh
+flutter pub run build_runner build --delete-conflicting-outputs
+flutter pub run build_runner watch --delete-conflicting-outputs
+```

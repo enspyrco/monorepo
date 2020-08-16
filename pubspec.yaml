@@ -13,12 +13,24 @@ dependencies:
   flutter:
     sdk: flutter
   
+  built_value:
+  built_collection:
+  redux:
+  flutter_redux: 
+
   sign_in_with_apple:
   firebase_auth:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  build_runner:
+  built_value_generator:
+  pedantic:
+  test:
+  mockito:
+  redux_remote_devtools:
 
 flutter:
   uses-material-design: true
