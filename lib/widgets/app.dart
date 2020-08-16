@@ -1,4 +1,5 @@
 import 'package:flireator/actions/app/plumb_services.dart';
+import 'package:flireator/actions/problems/listen_for_problems.dart';
 import 'package:flireator/extensions/themes/theme_data_extensions.dart';
 import 'package:flireator/extensions/themes/theme_mode_extensions.dart';
 import 'package:flireator/models/app/app_state.dart';
@@ -23,7 +24,10 @@ class FlireatorApp extends StatelessWidget {
     return StoreProvider<AppState>(
       store: store,
       child: StoreConnector<AppState, Settings>(
-        onInit: (store) => store.dispatch(PlumbServices()),
+        onInit: (store) {
+          store.dispatch(PlumbServices());
+          store.dispatch(ListenForProblems());
+        },
         distinct: true,
         converter: (store) => store.state.settings,
         builder: (context, settings) {
@@ -35,12 +39,9 @@ class FlireatorApp extends StatelessWidget {
             themeMode: MakeThemeMode.from(settings.brightnessMode),
             home: StoreConnector<AppState, bool>(
               distinct: true,
-              converter: (store) =>
-                  store.state.userData != null &&
-                  store.state.userData.hasGitHub &&
-                  store.state.gitHubToken != null,
-              builder: (context, signedInAndHaveToken) {
-                return (signedInAndHaveToken) ? HomePage() : AuthPage();
+              converter: (store) => store.state.userData != null,
+              builder: (context, signedIn) {
+                return (signedIn) ? HomePage() : AuthPage();
               },
             ),
           );

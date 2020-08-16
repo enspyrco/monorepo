@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flireator/actions/problems/remove_problem.dart';
 import 'package:flireator/actions/redux_action.dart';
 import 'package:flireator/models/problems/problem.dart';
-import 'package:flireator/widgets/alerts/confirmation_alert.dart';
-import 'package:flireator/widgets/alerts/problem_alert.dart';
+import 'package:flireator/widgets/dialogs/confirmation_alert.dart';
+import 'package:flireator/widgets/dialogs/problem_alert.dart';
 import 'package:flutter/material.dart';
 
 class NavigationService {

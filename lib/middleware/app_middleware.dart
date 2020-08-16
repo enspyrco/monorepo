@@ -1,6 +1,7 @@
 import 'package:flireator/middleware/auth/connect_auth_state.dart';
 import 'package:flireator/middleware/auth/plumb_services.dart';
 import 'package:flireator/middleware/auth/request_github_auth.dart';
+import 'package:flireator/middleware/auth/sign_in_with_apple.dart';
 import 'package:flireator/middleware/auth/sign_out.dart';
 import 'package:flireator/middleware/auth/store_git_hub_token.dart';
 import 'package:flireator/middleware/auth/store_user_data.dart';
@@ -35,6 +36,7 @@ List<Middleware<AppState>> createAppMiddleware({
     ConnectAuthStateMiddleware(authService),
     PlumbServicesMiddleware(authService, databaseService, navigationService),
     RequestGitHubAuthMiddleware(platformService),
+    SignInWithAppleMiddleware(authService),
     SignOutMiddleware(authService, navigationService),
     StoreGitHubTokenMiddleware(authService, databaseService, gitHubService),
     StoreUserDataMiddleware(authService, navigationService, databaseService),
