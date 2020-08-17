@@ -6,8 +6,10 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:flireator/enums/auth/auth_step.dart';
+import 'package:flireator/enums/navigation/nav_selection.dart';
 import 'package:flireator/models/app/settings.dart';
 import 'package:flireator/models/auth/user_data.dart';
+import 'package:flireator/models/flireator/flireator.dart';
 import 'package:flireator/models/problems/problem.dart';
 import 'package:flireator/utils/serializers.dart';
 
@@ -22,10 +24,17 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   /// Settings
   Settings get settings;
 
+  /// Navigation
+  NavSelection get navSelection;
+
   /// Auth
   AuthStep get authStep;
   @nullable
   UserData get userData;
+
+  /// Flireator
+  @nullable
+  Flireator get flireator;
 
   /// GitHub
   @nullable
@@ -34,6 +43,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   AppState._();
 
   factory AppState.init() => AppState((a) => a
+    ..navSelection = NavSelection.local
     ..settings = Settings.initBuilder()
     ..authStep = AuthStep.checking);
 

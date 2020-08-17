@@ -12,12 +12,16 @@ import 'package:flireator/actions/auth/store_user_data.dart';
 import 'package:flireator/actions/navigation/launch_url.dart';
 import 'package:flireator/actions/problems/display_problem.dart';
 import 'package:flireator/enums/auth/auth_step.dart';
+import 'package:flireator/enums/navigation/nav_selection.dart';
 import 'package:flireator/enums/themes/brightness_mode.dart';
 import 'package:flireator/enums/themes/theme_brightness.dart';
 import 'package:flireator/models/app/app_state.dart';
 import 'package:flireator/models/app/settings.dart';
 import 'package:flireator/models/auth/auth_provider_data.dart';
 import 'package:flireator/models/auth/user_data.dart';
+import 'package:flireator/models/flireator/flireator.dart';
+import 'package:flireator/models/git_hub/git_hub_repository.dart';
+import 'package:flireator/models/git_hub/git_hub_user.dart';
 import 'package:flireator/models/problems/problem.dart';
 import 'package:flireator/models/themes/theme_colors.dart';
 import 'package:flireator/models/themes/theme_set.dart';
@@ -35,7 +39,11 @@ part 'serializers.g.dart';
   BrightnessMode,
   ConnectAuthStateToStore,
   DisplayProblem,
+  Flireator,
+  GitHubRepository,
+  GitHubUser,
   LaunchURL,
+  NavSelection,
   PlumbServices,
   Problem,
   Settings,

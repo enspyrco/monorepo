@@ -7,6 +7,7 @@ import 'package:flireator/middleware/auth/store_git_hub_token.dart';
 import 'package:flireator/middleware/auth/store_user_data.dart';
 import 'package:flireator/middleware/git_hub/retrieve_git_hub_repositories.dart';
 import 'package:flireator/middleware/navigation/launch_url.dart';
+import 'package:flireator/middleware/navigation/navigate_to_profile.dart';
 import 'package:flireator/models/app/app_state.dart';
 import 'package:flireator/services/auth/auth_service.dart';
 import 'package:flireator/services/database/database_service.dart';
@@ -44,5 +45,6 @@ List<Middleware<AppState>> createAppMiddleware({
     RetrieveGitHubRepositoriesMiddleware(gitHubService),
     // Navigation
     LaunchURLMiddleware(platformService),
+    NavigateToProfileMiddleware(navigationService),
   ];
 }

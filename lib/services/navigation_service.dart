@@ -15,7 +15,8 @@ class NavigationService {
   bool get displayingProblem => _displayingProblem == null;
 
   /// Use [NavigatorState.pushNamed] to push a named route onto the navigator.
-  void navigateTo(String location) => _navKey.currentState.pushNamed(location);
+  Future<void> navigateTo(String location) =>
+      _navKey.currentState.pushNamed(location);
 
   void popHome() {
     /// The [popHome] method calls [NavigatorState.popUntil], passing a

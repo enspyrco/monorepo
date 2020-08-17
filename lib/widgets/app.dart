@@ -6,6 +6,7 @@ import 'package:flireator/models/app/app_state.dart';
 import 'package:flireator/models/app/settings.dart';
 import 'package:flireator/widgets/auth/auth_page.dart';
 import 'package:flireator/widgets/home/home_page.dart';
+import 'package:flireator/widgets/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -44,6 +45,9 @@ class FlireatorApp extends StatelessWidget {
                 return (signedIn) ? HomePage() : AuthPage();
               },
             ),
+            routes: <String, WidgetBuilder>{
+              '/profile': (context) => ProfilePage(),
+            },
           );
         },
       ),
