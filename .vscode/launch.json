@@ -7,8 +7,17 @@
         {
             "name": "Flutter",
             "program": "lib/main.dart",
+            "deviceId": "macOS",
             "request": "launch",
             "type": "dart"
-        }
+        },
+        {
+            "name": "Integration Test - RDT",
+            "type": "dart",
+            "deviceId": "macOS",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "args": ["--dart-define=RDT=true"],
+        },
     ]
 }

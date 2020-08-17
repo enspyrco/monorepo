@@ -1,4 +1,5 @@
 import 'package:flireator/actions/app/plumb_services.dart';
+import 'package:flireator/actions/auth/connect_auth_state_to_store.dart';
 import 'package:flireator/actions/problems/listen_for_problems.dart';
 import 'package:flireator/extensions/themes/theme_data_extensions.dart';
 import 'package:flireator/extensions/themes/theme_mode_extensions.dart';
@@ -27,6 +28,7 @@ class FlireatorApp extends StatelessWidget {
       child: StoreConnector<AppState, Settings>(
         onInit: (store) {
           store.dispatch(PlumbServices());
+          store.dispatch(ConnectAuthStateToStore());
           store.dispatch(ListenForProblems());
         },
         distinct: true,

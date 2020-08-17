@@ -22,12 +22,7 @@ class StoreUserDataMiddleware extends TypedMiddleware<AppState, StoreUserData> {
             if (action.userData == null) {
               // we are not signed in
 
-              if (store.state.authStep == AuthStep.signingOut) {
-                // user has just signed out so reset UI
-                navigationService.popHome();
-              } else {
-                store.dispatch(StoreAuthStep(step: AuthStep.waitingForInput));
-              }
+              store.dispatch(StoreAuthStep(step: AuthStep.waitingForInput));
             } else {
               // we are signed in
 

@@ -25,4 +25,6 @@ A project creation tool for Flutter projects with a Firebase backend, stored on 
 ```sh
 flutter pub run build_runner build --delete-conflicting-outputs
 flutter pub run build_runner watch --delete-conflicting-outputs
+redux-devtools --open
+flutter drive --dart-define=RDT=true --target=test_driver/app.dart
 ```
