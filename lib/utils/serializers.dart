@@ -19,6 +19,7 @@ import 'package:flireator/models/app/app_state.dart';
 import 'package:flireator/models/app/settings.dart';
 import 'package:flireator/models/auth/auth_provider_data.dart';
 import 'package:flireator/models/auth/user_data.dart';
+import 'package:flireator/models/flireator/credential_info.dart';
 import 'package:flireator/models/flireator/flireator.dart';
 import 'package:flireator/models/git_hub/git_hub_repository.dart';
 import 'package:flireator/models/git_hub/git_hub_user.dart';
@@ -38,6 +39,7 @@ part 'serializers.g.dart';
   AuthStep,
   BrightnessMode,
   ConnectAuthStateToStore,
+  CredentialInfo,
   DisplayProblem,
   Flireator,
   GitHubRepository,

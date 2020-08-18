@@ -37,7 +37,7 @@ List<Middleware<AppState>> createAppMiddleware({
     ConnectAuthStateMiddleware(authService),
     PlumbServicesMiddleware(authService, databaseService, navigationService),
     RequestGitHubAuthMiddleware(platformService),
-    SignInWithAppleMiddleware(authService),
+    SignInWithAppleMiddleware(authService, databaseService),
     SignOutMiddleware(authService, navigationService),
     StoreGitHubTokenMiddleware(authService, databaseService, gitHubService),
     StoreUserDataMiddleware(authService, navigationService, databaseService),

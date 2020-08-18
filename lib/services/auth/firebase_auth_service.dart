@@ -82,6 +82,12 @@ class FirebaseAuthService implements AuthService {
     // use the credential to sign in to firebase
     final authResult =
         await FirebaseAuth.instance.signInWithCredential(credential);
+
+    // update the firebase user with the name from apple (as firebase does not)
+    await authResult.user.updateProfile(UserUpdateInfo()
+      ..displayName =
+          '${appleIdCredential.givenName} ${appleIdCredential.familyName}');
+
     return authResult.user.toData();
   }
 

@@ -46,4 +46,8 @@ app.*.map.json
 ## added ignores 
 
 # firebase config file 
+.firebaserc
 macos/Runner/GoogleService-Info.plist
+
+# Built value generated files 
+*.g.dart
