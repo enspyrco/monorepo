@@ -8,6 +8,37 @@
             "name": "the_process",
             "request": "launch",
             "type": "dart"
-        }
+        },
+        {
+            "name": "the_web_process",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "chrome",
+            "args": [
+                "--web-hostname",
+                "localhost",
+                "--web-port",
+                "5000"
+            ]
+        },
+        {
+            "name": "the_rdt_process",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_rdt.dart",
+        },
+        {
+            "name": "the_webt_rdt_process",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "chrome",
+            "program": "lib/main_rdt.dart",
+            "args": [
+                "--web-hostname",
+                "localhost",
+                "--web-port",
+                "5000"
+            ]
+        },
     ]
 }
