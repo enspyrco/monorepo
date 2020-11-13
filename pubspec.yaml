@@ -1,20 +1,45 @@
 name: the_process
-description: A new Flutter project.
+description: A tool to automate "the process".
 
 publish_to: 'none'
 
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.11.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
+  # auth
+  firebase_auth:
+  google_sign_in:
+  sign_in_with_apple:
+
+  # built_value
+  built_value:
+  built_collection:
+  
+  # database
+  cloud_firestore:
+
+  # firebase 
+  firebase_core:
+
+  # redux
+  redux:
+  flutter_redux:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  # built_value
+  build_runner:
+  built_value_generator:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/
