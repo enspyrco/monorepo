@@ -16,6 +16,7 @@ dependencies:
   firebase_auth:
   google_sign_in:
   sign_in_with_apple:
+  googleapis_auth:
 
   # built_value
   built_value:
@@ -30,6 +31,7 @@ dependencies:
   # redux
   redux:
   flutter_redux:
+  redux_remote_devtools:
 
 dev_dependencies:
   flutter_test:

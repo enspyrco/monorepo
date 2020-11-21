@@ -3,6 +3,7 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
 import 'package:the_process/actions/app_init/plumb_streams.dart';
+import 'package:the_process/actions/auth/get_authorized.dart';
 import 'package:the_process/actions/auth/observe_auth_state.dart';
 import 'package:the_process/actions/auth/sign_in_with_apple.dart';
 import 'package:the_process/actions/auth/sign_in_with_google.dart';
@@ -51,6 +52,7 @@ part 'serializers.g.dart';
   BrightnessMode,
   DetectPlatform,
   DisregardProfileData,
+  GetAuthorized,
   InitialPageData,
   NavBarSelection,
   ObserveProfileData,

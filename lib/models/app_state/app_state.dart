@@ -36,6 +36,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   BuiltList<Problem> get problems;
 
   /// Profile
+  @nullable
   ProfileData get profileData;
 
   /// Settings
@@ -47,8 +48,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
     ..pagesData = ListBuilder<PageData>(<PageData>[InitialPageData()])
     ..settings = Settings.initBuilder()
     ..authStep = AuthStep.checking
-    ..navSelection = NavBarSelection.projects
-    ..profileData.id = '-');
+    ..navSelection = NavBarSelection.projects);
 
   factory AppState([void Function(AppStateBuilder) updates]) = _$AppState;
 

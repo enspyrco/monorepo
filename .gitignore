@@ -47,12 +47,16 @@ app.*.map.json
 
 ###### Added ignores 
 
+# generated files 
+*.g.dart
 # Ignored because the file updates whenever we hide/show files 
 .vscode/settings.json
 # Ignored as we use different files locally and in CI 
 web/index.html
 web/index_cdn.html
 web/index_auto.html
-
 # Ignored so credentials are kept private (not strictly neccessary but good practice)
 macos/Runner/GoogleService-Info.plist
+# Ignored as the credentials include a secret 
+functions/src/project_credentials.json
+functions/lib/project_credentials.json

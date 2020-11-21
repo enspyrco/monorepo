@@ -59,4 +59,19 @@ class DatabaseService {
 
   void disconnect(DatabaseSection dbSection) =>
       subscriptions[dbSection]?.cancel();
+
+  void saveAuthTokens(
+      {@required String uid,
+      @required String accessToken,
+      @required String refreshToken}) async {
+    assert(uid != null);
+
+    try {
+      await _firestore.doc('profiles/$uid').set(
+          {'accessToken': accessToken, 'refreshToken': refreshToken},
+          SetOptions(merge: true));
+    } catch (error, trace) {
+      _controller.addProblem(error, trace);
+    }
+  }
 }

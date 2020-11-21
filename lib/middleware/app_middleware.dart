@@ -1,5 +1,6 @@
 import 'package:redux/redux.dart';
 import 'package:the_process/middleware/app/plumb_streams.dart';
+import 'package:the_process/middleware/auth/get_authorized.dart';
 import 'package:the_process/middleware/auth/observe_auth_state.dart';
 import 'package:the_process/middleware/auth/sign_in_with_apple.dart';
 import 'package:the_process/middleware/auth/sign_in_with_google.dart';
@@ -28,6 +29,7 @@ List<Middleware<AppState>> createAppMiddleware({
 }) {
   return [
     // Auth
+    GetAuthorizedMiddleware(authService, databaseService),
     ObserveAuthStateMiddleware(authService),
     PlumbStreamsMiddleware(authService, databaseService),
     SignInWithAppleMiddleware(authService),
