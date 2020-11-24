@@ -1,5 +1,4 @@
 import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
 import { google } from 'googleapis';
 
 import * as project_credentials from '../project_credentials.json';
@@ -14,9 +13,9 @@ client.on('tokens', async (tokens) => {
   let id, refresh, access = '-';
   if(tokens.id_token) {
     id = tokens.id_token.substr(0,5)+'...';
-    // decode with the firebase admin lib 
-    const decodedToken = await admin.auth().verifyIdToken(tokens.id_token);
-    functions.logger.info(`uid: ${decodedToken.uid}`); 
+    // decode with the firebase admin lib (TODO: doesn't work, remove?)
+    // const decodedToken = await auth.verifyIdToken(tokens.id_token);
+    // functions.logger.info(`uid: ${decodedToken.uid}`); 
   }
   
   if (tokens.refresh_token) {

@@ -2,16 +2,11 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:googleapis_auth/auth.dart';
-import 'package:googleapis_auth/auth_browser.dart';
-import 'package:googleapis_auth/auth_io.dart';
 import 'package:meta/meta.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/extensions/auth_plugin_extensions.dart';
-import 'package:the_process/extensions/googleapis_auth_plugin.dart';
 import 'package:the_process/extensions/stream_extensions.dart';
-import 'package:the_process/models/auth/access_credentials.dart' as model;
 import 'package:the_process/models/auth/apple_id_credential.dart';
 import 'package:the_process/models/auth/auth_user_data.dart';
 import 'package:the_process/models/auth/google_sign_in_credential.dart';
@@ -57,8 +52,7 @@ class AuthService {
   }
 
   Future<GoogleSignInCredential> getGoogleCredential() async {
-    final _googleSignIn = GoogleSignIn(
-        scopes: ['email', 'https://www.googleapis.com/auth/drive.file']);
+    final _googleSignIn = GoogleSignIn(scopes: ['email']);
 
     final googleSignInAccount = await _googleSignIn.signIn();
     final googleSignInAuthentication = await googleSignInAccount.authentication;
@@ -108,45 +102,5 @@ class AuthService {
   /// be automatically updated
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
-  }
-
-  Future<model.AccessCredentials> getAuthorized() async {
-    final id = new ClientId(
-        '256145062869-mhc784a6tkdd9b08455vqog5shjk2d5q.apps.googleusercontent.com',
-        null);
-    var scopes = [
-      'https://www.googleapis.com/auth/documents',
-      'https://www.googleapis.com/auth/documents.readonly',
-      'https://www.googleapis.com/auth/drive',
-      'https://www.googleapis.com/auth/drive.file',
-      'https://www.googleapis.com/auth/drive.readonly',
-    ];
-
-    // Initialize the browser oauth2 flow functionality.
-    BrowserOAuth2Flow flow = await createImplicitBrowserFlow(id, scopes);
-
-    // HybridFlowResult result = await flow.runHybridFlow(force: true);
-    // print('---------------------------------------');
-    // print(result.authorizationCode);
-    // print('---------------------------------------');
-    // print(result.credentials.accessToken.data);
-    // print('---------------------------------------');
-
-    AccessCredentials credentials =
-        await flow.obtainAccessCredentialsViaUserConsent(force: true);
-    return credentials.toModel();
-
-    // responseTypes: [ResponseType.code],
-
-    // void prompt(String url) {
-    //   print('Please go to the following URL and grant access:');
-    //   print('  => $url');
-    //   print('');
-    // }
-
-    // var client = new http.Client();
-    // final accessCredentials =
-    //     await obtainAccessCredentialsViaUserConsent(id, scopes, client, prompt);
-    // client.close();
   }
 }

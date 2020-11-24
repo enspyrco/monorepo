@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:meta/meta.dart';
+import 'package:the_process/enums/auth/authorization_step.dart';
 import 'package:the_process/serializers.dart';
 
 part 'profile_data.g.dart';
@@ -19,6 +20,7 @@ abstract class ProfileData implements Built<ProfileData, ProfileDataBuilder> {
   String get firstName;
   @nullable
   String get lastName;
+  AuthorizationStep get googleAuth;
 
   ProfileData._();
 
@@ -27,7 +29,8 @@ abstract class ProfileData implements Built<ProfileData, ProfileDataBuilder> {
       String displayName,
       String photoURL,
       String firstName,
-      String lastName}) = _$ProfileData._;
+      String lastName,
+      @required AuthorizationStep googleAuth}) = _$ProfileData._;
 
   factory ProfileData.by([void Function(ProfileDataBuilder) updates]) =
       _$ProfileData;

@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 import 'package:the_process/actions/profile/store_profile_data.dart';
 import 'package:the_process/actions/redux_action.dart';
+import 'package:the_process/enums/auth/authorization_step.dart';
 import 'package:the_process/enums/database/database_section.dart';
 import 'package:the_process/extensions/firestore_extensions.dart';
 import 'package:the_process/extensions/stream_extensions.dart';
@@ -60,7 +61,7 @@ class DatabaseService {
   void disconnect(DatabaseSection dbSection) =>
       subscriptions[dbSection]?.cancel();
 
-  void saveAuthTokens(
+  Future<void> saveAuthTokens(
       {@required String uid,
       @required String accessToken,
       @required String refreshToken}) async {
@@ -70,6 +71,21 @@ class DatabaseService {
       await _firestore.doc('profiles/$uid').set(
           {'accessToken': accessToken, 'refreshToken': refreshToken},
           SetOptions(merge: true));
+    } catch (error, trace) {
+      _controller.addProblem(error, trace);
+    }
+  }
+
+  Future<void> updateGoogleAuthorization(
+      {@required String uid,
+      @required AuthorizationStep step,
+      @required bool authorized}) async {
+    assert(uid != null);
+
+    try {
+      await _firestore
+          .doc('profiles/$uid')
+          .set({'googleAuth': step.toString()}, SetOptions(merge: true));
     } catch (error, trace) {
       _controller.addProblem(error, trace);
     }

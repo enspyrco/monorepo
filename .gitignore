@@ -60,3 +60,5 @@ macos/Runner/GoogleService-Info.plist
 # Ignored as the credentials include a secret 
 functions/src/project_credentials.json
 functions/lib/project_credentials.json
+# The cache file speeds up deploys but can be different between machines
+.firebase/hosting.*.cache

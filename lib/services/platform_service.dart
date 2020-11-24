@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:the_process/enums/platform/platform_enum.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PlatformService {
   PlatformService();
@@ -29,5 +30,15 @@ class PlatformService {
       return PlatformEnum.android;
     }
     return PlatformEnum.unknown;
+  }
+
+  Future<void> getAuthorized() async {
+    const url =
+        'https://us-central1-the-process-tool.cloudfunctions.net/getAuthorized?state=EmMNvzWZERdIpbk4cl3klhMPZg82';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

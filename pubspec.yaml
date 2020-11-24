@@ -16,7 +16,6 @@ dependencies:
   firebase_auth:
   google_sign_in:
   sign_in_with_apple:
-  googleapis_auth:
 
   # built_value
   built_value:
@@ -27,6 +26,9 @@ dependencies:
 
   # firebase 
   firebase_core:
+
+  # platform 
+  url_launcher:
 
   # redux
   redux:

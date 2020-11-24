@@ -5,7 +5,6 @@ import 'package:the_process/enums/navigation/nav_bar_selection.dart';
 import 'package:the_process/extensions/dart_core_extensions.dart';
 import 'package:the_process/extensions/flutter_extensions.dart';
 import 'package:the_process/models/app_state/app_state.dart';
-import 'package:the_process/models/team/team_member.dart';
 import 'package:the_process/widgets/shared/profile_avatar.dart';
 
 class NavRail extends StatelessWidget {
@@ -47,13 +46,13 @@ class NavRail extends StatelessWidget {
                   ],
                 ),
               ),
-              StoreConnector<AppState, TeamMember>(
+              StoreConnector<AppState, String>(
                 distinct: true,
-                converter: (store) => store.state.teamMember,
-                builder: (context, teamMember) {
+                converter: (store) => store.state.profileData?.photoURL,
+                builder: (context, photoURL) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: ProfileAvatar(teamMember),
+                    child: ProfileAvatar(photoURL),
                   );
                 },
               ),

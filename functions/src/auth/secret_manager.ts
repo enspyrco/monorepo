@@ -9,13 +9,10 @@ class SecretManager {
   client = new SecretManagerServiceClient();
 
   async save(uid: string, tokens: Credentials) {
-    functions.logger.info(`Saving tokens for: ${uid}`);
-
-    // TODO: check if secret with name already exists 
-    // if yes, update?  or delete and create new? 
 
     let secret: protos.google.cloud.secretmanager.v1.ISecret;
     
+    // Check if a secret already exists and only create if not 
     try {
       [secret] = await this.client.getSecret({
         name: 'projects/the-process-tool/secrets/'+uid,
