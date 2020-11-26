@@ -3,7 +3,7 @@ import * as express from 'express';
 import { firebaseAdmin } from '../utils/firebase_admin';
 
 import * as google_oauth2 from '../google_apis/client';
-import { secretManager } from './secret_manager';
+import { secretManager } from '../utils/secret_manager';
 import { PeopleAPI } from '../google_apis/people';
 import { ProfileData } from './database';
 
