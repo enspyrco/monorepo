@@ -90,4 +90,19 @@ class DatabaseService {
       _controller.addProblem(error, trace);
     }
   }
+
+  Future<void> createSection(
+      {@required String uid, @required String name}) async {
+    assert(uid != null);
+
+    try {
+      await _firestore.doc('new/$uid').set({
+        'section': {
+          'name': name,
+        }
+      });
+    } catch (error, trace) {
+      _controller.addProblem(error, trace);
+    }
+  }
 }

@@ -31,17 +31,12 @@ class NavRail extends StatelessWidget {
                     NavigationRailDestination(
                       icon: Icon(Icons.short_text),
                       selectedIcon: Icon(Icons.wrap_text),
-                      label: Text('Projects'),
+                      label: Text('Sections'),
                     ),
                     NavigationRailDestination(
                       icon: Icon(Icons.assignment),
                       selectedIcon: Icon(Icons.assessment),
                       label: Text('Topics'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.supervised_user_circle),
-                      selectedIcon: Icon(Icons.verified_user),
-                      label: Text('Profile'),
                     ),
                   ],
                 ),

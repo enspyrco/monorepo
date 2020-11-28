@@ -6,17 +6,15 @@ import 'package:the_process/serializers.dart';
 part 'nav_bar_selection.g.dart';
 
 class NavBarSelection extends EnumClass {
-  static const NavBarSelection projects = _$projects;
+  static const NavBarSelection sections = _$sections;
   static const NavBarSelection topics = _$topics;
-  static const NavBarSelection profile = _$profile;
 
   const NavBarSelection._(String name) : super(name);
 
   int get index => _$indexMap[this];
   static const Map<NavBarSelection, int> _$indexMap = {
-    projects: 0,
+    sections: 0,
     topics: 1,
-    profile: 2,
   };
 
   static BuiltSet<NavBarSelection> get values => _$values;

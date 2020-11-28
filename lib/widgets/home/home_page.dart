@@ -3,7 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:the_process/enums/navigation/nav_bar_selection.dart';
 import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/widgets/home/nav_rail.dart';
-import 'package:the_process/widgets/projects/projects_page.dart';
+import 'package:the_process/widgets/sections/sections_page.dart';
 import 'package:the_process/widgets/topics/topics_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   static const Map<NavBarSelection, Widget> widgetFrom = {
-    NavBarSelection.projects: ProjectsPage(),
+    NavBarSelection.sections: SectionsPage(),
     NavBarSelection.topics: TopicsPage(),
   };
 

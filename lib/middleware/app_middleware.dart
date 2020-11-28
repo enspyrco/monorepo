@@ -8,6 +8,7 @@ import 'package:the_process/middleware/platform/detect_platform.dart';
 import 'package:the_process/middleware/profile/disregard_profile_data.dart';
 import 'package:the_process/middleware/profile/get_authorized.dart';
 import 'package:the_process/middleware/profile/observe_profile_data.dart';
+import 'package:the_process/middleware/sections/create_section.dart';
 import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/services/auth_service.dart';
 import 'package:the_process/services/database_service.dart';
@@ -40,5 +41,7 @@ List<Middleware<AppState>> createAppMiddleware({
     DisregardProfileDataMiddleware(databaseService),
     GetAuthorizedMiddleware(databaseService, platformService),
     ObserveProfileDataMiddleware(databaseService),
+    // Sections
+    CreateSectionMiddleware(databaseService),
   ];
 }

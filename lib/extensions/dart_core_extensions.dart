@@ -4,7 +4,7 @@ extension intExt on int {
   toNavBarSelection() {
     switch (this) {
       case 0:
-        return NavBarSelection.projects;
+        return NavBarSelection.sections;
       case 1:
         return NavBarSelection.topics;
       default:

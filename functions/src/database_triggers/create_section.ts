@@ -7,12 +7,12 @@ export async function createSection(snapshot : functions.firestore.DocumentSnaps
   const data = snapshot.data() ?? {};
   const newSection = data['section'];
   const name = newSection['name'];
-
-  const uid = context.params.userId;
-  const driveAPI = new DriveAPI(uid)
+    
+  // in this case we want to authenticate as the.process@crowdleague.app
+  const driveAPI = new DriveAPI('EmMNvzWZERdIpbk4cl3klhMPZg82');
   
   await driveAPI.authenticate();
-  const file = await driveAPI.createFolder(name, uid);
+  const file = await driveAPI.createFolder(name);
   
   functions.logger.info(`created folder name: ${name}`, file);
 

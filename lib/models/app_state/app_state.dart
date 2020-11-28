@@ -12,6 +12,7 @@ import 'package:the_process/models/navigation/page_data/initial_page_data.dart';
 import 'package:the_process/models/navigation/page_data/page_data.dart';
 import 'package:the_process/models/problems/problem.dart';
 import 'package:the_process/models/profile/profile_data.dart';
+import 'package:the_process/models/sections/sections_v_m.dart';
 import 'package:the_process/models/settings/settings.dart';
 import 'package:the_process/models/team/team_member.dart';
 import 'package:the_process/serializers.dart';
@@ -39,6 +40,10 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   @nullable
   ProfileData get profileData;
 
+  /// Sections
+  @nullable
+  SectionsVM get sectionsVM;
+
   /// Settings
   Settings get settings;
 
@@ -48,7 +53,9 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
     ..pagesData = ListBuilder<PageData>(<PageData>[InitialPageData()])
     ..settings = Settings.initBuilder()
     ..authStep = AuthStep.checking
-    ..navSelection = NavBarSelection.projects);
+    ..navSelection = NavBarSelection.sections
+    ..sectionsVM.newSectionName = ''
+    ..sectionsVM.creatingSection = false);
 
   factory AppState([void Function(AppStateBuilder) updates]) = _$AppState;
 
