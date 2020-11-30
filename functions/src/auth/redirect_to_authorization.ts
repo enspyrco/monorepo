@@ -1,6 +1,9 @@
 import * as express from 'express';
 
-import * as google_oauth2 from '../google_apis/client';
+import { google } from 'googleapis';
+import { OAuth2Client } from 'google-auth-library';
+
+import * as project_credentials from '../project_credentials.json';
 
 // generate a url that asks permissions for Drive and Docs scopes
 const scopes = [
@@ -15,8 +18,15 @@ const scopes = [
 
 // Get the code from the request, call retrieveAuthToken and return the response
 const authorizationUrlCallback = async (req: any, res: any) => {
+
+  const oauth2 : OAuth2Client = new google.auth.OAuth2(
+    project_credentials.id,
+    project_credentials.secret,
+    project_credentials.redirect_url,
+  );
+
   // access_type is either 'online' (default) or 'offline' (gets refresh_token)
-  const url = google_oauth2.client.generateAuthUrl({  
+  const url = oauth2.generateAuthUrl({  
     access_type: 'offline',
     scope: scopes,
     state: req.query.state,

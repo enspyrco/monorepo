@@ -1,4 +1,4 @@
-import { firebaseAdmin } from '../utils/firebase_admin';
+import { firebaseAdmin } from './firebase_admin';
 import { firestore } from 'firebase-admin';
 
 const db = firebaseAdmin.getFirestore();

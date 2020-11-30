@@ -1,11 +1,13 @@
 import * as functions from 'firebase-functions';
 import * as express from 'express';
-import { firebaseAdmin } from '../utils/firebase_admin';
+import { google } from 'googleapis';
+import { OAuth2Client } from 'google-auth-library';
 
-import * as google_oauth2 from '../google_apis/client';
+import * as project_credentials from '../project_credentials.json';
+import { firebaseAdmin } from '../utils/firebase_admin';
 import { secretManager } from '../utils/secret_manager';
 import { PeopleAPI } from '../google_apis/people';
-import { ProfileData } from './database';
+import { ProfileData } from '../utils/database';
 
 const auth = firebaseAdmin.getAuth();
 
@@ -20,27 +22,32 @@ const exchangeCodeForToken = async (req: any, res: any) => {
 
     functions.logger.log(`Exchanging code for tokens...`);
 
-    const tokenResponse = await google_oauth2.client.getToken(req.query.code);
+    const oauth2 : OAuth2Client = new google.auth.OAuth2(
+      project_credentials.id,
+      project_credentials.secret,
+      project_credentials.redirect_url,
+    );
 
-    if(tokenResponse.tokens.access_token === null) {
-      throw Error('No access token in response.');
-    }
+    const tokenResponse = await oauth2.getToken(req.query.code);
 
-    functions.logger.log('Adding tokens to client.');
+    functions.logger.log('Setting credentials in oauth2 client...');
 
-    google_oauth2.client.setCredentials(tokenResponse.tokens);
+    oauth2.setCredentials(tokenResponse.tokens);
     
-    functions.logger.log('Requesting an email with PeopleAPI.');
+    functions.logger.log('Requesting an email with PeopleAPI...');
 
-    const peopleAPI = new PeopleAPI(google_oauth2.client);
+    const peopleAPI = new PeopleAPI(oauth2);
     const email = await peopleAPI.getEmail();
+
+    functions.logger.log('Converting email to Firebase UID...');
+
     const userRecord = await auth.getUserByEmail(email);
 
-    functions.logger.log('Saving tokens in SecretManager.');
+    functions.logger.log('Saving tokens in SecretManager...');
     
     await secretManager.save(userRecord.uid, tokenResponse.tokens);
 
-    functions.logger.log('Saving finished state to database.');
+    functions.logger.log('Saving finished state to database...');
 
     const profileData = new ProfileData(userRecord.uid, 'authorized');
     await profileData.save();
