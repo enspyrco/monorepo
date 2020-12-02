@@ -7,9 +7,11 @@ part 'database_section.g.dart';
 
 class DatabaseSection extends EnumClass {
   static const DatabaseSection profileData = _$profileData;
+  static const DatabaseSection newEntries = _$newEntries;
 
   static const Map<DatabaseSection, int> _$indexMap = {
     profileData: 0,
+    newEntries: 1,
   };
 
   const DatabaseSection._(String name) : super(name);

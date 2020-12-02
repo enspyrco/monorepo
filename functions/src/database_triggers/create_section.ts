@@ -9,18 +9,18 @@ export async function createSection(snapshot : functions.firestore.DocumentSnaps
 
   const data = snapshot.data() ?? {};
   const newSection = data['section'];
-  const name = newSection['name'];
+  const sectionName = newSection['name'];
+  const sectionNumber = newSection['number'];
     
   const driveAPI = await DriveAPI.for(the_process_id);
   const docsAPI = await DocsAPI.for(the_process_id);
-  
-  const folder = await driveAPI.createFolder(name);
+  const folder = await driveAPI.createFolder(sectionNumber+'. '+sectionName+': Sections Planning (CL)');
 
   const checkedFolderId = unNull(folder.id, 'The created folder id was missing.')
 
   functions.logger.info(`created folder:`, folder);
 
-  const title = 'test doc';
+  const title = '0 - Use Cases < '+sectionName+' (CL)';
   const doc = await docsAPI.createDoc(title);
 
   const checkedDocId = unNull(doc.documentId, 'The created doc id was missing.');
@@ -30,5 +30,9 @@ export async function createSection(snapshot : functions.firestore.DocumentSnaps
   await driveAPI.moveDoc(checkedDocId, checkedFolderId);
   
   functions.logger.info(`created doc with title: ${title}`, doc);
+
+  // Delete the document that was created in the 'new' collection.
+  // The front end uses this event to change the UI.
+  await snapshot.ref.delete();
 
 }

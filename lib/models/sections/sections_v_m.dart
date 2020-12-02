@@ -5,19 +5,17 @@ import 'dart:convert';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:meta/meta.dart';
+import 'package:the_process/models/sections/new_section_v_m.dart';
 import 'package:the_process/serializers.dart';
 
 part 'sections_v_m.g.dart';
 
 abstract class SectionsVM implements Built<SectionsVM, SectionsVMBuilder> {
-  String get newSectionName;
-  bool get creatingSection;
+  NewSectionVM get newSection;
 
   SectionsVM._();
 
-  factory SectionsVM(
-      {@required String newSectionName,
-      @required bool creatingSection}) = _$SectionsVM._;
+  factory SectionsVM({@required NewSectionVM newSection}) = _$SectionsVM._;
 
   factory SectionsVM.by([void Function(SectionsVMBuilder) updates]) =
       _$SectionsVM;

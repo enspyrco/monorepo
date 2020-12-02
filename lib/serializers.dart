@@ -20,7 +20,7 @@ import 'package:the_process/actions/profile/disregard_profile_data.dart';
 import 'package:the_process/actions/profile/observe_profile_data.dart';
 import 'package:the_process/actions/profile/store_profile_data.dart';
 import 'package:the_process/actions/sections/create_section.dart';
-import 'package:the_process/actions/sections/store_new_section_name.dart';
+import 'package:the_process/actions/sections/update_new_section_v_m.dart';
 import 'package:the_process/actions/settings/update_settings.dart';
 import 'package:the_process/enums/auth/auth_step.dart';
 import 'package:the_process/enums/auth/authorization_step.dart';
@@ -37,6 +37,7 @@ import 'package:the_process/models/navigation/page_data/page_data.dart';
 import 'package:the_process/models/navigation/page_data/profile_page_data.dart';
 import 'package:the_process/models/problems/problem.dart';
 import 'package:the_process/models/profile/profile_data.dart';
+import 'package:the_process/models/sections/new_section_v_m.dart';
 import 'package:the_process/models/sections/sections_v_m.dart';
 import 'package:the_process/models/settings/settings.dart';
 import 'package:the_process/models/settings/theme_colors.dart';
@@ -52,7 +53,9 @@ part 'serializers.g.dart';
 @SerializersFor([
   AddProblem,
   AppState,
+  AuthorizationStep,
   AuthProviderData,
+  AuthUserData,
   AuthStep,
   BrightnessMode,
   CreateSection,
@@ -61,6 +64,7 @@ part 'serializers.g.dart';
   GetAuthorized,
   InitialPageData,
   NavBarSelection,
+  NewSectionVM,
   ObserveProfileData,
   ObserveAuthState,
   PageData,
@@ -69,9 +73,11 @@ part 'serializers.g.dart';
   Problem,
   ProfileData,
   ProfilePageData,
+  Provider,
   PushPage,
   RemoveCurrentPage,
   RemoveProblem,
+  SectionsVM,
   Settings,
   SignInWithApple,
   SignInWithGoogle,
@@ -80,13 +86,12 @@ part 'serializers.g.dart';
   StoreAuthStep,
   StoreAuthUserData,
   StoreNavBarSelection,
-  StoreNewSectionName,
   TeamMember,
   ThemeBrightness,
   ThemeColors,
   ThemeSet,
+  UpdateNewSectionVM,
   UpdateSettings,
-  AuthUserData,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..addPlugin(StandardJsonPlugin())

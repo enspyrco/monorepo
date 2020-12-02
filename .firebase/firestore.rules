@@ -11,8 +11,7 @@ service cloud.firestore {
     }
 
     match /new/{userId} {
-      allow read: if false;
-      allow write: if request.auth.uid == userId;
+      allow read, write: if request.auth.uid == userId;
     }
   }
 }

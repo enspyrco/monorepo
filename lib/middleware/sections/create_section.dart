@@ -10,6 +10,7 @@ class CreateSectionMiddleware extends TypedMiddleware<AppState, CreateSection> {
 
           await databaseService.createSection(
               uid: store.state.authUserData.uid,
-              name: store.state.sectionsVM.newSectionName);
+              name: store.state.sections.newSection.name,
+              number: store.state.sections.newSection.number);
         });
 }

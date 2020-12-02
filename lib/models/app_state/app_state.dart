@@ -12,6 +12,7 @@ import 'package:the_process/models/navigation/page_data/initial_page_data.dart';
 import 'package:the_process/models/navigation/page_data/page_data.dart';
 import 'package:the_process/models/problems/problem.dart';
 import 'package:the_process/models/profile/profile_data.dart';
+import 'package:the_process/models/sections/new_section_v_m.dart';
 import 'package:the_process/models/sections/sections_v_m.dart';
 import 'package:the_process/models/settings/settings.dart';
 import 'package:the_process/models/team/team_member.dart';
@@ -42,7 +43,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   /// Sections
   @nullable
-  SectionsVM get sectionsVM;
+  SectionsVM get sections;
 
   /// Settings
   Settings get settings;
@@ -54,8 +55,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
     ..settings = Settings.initBuilder()
     ..authStep = AuthStep.checking
     ..navSelection = NavBarSelection.sections
-    ..sectionsVM.newSectionName = ''
-    ..sectionsVM.creatingSection = false);
+    ..sections.newSection = NewSectionVM.initialBuilder);
 
   factory AppState([void Function(AppStateBuilder) updates]) = _$AppState;
 
