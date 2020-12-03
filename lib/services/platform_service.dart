@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:meta/meta.dart';
+import 'package:the_process/enums/auth/provider.dart';
 import 'package:the_process/enums/platform/platform_enum.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -32,9 +34,17 @@ class PlatformService {
     return PlatformEnum.unknown;
   }
 
-  Future<void> getAuthorized() async {
-    const url =
-        'https://us-central1-the-process-tool.cloudfunctions.net/getAuthorized?state=EmMNvzWZERdIpbk4cl3klhMPZg82';
+  Future<void> getAuthorized(
+      {@required Provider provider, @required String state}) async {
+    var url;
+    if (provider == Provider.google) {
+      url =
+          'https://us-central1-the-process-tool.cloudfunctions.net/getGoogleAuthorization?state=$state';
+    } else if (provider == Provider.asana) {
+      url =
+          'https://us-central1-the-process-tool.cloudfunctions.net/getAsanaAuthorization?state=$state';
+    }
+
     if (await canLaunch(url)) {
       await launch(url);
     } else {

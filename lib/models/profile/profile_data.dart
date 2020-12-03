@@ -21,6 +21,7 @@ abstract class ProfileData implements Built<ProfileData, ProfileDataBuilder> {
   @nullable
   String get lastName;
   AuthorizationStep get googleAuth;
+  AuthorizationStep get asanaAuth;
 
   ProfileData._();
 
@@ -30,7 +31,8 @@ abstract class ProfileData implements Built<ProfileData, ProfileDataBuilder> {
       String photoURL,
       String firstName,
       String lastName,
-      @required AuthorizationStep googleAuth}) = _$ProfileData._;
+      @required AuthorizationStep googleAuth,
+      @required AuthorizationStep asanaAuth}) = _$ProfileData._;
 
   factory ProfileData.by([void Function(ProfileDataBuilder) updates]) =
       _$ProfileData;

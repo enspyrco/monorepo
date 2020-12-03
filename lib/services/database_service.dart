@@ -6,6 +6,7 @@ import 'package:the_process/actions/profile/store_profile_data.dart';
 import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/actions/sections/update_new_section_v_m.dart';
 import 'package:the_process/enums/auth/authorization_step.dart';
+import 'package:the_process/enums/auth/provider.dart';
 import 'package:the_process/enums/database/database_section.dart';
 import 'package:the_process/extensions/firestore_extensions.dart';
 import 'package:the_process/extensions/stream_extensions.dart';
@@ -77,16 +78,16 @@ class DatabaseService {
     }
   }
 
-  Future<void> updateGoogleAuthorization(
-      {@required String uid,
-      @required AuthorizationStep step,
-      @required bool authorized}) async {
+  Future<void> updateAuthorizationStep(
+      {@required Provider provider,
+      @required String uid,
+      @required AuthorizationStep step}) async {
     assert(uid != null);
 
     try {
       await _firestore
           .doc('profiles/$uid')
-          .set({'googleAuth': step.toString()}, SetOptions(merge: true));
+          .set({'${provider}Auth': step.toString()}, SetOptions(merge: true));
     } catch (error, trace) {
       _controller.addProblem(error, trace);
     }

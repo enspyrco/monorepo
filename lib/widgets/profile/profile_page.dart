@@ -7,6 +7,7 @@ import 'package:the_process/enums/auth/authorization_step.dart';
 import 'package:the_process/extensions/flutter_extensions.dart';
 import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/models/profile/profile_data.dart';
+import 'package:the_process/widgets/profile/buttons/asana_authorization_button.dart';
 import 'package:the_process/widgets/profile/buttons/google_authorization_button.dart';
 import 'package:the_process/widgets/shared/waiting_indicator.dart';
 
@@ -41,7 +42,12 @@ class ProfilePage extends StatelessWidget {
                         AuthorizationStep.gettingAuthorized)
                       CircularProgressIndicator()
                     else
-                      GoogleAuthorizationButton(step: profileData.googleAuth)
+                      GoogleAuthorizationButton(step: profileData.googleAuth),
+                    if (profileData.asanaAuth ==
+                        AuthorizationStep.gettingAuthorized)
+                      CircularProgressIndicator()
+                    else
+                      AsanaAuthorizationButton(step: profileData.asanaAuth)
                   ],
                 ),
               ],

@@ -1,7 +1,5 @@
 import * as functions from 'firebase-functions';
-import { Credentials } from 'google-auth-library';
 import { SecretManagerServiceClient, protos } from '@google-cloud/secret-manager';
-
 
 // We create the secret with automatic replication, documented as "the right choice in most cases".
 const autoReplication = { automatic: {} };
@@ -9,11 +7,11 @@ const autoReplication = { automatic: {} };
 class SecretManager {
   secretsClient = new SecretManagerServiceClient();
 
-  async save(uid: string, tokens: Credentials) {
+  async save(uid: string, provider: string, tokens: {}) {
 
     let secret: protos.google.cloud.secretmanager.v1.ISecret;
     
-    // Check if a secret already exists and only create if not 
+    // Retrieve the user's secret (or create one if none exists) 
     try {
       [secret] = await this.secretsClient.getSecret({
         name: 'projects/the-process-tool/secrets/'+uid,
@@ -36,14 +34,17 @@ class SecretManager {
       functions.logger.info('Created secret: ', secret);
     }
 
-    const tokensJson = {
-      "google": {
-          "refresh_token": tokens.refresh_token,
-          "access_token": tokens.access_token,
-          "expiry_date": tokens.expiry_date,
-          "scope": tokens.scope,
-      },
+    const [versions] = await this.secretsClient.listSecretVersions({
+      parent: secret.name,
+    });
+
+    let tokensJson = {}; 
+    if(versions.length > 0) {
+      tokensJson = await this.retrieveCredentials(uid);
     }
+    
+    // update the json with the new data 
+    tokensJson = { ...tokensJson, [provider]: tokens};
 
     // Add a version with a payload onto the secret.
     const [version] = await this.secretsClient.addSecretVersion({
@@ -57,7 +58,7 @@ class SecretManager {
   }
 
   // 
-  async retrieveCredentials(uid: string) : Promise<Credentials> {
+  async retrieveCredentials(uid: string) : Promise<{}> {
     // Access the secret.
     const [accessResponse] = await this.secretsClient.accessSecretVersion({
       name: 'projects/the-process-tool/secrets/'+uid+'/versions/latest',
@@ -73,7 +74,7 @@ class SecretManager {
     
     functions.logger.log('Parsed json from responsePayload');
 
-    return tokensJson.google;
+    return tokensJson;
   }
 }
 

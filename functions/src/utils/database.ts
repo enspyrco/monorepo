@@ -37,15 +37,18 @@ export class AuthToken {
 
 export class ProfileData {
     uid: string;
-    googleAuth: string;
+    provider: string;
+    authState: string;
 
-    constructor(uid: string, googleAuth: string) {
+    constructor(uid: string, provider: string, authState: string) {
         this.uid = uid;
-        this.googleAuth = googleAuth;
+        this.provider = provider;
+        this.authState = authState;
     }
     async save() {
+        const providerName = this.provider+'Auth';
         await db.doc(`profiles/${this.uid}`).set({
-            'googleAuth' : this.googleAuth,
+            [providerName] : this.authState,
         }, {merge: true});
     }
     async failed(failures: any[]) {

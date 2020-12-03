@@ -35,6 +35,9 @@ dependencies:
   flutter_redux:
   redux_remote_devtools:
 
+  # utils 
+  uuid:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

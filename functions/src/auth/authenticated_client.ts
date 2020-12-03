@@ -14,9 +14,9 @@ export class AuthenticatedClient {
   private uid : string;
   private tokens_expiry!: number;
   private oauth2 : OAuth2Client = new google.auth.OAuth2(
-    project_credentials.id,
-    project_credentials.secret,
-    project_credentials.redirect_url,
+    project_credentials.google.id,
+    project_credentials.google.secret,
+    project_credentials.google.redirect_url,
   );
 
   private constructor(uid: string) {
@@ -75,7 +75,7 @@ export class AuthenticatedClient {
 
     if(newExpiry > this.tokens_expiry) {
       functions.logger.log('Saving tokens under UID in SecretManager...');
-      await secretManager.save(this.uid, tokens);
+      await secretManager.save(this.uid, 'google', tokens);
     }
   }
 

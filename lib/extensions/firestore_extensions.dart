@@ -10,5 +10,6 @@ extension ConvertDocumentSnapshot on DocumentSnapshot {
           'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
       firstName: data()['firstName'] as String ?? '_',
       lastName: data()['lastName'] as String ?? '_',
-      googleAuth: AuthorizationStep.valueOf(data()['googleAuth']));
+      googleAuth: AuthorizationStep.valueOf(data()['googleAuth']),
+      asanaAuth: AuthorizationStep.valueOf(data()['asanaAuth']));
 }
