@@ -17,10 +17,8 @@ class GetAuthorizedMiddleware extends TypedMiddleware<AppState, GetAuthorized> {
               uid: store.state.authUserData.uid,
               step: AuthorizationStep.gettingAuthorized);
 
+          // can improve security by saving to database and sending in 'state'
           final unguessable = Uuid().v1();
-
-          // TODO: save unguessable to new/uid/authorizing so cloud functions
-          // can match unguessable to firebase UID
 
           await platformService.getAuthorized(
               provider: action.toAccess, state: unguessable);

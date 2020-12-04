@@ -26,10 +26,12 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           NavRail(),
           VerticalDivider(thickness: 1, width: 1),
-          StoreConnector<AppState, NavBarSelection>(
-            distinct: true,
-            converter: (store) => store.state.navSelection,
-            builder: (context, selection) => widgetFrom[selection],
+          Expanded(
+            child: StoreConnector<AppState, NavBarSelection>(
+              distinct: true,
+              converter: (store) => store.state.navSelection,
+              builder: (context, selection) => widgetFrom[selection],
+            ),
           )
         ],
       ),

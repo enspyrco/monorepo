@@ -1,0 +1,10 @@
+include: package:pedantic/analysis_options.yaml
+
+analyzer:
+  errors:
+    todo: error
+    unused_import: error
+  exclude: [build/**]
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false

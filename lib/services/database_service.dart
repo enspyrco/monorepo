@@ -1,15 +1,18 @@
 import 'dart:async';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 import 'package:the_process/actions/profile/store_profile_data.dart';
 import 'package:the_process/actions/redux_action.dart';
+import 'package:the_process/actions/sections/store_sections.dart';
 import 'package:the_process/actions/sections/update_new_section_v_m.dart';
 import 'package:the_process/enums/auth/authorization_step.dart';
 import 'package:the_process/enums/auth/provider.dart';
 import 'package:the_process/enums/database/database_section.dart';
 import 'package:the_process/extensions/firestore_extensions.dart';
 import 'package:the_process/extensions/stream_extensions.dart';
+import 'package:the_process/models/sections/section.dart';
 
 class DatabaseService {
   /// The [FirebaseFirestore] instance
@@ -70,9 +73,10 @@ class DatabaseService {
     assert(uid != null);
 
     try {
-      await _firestore.doc('profiles/$uid').set(
-          {'accessToken': accessToken, 'refreshToken': refreshToken},
-          SetOptions(merge: true));
+      await _firestore.doc('profiles/$uid').set(<String, Object>{
+        'accessToken': accessToken,
+        'refreshToken': refreshToken
+      }, SetOptions(merge: true));
     } catch (error, trace) {
       _controller.addProblem(error, trace);
     }
@@ -85,9 +89,9 @@ class DatabaseService {
     assert(uid != null);
 
     try {
-      await _firestore
-          .doc('profiles/$uid')
-          .set({'${provider}Auth': step.toString()}, SetOptions(merge: true));
+      await _firestore.doc('profiles/$uid').set(
+          <String, Object>{'${provider}Auth': step.toString()},
+          SetOptions(merge: true));
     } catch (error, trace) {
       _controller.addProblem(error, trace);
     }
@@ -100,7 +104,7 @@ class DatabaseService {
     assert(uid != null);
 
     try {
-      await _firestore.doc('new/$uid').set({
+      await _firestore.doc('new/$uid').set(<String, Object>{
         'section': {
           'name': name,
           'number': number,
@@ -120,6 +124,33 @@ class DatabaseService {
           subscriptions[dbSection].cancel();
         }
       }, onError: _controller.addProblem, cancelOnError: true);
+    } catch (error, trace) {
+      _controller.addProblem(error, trace);
+    }
+  }
+
+  /// Observe the collection at /sections/ and convert each
+  /// [CollectionSnapshot] into a [ReduxAction] then send to the store using the
+  /// passed in [StreamController].
+  void connectSections() {
+    final dbSection = DatabaseSection.sections;
+
+    try {
+      // connect the database to the store and keep the subscription
+      subscriptions[dbSection] = _firestore
+          .collection('sections')
+          .snapshots()
+          .listen((collectionSnapshot) {
+        try {
+          final list = <Section>[];
+          for (final querySnapshot in collectionSnapshot.docs) {
+            list.add(querySnapshot.toSection());
+          }
+          _controller.add(StoreSections(list: BuiltList<Section>(list)));
+        } catch (error, trace) {
+          _controller.addProblem(error, trace);
+        }
+      }, onError: _controller.addProblem);
     } catch (error, trace) {
       _controller.addProblem(error, trace);
     }

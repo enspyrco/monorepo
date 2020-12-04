@@ -10,6 +10,7 @@ import 'package:the_process/reducers/problems/add_problem.dart';
 import 'package:the_process/reducers/problems/remove_problem.dart';
 import 'package:the_process/reducers/profile/store_profile_data.dart';
 import 'package:the_process/reducers/sections/create_section.dart';
+import 'package:the_process/reducers/sections/store_sections.dart';
 import 'package:the_process/reducers/sections/update_new_section_v_m.dart';
 import 'package:the_process/reducers/settings/update_settings.dart';
 
@@ -34,6 +35,7 @@ final appReducer =
   StoreProfileDataReducer(),
   // Sections
   CreateSectionReducer(),
+  StoreSectionsReducer(),
   UpdateNewSectionVMReducer(),
   // Settings
   UpdateSettingsReducer(),

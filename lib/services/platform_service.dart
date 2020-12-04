@@ -36,7 +36,7 @@ class PlatformService {
 
   Future<void> getAuthorized(
       {@required Provider provider, @required String state}) async {
-    var url;
+    String url;
     if (provider == Provider.google) {
       url =
           'https://us-central1-the-process-tool.cloudfunctions.net/getGoogleAuthorization?state=$state';

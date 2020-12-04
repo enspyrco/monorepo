@@ -38,6 +38,7 @@ import 'package:the_process/models/navigation/page_data/profile_page_data.dart';
 import 'package:the_process/models/problems/problem.dart';
 import 'package:the_process/models/profile/profile_data.dart';
 import 'package:the_process/models/sections/new_section_v_m.dart';
+import 'package:the_process/models/sections/section.dart';
 import 'package:the_process/models/sections/sections_v_m.dart';
 import 'package:the_process/models/settings/settings.dart';
 import 'package:the_process/models/settings/theme_colors.dart';
@@ -77,6 +78,7 @@ part 'serializers.g.dart';
   PushPage,
   RemoveCurrentPage,
   RemoveProblem,
+  Section,
   SectionsVM,
   Settings,
   SignInWithApple,
