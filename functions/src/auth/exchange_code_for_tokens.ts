@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import * as project_credentials from '../project_credentials.json';
 import { firebaseAdmin } from '../utils/firebase_admin';
-import { secretManager } from '../utils/secret_manager';
+import { secretManager } from '../utils/credentials/secret_manager';
 import { PeopleAPI } from '../google_apis/people';
 import { ProfileData } from '../utils/database';
 
@@ -88,7 +88,7 @@ const exchangeCodeForAsanaTokens = async (req: any, res: any) => {
     functions.logger.log(`Exchanging code for tokens...`);
 
     // Build the post string from an object
-    let post_data = querystring.stringify({
+    const post_data = querystring.stringify({
       'grant_type' : 'authorization_code',
       'client_id' : project_credentials.asana.client_id,
       'client_secret' : project_credentials.asana.client_secret,

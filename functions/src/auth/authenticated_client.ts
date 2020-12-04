@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import { google } from 'googleapis';
 import { Credentials, OAuth2Client } from 'google-auth-library';
 
-import { secretManager } from '../utils/secret_manager';
+import { secretManager } from '../utils/credentials/secret_manager';
 import * as project_credentials from '../project_credentials.json';
 import { unNull } from '../utils/problem_utils';
 
@@ -34,11 +34,11 @@ export class AuthenticatedClient {
     if (!AuthenticatedClient.instance.get(uid)) {
       // Create an instance and set the credentials 
       const client = new AuthenticatedClient(uid);
-      const tokens : Credentials = await secretManager.retrieveCredentials(uid);
-      client.oauth2.setCredentials(tokens);
+      const userCredentials = await secretManager.retrieveCredentials(uid);
+      client.oauth2.setCredentials(userCredentials.google);
 
       // Make sure the expiry is not missing and set 
-      const checkedExpiry = unNull(tokens.expiry_date, 'The expiry in the secret manager\'s credentials was missing.')
+      const checkedExpiry = unNull(userCredentials.google.expiry_date, `The expiry in the secret manager\'s google credentials was missing for ${uid}.`);
       client.setExpiry(checkedExpiry);
 
       AuthenticatedClient.instance.set(uid, client);

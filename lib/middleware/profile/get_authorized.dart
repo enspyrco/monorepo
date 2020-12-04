@@ -19,7 +19,8 @@ class GetAuthorizedMiddleware extends TypedMiddleware<AppState, GetAuthorized> {
 
           final unguessable = Uuid().v1();
 
-          // TODO: save unguessable to new/uid/authorizing
+          // TODO: save unguessable to new/uid/authorizing so cloud functions
+          // can match unguessable to firebase UID
 
           await platformService.getAuthorized(
               provider: action.toAccess, state: unguessable);

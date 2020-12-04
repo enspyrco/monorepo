@@ -1,5 +1,9 @@
 import * as functions from 'firebase-functions';
 import { SecretManagerServiceClient, protos } from '@google-cloud/secret-manager';
+import { unNull } from '../problem_utils';
+import { UserCredentials } from './user_credentials';
+import { AsanaCredentials } from './asana_credentials';
+import { Credentials } from 'google-auth-library';
 
 // We create the secret with automatic replication, documented as "the right choice in most cases".
 const autoReplication = { automatic: {} };
@@ -58,7 +62,7 @@ class SecretManager {
   }
 
   // 
-  async retrieveCredentials(uid: string) : Promise<{}> {
+  async retrieveCredentials(uid: string) : Promise<UserCredentials> {
     // Access the secret.
     const [accessResponse] = await this.secretsClient.accessSecretVersion({
       name: 'projects/the-process-tool/secrets/'+uid+'/versions/latest',
@@ -66,15 +70,17 @@ class SecretManager {
 
     const responsePayload = accessResponse.payload?.data?.toString();
 
-    if(responsePayload == null) {
-      throw Error(`When retrieving secret for ${uid}, response payload was null`);
-    }
+    const checkedPayload = unNull(responsePayload, `When retrieving secret for ${uid}, response payload was null`);
 
-    const tokensJson = JSON.parse(responsePayload);
-    
+    const payloadJson = JSON.parse(checkedPayload);
+
     functions.logger.log('Parsed json from responsePayload');
 
-    return tokensJson;
+    const googleCredentials : Credentials = payloadJson.google;
+    const asanaCredentials : AsanaCredentials = payloadJson.asana;
+    const userCredentials = new UserCredentials(googleCredentials, asanaCredentials);
+    
+    return userCredentials;
   }
 }
 

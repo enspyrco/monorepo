@@ -28,7 +28,45 @@ export class AuthToken {
         };
         await db.collection(`users/${this.uid}/processing_failures`).add({
             'type': 'exchange_code_for_tokens',
-            'createdOn': firestore.FieldValue.serverTimestamp,
+            'createdOn': firestore.FieldValue.serverTimestamp(),
+            'message': JSON.stringify(data),
+            'data': data,
+        });
+    }
+}
+
+export class SectionData {
+    uid: string;
+    number: number;
+    name: string;
+    folderId: string;
+    useCasesDocId: string;
+
+    constructor(uid: string, number: number, name: string, folderId: string, useCasesDocId: string) {
+        this.uid = uid;
+        this.number = number;
+        this.name = name;
+        this.folderId = folderId;
+        this.useCasesDocId = useCasesDocId;
+    }
+    async save() : Promise<firestore.DocumentReference<firestore.DocumentData>> {
+        return db.collection('sections').add({
+            'createdOn': firestore.FieldValue.serverTimestamp(),
+            'createdBy': this.uid,
+            'number': this.number,
+            'name': this.name,
+            'folderId': this.folderId,
+            'useCasesDocId': this.useCasesDocId,
+        });
+    }
+    async failed(failures: any[])  : Promise<firestore.DocumentReference<firestore.DocumentData>> {
+        const data = {
+            'uid': this.uid,
+            'failures': failures,
+        };
+        return db.collection(`users/${this.uid}/processing_failures`).add({
+            'type': 'SectionData',
+            'createdOn': firestore.FieldValue.serverTimestamp(),
             'message': JSON.stringify(data),
             'data': data,
         });
@@ -57,8 +95,8 @@ export class ProfileData {
             'failures': failures,
         };
         await db.collection(`users/${this.uid}/processing_failures`).add({
-            'type': 'googleAuth',
-            'createdOn': firestore.FieldValue.serverTimestamp,
+            'type': 'ProfileData',
+            'createdOn': firestore.FieldValue.serverTimestamp(),
             'message': JSON.stringify(data),
             'data': data,
         });
