@@ -16,7 +16,8 @@ class AuthPage extends StatelessWidget {
             distinct: true,
             converter: (store) => store.state.settings.platform,
             builder: (context, platform) {
-              return (platform == PlatformEnum.macOS)
+              return (platform == PlatformEnum.macOS ||
+                      platform == PlatformEnum.iOS)
                   ? AppleSignInButton(
                       style: AppleButtonStyle.black,
                       onPressed: () => context.dispatch(SignInWithApple()))

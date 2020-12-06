@@ -30,6 +30,9 @@ dependencies:
   # firebase 
   firebase_core:
 
+  # messaging 
+  firebase_messaging:
+
   # platform 
   url_launcher:
 
