@@ -17,7 +17,6 @@ extension ConvertDocumentSnapshot on DocumentSnapshot {
 
 extension ConvertQueryDocumentSnapshot on QueryDocumentSnapshot {
   Section toSection() => Section(
-      number: data()['number'] as int,
       name: data()['name'] as String,
       folderId: data()['folderId'] as String,
       useCasesDocId: data()['useCasesDocId'] as String);

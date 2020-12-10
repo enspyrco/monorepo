@@ -14,15 +14,10 @@ abstract class UpdateNewSectionVM extends Object
     implements Built<UpdateNewSectionVM, UpdateNewSectionVMBuilder> {
   @nullable
   String get name;
-  @nullable
-  int get number;
-  @nullable
-  bool get creating;
 
   UpdateNewSectionVM._();
 
-  factory UpdateNewSectionVM({String name, int number, bool creating}) =
-      _$UpdateNewSectionVM._;
+  factory UpdateNewSectionVM({String name}) = _$UpdateNewSectionVM._;
 
   factory UpdateNewSectionVM.by(
           [void Function(UpdateNewSectionVMBuilder) updates]) =

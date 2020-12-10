@@ -25,7 +25,6 @@ abstract class AuthUserData extends Object
   String get email;
   @nullable
   String get phoneNumber;
-  @nullable
   DateTime get createdOn;
   DateTime get lastSignedInOn;
   bool get isAnonymous;
@@ -41,10 +40,10 @@ abstract class AuthUserData extends Object
 
   factory AuthUserData({
     @required String uid,
-    @required String displayName,
-    @required String photoURL,
-    @required String email,
-    @required String phoneNumber,
+    String displayName,
+    String photoURL,
+    String email,
+    String phoneNumber,
     @required DateTime createdOn,
     @required DateTime lastSignedInOn,
     @required bool isAnonymous,

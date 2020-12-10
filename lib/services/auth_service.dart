@@ -15,30 +15,30 @@ class AuthService {
   final FirebaseAuth _firebaseAuth;
 
   /// [StreamController] for adding auth state actions
-  final StreamController<ReduxAction> _controller;
+  final StreamController<ReduxAction> _eventsController;
 
   /// The [Stream] is used just once on app load, to
   /// connect the [Database] to the redux [Store]
 
-  Stream<ReduxAction> get storeStream => _controller.stream;
+  Stream<ReduxAction> get storeStream => _eventsController.stream;
 
   /// We keep a subscription to the firebase auth state stream so we can
   /// disconnect at a later time.
   StreamSubscription<User> _firebaseAuthStateSubscription;
 
   AuthService(
-      FirebaseAuth firebaseAuth, StreamController<ReduxAction> _controller)
+      FirebaseAuth firebaseAuth, StreamController<ReduxAction> eventsController)
       : _firebaseAuth = firebaseAuth,
-        _controller = _controller;
+        _eventsController = eventsController;
 
   void connectAuthStateToStore() {
     try {
       // connect the firebase auth state to the store and keep the subscription
       _firebaseAuthStateSubscription?.cancel();
       _firebaseAuthStateSubscription =
-          _firebaseAuth.connectAuthState(_controller);
+          _firebaseAuth.connectAuthState(_eventsController);
     } catch (error, trace) {
-      _controller.addProblem(error, trace);
+      _eventsController.addProblem(error, trace);
     }
   }
 

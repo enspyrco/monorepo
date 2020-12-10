@@ -4,7 +4,7 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
-  - cloud_firestore (0.14.3):
+  - cloud_firestore (0.14.4):
     - Firebase/CoreOnly (~> 6.33.0)
     - Firebase/Firestore (~> 6.33.0)
     - firebase_core
@@ -20,12 +20,12 @@ PODS:
   - Firebase/Messaging (6.33.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 4.7.0)
-  - firebase_auth (0.18.3):
+  - firebase_auth (0.18.4-1):
     - Firebase/Auth (~> 6.33.0)
     - Firebase/CoreOnly (~> 6.33.0)
     - firebase_core
     - Flutter
-  - firebase_core (0.5.2):
+  - firebase_core (0.5.3):
     - Firebase/CoreOnly (~> 6.33.0)
     - Flutter
   - firebase_messaging (7.0.3):
@@ -101,6 +101,8 @@ PODS:
   - GTMSessionFetcher/Core (1.5.0)
   - GTMSessionFetcher/Full (1.5.0):
     - GTMSessionFetcher/Core (= 1.5.0)
+  - integration_test (0.0.1):
+    - Flutter
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -121,6 +123,7 @@ DEPENDENCIES:
   - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `6.33.0`)
   - Flutter (from `Flutter`)
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
 
@@ -159,6 +162,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   google_sign_in:
     :path: ".symlinks/plugins/google_sign_in/ios"
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
   sign_in_with_apple:
     :path: ".symlinks/plugins/sign_in_with_apple/ios"
   url_launcher:
@@ -171,10 +176,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
-  cloud_firestore: 19c6f947dd14be9d71695ea23eefde67cd8829c8
+  cloud_firestore: b8c0e15fa49dfff87c2817d288b577e5dca2df13
   Firebase: 8db6f2d1b2c5e2984efba4949a145875a8f65fe5
-  firebase_auth: 240419f6b00dea39c60a2a9c4379c16c4a4b02fb
-  firebase_core: 350ba329d1641211bc6183a3236893cafdacfea7
+  firebase_auth: d5159db3873478d1ac839af7b10d2f831516136a
+  firebase_core: 5d6a02f3d85acd5f8321c2d6d62877626a670659
   firebase_messaging: 0aea2cd5885b65e19ede58ee3507f485c992cc75
   FirebaseAuth: c92d49ada7948d1a23466e3db17bc4c2039dddc3
   FirebaseCore: d889d9e12535b7f36ac8bfbf1713a0836a3012cd
@@ -190,6 +195,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  integration_test: 5ed24a436eb7ec17b6a13046e9bf7ca4a404e59e
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748

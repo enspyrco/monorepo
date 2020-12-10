@@ -45,8 +45,13 @@ dependencies:
   uuid:
 
 dev_dependencies:
+  integration_test:
   flutter_test:
     sdk: flutter
+  flutter_driver:
+    sdk: flutter
+  test:
+  mockito:
   
   # built_value
   build_runner:

@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 import 'package:the_process/actions/profile/store_profile_data.dart';
 import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/actions/sections/store_sections.dart';
-import 'package:the_process/actions/sections/update_new_section_v_m.dart';
+import 'package:the_process/actions/sections/update_sections_v_m.dart';
 import 'package:the_process/enums/auth/authorization_step.dart';
 import 'package:the_process/enums/auth/provider.dart';
 import 'package:the_process/enums/database/database_section.dart';
@@ -24,7 +24,7 @@ class DatabaseService {
   /// they just connect the store to the database and keep the subscription so
   /// functions that disregard (stop observing) that part of the database just
   /// cancel the subscription.
-  Stream<ReduxAction> get storeStream => _controller.stream;
+  Stream<ReduxAction> get storeStream => _eventsController.stream;
 
   /// Keep track of the subscriptions so we can cancel them later.
   Map<DatabaseSection, StreamSubscription> subscriptions = {};
@@ -32,7 +32,7 @@ class DatabaseService {
   /// The [_storeController] is connected to the redux [Store] via [storeStrea]
   /// and is used by the [DatabaseService] to add actions to the stream where
   /// they will be dispatched by the store.
-  final StreamController<ReduxAction> _controller =
+  final StreamController<ReduxAction> _eventsController =
       StreamController<ReduxAction>();
 
   DatabaseService(FirebaseFirestore firestore) : _firestore = firestore;
@@ -51,15 +51,15 @@ class DatabaseService {
           _firestore.doc('profiles/$uid').snapshots().listen((docSnapshot) {
         try {
           if (docSnapshot.exists) {
-            _controller
+            _eventsController
                 .add(StoreProfileData(data: docSnapshot.toProfileData()));
           }
         } catch (error, trace) {
-          _controller.addProblem(error, trace);
+          _eventsController.addProblem(error, trace);
         }
-      }, onError: _controller.addProblem);
+      }, onError: _eventsController.addProblem);
     } catch (error, trace) {
-      _controller.addProblem(error, trace);
+      _eventsController.addProblem(error, trace);
     }
   }
 
@@ -78,7 +78,7 @@ class DatabaseService {
         'refreshToken': refreshToken
       }, SetOptions(merge: true));
     } catch (error, trace) {
-      _controller.addProblem(error, trace);
+      _eventsController.addProblem(error, trace);
     }
   }
 
@@ -93,22 +93,17 @@ class DatabaseService {
           <String, Object>{'${provider}Auth': step.toString()},
           SetOptions(merge: true));
     } catch (error, trace) {
-      _controller.addProblem(error, trace);
+      _eventsController.addProblem(error, trace);
     }
   }
 
   Future<void> createSection(
-      {@required String uid,
-      @required String name,
-      @required int number}) async {
+      {@required String uid, @required String name}) async {
     assert(uid != null);
 
     try {
       await _firestore.doc('new/$uid').set(<String, Object>{
-        'section': {
-          'name': name,
-          'number': number,
-        }
+        'section': {'name': name}
       });
 
       final dbSection = DatabaseSection.newEntries;
@@ -116,16 +111,16 @@ class DatabaseService {
           _firestore.doc('new/$uid').snapshots().listen((doc) {
         try {
           if (!doc.exists) {
-            _controller.add(UpdateNewSectionVM(creating: false));
+            _eventsController.add(UpdateSectionsVM(creatingNewSection: false));
             subscriptions[dbSection].cancel();
           }
         } catch (error, trace) {
-          _controller.addProblem(error, trace);
+          _eventsController.addProblem(error, trace);
           subscriptions[dbSection].cancel();
         }
-      }, onError: _controller.addProblem, cancelOnError: true);
+      }, onError: _eventsController.addProblem, cancelOnError: true);
     } catch (error, trace) {
-      _controller.addProblem(error, trace);
+      _eventsController.addProblem(error, trace);
     }
   }
 
@@ -146,13 +141,13 @@ class DatabaseService {
           for (final querySnapshot in collectionSnapshot.docs) {
             list.add(querySnapshot.toSection());
           }
-          _controller.add(StoreSections(list: BuiltList<Section>(list)));
+          _eventsController.add(StoreSections(list: BuiltList<Section>(list)));
         } catch (error, trace) {
-          _controller.addProblem(error, trace);
+          _eventsController.addProblem(error, trace);
         }
-      }, onError: _controller.addProblem);
+      }, onError: _eventsController.addProblem);
     } catch (error, trace) {
-      _controller.addProblem(error, trace);
+      _eventsController.addProblem(error, trace);
     }
   }
 }

@@ -10,7 +10,6 @@ import 'package:the_process/serializers.dart';
 part 'section.g.dart';
 
 abstract class Section implements Built<Section, SectionBuilder> {
-  int get number;
   String get name;
   String get folderId;
   String get useCasesDocId;
@@ -18,8 +17,7 @@ abstract class Section implements Built<Section, SectionBuilder> {
   Section._();
 
   factory Section(
-      {@required int number,
-      @required String name,
+      {@required String name,
       @required String folderId,
       @required String useCasesDocId}) = _$Section._;
 
