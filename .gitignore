@@ -61,6 +61,10 @@ ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
 # Ignored as the credentials include a secret 
 functions/src/project_credentials.json
-functions/lib/project_credentials.json
 # The cache file speeds up deploys but can be different between machines
 .firebase/hosting.*.cache
+# The lib folder is generated from the src folder
+functions/lib/
+# These folders are generated as part of getting coverage data
+functions/.nyc_output/
+functions/coverage/

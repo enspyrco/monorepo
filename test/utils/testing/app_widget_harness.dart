@@ -21,7 +21,11 @@ class AppWidgetHarness {
 
   AppWidgetHarness({Store<AppState> store}) {
     _firebase = FakeFirebaseWrapper();
+
+    // The fake redux bundle just provides the given store to the AppWidget,
+    // when the AppWidget calls _redux.createStore()
     _redux = FakeReduxBundle(store: store);
+
     _appWidget = AppWidget(firebase: _firebase, redux: _redux);
   }
 

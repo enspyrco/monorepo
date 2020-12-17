@@ -27,9 +27,9 @@ class AuthService {
   StreamSubscription<User> _firebaseAuthStateSubscription;
 
   AuthService(
-      FirebaseAuth firebaseAuth, StreamController<ReduxAction> eventsController)
-      : _firebaseAuth = firebaseAuth,
-        _eventsController = eventsController;
+      {FirebaseAuth auth, StreamController<ReduxAction> eventsController})
+      : _firebaseAuth = auth ?? FirebaseAuth.instance,
+        _eventsController = eventsController ?? StreamController<ReduxAction>();
 
   void connectAuthStateToStore() {
     try {

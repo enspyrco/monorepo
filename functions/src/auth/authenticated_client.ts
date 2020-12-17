@@ -11,7 +11,7 @@ export class AuthenticatedClient {
   
   private static instance = new Map<String, AuthenticatedClient>();
 
-  private uid : string;
+  readonly uid : string;
   private tokens_expiry!: number;
   private oauth2 : OAuth2Client = new google.auth.OAuth2(
     project_credentials.google.id,

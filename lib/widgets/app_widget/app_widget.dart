@@ -93,7 +93,7 @@ class _AppWidgetState extends State<AppWidget> {
         converter: (store) => store.state.settings,
         builder: (context, settings) {
           return MaterialApp(
-            title: 'AdventuresIn',
+            title: 'The Process',
             theme: MakeThemeData.from(settings.lightTheme),
             darkTheme: MakeThemeData.from(settings.darkTheme),
             themeMode: MakeThemeMode.from(settings.brightnessMode),

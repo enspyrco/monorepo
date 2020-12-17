@@ -8,7 +8,7 @@ void main() {
   group('DatabaseService', () {
     test('.createSection calls firestore doc() with uid', () {
       final mockFirestore = MockFirebaseFirestore();
-      final service = DatabaseService(mockFirestore);
+      final service = DatabaseService(database: mockFirestore);
 
       service.createSection(uid: 'uid', name: 'testy');
 

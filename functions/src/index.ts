@@ -16,7 +16,3 @@ export const saveDetailsOnFirstSignIn = functions.auth.user().onCreate(saveDetai
 
 // when a user requests a new section, create a folder 
 export const createSectionFolder = functions.firestore.document('new/{userId}').onCreate(createSection);
-
-// Save the token to a document named as the user id
-    // const dbEntry = new database.AuthToken(req.query.state, token_response);
-    // await dbEntry.save();

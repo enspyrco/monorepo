@@ -53,7 +53,6 @@ dev_dependencies:
   test:
   mockito:
   
-  # built_value
   build_runner:
   built_value_generator:
 

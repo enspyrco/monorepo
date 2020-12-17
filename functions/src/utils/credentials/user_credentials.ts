@@ -1,12 +1,12 @@
-import { Credentials } from 'google-auth-library';
 import { AsanaCredentials } from './asana_credentials';
+import { GoogleCredentials } from './google_credentials';
 
 export class UserCredentials {
-  google: Credentials;
-  asana: AsanaCredentials;
+  readonly google: GoogleCredentials;
+  readonly asana: AsanaCredentials;
 
-  constructor(google: Credentials, asana: AsanaCredentials) {
-    this.google = google;
-    this.asana = asana;
+  constructor(data: {google: GoogleCredentials, asana: AsanaCredentials}) {
+    this.google = data.google;
+    this.asana = data.asana;
   }
 }

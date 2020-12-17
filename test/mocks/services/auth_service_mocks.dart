@@ -4,6 +4,8 @@ import 'package:the_process/services/auth_service.dart';
 
 import '../../data/auth_test_data.dart';
 
+class MockAuthService extends Mock implements AuthService {}
+
 class FakeAuthService extends Fake implements AuthService {
   @override
   Future<String> getCurrentUserId() => Future.value('uid');

@@ -1,7 +1,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:the_process/models/auth/auth_user_data.dart';
 
-class AuthUserDataExample {
+class AuthUserDataExamples {
   static AuthUserData get minimal => AuthUserData(
       uid: 'uid',
       createdOn: DateTime.fromMillisecondsSinceEpoch(1607774920000),

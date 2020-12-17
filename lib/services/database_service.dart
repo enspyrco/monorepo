@@ -32,10 +32,13 @@ class DatabaseService {
   /// The [_storeController] is connected to the redux [Store] via [storeStrea]
   /// and is used by the [DatabaseService] to add actions to the stream where
   /// they will be dispatched by the store.
-  final StreamController<ReduxAction> _eventsController =
-      StreamController<ReduxAction>();
+  final StreamController<ReduxAction> _eventsController;
 
-  DatabaseService(FirebaseFirestore firestore) : _firestore = firestore;
+  DatabaseService(
+      {FirebaseFirestore database,
+      StreamController<ReduxAction> eventsController})
+      : _firestore = database ?? FirebaseFirestore.instance,
+        _eventsController = eventsController ?? StreamController<ReduxAction>();
 
   /// Observe the document at /adventurers/${uid} and convert each
   /// [DocumentSnapshot] into a [ReduxAction] then send to the store using the
@@ -141,6 +144,7 @@ class DatabaseService {
           for (final querySnapshot in collectionSnapshot.docs) {
             list.add(querySnapshot.toSection());
           }
+          _eventsController.add(UpdateSectionsVM(creatingNewSection: false));
           _eventsController.add(StoreSections(list: BuiltList<Section>(list)));
         } catch (error, trace) {
           _eventsController.addProblem(error, trace);

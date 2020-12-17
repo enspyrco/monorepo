@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:redux/redux.dart';
-import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/middleware/app_middleware.dart';
 import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/reducers/app_reducer.dart';
@@ -40,15 +38,9 @@ class ReduxBundle {
       AuthService authService,
       DatabaseService databaseService,
       PlatformService platformService})
-      : _authService = authService ??
-            AuthService(FirebaseAuth.instance, StreamController<ReduxAction>()),
-        _databaseService =
-            databaseService ?? DatabaseService(FirebaseFirestore.instance),
+      : _authService = authService ?? AuthService(),
+        _databaseService = databaseService ?? DatabaseService(),
         _platformService = platformService ?? PlatformService();
-
-  AuthService get auth => _authService;
-  DatabaseService get database => _databaseService;
-  PlatformService get platformService => _platformService;
 
   Future<Store<AppState>> createStore() async {
     final _store = Store<AppState>(

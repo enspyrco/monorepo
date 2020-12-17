@@ -11,6 +11,7 @@ import 'package:the_process/reducers/problems/remove_problem.dart';
 import 'package:the_process/reducers/profile/store_profile_data.dart';
 import 'package:the_process/reducers/sections/store_sections.dart';
 import 'package:the_process/reducers/sections/update_new_section_v_m.dart';
+import 'package:the_process/reducers/sections/update_sections_v_m.dart';
 import 'package:the_process/reducers/settings/update_settings.dart';
 
 /// Reducers specify how the application"s state changes in response to actions
@@ -35,6 +36,7 @@ final appReducer =
   // Sections
   StoreSectionsReducer(),
   UpdateNewSectionVMReducer(),
+  UpdateSectionsVMReducer(),
   // Settings
   UpdateSettingsReducer(),
 ]);

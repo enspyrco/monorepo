@@ -3,12 +3,19 @@ import { SecretManagerServiceClient, protos } from '@google-cloud/secret-manager
 import { unNull } from '../problem_utils';
 import { UserCredentials } from './user_credentials';
 import { AsanaCredentials } from './asana_credentials';
-import { Credentials } from 'google-auth-library';
+import { GoogleCredentials } from './google_credentials';
 
 // We create the secret with automatic replication, documented as "the right choice in most cases".
 const autoReplication = { automatic: {} };
 
-class SecretManager {
+export interface SecretManagerInterface {
+  secretsClient: SecretManagerServiceClient;
+
+  save(uid: string, provider: string, tokens: {}) : void;
+  retrieveCredentials(uid: string) : Promise<UserCredentials>;
+}
+
+class SecretManager implements SecretManagerInterface {
   secretsClient = new SecretManagerServiceClient();
 
   async save(uid: string, provider: string, tokens: {}) {
@@ -76,9 +83,9 @@ class SecretManager {
 
     functions.logger.log('Parsed json from responsePayload');
 
-    const googleCredentials : Credentials = payloadJson.google;
+    const googleCredentials : GoogleCredentials = new GoogleCredentials(payloadJson.google);
     const asanaCredentials : AsanaCredentials = payloadJson.asana;
-    const userCredentials = new UserCredentials(googleCredentials, asanaCredentials);
+    const userCredentials = new UserCredentials({google: googleCredentials, asana: asanaCredentials});
     
     return userCredentials;
   }
