@@ -23,3 +23,5 @@ class FirebaseAdmin {
 }
 
 export const firebaseAdmin = FirebaseAdmin.getInstance();
+export const db = FirebaseAdmin.getInstance().getFirestore();
+export const auth = FirebaseAdmin.getInstance().getAuth();

@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import { SecretManagerServiceClient, protos } from '@google-cloud/secret-manager';
-import { unNull } from '../problem_utils';
+import { unNull } from '../null_safety_utils';
 import { UserCredentials } from './user_credentials';
 import { AsanaCredentials } from './asana_credentials';
 import { GoogleCredentials } from './google_credentials';

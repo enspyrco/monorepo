@@ -68,3 +68,5 @@ functions/lib/
 # These folders are generated as part of getting coverage data
 functions/.nyc_output/
 functions/coverage/
+# A folder that holds files for deployment of firebase functions
+functions/deploy/

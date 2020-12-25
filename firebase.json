@@ -13,10 +13,16 @@
   },
   "functions": {
     "predeploy": [
-      "npm --prefix \"$RESOURCE_DIR\" run lint",
-      "npm --prefix \"$RESOURCE_DIR\" run build"
+      "npm --prefix functions/ run lint",
+      "npm --prefix functions/ run build",
+      "if [ -d functions/deploy/ ]; then rm -Rf functions/deploy/; fi",
+      "mkdir functions/deploy/",
+      "cp functions/package.json functions/deploy/",
+      "cp functions/package-lock.json functions/deploy/",
+      "cp -r functions/node_modules/ functions/deploy/node_modules/",
+      "cp -r functions/lib/src/ functions/deploy/lib/"
     ],
-    "source": "functions"
+    "source": "functions/deploy"
   },
   "emulators": {
     "auth": {

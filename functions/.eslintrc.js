@@ -20,6 +20,7 @@ module.exports = {
     "@typescript-eslint",
     "import",
   ],
+  ignorePatterns: ["*.json"],
   rules: {
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/no-empty-function": "error",

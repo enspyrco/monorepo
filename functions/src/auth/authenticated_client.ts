@@ -4,7 +4,7 @@ import { Credentials, OAuth2Client } from 'google-auth-library';
 
 import { secretManager } from '../utils/credentials/secret_manager';
 import * as project_credentials from '../project_credentials.json';
-import { unNull } from '../utils/problem_utils';
+import { unNull } from '../utils/null_safety_utils';
 
 // A Singleton class that provides a single instance 
 export class AuthenticatedClient {

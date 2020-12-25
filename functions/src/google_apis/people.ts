@@ -1,5 +1,6 @@
 import { google, people_v1 } from 'googleapis';
 import { OAuth2Client } from 'google-auth-library';
+import { unNull } from '../utils/null_safety_utils';
 
 // adapted from: https://github.com/googleapis/google-api-nodejs-client/blob/bd0accce744ddd55abdd400efbe2bccd96dc6cdf/samples/people/me.js
 // see api docs: https://developers.google.com/people/api/rest/v1/people/get 
@@ -20,11 +21,10 @@ export class PeopleAPI {
       personFields: 'emailAddresses',
     });
 
-    if(res.data.emailAddresses == null || res.data.emailAddresses[0].value == null) {
-      throw Error('There was no email address in the retrieved Person data.');
-    }
+    const checkedEmailAddresses = unNull(res.data.emailAddresses, 'There were no email addresses in the retrieved Person data.');
+    const checkedValue = unNull(checkedEmailAddresses[0].value, 'There was no email address value in the email addresses list.');
 
-    return res.data.emailAddresses[0].value;
+    return checkedValue;
   }
 
 }

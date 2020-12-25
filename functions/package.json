@@ -8,29 +8,30 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "test": "ts-mocha ./test/**/*.ts"
+    "test": "ts-mocha ./test/unit/**/*.ts"
   },
   "engines": {
     "node": "12"
   },
   "main": "lib/index.js",
   "dependencies": {
-    "@google-cloud/firestore": "^4.7.1",
-    "@google-cloud/secret-manager": "^3.2.2",
-    "axios": "^0.21.0",
+    "@google-cloud/firestore": "^4.8.1",
+    "@google-cloud/secret-manager": "^3.2.3",
+    "axios": "^0.21.1",
     "express": "^4.17.1",
-    "firebase-admin": "^9.2.0",
-    "firebase-functions": "^3.12.0",
+    "firebase-admin": "^9.4.2",
+    "firebase-functions": "^3.13.0",
     "google-auth-library": "^6.1.3",
     "googleapis": "^65.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.14",
+    "@types/expect": "^24.3.0",
     "@types/mocha": "^8.2.0",
     "@typescript-eslint/eslint-plugin": "^3.9.1",
     "@typescript-eslint/parser": "^3.8.0",
     "chai": "^4.2.0",
-    "eslint": "^7.6.0",
+    "eslint": "^7.16.0",
     "eslint-plugin-import": "^2.22.0",
     "firebase-functions-test": "^0.2.3",
     "mocha": "^8.2.1",

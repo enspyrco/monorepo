@@ -27,7 +27,7 @@ export class DocsAPI implements DocsAPIInterface {
 
   async createDoc(title: string) : Promise<docs_v1.Schema$Document> {
     const createResponse = await this.docs.documents.create({
-      requestBody: { 'title': title }
+      requestBody: { 'title': title },
     });
 
     return createResponse.data;
