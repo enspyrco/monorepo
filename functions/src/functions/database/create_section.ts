@@ -1,19 +1,20 @@
-import { the_process_id } from '../utils/the_process_constants';
+import { the_process_id } from '../../utils/the_process_constants';
 import * as functions from 'firebase-functions';
-import * as service_locator from '../utils/service_locator';
-import { unNull } from '../utils/null_safety_utils';
-import { SectionData } from '../utils/database/section_data';
+import * as service_locator from '../../utils/service_locator';
+import { unNull } from '../../utils/null_safety_utils';
+import { SectionData } from '../../models/database/section_data';
 
-export async function createSectionCallback(snapshot : functions.firestore.DocumentSnapshot, context : functions.EventContext) {
+export async function createSectionCallback(snapshot : functions.firestore.DocumentSnapshot) : Promise<void> {
 
-  const sectionData: SectionData = service_locator.createSectionData(snapshot.id);
+  const sectionData = new SectionData();
+  const databaseService = await service_locator.getDatabaseService(snapshot.id);
 
   // We wrap the whole function in a try/catch and add a ProcessingFailure to the database on any failures
   try {
 
     const data = snapshot.data();
 
-    const checkedData = unNull(data, 'There was no data in the snapshot.');
+    const checkedData = unNull(data, 'There was no data in the snapshot.') as FirebaseFirestore.DocumentData;
 
     const newSection = checkedData['section'];
     const sectionName = newSection['name'];
@@ -24,7 +25,7 @@ export async function createSectionCallback(snapshot : functions.firestore.Docum
     const docsAPI = await service_locator.getDocsAPI(the_process_id);
     const folder = await driveAPI.createFolder(sectionName+': Sections Planning (CL)');
 
-    const checkedFolderId = unNull(folder.id, 'The created folder id was missing.');
+    const checkedFolderId = unNull(folder.id, 'The created folder id was missing.') as string;
 
     sectionData.folderId = checkedFolderId;
 
@@ -33,7 +34,7 @@ export async function createSectionCallback(snapshot : functions.firestore.Docum
     const title = '0 - Use Cases < '+sectionName+' (CL)';
     const doc = await docsAPI.createDoc(title);
 
-    const checkedDocId = unNull(doc.documentId, 'The created doc id was missing.');
+    const checkedDocId = unNull(doc.documentId, 'The created doc id was missing.') as string;
 
     sectionData.useCasesDocId = checkedDocId;
 
@@ -45,7 +46,7 @@ export async function createSectionCallback(snapshot : functions.firestore.Docum
 
     functions.logger.info(`Saving sectionData: `, sectionData);
 
-    const docRef = await sectionData.save();
+    const docRef = await databaseService.save(sectionData);
 
     functions.logger.info(`added database entry for section: `, docRef);
 
@@ -54,7 +55,7 @@ export async function createSectionCallback(snapshot : functions.firestore.Docum
     await snapshot.ref.delete();
   
   } catch (error) {
-    await sectionData.onFailureSave(error);
+    await databaseService.saveFailure(error, sectionData);
     await snapshot.ref.delete();
   }
 

@@ -1,5 +1,5 @@
 import { docs_v1, google } from 'googleapis';
-import { AuthenticatedClient } from '../auth/authenticated_client';
+import { AuthenticatedClient } from '../authenticated_client';
 
 export interface DocsAPIInterface {
   readonly uid: string;
@@ -18,7 +18,7 @@ export class DocsAPI implements DocsAPIInterface {
     this.uid = uid;
     this.client = client;
     this.docs = google.docs({version: 'v1', auth: client.getOAuth2Client()});
-  };
+  }
 
   static async for(uid: string) : Promise<DocsAPI> {
     const client = await AuthenticatedClient.getInstanceFor(uid);

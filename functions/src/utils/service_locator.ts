@@ -1,19 +1,17 @@
-import { DocsAPI, DocsAPIInterface } from "../google_apis/docs";
-import { DriveAPI, DriveAPIInterface } from "../google_apis/drive"
-import { SectionData } from "./database/section_data";
+import { DocsAPI, DocsAPIInterface } from "../services/google_apis/docs";
+import { DriveAPI, DriveAPIInterface } from "../services/google_apis/drive"
+import { DatabaseService } from "../services/database_service";
 
 // we make a new api object each time but the AuthenticatedClient used by each api object is a singleton map 
 
 export const getDriveAPI = async function(uid: string) : Promise<DriveAPIInterface> {
-  const api = await DriveAPI.for(uid);
-  return api;
+  return DriveAPI.for(uid);
 }
 
 export const getDocsAPI = async function(uid: string) : Promise<DocsAPIInterface> {
-  const api = await DocsAPI.for(uid);
-  return api;
+  return DocsAPI.for(uid);
 }
 
-export const createSectionData = function(uid: string): SectionData {
-  return new SectionData(uid);
+export const getDatabaseService = async function(uid: string) : Promise<DatabaseService> {
+  return DatabaseService.getInstanceFor(uid);
 }

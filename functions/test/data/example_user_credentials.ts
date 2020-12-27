@@ -1,6 +1,6 @@
-import { AsanaCredentials } from "../../src/utils/credentials/asana_credentials";
-import { GoogleCredentials } from "../../src/utils/credentials/google_credentials";
-import { UserCredentials } from "../../src/utils/credentials/user_credentials";
+import { AsanaCredentials } from "../../src/models/credentials/asana_credentials";
+import { GoogleCredentials } from "../../src/models/credentials/google_credentials";
+import { UserCredentials } from "../../src/models/credentials/user_credentials";
 
 const example_google_credentials = new GoogleCredentials({
   refresh_token: 'example_refresh_token',
@@ -17,7 +17,7 @@ const example_asana_credential = new AsanaCredentials({
   expires_in: 1000,
 });
 
-export const example_user_credentials = new UserCredentials({
-  google: example_google_credentials, 
-  asana: example_asana_credential,
-});
+export const example_user_credentials = new UserCredentials(
+  example_google_credentials, 
+  example_asana_credential
+);

@@ -1,15 +1,17 @@
 import * as functions from 'firebase-functions';
 
-import { saveDetails } from './auth/on_first_sign_in';
-import { exchangeCodeWithGoogle, exchangeCodeWithAsana } from './auth/exchange_code_for_tokens';
-import { redirectToAsana, redirectToGoogle } from './auth/redirect_to_authorization';
-import { createSectionCallback } from './database_triggers/create_section';
+import { createSectionCallback } from './functions/database/create_section';
+import { exchangeWithAsanaExpressApp } from './functions/http/get_asana_authorization';
+import { exchangeWithGoogleExpressApp } from './functions/http/get_google_authorization';
+import { redirectToAsanaExpressApp } from './functions/http/redirect_to_asana';
+import { redirectToGoogleExpressApp } from './functions/http/redirect_to_google';
+import { saveDetails } from './functions/auth/on_first_sign_in';
 
 // server flow 
-export const getGoogleAuthorization = functions.https.onRequest(redirectToGoogle);
-export const getAsanaAuthorization = functions.https.onRequest(redirectToAsana);
-export const exchangeWithGoogle = functions.https.onRequest(exchangeCodeWithGoogle);
-export const exchangeWithAsana = functions.https.onRequest(exchangeCodeWithAsana);
+export const startGoogleAuthorization = functions.https.onRequest(redirectToGoogleExpressApp);
+export const startAsanaAuthorization = functions.https.onRequest(redirectToAsanaExpressApp);
+export const completeGoogleAuthorization = functions.https.onRequest(exchangeWithGoogleExpressApp);
+export const completeAsanaAuthorization = functions.https.onRequest(exchangeWithAsanaExpressApp);
 
 // when a new account is created, add auth details to the database
 export const saveDetailsOnFirstSignIn = functions.auth.user().onCreate(saveDetails);

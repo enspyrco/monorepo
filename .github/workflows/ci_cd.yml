@@ -17,17 +17,18 @@ jobs:
         working-directory: functions
 
     steps:
-    # Check out the current branch.
     - uses: actions/checkout@v2
+
+    ##############################################
     # Install Node.
+    ##############################################
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
       with:
-        # Use the latest Node 12 version
         node-version: 12.x
     
     ##############################################
-    # setup-gcloud & download credential files 
+    # Setup gcloud to download credential files.
     ##############################################
     - name: Set up gcloud SDK
       uses: google-github-actions/setup-gcloud@master
@@ -37,13 +38,11 @@ jobs:
     - name: Download credential files
       run: gsutil cp gs://the-process-tool-credentials/project_credentials.json src/project_credentials.json
 
-    - run: npm install -g typescript
-    - run: npm install -g ts-mocha
-    - run: npm install -g mocha
- 
-    # install dependencies using clean install to avoid package lock updates
-    - run: npm ci
-    # build the project if necessary
-    - run: npm run build --if-present
-    # finally run the tests
-    - run: npm test
+    ##############################################
+    # Install dependencies, build, lint and test.
+    ##############################################
+    - run: npm install
+    - run: npm run build
+    - run: npm run lint
+    - run: npm run test
+    

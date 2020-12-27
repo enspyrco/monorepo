@@ -1,7 +1,7 @@
 import { drive_v3, google } from 'googleapis';
 
-import { unNull } from '../utils/null_safety_utils';
-import { AuthenticatedClient } from '../auth/authenticated_client';
+import { unNull } from '../../utils/null_safety_utils';
+import { AuthenticatedClient } from '../authenticated_client';
 
 export interface DriveAPIInterface {
   readonly uid: string;
@@ -39,7 +39,7 @@ export class DriveAPI implements DriveAPIInterface {
       fields: 'id',
     });
 
-    const id = unNull(filesResponse.data.id, 'Creating folder did not return an id.');
+    const id = unNull(filesResponse.data.id, 'Creating folder did not return an id.') as string;
 
     const permissionParams : drive_v3.Params$Resource$Permissions$Create = {
       fileId: id,

@@ -3,7 +3,7 @@ import * as express from 'express';
 import { google } from 'googleapis';
 import { OAuth2Client } from 'google-auth-library';
 
-import * as project_credentials from '../project_credentials.json';
+import * as project_credentials from '../../project_credentials.json';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Google  
@@ -20,7 +20,8 @@ const scopes = [
   'https://www.googleapis.com/auth/drive.readonly',
 ];
 
-// Generate a redirect URL and respond with a redirect. 
+// Generate a redirect URL and respond with a redirect.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const googleRedirect = async (req: any, res: any) => {
 
   const oauth2 : OAuth2Client = new google.auth.OAuth2(
@@ -41,21 +42,4 @@ const googleRedirect = async (req: any, res: any) => {
 }
 
 // Generate a redirect URL and respond with a redirect. 
-export const redirectToGoogle = express().use(googleRedirect);
-
-////////////////////////////////////////////////////////////////////////////////
-// Asana 
-////////////////////////////////////////////////////////////////////////////////
-
-// Get the code from the request, call retrieveAuthToken and return the response
-const asanaRedirect = async (req: any, res: any) => {
-  res.redirect(
-    'https://app.asana.com/-/oauth_authorize?response_type=code&client_id='
-    +project_credentials.asana.client_id
-    +'&redirect_uri='
-    +project_credentials.asana.redirect_uri
-    +'&state='+req.query.state);
-}
-
-// Export an express app that uses the callback we created.
-export const redirectToAsana = express().use(asanaRedirect);
+export const redirectToGoogleExpressApp = express().use(googleRedirect);

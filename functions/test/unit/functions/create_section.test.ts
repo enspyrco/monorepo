@@ -2,81 +2,79 @@ import * as funcTest from "firebase-functions-test";
 import * as admin from 'firebase-admin';
 import * as service_locator from '../../../src/utils/service_locator';
 import { firebaseAdmin } from '../../../src/utils/firebase_admin';
-import { DriveAPI } from "../../../src/google_apis/drive";
-import { mock, when, instance, spy, anyString, anything, reset } from 'ts-mockito';
-import { DocumentData, DocumentReference, DocumentSnapshot } from "@google-cloud/firestore";
-import { FakeSectionData } from "../../mocks/fake_section_data";
-import { expect } from "chai";
-import { DocsAPI } from "../../../src/google_apis/docs";
+import { DocumentReference, DocumentSnapshot, WriteResult } from "@google-cloud/firestore";
+import { mock, mockDeep } from "jest-mock-extended";
+import { DriveAPIInterface } from "../../../src/services/google_apis/drive";
+import { DocsAPIInterface } from "../../../src/services/google_apis/docs";
+import { DatabaseService } from "../../../src/services/database_service";
+import { SectionData } from "../../../src/models/database/section_data";
 
 describe('CloudFunction', () => {
-  let myFunctions: any;
+  let myFunctions: typeof import("../../../src/index");
   const tester = funcTest();
   
-  before(async () => {
-    // Import index.ts with an async import so we can mock before the Firebase modules are accessed.
+  beforeAll(async () => {
+    // Use async import so we can spy before the Firebase modules are accessed.
     myFunctions = await import('../../../src/index');
+
+    // replace calls during the firebase initialization that require a live connection 
+    jest.spyOn(admin, 'initializeApp').mockImplementationOnce(() => mockDeep());
+    jest.spyOn(firebaseAdmin, 'getFirestore').mockImplementationOnce(() => mockDeep());
   });
 
-  it('-> createSection saves failures to database', async () => {
-    const spiedAdmin = spy(admin);
-    const spiedFirebaseAdmin = spy(firebaseAdmin);
-    const spiedServiceLocator = spy(service_locator);
-    const mockedDriveAPI:DriveAPI = mock(DriveAPI);
-    const mockedSnapshot:DocumentSnapshot = mock<DocumentSnapshot>(); 
-    const mockedDocRef:DocumentReference<DocumentData> = mock(DocumentReference);
-    const fakeSectionData = new FakeSectionData('uid');
+  it('.createSection saves failures to database', async () => {
 
-    // setup all the mocks 
-    when(spiedAdmin.initializeApp(anything())).thenReturn(instance(mock(admin.app)));
-    when(spiedFirebaseAdmin.getFirestore()).thenReturn(instance(mock(admin.firestore)));
-    when(spiedServiceLocator.getDriveAPI(anyString())).thenReturn(Promise.resolve(instance(mockedDriveAPI)));
-    when(spiedServiceLocator.createSectionData(anything())).thenReturn(fakeSectionData);
-    when(mockedDriveAPI.createFolder(anyString())).thenThrow(Error('Hullabulloo'));
-    when(mockedSnapshot.ref).thenReturn(instance(mockedDocRef));
+    const databaseServiceMock = mock<DatabaseService>();
+    
+    jest.spyOn(service_locator, 'getDatabaseService').mockImplementationOnce(() => Promise.resolve(databaseServiceMock));
 
     // setup the test harness and call the function 
     const wrapped = tester.wrap(myFunctions.createSection);
-    await wrapped(instance(mockedSnapshot));
+    await wrapped(mockDeep<DocumentSnapshot>());
 
     // check that the section has the expected values 
-    expect(fakeSectionData.error).to.not.equal(null);
-
-    reset(spiedServiceLocator);
+    expect(databaseServiceMock.saveFailure).toHaveBeenCalled;
   });
 
-  it('-> createSection saves SectionData with expected values', async () => {
-    const spiedAdmin = spy(admin);
-    const spiedFirebaseAdmin = spy(firebaseAdmin);
-    const spiedServiceLocator = spy(service_locator);
-    const mockedDriveAPI:DriveAPI = mock(DriveAPI);
-    const mockedDocsAPI:DocsAPI = mock(DocsAPI);
-    const mockedSnapshot:DocumentSnapshot = mock<DocumentSnapshot>();
-    const mockedDocRef:DocumentReference<DocumentData> = mock(DocumentReference);
-    const fakeSectionData = new FakeSectionData('uid');
+  it('.createSection saves SectionData with expected values', async () => {
 
-    // setup all the mocks 
-    when(spiedServiceLocator.getDriveAPI(anyString())).thenReturn(Promise.resolve(instance(mockedDriveAPI)));
-    when(spiedServiceLocator.getDocsAPI(anyString())).thenReturn(Promise.resolve(instance(mockedDocsAPI)));
-    when(spiedServiceLocator.createSectionData(anything())).thenReturn(fakeSectionData);
-    when(mockedDriveAPI.createFolder(anyString())).thenReturn(Promise.resolve({id: 'folderIdBoop'}));
-    when(mockedDocsAPI.createDoc(anyString())).thenReturn(Promise.resolve({documentId: 'docIdBlam'}));
-    when(mockedSnapshot.data()).thenReturn({section: {name: 'testy'}});
-    when(mockedSnapshot.ref).thenReturn(instance(mockedDocRef));
-    when(spiedAdmin.initializeApp(anything())).thenReturn(instance(mock(admin.app)));
-    when(spiedFirebaseAdmin.getFirestore()).thenReturn(instance(mock(admin.firestore)));
+    // Create an example object with values that we inject during the test. 
+    const exampleSectionData = new SectionData({name: 'testy', folderId: 'folderIdBoop', useCasesDocId: 'docIdBlam'});
 
-    // setup the test harness and call the function 
+    // Create mocks to be returned in place of services, injecting our example data during the test.
+    const driveAPIMock = mock<DriveAPIInterface>();
+    driveAPIMock.createFolder.mockResolvedValueOnce({id: exampleSectionData.data.folderId as string});
+    const docsAPIMock = mock<DocsAPIInterface>();
+    docsAPIMock.createDoc.mockResolvedValueOnce({documentId: exampleSectionData.data.useCasesDocId as string});
+    const databaseServiceMock = mock<DatabaseService>();
+
+    // Replace service_locator functions to return our mocked services.
+    jest.spyOn(service_locator, 'getDatabaseService').mockImplementationOnce(() => Promise.resolve(databaseServiceMock));
+    jest.spyOn(service_locator, 'getDriveAPI').mockImplementationOnce(() => Promise.resolve(driveAPIMock));
+    jest.spyOn(service_locator, 'getDocsAPI').mockImplementationOnce(() => Promise.resolve(docsAPIMock));
+
+    // Create a mocked DocumentSnapshot to pass in to the function under test.
+    const snapshotMock = mock<DocumentSnapshot>();
+    snapshotMock.data.mockReturnValueOnce({section: {name: exampleSectionData.data.name as string}});
+    // Replacing getters is difficult, this seems to be the best way.
+    Object.defineProperty(snapshotMock, 'ref', {
+      get: () => {
+        const docRefMock = mock<DocumentReference>();
+        docRefMock.delete.mockResolvedValueOnce(mockDeep<WriteResult>());
+        return docRefMock;
+      },
+    });
+
+    // Setup the test harness and call the function.
     const wrapped = tester.wrap(myFunctions.createSection);
-    await wrapped(instance(mockedSnapshot));
+    await wrapped(snapshotMock);
 
-    // check that the section has the expected values 
-    expect(fakeSectionData.name).equals('testy');
-
-    reset(spiedServiceLocator);
+    // Check that the section has the expected values.
+    expect(databaseServiceMock.save).toHaveBeenCalledWith(exampleSectionData);
   });
 
-  after(() => {
+  afterAll(() => {
+    jest.resetAllMocks();
     tester.cleanup();
   });
 });

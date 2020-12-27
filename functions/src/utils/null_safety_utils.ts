@@ -1,6 +1,6 @@
 
 
-export function unNull(variable : any, message: string) : NonNullable<any> {
+export function unNull(variable : unknown, message: string) : NonNullable<unknown> {
   if (variable === null || typeof variable === "undefined") {
     throw Error(message);
   }
