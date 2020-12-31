@@ -9,6 +9,7 @@ class ObserveProfileDataMiddleware
       : super((store, action, next) async {
           next(action);
 
-          databaseService.connectProfileData(uid: store.state.authUserData.uid);
+          databaseService.connectProfileData(
+              uid: store.state.authUserData?.uid ?? '-');
         });
 }

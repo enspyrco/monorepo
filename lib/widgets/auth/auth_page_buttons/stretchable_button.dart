@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 const double defaultBorderRadius = 3.0;
 
 class StretchableButton extends StatelessWidget {
-  final VoidCallback onPressed;
   final double borderRadius;
-  final double buttonPadding;
-  final Color buttonColor, splashColor;
-  final Color buttonBorderColor;
+  final Color buttonColor;
+  final VoidCallback? onPressed;
+  final double? buttonPadding;
+  final Color? splashColor;
+  final Color? buttonBorderColor;
   final List<Widget> children;
   final bool centered;
 
   StretchableButton({
-    @required this.buttonColor,
-    @required this.borderRadius,
-    @required this.children,
+    required this.buttonColor,
+    required this.borderRadius,
+    required this.children,
     this.splashColor,
     this.buttonBorderColor,
     this.onPressed,
@@ -40,7 +41,7 @@ class StretchableButton extends StatelessWidget {
         BorderSide bs;
         if (buttonBorderColor != null) {
           bs = BorderSide(
-            color: buttonBorderColor,
+            color: buttonBorderColor ?? Colors.white,
           );
         } else {
           bs = BorderSide.none;
@@ -48,7 +49,7 @@ class StretchableButton extends StatelessWidget {
 
         return ButtonTheme(
           height: 40.0,
-          padding: EdgeInsets.all(buttonPadding),
+          padding: EdgeInsets.all(buttonPadding ?? 2),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
             side: bs,

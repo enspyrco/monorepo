@@ -1,7 +1,5 @@
 library update_new_section_v_m;
 
-import 'dart:convert';
-
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:the_process/actions/redux_action.dart';
@@ -12,8 +10,7 @@ part 'update_new_section_v_m.g.dart';
 abstract class UpdateNewSectionVM extends Object
     with ReduxAction
     implements Built<UpdateNewSectionVM, UpdateNewSectionVMBuilder> {
-  @nullable
-  String get name;
+  String? get name;
 
   UpdateNewSectionVM._();
 
@@ -26,8 +23,8 @@ abstract class UpdateNewSectionVM extends Object
   Object toJson() =>
       serializers.serializeWith(UpdateNewSectionVM.serializer, this);
 
-  static UpdateNewSectionVM fromJson(String jsonString) => serializers
-      .deserializeWith(UpdateNewSectionVM.serializer, json.decode(jsonString));
+  // static UpdateNewSectionVM fromJson(String jsonString) => serializers
+  //     .deserializeWith(UpdateNewSectionVM.serializer, json.decode(jsonString));
 
   static Serializer<UpdateNewSectionVM> get serializer =>
       _$updateNewSectionVMSerializer;

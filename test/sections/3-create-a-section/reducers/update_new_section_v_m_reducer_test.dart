@@ -8,7 +8,7 @@ void main() {
     test('correctly updates new section name', () {
       // Setup the initial app state and check expected values are present
       final initialState = AppState.init();
-      expect(initialState.sections.newSection.name, '');
+      expect(initialState.sections?.newSection.name, '');
 
       final reducerUnderTest = UpdateNewSectionVMReducer();
 
@@ -16,7 +16,7 @@ void main() {
       final newState = reducerUnderTest.reducer(
           initialState, UpdateNewSectionVM(name: 'testy'));
 
-      expect(newState.sections.newSection.name, 'testy');
+      expect(newState.sections?.newSection.name, 'testy');
     });
   });
 }

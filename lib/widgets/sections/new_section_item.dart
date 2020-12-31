@@ -4,9 +4,7 @@ import 'package:the_process/actions/sections/update_new_section_v_m.dart';
 import 'package:the_process/extensions/flutter_extensions.dart';
 
 class NewSectionItem extends StatelessWidget {
-  const NewSectionItem({
-    Key key,
-  }) : super(key: key);
+  const NewSectionItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

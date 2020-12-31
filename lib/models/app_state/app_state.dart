@@ -1,7 +1,5 @@
 library app_state;
 
-import 'dart:convert';
-
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -20,14 +18,12 @@ import 'package:the_process/serializers.dart';
 part 'app_state.g.dart';
 
 abstract class AppState implements Built<AppState, AppStateBuilder> {
-  /// Leaguers
-  @nullable
-  TeamMember get teamMember;
+  /// Teams
+  TeamMember? get teamMember;
 
   /// Auth
   AuthStep get authStep;
-  @nullable
-  AuthUserData get authUserData;
+  AuthUserData? get authUserData;
 
   /// Navigation
   BuiltList<PageData> get pagesData;
@@ -37,12 +33,10 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   BuiltList<Problem> get problems;
 
   /// Profile
-  @nullable
-  ProfileData get profileData;
+  ProfileData? get profileData;
 
   /// Sections
-  @nullable
-  SectionsVM get sections;
+  SectionsVM? get sections;
 
   /// Settings
   Settings get settings;
@@ -60,8 +54,8 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   Object toJson() => serializers.serializeWith(AppState.serializer, this);
 
-  static AppState fromJson(String jsonString) =>
-      serializers.deserializeWith(AppState.serializer, json.decode(jsonString));
+  // static AppState fromJson(String jsonString) =>
+  //     serializers.deserializeWith(AppState.serializer, json.decode(jsonString));
 
   static Serializer<AppState> get serializer => _$appStateSerializer;
 }

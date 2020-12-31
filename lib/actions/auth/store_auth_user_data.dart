@@ -1,10 +1,7 @@
 library store_auth_user_data;
 
-import 'dart:convert';
-
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart';
 import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/models/auth/auth_user_data.dart';
 import 'package:the_process/serializers.dart';
@@ -14,12 +11,11 @@ part 'store_auth_user_data.g.dart';
 abstract class StoreAuthUserData extends Object
     with ReduxAction
     implements Built<StoreAuthUserData, StoreAuthUserDataBuilder> {
-  @nullable
-  AuthUserData get authUserData;
+  AuthUserData? get authUserData;
 
   StoreAuthUserData._();
 
-  factory StoreAuthUserData({@required AuthUserData authUserData}) =
+  factory StoreAuthUserData({required AuthUserData? authUserData}) =
       _$StoreAuthUserData._;
 
   factory StoreAuthUserData.by(
@@ -28,8 +24,8 @@ abstract class StoreAuthUserData extends Object
   Object toJson() =>
       serializers.serializeWith(StoreAuthUserData.serializer, this);
 
-  static StoreAuthUserData fromJson(String jsonString) => serializers
-      .deserializeWith(StoreAuthUserData.serializer, json.decode(jsonString));
+  // static StoreAuthUserData fromJson(String jsonString) => serializers
+  //     .deserializeWith(StoreAuthUserData.serializer, json.decode(jsonString));
 
   static Serializer<StoreAuthUserData> get serializer =>
       _$storeAuthUserDataSerializer;
@@ -38,12 +34,17 @@ abstract class StoreAuthUserData extends Object
   String toString() {
     var userDataSummary = '-';
 
-    if (authUserData == null) {
-      userDataSummary = 'null';
-    } else if (authUserData.isAnonymous) {
-      userDataSummary = 'anon-${authUserData.uid.substring(0, 4)}...';
+    // Use a local variable to get type promotion
+    final authUserDataLocal = authUserData;
+
+    if (authUserDataLocal == null) {
+      return 'STORE_USER_DATA: null';
+    }
+
+    if (authUserDataLocal.isAnonymous) {
+      userDataSummary = 'anon-${authUserDataLocal.uid.substring(0, 4)}...';
     } else {
-      userDataSummary = '${authUserData.uid.substring(0, 4)}...';
+      userDataSummary = '${authUserDataLocal.uid.substring(0, 4)}...';
     }
 
     return 'STORE_USER_DATA: $userDataSummary';

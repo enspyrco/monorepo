@@ -13,9 +13,9 @@ class WidgetTestHarness {
   final Widget _widgetUnderTest;
 
   WidgetTestHarness(
-      {@required Widget widgetUnderTest,
-      FakeStore fakeStore,
-      dynamic Function(AppStateBuilder) stateUpdates})
+      {required Widget widgetUnderTest,
+      FakeStore? fakeStore,
+      dynamic Function(AppStateBuilder)? stateUpdates})
       : _fakeStore = fakeStore ?? FakeStore(),
         _widgetUnderTest = widgetUnderTest {
     if (stateUpdates != null) {

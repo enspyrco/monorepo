@@ -15,7 +15,7 @@ class AuthStep extends EnumClass {
 
   const AuthStep._(String name) : super(name);
 
-  int get index => _$indexMap[this];
+  int get index => _$indexMap[this]!;
   static const Map<AuthStep, int> _$indexMap = {
     checking: 0,
     waitingForInput: 1,

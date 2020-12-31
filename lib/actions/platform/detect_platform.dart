@@ -1,7 +1,5 @@
 library detect_platform;
 
-import 'dart:convert';
-
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:the_process/actions/redux_action.dart';
@@ -18,8 +16,8 @@ abstract class DetectPlatform extends Object
 
   Object toJson() => serializers.serializeWith(DetectPlatform.serializer, this);
 
-  static DetectPlatform fromJson(String jsonString) => serializers
-      .deserializeWith(DetectPlatform.serializer, json.decode(jsonString));
+  // static DetectPlatform fromJson(String jsonString) => serializers
+  //     .deserializeWith(DetectPlatform.serializer, json.decode(jsonString));
 
   static Serializer<DetectPlatform> get serializer =>
       _$detectPlatformSerializer;

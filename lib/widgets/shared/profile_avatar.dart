@@ -6,10 +6,7 @@ import 'package:the_process/widgets/shared/checked_circle_avatar.dart';
 
 class ProfileAvatar extends StatelessWidget {
   final String photoURL;
-  const ProfileAvatar(
-    this.photoURL, {
-    Key key,
-  }) : super(key: key);
+  const ProfileAvatar(this.photoURL, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

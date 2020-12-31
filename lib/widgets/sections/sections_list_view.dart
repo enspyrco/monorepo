@@ -5,10 +5,7 @@ import 'package:the_process/models/sections/section.dart';
 class SectionsListView extends StatelessWidget {
   final BuiltList<Section> sections;
 
-  const SectionsListView(
-    this.sections, {
-    Key key,
-  }) : super(key: key);
+  const SectionsListView(this.sections, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

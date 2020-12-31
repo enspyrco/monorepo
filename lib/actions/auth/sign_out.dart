@@ -1,7 +1,5 @@
 library sign_out;
 
-import 'dart:convert';
-
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:the_process/actions/redux_action.dart';
@@ -18,8 +16,8 @@ abstract class SignOut extends Object
 
   Object toJson() => serializers.serializeWith(SignOut.serializer, this);
 
-  static SignOut fromJson(String jsonString) =>
-      serializers.deserializeWith(SignOut.serializer, json.decode(jsonString));
+  // static SignOut fromJson(String jsonString) =>
+  //     serializers.deserializeWith(SignOut.serializer, json.decode(jsonString));
 
   static Serializer<SignOut> get serializer => _$signOutSerializer;
 

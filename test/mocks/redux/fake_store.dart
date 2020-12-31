@@ -4,14 +4,17 @@ import 'package:redux/redux.dart';
 import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/models/app_state/app_state.dart';
 
+import 'empty_reducer.dart';
+
 /// A [Store] with no reducers that takes an optional [AppState] and
 /// keeps a list of dispatched actions that can be queried.
 class FakeStore implements Store<AppState> {
-  FakeStore({dynamic Function(AppStateBuilder) updates})
+  FakeStore({dynamic Function(AppStateBuilder)? updates})
       : _state = (updates == null)
             ? AppState.init()
             : AppState.init().rebuild(updates),
-        _changeController = StreamController<AppState>.broadcast();
+        _changeController = StreamController<AppState>.broadcast(),
+        reducer = EmptyReducer();
 
   // The list of dispatched actions that can be queried by a test.
   List<ReduxAction> dispatchedActions = <ReduxAction>[];

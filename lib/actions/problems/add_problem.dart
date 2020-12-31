@@ -1,11 +1,8 @@
 library add_problem;
 
-import 'dart:convert';
-
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart';
 import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/models/problems/problem.dart';
 import 'package:the_process/serializers.dart';
@@ -16,15 +13,13 @@ abstract class AddProblem extends Object
     with ReduxAction
     implements Built<AddProblem, AddProblemBuilder> {
   String get errorString; // built_value won't allow dynamic
-  @nullable
-  String get traceString;
-  @nullable
-  BuiltMap<String, Object> get info;
+  String? get traceString;
+  BuiltMap<String, Object>? get info;
 
   AddProblem._();
 
   factory AddProblem(
-      {@required String errorString,
+      {required String errorString,
       String traceString,
       BuiltMap<String, Object> info}) = _$AddProblem._;
 
@@ -36,8 +31,8 @@ abstract class AddProblem extends Object
 
   Object toJson() => serializers.serializeWith(AddProblem.serializer, this);
 
-  static AddProblem fromJson(String jsonString) => serializers.deserializeWith(
-      AddProblem.serializer, json.decode(jsonString));
+  // static AddProblem fromJson(String jsonString) => serializers.deserializeWith(
+  //     AddProblem.serializer, json.decode(jsonString));
 
   static Serializer<AddProblem> get serializer => _$addProblemSerializer;
 

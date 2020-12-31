@@ -6,7 +6,7 @@ import 'package:the_process/middleware/sections/create_section.dart';
 
 import '../../../data/models/auth_user_data_examples.dart';
 import '../../../mocks/redux/fake_store.dart';
-import '../../../mocks/services/database_service_mocks.dart';
+import '../../../mocks/services/database_service_mock.dart';
 
 void main() {
   group('CreateSectionMiddleware', () {
@@ -16,18 +16,18 @@ void main() {
           updates: (b) => b
             ..authUserData.replace(AuthUserDataExamples.minimal)
             ..sections.newSection.name = 'testy');
-      final mockDatabaseService = MockDatabaseService();
+      final databaseServiceMock = DatabaseServiceMock();
       final nullDispatcher = (dynamic _) => null;
 
       // Create then invoke the middleware under test.
-      final middleware = CreateSectionMiddleware(mockDatabaseService);
+      final middleware = CreateSectionMiddleware(databaseServiceMock);
       await middleware(fakeStore, CreateSection(), nullDispatcher);
 
       verifyInOrder<dynamic>(<dynamic>[
         fakeStore.dispatch(UpdateSectionsVM(creatingNewSection: true)),
       ]);
 
-      verify(mockDatabaseService.createSection(uid: 'uid', name: 'testy'));
+      verify(databaseServiceMock.createSection(uid: 'uid', name: 'testy'));
     });
   });
 }

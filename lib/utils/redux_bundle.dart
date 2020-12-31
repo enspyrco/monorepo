@@ -15,13 +15,13 @@ class ReduxBundle {
   static var _bucketName = 'gs://crowdleague-profile-pics';
   static var _extraMiddlewares = <Middleware>[];
   static var _storeOperations = <StoreOperation>[];
-  static Settings _firestoreSettings;
+  static Settings? _firestoreSettings;
 
   static void setup(
-      {String bucketName,
-      List<Middleware> extraMiddlewares,
-      List<StoreOperation> storeOperations,
-      Settings firestoreSettings}) {
+      {String? bucketName,
+      List<Middleware>? extraMiddlewares,
+      List<StoreOperation>? storeOperations,
+      Settings? firestoreSettings}) {
     _bucketName = bucketName ?? _bucketName;
     _extraMiddlewares = extraMiddlewares ?? _extraMiddlewares;
     _storeOperations = storeOperations ?? _storeOperations;
@@ -34,10 +34,10 @@ class ReduxBundle {
   final PlatformService _platformService;
 
   ReduxBundle(
-      {List<Middleware> extraMiddlewares,
-      AuthService authService,
-      DatabaseService databaseService,
-      PlatformService platformService})
+      {List<Middleware>? extraMiddlewares,
+      AuthService? authService,
+      DatabaseService? databaseService,
+      PlatformService? platformService})
       : _authService = authService ?? AuthService(),
         _databaseService = databaseService ?? DatabaseService(),
         _platformService = platformService ?? PlatformService();

@@ -14,7 +14,7 @@ class ThemeBrightness extends EnumClass {
 
   const ThemeBrightness._(String name) : super(name);
 
-  int get index => _$indexMap[this];
+  int get index => _$indexMap[this]!;
   static BuiltSet<ThemeBrightness> get values => _$values;
   static ThemeBrightness valueOf(String name) => _$valueOf(name);
 

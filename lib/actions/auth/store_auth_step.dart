@@ -1,10 +1,7 @@
 library store_auth_step;
 
-import 'dart:convert';
-
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart';
 import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/enums/auth/auth_step.dart';
 import 'package:the_process/serializers.dart';
@@ -18,15 +15,15 @@ abstract class StoreAuthStep extends Object
 
   StoreAuthStep._();
 
-  factory StoreAuthStep({@required AuthStep step}) = _$StoreAuthStep._;
+  factory StoreAuthStep({required AuthStep step}) = _$StoreAuthStep._;
 
   factory StoreAuthStep.by([void Function(StoreAuthStepBuilder) updates]) =
       _$StoreAuthStep;
 
   Object toJson() => serializers.serializeWith(StoreAuthStep.serializer, this);
 
-  static StoreAuthStep fromJson(String jsonString) => serializers
-      .deserializeWith(StoreAuthStep.serializer, json.decode(jsonString));
+  // static StoreAuthStep fromJson(String jsonString) => serializers
+  //     .deserializeWith(StoreAuthStep.serializer, json.decode(jsonString));
 
   static Serializer<StoreAuthStep> get serializer => _$storeAuthStepSerializer;
 

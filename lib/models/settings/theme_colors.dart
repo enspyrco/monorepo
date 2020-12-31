@@ -1,7 +1,5 @@
 library theme_colors;
 
-import 'dart:convert';
-
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:the_process/serializers.dart';
@@ -22,30 +20,36 @@ abstract class ThemeColors implements Built<ThemeColors, ThemeColorsBuilder> {
   static const int primary_grey = 0xFFAAAAAA;
   static const int secondary_grey = 0xFF999999;
 
+  static const int error_red = 0xFF990000;
+
   // members
 
   int get primary;
   int get secondary;
-  @nullable
   int get error;
 
   ThemeColors._();
 
-  factory ThemeColors([void Function(ThemeColorsBuilder) updates]) =
-      _$ThemeColors;
+  // factory ThemeColors([void Function(ThemeColorsBuilder) updates]) =
+  //     _$ThemeColors;
 
-  static final standard = ThemeColors((b) => b
-    ..primary = adventures_in_blue
-    ..secondary = firebase_yellow);
+  factory ThemeColors(
+      {required int primary,
+      required int secondary,
+      required int error}) = _$ThemeColors._;
 
-  static final greyscale = ThemeColors((b) => b
-    ..primary = primary_grey
-    ..secondary = secondary_grey);
+  static final standard = ThemeColors(
+      primary: adventures_in_blue,
+      secondary: firebase_yellow,
+      error: error_red);
+
+  static final greyscale = ThemeColors(
+      primary: primary_grey, secondary: secondary_grey, error: error_red);
 
   Object toJson() => serializers.serializeWith(ThemeColors.serializer, this);
 
-  static ThemeColors fromJson(String jsonString) => serializers.deserializeWith(
-      ThemeColors.serializer, json.decode(jsonString));
+  // static ThemeColors fromJson(String jsonString) => serializers.deserializeWith(
+  //     ThemeColors.serializer, json.decode(jsonString));
 
   static Serializer<ThemeColors> get serializer => _$themeColorsSerializer;
 }

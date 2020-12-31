@@ -7,7 +7,8 @@
         {
             "name": "the_process",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [ "--no-sound-null-safety" ]
         },
         {
             "name": "the_web_process",

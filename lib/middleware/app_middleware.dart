@@ -25,9 +25,9 @@ import 'package:the_process/services/platform_service.dart';
 /// The output of an action can perform another action using the [NextDispatcher]
 ///
 List<Middleware<AppState>> createAppMiddleware({
-  AuthService authService,
-  DatabaseService databaseService,
-  PlatformService platformService,
+  required AuthService authService,
+  required DatabaseService databaseService,
+  required PlatformService platformService,
 }) {
   return [
     // Auth

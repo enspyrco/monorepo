@@ -18,9 +18,9 @@ import 'package:the_process/widgets/app_widget/initializing_indicator.dart';
 
 class AppWidget extends StatefulWidget {
   final FirebaseWrapper _firebase;
-  final ReduxBundle _redux;
+  final ReduxBundle? _redux;
 
-  AppWidget({FirebaseWrapper firebase, ReduxBundle redux})
+  AppWidget({FirebaseWrapper? firebase, ReduxBundle? redux})
       : _firebase = firebase ?? FirebaseWrapper(),
         _redux = redux;
 
@@ -29,8 +29,8 @@ class AppWidget extends StatefulWidget {
 }
 
 class _AppWidgetState extends State<AppWidget> {
-  ReduxBundle _redux;
-  Store<AppState> _store;
+  late ReduxBundle _redux;
+  late Store<AppState> _store;
   dynamic _error;
   bool _initializedFirebase = false;
   bool _initializedRedux = false;

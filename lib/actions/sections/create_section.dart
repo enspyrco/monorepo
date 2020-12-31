@@ -1,7 +1,5 @@
 library create_section;
 
-import 'dart:convert';
-
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:the_process/actions/redux_action.dart';
@@ -18,8 +16,8 @@ abstract class CreateSection extends Object
 
   Object toJson() => serializers.serializeWith(CreateSection.serializer, this);
 
-  static CreateSection fromJson(String jsonString) => serializers
-      .deserializeWith(CreateSection.serializer, json.decode(jsonString));
+  // static CreateSection fromJson(String jsonString) => serializers
+  //     .deserializeWith(CreateSection.serializer, json.decode(jsonString));
 
   static Serializer<CreateSection> get serializer => _$createSectionSerializer;
 

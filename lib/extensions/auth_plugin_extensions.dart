@@ -37,7 +37,7 @@ extension ConnectAndConvert on FirebaseAuth {
       StreamController<ReduxAction> controller) {
     // listen to the onAuthStateChanged stream, convert events to actions and
     // dispatch to the store with the controller
-    return authStateChanges().listen((firebaseUser) {
+    return authStateChanges().listen((User? firebaseUser) {
       try {
         controller
             .add(StoreAuthUserData(authUserData: firebaseUser?.toModel()));
@@ -49,21 +49,19 @@ extension ConnectAndConvert on FirebaseAuth {
 }
 
 extension FirebaseUserExt on User {
-  AuthUserData toModel() => (this != null)
-      ? AuthUserData(
-          uid: uid,
-          displayName: displayName,
-          photoURL: photoURL,
-          email: email,
-          phoneNumber: phoneNumber,
-          createdOn: metadata.creationTime.toUtc(),
-          lastSignedInOn: metadata.lastSignInTime.toUtc(),
-          isAnonymous: isAnonymous,
-          emailVerified: emailVerified,
-          providers: BuiltList(providerData
-              .map<AuthProviderData>((userInfo) => userInfo.toModel())),
-        )
-      : null;
+  AuthUserData toModel() => AuthUserData(
+        uid: uid,
+        displayName: displayName,
+        photoURL: photoURL,
+        email: email,
+        phoneNumber: phoneNumber,
+        createdOn: metadata.creationTime.toUtc(),
+        lastSignedInOn: metadata.lastSignInTime.toUtc(),
+        isAnonymous: isAnonymous,
+        emailVerified: emailVerified,
+        providers: BuiltList(providerData
+            .map<AuthProviderData>((userInfo) => userInfo.toModel())),
+      );
 }
 
 extension UserInfoExt on UserInfo {

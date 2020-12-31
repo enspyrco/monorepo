@@ -1,7 +1,5 @@
 library remove_problem;
 
-import 'dart:convert';
-
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:the_process/actions/redux_action.dart';
@@ -17,15 +15,15 @@ abstract class RemoveProblem extends Object
 
   RemoveProblem._();
 
-  factory RemoveProblem({Problem problem}) = _$RemoveProblem._;
+  factory RemoveProblem({required Problem problem}) = _$RemoveProblem._;
 
   factory RemoveProblem.by([void Function(RemoveProblemBuilder) updates]) =
       _$RemoveProblem;
 
   Object toJson() => serializers.serializeWith(RemoveProblem.serializer, this);
 
-  static RemoveProblem fromJson(String jsonString) => serializers
-      .deserializeWith(RemoveProblem.serializer, json.decode(jsonString));
+  // static RemoveProblem fromJson(String jsonString) => serializers
+  //     .deserializeWith(RemoveProblem.serializer, json.decode(jsonString));
 
   static Serializer<RemoveProblem> get serializer => _$removeProblemSerializer;
 

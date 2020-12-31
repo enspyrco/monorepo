@@ -9,9 +9,9 @@ class InitializingIndicator extends StatelessWidget {
   final bool firebaseDone;
   final bool reduxDone;
   const InitializingIndicator({
-    @required this.firebaseDone,
-    @required this.reduxDone,
-    Key key,
+    required this.firebaseDone,
+    required this.reduxDone,
+    Key? key,
   }) : super(key: key);
 
   @override

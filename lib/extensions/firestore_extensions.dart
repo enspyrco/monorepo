@@ -5,12 +5,13 @@ import 'package:the_process/models/sections/section.dart';
 
 extension ConvertDocumentSnapshot on DocumentSnapshot {
   ProfileData toProfileData() => ProfileData(
+      exists: true,
       id: id,
       displayName: data()['displayName'] as String,
-      photoURL: data()['photoURL'] as String ??
+      photoURL: data()['photoURL'] as String? ??
           'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
-      firstName: data()['firstName'] as String ?? '_',
-      lastName: data()['lastName'] as String ?? '_',
+      firstName: data()['firstName'] as String? ?? '_',
+      lastName: data()['lastName'] as String? ?? '_',
       googleAuth: AuthorizationStep.valueOf(data()['googleAuth'] as String),
       asanaAuth: AuthorizationStep.valueOf(data()['asanaAuth'] as String));
 }

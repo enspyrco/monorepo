@@ -1,7 +1,5 @@
 library disregard_profile_data;
 
-import 'dart:convert';
-
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:the_process/actions/redux_action.dart';
@@ -19,9 +17,9 @@ abstract class DisregardProfileData extends Object
   Object toJson() =>
       serializers.serializeWith(DisregardProfileData.serializer, this);
 
-  static DisregardProfileData fromJson(String jsonString) =>
-      serializers.deserializeWith(
-          DisregardProfileData.serializer, json.decode(jsonString));
+  // static DisregardProfileData fromJson(String jsonString) =>
+  //     serializers.deserializeWith(
+  //         DisregardProfileData.serializer, json.decode(jsonString));
 
   static Serializer<DisregardProfileData> get serializer =>
       _$disregardProfileDataSerializer;

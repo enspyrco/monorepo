@@ -7,7 +7,7 @@ import 'package:the_process/extensions/flutter_extensions.dart';
 class GoogleAuthorizationButton extends StatelessWidget {
   final AuthorizationStep step;
 
-  GoogleAuthorizationButton({@required this.step});
+  GoogleAuthorizationButton({required this.step});
 
   @override
   Widget build(BuildContext context) {

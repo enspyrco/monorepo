@@ -9,9 +9,9 @@ class InitializingErrorPage extends StatelessWidget {
   final dynamic _error;
   final StackTrace _trace;
   const InitializingErrorPage({
-    @required dynamic error,
-    @required StackTrace trace,
-    Key key,
+    required dynamic error,
+    required StackTrace trace,
+    Key? key,
   })  : _error = error,
         _trace = trace,
         super(key: key);

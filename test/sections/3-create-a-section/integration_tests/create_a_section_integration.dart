@@ -17,9 +17,9 @@ import 'package:the_process/widgets/auth/auth_page_buttons/apple_sign_in_button.
 import 'package:the_process/widgets/sections/new_section_item.dart';
 import 'package:the_process/widgets/shared/waiting_indicator.dart';
 
-import '../../../mocks/firebase/fake_firebase_auth.dart';
-import '../../../mocks/firebase/firebase_firestore_mocks.dart';
-import '../../../mocks/services/platform_service_mocks.dart';
+import '../../../mocks/firebase/firebase_auth_fake.dart';
+import '../../../mocks/firebase/firebase_firestore_fake.dart';
+import '../../../mocks/services/platform_service_mock.dart';
 import '../../../utils/testing/app_widget_harness.dart';
 
 void main() {
@@ -27,13 +27,13 @@ void main() {
       as IntegrationTestWidgetsFlutterBinding;
   testWidgets('create a section', (WidgetTester tester) async {
     // Create auth & database objects we can later use to emit various events
-    final fakeAuth = FakeFirebaseAuth();
-    final fakeDatabase = FakeFirebaseFirestore();
+    final fakeAuth = FirebaseAuthFake();
+    final fakeDatabase = FirebaseFirestoreFake();
     // Create the services using the previous objects
     final authService = AuthService(auth: fakeAuth);
     final databaseService = DatabaseService(database: fakeDatabase);
     // We just need the platform service to return a platform so we use a mock.
-    final mockPlatformService = MockPlatformService();
+    final mockPlatformService = PlatformServiceMock();
     when(mockPlatformService.detectPlatform()).thenReturn(PlatformEnum.iOS);
 
     final store = Store<AppState>(
@@ -49,7 +49,7 @@ void main() {
     );
     final harness = AppWidgetHarness(store: store);
 
-    await runApp(harness.widget);
+    runApp(harness.widget);
 
     // Trace the timeline of the following operation. The timeline result will
     // be written to `build/integration_response_data.json` with the key

@@ -11,7 +11,7 @@ class Provider extends EnumClass {
 
   const Provider._(String name) : super(name);
 
-  int get index => _$indexMap[this];
+  int get index => _$indexMap[this]!;
   static final _$indexMap = BuiltMap<Provider, int>({google: 0, asana: 1});
 
   static BuiltSet<Provider> get values => _$values;

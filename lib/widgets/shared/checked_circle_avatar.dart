@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class CheckedCircleAvatar extends StatelessWidget {
   final String _url;
   final double _radius;
-  CheckedCircleAvatar({@required String url, @required double radius})
+  CheckedCircleAvatar({required String url, required double radius})
       : _url = url,
         _radius = radius;
   Future<bool> cacheImage(String url, BuildContext context) async {
@@ -52,9 +52,7 @@ class CheckedCircleAvatar extends StatelessWidget {
 }
 
 class ErrorAvatar extends StatelessWidget {
-  const ErrorAvatar({
-    Key key,
-  }) : super(key: key);
+  const ErrorAvatar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,7 @@
 library apple_id_credential;
 
-import 'dart:convert';
-
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart';
 import 'package:the_process/serializers.dart';
 
 part 'apple_id_credential.g.dart';
@@ -27,8 +24,7 @@ abstract class AppleIdCredential
   ///
   /// This will always be provided on iOS and macOS systems. On Android, however, this will not be present.
   /// This will stay the same between sign ins, until the user deauthorizes your App.
-  @nullable
-  String get userIdentifier;
+  String? get userIdentifier;
 
   /// The users given name, in case it was requested.
   /// You will need to provide the [AppleIDAuthorizationScopes.fullName] scope to the [AppleIDAuthorizationRequest] for requesting this information.
@@ -37,8 +33,7 @@ abstract class AppleIdCredential
   /// Upon further authorizations, you will only get the [userIdentifier],
   /// meaning you will need to store this data securely on your servers.
   /// For more information see: https://forums.developer.apple.com/thread/121496
-  @nullable
-  String get givenName;
+  String? get givenName;
 
   /// The users family name, in case it was requested.
   /// You will need to provide the [AppleIDAuthorizationScopes.fullName] scope to the [AppleIDAuthorizationRequest] for requesting this information.
@@ -47,8 +42,7 @@ abstract class AppleIdCredential
   /// Upon further authorizations, you will only get the [userIdentifier],
   /// meaning you will need to store this data securely on your servers.
   /// For more information see: https://forums.developer.apple.com/thread/121496
-  @nullable
-  String get familyName;
+  String? get familyName;
 
   /// The users email in case it was requested.
   /// You will need to provide the [AppleIDAuthorizationScopes.email] scope to the [AppleIDAuthorizationRequest] for requesting this information.
@@ -57,8 +51,7 @@ abstract class AppleIdCredential
   /// Upon further authorizations, you will only get the [userIdentifier],
   /// meaning you will need to store this data securely on your servers.
   /// For more information see: https://forums.developer.apple.com/thread/121496
-  @nullable
-  String get email;
+  String? get email;
 
   /// The verification code for the current authorization.
   ///
@@ -66,25 +59,23 @@ abstract class AppleIdCredential
   String get authorizationCode;
 
   /// A JSON Web Token (JWT) that securely communicates information about the user to your app.
-  @nullable
-  String get identityToken;
+  String? get identityToken;
 
   /// The `state` parameter that was passed to the request.
   ///
   /// This data is not modified by Apple.
-  @nullable
-  String get state;
+  String? get state;
 
   AppleIdCredential._();
 
   factory AppleIdCredential({
-    @required String userIdentifier,
-    @required String givenName,
-    @required String familyName,
-    @required String email,
-    @required String authorizationCode,
-    @required String identityToken,
-    @required String state,
+    String? userIdentifier,
+    String? givenName,
+    String? familyName,
+    String? email,
+    required String authorizationCode,
+    String? identityToken,
+    String? state,
   }) = _$AppleIdCredential._;
 
   factory AppleIdCredential.by(
@@ -93,8 +84,8 @@ abstract class AppleIdCredential
   Object toJson() =>
       serializers.serializeWith(AppleIdCredential.serializer, this);
 
-  static AppleIdCredential fromJson(String jsonString) => serializers
-      .deserializeWith(AppleIdCredential.serializer, json.decode(jsonString));
+  // static AppleIdCredential fromJson(String jsonString) => serializers
+  //     .deserializeWith(AppleIdCredential.serializer, json.decode(jsonString));
 
   static Serializer<AppleIdCredential> get serializer =>
       _$appleIdCredentialSerializer;

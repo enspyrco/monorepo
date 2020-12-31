@@ -19,7 +19,7 @@ class BrightnessMode extends EnumClass {
 
   const BrightnessMode._(String name) : super(name);
 
-  int get index => _$indexMap[this];
+  int get index => _$indexMap[this]!;
   bool get isLight => this == BrightnessMode.light;
   bool get isDark => this == BrightnessMode.dark;
   bool get isSystem => this == BrightnessMode.system;

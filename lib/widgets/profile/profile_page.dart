@@ -32,10 +32,11 @@ class ProfilePage extends StatelessWidget {
         builder: (context, profileData) {
           return Column(
             children: [
-              if (profileData == null)
+              if (!profileData.exists)
                 WaitingIndicator('Connecting to database...')
               else ...[
-                Text(profileData.displayName),
+                Text(
+                    profileData.displayName ?? 'they who have yet to be named'),
                 Row(
                   children: [
                     if (profileData.googleAuth ==

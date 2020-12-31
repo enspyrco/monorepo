@@ -12,8 +12,8 @@ void main() {
       (WidgetTester tester) async {
     // Setup the harness and check it is in the initial state.
     final harness = WidgetTestHarness(widgetUnderTest: SectionsPage());
-    expect(harness.state.sections.creatingNewSection, false);
-    expect(harness.state.sections.list, BuiltList<Section>());
+    expect(harness.state.sections?.creatingNewSection, false);
+    expect(harness.state.sections?.list, BuiltList<Section>());
 
     // Build the widget tree.
     await tester.pumpWidget(harness.widget);

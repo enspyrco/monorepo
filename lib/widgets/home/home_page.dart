@@ -7,7 +7,7 @@ import 'package:the_process/widgets/sections/sections_page.dart';
 import 'package:the_process/widgets/topics/topics_page.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();

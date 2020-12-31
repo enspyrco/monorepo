@@ -21,5 +21,5 @@ extension NavigatorEntriesExt on BuiltList<PageData> {
   };
 
   List<MaterialPage> toPages() =>
-      map<MaterialPage>((entry) => _pagesMap[entry]).toList();
+      map<MaterialPage>((entry) => _pagesMap[entry]!).toList();
 }

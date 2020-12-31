@@ -3,15 +3,15 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'user_metadata_mocks.dart';
-import 'user_mocks.dart';
+import 'user_fake.dart';
+import 'user_metadata_fake.dart';
 
 /// A fake [FirebaseAuth] that takes a [StreamController<User>] that allows
 /// auth state events to be emitted during tests.
-class FakeFirebaseAuth extends Fake implements FirebaseAuth {
+class FirebaseAuthFake extends Fake implements FirebaseAuth {
   final StreamController<User> _authStateEventsController;
 
-  FakeFirebaseAuth({StreamController<User> authStateEventsController})
+  FirebaseAuthFake({StreamController<User>? authStateEventsController})
       : _authStateEventsController =
             authStateEventsController ?? StreamController<User>();
 
@@ -19,9 +19,10 @@ class FakeFirebaseAuth extends Fake implements FirebaseAuth {
   Stream<User> authStateChanges() => _authStateEventsController.stream;
 
   void emitUser() {
-    _authStateEventsController.add(FakeUser(
+    _authStateEventsController.add(UserFake(
         uid: 'uid',
-        metadata: FakeUserMetada(creationTimestamp: 1000, lastSignInTime: 1000),
+        metadata:
+            UserMetadataFake(creationTimestamp: 1000, lastSignInTime: 1000),
         providerData: [],
         isAnonymous: false,
         emailVerified: false));

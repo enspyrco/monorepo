@@ -7,7 +7,7 @@ import 'package:the_process/extensions/flutter_extensions.dart';
 class AsanaAuthorizationButton extends StatelessWidget {
   final AuthorizationStep step;
 
-  AsanaAuthorizationButton({@required this.step});
+  AsanaAuthorizationButton({required this.step});
 
   @override
   Widget build(BuildContext context) {

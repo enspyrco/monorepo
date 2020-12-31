@@ -11,11 +11,8 @@ class NavBarSelection extends EnumClass {
 
   const NavBarSelection._(String name) : super(name);
 
-  int get index => _$indexMap[this];
-  static const Map<NavBarSelection, int> _$indexMap = {
-    sections: 0,
-    topics: 1,
-  };
+  int get index => _$indexMap[this]!;
+  static const Map<NavBarSelection, int> _$indexMap = {sections: 0, topics: 1};
 
   static BuiltSet<NavBarSelection> get values => _$values;
   static NavBarSelection valueOf(String name) => _$valueOf(name);

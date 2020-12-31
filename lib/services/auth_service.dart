@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:meta/meta.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/extensions/auth_plugin_extensions.dart';
@@ -24,10 +23,10 @@ class AuthService {
 
   /// We keep a subscription to the firebase auth state stream so we can
   /// disconnect at a later time.
-  StreamSubscription<User> _firebaseAuthStateSubscription;
+  StreamSubscription<User>? _firebaseAuthStateSubscription;
 
   AuthService(
-      {FirebaseAuth auth, StreamController<ReduxAction> eventsController})
+      {FirebaseAuth? auth, StreamController<ReduxAction>? eventsController})
       : _firebaseAuth = auth ?? FirebaseAuth.instance,
         _eventsController = eventsController ?? StreamController<ReduxAction>();
 
@@ -61,7 +60,7 @@ class AuthService {
   }
 
   Future<AuthUserData> signInWithGoogle(
-      {@required GoogleSignInCredential credential}) async {
+      {required GoogleSignInCredential credential}) async {
     final AuthCredential authCredential = GoogleAuthProvider.credential(
       accessToken: credential.accessToken,
       idToken: credential.idToken,
@@ -84,7 +83,7 @@ class AuthService {
   }
 
   Future<AuthUserData> signInWithApple(
-      {@required AppleIdCredential credential}) async {
+      {required AppleIdCredential credential}) async {
     // convert to OAuthCredential
     final oAuthCredential = OAuthProvider('apple.com').credential(
       idToken: credential.identityToken,

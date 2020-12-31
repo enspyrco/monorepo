@@ -1,10 +1,7 @@
 library auth_provider_data;
 
-import 'dart:convert';
-
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart';
 import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/serializers.dart';
 
@@ -20,30 +17,26 @@ abstract class AuthProviderData extends Object
   String get uid;
 
   /// The name of the user.
-  @nullable
-  String get displayName;
+  String? get displayName;
 
   /// The URL of the user’s profile photo.
-  @nullable
-  String get photoURL;
+  String? get photoURL;
 
   /// The user’s email address.
-  @nullable
-  String get email;
+  String? get email;
 
   /// The user's phone number.
-  @nullable
-  String get phoneNumber;
+  String? get phoneNumber;
 
   AuthProviderData._();
 
   factory AuthProviderData({
-    @required String providerId,
-    @required String uid,
-    @required String displayName,
-    @required String photoURL,
-    @required String email,
-    @required String phoneNumber,
+    required String providerId,
+    required String uid,
+    required String displayName,
+    required String photoURL,
+    required String email,
+    required String phoneNumber,
   }) = _$AuthProviderData._;
 
   factory AuthProviderData.by(
@@ -52,8 +45,8 @@ abstract class AuthProviderData extends Object
   Object toJson() =>
       serializers.serializeWith(AuthProviderData.serializer, this);
 
-  static AuthProviderData fromJson(String jsonString) => serializers
-      .deserializeWith(AuthProviderData.serializer, json.decode(jsonString));
+  // static AuthProviderData fromJson(String jsonString) => serializers
+  //     .deserializeWith(AuthProviderData.serializer, json.decode(jsonString));
 
   static Serializer<AuthProviderData> get serializer =>
       _$authProviderDataSerializer;

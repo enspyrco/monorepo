@@ -11,7 +11,7 @@ void main() {
       (WidgetTester tester) async {
     // Setup the harness and check it is in the initial state.
     final harness = WidgetTestHarness(widgetUnderTest: NewSectionItem());
-    expect(harness.state.sections.newSection.name, '');
+    expect(harness.state.sections?.newSection.name, '');
 
     // Build the widget tree.
     await tester.pumpWidget(harness.widget);
@@ -32,7 +32,7 @@ void main() {
     // setup the harness and check it is in the initial state
     final harness = WidgetTestHarness(widgetUnderTest: NewSectionItem());
     harness.updateAppState((b) => b..sections.newSection.name = 'testy');
-    expect(harness.state.sections.newSection.name, 'testy');
+    expect(harness.state.sections?.newSection.name, 'testy');
 
     // Build the widget tree.
     await tester.pumpWidget(harness.widget);

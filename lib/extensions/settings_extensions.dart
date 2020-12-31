@@ -8,36 +8,19 @@ import 'package:the_process/models/settings/theme_set.dart';
 // which is not bad in this context but may not work in others
 extension MakeThemeData on ThemeData {
   static ThemeData from(ThemeSet themeSet) {
-    if (themeSet.brightness == ThemeBrightness.light &&
-        themeSet.colors.error == null) {
-      return ThemeData.from(
-          colorScheme: ColorScheme.light(
-        primary: Color(themeSet.colors.primary),
-        secondary: Color(themeSet.colors.secondary),
-      ));
-    } else if (themeSet.brightness == ThemeBrightness.light &&
-        themeSet.colors.error != null) {
+    if (themeSet.brightness == ThemeBrightness.light) {
       return ThemeData.from(
           colorScheme: ColorScheme.light(
               primary: Color(themeSet.colors.primary),
               secondary: Color(themeSet.colors.secondary),
               error: Color(themeSet.colors.error)));
-    } else if (themeSet.brightness == ThemeBrightness.dark &&
-        themeSet.colors.error == null) {
-      return ThemeData.from(
-          colorScheme: ColorScheme.dark(
-        primary: Color(themeSet.colors.primary),
-        secondary: Color(themeSet.colors.secondary),
-      ));
-    } else if (themeSet.brightness == ThemeBrightness.dark &&
-        themeSet.colors.error != null) {
+    } else {
       return ThemeData.from(
           colorScheme: ColorScheme.dark(
               primary: Color(themeSet.colors.primary),
               secondary: Color(themeSet.colors.secondary),
               error: Color(themeSet.colors.error)));
     }
-    return null;
   }
 }
 

@@ -7,5 +7,5 @@ class UpdateNewSectionVMReducer
   UpdateNewSectionVMReducer()
       : super((state, action) => state.rebuild((b) => b
           ..sections.newSection.name =
-              action.name ?? state.sections.newSection.name));
+              action.name ?? state.sections?.newSection.name));
 }

@@ -8,7 +8,7 @@ import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/widgets/shared/profile_avatar.dart';
 
 class NavRail extends StatelessWidget {
-  const NavRail({Key key}) : super(key: key);
+  const NavRail({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

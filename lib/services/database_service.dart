@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:meta/meta.dart';
 import 'package:the_process/actions/profile/store_profile_data.dart';
 import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/actions/sections/store_sections.dart';
@@ -35,17 +34,15 @@ class DatabaseService {
   final StreamController<ReduxAction> _eventsController;
 
   DatabaseService(
-      {FirebaseFirestore database,
-      StreamController<ReduxAction> eventsController})
+      {FirebaseFirestore? database,
+      StreamController<ReduxAction>? eventsController})
       : _firestore = database ?? FirebaseFirestore.instance,
         _eventsController = eventsController ?? StreamController<ReduxAction>();
 
   /// Observe the document at /adventurers/${uid} and convert each
   /// [DocumentSnapshot] into a [ReduxAction] then send to the store using the
   /// passed in [StreamController].
-  void connectProfileData({@required String uid}) {
-    assert(uid != null);
-
+  void connectProfileData({required String uid}) {
     final dbSection = DatabaseSection.profileData;
 
     try {
@@ -70,11 +67,9 @@ class DatabaseService {
       subscriptions[dbSection]?.cancel();
 
   Future<void> saveAuthTokens(
-      {@required String uid,
-      @required String accessToken,
-      @required String refreshToken}) async {
-    assert(uid != null);
-
+      {required String uid,
+      required String accessToken,
+      required String refreshToken}) async {
     try {
       await _firestore.doc('profiles/$uid').set(<String, Object>{
         'accessToken': accessToken,
@@ -86,11 +81,9 @@ class DatabaseService {
   }
 
   Future<void> updateAuthorizationStep(
-      {@required Provider provider,
-      @required String uid,
-      @required AuthorizationStep step}) async {
-    assert(uid != null);
-
+      {required Provider provider,
+      required String uid,
+      required AuthorizationStep step}) async {
     try {
       await _firestore.doc('profiles/$uid').set(
           <String, Object>{'${provider}Auth': step.toString()},
@@ -101,9 +94,7 @@ class DatabaseService {
   }
 
   Future<void> createSection(
-      {@required String uid, @required String name}) async {
-    assert(uid != null);
-
+      {required String uid, required String name}) async {
     try {
       await _firestore.doc('new/$uid').set(<String, Object>{
         'section': {'name': name}
@@ -115,11 +106,11 @@ class DatabaseService {
         try {
           if (!doc.exists) {
             _eventsController.add(UpdateSectionsVM(creatingNewSection: false));
-            subscriptions[dbSection].cancel();
+            subscriptions[dbSection]?.cancel();
           }
         } catch (error, trace) {
           _eventsController.addProblem(error, trace);
-          subscriptions[dbSection].cancel();
+          subscriptions[dbSection]?.cancel();
         }
       }, onError: _eventsController.addProblem, cancelOnError: true);
     } catch (error, trace) {

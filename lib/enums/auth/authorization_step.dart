@@ -12,7 +12,7 @@ class AuthorizationStep extends EnumClass {
 
   const AuthorizationStep._(String name) : super(name);
 
-  int get index => _$indexMap[this];
+  int get index => _$indexMap[this]!;
   static final _$indexMap = BuiltMap<AuthorizationStep, int>(
       {waitingForInput: 0, gettingAuthorized: 1, authorized: 2});
 

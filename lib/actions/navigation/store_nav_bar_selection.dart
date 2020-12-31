@@ -1,10 +1,7 @@
 library store_nav_bar_selection;
 
-import 'dart:convert';
-
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:meta/meta.dart';
 import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/enums/navigation/nav_bar_selection.dart';
 import 'package:the_process/serializers.dart';
@@ -18,7 +15,7 @@ abstract class StoreNavBarSelection extends Object
 
   StoreNavBarSelection._();
 
-  factory StoreNavBarSelection({@required NavBarSelection selection}) =
+  factory StoreNavBarSelection({required NavBarSelection selection}) =
       _$StoreNavBarSelection._;
 
   factory StoreNavBarSelection.by(
@@ -28,9 +25,9 @@ abstract class StoreNavBarSelection extends Object
   Object toJson() =>
       serializers.serializeWith(StoreNavBarSelection.serializer, this);
 
-  static StoreNavBarSelection fromJson(String jsonString) =>
-      serializers.deserializeWith(
-          StoreNavBarSelection.serializer, json.decode(jsonString));
+  // static StoreNavBarSelection fromJson(String jsonString) =>
+  //     serializers.deserializeWith(
+  //         StoreNavBarSelection.serializer, json.decode(jsonString));
 
   static Serializer<StoreNavBarSelection> get serializer =>
       _$storeNavBarSelectionSerializer;

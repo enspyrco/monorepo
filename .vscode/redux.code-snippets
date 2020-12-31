@@ -52,7 +52,7 @@
     "built_value fix": {
         "prefix": "bv_fix",
         "body": [
-            "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({@required }) = _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._;",
+            "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({required }) = _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._;",
         ],
         "description": "dart built_value fix"
     },
@@ -75,7 +75,7 @@
             "",
             "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._();",
             "",
-            "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({@required ${1} ${2}}) = _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._;",
+            "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({required ${1} ${2}}) = _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._;",
             "",
             "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.by([void Function(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Builder) updates]) = _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
             "",
@@ -142,7 +142,7 @@
             "",
             "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._();",
             "",
-            "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({@required ${1} ${2}}) = _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._;",
+            "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({required ${1} ${2}}) = _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._;",
             "",
             "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.by([void Function(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Builder) updates]) = _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
             "",

@@ -1,7 +1,5 @@
 library settings;
 
-import 'dart:convert';
-
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:the_process/enums/platform/platform_enum.dart';
@@ -35,8 +33,8 @@ abstract class Settings implements Built<Settings, SettingsBuilder> {
 
   Object toJson() => serializers.serializeWith(Settings.serializer, this);
 
-  static Settings fromJson(String jsonString) =>
-      serializers.deserializeWith(Settings.serializer, json.decode(jsonString));
+  // static Settings fromJson(String jsonString) =>
+  //     serializers.deserializeWith(Settings.serializer, json.decode(jsonString));
 
   static Serializer<Settings> get serializer => _$settingsSerializer;
 }

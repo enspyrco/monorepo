@@ -19,7 +19,7 @@ class PlatformEnum extends EnumClass {
 
   static final _$indexMap =
       BuiltMap<PlatformEnum, int>({android: 0, iOS: 1, macOS: 2, web: 3});
-  int get index => _$indexMap[this];
+  int get index => _$indexMap[this]!;
 
   static BuiltSet<PlatformEnum> get values => _$values;
   static PlatformEnum valueOf(String name) => _$valueOf(name);

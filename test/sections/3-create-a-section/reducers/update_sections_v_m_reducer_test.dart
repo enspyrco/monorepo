@@ -8,7 +8,7 @@ void main() {
     test('correctly updates creatingNewSection flag', () {
       // Setup the initial app state and check expected values are present
       final initialState = AppState.init();
-      expect(initialState.sections.creatingNewSection, false);
+      expect(initialState.sections?.creatingNewSection, false);
 
       final reducerUnderTest = UpdateSectionsVMReducer();
 
@@ -16,7 +16,7 @@ void main() {
       final newState = reducerUnderTest.reducer(
           initialState, UpdateSectionsVM(creatingNewSection: true));
 
-      expect(newState.sections.creatingNewSection, true);
+      expect(newState.sections?.creatingNewSection, true);
     });
   });
 }

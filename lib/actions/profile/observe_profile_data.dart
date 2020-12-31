@@ -1,7 +1,5 @@
 library observe_profile_data;
 
-import 'dart:convert';
-
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:the_process/actions/redux_action.dart';
@@ -19,8 +17,8 @@ abstract class ObserveProfileData extends Object
   Object toJson() =>
       serializers.serializeWith(ObserveProfileData.serializer, this);
 
-  static ObserveProfileData fromJson(String jsonString) => serializers
-      .deserializeWith(ObserveProfileData.serializer, json.decode(jsonString));
+  // static ObserveProfileData fromJson(String jsonString) => serializers
+  //     .deserializeWith(ObserveProfileData.serializer, json.decode(jsonString));
 
   static Serializer<ObserveProfileData> get serializer =>
       _$observeProfileDataSerializer;

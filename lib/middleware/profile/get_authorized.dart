@@ -14,7 +14,7 @@ class GetAuthorizedMiddleware extends TypedMiddleware<AppState, GetAuthorized> {
 
           await databaseService.updateAuthorizationStep(
               provider: action.toAccess,
-              uid: store.state.authUserData.uid,
+              uid: store.state.authUserData?.uid ?? '-',
               step: AuthorizationStep.gettingAuthorized);
 
           // can improve security by saving to database and sending in 'state'

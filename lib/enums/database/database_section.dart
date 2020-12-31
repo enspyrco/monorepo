@@ -13,12 +13,12 @@ class DatabaseSection extends EnumClass {
   static const Map<DatabaseSection, int> _$indexMap = {
     profileData: 0,
     newEntries: 1,
-    sections: 2,
+    sections: 2
   };
 
   const DatabaseSection._(String name) : super(name);
 
-  int get index => _$indexMap[this];
+  int get index => _$indexMap[this]!;
 
   static BuiltSet<DatabaseSection> get values => _$values;
   static DatabaseSection valueOf(String name) => _$valueOf(name);
