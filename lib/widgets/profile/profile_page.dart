@@ -24,7 +24,7 @@ class ProfilePage extends StatelessWidget {
         ),
       ),
       body: Center(
-          child: StoreConnector<AppState, ProfileData>(
+          child: StoreConnector<AppState, ProfileData?>(
         onInit: (store) => store.dispatch(ObserveProfileData()),
         onDispose: (store) => store.dispatch(DisregardProfileData()),
         distinct: true,
@@ -32,7 +32,7 @@ class ProfilePage extends StatelessWidget {
         builder: (context, profileData) {
           return Column(
             children: [
-              if (!profileData.exists)
+              if (profileData == null)
                 WaitingIndicator('Connecting to database...')
               else ...[
                 Text(

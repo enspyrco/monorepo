@@ -1,21 +1,22 @@
 import * as functions from 'firebase-functions';
 import * as express from 'express';
-import * as service_locator from '../../utils/service_locator';
 import { google } from 'googleapis';
 import { OAuth2Client } from 'google-auth-library';
 
 import * as project_credentials from '../../project_credentials.json';
-import { firebaseAdmin } from '../../utils/firebase_admin';
-import { PeopleAPI } from '../../services/google_apis/people';
+import { PeopleAPI } from '../../services/google_apis/people_api';
 import { ProfileData } from '../../models/database/profile_data';
-import { SecretManager } from '../../services/secret_manager';
-
-const auth = firebaseAdmin.getAuth();
+import { CredentialsService } from '../../services/credentials_service';
+import { FirebaseAdmin } from '../../services/firebase_admin';
+import { DatabaseService } from '../../services/database_service';
 
 // Get the code from the request, call retrieveAuthToken and return the response
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const exchangeCodeForGoogleTokens = async (req: any, res: any) => {
   try {
+
+    const authService = FirebaseAdmin.getInstance().getAuth();
+    const credentialsService = CredentialsService.getInstance();
 
     // If we can't get both the code and state from the request it's probably an error message, just send back the original url
     if(req.query.code === null || typeof req.query.code === "undefined" || req.query.state === null || typeof req.query.state === "undefined") {
@@ -43,16 +44,17 @@ const exchangeCodeForGoogleTokens = async (req: any, res: any) => {
 
     functions.logger.log('Converting email to Firebase UID...');
 
-    const userRecord = await auth.getUserByEmail(email);
+    const userRecord = await authService.getUserByEmail(email);
 
-    functions.logger.log('Saving tokens in SecretManager...');
+    const databaseService = await DatabaseService.getInstanceFor(userRecord.uid);
+
+    functions.logger.log('Saving tokens...');
     
-    await SecretManager.getInstance().saveGoogleCredentials(userRecord.uid, tokenResponse.tokens);
+    await credentialsService.saveGoogleCredentials(userRecord.uid, {...tokenResponse.tokens});
 
     functions.logger.log('Saving finished state to database...');
 
     const profileData = new ProfileData({uid: userRecord.uid, provider: 'google', authState: 'authorized'});
-    const databaseService = await service_locator.getDatabaseService(userRecord.uid);
     await databaseService.save(profileData);
 
     // Close the window, the entry in database will update the UI of the original window 

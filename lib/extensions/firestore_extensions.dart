@@ -5,7 +5,6 @@ import 'package:the_process/models/sections/section.dart';
 
 extension ConvertDocumentSnapshot on DocumentSnapshot {
   ProfileData toProfileData() => ProfileData(
-      exists: true,
       id: id,
       displayName: data()['displayName'] as String,
       photoURL: data()['photoURL'] as String? ??

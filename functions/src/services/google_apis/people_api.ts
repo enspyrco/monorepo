@@ -4,6 +4,8 @@ import { unNull } from '../../utils/null_safety_utils';
 
 // adapted from: https://github.com/googleapis/google-api-nodejs-client/blob/bd0accce744ddd55abdd400efbe2bccd96dc6cdf/samples/people/me.js
 // see api docs: https://developers.google.com/people/api/rest/v1/people/get 
+
+// we make a new api object each time but the AuthenticatedClient used by each api object is a singleton map 
 export class PeopleAPI {
   
   client: OAuth2Client;

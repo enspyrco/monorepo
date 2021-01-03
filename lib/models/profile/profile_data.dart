@@ -8,7 +8,6 @@ import 'package:the_process/serializers.dart';
 part 'profile_data.g.dart';
 
 abstract class ProfileData implements Built<ProfileData, ProfileDataBuilder> {
-  bool get exists;
   String get id;
   String? get displayName;
   String? get photoURL;
@@ -20,8 +19,7 @@ abstract class ProfileData implements Built<ProfileData, ProfileDataBuilder> {
   ProfileData._();
 
   factory ProfileData(
-      {required bool exists,
-      required String id,
+      {required String id,
       String displayName,
       String photoURL,
       String firstName,

@@ -1,13 +1,12 @@
 import * as funcTest from "firebase-functions-test";
-import * as admin from 'firebase-admin';
-import * as service_locator from '../../../src/utils/service_locator';
-import { firebaseAdmin } from '../../../src/utils/firebase_admin';
 import { DocumentReference, DocumentSnapshot, WriteResult } from "@google-cloud/firestore";
 import { mock, mockDeep } from "jest-mock-extended";
-import { DriveAPIInterface } from "../../../src/services/google_apis/drive";
-import { DocsAPIInterface } from "../../../src/services/google_apis/docs";
+
+import { DriveAPI } from "../../../src/services/google_apis/drive_api";
+import { DocsAPI } from "../../../src/services/google_apis/docs_api";
 import { DatabaseService } from "../../../src/services/database_service";
 import { SectionData } from "../../../src/models/database/section_data";
+import { FirebaseAdmin } from "../../../src/services/firebase_admin";
 
 describe('CloudFunction', () => {
   let myFunctions: typeof import("../../../src/index");
@@ -17,16 +16,15 @@ describe('CloudFunction', () => {
     // Use async import so we can spy before the Firebase modules are accessed.
     myFunctions = await import('../../../src/index');
 
-    // replace calls during the firebase initialization that require a live connection 
-    jest.spyOn(admin, 'initializeApp').mockImplementationOnce(() => mockDeep());
-    jest.spyOn(firebaseAdmin, 'getFirestore').mockImplementationOnce(() => mockDeep());
+    // replace the call that performs firebase initialization (requires a live connection) 
+    jest.spyOn(FirebaseAdmin, 'getInstance').mockImplementationOnce(() => mockDeep());
   });
 
   it('.createSection saves failures to database', async () => {
 
     const databaseServiceMock = mock<DatabaseService>();
     
-    jest.spyOn(service_locator, 'getDatabaseService').mockImplementationOnce(() => Promise.resolve(databaseServiceMock));
+    jest.spyOn(DatabaseService, 'getInstanceFor').mockImplementationOnce(() => Promise.resolve(databaseServiceMock));
 
     // setup the test harness and call the function 
     const wrapped = tester.wrap(myFunctions.createSection);
@@ -42,16 +40,16 @@ describe('CloudFunction', () => {
     const exampleSectionData = new SectionData({name: 'testy', folderId: 'folderIdBoop', useCasesDocId: 'docIdBlam'});
 
     // Create mocks to be returned in place of services, injecting our example data during the test.
-    const driveAPIMock = mock<DriveAPIInterface>();
+    const driveAPIMock = mock<DriveAPI>();
     driveAPIMock.createFolder.mockResolvedValueOnce({id: exampleSectionData.data.folderId as string});
-    const docsAPIMock = mock<DocsAPIInterface>();
+    const docsAPIMock = mock<DocsAPI>();
     docsAPIMock.createDoc.mockResolvedValueOnce({documentId: exampleSectionData.data.useCasesDocId as string});
     const databaseServiceMock = mock<DatabaseService>();
 
     // Replace service_locator functions to return our mocked services.
-    jest.spyOn(service_locator, 'getDatabaseService').mockImplementationOnce(() => Promise.resolve(databaseServiceMock));
-    jest.spyOn(service_locator, 'getDriveAPI').mockImplementationOnce(() => Promise.resolve(driveAPIMock));
-    jest.spyOn(service_locator, 'getDocsAPI').mockImplementationOnce(() => Promise.resolve(docsAPIMock));
+    jest.spyOn(DatabaseService, 'getInstanceFor').mockImplementationOnce(() => Promise.resolve(databaseServiceMock));
+    jest.spyOn(DriveAPI, 'for').mockImplementationOnce(() => Promise.resolve(driveAPIMock));
+    jest.spyOn(DocsAPI, 'for').mockImplementationOnce(() => Promise.resolve(docsAPIMock));
 
     // Create a mocked DocumentSnapshot to pass in to the function under test.
     const snapshotMock = mock<DocumentSnapshot>();

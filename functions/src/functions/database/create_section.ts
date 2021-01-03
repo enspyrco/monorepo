@@ -1,13 +1,15 @@
 import { the_process_id } from '../../utils/the_process_constants';
 import * as functions from 'firebase-functions';
-import * as service_locator from '../../utils/service_locator';
 import { unNull } from '../../utils/null_safety_utils';
 import { SectionData } from '../../models/database/section_data';
+import { DatabaseService } from '../../services/database_service';
+import { DriveAPI } from '../../services/google_apis/drive_api';
+import { DocsAPI } from '../../services/google_apis/docs_api';
 
 export async function createSectionCallback(snapshot : functions.firestore.DocumentSnapshot) : Promise<void> {
 
   const sectionData = new SectionData();
-  const databaseService = await service_locator.getDatabaseService(snapshot.id);
+  const databaseService = await DatabaseService.getInstanceFor(snapshot.id);
 
   // We wrap the whole function in a try/catch and add a ProcessingFailure to the database on any failures
   try {
@@ -21,8 +23,8 @@ export async function createSectionCallback(snapshot : functions.firestore.Docum
 
     sectionData.name = sectionName;
       
-    const driveAPI = await service_locator.getDriveAPI(the_process_id);
-    const docsAPI = await service_locator.getDocsAPI(the_process_id);
+    const driveAPI = await DriveAPI.for(the_process_id);
+    const docsAPI = await DocsAPI.for(the_process_id);
     const folder = await driveAPI.createFolder(sectionName+': Sections Planning (CL)');
 
     const checkedFolderId = unNull(folder.id, 'The created folder id was missing.') as string;

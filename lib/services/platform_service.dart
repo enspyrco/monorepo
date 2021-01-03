@@ -38,11 +38,11 @@ class PlatformService {
     String url;
     if (provider == Provider.google) {
       url =
-          'https://us-central1-the-process-tool.cloudfunctions.net/getGoogleAuthorization?state=$state';
+          'https://us-central1-the-process-tool.cloudfunctions.net/startGoogleAuthorization?state=$state';
     } else {
       // if (provider == Provider.asana)
       url =
-          'https://us-central1-the-process-tool.cloudfunctions.net/getAsanaAuthorization?state=$state';
+          'https://us-central1-the-process-tool.cloudfunctions.net/startAsanaAuthorization?state=$state';
     }
 
     if (await canLaunch(url)) {

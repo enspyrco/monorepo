@@ -1,0 +1,125 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "flutter",
+			"command": "flutter",
+			"args": [
+				"pub",
+				"run",
+				"build_runner",
+				"build"
+			],
+			"problemMatcher": [
+				"$dart-build_runner"
+			],
+			"group": "build",
+			"label": "flutter pub run build_runner build"
+		},
+		{
+			"type": "flutter",
+			"command": "flutter",
+			"args": [
+				"pub",
+				"run",
+				"build_runner",
+				"build",
+				"--delete-conflicting-outputs"
+			],
+			"problemMatcher": [
+				"$dart-build_runner"
+			],
+			"group": "build",
+			"label": "flutter pub run build_runner build --delete-conflicting-outputs"
+		},
+		{
+			"type": "flutter",
+			"command": "flutter",
+			"args": [
+				"pub",
+				"run",
+				"build_runner",
+				"watch"
+			],
+			"problemMatcher": [
+				"$dart-build_runner"
+			],
+			"group": "build",
+			"label": "flutter pub run build_runner watch"
+		},
+		{
+			"type": "flutter",
+			"command": "flutter",
+			"args": [
+				"pub",
+				"run",
+				"build_runner",
+				"watch",
+				"--delete-conflicting-outputs",
+			],
+			"problemMatcher": [
+				"$dart-build_runner"
+			],
+			"group": "build",
+			"label": "flutter pub run build_runner watch --delete-conflicting-outputs"
+		},
+		{
+			"type": "shell",
+			"command": "firebase",
+			"args": [
+				"emulators:start",
+				"--import=test/data",
+			],
+			"problemMatcher": [],
+			"group": "test",
+			"label": "firebase emulators"
+		},
+		{
+			"type": "shell",
+			"command": "remotedev",
+			"problemMatcher": [],
+			"group": "test",
+			"label": "remotedev"
+		},
+		{
+			"type": "shell",
+			"command": "redux-devtools",
+			"problemMatcher": [],
+			"group": "test",
+			"label": "redux-devtools"
+		},		
+		{
+			"label": "group: local dev",
+			"group": "test",
+			"dependsOn": ["remotedev", "firebase emulators", "chrome for remotedev", "chrome for emulators"]
+		},
+		{
+			"type": "shell",
+			"command": "Chrome",
+			"osx": {
+					"command": "open",
+					"args": [
+						"-a",
+						"Google Chrome",
+						"http://localhost:8000",
+					]
+			},
+			"group": "test",
+			"label": "chrome for remotedev",
+		},
+		{
+			"type": "shell",
+			"command": "Chrome",
+			"osx": {
+					"command": "open",
+					"args": [
+						"-a",
+						"Google Chrome",
+						"http://localhost:4000",
+					]
+			},
+			"group": "test",
+			"label": "chrome for emulators",
+		}
+	]
+}

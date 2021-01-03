@@ -20,11 +20,15 @@ import 'package:the_process/actions/profile/disregard_profile_data.dart';
 import 'package:the_process/actions/profile/observe_profile_data.dart';
 import 'package:the_process/actions/profile/store_profile_data.dart';
 import 'package:the_process/actions/sections/create_section.dart';
+import 'package:the_process/actions/sections/store_sections.dart';
 import 'package:the_process/actions/sections/update_new_section_v_m.dart';
+import 'package:the_process/actions/sections/update_sections_v_m.dart';
 import 'package:the_process/actions/settings/update_settings.dart';
+import 'package:the_process/actions/shared/connect_database.dart';
 import 'package:the_process/enums/auth/auth_step.dart';
 import 'package:the_process/enums/auth/authorization_step.dart';
 import 'package:the_process/enums/auth/provider.dart';
+import 'package:the_process/enums/database/database_section.dart';
 import 'package:the_process/enums/navigation/nav_bar_selection.dart';
 import 'package:the_process/enums/platform/platform_enum.dart';
 import 'package:the_process/enums/settings/brightness_mode.dart';
@@ -59,7 +63,9 @@ part 'serializers.g.dart';
   AuthUserData,
   AuthStep,
   BrightnessMode,
+  ConnectDatabase,
   CreateSection,
+  DatabaseSection,
   DetectPlatform,
   DisregardProfileData,
   GetAuthorized,
@@ -88,11 +94,13 @@ part 'serializers.g.dart';
   StoreAuthStep,
   StoreAuthUserData,
   StoreNavBarSelection,
+  StoreSections,
   TeamMember,
   ThemeBrightness,
   ThemeColors,
   ThemeSet,
   UpdateNewSectionVM,
+  UpdateSectionsVM,
   UpdateSettings,
 ])
 final Serializers serializers = (_$serializers.toBuilder()

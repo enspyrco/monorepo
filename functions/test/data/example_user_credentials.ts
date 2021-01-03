@@ -17,7 +17,7 @@ const example_asana_credential = new AsanaCredentials({
   expires_in: 1000,
 });
 
-export const example_user_credentials = new UserCredentials(
-  example_google_credentials, 
-  example_asana_credential
-);
+export const example_user_credentials = new UserCredentials({
+  google: example_google_credentials,
+  asana: example_asana_credential,
+});

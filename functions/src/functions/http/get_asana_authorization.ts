@@ -1,21 +1,21 @@
 import * as functions from 'firebase-functions';
 import * as express from 'express';
 import * as querystring from 'querystring';
-import * as service_locator from '../../utils/service_locator';
 import axios from 'axios';
 
 import * as project_credentials from '../../project_credentials.json';
 import { ProfileData } from '../../models/database/profile_data';
-import { firebaseAdmin } from '../../utils/firebase_admin';
-import { SecretManager } from '../../services/secret_manager';
-
-const auth = firebaseAdmin.getAuth();
+import { CredentialsService } from '../../services/credentials_service';
+import { FirebaseAdmin } from '../../services/firebase_admin';
+import { DatabaseService } from '../../services/database_service';
 
 // Get the code from the request, call retrieveAuthToken and return the response
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const exchangeCodeForAsanaTokens = async (req: any, res: any) => {
   try {
 
+    const auth = FirebaseAdmin.getInstance().getAuth();
+    
     // If we can't get both the code and state from the request it's probably an error message, just send back the original url
     if(req.query.code === null || typeof req.query.code === "undefined" || req.query.state === null || typeof req.query.state === "undefined") {
       return res.send(req.originalUrl);
@@ -40,7 +40,9 @@ const exchangeCodeForAsanaTokens = async (req: any, res: any) => {
 
     const userRecord = await auth.getUserByEmail(email);
 
-    functions.logger.log('Saving tokens in SecretManager...');
+    const databaseService = await DatabaseService.getInstanceFor(userRecord.uid);
+
+    functions.logger.log('Saving tokens...');
     
     const tokens = {
       refresh_token: resp.data.refresh_token,
@@ -48,12 +50,12 @@ const exchangeCodeForAsanaTokens = async (req: any, res: any) => {
       expires_in: resp.data.expires_in,
     }
 
-    await SecretManager.getInstance().saveAsanaCredentials(userRecord.uid, tokens);
+    await CredentialsService.getInstance().saveAsanaCredentials(userRecord.uid, tokens);
 
     functions.logger.log('Saving finished state to database...');
 
     const profileData = new ProfileData({uid: userRecord.uid, provider: 'asana', authState: 'authorized'});
-    const databaseService = await service_locator.getDatabaseService(userRecord.uid);
+
     await databaseService.save(profileData);
 
     // Close the window, the entry in database will update the UI of the original window 

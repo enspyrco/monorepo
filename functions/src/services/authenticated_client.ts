@@ -5,7 +5,7 @@ import { Credentials, OAuth2Client } from 'google-auth-library';
 import * as project_credentials from '../project_credentials.json';
 import { unNull } from '../utils/null_safety_utils';
 import { GoogleCredentials } from '../models/credentials/google_credentials';
-import { SecretManager } from './secret_manager';
+import { CredentialsService } from './credentials_service';
 
 /// An [OAuth2Client] 
 // 
@@ -37,13 +37,13 @@ export class AuthenticatedClient {
     if (!AuthenticatedClient.instance.get(uid)) {
       // Create an instance and set the credentials 
       const newClient = new AuthenticatedClient(uid);
-      const userCredentials = await SecretManager.getInstance().retrieveUserCredentials(uid);
+      const userCredentials = await CredentialsService.getInstance().retrieveCredentials(uid);
 
       if(userCredentials.google !== undefined) {
         
         newClient.oauth2.setCredentials(userCredentials.google);
         // Make sure the expiry is not missing and set 
-        const checkedExpiry = unNull(userCredentials.google.expiry_date, `The expiry in the secret manager's google credentials was missing for ${uid}.`) as number;
+        const checkedExpiry = unNull(userCredentials.google.expiry_date, `The expiry in the google credentials was missing for ${uid}.`) as number;
         newClient.setExpiry(checkedExpiry);
 
         AuthenticatedClient.instance.set(uid, newClient);
@@ -85,8 +85,8 @@ export class AuthenticatedClient {
     }
 
     if(newExpiry > this.tokens_expiry) {
-      functions.logger.log('Saving tokens under UID in SecretManager...');
-      await SecretManager.getInstance().saveGoogleCredentials(this.uid, credentials);
+      functions.logger.log('Saving tokens under UID...');
+      await CredentialsService.getInstance().saveGoogleCredentials(this.uid, {...credentials});
     }
   }
 

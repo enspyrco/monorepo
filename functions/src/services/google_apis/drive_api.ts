@@ -11,6 +11,7 @@ export interface DriveAPIInterface {
   moveDoc(docId: string, folderId : string) : Promise<drive_v3.Schema$File>;
 }
 
+// we make a new api object each time but the AuthenticatedClient used by each api object is a singleton map 
 export class DriveAPI implements DriveAPIInterface {
   readonly uid!: string;
   readonly client!: AuthenticatedClient;
@@ -23,9 +24,9 @@ export class DriveAPI implements DriveAPIInterface {
     this.drive = google.drive({version: 'v3', auth: client.getOAuth2Client()});
   }
 
-  static async for(uid: string) : Promise<DriveAPI> {
-    const client = await AuthenticatedClient.getInstanceFor(uid);
-    return new DriveAPI(uid, client);
+  static async for(uid: string, client?: AuthenticatedClient) : Promise<DriveAPI> {
+    const ourClient = client ?? await AuthenticatedClient.getInstanceFor(uid);
+    return new DriveAPI(uid, ourClient);
   }
 
   async createFolder(name: string) : Promise<drive_v3.Schema$File> {

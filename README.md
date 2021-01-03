@@ -4,15 +4,39 @@ A tool to automate "the process".
 
 ## Test Cloud Functions Locally
 
-Run a `tsc` build task to watch for file changes:
+Open the `functions/` folder with VS Code and run the Typescript compiler in watch mode:
+
 > Shift-Cmd-P then "Tasks: Run Build Tasks"
+
 Or
+
 > cd functions && tsc --watch
 
+### Run e2e tests with vscode-jest-runner
+
+> Install [firsttris.vscode-jest-runner](https://github.com/firsttris/vscode-jest-runner).
+
+### Interact with functions via Firebase shell
+
 Run a Cloud Functions shell:
+
 > firebase functions:shell
 
-### Steps
+## Build & Depoy Web
+
+- make sure index.html is the auto version, not the cdn version
+
+```sh
+flutter build web --no-sound-null-safety
+```
+
+```sh
+firebase deploy --only hosting 
+```
+
+View at: <https://the-process-tool.web.app>
+
+## Run Integration Tests
 
 ```sh
 remotedev
