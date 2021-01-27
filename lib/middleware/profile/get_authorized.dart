@@ -13,7 +13,7 @@ class GetAuthorizedMiddleware extends TypedMiddleware<AppState, GetAuthorized> {
           next(action);
 
           await databaseService.updateAuthorizationStep(
-              provider: action.toAccess,
+              provider: action.provider,
               uid: store.state.authUserData?.uid ?? '-',
               step: AuthorizationStep.gettingAuthorized);
 
@@ -21,6 +21,6 @@ class GetAuthorizedMiddleware extends TypedMiddleware<AppState, GetAuthorized> {
           final unguessable = Uuid().v1();
 
           await platformService.getAuthorized(
-              provider: action.toAccess, state: unguessable);
+              provider: action.provider, state: unguessable);
         });
 }

@@ -1,8 +1,10 @@
 library profile_data;
 
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:the_process/enums/auth/authorization_step.dart';
+import 'package:the_process/enums/auth/provider_name.dart';
 import 'package:the_process/serializers.dart';
 
 part 'profile_data.g.dart';
@@ -13,8 +15,7 @@ abstract class ProfileData implements Built<ProfileData, ProfileDataBuilder> {
   String? get photoURL;
   String? get firstName;
   String? get lastName;
-  AuthorizationStep get googleAuth;
-  AuthorizationStep get asanaAuth;
+  BuiltMap<ProviderName, AuthorizationStep> get authorizationStatus;
 
   ProfileData._();
 
@@ -24,8 +25,8 @@ abstract class ProfileData implements Built<ProfileData, ProfileDataBuilder> {
       String photoURL,
       String firstName,
       String lastName,
-      required AuthorizationStep googleAuth,
-      required AuthorizationStep asanaAuth}) = _$ProfileData._;
+      required BuiltMap<ProviderName, AuthorizationStep>
+          authorizationStatus}) = _$ProfileData._;
 
   factory ProfileData.by([void Function(ProfileDataBuilder) updates]) =
       _$ProfileData;

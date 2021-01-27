@@ -24,7 +24,7 @@ class InitialPage extends StatelessWidget {
             case AuthStep.signingInWithFirebase:
               return WaitingIndicator('Preparing your Adventure...');
             case AuthStep.waitingForInput:
-              return StoreConnector<AppState, AuthUserData>(
+              return StoreConnector<AppState, AuthUserData?>(
                   distinct: true,
                   converter: (store) => store.state.authUserData,
                   builder: (context, userData) =>

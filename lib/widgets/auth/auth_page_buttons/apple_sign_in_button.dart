@@ -29,8 +29,7 @@ class AppleSignInButton extends StatelessWidget {
       this.borderRadius = defaultBorderRadius,
       this.centered = false,
       Key? key})
-      : assert(text != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

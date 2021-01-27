@@ -1,4 +1,5 @@
 import { DriveAPI } from "../../../../src/services/google_apis/drive_api";
+jest.mock('../../../../src/services/firebase_admin');
 
 describe('DriveAPI', () => {
 

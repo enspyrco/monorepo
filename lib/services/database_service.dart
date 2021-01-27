@@ -7,7 +7,7 @@ import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/actions/sections/store_sections.dart';
 import 'package:the_process/actions/sections/update_sections_v_m.dart';
 import 'package:the_process/enums/auth/authorization_step.dart';
-import 'package:the_process/enums/auth/provider.dart';
+import 'package:the_process/enums/auth/provider_name.dart';
 import 'package:the_process/enums/database/database_section.dart';
 import 'package:the_process/extensions/firestore_extensions.dart';
 import 'package:the_process/extensions/stream_extensions.dart';
@@ -66,28 +66,13 @@ class DatabaseService {
   void disconnect(DatabaseSection dbSection) =>
       subscriptions[dbSection]?.cancel();
 
-  Future<void> saveAuthTokens(
-      {required String uid,
-      required String accessToken,
-      required String refreshToken}) async {
-    try {
-      await _firestore.doc('profiles/$uid').set(<String, Object>{
-        'accessToken': accessToken,
-        'refreshToken': refreshToken
-      }, SetOptions(merge: true));
-    } catch (error, trace) {
-      _eventsController.addProblem(error, trace);
-    }
-  }
-
   Future<void> updateAuthorizationStep(
-      {required Provider provider,
+      {required ProviderName provider,
       required String uid,
       required AuthorizationStep step}) async {
     try {
-      await _firestore.doc('profiles/$uid').set(
-          <String, Object>{'${provider}Auth': step.toString()},
-          SetOptions(merge: true));
+      await _firestore.doc('profiles/$uid').update(
+          <String, Object>{'authorizationStatus.$provider': step.toString()});
     } catch (error, trace) {
       _eventsController.addProblem(error, trace);
     }

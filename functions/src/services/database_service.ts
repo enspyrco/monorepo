@@ -1,10 +1,10 @@
-import { DocumentData, DocumentReference, FieldValue, WriteResult } from "@google-cloud/firestore";
+import { DocumentData, DocumentReference, FieldValue, Firestore, WriteResult } from "@google-cloud/firestore";
 import { FirebaseAdmin } from "./firebase_admin";
 import { unNull } from "../utils/null_safety_utils";
 
 export class DatabaseService {
   readonly uid : string;
-  readonly db : FirebaseFirestore.Firestore;
+  readonly db : Firestore;
   private static readonly instances = new Map<string, DatabaseService>();
 
   private constructor(uid: string) {

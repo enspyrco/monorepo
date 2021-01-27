@@ -4,6 +4,7 @@ import 'package:the_process/actions/auth/sign_out.dart';
 import 'package:the_process/actions/profile/disregard_profile_data.dart';
 import 'package:the_process/actions/profile/observe_profile_data.dart';
 import 'package:the_process/enums/auth/authorization_step.dart';
+import 'package:the_process/enums/auth/provider_name.dart';
 import 'package:the_process/extensions/flutter_extensions.dart';
 import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/models/profile/profile_data.dart';
@@ -20,7 +21,7 @@ class ProfilePage extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+          color: Colors.black,
         ),
       ),
       body: Center(
@@ -39,16 +40,22 @@ class ProfilePage extends StatelessWidget {
                     profileData.displayName ?? 'they who have yet to be named'),
                 Row(
                   children: [
-                    if (profileData.googleAuth ==
+                    if (profileData.authorizationStatus[ProviderName.google] ==
                         AuthorizationStep.gettingAuthorized)
                       CircularProgressIndicator()
                     else
-                      GoogleAuthorizationButton(step: profileData.googleAuth),
-                    if (profileData.asanaAuth ==
+                      GoogleAuthorizationButton(
+                          step: profileData
+                                  .authorizationStatus[ProviderName.google] ??
+                              AuthorizationStep.unknown),
+                    if (profileData.authorizationStatus[ProviderName.asana] ==
                         AuthorizationStep.gettingAuthorized)
                       CircularProgressIndicator()
                     else
-                      AsanaAuthorizationButton(step: profileData.asanaAuth)
+                      AsanaAuthorizationButton(
+                          step: profileData
+                                  .authorizationStatus[ProviderName.asana] ??
+                              AuthorizationStep.unknown)
                   ],
                 ),
               ],

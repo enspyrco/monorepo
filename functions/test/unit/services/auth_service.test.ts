@@ -1,11 +1,12 @@
-import { DocumentData } from "@google-cloud/firestore";
+import { DocumentData, DocumentReference, DocumentSnapshot, Firestore } from "@google-cloud/firestore";
+import { auth } from 'firebase-admin/lib/auth';
 import { mock } from "jest-mock-extended";
 import { AsanaCredentials } from "../../../src/models/credentials/asana_credentials";
 import { GoogleCredentials } from "../../../src/models/credentials/google_credentials";
 import { UserCredentials } from "../../../src/models/credentials/user_credentials";
-import { CredentialsService } from "../../../src/services/credentials_service";
+import { AuthService } from "../../../src/services/auth_service";
 
-describe('CredentialsService', () => {
+describe('AuthService', () => {
   test('updates the appropriate doc in credentials collection', async () => {
 
     // Create example data.
@@ -16,18 +17,19 @@ describe('CredentialsService', () => {
 
     // Create and configure mocks.
 
-    const firestoreMock = mock<FirebaseFirestore.Firestore>();
-    const documentReferenceMock = mock<FirebaseFirestore.DocumentReference<FirebaseFirestore.DocumentData>>();
+    const firebaseAuthMock = mock<auth.Auth>();
+    const firestoreMock = mock<Firestore>();
+    const documentReferenceMock = mock<DocumentReference<DocumentData>>();
 
     firestoreMock.doc.mockReturnValueOnce(documentReferenceMock);
 
     // Create the Subject Under Test.
 
-    const credentialsService = CredentialsService.getInstance(firestoreMock);
+    const authService = AuthService.getInstance(firebaseAuthMock, firestoreMock);
 
     // Run saveAsanaCredentials function.
 
-    await credentialsService.saveAsanaCredentials(exampleUID, exampleAsanaCredentials);
+    await authService.saveAsanaCredentials(exampleUID, exampleAsanaCredentials);
     
     expect(firestoreMock.doc).toHaveBeenLastCalledWith('credentials/'+exampleUID);
 
@@ -39,13 +41,13 @@ describe('CredentialsService', () => {
     
     // Run saveGoogleCredentials function.
 
-    await credentialsService.saveGoogleCredentials(exampleUID, exampleGoogleCredentials);
+    await authService.saveGoogleCredentials(exampleUID, exampleGoogleCredentials);
     
     expect(firestoreMock.doc).toHaveBeenLastCalledWith('credentials/'+exampleUID);
 
     expect(documentReferenceMock.set).toHaveBeenCalledWith({google : {...exampleGoogleCredentials}}, {merge: true})
 
-    CredentialsService.deleteInstance();
+    AuthService.deleteInstance();
 
   });
 
@@ -53,17 +55,18 @@ describe('CredentialsService', () => {
     const exampleUID = 'uid';
     const validDocumentData = {asana: {access_token: 'access_token'}, google: {refresh_token: 'access_token'}};
 
-    const firestoreMock = mock<FirebaseFirestore.Firestore>();
-    const documentReferenceMock = mock<FirebaseFirestore.DocumentReference<FirebaseFirestore.DocumentData>>();
-    const snapshotMock = mock<FirebaseFirestore.DocumentSnapshot<DocumentData>>();
+    const firebaseAuthMock = mock<auth.Auth>();
+    const firestoreMock = mock<Firestore>();
+    const documentReferenceMock = mock<DocumentReference<DocumentData>>();
+    const snapshotMock = mock<DocumentSnapshot<DocumentData>>();
 
     firestoreMock.doc.mockReturnValueOnce(documentReferenceMock);
     documentReferenceMock.get.mockResolvedValueOnce(snapshotMock);
     snapshotMock.data.mockReturnValueOnce(validDocumentData);
 
-    const credentialsService = CredentialsService.getInstance(firestoreMock);
+    const authService = AuthService.getInstance(firebaseAuthMock, firestoreMock);
 
-    const userCredentials = await credentialsService.retrieveCredentials(exampleUID);
+    const userCredentials = await authService.retrieveCredentials(exampleUID);
 
     expect(firestoreMock.doc).toHaveBeenLastCalledWith('credentials/'+exampleUID);
 
@@ -73,7 +76,7 @@ describe('CredentialsService', () => {
     const credentials = new UserCredentials(validDocumentData);
     expect(userCredentials).toMatchObject(credentials);
 
-    CredentialsService.deleteInstance();
+    AuthService.deleteInstance();
 
   });
 
@@ -81,17 +84,18 @@ describe('CredentialsService', () => {
     const exampleUID = 'uid';
     const invalidDocumentData = {hello: 'there'};
 
-    const firestoreMock = mock<FirebaseFirestore.Firestore>();
-    const documentReferenceMock = mock<FirebaseFirestore.DocumentReference<FirebaseFirestore.DocumentData>>();
-    const snapshotMock = mock<FirebaseFirestore.DocumentSnapshot<DocumentData>>();
+    const firebaseAuthMock = mock<auth.Auth>();
+    const firestoreMock = mock<Firestore>();
+    const documentReferenceMock = mock<DocumentReference<DocumentData>>();
+    const snapshotMock = mock<DocumentSnapshot<DocumentData>>();
 
     firestoreMock.doc.mockReturnValueOnce(documentReferenceMock);
     documentReferenceMock.get.mockResolvedValueOnce(snapshotMock);
     snapshotMock.data.mockReturnValueOnce(invalidDocumentData);
 
-    const credentialsService = CredentialsService.getInstance(firestoreMock);
+    const authService = AuthService.getInstance(firebaseAuthMock, firestoreMock);
 
-    const userCredentials = await credentialsService.retrieveCredentials(exampleUID);
+    const userCredentials = await authService.retrieveCredentials(exampleUID);
 
     expect(firestoreMock.doc).toHaveBeenLastCalledWith('credentials/'+exampleUID);
 
@@ -101,7 +105,7 @@ describe('CredentialsService', () => {
     const emptyCredentials = new UserCredentials({asana: undefined, google: undefined});
     expect(userCredentials).toMatchObject(emptyCredentials);
 
-    CredentialsService.deleteInstance();
+    AuthService.deleteInstance();
 
   });
 });

@@ -10,7 +10,9 @@ export async function saveDetails(user : auth.UserRecord) : Promise<void> {
         displayName: user.displayName ?? null,
         email: user.email ?? null,
         photoURL: user.photoURL ?? null,
-        googleAuth: 'waitingForInput',
-        asanaAuth: 'waitingForInput',
+        authorizationStatus: {
+            google: 'waitingForInput',
+            asana: 'waitingForInput',
+        },
     });
 }

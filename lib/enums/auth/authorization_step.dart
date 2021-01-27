@@ -9,6 +9,7 @@ class AuthorizationStep extends EnumClass {
   static const AuthorizationStep waitingForInput = _$waitingForInput;
   static const AuthorizationStep gettingAuthorized = _$gettingAuthorized;
   static const AuthorizationStep authorized = _$authorized;
+  static const AuthorizationStep unknown = _$unknown;
 
   const AuthorizationStep._(String name) : super(name);
 

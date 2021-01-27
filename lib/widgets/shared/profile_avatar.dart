@@ -5,11 +5,12 @@ import 'package:the_process/models/navigation/page_data/profile_page_data.dart';
 import 'package:the_process/widgets/shared/checked_circle_avatar.dart';
 
 class ProfileAvatar extends StatelessWidget {
-  final String photoURL;
+  final String? photoURL;
   const ProfileAvatar(this.photoURL, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final localPhotoURL = photoURL; // gimme that flow analysis
     return RawMaterialButton(
       onPressed: () => context.dispatch(PushPage(data: ProfilePageData())),
       elevation: 0.0,
@@ -17,9 +18,9 @@ class ProfileAvatar extends StatelessWidget {
       child: CircleAvatar(
         radius: 17,
         backgroundColor: Color(0xffFDCF09),
-        child: (photoURL == null)
+        child: (localPhotoURL == null)
             ? Icon(Icons.account_circle_outlined)
-            : CheckedCircleAvatar(radius: 15, url: photoURL),
+            : CheckedCircleAvatar(radius: 15, url: localPhotoURL),
       ),
       padding: EdgeInsets.all(5.0),
       shape: CircleBorder(),

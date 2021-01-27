@@ -27,7 +27,7 @@ import 'package:the_process/actions/settings/update_settings.dart';
 import 'package:the_process/actions/shared/connect_database.dart';
 import 'package:the_process/enums/auth/auth_step.dart';
 import 'package:the_process/enums/auth/authorization_step.dart';
-import 'package:the_process/enums/auth/provider.dart';
+import 'package:the_process/enums/auth/provider_name.dart';
 import 'package:the_process/enums/database/database_section.dart';
 import 'package:the_process/enums/navigation/nav_bar_selection.dart';
 import 'package:the_process/enums/platform/platform_enum.dart';
@@ -80,7 +80,7 @@ part 'serializers.g.dart';
   Problem,
   ProfileData,
   ProfilePageData,
-  Provider,
+  ProviderName,
   PushPage,
   RemoveCurrentPage,
   RemoveProblem,

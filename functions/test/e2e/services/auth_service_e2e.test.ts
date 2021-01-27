@@ -2,18 +2,18 @@ import { WriteResult } from "@google-cloud/firestore";
 import { AsanaCredentials } from "../../../src/models/credentials/asana_credentials";
 import { GoogleCredentials } from "../../../src/models/credentials/google_credentials";
 import { UserCredentials } from "../../../src/models/credentials/user_credentials";
-import { CredentialsService } from "../../../src/services/credentials_service";
+import { AuthService } from "../../../src/services/auth_service";
 
 const uid = 'uid';
 
-describe('CredentialsService', () => {
+describe('AuthService', () => {
   test('retrieveCredentials() throws if there are no credentials found.', async () => {
 
-    const credentialsService = CredentialsService.getInstance();
+    const authService = AuthService.getInstance();
 
     let caughtError : Error | null = null;
     try {
-      await credentialsService.retrieveCredentials(uid);  
+      await authService.retrieveCredentials(uid);  
     } catch(error) {
       caughtError = error;
     }
@@ -23,9 +23,9 @@ describe('CredentialsService', () => {
 
   test('retrieveCredentials() returns an object of type UserCredentials.', async () => {
 
-    const credentialsService = CredentialsService.getInstance();
+    const authService = AuthService.getInstance();
 
-    const credentials : UserCredentials = await credentialsService.retrieveCredentials(uid);
+    const credentials : UserCredentials = await authService.retrieveCredentials(uid);
     
     expect(credentials.google).not.toBeUndefined;
     expect(credentials.asana).toBeUndefined;
@@ -33,11 +33,11 @@ describe('CredentialsService', () => {
 
   test('saveGoogleCredentials() saves the supplied credentials', async () => {
 
-    const credentialsService = CredentialsService.getInstance();
+    const authService = AuthService.getInstance();
 
     const credentials : GoogleCredentials = new GoogleCredentials({access_token: 'access_token'});
 
-    const result: FirebaseFirestore.WriteResult = await credentialsService.saveGoogleCredentials(uid, credentials);
+    const result: WriteResult = await authService.saveGoogleCredentials(uid, credentials);
 
     console.log(result);
 
@@ -47,11 +47,11 @@ describe('CredentialsService', () => {
 
   test('saveAsanaCredentials() saves the supplied credentials', async () => {
 
-    const credentialsService = CredentialsService.getInstance();
+    const authService = AuthService.getInstance();
 
     const credentials : AsanaCredentials = new AsanaCredentials({access_token: 'access_token'});
 
-    const result: FirebaseFirestore.WriteResult = await credentialsService.saveAsanaCredentials(uid, credentials);
+    const result: WriteResult = await authService.saveAsanaCredentials(uid, credentials);
 
     console.log(result);
 

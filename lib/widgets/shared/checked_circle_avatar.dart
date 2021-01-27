@@ -25,7 +25,6 @@ class CheckedCircleAvatar extends StatelessWidget {
 
   @override
   Widget build(context) {
-    if (_url == null) return ErrorAvatar();
     return FutureBuilder(
       future: cacheImage(_url, context),
       builder: (context, snapshot) {

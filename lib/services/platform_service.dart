@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:the_process/enums/auth/provider.dart';
+import 'package:the_process/enums/auth/provider_name.dart';
 import 'package:the_process/enums/platform/platform_enum.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -34,9 +34,9 @@ class PlatformService {
   }
 
   Future<void> getAuthorized(
-      {required Provider provider, required String state}) async {
+      {required ProviderName provider, required String state}) async {
     String url;
-    if (provider == Provider.google) {
+    if (provider == ProviderName.google) {
       url =
           'https://us-central1-the-process-tool.cloudfunctions.net/startGoogleAuthorization?state=$state';
     } else {

@@ -1,11 +1,11 @@
-import * as functions from 'firebase-functions';
+import * as logger from 'firebase-functions/lib/logger';
 import { google } from 'googleapis';
 import { Credentials, OAuth2Client } from 'google-auth-library';
 
 import * as project_credentials from '../project_credentials.json';
 import { unNull } from '../utils/null_safety_utils';
 import { GoogleCredentials } from '../models/credentials/google_credentials';
-import { CredentialsService } from './credentials_service';
+import { AuthService } from './auth_service';
 
 /// An [OAuth2Client] 
 // 
@@ -37,7 +37,7 @@ export class AuthenticatedClient {
     if (!AuthenticatedClient.instance.get(uid)) {
       // Create an instance and set the credentials 
       const newClient = new AuthenticatedClient(uid);
-      const userCredentials = await CredentialsService.getInstance().retrieveCredentials(uid);
+      const userCredentials = await AuthService.getInstance().retrieveCredentials(uid);
 
       if(userCredentials.google !== undefined) {
         
@@ -72,21 +72,21 @@ export class AuthenticatedClient {
     const newExpiry = unNull(credentials.expiry_date, 'No new expiry date.') as number;
 
     if(newExpiry > this.tokens_expiry) {
-      functions.logger.info('The tokens event fired with a new expiry.');
+      logger.info('The tokens event fired with a new expiry.');
     }
     else {
-      functions.logger.info('The tokens event fired but the expiry was not new.');
+      logger.info('The tokens event fired but the expiry was not new.');
       return;
     }
 
     if(credentials.refresh_token === null || typeof credentials.refresh_token === "undefined") {
-      functions.logger.log('The tokens event fired but there was no refresh token.');
+      logger.log('The tokens event fired but there was no refresh token.');
       return;
     }
 
     if(newExpiry > this.tokens_expiry) {
-      functions.logger.log('Saving tokens under UID...');
-      await CredentialsService.getInstance().saveGoogleCredentials(this.uid, {...credentials});
+      logger.log('Saving tokens under UID...');
+      await AuthService.getInstance().saveGoogleCredentials(this.uid, {...credentials});
     }
   }
 
@@ -102,7 +102,7 @@ export class AuthenticatedClient {
       'expiry': tokens.expiry_date,
     }
     
-    functions.logger.warn('Anonymized credentials: ', anonymisedCredentials); 
+    logger.warn('Anonymized credentials: ', anonymisedCredentials); 
   }
 
 }

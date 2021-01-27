@@ -1,27 +1,26 @@
-import * as functions from 'firebase-functions';
+import * as logger from "firebase-functions/lib/logger";
 import * as express from 'express';
 import * as querystring from 'querystring';
 import axios from 'axios';
 
 import * as project_credentials from '../../project_credentials.json';
-import { ProfileData } from '../../models/database/profile_data';
-import { CredentialsService } from '../../services/credentials_service';
-import { FirebaseAdmin } from '../../services/firebase_admin';
-import { DatabaseService } from '../../services/database_service';
+import { AuthService } from '../../services/auth_service';
+import { ProviderName } from "../../enums/auth/provider_name";
+import { AuthorizationStep } from "../../enums/auth/authorization_step";
 
 // Get the code from the request, call retrieveAuthToken and return the response
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const exchangeCodeForAsanaTokens = async (req: any, res: any) => {
   try {
 
-    const auth = FirebaseAdmin.getInstance().getAuth();
-    
+    const authService = AuthService.getInstance();
+
     // If we can't get both the code and state from the request it's probably an error message, just send back the original url
     if(req.query.code === null || typeof req.query.code === "undefined" || req.query.state === null || typeof req.query.state === "undefined") {
       return res.send(req.originalUrl);
     }
 
-    functions.logger.log(`Exchanging code for tokens...`);
+    logger.log(`Exchanging code for tokens...`);
 
     // Build the post string from an object
     const post_data = querystring.stringify({
@@ -36,13 +35,11 @@ const exchangeCodeForAsanaTokens = async (req: any, res: any) => {
 
     const email = resp.data.data.email;
     
-    functions.logger.log('Converting email to Firebase UID...');
+    logger.log('Converting email to Firebase UID...');
 
-    const userRecord = await auth.getUserByEmail(email);
+    const userRecord = await authService.getUserRecordByEmail(email);
 
-    const databaseService = await DatabaseService.getInstanceFor(userRecord.uid);
-
-    functions.logger.log('Saving tokens...');
+    logger.log('Saving tokens...');
     
     const tokens = {
       refresh_token: resp.data.refresh_token,
@@ -50,13 +47,11 @@ const exchangeCodeForAsanaTokens = async (req: any, res: any) => {
       expires_in: resp.data.expires_in,
     }
 
-    await CredentialsService.getInstance().saveAsanaCredentials(userRecord.uid, tokens);
+    await authService.saveAsanaCredentials(userRecord.uid, tokens);
 
-    functions.logger.log('Saving finished state to database...');
+    logger.log('Saving finished state to database...');
 
-    const profileData = new ProfileData({uid: userRecord.uid, provider: 'asana', authState: 'authorized'});
-
-    await databaseService.save(profileData);
+    await authService.updateAuthorizationStatus(userRecord.uid, ProviderName.Asana, AuthorizationStep.Authorized);
 
     // Close the window, the entry in database will update the UI of the original window 
     return res.send(`
@@ -70,7 +65,7 @@ const exchangeCodeForAsanaTokens = async (req: any, res: any) => {
       </script>
     `);
   } catch(error) {
-    functions.logger.error(error);
+    logger.error(error);
     return res.status(500).send(`Something went wrong while exchanging the code. \n ${error}`);
   }
 };

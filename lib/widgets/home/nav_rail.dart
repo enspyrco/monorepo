@@ -41,7 +41,7 @@ class NavRail extends StatelessWidget {
                   ],
                 ),
               ),
-              StoreConnector<AppState, String>(
+              StoreConnector<AppState, String?>(
                 distinct: true,
                 converter: (store) => store.state.profileData?.photoURL,
                 builder: (context, photoURL) {

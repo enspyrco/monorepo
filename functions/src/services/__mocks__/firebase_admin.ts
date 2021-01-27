@@ -1,21 +1,17 @@
 import * as admin from 'firebase-admin';
-import { Firestore } from '@google-cloud/firestore';
-import { auth } from 'firebase-admin/lib/auth';
-
-export interface FirebaseAdminInterface {
-  getFirestore() : Firestore;
-  getAuth() : auth.Auth;
-}
+import { FirebaseAdminInterface } from "../firebase_admin";
 
 export class FirebaseAdmin implements FirebaseAdminInterface {
-  
+
   private static instance: FirebaseAdmin;
   
   private constructor() { 
     admin.initializeApp();
 
-    admin.firestore().settings({ 
+    admin.firestore().settings({
       ignoreUndefinedProperties: true,
+      host: 'localhost:8080',
+      ssl: false,
     });
   }
 
@@ -27,11 +23,10 @@ export class FirebaseAdmin implements FirebaseAdminInterface {
     return FirebaseAdmin.instance;
   }
 
-  getFirestore() : Firestore {
+  getFirestore(): FirebaseFirestore.Firestore {
     return admin.firestore();
   }
-
-  getAuth() : auth.Auth {
+  getAuth(): admin.auth.Auth {
     return admin.auth();
   }
 

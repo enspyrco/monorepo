@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_process/actions/auth/get_authorized.dart';
 import 'package:the_process/enums/auth/authorization_step.dart';
-import 'package:the_process/enums/auth/provider.dart';
+import 'package:the_process/enums/auth/provider_name.dart';
 import 'package:the_process/extensions/flutter_extensions.dart';
 
 class AsanaAuthorizationButton extends StatelessWidget {
@@ -18,7 +18,8 @@ class AsanaAuthorizationButton extends StatelessWidget {
                 : Colors.amberAccent),
         elevation: (step == AuthorizationStep.waitingForInput) ? 1 : 0,
         onPressed: (step == AuthorizationStep.waitingForInput)
-            ? () => context.dispatch(GetAuthorized(toAccess: Provider.asana))
+            ? () =>
+                context.dispatch(GetAuthorized(provider: ProviderName.asana))
             : null);
   }
 }
