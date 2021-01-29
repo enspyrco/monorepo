@@ -8,7 +8,7 @@ import 'package:the_process/reducers/problems/add_problem.dart';
 void main() {
   group('AddProblemReducer', () {
     test(
-        'adds Problem to appState.problems and ProblemPageData to appState.pagesData',
+        'Adds Problem to appState.problems and ProblemPageData to appState.pagesData',
         () {
       final initialState = AppState.init();
 
