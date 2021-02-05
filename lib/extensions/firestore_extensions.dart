@@ -7,10 +7,13 @@ import 'package:the_process/models/sections/section.dart';
 
 extension ConvertDocumentSnapshot on DocumentSnapshot {
   ProfileData toProfileData() {
+    if (!exists) {
+      throw 'snapshot indicated data does not exist';
+    }
     // convert from the format of the firestore data (map of strings) to what
     // want (map of enums)
     final authorizationStatusAsStrings = BuiltMap<String, String>(
-        data()['authorizationStatus'] as Map<String, dynamic>? ??
+        data()?['authorizationStatus'] as Map<String, dynamic>? ??
             <ProviderName, AuthorizationStep>{});
 
     final authorizationStatus = authorizationStatusAsStrings
@@ -19,18 +22,18 @@ extension ConvertDocumentSnapshot on DocumentSnapshot {
 
     return ProfileData(
         id: id,
-        displayName: data()['displayName'] as String,
-        photoURL: data()['photoURL'] as String? ??
+        displayName: data()?['displayName'] as String,
+        photoURL: data()?['photoURL'] as String? ??
             'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
-        firstName: data()['firstName'] as String? ?? '_',
-        lastName: data()['lastName'] as String? ?? '_',
+        firstName: data()?['firstName'] as String? ?? '_',
+        lastName: data()?['lastName'] as String? ?? '_',
         authorizationStatus: authorizationStatus);
   }
 }
 
 extension ConvertQueryDocumentSnapshot on QueryDocumentSnapshot {
   Section toSection() => Section(
-      name: data()['name'] as String,
-      folderId: data()['folderId'] as String,
-      useCasesDocId: data()['useCasesDocId'] as String);
+      name: data()?['name'] as String,
+      folderId: data()?['folderId'] as String,
+      useCasesDocId: data()?['useCasesDocId'] as String);
 }

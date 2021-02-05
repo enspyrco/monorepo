@@ -8,33 +8,35 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.12.0-0 <3.0.0"
 
-# Dependency overrides are needed to use null safe `built_value` until it rolls
-# into `package:build_runner`.
 dependency_overrides:
-  built_collection: 5.0.0-nullsafety.0
-  built_value: 8.0.0-nullsafety.0
+  crypto: ^3.0.0-nullsafety.0
+  firebase_core: ^0.8.0-nullsafety.1
+  firebase_core_platform_interface: ^4.0.0-nullsafety.0
+  firebase_core_web: ^0.3.0-nullsafety.0
+  quiver: ^3.0.0-nullsafety.2
+  plugin_platform_interface: ^1.1.0-nullsafety.2
 
 dependencies:
   flutter:
     sdk: flutter
 
   # auth
-  firebase_auth:
-  google_sign_in:
+  firebase_auth: ^0.21.0-nullsafety.0
+  google_sign_in: ^5.0.0-nullsafety
   sign_in_with_apple: ^3.0.0-nullsafety.0
 
   # built_value
-  built_collection: '>=2.0.0 <5.0.0'
-  built_value: ^7.0.2
+  built_collection: 5.0.0-nullsafety.0
+  built_value: 8.0.0-nullsafety.0
   
   # database
-  cloud_firestore:
+  cloud_firestore: ^0.17.0-1.0.nullsafety.0
 
   # firebase 
-  firebase_core:
+  firebase_core: ^0.8.0-nullsafety.1
 
   # messaging 
-  firebase_messaging:
+  firebase_messaging: ^9.0.0-1.0.nullsafety.0
 
   # platform 
   url_launcher: ^6.0.0-nullsafety.1
@@ -45,7 +47,7 @@ dependencies:
   redux_remote_devtools:
 
   # utils 
-  uuid:
+  uuid: ^3.0.0-nullsafety.0
 
 dev_dependencies:
   integration_test:
@@ -57,10 +59,7 @@ dev_dependencies:
   mockito: ^5.0.0-nullsafety.1
   
   build_runner: ^1.0.0
-  built_value_generator:
-    git:
-      url: git@github.com:google/built_value.dart.git
-      path: built_value_generator
+  built_value_generator: 8.0.0-nullsafety.0
 
 flutter:
   uses-material-design: true

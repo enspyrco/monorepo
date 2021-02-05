@@ -23,9 +23,9 @@ abstract class GoogleSignInCredential
   GoogleSignInCredential._();
 
   factory GoogleSignInCredential(
-      {required String idToken,
-      required String accessToken,
-      required String serverAuthCode}) = _$GoogleSignInCredential._;
+      {String? idToken,
+      String? accessToken,
+      String? serverAuthCode}) = _$GoogleSignInCredential._;
 
   factory GoogleSignInCredential.by(
           [void Function(GoogleSignInCredentialBuilder) updates]) =

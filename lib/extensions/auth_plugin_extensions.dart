@@ -33,7 +33,7 @@ extension AuthorizationCredentialAppleIDExt on AuthorizationCredentialAppleID {
 extension ConnectAndConvert on FirebaseAuth {
   /// Observe the auth state and convert each [auth.User]
   /// into a [ReduxAction] and send to the store using the passed in [StreamController]
-  StreamSubscription<User> connectAuthState(
+  StreamSubscription<User?> connectAuthState(
       StreamController<ReduxAction> controller) {
     // listen to the onAuthStateChanged stream, convert events to actions and
     // dispatch to the store with the controller
@@ -55,8 +55,8 @@ extension FirebaseUserExt on User {
         photoURL: photoURL,
         email: email,
         phoneNumber: phoneNumber,
-        createdOn: metadata.creationTime.toUtc(),
-        lastSignedInOn: metadata.lastSignInTime.toUtc(),
+        createdOn: metadata.creationTime?.toUtc(),
+        lastSignedInOn: metadata.lastSignInTime?.toUtc(),
         isAnonymous: isAnonymous,
         emailVerified: emailVerified,
         providers: BuiltList(providerData

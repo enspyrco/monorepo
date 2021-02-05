@@ -18,8 +18,8 @@ abstract class AuthUserData extends Object
   String? get photoURL;
   String? get email;
   String? get phoneNumber;
-  DateTime get createdOn;
-  DateTime get lastSignedInOn;
+  DateTime? get createdOn;
+  DateTime? get lastSignedInOn;
   bool get isAnonymous;
   bool get emailVerified;
   BuiltList<AuthProviderData> get providers;
@@ -33,12 +33,12 @@ abstract class AuthUserData extends Object
 
   factory AuthUserData({
     required String uid,
-    String displayName,
-    String photoURL,
-    String email,
-    String phoneNumber,
-    required DateTime createdOn,
-    required DateTime lastSignedInOn,
+    String? displayName,
+    String? photoURL,
+    String? email,
+    String? phoneNumber,
+    DateTime? createdOn,
+    DateTime? lastSignedInOn,
     required bool isAnonymous,
     required bool emailVerified,
     required BuiltList<AuthProviderData> providers,

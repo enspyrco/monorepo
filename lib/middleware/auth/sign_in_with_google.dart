@@ -18,6 +18,12 @@ class SignInWithGoogleMiddleware
 
           final credential = await authService.getGoogleCredential();
 
+          // If user cancelled sign in, reset UI and return
+          if (credential == null) {
+            store.dispatch(StoreAuthStep(step: AuthStep.waitingForInput));
+            return;
+          }
+
           store.dispatch(StoreAuthStep(step: AuthStep.signingInWithFirebase));
 
           // The authStateChanges stream will emit the same AuthUserData and

@@ -33,10 +33,10 @@ abstract class AuthProviderData extends Object
   factory AuthProviderData({
     required String providerId,
     required String uid,
-    required String displayName,
-    required String photoURL,
-    required String email,
-    required String phoneNumber,
+    String? displayName,
+    String? photoURL,
+    String? email,
+    String? phoneNumber,
   }) = _$AuthProviderData._;
 
   factory AuthProviderData.by(

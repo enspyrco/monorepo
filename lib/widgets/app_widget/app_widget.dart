@@ -35,7 +35,7 @@ class _AppWidgetState extends State<AppWidget> {
   bool _initializedFirebase = false;
   bool _initializedRedux = false;
 
-  void initializeFutterFire() async {
+  void initializeFlutterFire() async {
     try {
       // firebase must be initialised first so createStore() can run
       await widget._firebase.init();
@@ -69,7 +69,7 @@ class _AppWidgetState extends State<AppWidget> {
   @override
   void initState() {
     super.initState();
-    initializeFutterFire();
+    initializeFlutterFire();
   }
 
   @override

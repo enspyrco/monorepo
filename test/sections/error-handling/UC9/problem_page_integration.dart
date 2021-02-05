@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:redux/redux.dart';
 import 'package:the_process/middleware/app_middleware.dart';
 import 'package:the_process/models/app_state/app_state.dart';
-import 'package:the_process/models/navigation/page_data/problem_page_data.dart';
-import 'package:the_process/models/problems/problem.dart';
 import 'package:the_process/reducers/app_reducer.dart';
 import 'package:the_process/services/auth_service.dart';
 import 'package:the_process/services/database_service.dart';
@@ -13,37 +12,13 @@ import 'package:the_process/widgets/shared/problem_page.dart';
 
 import '../../../mocks/firebase/firebase_auth_fake.dart';
 import '../../../mocks/firebase/firebase_firestore_fake.dart';
-import '../../../mocks/redux/fake_store.dart';
 import '../../../mocks/services/platform_service_mock.dart';
 import '../../../utils/testing/app_widget_harness.dart';
 
 void main() {
-  group('ProblemPage', () {
-    final problem = Problem(errorString: 'Problem error message');
-    final problemPage = ProblemPage(problem);
-
-    testWidgets('shows expected message', (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(home: problemPage));
-
-      final problemText = find.text(problem.errorString);
-
-      expect(problemText, findsOneWidget);
-    });
-
-    testWidgets('is added to widget tree', (WidgetTester tester) async {
-      final problemPageData = ProblemPageData(problem: problem);
-
-      final store =
-          FakeStore(updates: (b) => b..pagesData.add(problemPageData));
-      final appWidget = AppWidgetHarness(store: store).widget;
-
-      await tester.pumpWidget(appWidget);
-
-      await tester.pump();
-
-      final finder = find.byType(ProblemPage);
-
-      expect(finder, findsOneWidget);
+  group('ProblemPage integration test', () {
+    setUpAll(() async {
+      IntegrationTestWidgetsFlutterBinding.ensureInitialized();
     });
 
     testWidgets('problem page appears after error caught',
@@ -76,7 +51,7 @@ void main() {
 
       runApp(harness.widget);
 
-      await widget.pump();
+      await widget.pumpAndSettle();
 
       expect(find.byType(ProblemPage), findsOneWidget);
     });

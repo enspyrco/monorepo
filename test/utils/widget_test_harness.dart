@@ -25,7 +25,7 @@ class WidgetTestHarness {
 
   // Allow the test to update the app state.
   //
-  // We a style guide entry asking contributors to consider splitting up tests
+  // We have a style guide entry asking contributors to consider splitting up tests
   // rather than changing the app state and continuing the test.
   //
   // See Style Guide > CONSIDER splitting up widget tests that change the app state

@@ -23,7 +23,7 @@ class AuthService {
 
   /// We keep a subscription to the firebase auth state stream so we can
   /// disconnect at a later time.
-  StreamSubscription<User>? _firebaseAuthStateSubscription;
+  StreamSubscription<User?>? _firebaseAuthStateSubscription;
 
   AuthService(
       {FirebaseAuth? auth, StreamController<ReduxAction>? eventsController})
@@ -41,22 +41,24 @@ class AuthService {
     }
   }
 
-  Future<String> getCurrentUserId() async {
+  Future<String?> getCurrentUserId() async {
     final user = _firebaseAuth.currentUser;
-    return user.uid;
+    return user?.uid;
   }
 
   void disconnectAuthState() {
     _firebaseAuthStateSubscription?.cancel();
   }
 
-  Future<GoogleSignInCredential> getGoogleCredential() async {
+  /// `null` in case where sign in process was aborted
+  Future<GoogleSignInCredential?> getGoogleCredential() async {
     final _googleSignIn = GoogleSignIn(scopes: ['email']);
 
     final googleSignInAccount = await _googleSignIn.signIn();
-    final googleSignInAuthentication = await googleSignInAccount.authentication;
+    final googleSignInAuthentication =
+        await googleSignInAccount?.authentication;
 
-    return googleSignInAuthentication.toModel();
+    return googleSignInAuthentication?.toModel();
   }
 
   Future<AuthUserData> signInWithGoogle(
@@ -68,7 +70,8 @@ class AuthService {
 
     final userCredential =
         await FirebaseAuth.instance.signInWithCredential(authCredential);
-    final user = userCredential.user;
+    // not sure why user would be null (docs don't say) so we throw if it is
+    final user = userCredential.user!;
     return user.toModel();
   }
 
@@ -93,7 +96,8 @@ class AuthService {
     // use the credential to sign in to firebase
     final userCredential =
         await FirebaseAuth.instance.signInWithCredential(oAuthCredential);
-    final user = userCredential.user;
+    // not sure why user would be null (docs don't say) so we throw if it is
+    final user = userCredential.user!;
     return user.toModel();
   }
 
