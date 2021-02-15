@@ -16,7 +16,7 @@ abstract class Problem implements Built<Problem, ProblemBuilder> {
 
   factory Problem(
       {required String errorString,
-      String? traceString,
+      required String? traceString,
       BuiltMap<String, Object>? info}) = _$Problem._;
 
   factory Problem.by([void Function(ProblemBuilder) updates]) = _$Problem;

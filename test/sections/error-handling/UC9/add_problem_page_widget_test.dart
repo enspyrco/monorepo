@@ -19,7 +19,8 @@ import '../../../utils/testing/app_widget_harness.dart';
 
 void main() {
   group('ProblemPage', () {
-    final problem = Problem(errorString: 'Problem error message');
+    final problem =
+        Problem(errorString: 'Problem error message', traceString: null);
     final problemPage = ProblemPage(problem);
 
     testWidgets('shows expected message', (WidgetTester tester) async {

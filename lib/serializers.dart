@@ -38,6 +38,7 @@ import 'package:the_process/models/auth/auth_provider_data.dart';
 import 'package:the_process/models/auth/auth_user_data.dart';
 import 'package:the_process/models/navigation/page_data/initial_page_data.dart';
 import 'package:the_process/models/navigation/page_data/page_data.dart';
+import 'package:the_process/models/navigation/page_data/problem_page_data.dart';
 import 'package:the_process/models/navigation/page_data/profile_page_data.dart';
 import 'package:the_process/models/problems/problem.dart';
 import 'package:the_process/models/profile/profile_data.dart';
@@ -78,6 +79,7 @@ part 'serializers.g.dart';
   PlatformEnum,
   PlumbStreams,
   Problem,
+  ProblemPageData,
   ProfileData,
   ProfilePageData,
   ProviderName,

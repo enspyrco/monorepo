@@ -7,7 +7,8 @@ import 'package:the_process/reducers/problems/remove_problem.dart';
 
 void main() {
   group('RemoveProblemReducer', () {
-    final problem = Problem(errorString: 'Problem error message');
+    final problem =
+        Problem(errorString: 'Problem error message', traceString: null);
     final problemPageData = ProblemPageData(problem: problem);
     test(
         'removes Problem from appState.problems and ProblemPageData from appState.pagesData',
