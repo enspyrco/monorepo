@@ -48,22 +48,22 @@ class StretchableButton extends StatelessWidget {
         }
 
         return ButtonTheme(
-          height: 40.0,
-          padding: EdgeInsets.all(buttonPadding ?? 2),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            side: bs,
-          ),
-          child: RaisedButton(
-            onPressed: onPressed,
-            color: buttonColor,
-            splashColor: splashColor,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: contents,
+            height: 40.0,
+            padding: EdgeInsets.all(buttonPadding ?? 2),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius),
+              side: bs,
             ),
-          ),
-        );
+            child: ElevatedButton(
+              onPressed: onPressed,
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(buttonColor),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: contents,
+              ),
+            ));
       },
     );
   }
