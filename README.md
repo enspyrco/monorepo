@@ -2,6 +2,10 @@
 
 A tool to automate "the process".
 
+## Help Docs
+
+[Solutions to Common Problems](docs/common_problems.md)
+
 ## Test Cloud Functions Locally
 
 Open the `functions/` folder with VS Code and run the Typescript compiler in watch mode:
