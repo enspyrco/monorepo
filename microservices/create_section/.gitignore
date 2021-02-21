@@ -1,0 +1,19 @@
+# Files and directories created by pub
+.dart_tool/
+.packages
+
+# Omit commiting pubspec.lock for library packages:
+# https://dart.dev/guides/libraries/private-files#pubspeclock
+# TODO: uncomment the pubspec.lock ignore and delete the file before sharing as a lib
+# pubspec.lock
+
+# Conventional directory for build outputs
+build/
+
+# Directory created by dartdoc
+doc/api/
+
+# Ignore generated files.
+bin/server.dart
+*.freezed.dart
+*.g.dart
