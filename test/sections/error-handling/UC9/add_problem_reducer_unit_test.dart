@@ -8,7 +8,7 @@ import 'package:the_process/reducers/problems/add_problem.dart';
 void main() {
   group('AddProblemReducer', () {
     test(
-        'Adds Problem to appState.problems and ProblemPageData to appState.pagesData',
+        'adds Problem to appState.problems and ProblemPageData to appState.pagesData',
         () {
       final initialState = AppState.init();
 
@@ -16,14 +16,12 @@ void main() {
       expect(initialState.pagesData.length, 1);
 
       final reducer = AddProblemReducer();
-      final problem = Problem(
-        errorString: 'Problem error message',
-        traceString: StackTrace.current.toString(),
-      );
+      final problem =
+          Problem(errorString: 'Problem error message', traceString: null);
 
       // Invokes the reducer to rebuild appState.
-      final newState = reducer.reducer(
-          initialState, AddProblem(errorString: problem.errorString));
+      final newState = reducer.reducer(initialState,
+          AddProblem(errorString: problem.errorString, traceString: null));
 
       expect(newState.problems.first.errorString, problem.errorString);
       expect(newState.pagesData.length, 2);

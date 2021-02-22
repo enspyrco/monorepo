@@ -20,7 +20,7 @@ abstract class AddProblem extends Object
 
   factory AddProblem(
       {required String errorString,
-      String traceString,
+      required String? traceString,
       BuiltMap<String, Object> info}) = _$AddProblem._;
 
   factory AddProblem.by([void Function(AddProblemBuilder) updates]) =
