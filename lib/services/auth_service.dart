@@ -104,6 +104,8 @@ class AuthService {
   /// The stream of auth state is connected to the store so the app state will
   /// be automatically updated
   Future<void> signOut() async {
+    final _googleSignIn = GoogleSignIn(scopes: ['email']);
+    await _googleSignIn.signOut();
     await _firebaseAuth.signOut();
   }
 }

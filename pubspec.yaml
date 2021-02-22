@@ -35,8 +35,8 @@ dependencies:
   # firebase 
   firebase_core: ^0.8.0-nullsafety.1
 
-  # messaging 
-  firebase_messaging: ^9.0.0-1.0.nullsafety.0
+  # # messaging 
+  # firebase_messaging: ^9.0.0-1.0.nullsafety.0
 
   # platform 
   url_launcher: ^6.0.0-nullsafety.1
