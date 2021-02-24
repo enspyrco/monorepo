@@ -7,6 +7,7 @@ import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/reducers/app_reducer.dart';
 import 'package:the_process/services/auth_service.dart';
 import 'package:the_process/services/database_service.dart';
+import 'package:the_process/services/http_service.dart';
 import 'package:the_process/services/platform_service.dart';
 import 'package:the_process/utils/store_operation.dart';
 
@@ -32,15 +33,18 @@ class ReduxBundle {
   final AuthService _authService;
   final DatabaseService _databaseService;
   final PlatformService _platformService;
+  final HttpService _httpService;
 
   ReduxBundle(
       {List<Middleware>? extraMiddlewares,
       AuthService? authService,
       DatabaseService? databaseService,
-      PlatformService? platformService})
+      PlatformService? platformService,
+      HttpService? httpService})
       : _authService = authService ?? AuthService(),
         _databaseService = databaseService ?? DatabaseService(),
-        _platformService = platformService ?? PlatformService();
+        _platformService = platformService ?? PlatformService(),
+        _httpService = httpService ?? HttpService();
 
   Future<Store<AppState>> createStore() async {
     final _store = Store<AppState>(
@@ -50,7 +54,8 @@ class ReduxBundle {
         ...createAppMiddleware(
             authService: _authService,
             databaseService: _databaseService,
-            platformService: _platformService),
+            platformService: _platformService,
+            httpService: _httpService),
         ..._extraMiddlewares
       ],
     );

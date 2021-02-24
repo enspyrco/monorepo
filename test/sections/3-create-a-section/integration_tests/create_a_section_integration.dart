@@ -11,6 +11,7 @@ import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/reducers/app_reducer.dart';
 import 'package:the_process/services/auth_service.dart';
 import 'package:the_process/services/database_service.dart';
+import 'package:the_process/services/http_service.dart';
 import 'package:the_process/widgets/app_widget/initializing_error_page.dart';
 import 'package:the_process/widgets/app_widget/initializing_indicator.dart';
 import 'package:the_process/widgets/auth/auth_page_buttons/apple_sign_in_button.dart';
@@ -19,6 +20,7 @@ import 'package:the_process/widgets/shared/waiting_indicator.dart';
 
 import '../../../mocks/firebase/firebase_auth_fake.dart';
 import '../../../mocks/firebase/firebase_firestore_fake.dart';
+import '../../../mocks/http/fake_client.dart';
 import '../../../mocks/services/platform_service_mock.dart';
 import '../../../utils/testing/app_widget_harness.dart';
 
@@ -29,9 +31,11 @@ void main() {
     // Create auth & database objects we can later use to emit various events
     final fakeAuth = FirebaseAuthFake();
     final fakeDatabase = FirebaseFirestoreFake();
+    final fakeClient = FakeHttpClient();
     // Create the services using the previous objects
     final authService = AuthService(auth: fakeAuth);
     final databaseService = DatabaseService(database: fakeDatabase);
+    final httpService = HttpService(client: fakeClient);
     // We just need the platform service to return a platform so we use a mock.
     final mockPlatformService = PlatformServiceMock();
     when(mockPlatformService.detectPlatform()).thenReturn(PlatformEnum.iOS);
@@ -41,10 +45,10 @@ void main() {
       initialState: AppState.init(),
       middleware: [
         ...createAppMiddleware(
-          authService: authService,
-          databaseService: databaseService,
-          platformService: mockPlatformService,
-        ),
+            authService: authService,
+            databaseService: databaseService,
+            platformService: mockPlatformService,
+            httpService: httpService),
       ],
     );
     final harness = AppWidgetHarness(store: store);
