@@ -12,7 +12,6 @@ import 'package:the_process/actions/auth/store_auth_step.dart';
 import 'package:the_process/actions/auth/store_auth_user_data.dart';
 import 'package:the_process/actions/navigation/push_page.dart';
 import 'package:the_process/actions/navigation/remove_current_page.dart';
-import 'package:the_process/actions/navigation/store_nav_bar_selection.dart';
 import 'package:the_process/actions/platform/detect_platform.dart';
 import 'package:the_process/actions/problems/add_problem.dart';
 import 'package:the_process/actions/problems/remove_problem.dart';
@@ -95,7 +94,6 @@ part 'serializers.g.dart';
   StoreProfileData,
   StoreAuthStep,
   StoreAuthUserData,
-  StoreNavBarSelection,
   StoreSections,
   TeamMember,
   ThemeBrightness,

@@ -5,7 +5,6 @@ import 'package:the_process/reducers/auth/store_auth_step.dart';
 import 'package:the_process/reducers/auth/store_auth_user_data.dart';
 import 'package:the_process/reducers/navigation/push_page.dart';
 import 'package:the_process/reducers/navigation/remove_current_page.dart';
-import 'package:the_process/reducers/navigation/store_nav_bar_selection.dart';
 import 'package:the_process/reducers/problems/add_problem.dart';
 import 'package:the_process/reducers/problems/remove_problem.dart';
 import 'package:the_process/reducers/profile/store_profile_data.dart';
@@ -27,7 +26,6 @@ final appReducer =
   // Navigation
   PushPageReducer(),
   RemoveCurrentPageReducer(),
-  StoreNavBarSelectionReducer(),
   // Problems
   AddProblemReducer(),
   RemoveProblemReducer(),

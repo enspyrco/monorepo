@@ -8,25 +8,29 @@ class NewSectionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SizedBox(width: 15),
-        SizedBox(
-          width: 200,
-          child: TextFormField(
-            autofocus: true,
-            decoration: InputDecoration(
-                border: InputBorder.none, hintText: 'Enter a name...'),
-            onChanged: (value) =>
-                context.dispatch(UpdateNewSectionVM(name: value)),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 4.0),
+      child: TextFormField(
+        autofocus: true,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          hintText: 'Enter a name...',
+          suffixIcon: Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: FloatingActionButton(
+              onPressed: () => context.dispatch(CreateSection()),
+              backgroundColor: Colors.blue,
+              foregroundColor: Colors.white,
+              mini: true,
+              elevation: 1,
+              child: Icon(Icons.add),
+            ),
           ),
         ),
-        MaterialButton(
-          child: Text('GO'),
-          onPressed: () => context.dispatch(CreateSection()),
-        )
-      ],
+        onChanged: (value) => context.dispatch(UpdateNewSectionVM(name: value)),
+      ),
     );
   }
 }

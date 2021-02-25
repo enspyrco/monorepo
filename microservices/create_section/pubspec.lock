@@ -402,7 +402,7 @@ packages:
     description:
       path: shared_models
       ref: HEAD
-      resolved-ref: "0e581fb89ca4fe63f0611285f81b9d7c0a9ea4b6"
+      resolved-ref: "5564a2343342760a2921bd7ffae21672ef35b251"
       url: "https://github.com/enspyrco/the_process"
     source: git
     version: "0.0.0"
