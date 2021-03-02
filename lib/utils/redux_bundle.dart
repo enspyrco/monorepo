@@ -67,7 +67,7 @@ class ReduxBundle {
 
     // finally, if firestore settings were added, set the instance to use them
     if (_firestoreSettings != null) {
-      FirebaseFirestore.instance.settings = _firestoreSettings;
+      FirebaseFirestore.instance.settings = _firestoreSettings!;
     }
 
     return _store;
