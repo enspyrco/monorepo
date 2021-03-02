@@ -29,6 +29,8 @@ Run a Cloud Functions shell:
 ## Build & Depoy Web
 
 - make sure index.html is the auto version, not the cdn version
+- make sure the version of the firebase SDKs matches the flutterfire docs
+  - see: <https://firebase.flutter.dev/docs/installation/web>
 
 ```sh
 flutter build web --no-sound-null-safety

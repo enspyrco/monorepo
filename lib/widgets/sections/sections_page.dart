@@ -12,13 +12,13 @@ class SectionsPage extends StatelessWidget {
   const SectionsPage();
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, SectionsVM>(
+    return StoreConnector<AppState, SectionsVM?>(
       onInit: (store) =>
           store.dispatch(ConnectDatabase(section: DatabaseSection.sections)),
       distinct: true,
       converter: (store) => store.state.sections,
       builder: (context, vm) {
-        if (vm.creatingNewSection) {
+        if (vm == null || vm.creatingNewSection) {
           return WaitingIndicator('Creating...');
         }
         return Column(
