@@ -11,35 +11,32 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: comment_references
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeAboutResourceApi extends _i1.Fake implements _i2.AboutResourceApi {}
+class _FakeAboutResource extends _i1.Fake implements _i2.AboutResource {}
 
-class _FakeChangesResourceApi extends _i1.Fake
-    implements _i2.ChangesResourceApi {}
+class _FakeChangesResource extends _i1.Fake implements _i2.ChangesResource {}
 
-class _FakeChannelsResourceApi extends _i1.Fake
-    implements _i2.ChannelsResourceApi {}
+class _FakeChannelsResource extends _i1.Fake implements _i2.ChannelsResource {}
 
-class _FakeCommentsResourceApi extends _i1.Fake
-    implements _i2.CommentsResourceApi {}
+class _FakeCommentsResource extends _i1.Fake implements _i2.CommentsResource {}
 
-class _FakeDrivesResourceApi extends _i1.Fake implements _i2.DrivesResourceApi {
+class _FakeDrivesResource extends _i1.Fake implements _i2.DrivesResource {}
+
+class _FakeFilesResource extends _i1.Fake implements _i2.FilesResource {}
+
+class _FakePermissionsResource extends _i1.Fake
+    implements _i2.PermissionsResource {}
+
+class _FakeRepliesResource extends _i1.Fake implements _i2.RepliesResource {}
+
+class _FakeRevisionsResource extends _i1.Fake implements _i2.RevisionsResource {
 }
 
-class _FakeFilesResourceApi extends _i1.Fake implements _i2.FilesResourceApi {}
-
-class _FakePermissionsResourceApi extends _i1.Fake
-    implements _i2.PermissionsResourceApi {}
-
-class _FakeRepliesResourceApi extends _i1.Fake
-    implements _i2.RepliesResourceApi {}
-
-class _FakeRevisionsResourceApi extends _i1.Fake
-    implements _i2.RevisionsResourceApi {}
-
-class _FakeTeamdrivesResourceApi extends _i1.Fake
-    implements _i2.TeamdrivesResourceApi {}
+class _FakeTeamdrivesResource extends _i1.Fake
+    implements _i2.TeamdrivesResource {}
 
 class _FakeFile extends _i1.Fake implements _i2.File {}
+
+class _FakeObject extends _i1.Fake implements Object {}
 
 class _FakeGeneratedIds extends _i1.Fake implements _i2.GeneratedIds {}
 
@@ -54,53 +51,50 @@ class MockDriveApi extends _i1.Mock implements _i2.DriveApi {
   }
 
   @override
-  _i2.AboutResourceApi get about =>
-      (super.noSuchMethod(Invocation.getter(#about),
-          returnValue: _FakeAboutResourceApi()) as _i2.AboutResourceApi);
+  _i2.AboutResource get about => (super.noSuchMethod(Invocation.getter(#about),
+      returnValue: _FakeAboutResource()) as _i2.AboutResource);
   @override
-  _i2.ChangesResourceApi get changes =>
+  _i2.ChangesResource get changes =>
       (super.noSuchMethod(Invocation.getter(#changes),
-          returnValue: _FakeChangesResourceApi()) as _i2.ChangesResourceApi);
+          returnValue: _FakeChangesResource()) as _i2.ChangesResource);
   @override
-  _i2.ChannelsResourceApi get channels =>
+  _i2.ChannelsResource get channels =>
       (super.noSuchMethod(Invocation.getter(#channels),
-          returnValue: _FakeChannelsResourceApi()) as _i2.ChannelsResourceApi);
+          returnValue: _FakeChannelsResource()) as _i2.ChannelsResource);
   @override
-  _i2.CommentsResourceApi get comments =>
+  _i2.CommentsResource get comments =>
       (super.noSuchMethod(Invocation.getter(#comments),
-          returnValue: _FakeCommentsResourceApi()) as _i2.CommentsResourceApi);
+          returnValue: _FakeCommentsResource()) as _i2.CommentsResource);
   @override
-  _i2.DrivesResourceApi get drives =>
+  _i2.DrivesResource get drives =>
       (super.noSuchMethod(Invocation.getter(#drives),
-          returnValue: _FakeDrivesResourceApi()) as _i2.DrivesResourceApi);
+          returnValue: _FakeDrivesResource()) as _i2.DrivesResource);
   @override
-  _i2.FilesResourceApi get files =>
-      (super.noSuchMethod(Invocation.getter(#files),
-          returnValue: _FakeFilesResourceApi()) as _i2.FilesResourceApi);
+  _i2.FilesResource get files => (super.noSuchMethod(Invocation.getter(#files),
+      returnValue: _FakeFilesResource()) as _i2.FilesResource);
   @override
-  _i2.PermissionsResourceApi get permissions =>
+  _i2.PermissionsResource get permissions =>
       (super.noSuchMethod(Invocation.getter(#permissions),
-              returnValue: _FakePermissionsResourceApi())
-          as _i2.PermissionsResourceApi);
+          returnValue: _FakePermissionsResource()) as _i2.PermissionsResource);
   @override
-  _i2.RepliesResourceApi get replies =>
+  _i2.RepliesResource get replies =>
       (super.noSuchMethod(Invocation.getter(#replies),
-          returnValue: _FakeRepliesResourceApi()) as _i2.RepliesResourceApi);
+          returnValue: _FakeRepliesResource()) as _i2.RepliesResource);
   @override
-  _i2.RevisionsResourceApi get revisions => (super.noSuchMethod(
-      Invocation.getter(#revisions),
-      returnValue: _FakeRevisionsResourceApi()) as _i2.RevisionsResourceApi);
+  _i2.RevisionsResource get revisions =>
+      (super.noSuchMethod(Invocation.getter(#revisions),
+          returnValue: _FakeRevisionsResource()) as _i2.RevisionsResource);
   @override
-  _i2.TeamdrivesResourceApi get teamdrives => (super.noSuchMethod(
-      Invocation.getter(#teamdrives),
-      returnValue: _FakeTeamdrivesResourceApi()) as _i2.TeamdrivesResourceApi);
+  _i2.TeamdrivesResource get teamdrives =>
+      (super.noSuchMethod(Invocation.getter(#teamdrives),
+          returnValue: _FakeTeamdrivesResource()) as _i2.TeamdrivesResource);
 }
 
-/// A class which mocks [FilesResourceApi].
+/// A class which mocks [FilesResource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFilesResourceApi extends _i1.Mock implements _i2.FilesResourceApi {
-  MockFilesResourceApi() {
+class MockFilesResource extends _i1.Mock implements _i2.FilesResource {
+  MockFilesResource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -160,7 +154,7 @@ class MockFilesResourceApi extends _i1.Mock implements _i2.FilesResourceApi {
           }),
           returnValue: Future.value(_FakeFile())) as _i3.Future<_i2.File>);
   @override
-  _i3.Future<dynamic> delete(String? fileId,
+  _i3.Future<void> delete(String? fileId,
           {bool? enforceSingleParent,
           bool? supportsAllDrives,
           bool? supportsTeamDrives,
@@ -174,23 +168,24 @@ class MockFilesResourceApi extends _i1.Mock implements _i2.FilesResourceApi {
             #supportsTeamDrives: supportsTeamDrives,
             #$fields: $fields
           }),
-          returnValue: Future.value(null)) as _i3.Future<dynamic>);
+          returnValue: Future.value(null),
+          returnValueForMissingStub: Future.value()) as _i3.Future<void>);
   @override
-  _i3.Future<dynamic> emptyTrash(
-          {bool? enforceSingleParent, String? $fields}) =>
+  _i3.Future<void> emptyTrash({bool? enforceSingleParent, String? $fields}) =>
       (super.noSuchMethod(
           Invocation.method(#emptyTrash, [],
               {#enforceSingleParent: enforceSingleParent, #$fields: $fields}),
-          returnValue: Future.value(null)) as _i3.Future<dynamic>);
+          returnValue: Future.value(null),
+          returnValueForMissingStub: Future.value()) as _i3.Future<void>);
   @override
-  _i3.Future<dynamic> export(String? fileId, String? mimeType,
+  _i3.Future<Object> export(String? fileId, String? mimeType,
           {String? $fields,
           _i4.DownloadOptions? downloadOptions =
               _i4.DownloadOptions.Metadata}) =>
       (super.noSuchMethod(
           Invocation.method(#export, [fileId, mimeType],
               {#$fields: $fields, #downloadOptions: downloadOptions}),
-          returnValue: Future.value(null)) as _i3.Future<dynamic>);
+          returnValue: Future.value(_FakeObject())) as _i3.Future<Object>);
   @override
   _i3.Future<_i2.GeneratedIds> generateIds(
           {int? count, String? space, String? $fields}) =>
@@ -200,7 +195,7 @@ class MockFilesResourceApi extends _i1.Mock implements _i2.FilesResourceApi {
               returnValue: Future.value(_FakeGeneratedIds()))
           as _i3.Future<_i2.GeneratedIds>);
   @override
-  _i3.Future<dynamic> get(String? fileId,
+  _i3.Future<Object> get(String? fileId,
           {bool? acknowledgeAbuse,
           String? includePermissionsForView,
           bool? supportsAllDrives,
@@ -219,7 +214,7 @@ class MockFilesResourceApi extends _i1.Mock implements _i2.FilesResourceApi {
             #$fields: $fields,
             #downloadOptions: downloadOptions
           }),
-          returnValue: Future.value(null)) as _i3.Future<dynamic>);
+          returnValue: Future.value(_FakeObject())) as _i3.Future<Object>);
   @override
   _i3.Future<_i2.FileList> list(
           {String? corpora,
@@ -291,7 +286,7 @@ class MockFilesResourceApi extends _i1.Mock implements _i2.FilesResourceApi {
           }),
           returnValue: Future.value(_FakeFile())) as _i3.Future<_i2.File>);
   @override
-  _i3.Future<dynamic> watch(_i2.Channel? request, String? fileId,
+  _i3.Future<Object> watch(_i2.Channel? request, String? fileId,
           {bool? acknowledgeAbuse,
           String? includePermissionsForView,
           bool? supportsAllDrives,
@@ -311,5 +306,5 @@ class MockFilesResourceApi extends _i1.Mock implements _i2.FilesResourceApi {
             #$fields: $fields,
             #downloadOptions: downloadOptions
           }),
-          returnValue: Future.value(null)) as _i3.Future<dynamic>);
+          returnValue: Future.value(_FakeObject())) as _i3.Future<Object>);
 }

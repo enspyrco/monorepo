@@ -7,10 +7,10 @@ import 'package:mockito/mockito.dart';
 import 'secretmanager_api_test_doubles.mocks.dart';
 
 @GenerateMocks([
-  SecretmanagerApi,
-  ProjectsResourceApi,
-  ProjectsSecretsResourceApi,
-  ProjectsSecretsVersionsResourceApi,
+  SecretManagerApi,
+  ProjectsResource,
+  ProjectsSecretsResource,
+  ProjectsSecretsVersionsResource,
   AccessSecretVersionResponse
 ])
 class SecretmanagerApiTestDoubles {
@@ -19,33 +19,32 @@ class SecretmanagerApiTestDoubles {
 
 enum SecretmanagerFunctionNamed { access }
 
-MockSecretmanagerApi createSecretmanagerApiMockThatReturns(
+MockSecretManagerApi createSecretmanagerApiMockThatReturns(
     {required SecretPayload payload,
     required SecretmanagerFunctionNamed onCalling}) {
-  final mockSecretmanagerApi = MockSecretmanagerApi();
-  final mockProjectsResourceApi = MockProjectsResourceApi();
-  final mockProjectsSecretsResourceApi = MockProjectsSecretsResourceApi();
-  final mockProjectsSecretsVersionsResourceApi =
-      MockProjectsSecretsVersionsResourceApi();
+  final mockSecretManagerApi = MockSecretManagerApi();
+  final mockProjectsResource = MockProjectsResource();
+  final mockProjectsSecretsResource = MockProjectsSecretsResource();
+  final mockProjectsSecretsVersionsResource =
+      MockProjectsSecretsVersionsResource();
   final mockAccessSecretVersionResponse = MockAccessSecretVersionResponse();
 
-  when(mockSecretmanagerApi.projects).thenReturn(mockProjectsResourceApi);
-  when(mockProjectsResourceApi.secrets)
-      .thenReturn(mockProjectsSecretsResourceApi);
-  when(mockProjectsSecretsResourceApi.versions)
-      .thenReturn(mockProjectsSecretsVersionsResourceApi);
-  when(mockProjectsSecretsVersionsResourceApi.access(any))
+  when(mockSecretManagerApi.projects).thenReturn(mockProjectsResource);
+  when(mockProjectsResource.secrets).thenReturn(mockProjectsSecretsResource);
+  when(mockProjectsSecretsResource.versions)
+      .thenReturn(mockProjectsSecretsVersionsResource);
+  when(mockProjectsSecretsVersionsResource.access(any))
       .thenAnswer((_) => Future.value(mockAccessSecretVersionResponse));
   when(mockAccessSecretVersionResponse.payload).thenReturn(payload);
 
   SecretPayload();
 
-  return mockSecretmanagerApi;
+  return mockSecretManagerApi;
 }
 
-MockSecretmanagerApi createSecretmanagerApiMockThatThrows(
+MockSecretManagerApi createSecretmanagerApiMockThatThrows(
     {required Exception exception}) {
-  final mockSecretmanagerApi = MockSecretmanagerApi();
+  final mockSecretmanagerApi = MockSecretManagerApi();
   when(mockSecretmanagerApi.projects).thenThrow(exception);
   return mockSecretmanagerApi;
 }

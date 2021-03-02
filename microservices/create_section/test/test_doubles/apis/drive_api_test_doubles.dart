@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'drive_api_test_doubles.mocks.dart';
 
-@GenerateMocks([DriveApi, FilesResourceApi])
+@GenerateMocks([DriveApi, FilesResource])
 class DriveApiTestDoubles {
   DriveApiTestDoubles();
 }
@@ -13,13 +13,13 @@ enum DriveFunctionNamed { update, create }
 MockDriveApi createDriveApiMockThatReturns(
     {required File file, required DriveFunctionNamed onCalling}) {
   final mockDriveApi = MockDriveApi();
-  final mockFilesResourceApi = MockFilesResourceApi();
+  final mockFilesResource = MockFilesResource();
 
   // Stub the DriveApi mock to return a FilesResourceApi mock that in turn
   // retruns a File, with the given id and parents when 'update' is called.
-  when(mockDriveApi.files).thenReturn(mockFilesResourceApi);
+  when(mockDriveApi.files).thenReturn(mockFilesResource);
   if (onCalling == DriveFunctionNamed.update) {
-    when(mockFilesResourceApi.update(any, any,
+    when(mockFilesResource.update(any, any,
             addParents: anyNamed('addParents'),
             enforceSingleParent: anyNamed('enforceSingleParent'),
             includePermissionsForView: anyNamed('includePermissionsForView'),
@@ -35,7 +35,7 @@ MockDriveApi createDriveApiMockThatReturns(
         .thenAnswer((_) => Future.value(file));
   }
   if (onCalling == DriveFunctionNamed.create) {
-    when(mockFilesResourceApi.create(any,
+    when(mockFilesResource.create(any,
             enforceSingleParent: anyNamed('enforceSingleParent'),
             ignoreDefaultVisibility: anyNamed('ignoreDefaultVisibility'),
             includePermissionsForView: anyNamed('includePermissionsForView'),

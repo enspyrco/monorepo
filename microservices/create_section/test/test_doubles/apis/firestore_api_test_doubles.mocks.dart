@@ -10,23 +10,22 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: comment_references
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeProjectsResourceApi extends _i1.Fake
-    implements _i2.ProjectsResourceApi {}
+class _FakeProjectsResource extends _i1.Fake implements _i2.ProjectsResource {}
 
-class _FakeProjectsDatabasesResourceApi extends _i1.Fake
-    implements _i2.ProjectsDatabasesResourceApi {}
+class _FakeProjectsDatabasesResource extends _i1.Fake
+    implements _i2.ProjectsDatabasesResource {}
 
-class _FakeProjectsLocationsResourceApi extends _i1.Fake
-    implements _i2.ProjectsLocationsResourceApi {}
+class _FakeProjectsLocationsResource extends _i1.Fake
+    implements _i2.ProjectsLocationsResource {}
 
-class _FakeProjectsDatabasesCollectionGroupsResourceApi extends _i1.Fake
-    implements _i2.ProjectsDatabasesCollectionGroupsResourceApi {}
+class _FakeProjectsDatabasesCollectionGroupsResource extends _i1.Fake
+    implements _i2.ProjectsDatabasesCollectionGroupsResource {}
 
-class _FakeProjectsDatabasesDocumentsResourceApi extends _i1.Fake
-    implements _i2.ProjectsDatabasesDocumentsResourceApi {}
+class _FakeProjectsDatabasesDocumentsResource extends _i1.Fake
+    implements _i2.ProjectsDatabasesDocumentsResource {}
 
-class _FakeProjectsDatabasesOperationsResourceApi extends _i1.Fake
-    implements _i2.ProjectsDatabasesOperationsResourceApi {}
+class _FakeProjectsDatabasesOperationsResource extends _i1.Fake
+    implements _i2.ProjectsDatabasesOperationsResource {}
 
 class _FakeGoogleLongrunningOperation extends _i1.Fake
     implements _i2.GoogleLongrunningOperation {}
@@ -70,56 +69,55 @@ class MockFirestoreApi extends _i1.Mock implements _i2.FirestoreApi {
   }
 
   @override
-  _i2.ProjectsResourceApi get projects =>
+  _i2.ProjectsResource get projects =>
       (super.noSuchMethod(Invocation.getter(#projects),
-          returnValue: _FakeProjectsResourceApi()) as _i2.ProjectsResourceApi);
+          returnValue: _FakeProjectsResource()) as _i2.ProjectsResource);
 }
 
-/// A class which mocks [ProjectsResourceApi].
+/// A class which mocks [ProjectsResource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProjectsResourceApi extends _i1.Mock
-    implements _i2.ProjectsResourceApi {
-  MockProjectsResourceApi() {
+class MockProjectsResource extends _i1.Mock implements _i2.ProjectsResource {
+  MockProjectsResource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.ProjectsDatabasesResourceApi get databases =>
+  _i2.ProjectsDatabasesResource get databases =>
       (super.noSuchMethod(Invocation.getter(#databases),
-              returnValue: _FakeProjectsDatabasesResourceApi())
-          as _i2.ProjectsDatabasesResourceApi);
+              returnValue: _FakeProjectsDatabasesResource())
+          as _i2.ProjectsDatabasesResource);
   @override
-  _i2.ProjectsLocationsResourceApi get locations =>
+  _i2.ProjectsLocationsResource get locations =>
       (super.noSuchMethod(Invocation.getter(#locations),
-              returnValue: _FakeProjectsLocationsResourceApi())
-          as _i2.ProjectsLocationsResourceApi);
+              returnValue: _FakeProjectsLocationsResource())
+          as _i2.ProjectsLocationsResource);
 }
 
-/// A class which mocks [ProjectsDatabasesResourceApi].
+/// A class which mocks [ProjectsDatabasesResource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProjectsDatabasesResourceApi extends _i1.Mock
-    implements _i2.ProjectsDatabasesResourceApi {
-  MockProjectsDatabasesResourceApi() {
+class MockProjectsDatabasesResource extends _i1.Mock
+    implements _i2.ProjectsDatabasesResource {
+  MockProjectsDatabasesResource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.ProjectsDatabasesCollectionGroupsResourceApi get collectionGroups =>
+  _i2.ProjectsDatabasesCollectionGroupsResource get collectionGroups =>
       (super.noSuchMethod(Invocation.getter(#collectionGroups),
-              returnValue: _FakeProjectsDatabasesCollectionGroupsResourceApi())
-          as _i2.ProjectsDatabasesCollectionGroupsResourceApi);
+              returnValue: _FakeProjectsDatabasesCollectionGroupsResource())
+          as _i2.ProjectsDatabasesCollectionGroupsResource);
   @override
-  _i2.ProjectsDatabasesDocumentsResourceApi get documents =>
+  _i2.ProjectsDatabasesDocumentsResource get documents =>
       (super.noSuchMethod(Invocation.getter(#documents),
-              returnValue: _FakeProjectsDatabasesDocumentsResourceApi())
-          as _i2.ProjectsDatabasesDocumentsResourceApi);
+              returnValue: _FakeProjectsDatabasesDocumentsResource())
+          as _i2.ProjectsDatabasesDocumentsResource);
   @override
-  _i2.ProjectsDatabasesOperationsResourceApi get operations =>
+  _i2.ProjectsDatabasesOperationsResource get operations =>
       (super.noSuchMethod(Invocation.getter(#operations),
-              returnValue: _FakeProjectsDatabasesOperationsResourceApi())
-          as _i2.ProjectsDatabasesOperationsResourceApi);
+              returnValue: _FakeProjectsDatabasesOperationsResource())
+          as _i2.ProjectsDatabasesOperationsResource);
   @override
   _i3.Future<_i2.GoogleLongrunningOperation> exportDocuments(
           _i2.GoogleFirestoreAdminV1ExportDocumentsRequest? request,
@@ -142,12 +140,12 @@ class MockProjectsDatabasesResourceApi extends _i1.Mock
           as _i3.Future<_i2.GoogleLongrunningOperation>);
 }
 
-/// A class which mocks [ProjectsDatabasesDocumentsResourceApi].
+/// A class which mocks [ProjectsDatabasesDocumentsResource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProjectsDatabasesDocumentsResourceApi extends _i1.Mock
-    implements _i2.ProjectsDatabasesDocumentsResourceApi {
-  MockProjectsDatabasesDocumentsResourceApi() {
+class MockProjectsDatabasesDocumentsResource extends _i1.Mock
+    implements _i2.ProjectsDatabasesDocumentsResource {
+  MockProjectsDatabasesDocumentsResource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -221,16 +219,16 @@ class MockProjectsDatabasesDocumentsResourceApi extends _i1.Mock
   @override
   _i3.Future<_i2.Document> get(String? name,
           {List<String>? mask_fieldPaths,
-          String? transaction,
           String? readTime,
+          String? transaction,
           String? $fields}) =>
       (super.noSuchMethod(
               Invocation.method(#get, [
                 name
               ], {
                 #mask_fieldPaths: mask_fieldPaths,
-                #transaction: transaction,
                 #readTime: readTime,
+                #transaction: transaction,
                 #$fields: $fields
               }),
               returnValue: Future.value(_FakeDocument()))
@@ -239,12 +237,12 @@ class MockProjectsDatabasesDocumentsResourceApi extends _i1.Mock
   _i3.Future<_i2.ListDocumentsResponse> list(
           String? parent, String? collectionId,
           {List<String>? mask_fieldPaths,
-          String? pageToken,
           String? orderBy,
+          int? pageSize,
+          String? pageToken,
           String? readTime,
           bool? showMissing,
           String? transaction,
-          int? pageSize,
           String? $fields}) =>
       (super.noSuchMethod(
               Invocation.method(#list, [
@@ -252,12 +250,12 @@ class MockProjectsDatabasesDocumentsResourceApi extends _i1.Mock
                 collectionId
               ], {
                 #mask_fieldPaths: mask_fieldPaths,
-                #pageToken: pageToken,
                 #orderBy: orderBy,
+                #pageSize: pageSize,
+                #pageToken: pageToken,
                 #readTime: readTime,
                 #showMissing: showMissing,
                 #transaction: transaction,
-                #pageSize: pageSize,
                 #$fields: $fields
               }),
               returnValue: Future.value(_FakeListDocumentsResponse()))
@@ -291,9 +289,9 @@ class MockProjectsDatabasesDocumentsResourceApi extends _i1.Mock
   @override
   _i3.Future<_i2.Document> patch(_i2.Document? request, String? name,
           {bool? currentDocument_exists,
-          List<String>? updateMask_fieldPaths,
-          List<String>? mask_fieldPaths,
           String? currentDocument_updateTime,
+          List<String>? mask_fieldPaths,
+          List<String>? updateMask_fieldPaths,
           String? $fields}) =>
       (super.noSuchMethod(
               Invocation.method(#patch, [
@@ -301,9 +299,9 @@ class MockProjectsDatabasesDocumentsResourceApi extends _i1.Mock
                 name
               ], {
                 #currentDocument_exists: currentDocument_exists,
-                #updateMask_fieldPaths: updateMask_fieldPaths,
-                #mask_fieldPaths: mask_fieldPaths,
                 #currentDocument_updateTime: currentDocument_updateTime,
+                #mask_fieldPaths: mask_fieldPaths,
+                #updateMask_fieldPaths: updateMask_fieldPaths,
                 #$fields: $fields
               }),
               returnValue: Future.value(_FakeDocument()))

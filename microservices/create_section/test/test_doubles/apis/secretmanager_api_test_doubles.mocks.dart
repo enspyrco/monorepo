@@ -10,17 +10,16 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: comment_references
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeProjectsResourceApi extends _i1.Fake
-    implements _i2.ProjectsResourceApi {}
+class _FakeProjectsResource extends _i1.Fake implements _i2.ProjectsResource {}
 
-class _FakeProjectsLocationsResourceApi extends _i1.Fake
-    implements _i2.ProjectsLocationsResourceApi {}
+class _FakeProjectsLocationsResource extends _i1.Fake
+    implements _i2.ProjectsLocationsResource {}
 
-class _FakeProjectsSecretsResourceApi extends _i1.Fake
-    implements _i2.ProjectsSecretsResourceApi {}
+class _FakeProjectsSecretsResource extends _i1.Fake
+    implements _i2.ProjectsSecretsResource {}
 
-class _FakeProjectsSecretsVersionsResourceApi extends _i1.Fake
-    implements _i2.ProjectsSecretsVersionsResourceApi {}
+class _FakeProjectsSecretsVersionsResource extends _i1.Fake
+    implements _i2.ProjectsSecretsVersionsResource {}
 
 class _FakeSecretVersion extends _i1.Fake implements _i2.SecretVersion {}
 
@@ -44,55 +43,54 @@ class _FakeListSecretVersionsResponse extends _i1.Fake
 
 class _FakeSecretPayload extends _i1.Fake implements _i2.SecretPayload {}
 
-/// A class which mocks [SecretmanagerApi].
+/// A class which mocks [SecretManagerApi].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSecretmanagerApi extends _i1.Mock implements _i2.SecretmanagerApi {
-  MockSecretmanagerApi() {
+class MockSecretManagerApi extends _i1.Mock implements _i2.SecretManagerApi {
+  MockSecretManagerApi() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.ProjectsResourceApi get projects =>
+  _i2.ProjectsResource get projects =>
       (super.noSuchMethod(Invocation.getter(#projects),
-          returnValue: _FakeProjectsResourceApi()) as _i2.ProjectsResourceApi);
+          returnValue: _FakeProjectsResource()) as _i2.ProjectsResource);
 }
 
-/// A class which mocks [ProjectsResourceApi].
+/// A class which mocks [ProjectsResource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProjectsResourceApi extends _i1.Mock
-    implements _i2.ProjectsResourceApi {
-  MockProjectsResourceApi() {
+class MockProjectsResource extends _i1.Mock implements _i2.ProjectsResource {
+  MockProjectsResource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.ProjectsLocationsResourceApi get locations =>
+  _i2.ProjectsLocationsResource get locations =>
       (super.noSuchMethod(Invocation.getter(#locations),
-              returnValue: _FakeProjectsLocationsResourceApi())
-          as _i2.ProjectsLocationsResourceApi);
+              returnValue: _FakeProjectsLocationsResource())
+          as _i2.ProjectsLocationsResource);
   @override
-  _i2.ProjectsSecretsResourceApi get secrets =>
+  _i2.ProjectsSecretsResource get secrets =>
       (super.noSuchMethod(Invocation.getter(#secrets),
-              returnValue: _FakeProjectsSecretsResourceApi())
-          as _i2.ProjectsSecretsResourceApi);
+              returnValue: _FakeProjectsSecretsResource())
+          as _i2.ProjectsSecretsResource);
 }
 
-/// A class which mocks [ProjectsSecretsResourceApi].
+/// A class which mocks [ProjectsSecretsResource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProjectsSecretsResourceApi extends _i1.Mock
-    implements _i2.ProjectsSecretsResourceApi {
-  MockProjectsSecretsResourceApi() {
+class MockProjectsSecretsResource extends _i1.Mock
+    implements _i2.ProjectsSecretsResource {
+  MockProjectsSecretsResource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.ProjectsSecretsVersionsResourceApi get versions =>
+  _i2.ProjectsSecretsVersionsResource get versions =>
       (super.noSuchMethod(Invocation.getter(#versions),
-              returnValue: _FakeProjectsSecretsVersionsResourceApi())
-          as _i2.ProjectsSecretsVersionsResourceApi);
+              returnValue: _FakeProjectsSecretsVersionsResource())
+          as _i2.ProjectsSecretsVersionsResource);
   @override
   _i3.Future<_i2.SecretVersion> addVersion(
           _i2.AddSecretVersionRequest? request, String? parent,
@@ -167,12 +165,12 @@ class MockProjectsSecretsResourceApi extends _i1.Mock
           as _i3.Future<_i2.TestIamPermissionsResponse>);
 }
 
-/// A class which mocks [ProjectsSecretsVersionsResourceApi].
+/// A class which mocks [ProjectsSecretsVersionsResource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProjectsSecretsVersionsResourceApi extends _i1.Mock
-    implements _i2.ProjectsSecretsVersionsResourceApi {
-  MockProjectsSecretsVersionsResourceApi() {
+class MockProjectsSecretsVersionsResource extends _i1.Mock
+    implements _i2.ProjectsSecretsVersionsResource {
+  MockProjectsSecretsVersionsResource() {
     _i1.throwOnMissingStub(this);
   }
 

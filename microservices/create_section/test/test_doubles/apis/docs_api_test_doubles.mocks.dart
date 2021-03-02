@@ -10,8 +10,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: comment_references
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeDocumentsResourceApi extends _i1.Fake
-    implements _i2.DocumentsResourceApi {}
+class _FakeDocumentsResource extends _i1.Fake implements _i2.DocumentsResource {
+}
 
 class _FakeBatchUpdateDocumentResponse extends _i1.Fake
     implements _i2.BatchUpdateDocumentResponse {}
@@ -27,17 +27,16 @@ class MockDocsApi extends _i1.Mock implements _i2.DocsApi {
   }
 
   @override
-  _i2.DocumentsResourceApi get documents => (super.noSuchMethod(
-      Invocation.getter(#documents),
-      returnValue: _FakeDocumentsResourceApi()) as _i2.DocumentsResourceApi);
+  _i2.DocumentsResource get documents =>
+      (super.noSuchMethod(Invocation.getter(#documents),
+          returnValue: _FakeDocumentsResource()) as _i2.DocumentsResource);
 }
 
-/// A class which mocks [DocumentsResourceApi].
+/// A class which mocks [DocumentsResource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDocumentsResourceApi extends _i1.Mock
-    implements _i2.DocumentsResourceApi {
-  MockDocumentsResourceApi() {
+class MockDocumentsResource extends _i1.Mock implements _i2.DocumentsResource {
+  MockDocumentsResource() {
     _i1.throwOnMissingStub(this);
   }
 
