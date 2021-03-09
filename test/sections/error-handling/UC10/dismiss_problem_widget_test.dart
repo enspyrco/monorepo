@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:redux/redux.dart';
 import 'package:the_process/middleware/app_middleware.dart';
 import 'package:the_process/models/app_state/app_state.dart';
-import 'package:the_process/models/navigation/page_data/problem_page_data.dart';
+import 'package:the_process/models/navigation/page_data/page_data.dart';
 import 'package:the_process/models/problems/problem.dart';
 import 'package:the_process/reducers/app_reducer.dart';
 import 'package:the_process/services/auth_service.dart';
@@ -35,9 +35,11 @@ void main() {
     testWidgets(
         'is removed from widget tree when ProblemPageData is removed from Store',
         (WidgetTester tester) async {
-      final problemPageData = ProblemPageData(problem: problem);
-      final store =
-          FakeStore(updates: (b) => b..pagesData.add(problemPageData));
+      final problemPageData = ProblemPageData(problem);
+      final state = AppState.init();
+      final updatedState = state.copyWith(
+          pagesData: state.pagesData.copyAndAdd(problemPageData));
+      final store = FakeStore(state: updatedState);
       final appWidget = AppWidgetHarness(store: store).widget;
 
       await tester.pumpWidget(appWidget);
@@ -45,7 +47,9 @@ void main() {
 
       expect(find.byType(ProblemPage), findsOneWidget);
 
-      store.updateState((b) => b..pagesData.remove(problemPageData));
+      store.updateState(store.state.copyWith(
+          pagesData: store.state.pagesData.copyAndRemove(problemPageData)));
+      store.updateState(store.state);
 
       await tester.pump();
 

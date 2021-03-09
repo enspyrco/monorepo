@@ -26,9 +26,9 @@ extension MakeThemeData on ThemeData {
 
 extension MakeThemeMode on ThemeMode {
   static ThemeMode from(BrightnessMode brightness) {
-    return (brightness.isLight)
+    return (brightness == BrightnessMode.light)
         ? ThemeMode.light
-        : (brightness.isDark)
+        : (brightness == BrightnessMode.dark)
             ? ThemeMode.dark
             : ThemeMode.system;
   }

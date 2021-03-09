@@ -1,9 +1,9 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:the_process/enums/auth/authorization_step.dart';
 import 'package:the_process/enums/auth/provider_name.dart';
 import 'package:the_process/models/profile/profile_data.dart';
 import 'package:the_process/models/sections/section.dart';
+import 'package:the_process/extensions/string_extensions.dart';
 
 extension ConvertDocumentSnapshot on DocumentSnapshot {
   ProfileData toProfileData() {
@@ -12,13 +12,13 @@ extension ConvertDocumentSnapshot on DocumentSnapshot {
     }
     // convert from the format of the firestore data (map of strings) to what
     // want (map of enums)
-    final authorizationStatusAsStrings = BuiltMap<String, String>(
-        data()?['authorizationStatus'] as Map<String, dynamic>? ??
-            <ProviderName, AuthorizationStep>{});
+    final authorizationStatusAsStrings =
+        data()?['authorizationStatus'] as Map<String, String>? ??
+            <String, String>{};
 
     final authorizationStatus = authorizationStatusAsStrings
         .map<ProviderName, AuthorizationStep>((name, step) => MapEntry(
-            ProviderName.valueOf(name), AuthorizationStep.valueOf(step)));
+            name.toProviderNameEnum(), step.toAuthorizationStepEnum()));
 
     return ProfileData(
         id: id,

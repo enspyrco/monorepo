@@ -49,6 +49,7 @@ app.*.map.json
 
 # generated files 
 *.g.dart
+*.freezed.dart
 # Ignored because the file updates whenever we hide/show files 
 .vscode/settings.json
 # Ignored as we use different files locally and in CI 

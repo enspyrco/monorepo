@@ -1,8 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:the_process/actions/app_init/plumb_streams.dart';
-import 'package:the_process/actions/auth/observe_auth_state.dart';
-import 'package:the_process/actions/platform/detect_platform.dart';
+import 'package:the_process/actions/app_init/plumb_streams_action.dart';
+import 'package:the_process/actions/auth/observe_auth_state_action.dart';
+import 'package:the_process/actions/platform/detect_platform_action.dart';
 import 'package:the_process/enums/auth/auth_step.dart';
+import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/widgets/app_widget/initializing_error_page.dart';
 import 'package:the_process/widgets/app_widget/initializing_indicator.dart';
 import 'package:the_process/widgets/sections/new_section_item.dart';
@@ -19,10 +20,11 @@ void main() {
         (WidgetTester tester) async {
       /// Build a test harness that updates the app state so the [InitialPage]
       /// builds the [HomePage].
-      final fakeAuthenticatedStore = FakeStore(
-          updates: (b) => b
-            ..authUserData.replace(AuthUserDataExamples.minimal)
-            ..authStep = AuthStep.waitingForInput);
+      final state = AppState.init();
+      final updatedState = state.copyWith(
+          authUserData: AuthUserDataExamples.minimal,
+          authStep: AuthStep.waitingForInput);
+      final fakeAuthenticatedStore = FakeStore(state: updatedState);
       final harness = AppWidgetHarness(store: fakeAuthenticatedStore);
 
       // Build the widget tree.
@@ -94,9 +96,9 @@ void main() {
       expect(initializingIndicatorFinder, findsNothing);
 
       // Check that all the expected actions were dispatched.
-      expect(harness.receivedActions, contains(ObserveAuthState()));
-      expect(harness.receivedActions, contains(DetectPlatform()));
-      expect(harness.receivedActions, contains(PlumbStreams()));
+      expect(harness.receivedActions, contains(ObserveAuthStateAction()));
+      expect(harness.receivedActions, contains(DetectPlatformAction()));
+      expect(harness.receivedActions, contains(PlumbStreamsAction()));
     });
   });
 }

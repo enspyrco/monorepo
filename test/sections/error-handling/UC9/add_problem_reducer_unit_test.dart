@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:the_process/actions/problems/add_problem.dart';
+import 'package:the_process/actions/problems/add_problem_action.dart';
 import 'package:the_process/models/app_state/app_state.dart';
-import 'package:the_process/models/navigation/page_data/problem_page_data.dart';
+import 'package:the_process/models/navigation/page_data/page_data.dart';
 import 'package:the_process/models/problems/problem.dart';
 import 'package:the_process/reducers/problems/add_problem.dart';
 
@@ -20,8 +20,10 @@ void main() {
           Problem(errorString: 'Problem error message', traceString: null);
 
       // Invokes the reducer to rebuild appState.
-      final newState = reducer.reducer(initialState,
-          AddProblem(errorString: problem.errorString, traceString: null));
+      final newState = reducer.reducer(
+          initialState,
+          AddProblemAction(
+              errorString: problem.errorString, traceString: null));
 
       expect(newState.problems.first.errorString, problem.errorString);
       expect(newState.pagesData.length, 2);

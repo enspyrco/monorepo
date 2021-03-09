@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:redux/redux.dart';
 import 'package:the_process/middleware/app_middleware.dart';
 import 'package:the_process/models/app_state/app_state.dart';
-import 'package:the_process/models/navigation/page_data/problem_page_data.dart';
+import 'package:the_process/models/navigation/page_data/page_data.dart';
 import 'package:the_process/models/problems/problem.dart';
 import 'package:the_process/reducers/app_reducer.dart';
 import 'package:the_process/services/auth_service.dart';
@@ -34,10 +34,12 @@ void main() {
     });
 
     testWidgets('is added to widget tree', (WidgetTester tester) async {
-      final problemPageData = ProblemPageData(problem: problem);
+      final problemPageData = ProblemPageData(problem);
 
-      final store =
-          FakeStore(updates: (b) => b..pagesData.add(problemPageData));
+      final state = AppState.init();
+      final updatedState = state.copyWith(
+          pagesData: state.pagesData.copyAndAdd(problemPageData));
+      final store = FakeStore(state: updatedState);
       final appWidget = AppWidgetHarness(store: store).widget;
 
       await tester.pumpWidget(appWidget);

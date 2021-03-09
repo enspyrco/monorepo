@@ -1,17 +1,17 @@
 import 'dart:async';
 
-import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:the_process/actions/profile/store_profile_data.dart';
+import 'package:the_process/actions/profile/store_profile_data_action.dart';
 import 'package:the_process/actions/redux_action.dart';
-import 'package:the_process/actions/sections/store_sections.dart';
-import 'package:the_process/actions/sections/update_sections_v_m.dart';
+import 'package:the_process/actions/sections/store_sections_action.dart';
+import 'package:the_process/actions/sections/update_sections_v_m_action.dart';
 import 'package:the_process/enums/auth/authorization_step.dart';
 import 'package:the_process/enums/auth/provider_name.dart';
 import 'package:the_process/enums/database/database_section.dart';
 import 'package:the_process/extensions/firestore_extensions.dart';
 import 'package:the_process/extensions/stream_extensions.dart';
 import 'package:the_process/models/sections/section.dart';
+import 'package:the_process/extensions/list_extensions.dart';
 
 class DatabaseService {
   /// The [FirebaseFirestore] instance
@@ -52,7 +52,7 @@ class DatabaseService {
         try {
           if (docSnapshot.exists) {
             _eventsController
-                .add(StoreProfileData(data: docSnapshot.toProfileData()));
+                .add(StoreProfileDataAction(data: docSnapshot.toProfileData()));
           }
         } catch (error, trace) {
           _eventsController.addProblem(error, trace);
@@ -90,7 +90,8 @@ class DatabaseService {
           _firestore.doc('new/$uid').snapshots().listen((doc) {
         try {
           if (!doc.exists) {
-            _eventsController.add(UpdateSectionsVM(creatingNewSection: false));
+            _eventsController
+                .add(UpdateSectionsVMAction(creatingNewSection: false));
             subscriptions[dbSection]?.cancel();
           }
         } catch (error, trace) {
@@ -120,8 +121,10 @@ class DatabaseService {
           for (final querySnapshot in collectionSnapshot.docs) {
             list.add(querySnapshot.toSection());
           }
-          _eventsController.add(UpdateSectionsVM(creatingNewSection: false));
-          _eventsController.add(StoreSections(list: BuiltList<Section>(list)));
+          _eventsController
+              .add(UpdateSectionsVMAction(creatingNewSection: false));
+          _eventsController
+              .add(StoreSectionsAction(list: list.toImmutableList()));
         } catch (error, trace) {
           _eventsController.addProblem(error, trace);
         }

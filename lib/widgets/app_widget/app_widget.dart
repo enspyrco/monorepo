@@ -1,16 +1,16 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
-import 'package:the_process/actions/app_init/plumb_streams.dart';
-import 'package:the_process/actions/auth/observe_auth_state.dart';
-import 'package:the_process/actions/navigation/remove_current_page.dart';
-import 'package:the_process/actions/platform/detect_platform.dart';
+import 'package:the_process/actions/app_init/plumb_streams_action.dart';
+import 'package:the_process/actions/auth/observe_auth_state_action.dart';
+import 'package:the_process/actions/navigation/remove_current_page_action.dart';
+import 'package:the_process/actions/platform/detect_platform_action.dart';
 import 'package:the_process/extensions/page_data_extensions.dart';
 import 'package:the_process/extensions/settings_extensions.dart';
 import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/models/navigation/page_data/page_data.dart';
 import 'package:the_process/models/settings/settings.dart';
+import 'package:the_process/utils/immutable_collections/immutable_list.dart';
 import 'package:the_process/utils/redux_bundle.dart';
 import 'package:the_process/utils/wrappers/firebase_wrapper.dart';
 import 'package:the_process/widgets/app_widget/initializing_error_page.dart';
@@ -54,11 +54,11 @@ class _AppWidgetState extends State<AppWidget> {
       /// This should happen once on app load, the various streams from the
       /// [FirebaseFirestore] database are changed but the [DatabaseService]'s
       /// [StreamController] stays connected to the redux [Store].
-      _store.dispatch(PlumbStreams());
+      _store.dispatch(PlumbStreamsAction());
 
       // dispatch initial actions
-      _store.dispatch(ObserveAuthState());
-      _store.dispatch(DetectPlatform());
+      _store.dispatch(ObserveAuthStateAction());
+      _store.dispatch(DetectPlatformAction());
     } catch (e) {
       setState(() {
         _error = e;
@@ -97,7 +97,7 @@ class _AppWidgetState extends State<AppWidget> {
             theme: MakeThemeData.from(settings.lightTheme),
             darkTheme: MakeThemeData.from(settings.darkTheme),
             themeMode: MakeThemeMode.from(settings.brightnessMode),
-            home: StoreConnector<AppState, BuiltList<PageData>>(
+            home: StoreConnector<AppState, ImmutableList<PageData>>(
               distinct: true,
               converter: (store) => store.state.pagesData,
               builder: (context, pagesData) => Navigator(
@@ -108,7 +108,7 @@ class _AppWidgetState extends State<AppWidget> {
                     }
 
                     if (route.isCurrent) {
-                      _store.dispatch(RemoveCurrentPage());
+                      _store.dispatch(RemoveCurrentPageAction());
                     }
 
                     return true;

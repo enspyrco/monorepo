@@ -5,7 +5,10 @@ analyzer:
     todo: error
     unused_import: error
     import_of_legacy_library_into_null_safe: ignore
-  exclude: [build/**]
+  exclude: 
+    - build/**
+    - lib/**/*.g.dart
+    - lib/**/*.freezed.dart
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false

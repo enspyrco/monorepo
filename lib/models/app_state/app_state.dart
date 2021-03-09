@@ -1,61 +1,72 @@
-library app_state;
-
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:the_process/enums/auth/auth_step.dart';
-import 'package:the_process/enums/navigation/nav_bar_selection.dart';
 import 'package:the_process/models/auth/auth_user_data.dart';
-import 'package:the_process/models/navigation/page_data/initial_page_data.dart';
 import 'package:the_process/models/navigation/page_data/page_data.dart';
 import 'package:the_process/models/problems/problem.dart';
 import 'package:the_process/models/profile/profile_data.dart';
 import 'package:the_process/models/sections/sections_v_m.dart';
 import 'package:the_process/models/settings/settings.dart';
 import 'package:the_process/models/team/team_member.dart';
-import 'package:the_process/serializers.dart';
+import 'package:the_process/utils/immutable_collections/immutable_list.dart';
+import 'package:the_process/extensions/list_extensions.dart';
 
+part 'app_state.freezed.dart';
 part 'app_state.g.dart';
 
-abstract class AppState implements Built<AppState, AppStateBuilder> {
-  /// Teams
-  TeamMember? get teamMember;
+/// Teams
+/// [TeamMember]? teamMember,
+///
+/// Auth
+/// required [AuthStep] authStep,
+/// [AuthUserData]? authUserData,
+///
+/// Navigation
+/// required [List<PageData>] pagesData,
+///
+/// Problems
+/// required [List<Problem>] problems,
+///
+/// Profile
+/// [ProfileData]? profileData,
+///
+/// Sections
+/// required [SectionsVM] sections,
+///
+/// Settings
+/// required [Settings] settings,
+@freezed
+class AppState with _$AppState {
+  factory AppState({
+    /// Teams
+    TeamMember? teamMember,
 
-  /// Auth
-  AuthStep get authStep;
-  AuthUserData? get authUserData;
+    /// Auth
+    required AuthStep authStep,
+    AuthUserData? authUserData,
 
-  /// Navigation
-  BuiltList<PageData> get pagesData;
-  NavBarSelection get navSelection;
+    /// Navigation
+    required ImmutableList<PageData> pagesData,
 
-  /// Problems
-  BuiltList<Problem> get problems;
+    /// Problems
+    required ImmutableList<Problem> problems,
 
-  /// Profile
-  ProfileData? get profileData;
+    /// Profile
+    ProfileData? profileData,
 
-  /// Sections
-  SectionsVM? get sections;
+    /// Sections
+    required SectionsVM sections,
 
-  /// Settings
-  Settings get settings;
+    /// Settings
+    required Settings settings,
+  }) = _AppState;
 
-  AppState._();
+  factory AppState.fromJson(Map<String, dynamic> json) =>
+      _$AppStateFromJson(json);
 
-  factory AppState.init() => AppState((a) => a
-    ..pagesData = ListBuilder<PageData>(<PageData>[InitialPageData()])
-    ..settings = Settings.initBuilder()
-    ..authStep = AuthStep.checking
-    ..navSelection = NavBarSelection.sections
-    ..sections = SectionsVM.initialBuilder);
-
-  factory AppState([void Function(AppStateBuilder) updates]) = _$AppState;
-
-  Object toJson() => serializers.serializeWith(AppState.serializer, this);
-
-  // static AppState fromJson(String jsonString) =>
-  //     serializers.deserializeWith(AppState.serializer, json.decode(jsonString));
-
-  static Serializer<AppState> get serializer => _$appStateSerializer;
+  factory AppState.init() => AppState(
+      problems: ImmutableList(),
+      pagesData: <PageData>[InitialPageData()].toImmutableList(),
+      authStep: AuthStep.checking,
+      settings: Settings.init(),
+      sections: SectionsVM.init());
 }

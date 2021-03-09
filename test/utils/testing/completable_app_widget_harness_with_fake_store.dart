@@ -42,8 +42,7 @@ class CompletableAppWidgetHarnessWithFakeStore {
   void completeFirebase() => _firebaseCompleter.complete();
   void completeRedux() => _reduxCompleter.complete(_fakeStore);
 
-  void updateAppState(dynamic Function(AppStateBuilder) updates) =>
-      _fakeStore.updateState(updates);
+  void updateAppState(AppState state) => _fakeStore.updateState(state);
 
   AppState get state => _fakeStore.state;
 

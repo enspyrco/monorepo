@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_process/actions/problems/remove_problem.dart';
+import 'package:the_process/actions/problems/remove_problem_action.dart';
 import 'package:the_process/extensions/flutter_extensions.dart';
 import 'package:the_process/models/problems/problem.dart';
 
@@ -19,7 +19,8 @@ class ProblemPage extends StatelessWidget {
       ),
       actions: [
         OutlinedButton(
-            onPressed: () => context.dispatch(RemoveProblem(problem: problem)),
+            onPressed: () =>
+                context.dispatch(RemoveProblemAction(problem: problem)),
             child: Text('Dismiss'))
       ],
     );

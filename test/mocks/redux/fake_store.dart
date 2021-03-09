@@ -9,19 +9,19 @@ import 'empty_reducer.dart';
 /// A [Store] with no reducers that takes an optional [AppState] and
 /// keeps a list of dispatched actions that can be queried.
 class FakeStore implements Store<AppState> {
-  FakeStore({dynamic Function(AppStateBuilder)? updates})
-      : _state = (updates == null)
-            ? AppState.init()
-            : AppState.init().rebuild(updates),
+  FakeStore({AppState? state})
+      : _state = state ?? AppState.init(),
         _changeController = StreamController<AppState>.broadcast(),
         reducer = EmptyReducer();
 
   // The list of dispatched actions that can be queried by a test.
   List<ReduxAction> dispatchedActions = <ReduxAction>[];
 
+  // AppState get state => _state;
+
   //
-  void updateState(dynamic Function(AppStateBuilder) updates) {
-    _state = (_state.toBuilder()..update(updates)).build();
+  void updateState(AppState state) {
+    _state = state;
     _changeController.add(_state);
   }
 

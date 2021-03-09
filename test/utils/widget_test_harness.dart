@@ -12,31 +12,17 @@ class WidgetTestHarness {
   final FakeStore _fakeStore;
   final Widget _widgetUnderTest;
 
-  WidgetTestHarness(
-      {required Widget widgetUnderTest,
-      FakeStore? fakeStore,
-      dynamic Function(AppStateBuilder)? stateUpdates})
+  WidgetTestHarness({required Widget widgetUnderTest, FakeStore? fakeStore})
       : _fakeStore = fakeStore ?? FakeStore(),
-        _widgetUnderTest = widgetUnderTest {
-    if (stateUpdates != null) {
-      _fakeStore.updateState(stateUpdates);
-    }
-  }
-
-  // Allow the test to update the app state.
-  //
-  // We have a style guide entry asking contributors to consider splitting up tests
-  // rather than changing the app state and continuing the test.
-  //
-  // See Style Guide > CONSIDER splitting up widget tests that change the app state
-  void updateAppState(dynamic Function(AppStateBuilder) updates) =>
-      _fakeStore.updateState(updates);
+        _widgetUnderTest = widgetUnderTest;
 
   Widget get widget => StoreProvider<AppState>(
       store: _fakeStore,
       child: MaterialApp(home: Scaffold(body: _widgetUnderTest)));
 
   AppState get state => _fakeStore.state;
+
+  void updateAppState(AppState state) => _fakeStore.updateState(state);
 
   List<ReduxAction> get receivedActions => _fakeStore.dispatchedActions;
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:the_process/actions/auth/sign_in_with_apple.dart';
-import 'package:the_process/actions/auth/sign_in_with_google.dart';
+import 'package:the_process/actions/auth/sign_in_with_apple_action.dart';
+import 'package:the_process/actions/auth/sign_in_with_google_action.dart';
 import 'package:the_process/enums/platform/platform_enum.dart';
 import 'package:the_process/extensions/flutter_extensions.dart';
 import 'package:the_process/models/app_state/app_state.dart';
@@ -20,9 +20,11 @@ class AuthPage extends StatelessWidget {
                       platform == PlatformEnum.iOS)
                   ? AppleSignInButton(
                       style: AppleButtonStyle.black,
-                      onPressed: () => context.dispatch(SignInWithApple()))
+                      onPressed: () =>
+                          context.dispatch(SignInWithAppleAction()))
                   : GoogleSignInButton(
-                      onPressed: () => context.dispatch(SignInWithGoogle()));
+                      onPressed: () =>
+                          context.dispatch(SignInWithGoogleAction()));
             }));
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_process/actions/platform/launch_url.dart';
+import 'package:the_process/actions/platform/launch_url_action.dart';
 import 'package:the_process/extensions/flutter_extensions.dart';
 
 class SectionFolderButton extends StatelessWidget {
@@ -12,7 +12,7 @@ class SectionFolderButton extends StatelessWidget {
     final folderURL = 'https://drive.google.com/drive/folders/$folderId';
     return IconButton(
       icon: Icon(Icons.folder_open_outlined),
-      onPressed: () => context.dispatch(LaunchUrl(url: folderURL)),
+      onPressed: () => context.dispatch(LaunchUrlAction(url: folderURL)),
     );
   }
 }

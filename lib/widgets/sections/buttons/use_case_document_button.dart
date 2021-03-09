@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_process/actions/platform/launch_url.dart';
+import 'package:the_process/actions/platform/launch_url_action.dart';
 import 'package:the_process/extensions/flutter_extensions.dart';
 
 class UseCaseDocumentButton extends StatelessWidget {
@@ -12,7 +12,9 @@ class UseCaseDocumentButton extends StatelessWidget {
     final documentURL = 'https://docs.google.com/document/d/$documentId/edit';
     return IconButton(
       icon: Icon(Icons.text_snippet),
-      onPressed: () => context.dispatch(LaunchUrl(url: documentURL)),
+      onPressed: () => context.dispatch(LaunchUrlAction(url: documentURL)),
     );
   }
 }
+
+class LaunchUrlAAction {}

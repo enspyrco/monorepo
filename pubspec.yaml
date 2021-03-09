@@ -6,49 +6,43 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0-0 <3.0.0"
-
-dependency_overrides:
-  crypto: ^3.0.0-nullsafety.0
-  firebase_core: ^0.8.0-nullsafety.1
-  firebase_core_platform_interface: ^4.0.0-nullsafety.0
-  firebase_core_web: ^0.3.0-nullsafety.0
-  quiver: ^3.0.0-nullsafety.2
-  plugin_platform_interface: ^1.1.0-nullsafety.2
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
   # auth
-  firebase_auth: ^0.21.0-nullsafety.0
-  google_sign_in: ^5.0.0-nullsafety
-  sign_in_with_apple: ^3.0.0-nullsafety.0
+  firebase_auth: any
+  google_sign_in: any
+  sign_in_with_apple: any
 
   # built_value
-  built_collection: 5.0.0-nullsafety.0
-  built_value: 8.0.0-nullsafety.0
+  built_collection: any
+  built_value: any
+  freezed_annotation: any
+  json_serializable: any
   
   # database
-  cloud_firestore: ^0.17.0-1.0.nullsafety.0
+  cloud_firestore: any
 
   # firebase 
-  firebase_core: ^0.8.0-nullsafety.1
+  firebase_core: any
 
   # # messaging 
   # firebase_messaging: ^9.0.0-1.0.nullsafety.0
 
   # platform 
-  url_launcher: ^6.0.0-nullsafety.1
+  url_launcher: any
 
   # redux
-  redux:
-  flutter_redux:
-  redux_remote_devtools:
+  redux: any
+  flutter_redux: any
+  redux_remote_devtools: any
 
   # utils 
-  uuid: ^3.0.0-nullsafety.0
-  http: ^0.13.0
+  uuid: any
+  http: any
 
 dev_dependencies:
   integration_test:
@@ -57,11 +51,13 @@ dev_dependencies:
     sdk: flutter
   flutter_driver:
     sdk: flutter
-  test:
-  mockito: ^5.0.0-nullsafety.1
+  test: any
+  mockito: any
   
-  build_runner: ^1.0.0
-  built_value_generator: 8.0.0-nullsafety.0
+  build_runner: any
+  # built_value_generator: 8.0.0-nullsafety.0
+  freezed: any
+  
 
 flutter:
   uses-material-design: true

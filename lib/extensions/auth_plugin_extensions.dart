@@ -1,16 +1,16 @@
 import 'dart:async';
 
-import 'package:built_collection/built_collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:the_process/actions/auth/store_auth_user_data.dart';
+import 'package:the_process/actions/auth/store_auth_user_data_action.dart';
 import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/extensions/stream_extensions.dart';
 import 'package:the_process/models/auth/apple_id_credential.dart';
 import 'package:the_process/models/auth/auth_provider_data.dart';
 import 'package:the_process/models/auth/auth_user_data.dart';
 import 'package:the_process/models/auth/google_sign_in_credential.dart';
+import 'package:the_process/utils/immutable_collections/immutable_list.dart';
 
 extension GoogleSignInAuthenticationExt on GoogleSignInAuthentication {
   GoogleSignInCredential toModel() => GoogleSignInCredential(
@@ -39,8 +39,8 @@ extension ConnectAndConvert on FirebaseAuth {
     // dispatch to the store with the controller
     return authStateChanges().listen((User? firebaseUser) {
       try {
-        controller
-            .add(StoreAuthUserData(authUserData: firebaseUser?.toModel()));
+        controller.add(
+            StoreAuthUserDataAction(authUserData: firebaseUser?.toModel()));
       } catch (error, trace) {
         controller.addProblem(error, trace);
       }
@@ -50,18 +50,17 @@ extension ConnectAndConvert on FirebaseAuth {
 
 extension FirebaseUserExt on User {
   AuthUserData toModel() => AuthUserData(
-        uid: uid,
-        displayName: displayName,
-        photoURL: photoURL,
-        email: email,
-        phoneNumber: phoneNumber,
-        createdOn: metadata.creationTime?.toUtc(),
-        lastSignedInOn: metadata.lastSignInTime?.toUtc(),
-        isAnonymous: isAnonymous,
-        emailVerified: emailVerified,
-        providers: BuiltList(providerData
-            .map<AuthProviderData>((userInfo) => userInfo.toModel())),
-      );
+      uid: uid,
+      displayName: displayName,
+      photoURL: photoURL,
+      email: email,
+      phoneNumber: phoneNumber,
+      createdOn: metadata.creationTime?.toUtc(),
+      lastSignedInOn: metadata.lastSignInTime?.toUtc(),
+      isAnonymous: isAnonymous,
+      emailVerified: emailVerified,
+      providers: ImmutableList.fromIterable(providerData
+          .map<AuthProviderData>((userInfo) => userInfo.toModel())));
 }
 
 extension UserInfoExt on UserInfo {
