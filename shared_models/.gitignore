@@ -11,3 +11,7 @@ build/
 
 # Directory created by dartdoc
 doc/api/
+
+# Don't ignore generated files so we can depend on the git repo
+!*.freezed.dart
+!*.g.dart
