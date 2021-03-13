@@ -4,14 +4,12 @@ import 'dart:convert';
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:flireator/actions/redux_action.dart';
 import 'package:flireator/utils/serializers.dart';
 import 'package:meta/meta.dart';
 
 part 'auth_provider_data.g.dart';
 
-abstract class AuthProviderData extends Object
-    with ReduxAction
+abstract class AuthProviderData
     implements Built<AuthProviderData, AuthProviderDataBuilder> {
   /// The provider identifier.
   String get providerId;
@@ -57,7 +55,4 @@ abstract class AuthProviderData extends Object
 
   static Serializer<AuthProviderData> get serializer =>
       _$authProviderDataSerializer;
-
-  @override
-  String toString() => 'AUTH_PROVIDER_DATA';
 }

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flireator/actions/auth/store_user_data.dart';
+import 'package:flireator/actions/auth/store_auth_data.dart';
 import 'package:flireator/actions/redux_action.dart';
 import 'package:flireator/utils/problems_utils.dart';
 
@@ -20,7 +20,7 @@ extension ConnectAndConvert on FirebaseAuth {
     // dispatch to the store with the controller
     return onAuthStateChanged.listen((firebaseUser) {
       try {
-        controller.add(StoreUserData(userData: firebaseUser.toData()));
+        controller.add(StoreAuthData(data: firebaseUser.toData()));
       } catch (error, trace) {
         handleProblem(error, trace);
       }

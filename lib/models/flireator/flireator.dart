@@ -2,8 +2,11 @@ library flireator;
 
 import 'dart:convert';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:flireator/models/credentials/credential_info.dart';
+import 'package:flireator/models/flireator/config_options.dart';
 import 'package:flireator/utils/serializers.dart';
 import 'package:meta/meta.dart';
 
@@ -15,13 +18,17 @@ abstract class Flireator implements Built<Flireator, FlireatorBuilder> {
   String get displayName;
   @nullable
   String get photoURL;
+  @nullable
+  ConfigOptions get configOptions;
+  BuiltMap<String, CredentialInfo> get credentials;
 
   Flireator._();
 
   factory Flireator(
       {@required String id,
       @required String displayName,
-      @required String photoURL}) = _$Flireator._;
+      @required String photoURL,
+      BuiltMap<String, CredentialInfo> credentials}) = _$Flireator._;
 
   factory Flireator.by([void Function(FlireatorBuilder) updates]) = _$Flireator;
 

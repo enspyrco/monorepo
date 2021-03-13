@@ -8,9 +8,10 @@ part of 'serializers.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AppState.serializer)
+      ..add(AuthData.serializer)
       ..add(AuthProviderData.serializer)
-      ..add(AuthStep.serializer)
       ..add(BrightnessMode.serializer)
+      ..add(ConfigOptions.serializer)
       ..add(ConnectAuthStateToStore.serializer)
       ..add(CredentialInfo.serializer)
       ..add(DisplayProblem.serializer)
@@ -22,21 +23,25 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(PlumbServices.serializer)
       ..add(Problem.serializer)
       ..add(Settings.serializer)
+      ..add(SignInStep.serializer)
       ..add(SignInWithApple.serializer)
       ..add(SignOut.serializer)
-      ..add(StoreAuthStep.serializer)
+      ..add(StoreAuthData.serializer)
       ..add(StoreGitHubToken.serializer)
-      ..add(StoreUserData.serializer)
+      ..add(StoreSignInStep.serializer)
       ..add(ThemeBrightness.serializer)
       ..add(ThemeColors.serializer)
       ..add(ThemeSet.serializer)
-      ..add(UserData.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(AuthProviderData)]),
           () => new ListBuilder<AuthProviderData>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Problem)]),
           () => new ListBuilder<Problem>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap,
+              const [const FullType(String), const FullType(CredentialInfo)]),
+          () => new MapBuilder<String, CredentialInfo>())
       ..addBuilderFactory(
           const FullType(
               BuiltMap, const [const FullType(String), const FullType(Object)]),

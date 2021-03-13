@@ -161,6 +161,18 @@ class _$AuthProviderData extends AuthProviderData {
             email.hashCode),
         phoneNumber.hashCode));
   }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('AuthProviderData')
+          ..add('providerId', providerId)
+          ..add('uid', uid)
+          ..add('displayName', displayName)
+          ..add('photoUrl', photoUrl)
+          ..add('email', email)
+          ..add('phoneNumber', phoneNumber))
+        .toString();
+  }
 }
 
 class AuthProviderDataBuilder

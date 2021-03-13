@@ -1,28 +1,25 @@
-library user_data;
+library auth_data;
 
 import 'dart:convert';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:flireator/actions/redux_action.dart';
 import 'package:flireator/models/auth/auth_provider_data.dart';
 import 'package:flireator/utils/serializers.dart';
 import 'package:meta/meta.dart';
 
-part 'user_data.g.dart';
+part 'auth_data.g.dart';
 
 /// [createdOn] and [lastSignedInOn] are in UTC as required for serialization
-abstract class UserData extends Object
-    with ReduxAction
-    implements Built<UserData, UserDataBuilder> {
+abstract class AuthData implements Built<AuthData, AuthDataBuilder> {
   String get uid;
   @nullable
   String get providerId;
   @nullable
   String get displayName;
   @nullable
-  String get photoUrl;
+  String get photoURL;
   @nullable
   String get email;
   @nullable
@@ -34,6 +31,8 @@ abstract class UserData extends Object
   bool get isEmailVerified;
   BuiltList<AuthProviderData> get providers;
 
+  AuthData._();
+
   @memoized
   bool get hasGitHub =>
       providerId == 'github.com' ||
@@ -41,13 +40,11 @@ abstract class UserData extends Object
           .where((provider) => provider.providerId == 'github.com')
           .isNotEmpty;
 
-  UserData._();
-
-  factory UserData({
+  factory AuthData({
     @required String uid,
     @required String providerId,
     @required String displayName,
-    @required String photoUrl,
+    @required String photoURL,
     @required String email,
     @required String phoneNumber,
     @required DateTime createdOn,
@@ -55,17 +52,14 @@ abstract class UserData extends Object
     @required bool isAnonymous,
     @required bool isEmailVerified,
     @required BuiltList<AuthProviderData> providers,
-  }) = _$UserData._;
+  }) = _$AuthData._;
 
-  factory UserData.by([void Function(UserDataBuilder) updates]) = _$UserData;
+  factory AuthData.by([void Function(AuthDataBuilder) updates]) = _$AuthData;
 
-  Object toJson() => serializers.serializeWith(UserData.serializer, this);
+  Object toJson() => serializers.serializeWith(AuthData.serializer, this);
 
-  static UserData fromJson(String jsonString) =>
-      serializers.deserializeWith(UserData.serializer, json.decode(jsonString));
+  static AuthData fromJson(String jsonString) =>
+      serializers.deserializeWith(AuthData.serializer, json.decode(jsonString));
 
-  static Serializer<UserData> get serializer => _$userDataSerializer;
-
-  @override
-  String toString() => 'USER_DATA';
+  static Serializer<AuthData> get serializer => _$authDataSerializer;
 }

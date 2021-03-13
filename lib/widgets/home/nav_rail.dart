@@ -1,10 +1,8 @@
-import 'package:flireator/actions/navigation/navigate_to_profile.dart';
 import 'package:flireator/actions/navigation/store_nav_selection.dart';
 import 'package:flireator/enums/navigation/nav_selection.dart';
 import 'package:flireator/extensions/flutter/build_context_extensions.dart';
 import 'package:flireator/models/app/app_state.dart';
-import 'package:flireator/models/flireator/flireator.dart';
-import 'package:flireator/widgets/shared/profile_avatar.dart';
+import 'package:flireator/widgets/home/sign_out_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
@@ -42,20 +40,7 @@ class NavRail extends StatelessWidget {
                   ],
                 ),
               ),
-              StoreConnector<AppState, Flireator>(
-                distinct: true,
-                converter: (store) => store.state.flireator,
-                builder: (context, flireator) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: (flireator == null)
-                        ? CircularProgressIndicator()
-                        : ProfileAvatar(flireator.photoURL, onPressed: () {
-                            context.dispatch(NavigateToProfile());
-                          }),
-                  );
-                },
-              ),
+              SignOutAvatar(),
             ],
           );
         });

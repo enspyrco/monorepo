@@ -1,4 +1,6 @@
 // Imports the Flutter Driver API.
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
@@ -11,6 +13,14 @@ void main() {
     // Connect to the Flutter driver before running any tests.
     setUpAll(() async {
       driver = await FlutterDriver.connect();
+      if (const bool.fromEnvironment('EMULATORS')) {
+        WidgetsFlutterBinding.ensureInitialized();
+        await Firestore.instance.settings(
+          host: 'localhost:8080',
+          sslEnabled: false,
+          persistenceEnabled: false,
+        );
+      }
     });
 
     // Close the connection to the driver after the tests have completed.

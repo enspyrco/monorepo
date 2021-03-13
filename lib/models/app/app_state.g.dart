@@ -28,9 +28,9 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       'navSelection',
       serializers.serialize(object.navSelection,
           specifiedType: const FullType(NavSelection)),
-      'authStep',
-      serializers.serialize(object.authStep,
-          specifiedType: const FullType(AuthStep)),
+      'signInStep',
+      serializers.serialize(object.signInStep,
+          specifiedType: const FullType(SignInStep)),
     ];
     if (object.displayProblem != null) {
       result
@@ -38,11 +38,11 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         ..add(serializers.serialize(object.displayProblem,
             specifiedType: const FullType(Problem)));
     }
-    if (object.userData != null) {
+    if (object.authData != null) {
       result
-        ..add('userData')
-        ..add(serializers.serialize(object.userData,
-            specifiedType: const FullType(UserData)));
+        ..add('authData')
+        ..add(serializers.serialize(object.authData,
+            specifiedType: const FullType(AuthData)));
     }
     if (object.flireator != null) {
       result
@@ -88,13 +88,13 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
           result.navSelection = serializers.deserialize(value,
               specifiedType: const FullType(NavSelection)) as NavSelection;
           break;
-        case 'authStep':
-          result.authStep = serializers.deserialize(value,
-              specifiedType: const FullType(AuthStep)) as AuthStep;
+        case 'signInStep':
+          result.signInStep = serializers.deserialize(value,
+              specifiedType: const FullType(SignInStep)) as SignInStep;
           break;
-        case 'userData':
-          result.userData.replace(serializers.deserialize(value,
-              specifiedType: const FullType(UserData)) as UserData);
+        case 'authData':
+          result.authData.replace(serializers.deserialize(value,
+              specifiedType: const FullType(AuthData)) as AuthData);
           break;
         case 'flireator':
           result.flireator.replace(serializers.deserialize(value,
@@ -121,9 +121,9 @@ class _$AppState extends AppState {
   @override
   final NavSelection navSelection;
   @override
-  final AuthStep authStep;
+  final SignInStep signInStep;
   @override
-  final UserData userData;
+  final AuthData authData;
   @override
   final Flireator flireator;
   @override
@@ -137,8 +137,8 @@ class _$AppState extends AppState {
       this.displayProblem,
       this.settings,
       this.navSelection,
-      this.authStep,
-      this.userData,
+      this.signInStep,
+      this.authData,
       this.flireator,
       this.gitHubToken})
       : super._() {
@@ -151,8 +151,8 @@ class _$AppState extends AppState {
     if (navSelection == null) {
       throw new BuiltValueNullFieldError('AppState', 'navSelection');
     }
-    if (authStep == null) {
-      throw new BuiltValueNullFieldError('AppState', 'authStep');
+    if (signInStep == null) {
+      throw new BuiltValueNullFieldError('AppState', 'signInStep');
     }
   }
 
@@ -171,8 +171,8 @@ class _$AppState extends AppState {
         displayProblem == other.displayProblem &&
         settings == other.settings &&
         navSelection == other.navSelection &&
-        authStep == other.authStep &&
-        userData == other.userData &&
+        signInStep == other.signInStep &&
+        authData == other.authData &&
         flireator == other.flireator &&
         gitHubToken == other.gitHubToken;
   }
@@ -189,8 +189,8 @@ class _$AppState extends AppState {
                                 displayProblem.hashCode),
                             settings.hashCode),
                         navSelection.hashCode),
-                    authStep.hashCode),
-                userData.hashCode),
+                    signInStep.hashCode),
+                authData.hashCode),
             flireator.hashCode),
         gitHubToken.hashCode));
   }
@@ -202,8 +202,8 @@ class _$AppState extends AppState {
           ..add('displayProblem', displayProblem)
           ..add('settings', settings)
           ..add('navSelection', navSelection)
-          ..add('authStep', authStep)
-          ..add('userData', userData)
+          ..add('signInStep', signInStep)
+          ..add('authData', authData)
           ..add('flireator', flireator)
           ..add('gitHubToken', gitHubToken))
         .toString();
@@ -233,13 +233,13 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   set navSelection(NavSelection navSelection) =>
       _$this._navSelection = navSelection;
 
-  AuthStep _authStep;
-  AuthStep get authStep => _$this._authStep;
-  set authStep(AuthStep authStep) => _$this._authStep = authStep;
+  SignInStep _signInStep;
+  SignInStep get signInStep => _$this._signInStep;
+  set signInStep(SignInStep signInStep) => _$this._signInStep = signInStep;
 
-  UserDataBuilder _userData;
-  UserDataBuilder get userData => _$this._userData ??= new UserDataBuilder();
-  set userData(UserDataBuilder userData) => _$this._userData = userData;
+  AuthDataBuilder _authData;
+  AuthDataBuilder get authData => _$this._authData ??= new AuthDataBuilder();
+  set authData(AuthDataBuilder authData) => _$this._authData = authData;
 
   FlireatorBuilder _flireator;
   FlireatorBuilder get flireator =>
@@ -258,8 +258,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _displayProblem = _$v.displayProblem?.toBuilder();
       _settings = _$v.settings?.toBuilder();
       _navSelection = _$v.navSelection;
-      _authStep = _$v.authStep;
-      _userData = _$v.userData?.toBuilder();
+      _signInStep = _$v.signInStep;
+      _authData = _$v.authData?.toBuilder();
       _flireator = _$v.flireator?.toBuilder();
       _gitHubToken = _$v.gitHubToken;
       _$v = null;
@@ -290,8 +290,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               displayProblem: _displayProblem?.build(),
               settings: settings.build(),
               navSelection: navSelection,
-              authStep: authStep,
-              userData: _userData?.build(),
+              signInStep: signInStep,
+              authData: _authData?.build(),
               flireator: _flireator?.build(),
               gitHubToken: gitHubToken);
     } catch (_) {
@@ -304,8 +304,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
         _$failedField = 'settings';
         settings.build();
 
-        _$failedField = 'userData';
-        _userData?.build();
+        _$failedField = 'authData';
+        _authData?.build();
         _$failedField = 'flireator';
         _flireator?.build();
       } catch (e) {

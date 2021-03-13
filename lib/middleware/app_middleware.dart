@@ -1,13 +1,13 @@
-import 'package:flireator/middleware/auth/connect_auth_state.dart';
-import 'package:flireator/middleware/auth/plumb_services.dart';
-import 'package:flireator/middleware/auth/request_github_auth.dart';
-import 'package:flireator/middleware/auth/sign_in_with_apple.dart';
-import 'package:flireator/middleware/auth/sign_out.dart';
-import 'package:flireator/middleware/auth/store_git_hub_token.dart';
-import 'package:flireator/middleware/auth/store_user_data.dart';
-import 'package:flireator/middleware/git_hub/retrieve_git_hub_repositories.dart';
-import 'package:flireator/middleware/navigation/launch_url.dart';
-import 'package:flireator/middleware/navigation/navigate_to_profile.dart';
+import 'package:flireator/middleware/auth/connect_auth_state_middleware.dart';
+import 'package:flireator/middleware/auth/plumb_services_middleware.dart';
+import 'package:flireator/middleware/auth/request_github_auth_middleware.dart';
+import 'package:flireator/middleware/auth/retrieve_flireator_data_middleware.dart';
+import 'package:flireator/middleware/auth/sign_in_with_apple_middleware.dart';
+import 'package:flireator/middleware/auth/sign_out_middleware.dart';
+import 'package:flireator/middleware/auth/store_auth_data_middleware.dart';
+import 'package:flireator/middleware/git_hub/retrieve_git_hub_repositories_middleware.dart';
+import 'package:flireator/middleware/navigation/launch_url_middleware.dart';
+import 'package:flireator/middleware/navigation/navigate_to_profile_middleware.dart';
 import 'package:flireator/models/app/app_state.dart';
 import 'package:flireator/services/auth/auth_service.dart';
 import 'package:flireator/services/database/database_service.dart';
@@ -37,10 +37,10 @@ List<Middleware<AppState>> createAppMiddleware({
     ConnectAuthStateMiddleware(authService),
     PlumbServicesMiddleware(authService, databaseService, navigationService),
     RequestGitHubAuthMiddleware(platformService),
+    RetrieveFlireatorDataMiddleware(databaseService),
     SignInWithAppleMiddleware(authService, databaseService),
     SignOutMiddleware(authService, navigationService),
-    StoreGitHubTokenMiddleware(authService, databaseService, gitHubService),
-    StoreUserDataMiddleware(authService, navigationService, databaseService),
+    StoreAuthDataMiddleware(authService, navigationService, databaseService),
     // GitHub
     RetrieveGitHubRepositoriesMiddleware(gitHubService),
     // Navigation

@@ -1,10 +1,11 @@
 import 'dart:async';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flireator/actions/redux_action.dart';
 import 'package:flireator/enums/database/database_section.dart';
-import 'package:flireator/models/auth/user_data.dart';
-import 'package:flireator/models/flireator/credential_info.dart';
+import 'package:flireator/models/credentials/credential_info.dart';
+import 'package:flireator/models/flireator/flireator.dart';
 import 'package:flireator/services/database/database_service.dart';
 
 class FirestoreService implements DatabaseService {
@@ -31,20 +32,6 @@ class FirestoreService implements DatabaseService {
 
   FirestoreService(Firestore firestore) : _firestore = firestore;
 
-  /// Adds a credential doc if there is not aready one present with that docId
-  @override
-  Future<void> offerCredential(
-      String userId, String providerId, CredentialInfo credential) async {
-    final docPath = '/users/$userId/credentials/$providerId';
-
-    final doc = await _firestore.document(docPath).get();
-
-    if (!doc.exists) {
-      await doc.reference.setData(credential.toJson());
-    }
-    return Future.value();
-  }
-
   @override
   Future<String> retrieveStoredToken(String userId) {
     return _firestore
@@ -53,14 +40,14 @@ class FirestoreService implements DatabaseService {
         .then((snapshot) => snapshot['gitHubToken'] as String);
   }
 
-  /// Adds the displayName and photoURL if not already present
   @override
-  Future<void> offerUserInfo(UserData userData) {
-    return _firestore
-        .document('/users/${userData.uid}')
-        .setData(<String, dynamic>{
-      'displayName': userData.displayName,
-      'photoURL': userData.photoUrl
-    }, merge: true);
+  Future<Flireator> retrieveFlireatorData(String userId) async {
+    final docSnapshot =
+        await _firestore.document('/users/$userId').snapshots().first;
+    return Flireator(
+        id: userId,
+        displayName: docSnapshot.data['displayName'],
+        photoURL: docSnapshot.data['photoURL'],
+        credentials: BuiltMap<String, CredentialInfo>({}));
   }
 }

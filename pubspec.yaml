@@ -45,3 +45,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/git_hub_logo/GitHub-Mark-120px-plus.png
+    - assets/apple_logo/apple_logo_PNG19692.png
+    - assets/google_logo/google_PNG19630.png

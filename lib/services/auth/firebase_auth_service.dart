@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flireator/actions/auth/store_sign_in_step.dart';
 import 'package:flireator/actions/redux_action.dart';
+import 'package:flireator/enums/auth/sign_in_step.dart';
 import 'package:flireator/extensions/auth/firebase_auth_extensions.dart';
 import 'package:flireator/extensions/auth/firebase_user_extensions.dart';
-import 'package:flireator/models/auth/user_data.dart';
+import 'package:flireator/models/auth/auth_data.dart';
 import 'package:flireator/services/auth/auth_service.dart';
 import 'package:flireator/utils/problems_utils.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -59,7 +61,12 @@ class FirebaseAuthService implements AuthService {
   // The sign in updates the app state as the services have been plumbed so
   // the stream of auth state is connected to the store.
   @override
-  Future<UserData> signInWithApple() async {
+  Future<AuthData> signInWithApple() async {
+    // update the app state to show the sign in step
+    _storeStreamController
+        .add(StoreSignInStep(step: SignInStep.signingInWithApple));
+
+    // perform the sign in
     final appleIdCredential = await SignInWithApple.getAppleIDCredential(
       scopes: [
         AppleIDAuthorizationScopes.email,
@@ -73,20 +80,27 @@ class FirebaseAuthService implements AuthService {
       ),
     );
 
-    // get an OAuthCredential
+    // create an OAuthCredential from the apple id credential
     final credential = OAuthProvider(providerId: 'apple.com').getCredential(
       idToken: appleIdCredential.identityToken,
       accessToken: appleIdCredential.authorizationCode,
     );
+
+    // update app state to show we are now signing in with firebase
+    _storeStreamController
+        .add(StoreSignInStep(step: SignInStep.signingInWithFirebase));
 
     // use the credential to sign in to firebase
     final authResult =
         await FirebaseAuth.instance.signInWithCredential(credential);
 
     // update the firebase user with the name from apple (as firebase does not)
-    await authResult.user.updateProfile(UserUpdateInfo()
-      ..displayName =
-          '${appleIdCredential.givenName} ${appleIdCredential.familyName}');
+    if (appleIdCredential.givenName != null ||
+        appleIdCredential.familyName != null) {
+      await authResult.user.updateProfile(UserUpdateInfo()
+        ..displayName =
+            '${appleIdCredential.givenName} ${appleIdCredential.familyName}');
+    }
 
     return authResult.user.toData();
   }
