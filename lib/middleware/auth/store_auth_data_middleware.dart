@@ -5,13 +5,12 @@ import 'package:flireator/enums/auth/sign_in_step.dart';
 import 'package:flireator/models/app/app_state.dart';
 import 'package:flireator/services/auth/auth_service.dart';
 import 'package:flireator/services/database/database_service.dart';
-import 'package:flireator/services/navigation_service.dart';
 import 'package:flireator/utils/problems_utils.dart';
 import 'package:redux/redux.dart';
 
 class StoreAuthDataMiddleware extends TypedMiddleware<AppState, StoreAuthData> {
-  StoreAuthDataMiddleware(AuthService authService,
-      NavigationService navigationService, DatabaseService databaseService)
+  StoreAuthDataMiddleware(
+      AuthService authService, DatabaseService databaseService)
       : super((store, action, next) async {
           next(action);
 

@@ -26,10 +26,11 @@ class FirebaseAuthService implements AuthService {
   /// disconnect at a later time.
   StreamSubscription<User?>? _firebaseAuthStateSubscription;
 
-  FirebaseAuthService(FirebaseAuth firebaseAuth,
-      StreamController<ReduxAction> _storeStreamController)
-      : _firebaseAuth = firebaseAuth,
-        _storeStreamController = _storeStreamController;
+  FirebaseAuthService(
+      {FirebaseAuth? auth, StreamController<ReduxAction>? eventsController})
+      : _firebaseAuth = auth ?? FirebaseAuth.instance,
+        _storeStreamController =
+            eventsController ?? StreamController<ReduxAction>();
 
   @override
   void connectAuthStateToStore() {

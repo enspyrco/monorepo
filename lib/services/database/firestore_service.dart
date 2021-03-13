@@ -27,10 +27,13 @@ class FirestoreService implements DatabaseService {
   /// The [_storeController] is connected to the redux [Store] via [storeStrea]
   /// and is used by the [DatabaseService] to add actions to the stream where
   /// they will be dispatched by the store.
-  final StreamController<ReduxAction> _storeController =
-      StreamController<ReduxAction>();
+  final StreamController<ReduxAction> _storeController;
 
-  FirestoreService(FirebaseFirestore firestore) : _firestore = firestore;
+  FirestoreService(
+      {FirebaseFirestore? database,
+      StreamController<ReduxAction>? eventsController})
+      : _firestore = database ?? FirebaseFirestore.instance,
+        _storeController = eventsController ?? StreamController<ReduxAction>();
 
   @override
   Future<String> retrieveStoredToken(String userId) {

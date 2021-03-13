@@ -5,11 +5,10 @@ import 'package:flireator/middleware/auth/retrieve_flireator_data_middleware.dar
 import 'package:flireator/middleware/auth/sign_in_with_apple_middleware.dart';
 import 'package:flireator/middleware/auth/sign_out_middleware.dart';
 import 'package:flireator/middleware/auth/store_auth_data_middleware.dart';
-import 'package:flireator/middleware/navigation/navigate_to_profile_middleware.dart';
 import 'package:flireator/models/app/app_state.dart';
 import 'package:flireator/services/auth/auth_service.dart';
 import 'package:flireator/services/database/database_service.dart';
-import 'package:flireator/services/navigation_service.dart';
+import 'package:flireator/services/http_service.dart';
 import 'package:flireator/services/platform_service.dart';
 import 'package:redux/redux.dart';
 
@@ -26,17 +25,16 @@ List<Middleware<AppState>> createAppMiddleware({
   required AuthService authService,
   required DatabaseService databaseService,
   required PlatformService platformService,
-  required NavigationService navigationService,
+  required HttpService httpService,
 }) {
   return [
     // Auth
     ConnectAuthStateMiddleware(authService),
-    PlumbServicesMiddleware(authService, databaseService, navigationService),
+    PlumbServicesMiddleware(authService, databaseService),
     RequestGitHubAuthMiddleware(platformService),
     RetrieveFlireatorDataMiddleware(databaseService),
     SignInWithAppleMiddleware(authService, databaseService),
-    SignOutMiddleware(authService, navigationService),
-    StoreAuthDataMiddleware(authService, navigationService, databaseService),
-    NavigateToProfileMiddleware(navigationService),
+    SignOutMiddleware(authService),
+    StoreAuthDataMiddleware(authService, databaseService),
   ];
 }

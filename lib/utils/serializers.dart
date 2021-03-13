@@ -2,8 +2,8 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
-import 'package:flireator/actions/app/plumb_services.dart';
-import 'package:flireator/actions/auth/connect_auth_state_to_store.dart';
+import 'package:flireator/actions/app_init/plumb_streams_action.dart';
+import 'package:flireator/actions/auth/observe_auth_state_action.dart';
 import 'package:flireator/actions/auth/sign_in_with_apple.dart';
 import 'package:flireator/actions/auth/sign_out.dart';
 import 'package:flireator/actions/auth/store_auth_data.dart';
@@ -40,7 +40,7 @@ part 'serializers.g.dart';
   AppState,
   BrightnessMode,
   ConfigOptions,
-  ConnectAuthStateToStore,
+  ObserveAuthStateAction,
   CredentialInfo,
   DisplayProblem,
   Flireator,
@@ -48,7 +48,7 @@ part 'serializers.g.dart';
   GitHubUser,
   LaunchURL,
   NavSelection,
-  PlumbServices,
+  PlumbStreamsAction,
   Problem,
   Settings,
   SignInStep,

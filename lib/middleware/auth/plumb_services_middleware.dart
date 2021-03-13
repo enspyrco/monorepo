@@ -1,14 +1,14 @@
-import 'package:flireator/actions/app/plumb_services.dart';
+import 'package:flireator/actions/app_init/plumb_streams_action.dart';
 import 'package:flireator/models/app/app_state.dart';
 import 'package:flireator/services/auth/auth_service.dart';
 import 'package:flireator/services/database/database_service.dart';
-import 'package:flireator/services/navigation_service.dart';
 import 'package:flireator/utils/problems_utils.dart';
 import 'package:redux/redux.dart';
 
-class PlumbServicesMiddleware extends TypedMiddleware<AppState, PlumbServices> {
-  PlumbServicesMiddleware(AuthService authService,
-      DatabaseService databaseService, NavigationService navigationService)
+class PlumbServicesMiddleware
+    extends TypedMiddleware<AppState, PlumbStreamsAction> {
+  PlumbServicesMiddleware(
+      AuthService authService, DatabaseService databaseService)
       : super((store, action, next) async {
           next(action);
 
