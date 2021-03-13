@@ -9,7 +9,8 @@
             "program": "lib/main.dart",
             "deviceId": "macOS",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [ "--no-sound-null-safety" ]
         },
         {
             "name": "Integration Test - RDT",
@@ -17,7 +18,7 @@
             "deviceId": "macOS",
             "request": "launch",
             "program": "lib/main.dart",
-            "args": ["--dart-define=RDT=true"],
+            "args": ["--no-sound-null-safety", "--dart-define=RDT=true"]
         },
     ]
 }
