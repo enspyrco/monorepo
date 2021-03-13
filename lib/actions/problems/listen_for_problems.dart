@@ -16,10 +16,10 @@ abstract class ListenForProblems extends Object
 
   factory ListenForProblems() = _$ListenForProblems._;
 
-  Object toJson() =>
+  Object? toJson() =>
       serializers.serializeWith(ListenForProblems.serializer, this);
 
-  static ListenForProblems fromJson(String jsonString) => serializers
+  static ListenForProblems? fromJson(String jsonString) => serializers
       .deserializeWith(ListenForProblems.serializer, json.decode(jsonString));
 
   static Serializer<ListenForProblems> get serializer =>

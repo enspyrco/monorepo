@@ -11,5 +11,5 @@ extension NavSelectionExt on NavSelection {
     NavSelection.profile: ProfilePage(),
   };
 
-  Widget get widget => _$widgetMap[this];
+  Widget get widget => _$widgetMap[this] ?? LocalPage();
 }

@@ -15,9 +15,9 @@ class _$LaunchURLSerializer implements StructuredSerializer<LaunchURL> {
   final String wireName = 'LaunchURL';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, LaunchURL object,
+  Iterable<Object?> serialize(Serializers serializers, LaunchURL object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'url',
       serializers.serialize(object.url, specifiedType: const FullType(String)),
     ];
@@ -26,7 +26,7 @@ class _$LaunchURLSerializer implements StructuredSerializer<LaunchURL> {
   }
 
   @override
-  LaunchURL deserialize(Serializers serializers, Iterable<Object> serialized,
+  LaunchURL deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new LaunchURLBuilder();
 
@@ -34,7 +34,7 @@ class _$LaunchURLSerializer implements StructuredSerializer<LaunchURL> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'url':
           result.url = serializers.deserialize(value,
@@ -51,13 +51,11 @@ class _$LaunchURL extends LaunchURL {
   @override
   final String url;
 
-  factory _$LaunchURL([void Function(LaunchURLBuilder) updates]) =>
+  factory _$LaunchURL([void Function(LaunchURLBuilder)? updates]) =>
       (new LaunchURLBuilder()..update(updates)).build();
 
-  _$LaunchURL._({this.url}) : super._() {
-    if (url == null) {
-      throw new BuiltValueNullFieldError('LaunchURL', 'url');
-    }
+  _$LaunchURL._({required this.url}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(url, 'LaunchURL', 'url');
   }
 
   @override
@@ -80,17 +78,18 @@ class _$LaunchURL extends LaunchURL {
 }
 
 class LaunchURLBuilder implements Builder<LaunchURL, LaunchURLBuilder> {
-  _$LaunchURL _$v;
+  _$LaunchURL? _$v;
 
-  String _url;
-  String get url => _$this._url;
-  set url(String url) => _$this._url = url;
+  String? _url;
+  String? get url => _$this._url;
+  set url(String? url) => _$this._url = url;
 
   LaunchURLBuilder();
 
   LaunchURLBuilder get _$this {
-    if (_$v != null) {
-      _url = _$v.url;
+    final $v = _$v;
+    if ($v != null) {
+      _url = $v.url;
       _$v = null;
     }
     return this;
@@ -98,20 +97,21 @@ class LaunchURLBuilder implements Builder<LaunchURL, LaunchURLBuilder> {
 
   @override
   void replace(LaunchURL other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$LaunchURL;
   }
 
   @override
-  void update(void Function(LaunchURLBuilder) updates) {
+  void update(void Function(LaunchURLBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
   _$LaunchURL build() {
-    final _$result = _$v ?? new _$LaunchURL._(url: url);
+    final _$result = _$v ??
+        new _$LaunchURL._(
+            url:
+                BuiltValueNullFieldError.checkNotNull(url, 'LaunchURL', 'url'));
     replace(_$result);
     return _$result;
   }

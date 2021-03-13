@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 class NavRail extends StatelessWidget {
-  const NavRail({Key key}) : super(key: key);
+  const NavRail({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

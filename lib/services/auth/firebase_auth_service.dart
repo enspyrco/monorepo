@@ -24,7 +24,7 @@ class FirebaseAuthService implements AuthService {
 
   /// We keep a subscription to the firebase auth state stream so we can
   /// disconnect at a later time.
-  StreamSubscription<FirebaseUser> _firebaseAuthStateSubscription;
+  StreamSubscription<User?>? _firebaseAuthStateSubscription;
 
   FirebaseAuthService(FirebaseAuth firebaseAuth,
       StreamController<ReduxAction> _storeStreamController)
@@ -48,9 +48,9 @@ class FirebaseAuthService implements AuthService {
   }
 
   @override
-  Future<String> getCurrentUserId() async {
-    final user = await _firebaseAuth.currentUser();
-    return user.uid;
+  Future<String?> getCurrentUserId() async {
+    final user = _firebaseAuth.currentUser;
+    return user?.uid;
   }
 
   @override
@@ -61,7 +61,7 @@ class FirebaseAuthService implements AuthService {
   // The sign in updates the app state as the services have been plumbed so
   // the stream of auth state is connected to the store.
   @override
-  Future<AuthData> signInWithApple() async {
+  Future<AuthData?> signInWithApple() async {
     // update the app state to show the sign in step
     _storeStreamController
         .add(StoreSignInStep(step: SignInStep.signingInWithApple));
@@ -81,7 +81,7 @@ class FirebaseAuthService implements AuthService {
     );
 
     // create an OAuthCredential from the apple id credential
-    final credential = OAuthProvider(providerId: 'apple.com').getCredential(
+    final credential = OAuthProvider('apple.com').credential(
       idToken: appleIdCredential.identityToken,
       accessToken: appleIdCredential.authorizationCode,
     );
@@ -97,12 +97,12 @@ class FirebaseAuthService implements AuthService {
     // update the firebase user with the name from apple (as firebase does not)
     if (appleIdCredential.givenName != null ||
         appleIdCredential.familyName != null) {
-      await authResult.user.updateProfile(UserUpdateInfo()
-        ..displayName =
-            '${appleIdCredential.givenName} ${appleIdCredential.familyName}');
+      await authResult.user?.updateProfile(
+          displayName:
+              '${appleIdCredential.givenName} ${appleIdCredential.familyName}');
     }
 
-    return authResult.user.toData();
+    return authResult.user?.toData();
   }
 
   /// The stream of auth state is connected to the store so the app state will

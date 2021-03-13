@@ -5,13 +5,10 @@ import 'package:flireator/middleware/auth/retrieve_flireator_data_middleware.dar
 import 'package:flireator/middleware/auth/sign_in_with_apple_middleware.dart';
 import 'package:flireator/middleware/auth/sign_out_middleware.dart';
 import 'package:flireator/middleware/auth/store_auth_data_middleware.dart';
-import 'package:flireator/middleware/git_hub/retrieve_git_hub_repositories_middleware.dart';
-import 'package:flireator/middleware/navigation/launch_url_middleware.dart';
 import 'package:flireator/middleware/navigation/navigate_to_profile_middleware.dart';
 import 'package:flireator/models/app/app_state.dart';
 import 'package:flireator/services/auth/auth_service.dart';
 import 'package:flireator/services/database/database_service.dart';
-import 'package:flireator/services/git_hub_service.dart';
 import 'package:flireator/services/navigation_service.dart';
 import 'package:flireator/services/platform_service.dart';
 import 'package:redux/redux.dart';
@@ -26,11 +23,10 @@ import 'package:redux/redux.dart';
 /// The output of an action can perform another action using the [NextDispatcher]
 ///
 List<Middleware<AppState>> createAppMiddleware({
-  AuthService authService,
-  GitHubService gitHubService,
-  DatabaseService databaseService,
-  PlatformService platformService,
-  NavigationService navigationService,
+  required AuthService authService,
+  required DatabaseService databaseService,
+  required PlatformService platformService,
+  required NavigationService navigationService,
 }) {
   return [
     // Auth
@@ -41,10 +37,6 @@ List<Middleware<AppState>> createAppMiddleware({
     SignInWithAppleMiddleware(authService, databaseService),
     SignOutMiddleware(authService, navigationService),
     StoreAuthDataMiddleware(authService, navigationService, databaseService),
-    // GitHub
-    RetrieveGitHubRepositoriesMiddleware(gitHubService),
-    // Navigation
-    LaunchURLMiddleware(platformService),
     NavigateToProfileMiddleware(navigationService),
   ];
 }

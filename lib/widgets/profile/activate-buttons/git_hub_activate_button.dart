@@ -6,9 +6,9 @@ class GitHubActivateButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-        child: Text('ACTIVATE GITHUB'),
         onPressed: () {
           context.dispatch(LaunchGitHubAuth());
-        });
+        },
+        child: Text('ACTIVATE GITHUB'));
   }
 }

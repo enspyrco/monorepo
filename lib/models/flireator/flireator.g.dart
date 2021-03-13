@@ -15,39 +15,35 @@ class _$FlireatorSerializer implements StructuredSerializer<Flireator> {
   final String wireName = 'Flireator';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Flireator object,
+  Iterable<Object?> serialize(Serializers serializers, Flireator object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'displayName',
+      serializers.serialize(object.displayName,
+          specifiedType: const FullType(String)),
+      'photoURL',
+      serializers.serialize(object.photoURL,
+          specifiedType: const FullType(String)),
       'credentials',
       serializers.serialize(object.credentials,
           specifiedType: const FullType(BuiltMap,
               const [const FullType(String), const FullType(CredentialInfo)])),
     ];
-    if (object.displayName != null) {
-      result
-        ..add('displayName')
-        ..add(serializers.serialize(object.displayName,
-            specifiedType: const FullType(String)));
-    }
-    if (object.photoURL != null) {
-      result
-        ..add('photoURL')
-        ..add(serializers.serialize(object.photoURL,
-            specifiedType: const FullType(String)));
-    }
-    if (object.configOptions != null) {
+    Object? value;
+    value = object.configOptions;
+    if (value != null) {
       result
         ..add('configOptions')
-        ..add(serializers.serialize(object.configOptions,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(ConfigOptions)));
     }
     return result;
   }
 
   @override
-  Flireator deserialize(Serializers serializers, Iterable<Object> serialized,
+  Flireator deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new FlireatorBuilder();
 
@@ -55,7 +51,7 @@ class _$FlireatorSerializer implements StructuredSerializer<Flireator> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
@@ -71,14 +67,14 @@ class _$FlireatorSerializer implements StructuredSerializer<Flireator> {
           break;
         case 'configOptions':
           result.configOptions.replace(serializers.deserialize(value,
-              specifiedType: const FullType(ConfigOptions)) as ConfigOptions);
+              specifiedType: const FullType(ConfigOptions))! as ConfigOptions);
           break;
         case 'credentials':
           result.credentials.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltMap, const [
                 const FullType(String),
                 const FullType(CredentialInfo)
-              ])));
+              ]))!);
           break;
       }
     }
@@ -95,26 +91,26 @@ class _$Flireator extends Flireator {
   @override
   final String photoURL;
   @override
-  final ConfigOptions configOptions;
+  final ConfigOptions? configOptions;
   @override
   final BuiltMap<String, CredentialInfo> credentials;
 
-  factory _$Flireator([void Function(FlireatorBuilder) updates]) =>
+  factory _$Flireator([void Function(FlireatorBuilder)? updates]) =>
       (new FlireatorBuilder()..update(updates)).build();
 
   _$Flireator._(
-      {this.id,
-      this.displayName,
-      this.photoURL,
+      {required this.id,
+      required this.displayName,
+      required this.photoURL,
       this.configOptions,
-      this.credentials})
+      required this.credentials})
       : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('Flireator', 'id');
-    }
-    if (credentials == null) {
-      throw new BuiltValueNullFieldError('Flireator', 'credentials');
-    }
+    BuiltValueNullFieldError.checkNotNull(id, 'Flireator', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        displayName, 'Flireator', 'displayName');
+    BuiltValueNullFieldError.checkNotNull(photoURL, 'Flireator', 'photoURL');
+    BuiltValueNullFieldError.checkNotNull(
+        credentials, 'Flireator', 'credentials');
   }
 
   @override
@@ -158,41 +154,42 @@ class _$Flireator extends Flireator {
 }
 
 class FlireatorBuilder implements Builder<Flireator, FlireatorBuilder> {
-  _$Flireator _$v;
+  _$Flireator? _$v;
 
-  String _id;
-  String get id => _$this._id;
-  set id(String id) => _$this._id = id;
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
 
-  String _displayName;
-  String get displayName => _$this._displayName;
-  set displayName(String displayName) => _$this._displayName = displayName;
+  String? _displayName;
+  String? get displayName => _$this._displayName;
+  set displayName(String? displayName) => _$this._displayName = displayName;
 
-  String _photoURL;
-  String get photoURL => _$this._photoURL;
-  set photoURL(String photoURL) => _$this._photoURL = photoURL;
+  String? _photoURL;
+  String? get photoURL => _$this._photoURL;
+  set photoURL(String? photoURL) => _$this._photoURL = photoURL;
 
-  ConfigOptionsBuilder _configOptions;
+  ConfigOptionsBuilder? _configOptions;
   ConfigOptionsBuilder get configOptions =>
       _$this._configOptions ??= new ConfigOptionsBuilder();
-  set configOptions(ConfigOptionsBuilder configOptions) =>
+  set configOptions(ConfigOptionsBuilder? configOptions) =>
       _$this._configOptions = configOptions;
 
-  MapBuilder<String, CredentialInfo> _credentials;
+  MapBuilder<String, CredentialInfo>? _credentials;
   MapBuilder<String, CredentialInfo> get credentials =>
       _$this._credentials ??= new MapBuilder<String, CredentialInfo>();
-  set credentials(MapBuilder<String, CredentialInfo> credentials) =>
+  set credentials(MapBuilder<String, CredentialInfo>? credentials) =>
       _$this._credentials = credentials;
 
   FlireatorBuilder();
 
   FlireatorBuilder get _$this {
-    if (_$v != null) {
-      _id = _$v.id;
-      _displayName = _$v.displayName;
-      _photoURL = _$v.photoURL;
-      _configOptions = _$v.configOptions?.toBuilder();
-      _credentials = _$v.credentials?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _displayName = $v.displayName;
+      _photoURL = $v.photoURL;
+      _configOptions = $v.configOptions?.toBuilder();
+      _credentials = $v.credentials.toBuilder();
       _$v = null;
     }
     return this;
@@ -200,14 +197,12 @@ class FlireatorBuilder implements Builder<Flireator, FlireatorBuilder> {
 
   @override
   void replace(Flireator other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Flireator;
   }
 
   @override
-  void update(void Function(FlireatorBuilder) updates) {
+  void update(void Function(FlireatorBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -217,13 +212,15 @@ class FlireatorBuilder implements Builder<Flireator, FlireatorBuilder> {
     try {
       _$result = _$v ??
           new _$Flireator._(
-              id: id,
-              displayName: displayName,
-              photoURL: photoURL,
+              id: BuiltValueNullFieldError.checkNotNull(id, 'Flireator', 'id'),
+              displayName: BuiltValueNullFieldError.checkNotNull(
+                  displayName, 'Flireator', 'displayName'),
+              photoURL: BuiltValueNullFieldError.checkNotNull(
+                  photoURL, 'Flireator', 'photoURL'),
               configOptions: _configOptions?.build(),
               credentials: credentials.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'configOptions';
         _configOptions?.build();

@@ -8,7 +8,7 @@ abstract class AuthService {
   Stream<ReduxAction> get storeStream;
   void connectAuthStateToStore();
   void disconnectAuthState();
-  Future<String> getCurrentUserId();
-  Future<AuthData> signInWithApple();
+  Future<String?> getCurrentUserId();
+  Future<AuthData?> signInWithApple();
   Future<void> signOut();
 }

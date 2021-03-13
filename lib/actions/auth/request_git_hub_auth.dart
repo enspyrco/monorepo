@@ -16,10 +16,10 @@ abstract class RequestGitHubAuth extends Object
 
   factory RequestGitHubAuth() = _$RequestGitHubAuth._;
 
-  Object toJson() =>
+  Object? toJson() =>
       serializers.serializeWith(RequestGitHubAuth.serializer, this);
 
-  static RequestGitHubAuth fromJson(String jsonString) => serializers
+  static RequestGitHubAuth? fromJson(String jsonString) => serializers
       .deserializeWith(RequestGitHubAuth.serializer, json.decode(jsonString));
 
   static Serializer<RequestGitHubAuth> get serializer =>

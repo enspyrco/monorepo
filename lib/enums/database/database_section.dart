@@ -13,10 +13,10 @@ class DatabaseSection extends EnumClass {
 
   const DatabaseSection._(String name) : super(name);
 
-  int get index => _$indexMap[this];
+  int get index => _$indexMap[this] ?? 0;
   static BuiltSet<DatabaseSection> get values => _$values;
   static DatabaseSection valueOf(String name) => _$valueOf(name);
 
-  Object toJson() =>
+  Object? toJson() =>
       serializers.serializeWith(DatabaseSection.serializer, this);
 }

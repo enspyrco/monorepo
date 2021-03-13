@@ -8,7 +8,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 
 class SignOutAvatar extends StatelessWidget {
   const SignOutAvatar({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class SignOutAvatar extends StatelessWidget {
       builder: (context, flireator) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: ProfileAvatar(flireator?.photoURL, onPressed: () {
+          child: ProfileAvatar(flireator.photoURL, onPressed: () {
             context.dispatch(NavigateToProfile());
           }),
         );

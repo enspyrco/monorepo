@@ -15,9 +15,9 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
   final String wireName = 'AppState';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, AppState object,
+  Iterable<Object?> serialize(Serializers serializers, AppState object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'problems',
       serializers.serialize(object.problems,
           specifiedType:
@@ -32,35 +32,40 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       serializers.serialize(object.signInStep,
           specifiedType: const FullType(SignInStep)),
     ];
-    if (object.displayProblem != null) {
+    Object? value;
+    value = object.displayProblem;
+    if (value != null) {
       result
         ..add('displayProblem')
-        ..add(serializers.serialize(object.displayProblem,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(Problem)));
     }
-    if (object.authData != null) {
+    value = object.authData;
+    if (value != null) {
       result
         ..add('authData')
-        ..add(serializers.serialize(object.authData,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(AuthData)));
     }
-    if (object.flireator != null) {
+    value = object.flireator;
+    if (value != null) {
       result
         ..add('flireator')
-        ..add(serializers.serialize(object.flireator,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(Flireator)));
     }
-    if (object.gitHubToken != null) {
+    value = object.gitHubToken;
+    if (value != null) {
       result
         ..add('gitHubToken')
-        ..add(serializers.serialize(object.gitHubToken,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     return result;
   }
 
   @override
-  AppState deserialize(Serializers serializers, Iterable<Object> serialized,
+  AppState deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new AppStateBuilder();
 
@@ -68,21 +73,21 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'problems':
           result.problems.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      BuiltList, const [const FullType(Problem)]))
+                      BuiltList, const [const FullType(Problem)]))!
               as BuiltList<Object>);
           break;
         case 'displayProblem':
           result.displayProblem.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Problem)) as Problem);
+              specifiedType: const FullType(Problem))! as Problem);
           break;
         case 'settings':
           result.settings.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Settings)) as Settings);
+              specifiedType: const FullType(Settings))! as Settings);
           break;
         case 'navSelection':
           result.navSelection = serializers.deserialize(value,
@@ -94,11 +99,11 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
           break;
         case 'authData':
           result.authData.replace(serializers.deserialize(value,
-              specifiedType: const FullType(AuthData)) as AuthData);
+              specifiedType: const FullType(AuthData))! as AuthData);
           break;
         case 'flireator':
           result.flireator.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Flireator)) as Flireator);
+              specifiedType: const FullType(Flireator))! as Flireator);
           break;
         case 'gitHubToken':
           result.gitHubToken = serializers.deserialize(value,
@@ -115,7 +120,7 @@ class _$AppState extends AppState {
   @override
   final BuiltList<Problem> problems;
   @override
-  final Problem displayProblem;
+  final Problem? displayProblem;
   @override
   final Settings settings;
   @override
@@ -123,37 +128,30 @@ class _$AppState extends AppState {
   @override
   final SignInStep signInStep;
   @override
-  final AuthData authData;
+  final AuthData? authData;
   @override
-  final Flireator flireator;
+  final Flireator? flireator;
   @override
-  final String gitHubToken;
+  final String? gitHubToken;
 
-  factory _$AppState([void Function(AppStateBuilder) updates]) =>
+  factory _$AppState([void Function(AppStateBuilder)? updates]) =>
       (new AppStateBuilder()..update(updates)).build();
 
   _$AppState._(
-      {this.problems,
+      {required this.problems,
       this.displayProblem,
-      this.settings,
-      this.navSelection,
-      this.signInStep,
+      required this.settings,
+      required this.navSelection,
+      required this.signInStep,
       this.authData,
       this.flireator,
       this.gitHubToken})
       : super._() {
-    if (problems == null) {
-      throw new BuiltValueNullFieldError('AppState', 'problems');
-    }
-    if (settings == null) {
-      throw new BuiltValueNullFieldError('AppState', 'settings');
-    }
-    if (navSelection == null) {
-      throw new BuiltValueNullFieldError('AppState', 'navSelection');
-    }
-    if (signInStep == null) {
-      throw new BuiltValueNullFieldError('AppState', 'signInStep');
-    }
+    BuiltValueNullFieldError.checkNotNull(problems, 'AppState', 'problems');
+    BuiltValueNullFieldError.checkNotNull(settings, 'AppState', 'settings');
+    BuiltValueNullFieldError.checkNotNull(
+        navSelection, 'AppState', 'navSelection');
+    BuiltValueNullFieldError.checkNotNull(signInStep, 'AppState', 'signInStep');
   }
 
   @override
@@ -211,57 +209,58 @@ class _$AppState extends AppState {
 }
 
 class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
-  _$AppState _$v;
+  _$AppState? _$v;
 
-  ListBuilder<Problem> _problems;
+  ListBuilder<Problem>? _problems;
   ListBuilder<Problem> get problems =>
       _$this._problems ??= new ListBuilder<Problem>();
-  set problems(ListBuilder<Problem> problems) => _$this._problems = problems;
+  set problems(ListBuilder<Problem>? problems) => _$this._problems = problems;
 
-  ProblemBuilder _displayProblem;
+  ProblemBuilder? _displayProblem;
   ProblemBuilder get displayProblem =>
       _$this._displayProblem ??= new ProblemBuilder();
-  set displayProblem(ProblemBuilder displayProblem) =>
+  set displayProblem(ProblemBuilder? displayProblem) =>
       _$this._displayProblem = displayProblem;
 
-  SettingsBuilder _settings;
+  SettingsBuilder? _settings;
   SettingsBuilder get settings => _$this._settings ??= new SettingsBuilder();
-  set settings(SettingsBuilder settings) => _$this._settings = settings;
+  set settings(SettingsBuilder? settings) => _$this._settings = settings;
 
-  NavSelection _navSelection;
-  NavSelection get navSelection => _$this._navSelection;
-  set navSelection(NavSelection navSelection) =>
+  NavSelection? _navSelection;
+  NavSelection? get navSelection => _$this._navSelection;
+  set navSelection(NavSelection? navSelection) =>
       _$this._navSelection = navSelection;
 
-  SignInStep _signInStep;
-  SignInStep get signInStep => _$this._signInStep;
-  set signInStep(SignInStep signInStep) => _$this._signInStep = signInStep;
+  SignInStep? _signInStep;
+  SignInStep? get signInStep => _$this._signInStep;
+  set signInStep(SignInStep? signInStep) => _$this._signInStep = signInStep;
 
-  AuthDataBuilder _authData;
+  AuthDataBuilder? _authData;
   AuthDataBuilder get authData => _$this._authData ??= new AuthDataBuilder();
-  set authData(AuthDataBuilder authData) => _$this._authData = authData;
+  set authData(AuthDataBuilder? authData) => _$this._authData = authData;
 
-  FlireatorBuilder _flireator;
+  FlireatorBuilder? _flireator;
   FlireatorBuilder get flireator =>
       _$this._flireator ??= new FlireatorBuilder();
-  set flireator(FlireatorBuilder flireator) => _$this._flireator = flireator;
+  set flireator(FlireatorBuilder? flireator) => _$this._flireator = flireator;
 
-  String _gitHubToken;
-  String get gitHubToken => _$this._gitHubToken;
-  set gitHubToken(String gitHubToken) => _$this._gitHubToken = gitHubToken;
+  String? _gitHubToken;
+  String? get gitHubToken => _$this._gitHubToken;
+  set gitHubToken(String? gitHubToken) => _$this._gitHubToken = gitHubToken;
 
   AppStateBuilder();
 
   AppStateBuilder get _$this {
-    if (_$v != null) {
-      _problems = _$v.problems?.toBuilder();
-      _displayProblem = _$v.displayProblem?.toBuilder();
-      _settings = _$v.settings?.toBuilder();
-      _navSelection = _$v.navSelection;
-      _signInStep = _$v.signInStep;
-      _authData = _$v.authData?.toBuilder();
-      _flireator = _$v.flireator?.toBuilder();
-      _gitHubToken = _$v.gitHubToken;
+    final $v = _$v;
+    if ($v != null) {
+      _problems = $v.problems.toBuilder();
+      _displayProblem = $v.displayProblem?.toBuilder();
+      _settings = $v.settings.toBuilder();
+      _navSelection = $v.navSelection;
+      _signInStep = $v.signInStep;
+      _authData = $v.authData?.toBuilder();
+      _flireator = $v.flireator?.toBuilder();
+      _gitHubToken = $v.gitHubToken;
       _$v = null;
     }
     return this;
@@ -269,14 +268,12 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
 
   @override
   void replace(AppState other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AppState;
   }
 
   @override
-  void update(void Function(AppStateBuilder) updates) {
+  void update(void Function(AppStateBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -289,13 +286,15 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               problems: problems.build(),
               displayProblem: _displayProblem?.build(),
               settings: settings.build(),
-              navSelection: navSelection,
-              signInStep: signInStep,
+              navSelection: BuiltValueNullFieldError.checkNotNull(
+                  navSelection, 'AppState', 'navSelection'),
+              signInStep: BuiltValueNullFieldError.checkNotNull(
+                  signInStep, 'AppState', 'signInStep'),
               authData: _authData?.build(),
               flireator: _flireator?.build(),
               gitHubToken: gitHubToken);
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'problems';
         problems.build();

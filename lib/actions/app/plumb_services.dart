@@ -16,9 +16,9 @@ abstract class PlumbServices extends Object
 
   factory PlumbServices() = _$PlumbServices._;
 
-  Object toJson() => serializers.serializeWith(PlumbServices.serializer, this);
+  Object? toJson() => serializers.serializeWith(PlumbServices.serializer, this);
 
-  static PlumbServices fromJson(String jsonString) => serializers
+  static PlumbServices? fromJson(String jsonString) => serializers
       .deserializeWith(PlumbServices.serializer, json.decode(jsonString));
 
   static Serializer<PlumbServices> get serializer => _$plumbServicesSerializer;

@@ -26,8 +26,7 @@ abstract class ThemeColors implements Built<ThemeColors, ThemeColorsBuilder> {
 
   int get primary;
   int get secondary;
-  @nullable
-  int get error;
+  int? get error;
 
   ThemeColors._();
 
@@ -42,10 +41,10 @@ abstract class ThemeColors implements Built<ThemeColors, ThemeColorsBuilder> {
     ..primary = primary_grey
     ..secondary = secondary_grey);
 
-  Object toJson() => serializers.serializeWith(ThemeColors.serializer, this);
+  Object? toJson() => serializers.serializeWith(ThemeColors.serializer, this);
 
-  static ThemeColors fromJson(String jsonString) => serializers.deserializeWith(
-      ThemeColors.serializer, json.decode(jsonString));
+  static ThemeColors? fromJson(String jsonString) => serializers
+      .deserializeWith(ThemeColors.serializer, json.decode(jsonString));
 
   static Serializer<ThemeColors> get serializer => _$themeColorsSerializer;
 }

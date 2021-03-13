@@ -17,10 +17,10 @@ abstract class RetrieveGitHubRepositories extends Object
 
   factory RetrieveGitHubRepositories() = _$RetrieveGitHubRepositories._;
 
-  Object toJson() =>
+  Object? toJson() =>
       serializers.serializeWith(RetrieveGitHubRepositories.serializer, this);
 
-  static RetrieveGitHubRepositories fromJson(String jsonString) =>
+  static RetrieveGitHubRepositories? fromJson(String jsonString) =>
       serializers.deserializeWith(
           RetrieveGitHubRepositories.serializer, json.decode(jsonString));
 

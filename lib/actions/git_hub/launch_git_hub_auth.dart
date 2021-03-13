@@ -16,10 +16,10 @@ abstract class LaunchGitHubAuth extends Object
 
   factory LaunchGitHubAuth() = _$LaunchGitHubAuth._;
 
-  Object toJson() =>
+  Object? toJson() =>
       serializers.serializeWith(LaunchGitHubAuth.serializer, this);
 
-  static LaunchGitHubAuth fromJson(String jsonString) => serializers
+  static LaunchGitHubAuth? fromJson(String jsonString) => serializers
       .deserializeWith(LaunchGitHubAuth.serializer, json.decode(jsonString));
 
   static Serializer<LaunchGitHubAuth> get serializer =>

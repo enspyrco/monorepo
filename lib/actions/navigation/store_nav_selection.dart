@@ -7,7 +7,6 @@ import 'package:built_value/serializer.dart';
 import 'package:flireator/actions/redux_action.dart';
 import 'package:flireator/enums/navigation/nav_selection.dart';
 import 'package:flireator/utils/serializers.dart';
-import 'package:meta/meta.dart';
 
 part 'store_nav_selection.g.dart';
 
@@ -18,16 +17,16 @@ abstract class StoreNavSelection extends Object
 
   StoreNavSelection._();
 
-  factory StoreNavSelection({@required NavSelection selection}) =
+  factory StoreNavSelection({required NavSelection selection}) =
       _$StoreNavSelection._;
 
   factory StoreNavSelection.by(
       [void Function(StoreNavSelectionBuilder) updates]) = _$StoreNavSelection;
 
-  Object toJson() =>
+  Object? toJson() =>
       serializers.serializeWith(StoreNavSelection.serializer, this);
 
-  static StoreNavSelection fromJson(String jsonString) => serializers
+  static StoreNavSelection? fromJson(String jsonString) => serializers
       .deserializeWith(StoreNavSelection.serializer, json.decode(jsonString));
 
   static Serializer<StoreNavSelection> get serializer =>

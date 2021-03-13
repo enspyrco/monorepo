@@ -19,12 +19,13 @@ class BrightnessMode extends EnumClass {
 
   const BrightnessMode._(String name) : super(name);
 
-  int get index => _$indexMap[this];
+  int get index => _$indexMap[this] ?? 0;
   bool get isLight => this == BrightnessMode.light;
   bool get isDark => this == BrightnessMode.dark;
   bool get isSystem => this == BrightnessMode.system;
   static BuiltSet<BrightnessMode> get values => _$values;
   static BrightnessMode valueOf(String name) => _$valueOf(name);
 
-  Object toJson() => serializers.serializeWith(BrightnessMode.serializer, this);
+  Object? toJson() =>
+      serializers.serializeWith(BrightnessMode.serializer, this);
 }

@@ -20,10 +20,10 @@ class _$StoreGitHubRepositoriesSerializer
   final String wireName = 'StoreGitHubRepositories';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, StoreGitHubRepositories object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'repositories',
       serializers.serialize(object.repositories,
           specifiedType: const FullType(
@@ -35,7 +35,7 @@ class _$StoreGitHubRepositoriesSerializer
 
   @override
   StoreGitHubRepositories deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new StoreGitHubRepositoriesBuilder();
 
@@ -43,12 +43,12 @@ class _$StoreGitHubRepositoriesSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'repositories':
           result.repositories.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      BuiltList, const [const FullType(GitHubRepository)]))
+                      BuiltList, const [const FullType(GitHubRepository)]))!
               as BuiltList<Object>);
           break;
       }
@@ -63,14 +63,12 @@ class _$StoreGitHubRepositories extends StoreGitHubRepositories {
   final BuiltList<GitHubRepository> repositories;
 
   factory _$StoreGitHubRepositories(
-          [void Function(StoreGitHubRepositoriesBuilder) updates]) =>
+          [void Function(StoreGitHubRepositoriesBuilder)? updates]) =>
       (new StoreGitHubRepositoriesBuilder()..update(updates)).build();
 
-  _$StoreGitHubRepositories._({this.repositories}) : super._() {
-    if (repositories == null) {
-      throw new BuiltValueNullFieldError(
-          'StoreGitHubRepositories', 'repositories');
-    }
+  _$StoreGitHubRepositories._({required this.repositories}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        repositories, 'StoreGitHubRepositories', 'repositories');
   }
 
   @override
@@ -98,19 +96,20 @@ class _$StoreGitHubRepositories extends StoreGitHubRepositories {
 class StoreGitHubRepositoriesBuilder
     implements
         Builder<StoreGitHubRepositories, StoreGitHubRepositoriesBuilder> {
-  _$StoreGitHubRepositories _$v;
+  _$StoreGitHubRepositories? _$v;
 
-  ListBuilder<GitHubRepository> _repositories;
+  ListBuilder<GitHubRepository>? _repositories;
   ListBuilder<GitHubRepository> get repositories =>
       _$this._repositories ??= new ListBuilder<GitHubRepository>();
-  set repositories(ListBuilder<GitHubRepository> repositories) =>
+  set repositories(ListBuilder<GitHubRepository>? repositories) =>
       _$this._repositories = repositories;
 
   StoreGitHubRepositoriesBuilder();
 
   StoreGitHubRepositoriesBuilder get _$this {
-    if (_$v != null) {
-      _repositories = _$v.repositories?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _repositories = $v.repositories.toBuilder();
       _$v = null;
     }
     return this;
@@ -118,14 +117,12 @@ class StoreGitHubRepositoriesBuilder
 
   @override
   void replace(StoreGitHubRepositories other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$StoreGitHubRepositories;
   }
 
   @override
-  void update(void Function(StoreGitHubRepositoriesBuilder) updates) {
+  void update(void Function(StoreGitHubRepositoriesBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -136,7 +133,7 @@ class StoreGitHubRepositoriesBuilder
       _$result = _$v ??
           new _$StoreGitHubRepositories._(repositories: repositories.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'repositories';
         repositories.build();

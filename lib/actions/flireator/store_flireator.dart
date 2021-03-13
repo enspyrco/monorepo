@@ -7,7 +7,6 @@ import 'package:built_value/serializer.dart';
 import 'package:flireator/actions/redux_action.dart';
 import 'package:flireator/models/flireator/flireator.dart';
 import 'package:flireator/utils/serializers.dart';
-import 'package:meta/meta.dart';
 
 part 'store_flireator.g.dart';
 
@@ -18,11 +17,12 @@ abstract class StoreFlireator extends Object
 
   StoreFlireator._();
 
-  factory StoreFlireator({@required Flireator flireator}) = _$StoreFlireator._;
+  factory StoreFlireator({required Flireator flireator}) = _$StoreFlireator._;
 
-  Object toJson() => serializers.serializeWith(StoreFlireator.serializer, this);
+  Object? toJson() =>
+      serializers.serializeWith(StoreFlireator.serializer, this);
 
-  static StoreFlireator fromJson(String jsonString) => serializers
+  static StoreFlireator? fromJson(String jsonString) => serializers
       .deserializeWith(StoreFlireator.serializer, json.decode(jsonString));
 
   static Serializer<StoreFlireator> get serializer =>

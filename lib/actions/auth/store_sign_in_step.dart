@@ -17,12 +17,12 @@ abstract class StoreSignInStep extends Object
 
   StoreSignInStep._();
 
-  factory StoreSignInStep({SignInStep step}) = _$StoreSignInStep._;
+  factory StoreSignInStep({required SignInStep step}) = _$StoreSignInStep._;
 
-  Object toJson() =>
+  Object? toJson() =>
       serializers.serializeWith(StoreSignInStep.serializer, this);
 
-  static StoreSignInStep fromJson(String jsonString) => serializers
+  static StoreSignInStep? fromJson(String jsonString) => serializers
       .deserializeWith(StoreSignInStep.serializer, json.decode(jsonString));
 
   static Serializer<StoreSignInStep> get serializer =>

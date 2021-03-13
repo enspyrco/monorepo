@@ -15,26 +15,27 @@ class _$ThemeColorsSerializer implements StructuredSerializer<ThemeColors> {
   final String wireName = 'ThemeColors';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, ThemeColors object,
+  Iterable<Object?> serialize(Serializers serializers, ThemeColors object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'primary',
       serializers.serialize(object.primary, specifiedType: const FullType(int)),
       'secondary',
       serializers.serialize(object.secondary,
           specifiedType: const FullType(int)),
     ];
-    if (object.error != null) {
+    Object? value;
+    value = object.error;
+    if (value != null) {
       result
         ..add('error')
-        ..add(serializers.serialize(object.error,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     return result;
   }
 
   @override
-  ThemeColors deserialize(Serializers serializers, Iterable<Object> serialized,
+  ThemeColors deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new ThemeColorsBuilder();
 
@@ -42,7 +43,7 @@ class _$ThemeColorsSerializer implements StructuredSerializer<ThemeColors> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'primary':
           result.primary = serializers.deserialize(value,
@@ -69,18 +70,16 @@ class _$ThemeColors extends ThemeColors {
   @override
   final int secondary;
   @override
-  final int error;
+  final int? error;
 
-  factory _$ThemeColors([void Function(ThemeColorsBuilder) updates]) =>
+  factory _$ThemeColors([void Function(ThemeColorsBuilder)? updates]) =>
       (new ThemeColorsBuilder()..update(updates)).build();
 
-  _$ThemeColors._({this.primary, this.secondary, this.error}) : super._() {
-    if (primary == null) {
-      throw new BuiltValueNullFieldError('ThemeColors', 'primary');
-    }
-    if (secondary == null) {
-      throw new BuiltValueNullFieldError('ThemeColors', 'secondary');
-    }
+  _$ThemeColors._({required this.primary, required this.secondary, this.error})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(primary, 'ThemeColors', 'primary');
+    BuiltValueNullFieldError.checkNotNull(
+        secondary, 'ThemeColors', 'secondary');
   }
 
   @override
@@ -116,27 +115,28 @@ class _$ThemeColors extends ThemeColors {
 }
 
 class ThemeColorsBuilder implements Builder<ThemeColors, ThemeColorsBuilder> {
-  _$ThemeColors _$v;
+  _$ThemeColors? _$v;
 
-  int _primary;
-  int get primary => _$this._primary;
-  set primary(int primary) => _$this._primary = primary;
+  int? _primary;
+  int? get primary => _$this._primary;
+  set primary(int? primary) => _$this._primary = primary;
 
-  int _secondary;
-  int get secondary => _$this._secondary;
-  set secondary(int secondary) => _$this._secondary = secondary;
+  int? _secondary;
+  int? get secondary => _$this._secondary;
+  set secondary(int? secondary) => _$this._secondary = secondary;
 
-  int _error;
-  int get error => _$this._error;
-  set error(int error) => _$this._error = error;
+  int? _error;
+  int? get error => _$this._error;
+  set error(int? error) => _$this._error = error;
 
   ThemeColorsBuilder();
 
   ThemeColorsBuilder get _$this {
-    if (_$v != null) {
-      _primary = _$v.primary;
-      _secondary = _$v.secondary;
-      _error = _$v.error;
+    final $v = _$v;
+    if ($v != null) {
+      _primary = $v.primary;
+      _secondary = $v.secondary;
+      _error = $v.error;
       _$v = null;
     }
     return this;
@@ -144,14 +144,12 @@ class ThemeColorsBuilder implements Builder<ThemeColors, ThemeColorsBuilder> {
 
   @override
   void replace(ThemeColors other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ThemeColors;
   }
 
   @override
-  void update(void Function(ThemeColorsBuilder) updates) {
+  void update(void Function(ThemeColorsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -159,7 +157,11 @@ class ThemeColorsBuilder implements Builder<ThemeColors, ThemeColorsBuilder> {
   _$ThemeColors build() {
     final _$result = _$v ??
         new _$ThemeColors._(
-            primary: primary, secondary: secondary, error: error);
+            primary: BuiltValueNullFieldError.checkNotNull(
+                primary, 'ThemeColors', 'primary'),
+            secondary: BuiltValueNullFieldError.checkNotNull(
+                secondary, 'ThemeColors', 'secondary'),
+            error: error);
     replace(_$result);
     return _$result;
   }

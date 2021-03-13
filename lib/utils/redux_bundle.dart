@@ -16,7 +16,6 @@ class ReduxBundle {
             middleware: [
               ...createAppMiddleware(
                   authService: services.auth,
-                  gitHubService: services.gitHub,
                   databaseService: services.database,
                   platformService: services.platform,
                   navigationService: services.navigation),

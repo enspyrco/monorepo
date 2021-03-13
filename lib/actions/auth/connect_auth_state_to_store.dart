@@ -16,10 +16,10 @@ abstract class ConnectAuthStateToStore extends Object
 
   factory ConnectAuthStateToStore() = _$ConnectAuthStateToStore._;
 
-  Object toJson() =>
+  Object? toJson() =>
       serializers.serializeWith(ConnectAuthStateToStore.serializer, this);
 
-  static ConnectAuthStateToStore fromJson(String jsonString) =>
+  static ConnectAuthStateToStore? fromJson(String jsonString) =>
       serializers.deserializeWith(
           ConnectAuthStateToStore.serializer, json.decode(jsonString));
 

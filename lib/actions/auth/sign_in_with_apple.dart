@@ -16,10 +16,10 @@ abstract class SignInWithApple extends Object
 
   factory SignInWithApple() = _$SignInWithApple._;
 
-  Object toJson() =>
+  Object? toJson() =>
       serializers.serializeWith(SignInWithApple.serializer, this);
 
-  static SignInWithApple fromJson(String jsonString) => serializers
+  static SignInWithApple? fromJson(String jsonString) => serializers
       .deserializeWith(SignInWithApple.serializer, json.decode(jsonString));
 
   static Serializer<SignInWithApple> get serializer =>

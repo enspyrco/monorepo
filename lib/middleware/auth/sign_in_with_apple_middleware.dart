@@ -17,6 +17,8 @@ class SignInWithAppleMiddleware
           // the service will update the sign in step as it goes
           final userData = await authService.signInWithApple();
 
+          if (userData == null) return;
+
           store.dispatch(
               StoreSignInStep(step: SignInStep.retrievingFlireatorData));
           store.dispatch(RetrieveFlireatorData(userId: userData.uid));

@@ -16,21 +16,21 @@ class _$RemoveProblemSerializer implements StructuredSerializer<RemoveProblem> {
   final String wireName = 'RemoveProblem';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, RemoveProblem object,
+  Iterable<Object?> serialize(Serializers serializers, RemoveProblem object,
       {FullType specifiedType = FullType.unspecified}) {
-    return <Object>[];
+    return <Object?>[];
   }
 
   @override
   RemoveProblem deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new RemoveProblemBuilder().build();
   }
 }
 
 class _$RemoveProblem extends RemoveProblem {
-  factory _$RemoveProblem([void Function(RemoveProblemBuilder) updates]) =>
+  factory _$RemoveProblem([void Function(RemoveProblemBuilder)? updates]) =>
       (new RemoveProblemBuilder()..update(updates)).build();
 
   _$RemoveProblem._() : super._();
@@ -56,20 +56,18 @@ class _$RemoveProblem extends RemoveProblem {
 
 class RemoveProblemBuilder
     implements Builder<RemoveProblem, RemoveProblemBuilder> {
-  _$RemoveProblem _$v;
+  _$RemoveProblem? _$v;
 
   RemoveProblemBuilder();
 
   @override
   void replace(RemoveProblem other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$RemoveProblem;
   }
 
   @override
-  void update(void Function(RemoveProblemBuilder) updates) {
+  void update(void Function(RemoveProblemBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

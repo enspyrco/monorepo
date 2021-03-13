@@ -29,7 +29,7 @@ void main() async {
 
   /// if in RDT mode, create a RemoteDevToolsMiddleware
   if (rdtMode) {
-    middlewares.add(_remoteDevtools);
+    middlewares.add(_remoteDevtools!);
   }
 
   // Create the redux bundle (services, middleware, store)
@@ -37,7 +37,7 @@ void main() async {
 
   // if in RDT mode, connect RDT to the redux store and the devtools server
   if (rdtMode) {
-    _remoteDevtools.store = redux.store;
+    _remoteDevtools!.store = redux.store;
     await _remoteDevtools.connect();
   }
 

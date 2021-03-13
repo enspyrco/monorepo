@@ -28,13 +28,14 @@ class StoreAuthDataMiddleware extends TypedMiddleware<AppState, StoreAuthData> {
 
               store.dispatch(
                   StoreSignInStep(step: SignInStep.retrievingFlireatorData));
-              store.dispatch(
-                  RetrieveFlireatorData(userId: store.state.authData.uid));
+              final uid = store.state.authData?.uid;
+              if (uid == null) return;
+              store.dispatch(RetrieveFlireatorData(userId: uid));
 
               if (store.state.gitHubToken == null) {
                 // we have no token
 
-                if (action.data.hasGitHub) {
+                if (action.data != null && action.data!.hasGitHub) {
                   // // we have signed in with github so retrieve the stored token
                   // store.dispatch(
                   //     StoreAuthStep(step: GitHubAuthStep.retrievingStoredToken));

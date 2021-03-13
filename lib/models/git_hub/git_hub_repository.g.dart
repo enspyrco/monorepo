@@ -17,9 +17,9 @@ class _$GitHubRepositorySerializer
   final String wireName = 'GitHubRepository';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, GitHubRepository object,
+  Iterable<Object?> serialize(Serializers serializers, GitHubRepository object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
       'isFork',
@@ -38,10 +38,12 @@ class _$GitHubRepositorySerializer
       serializers.serialize(object.owner,
           specifiedType: const FullType(GitHubUser)),
     ];
-    if (object.description != null) {
+    Object? value;
+    value = object.description;
+    if (value != null) {
       result
         ..add('description')
-        ..add(serializers.serialize(object.description,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     return result;
@@ -49,7 +51,7 @@ class _$GitHubRepositorySerializer
 
   @override
   GitHubRepository deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GitHubRepositoryBuilder();
 
@@ -57,7 +59,7 @@ class _$GitHubRepositorySerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'name':
           result.name = serializers.deserialize(value,
@@ -89,7 +91,7 @@ class _$GitHubRepositorySerializer
           break;
         case 'owner':
           result.owner.replace(serializers.deserialize(value,
-              specifiedType: const FullType(GitHubUser)) as GitHubUser);
+              specifiedType: const FullType(GitHubUser))! as GitHubUser);
           break;
       }
     }
@@ -102,7 +104,7 @@ class _$GitHubRepository extends GitHubRepository {
   @override
   final String name;
   @override
-  final String description;
+  final String? description;
   @override
   final bool isFork;
   @override
@@ -117,40 +119,28 @@ class _$GitHubRepository extends GitHubRepository {
   final GitHubUser owner;
 
   factory _$GitHubRepository(
-          [void Function(GitHubRepositoryBuilder) updates]) =>
+          [void Function(GitHubRepositoryBuilder)? updates]) =>
       (new GitHubRepositoryBuilder()..update(updates)).build();
 
   _$GitHubRepository._(
-      {this.name,
+      {required this.name,
       this.description,
-      this.isFork,
-      this.isPrivate,
-      this.stargazers,
-      this.url,
-      this.issues,
-      this.owner})
+      required this.isFork,
+      required this.isPrivate,
+      required this.stargazers,
+      required this.url,
+      required this.issues,
+      required this.owner})
       : super._() {
-    if (name == null) {
-      throw new BuiltValueNullFieldError('GitHubRepository', 'name');
-    }
-    if (isFork == null) {
-      throw new BuiltValueNullFieldError('GitHubRepository', 'isFork');
-    }
-    if (isPrivate == null) {
-      throw new BuiltValueNullFieldError('GitHubRepository', 'isPrivate');
-    }
-    if (stargazers == null) {
-      throw new BuiltValueNullFieldError('GitHubRepository', 'stargazers');
-    }
-    if (url == null) {
-      throw new BuiltValueNullFieldError('GitHubRepository', 'url');
-    }
-    if (issues == null) {
-      throw new BuiltValueNullFieldError('GitHubRepository', 'issues');
-    }
-    if (owner == null) {
-      throw new BuiltValueNullFieldError('GitHubRepository', 'owner');
-    }
+    BuiltValueNullFieldError.checkNotNull(name, 'GitHubRepository', 'name');
+    BuiltValueNullFieldError.checkNotNull(isFork, 'GitHubRepository', 'isFork');
+    BuiltValueNullFieldError.checkNotNull(
+        isPrivate, 'GitHubRepository', 'isPrivate');
+    BuiltValueNullFieldError.checkNotNull(
+        stargazers, 'GitHubRepository', 'stargazers');
+    BuiltValueNullFieldError.checkNotNull(url, 'GitHubRepository', 'url');
+    BuiltValueNullFieldError.checkNotNull(issues, 'GitHubRepository', 'issues');
+    BuiltValueNullFieldError.checkNotNull(owner, 'GitHubRepository', 'owner');
   }
 
   @override
@@ -208,52 +198,53 @@ class _$GitHubRepository extends GitHubRepository {
 
 class GitHubRepositoryBuilder
     implements Builder<GitHubRepository, GitHubRepositoryBuilder> {
-  _$GitHubRepository _$v;
+  _$GitHubRepository? _$v;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  String _description;
-  String get description => _$this._description;
-  set description(String description) => _$this._description = description;
+  String? _description;
+  String? get description => _$this._description;
+  set description(String? description) => _$this._description = description;
 
-  bool _isFork;
-  bool get isFork => _$this._isFork;
-  set isFork(bool isFork) => _$this._isFork = isFork;
+  bool? _isFork;
+  bool? get isFork => _$this._isFork;
+  set isFork(bool? isFork) => _$this._isFork = isFork;
 
-  bool _isPrivate;
-  bool get isPrivate => _$this._isPrivate;
-  set isPrivate(bool isPrivate) => _$this._isPrivate = isPrivate;
+  bool? _isPrivate;
+  bool? get isPrivate => _$this._isPrivate;
+  set isPrivate(bool? isPrivate) => _$this._isPrivate = isPrivate;
 
-  int _stargazers;
-  int get stargazers => _$this._stargazers;
-  set stargazers(int stargazers) => _$this._stargazers = stargazers;
+  int? _stargazers;
+  int? get stargazers => _$this._stargazers;
+  set stargazers(int? stargazers) => _$this._stargazers = stargazers;
 
-  String _url;
-  String get url => _$this._url;
-  set url(String url) => _$this._url = url;
+  String? _url;
+  String? get url => _$this._url;
+  set url(String? url) => _$this._url = url;
 
-  int _issues;
-  int get issues => _$this._issues;
-  set issues(int issues) => _$this._issues = issues;
+  int? _issues;
+  int? get issues => _$this._issues;
+  set issues(int? issues) => _$this._issues = issues;
 
-  GitHubUserBuilder _owner;
+  GitHubUserBuilder? _owner;
   GitHubUserBuilder get owner => _$this._owner ??= new GitHubUserBuilder();
-  set owner(GitHubUserBuilder owner) => _$this._owner = owner;
+  set owner(GitHubUserBuilder? owner) => _$this._owner = owner;
 
   GitHubRepositoryBuilder();
 
   GitHubRepositoryBuilder get _$this {
-    if (_$v != null) {
-      _name = _$v.name;
-      _description = _$v.description;
-      _isFork = _$v.isFork;
-      _isPrivate = _$v.isPrivate;
-      _stargazers = _$v.stargazers;
-      _url = _$v.url;
-      _issues = _$v.issues;
-      _owner = _$v.owner?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name;
+      _description = $v.description;
+      _isFork = $v.isFork;
+      _isPrivate = $v.isPrivate;
+      _stargazers = $v.stargazers;
+      _url = $v.url;
+      _issues = $v.issues;
+      _owner = $v.owner.toBuilder();
       _$v = null;
     }
     return this;
@@ -261,14 +252,12 @@ class GitHubRepositoryBuilder
 
   @override
   void replace(GitHubRepository other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GitHubRepository;
   }
 
   @override
-  void update(void Function(GitHubRepositoryBuilder) updates) {
+  void update(void Function(GitHubRepositoryBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -278,16 +267,22 @@ class GitHubRepositoryBuilder
     try {
       _$result = _$v ??
           new _$GitHubRepository._(
-              name: name,
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, 'GitHubRepository', 'name'),
               description: description,
-              isFork: isFork,
-              isPrivate: isPrivate,
-              stargazers: stargazers,
-              url: url,
-              issues: issues,
+              isFork: BuiltValueNullFieldError.checkNotNull(
+                  isFork, 'GitHubRepository', 'isFork'),
+              isPrivate: BuiltValueNullFieldError.checkNotNull(
+                  isPrivate, 'GitHubRepository', 'isPrivate'),
+              stargazers: BuiltValueNullFieldError.checkNotNull(
+                  stargazers, 'GitHubRepository', 'stargazers'),
+              url: BuiltValueNullFieldError.checkNotNull(
+                  url, 'GitHubRepository', 'url'),
+              issues: BuiltValueNullFieldError.checkNotNull(
+                  issues, 'GitHubRepository', 'issues'),
               owner: owner.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'owner';
         owner.build();

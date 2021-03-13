@@ -17,13 +17,15 @@ class _$StoreGitHubTokenSerializer
   final String wireName = 'StoreGitHubToken';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, StoreGitHubToken object,
+  Iterable<Object?> serialize(Serializers serializers, StoreGitHubToken object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    if (object.token != null) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.token;
+    if (value != null) {
       result
         ..add('token')
-        ..add(serializers.serialize(object.token,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     return result;
@@ -31,7 +33,7 @@ class _$StoreGitHubTokenSerializer
 
   @override
   StoreGitHubToken deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new StoreGitHubTokenBuilder();
 
@@ -39,7 +41,7 @@ class _$StoreGitHubTokenSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'token':
           result.token = serializers.deserialize(value,
@@ -54,10 +56,10 @@ class _$StoreGitHubTokenSerializer
 
 class _$StoreGitHubToken extends StoreGitHubToken {
   @override
-  final String token;
+  final String? token;
 
   factory _$StoreGitHubToken(
-          [void Function(StoreGitHubTokenBuilder) updates]) =>
+          [void Function(StoreGitHubTokenBuilder)? updates]) =>
       (new StoreGitHubTokenBuilder()..update(updates)).build();
 
   _$StoreGitHubToken._({this.token}) : super._();
@@ -84,17 +86,18 @@ class _$StoreGitHubToken extends StoreGitHubToken {
 
 class StoreGitHubTokenBuilder
     implements Builder<StoreGitHubToken, StoreGitHubTokenBuilder> {
-  _$StoreGitHubToken _$v;
+  _$StoreGitHubToken? _$v;
 
-  String _token;
-  String get token => _$this._token;
-  set token(String token) => _$this._token = token;
+  String? _token;
+  String? get token => _$this._token;
+  set token(String? token) => _$this._token = token;
 
   StoreGitHubTokenBuilder();
 
   StoreGitHubTokenBuilder get _$this {
-    if (_$v != null) {
-      _token = _$v.token;
+    final $v = _$v;
+    if ($v != null) {
+      _token = $v.token;
       _$v = null;
     }
     return this;
@@ -102,14 +105,12 @@ class StoreGitHubTokenBuilder
 
   @override
   void replace(StoreGitHubToken other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$StoreGitHubToken;
   }
 
   @override
-  void update(void Function(StoreGitHubTokenBuilder) updates) {
+  void update(void Function(StoreGitHubTokenBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

@@ -24,9 +24,10 @@ class GitHubAuthStep extends EnumClass {
 
   const GitHubAuthStep._(String name) : super(name);
 
-  int get index => _$indexMap[this];
+  int get index => _$indexMap[this] ?? 0;
   static BuiltSet<GitHubAuthStep> get values => _$values;
   static GitHubAuthStep valueOf(String name) => _$valueOf(name);
 
-  Object toJson() => serializers.serializeWith(GitHubAuthStep.serializer, this);
+  Object? toJson() =>
+      serializers.serializeWith(GitHubAuthStep.serializer, this);
 }

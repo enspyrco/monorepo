@@ -19,7 +19,7 @@ class NavSelection extends EnumClass {
 
   const NavSelection._(String name) : super(name);
 
-  int get index => _$indexMap[this];
+  int get index => _$indexMap[this] ?? 0;
   static BuiltSet<NavSelection> get values => _$values;
   static NavSelection valueOf(String name) => _$valueOf(name);
 
@@ -36,5 +36,5 @@ class NavSelection extends EnumClass {
     }
   }
 
-  Object toJson() => serializers.serializeWith(NavSelection.serializer, this);
+  Object? toJson() => serializers.serializeWith(NavSelection.serializer, this);
 }

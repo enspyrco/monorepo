@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ProblemAlert extends StatelessWidget {
   final Problem problem;
 
-  ProblemAlert({this.problem});
+  ProblemAlert({required this.problem});
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +19,14 @@ class ProblemAlert extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                for (final key in problem.info.keys)
-                  Text('$key: ${problem.info[key]}')
+                if (problem.info != null)
+                  for (final key in problem.info!.keys)
+                    Text('$key: ${problem.info![key]}')
               ],
             ),
             Text('error: ${problem.errorString}'),
             SizedBox(height: 20),
-            Text(problem.traceString),
+            Text(problem.traceString ?? '-'),
             // RichText(
             //   text: TextSpan(
             //     text: problem.traceString,
@@ -37,11 +38,11 @@ class ProblemAlert extends StatelessWidget {
         ),
       ),
       actions: <Widget>[
-        FlatButton(
-          child: Text('OK'),
+        ElevatedButton(
           onPressed: () {
             Navigator.of(context).pop<Problem>(problem);
           },
+          child: Text('OK'),
         ),
       ],
     );

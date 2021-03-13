@@ -15,9 +15,9 @@ class _$SettingsSerializer implements StructuredSerializer<Settings> {
   final String wireName = 'Settings';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Settings object,
+  Iterable<Object?> serialize(Serializers serializers, Settings object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'darkTheme',
       serializers.serialize(object.darkTheme,
           specifiedType: const FullType(ThemeSet)),
@@ -33,7 +33,7 @@ class _$SettingsSerializer implements StructuredSerializer<Settings> {
   }
 
   @override
-  Settings deserialize(Serializers serializers, Iterable<Object> serialized,
+  Settings deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new SettingsBuilder();
 
@@ -41,15 +41,15 @@ class _$SettingsSerializer implements StructuredSerializer<Settings> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'darkTheme':
           result.darkTheme.replace(serializers.deserialize(value,
-              specifiedType: const FullType(ThemeSet)) as ThemeSet);
+              specifiedType: const FullType(ThemeSet))! as ThemeSet);
           break;
         case 'lightTheme':
           result.lightTheme.replace(serializers.deserialize(value,
-              specifiedType: const FullType(ThemeSet)) as ThemeSet);
+              specifiedType: const FullType(ThemeSet))! as ThemeSet);
           break;
         case 'brightnessMode':
           result.brightnessMode = serializers.deserialize(value,
@@ -70,20 +70,18 @@ class _$Settings extends Settings {
   @override
   final BrightnessMode brightnessMode;
 
-  factory _$Settings([void Function(SettingsBuilder) updates]) =>
+  factory _$Settings([void Function(SettingsBuilder)? updates]) =>
       (new SettingsBuilder()..update(updates)).build();
 
-  _$Settings._({this.darkTheme, this.lightTheme, this.brightnessMode})
+  _$Settings._(
+      {required this.darkTheme,
+      required this.lightTheme,
+      required this.brightnessMode})
       : super._() {
-    if (darkTheme == null) {
-      throw new BuiltValueNullFieldError('Settings', 'darkTheme');
-    }
-    if (lightTheme == null) {
-      throw new BuiltValueNullFieldError('Settings', 'lightTheme');
-    }
-    if (brightnessMode == null) {
-      throw new BuiltValueNullFieldError('Settings', 'brightnessMode');
-    }
+    BuiltValueNullFieldError.checkNotNull(darkTheme, 'Settings', 'darkTheme');
+    BuiltValueNullFieldError.checkNotNull(lightTheme, 'Settings', 'lightTheme');
+    BuiltValueNullFieldError.checkNotNull(
+        brightnessMode, 'Settings', 'brightnessMode');
   }
 
   @override
@@ -119,29 +117,31 @@ class _$Settings extends Settings {
 }
 
 class SettingsBuilder implements Builder<Settings, SettingsBuilder> {
-  _$Settings _$v;
+  _$Settings? _$v;
 
-  ThemeSetBuilder _darkTheme;
+  ThemeSetBuilder? _darkTheme;
   ThemeSetBuilder get darkTheme => _$this._darkTheme ??= new ThemeSetBuilder();
-  set darkTheme(ThemeSetBuilder darkTheme) => _$this._darkTheme = darkTheme;
+  set darkTheme(ThemeSetBuilder? darkTheme) => _$this._darkTheme = darkTheme;
 
-  ThemeSetBuilder _lightTheme;
+  ThemeSetBuilder? _lightTheme;
   ThemeSetBuilder get lightTheme =>
       _$this._lightTheme ??= new ThemeSetBuilder();
-  set lightTheme(ThemeSetBuilder lightTheme) => _$this._lightTheme = lightTheme;
+  set lightTheme(ThemeSetBuilder? lightTheme) =>
+      _$this._lightTheme = lightTheme;
 
-  BrightnessMode _brightnessMode;
-  BrightnessMode get brightnessMode => _$this._brightnessMode;
-  set brightnessMode(BrightnessMode brightnessMode) =>
+  BrightnessMode? _brightnessMode;
+  BrightnessMode? get brightnessMode => _$this._brightnessMode;
+  set brightnessMode(BrightnessMode? brightnessMode) =>
       _$this._brightnessMode = brightnessMode;
 
   SettingsBuilder();
 
   SettingsBuilder get _$this {
-    if (_$v != null) {
-      _darkTheme = _$v.darkTheme?.toBuilder();
-      _lightTheme = _$v.lightTheme?.toBuilder();
-      _brightnessMode = _$v.brightnessMode;
+    final $v = _$v;
+    if ($v != null) {
+      _darkTheme = $v.darkTheme.toBuilder();
+      _lightTheme = $v.lightTheme.toBuilder();
+      _brightnessMode = $v.brightnessMode;
       _$v = null;
     }
     return this;
@@ -149,14 +149,12 @@ class SettingsBuilder implements Builder<Settings, SettingsBuilder> {
 
   @override
   void replace(Settings other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Settings;
   }
 
   @override
-  void update(void Function(SettingsBuilder) updates) {
+  void update(void Function(SettingsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -168,9 +166,10 @@ class SettingsBuilder implements Builder<Settings, SettingsBuilder> {
           new _$Settings._(
               darkTheme: darkTheme.build(),
               lightTheme: lightTheme.build(),
-              brightnessMode: brightnessMode);
+              brightnessMode: BuiltValueNullFieldError.checkNotNull(
+                  brightnessMode, 'Settings', 'brightnessMode'));
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'darkTheme';
         darkTheme.build();

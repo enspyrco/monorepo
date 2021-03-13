@@ -20,15 +20,15 @@ class _$RetrieveGitHubRepositoriesSerializer
   final String wireName = 'RetrieveGitHubRepositories';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, RetrieveGitHubRepositories object,
       {FullType specifiedType = FullType.unspecified}) {
-    return <Object>[];
+    return <Object?>[];
   }
 
   @override
   RetrieveGitHubRepositories deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new RetrieveGitHubRepositoriesBuilder().build();
   }
@@ -36,7 +36,7 @@ class _$RetrieveGitHubRepositoriesSerializer
 
 class _$RetrieveGitHubRepositories extends RetrieveGitHubRepositories {
   factory _$RetrieveGitHubRepositories(
-          [void Function(RetrieveGitHubRepositoriesBuilder) updates]) =>
+          [void Function(RetrieveGitHubRepositoriesBuilder)? updates]) =>
       (new RetrieveGitHubRepositoriesBuilder()..update(updates)).build();
 
   _$RetrieveGitHubRepositories._() : super._();
@@ -65,20 +65,18 @@ class _$RetrieveGitHubRepositories extends RetrieveGitHubRepositories {
 class RetrieveGitHubRepositoriesBuilder
     implements
         Builder<RetrieveGitHubRepositories, RetrieveGitHubRepositoriesBuilder> {
-  _$RetrieveGitHubRepositories _$v;
+  _$RetrieveGitHubRepositories? _$v;
 
   RetrieveGitHubRepositoriesBuilder();
 
   @override
   void replace(RetrieveGitHubRepositories other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$RetrieveGitHubRepositories;
   }
 
   @override
-  void update(void Function(RetrieveGitHubRepositoriesBuilder) updates) {
+  void update(void Function(RetrieveGitHubRepositoriesBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

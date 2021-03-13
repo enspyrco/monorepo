@@ -20,7 +20,7 @@ extension MakeThemeData on ThemeData {
           colorScheme: ColorScheme.light(
               primary: Color(themeSet.colors.primary),
               secondary: Color(themeSet.colors.secondary),
-              error: Color(themeSet.colors.error)));
+              error: Color(themeSet.colors.error ?? 0xFF1111)));
     } else if (themeSet.brightness == ThemeBrightness.dark &&
         themeSet.colors.error == null) {
       return ThemeData.from(
@@ -34,8 +34,13 @@ extension MakeThemeData on ThemeData {
           colorScheme: ColorScheme.dark(
               primary: Color(themeSet.colors.primary),
               secondary: Color(themeSet.colors.secondary),
-              error: Color(themeSet.colors.error)));
+              error: Color(themeSet.colors.error ?? 0xFF1111)));
     }
-    return null;
+    // retunn a default to make the analyzer happy
+    return ThemeData.from(
+        colorScheme: ColorScheme.dark(
+            primary: Color(themeSet.colors.primary),
+            secondary: Color(themeSet.colors.secondary),
+            error: Color(themeSet.colors.error ?? 0xFF1111)));
   }
 }

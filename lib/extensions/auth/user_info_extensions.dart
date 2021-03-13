@@ -5,9 +5,9 @@ extension UserInfoExt on UserInfo {
   AuthProviderData toAuthProviderData() => AuthProviderData(
         providerId: providerId,
         uid: uid,
-        displayName: displayName,
-        photoUrl: photoUrl,
-        email: email,
-        phoneNumber: phoneNumber,
+        displayName: displayName ?? '-',
+        photoURL: photoURL ?? '-',
+        email: email ?? '-',
+        phoneNumber: phoneNumber ?? '-',
       );
 }

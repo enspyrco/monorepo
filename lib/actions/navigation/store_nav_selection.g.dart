@@ -17,9 +17,9 @@ class _$StoreNavSelectionSerializer
   final String wireName = 'StoreNavSelection';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, StoreNavSelection object,
+  Iterable<Object?> serialize(Serializers serializers, StoreNavSelection object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'selection',
       serializers.serialize(object.selection,
           specifiedType: const FullType(NavSelection)),
@@ -30,7 +30,7 @@ class _$StoreNavSelectionSerializer
 
   @override
   StoreNavSelection deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new StoreNavSelectionBuilder();
 
@@ -38,7 +38,7 @@ class _$StoreNavSelectionSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'selection':
           result.selection = serializers.deserialize(value,
@@ -56,13 +56,12 @@ class _$StoreNavSelection extends StoreNavSelection {
   final NavSelection selection;
 
   factory _$StoreNavSelection(
-          [void Function(StoreNavSelectionBuilder) updates]) =>
+          [void Function(StoreNavSelectionBuilder)? updates]) =>
       (new StoreNavSelectionBuilder()..update(updates)).build();
 
-  _$StoreNavSelection._({this.selection}) : super._() {
-    if (selection == null) {
-      throw new BuiltValueNullFieldError('StoreNavSelection', 'selection');
-    }
+  _$StoreNavSelection._({required this.selection}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        selection, 'StoreNavSelection', 'selection');
   }
 
   @override
@@ -87,17 +86,18 @@ class _$StoreNavSelection extends StoreNavSelection {
 
 class StoreNavSelectionBuilder
     implements Builder<StoreNavSelection, StoreNavSelectionBuilder> {
-  _$StoreNavSelection _$v;
+  _$StoreNavSelection? _$v;
 
-  NavSelection _selection;
-  NavSelection get selection => _$this._selection;
-  set selection(NavSelection selection) => _$this._selection = selection;
+  NavSelection? _selection;
+  NavSelection? get selection => _$this._selection;
+  set selection(NavSelection? selection) => _$this._selection = selection;
 
   StoreNavSelectionBuilder();
 
   StoreNavSelectionBuilder get _$this {
-    if (_$v != null) {
-      _selection = _$v.selection;
+    final $v = _$v;
+    if ($v != null) {
+      _selection = $v.selection;
       _$v = null;
     }
     return this;
@@ -105,20 +105,21 @@ class StoreNavSelectionBuilder
 
   @override
   void replace(StoreNavSelection other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$StoreNavSelection;
   }
 
   @override
-  void update(void Function(StoreNavSelectionBuilder) updates) {
+  void update(void Function(StoreNavSelectionBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
   _$StoreNavSelection build() {
-    final _$result = _$v ?? new _$StoreNavSelection._(selection: selection);
+    final _$result = _$v ??
+        new _$StoreNavSelection._(
+            selection: BuiltValueNullFieldError.checkNotNull(
+                selection, 'StoreNavSelection', 'selection'));
     replace(_$result);
     return _$result;
   }

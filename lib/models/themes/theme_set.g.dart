@@ -15,9 +15,9 @@ class _$ThemeSetSerializer implements StructuredSerializer<ThemeSet> {
   final String wireName = 'ThemeSet';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, ThemeSet object,
+  Iterable<Object?> serialize(Serializers serializers, ThemeSet object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'colors',
       serializers.serialize(object.colors,
           specifiedType: const FullType(ThemeColors)),
@@ -30,7 +30,7 @@ class _$ThemeSetSerializer implements StructuredSerializer<ThemeSet> {
   }
 
   @override
-  ThemeSet deserialize(Serializers serializers, Iterable<Object> serialized,
+  ThemeSet deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new ThemeSetBuilder();
 
@@ -38,11 +38,11 @@ class _$ThemeSetSerializer implements StructuredSerializer<ThemeSet> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'colors':
           result.colors.replace(serializers.deserialize(value,
-              specifiedType: const FullType(ThemeColors)) as ThemeColors);
+              specifiedType: const FullType(ThemeColors))! as ThemeColors);
           break;
         case 'brightness':
           result.brightness = serializers.deserialize(value,
@@ -62,16 +62,12 @@ class _$ThemeSet extends ThemeSet {
   @override
   final ThemeBrightness brightness;
 
-  factory _$ThemeSet([void Function(ThemeSetBuilder) updates]) =>
+  factory _$ThemeSet([void Function(ThemeSetBuilder)? updates]) =>
       (new ThemeSetBuilder()..update(updates)).build();
 
-  _$ThemeSet._({this.colors, this.brightness}) : super._() {
-    if (colors == null) {
-      throw new BuiltValueNullFieldError('ThemeSet', 'colors');
-    }
-    if (brightness == null) {
-      throw new BuiltValueNullFieldError('ThemeSet', 'brightness');
-    }
+  _$ThemeSet._({required this.colors, required this.brightness}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(colors, 'ThemeSet', 'colors');
+    BuiltValueNullFieldError.checkNotNull(brightness, 'ThemeSet', 'brightness');
   }
 
   @override
@@ -104,22 +100,24 @@ class _$ThemeSet extends ThemeSet {
 }
 
 class ThemeSetBuilder implements Builder<ThemeSet, ThemeSetBuilder> {
-  _$ThemeSet _$v;
+  _$ThemeSet? _$v;
 
-  ThemeColorsBuilder _colors;
+  ThemeColorsBuilder? _colors;
   ThemeColorsBuilder get colors => _$this._colors ??= new ThemeColorsBuilder();
-  set colors(ThemeColorsBuilder colors) => _$this._colors = colors;
+  set colors(ThemeColorsBuilder? colors) => _$this._colors = colors;
 
-  ThemeBrightness _brightness;
-  ThemeBrightness get brightness => _$this._brightness;
-  set brightness(ThemeBrightness brightness) => _$this._brightness = brightness;
+  ThemeBrightness? _brightness;
+  ThemeBrightness? get brightness => _$this._brightness;
+  set brightness(ThemeBrightness? brightness) =>
+      _$this._brightness = brightness;
 
   ThemeSetBuilder();
 
   ThemeSetBuilder get _$this {
-    if (_$v != null) {
-      _colors = _$v.colors?.toBuilder();
-      _brightness = _$v.brightness;
+    final $v = _$v;
+    if ($v != null) {
+      _colors = $v.colors.toBuilder();
+      _brightness = $v.brightness;
       _$v = null;
     }
     return this;
@@ -127,14 +125,12 @@ class ThemeSetBuilder implements Builder<ThemeSet, ThemeSetBuilder> {
 
   @override
   void replace(ThemeSet other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ThemeSet;
   }
 
   @override
-  void update(void Function(ThemeSetBuilder) updates) {
+  void update(void Function(ThemeSetBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -143,9 +139,12 @@ class ThemeSetBuilder implements Builder<ThemeSet, ThemeSetBuilder> {
     _$ThemeSet _$result;
     try {
       _$result = _$v ??
-          new _$ThemeSet._(colors: colors.build(), brightness: brightness);
+          new _$ThemeSet._(
+              colors: colors.build(),
+              brightness: BuiltValueNullFieldError.checkNotNull(
+                  brightness, 'ThemeSet', 'brightness'));
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'colors';
         colors.build();

@@ -25,17 +25,17 @@ class ProfilePage extends StatelessWidget {
         ),
         actions: [
           MaterialButton(
-            child: Text('Sign Out'),
             onPressed: () => context.dispatch(SignOut()),
+            child: Text('Sign Out'),
           ),
         ],
       ),
       body: Center(
-        child: StoreConnector<AppState, BuiltMap<String, CredentialInfo>>(
+        child: StoreConnector<AppState, BuiltMap<String, CredentialInfo>?>(
           distinct: true,
-          converter: (store) => store.state.flireator.credentials,
+          converter: (store) => store.state.flireator?.credentials,
           builder: (context, credentialsMap) {
-            final keys = credentialsMap.entries.map((entry) => entry.key);
+            if (credentialsMap == null) return Container();
             return Column(children: [
               if (credentialsMap['apple'] != null)
                 AppleCard()

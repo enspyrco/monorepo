@@ -8,7 +8,6 @@ import 'package:built_value/serializer.dart';
 import 'package:flireator/actions/redux_action.dart';
 import 'package:flireator/models/git_hub/git_hub_repository.dart';
 import 'package:flireator/utils/serializers.dart';
-import 'package:meta/meta.dart';
 
 part 'store_git_hub_repositories.g.dart';
 
@@ -20,13 +19,13 @@ abstract class StoreGitHubRepositories extends Object
   StoreGitHubRepositories._();
 
   factory StoreGitHubRepositories(
-          {@required BuiltList<GitHubRepository> repositories}) =
+          {required BuiltList<GitHubRepository> repositories}) =
       _$StoreGitHubRepositories._;
 
-  Object toJson() =>
+  Object? toJson() =>
       serializers.serializeWith(StoreGitHubRepositories.serializer, this);
 
-  static StoreGitHubRepositories fromJson(String jsonString) =>
+  static StoreGitHubRepositories? fromJson(String jsonString) =>
       serializers.deserializeWith(
           StoreGitHubRepositories.serializer, json.decode(jsonString));
 

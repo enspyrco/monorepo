@@ -17,9 +17,9 @@ class _$DisplayProblemSerializer
   final String wireName = 'DisplayProblem';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, DisplayProblem object,
+  Iterable<Object?> serialize(Serializers serializers, DisplayProblem object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'problem',
       serializers.serialize(object.problem,
           specifiedType: const FullType(Problem)),
@@ -30,7 +30,7 @@ class _$DisplayProblemSerializer
 
   @override
   DisplayProblem deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new DisplayProblemBuilder();
 
@@ -38,11 +38,11 @@ class _$DisplayProblemSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'problem':
           result.problem.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Problem)) as Problem);
+              specifiedType: const FullType(Problem))! as Problem);
           break;
       }
     }
@@ -55,13 +55,11 @@ class _$DisplayProblem extends DisplayProblem {
   @override
   final Problem problem;
 
-  factory _$DisplayProblem([void Function(DisplayProblemBuilder) updates]) =>
+  factory _$DisplayProblem([void Function(DisplayProblemBuilder)? updates]) =>
       (new DisplayProblemBuilder()..update(updates)).build();
 
-  _$DisplayProblem._({this.problem}) : super._() {
-    if (problem == null) {
-      throw new BuiltValueNullFieldError('DisplayProblem', 'problem');
-    }
+  _$DisplayProblem._({required this.problem}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(problem, 'DisplayProblem', 'problem');
   }
 
   @override
@@ -86,17 +84,18 @@ class _$DisplayProblem extends DisplayProblem {
 
 class DisplayProblemBuilder
     implements Builder<DisplayProblem, DisplayProblemBuilder> {
-  _$DisplayProblem _$v;
+  _$DisplayProblem? _$v;
 
-  ProblemBuilder _problem;
+  ProblemBuilder? _problem;
   ProblemBuilder get problem => _$this._problem ??= new ProblemBuilder();
-  set problem(ProblemBuilder problem) => _$this._problem = problem;
+  set problem(ProblemBuilder? problem) => _$this._problem = problem;
 
   DisplayProblemBuilder();
 
   DisplayProblemBuilder get _$this {
-    if (_$v != null) {
-      _problem = _$v.problem?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _problem = $v.problem.toBuilder();
       _$v = null;
     }
     return this;
@@ -104,14 +103,12 @@ class DisplayProblemBuilder
 
   @override
   void replace(DisplayProblem other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$DisplayProblem;
   }
 
   @override
-  void update(void Function(DisplayProblemBuilder) updates) {
+  void update(void Function(DisplayProblemBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -121,7 +118,7 @@ class DisplayProblemBuilder
     try {
       _$result = _$v ?? new _$DisplayProblem._(problem: problem.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'problem';
         problem.build();

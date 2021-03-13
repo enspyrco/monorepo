@@ -25,9 +25,9 @@ class SignInStep extends EnumClass {
 
   const SignInStep._(String name) : super(name);
 
-  int get index => _$indexMap[this];
+  int get index => _$indexMap[this] ?? 0;
   static BuiltSet<SignInStep> get values => _$values;
   static SignInStep valueOf(String name) => _$valueOf(name);
 
-  Object toJson() => serializers.serializeWith(SignInStep.serializer, this);
+  Object? toJson() => serializers.serializeWith(SignInStep.serializer, this);
 }

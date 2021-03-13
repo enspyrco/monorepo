@@ -15,20 +15,20 @@ class _$SignOutSerializer implements StructuredSerializer<SignOut> {
   final String wireName = 'SignOut';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, SignOut object,
+  Iterable<Object?> serialize(Serializers serializers, SignOut object,
       {FullType specifiedType = FullType.unspecified}) {
-    return <Object>[];
+    return <Object?>[];
   }
 
   @override
-  SignOut deserialize(Serializers serializers, Iterable<Object> serialized,
+  SignOut deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new SignOutBuilder().build();
   }
 }
 
 class _$SignOut extends SignOut {
-  factory _$SignOut([void Function(SignOutBuilder) updates]) =>
+  factory _$SignOut([void Function(SignOutBuilder)? updates]) =>
       (new SignOutBuilder()..update(updates)).build();
 
   _$SignOut._() : super._();
@@ -53,20 +53,18 @@ class _$SignOut extends SignOut {
 }
 
 class SignOutBuilder implements Builder<SignOut, SignOutBuilder> {
-  _$SignOut _$v;
+  _$SignOut? _$v;
 
   SignOutBuilder();
 
   @override
   void replace(SignOut other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$SignOut;
   }
 
   @override
-  void update(void Function(SignOutBuilder) updates) {
+  void update(void Function(SignOutBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

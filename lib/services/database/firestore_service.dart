@@ -10,7 +10,7 @@ import 'package:flireator/services/database/database_service.dart';
 
 class FirestoreService implements DatabaseService {
   /// The [Firestore] instance
-  final Firestore _firestore;
+  final FirebaseFirestore _firestore;
 
   /// The stream of the [_storeController] is used just once on app load, to
   /// connect the [_storeController] to the redux [Store]
@@ -30,12 +30,12 @@ class FirestoreService implements DatabaseService {
   final StreamController<ReduxAction> _storeController =
       StreamController<ReduxAction>();
 
-  FirestoreService(Firestore firestore) : _firestore = firestore;
+  FirestoreService(FirebaseFirestore firestore) : _firestore = firestore;
 
   @override
   Future<String> retrieveStoredToken(String userId) {
     return _firestore
-        .document('/users/$userId')
+        .doc('/users/$userId')
         .get()
         .then((snapshot) => snapshot['gitHubToken'] as String);
   }
@@ -43,11 +43,11 @@ class FirestoreService implements DatabaseService {
   @override
   Future<Flireator> retrieveFlireatorData(String userId) async {
     final docSnapshot =
-        await _firestore.document('/users/$userId').snapshots().first;
+        await _firestore.doc('/users/$userId').snapshots().first;
     return Flireator(
         id: userId,
-        displayName: docSnapshot.data['displayName'],
-        photoURL: docSnapshot.data['photoURL'],
-        credentials: BuiltMap<String, CredentialInfo>({}));
+        displayName: docSnapshot.data()?['displayName'] as String? ?? '-',
+        photoURL: docSnapshot.data()?['photoURL'] as String? ?? '-',
+        credentials: BuiltMap<String, CredentialInfo>());
   }
 }

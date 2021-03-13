@@ -10,7 +10,7 @@ import 'firebase_user_extensions.dart';
 extension ConnectAndConvert on FirebaseAuth {
   /// Observe the auth state and convert each [FirebaseUser]
   /// into a [ReduxAction] and send to the store using the passed in [StreamController]
-  StreamSubscription<FirebaseUser> connectAuthStateToStore(
+  StreamSubscription<User?> connectAuthStateToStore(
       StreamController<ReduxAction> controller) {
     // create a function to be called on finding an error
     final handleProblem = generateProblemHandler(controller.add,
@@ -18,8 +18,9 @@ extension ConnectAndConvert on FirebaseAuth {
 
     // listen to the onAuthStateChanged stream, convert events to actions and
     // dispatch to the store with the controller
-    return onAuthStateChanged.listen((firebaseUser) {
+    return authStateChanges().listen((firebaseUser) {
       try {
+        if (firebaseUser == null) return;
         controller.add(StoreAuthData(data: firebaseUser.toData()));
       } catch (error, trace) {
         handleProblem(error, trace);

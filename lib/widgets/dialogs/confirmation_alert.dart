@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ConfirmationAlert extends StatelessWidget {
   final String _question;
 
-  ConfirmationAlert({String question}) : _question = question;
+  ConfirmationAlert({required String question}) : _question = question;
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +17,17 @@ class ConfirmationAlert extends StatelessWidget {
         ),
       ),
       actions: <Widget>[
-        FlatButton(
-          child: Text('Yes'),
+        ElevatedButton(
           onPressed: () {
             Navigator.of(context).pop<bool>(true);
           },
+          child: Text('Yes'),
         ),
-        FlatButton(
-          child: Text('No'),
+        ElevatedButton(
           onPressed: () {
             Navigator.of(context).pop<bool>(false);
           },
+          child: Text('No'),
         ),
       ],
     );

@@ -16,10 +16,10 @@ abstract class NavigateToProfile extends Object
 
   factory NavigateToProfile() = _$NavigateToProfile._;
 
-  Object toJson() =>
+  Object? toJson() =>
       serializers.serializeWith(NavigateToProfile.serializer, this);
 
-  static NavigateToProfile fromJson(String jsonString) => serializers
+  static NavigateToProfile? fromJson(String jsonString) => serializers
       .deserializeWith(NavigateToProfile.serializer, json.decode(jsonString));
 
   static Serializer<NavigateToProfile> get serializer =>

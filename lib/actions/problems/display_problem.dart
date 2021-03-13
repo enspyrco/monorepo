@@ -17,11 +17,12 @@ abstract class DisplayProblem extends Object
 
   DisplayProblem._();
 
-  factory DisplayProblem({Problem problem}) = _$DisplayProblem._;
+  factory DisplayProblem({required Problem problem}) = _$DisplayProblem._;
 
-  Object toJson() => serializers.serializeWith(DisplayProblem.serializer, this);
+  Object? toJson() =>
+      serializers.serializeWith(DisplayProblem.serializer, this);
 
-  static DisplayProblem fromJson(String jsonString) => serializers
+  static DisplayProblem? fromJson(String jsonString) => serializers
       .deserializeWith(DisplayProblem.serializer, json.decode(jsonString));
 
   static Serializer<DisplayProblem> get serializer =>

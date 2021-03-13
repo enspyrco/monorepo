@@ -16,21 +16,21 @@ class _$PlumbServicesSerializer implements StructuredSerializer<PlumbServices> {
   final String wireName = 'PlumbServices';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, PlumbServices object,
+  Iterable<Object?> serialize(Serializers serializers, PlumbServices object,
       {FullType specifiedType = FullType.unspecified}) {
-    return <Object>[];
+    return <Object?>[];
   }
 
   @override
   PlumbServices deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new PlumbServicesBuilder().build();
   }
 }
 
 class _$PlumbServices extends PlumbServices {
-  factory _$PlumbServices([void Function(PlumbServicesBuilder) updates]) =>
+  factory _$PlumbServices([void Function(PlumbServicesBuilder)? updates]) =>
       (new PlumbServicesBuilder()..update(updates)).build();
 
   _$PlumbServices._() : super._();
@@ -56,20 +56,18 @@ class _$PlumbServices extends PlumbServices {
 
 class PlumbServicesBuilder
     implements Builder<PlumbServices, PlumbServicesBuilder> {
-  _$PlumbServices _$v;
+  _$PlumbServices? _$v;
 
   PlumbServicesBuilder();
 
   @override
   void replace(PlumbServices other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$PlumbServices;
   }
 
   @override
-  void update(void Function(PlumbServicesBuilder) updates) {
+  void update(void Function(PlumbServicesBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

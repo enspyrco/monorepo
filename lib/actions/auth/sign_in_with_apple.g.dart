@@ -17,21 +17,21 @@ class _$SignInWithAppleSerializer
   final String wireName = 'SignInWithApple';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, SignInWithApple object,
+  Iterable<Object?> serialize(Serializers serializers, SignInWithApple object,
       {FullType specifiedType = FullType.unspecified}) {
-    return <Object>[];
+    return <Object?>[];
   }
 
   @override
   SignInWithApple deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new SignInWithAppleBuilder().build();
   }
 }
 
 class _$SignInWithApple extends SignInWithApple {
-  factory _$SignInWithApple([void Function(SignInWithAppleBuilder) updates]) =>
+  factory _$SignInWithApple([void Function(SignInWithAppleBuilder)? updates]) =>
       (new SignInWithAppleBuilder()..update(updates)).build();
 
   _$SignInWithApple._() : super._();
@@ -58,20 +58,18 @@ class _$SignInWithApple extends SignInWithApple {
 
 class SignInWithAppleBuilder
     implements Builder<SignInWithApple, SignInWithAppleBuilder> {
-  _$SignInWithApple _$v;
+  _$SignInWithApple? _$v;
 
   SignInWithAppleBuilder();
 
   @override
   void replace(SignInWithApple other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$SignInWithApple;
   }
 
   @override
-  void update(void Function(SignInWithAppleBuilder) updates) {
+  void update(void Function(SignInWithAppleBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

@@ -41,7 +41,7 @@ class FlireatorApp extends StatelessWidget {
             theme: MakeThemeData.from(settings.lightTheme),
             darkTheme: MakeThemeData.from(settings.darkTheme),
             themeMode: MakeThemeMode.from(settings.brightnessMode),
-            home: StoreConnector<AppState, Flireator>(
+            home: StoreConnector<AppState, Flireator?>(
               distinct: true,
               converter: (store) => store.state.flireator,
               builder: (context, flireator) {

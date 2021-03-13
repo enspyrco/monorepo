@@ -17,37 +17,42 @@ class _$AuthProviderDataSerializer
   final String wireName = 'AuthProviderData';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, AuthProviderData object,
+  Iterable<Object?> serialize(Serializers serializers, AuthProviderData object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'providerId',
       serializers.serialize(object.providerId,
           specifiedType: const FullType(String)),
       'uid',
       serializers.serialize(object.uid, specifiedType: const FullType(String)),
     ];
-    if (object.displayName != null) {
+    Object? value;
+    value = object.displayName;
+    if (value != null) {
       result
         ..add('displayName')
-        ..add(serializers.serialize(object.displayName,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.photoUrl != null) {
+    value = object.photoURL;
+    if (value != null) {
       result
-        ..add('photoUrl')
-        ..add(serializers.serialize(object.photoUrl,
+        ..add('photoURL')
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.email != null) {
+    value = object.email;
+    if (value != null) {
       result
         ..add('email')
-        ..add(serializers.serialize(object.email,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.phoneNumber != null) {
+    value = object.phoneNumber;
+    if (value != null) {
       result
         ..add('phoneNumber')
-        ..add(serializers.serialize(object.phoneNumber,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     return result;
@@ -55,7 +60,7 @@ class _$AuthProviderDataSerializer
 
   @override
   AuthProviderData deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new AuthProviderDataBuilder();
 
@@ -63,7 +68,7 @@ class _$AuthProviderDataSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'providerId':
           result.providerId = serializers.deserialize(value,
@@ -77,8 +82,8 @@ class _$AuthProviderDataSerializer
           result.displayName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'photoUrl':
-          result.photoUrl = serializers.deserialize(value,
+        case 'photoURL':
+          result.photoURL = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'email':
@@ -102,32 +107,29 @@ class _$AuthProviderData extends AuthProviderData {
   @override
   final String uid;
   @override
-  final String displayName;
+  final String? displayName;
   @override
-  final String photoUrl;
+  final String? photoURL;
   @override
-  final String email;
+  final String? email;
   @override
-  final String phoneNumber;
+  final String? phoneNumber;
 
   factory _$AuthProviderData(
-          [void Function(AuthProviderDataBuilder) updates]) =>
+          [void Function(AuthProviderDataBuilder)? updates]) =>
       (new AuthProviderDataBuilder()..update(updates)).build();
 
   _$AuthProviderData._(
-      {this.providerId,
-      this.uid,
+      {required this.providerId,
+      required this.uid,
       this.displayName,
-      this.photoUrl,
+      this.photoURL,
       this.email,
       this.phoneNumber})
       : super._() {
-    if (providerId == null) {
-      throw new BuiltValueNullFieldError('AuthProviderData', 'providerId');
-    }
-    if (uid == null) {
-      throw new BuiltValueNullFieldError('AuthProviderData', 'uid');
-    }
+    BuiltValueNullFieldError.checkNotNull(
+        providerId, 'AuthProviderData', 'providerId');
+    BuiltValueNullFieldError.checkNotNull(uid, 'AuthProviderData', 'uid');
   }
 
   @override
@@ -145,7 +147,7 @@ class _$AuthProviderData extends AuthProviderData {
         providerId == other.providerId &&
         uid == other.uid &&
         displayName == other.displayName &&
-        photoUrl == other.photoUrl &&
+        photoURL == other.photoURL &&
         email == other.email &&
         phoneNumber == other.phoneNumber;
   }
@@ -157,7 +159,7 @@ class _$AuthProviderData extends AuthProviderData {
             $jc(
                 $jc($jc($jc(0, providerId.hashCode), uid.hashCode),
                     displayName.hashCode),
-                photoUrl.hashCode),
+                photoURL.hashCode),
             email.hashCode),
         phoneNumber.hashCode));
   }
@@ -168,7 +170,7 @@ class _$AuthProviderData extends AuthProviderData {
           ..add('providerId', providerId)
           ..add('uid', uid)
           ..add('displayName', displayName)
-          ..add('photoUrl', photoUrl)
+          ..add('photoURL', photoURL)
           ..add('email', email)
           ..add('phoneNumber', phoneNumber))
         .toString();
@@ -177,42 +179,43 @@ class _$AuthProviderData extends AuthProviderData {
 
 class AuthProviderDataBuilder
     implements Builder<AuthProviderData, AuthProviderDataBuilder> {
-  _$AuthProviderData _$v;
+  _$AuthProviderData? _$v;
 
-  String _providerId;
-  String get providerId => _$this._providerId;
-  set providerId(String providerId) => _$this._providerId = providerId;
+  String? _providerId;
+  String? get providerId => _$this._providerId;
+  set providerId(String? providerId) => _$this._providerId = providerId;
 
-  String _uid;
-  String get uid => _$this._uid;
-  set uid(String uid) => _$this._uid = uid;
+  String? _uid;
+  String? get uid => _$this._uid;
+  set uid(String? uid) => _$this._uid = uid;
 
-  String _displayName;
-  String get displayName => _$this._displayName;
-  set displayName(String displayName) => _$this._displayName = displayName;
+  String? _displayName;
+  String? get displayName => _$this._displayName;
+  set displayName(String? displayName) => _$this._displayName = displayName;
 
-  String _photoUrl;
-  String get photoUrl => _$this._photoUrl;
-  set photoUrl(String photoUrl) => _$this._photoUrl = photoUrl;
+  String? _photoURL;
+  String? get photoURL => _$this._photoURL;
+  set photoURL(String? photoURL) => _$this._photoURL = photoURL;
 
-  String _email;
-  String get email => _$this._email;
-  set email(String email) => _$this._email = email;
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
 
-  String _phoneNumber;
-  String get phoneNumber => _$this._phoneNumber;
-  set phoneNumber(String phoneNumber) => _$this._phoneNumber = phoneNumber;
+  String? _phoneNumber;
+  String? get phoneNumber => _$this._phoneNumber;
+  set phoneNumber(String? phoneNumber) => _$this._phoneNumber = phoneNumber;
 
   AuthProviderDataBuilder();
 
   AuthProviderDataBuilder get _$this {
-    if (_$v != null) {
-      _providerId = _$v.providerId;
-      _uid = _$v.uid;
-      _displayName = _$v.displayName;
-      _photoUrl = _$v.photoUrl;
-      _email = _$v.email;
-      _phoneNumber = _$v.phoneNumber;
+    final $v = _$v;
+    if ($v != null) {
+      _providerId = $v.providerId;
+      _uid = $v.uid;
+      _displayName = $v.displayName;
+      _photoURL = $v.photoURL;
+      _email = $v.email;
+      _phoneNumber = $v.phoneNumber;
       _$v = null;
     }
     return this;
@@ -220,14 +223,12 @@ class AuthProviderDataBuilder
 
   @override
   void replace(AuthProviderData other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AuthProviderData;
   }
 
   @override
-  void update(void Function(AuthProviderDataBuilder) updates) {
+  void update(void Function(AuthProviderDataBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -235,10 +236,12 @@ class AuthProviderDataBuilder
   _$AuthProviderData build() {
     final _$result = _$v ??
         new _$AuthProviderData._(
-            providerId: providerId,
-            uid: uid,
+            providerId: BuiltValueNullFieldError.checkNotNull(
+                providerId, 'AuthProviderData', 'providerId'),
+            uid: BuiltValueNullFieldError.checkNotNull(
+                uid, 'AuthProviderData', 'uid'),
             displayName: displayName,
-            photoUrl: photoUrl,
+            photoURL: photoURL,
             email: email,
             phoneNumber: phoneNumber);
     replace(_$result);

@@ -6,7 +6,6 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:flireator/actions/redux_action.dart';
 import 'package:flireator/utils/serializers.dart';
-import 'package:meta/meta.dart';
 
 part 'git_hub_user.g.dart';
 
@@ -18,15 +17,15 @@ abstract class GitHubUser extends Object
 
   GitHubUser._();
 
-  factory GitHubUser({@required String login, @required String avatarUrl}) =
+  factory GitHubUser({required String login, required String avatarUrl}) =
       _$GitHubUser._;
 
   factory GitHubUser.by([void Function(GitHubUserBuilder) updates]) =
       _$GitHubUser;
 
-  Object toJson() => serializers.serializeWith(GitHubUser.serializer, this);
+  Object? toJson() => serializers.serializeWith(GitHubUser.serializer, this);
 
-  static GitHubUser fromJson(String jsonString) => serializers.deserializeWith(
+  static GitHubUser? fromJson(String jsonString) => serializers.deserializeWith(
       GitHubUser.serializer, json.decode(jsonString));
 
   static Serializer<GitHubUser> get serializer => _$gitHubUserSerializer;

@@ -17,14 +17,14 @@ class _$ListenForProblemsSerializer
   final String wireName = 'ListenForProblems';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, ListenForProblems object,
+  Iterable<Object?> serialize(Serializers serializers, ListenForProblems object,
       {FullType specifiedType = FullType.unspecified}) {
-    return <Object>[];
+    return <Object?>[];
   }
 
   @override
   ListenForProblems deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new ListenForProblemsBuilder().build();
   }
@@ -32,7 +32,7 @@ class _$ListenForProblemsSerializer
 
 class _$ListenForProblems extends ListenForProblems {
   factory _$ListenForProblems(
-          [void Function(ListenForProblemsBuilder) updates]) =>
+          [void Function(ListenForProblemsBuilder)? updates]) =>
       (new ListenForProblemsBuilder()..update(updates)).build();
 
   _$ListenForProblems._() : super._();
@@ -59,20 +59,18 @@ class _$ListenForProblems extends ListenForProblems {
 
 class ListenForProblemsBuilder
     implements Builder<ListenForProblems, ListenForProblemsBuilder> {
-  _$ListenForProblems _$v;
+  _$ListenForProblems? _$v;
 
   ListenForProblemsBuilder();
 
   @override
   void replace(ListenForProblems other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ListenForProblems;
   }
 
   @override
-  void update(void Function(ListenForProblemsBuilder) updates) {
+  void update(void Function(ListenForProblemsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

@@ -16,9 +16,9 @@ abstract class RemoveProblem extends Object
 
   factory RemoveProblem() = _$RemoveProblem._;
 
-  Object toJson() => serializers.serializeWith(RemoveProblem.serializer, this);
+  Object? toJson() => serializers.serializeWith(RemoveProblem.serializer, this);
 
-  static RemoveProblem fromJson(String jsonString) => serializers
+  static RemoveProblem? fromJson(String jsonString) => serializers
       .deserializeWith(RemoveProblem.serializer, json.decode(jsonString));
 
   static Serializer<RemoveProblem> get serializer => _$removeProblemSerializer;

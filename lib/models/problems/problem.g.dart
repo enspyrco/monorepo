@@ -15,23 +15,26 @@ class _$ProblemSerializer implements StructuredSerializer<Problem> {
   final String wireName = 'Problem';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Problem object,
+  Iterable<Object?> serialize(Serializers serializers, Problem object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'errorString',
       serializers.serialize(object.errorString,
           specifiedType: const FullType(String)),
     ];
-    if (object.traceString != null) {
+    Object? value;
+    value = object.traceString;
+    if (value != null) {
       result
         ..add('traceString')
-        ..add(serializers.serialize(object.traceString,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.info != null) {
+    value = object.info;
+    if (value != null) {
       result
         ..add('info')
-        ..add(serializers.serialize(object.info,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(BuiltMap,
                 const [const FullType(String), const FullType(Object)])));
     }
@@ -39,7 +42,7 @@ class _$ProblemSerializer implements StructuredSerializer<Problem> {
   }
 
   @override
-  Problem deserialize(Serializers serializers, Iterable<Object> serialized,
+  Problem deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new ProblemBuilder();
 
@@ -47,7 +50,7 @@ class _$ProblemSerializer implements StructuredSerializer<Problem> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'errorString':
           result.errorString = serializers.deserialize(value,
@@ -60,7 +63,7 @@ class _$ProblemSerializer implements StructuredSerializer<Problem> {
         case 'info':
           result.info.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltMap,
-                  const [const FullType(String), const FullType(Object)])));
+                  const [const FullType(String), const FullType(Object)]))!);
           break;
       }
     }
@@ -73,17 +76,17 @@ class _$Problem extends Problem {
   @override
   final String errorString;
   @override
-  final String traceString;
+  final String? traceString;
   @override
-  final BuiltMap<String, Object> info;
+  final BuiltMap<String, Object>? info;
 
-  factory _$Problem([void Function(ProblemBuilder) updates]) =>
+  factory _$Problem([void Function(ProblemBuilder)? updates]) =>
       (new ProblemBuilder()..update(updates)).build();
 
-  _$Problem._({this.errorString, this.traceString, this.info}) : super._() {
-    if (errorString == null) {
-      throw new BuiltValueNullFieldError('Problem', 'errorString');
-    }
+  _$Problem._({required this.errorString, this.traceString, this.info})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        errorString, 'Problem', 'errorString');
   }
 
   @override
@@ -119,28 +122,29 @@ class _$Problem extends Problem {
 }
 
 class ProblemBuilder implements Builder<Problem, ProblemBuilder> {
-  _$Problem _$v;
+  _$Problem? _$v;
 
-  String _errorString;
-  String get errorString => _$this._errorString;
-  set errorString(String errorString) => _$this._errorString = errorString;
+  String? _errorString;
+  String? get errorString => _$this._errorString;
+  set errorString(String? errorString) => _$this._errorString = errorString;
 
-  String _traceString;
-  String get traceString => _$this._traceString;
-  set traceString(String traceString) => _$this._traceString = traceString;
+  String? _traceString;
+  String? get traceString => _$this._traceString;
+  set traceString(String? traceString) => _$this._traceString = traceString;
 
-  MapBuilder<String, Object> _info;
+  MapBuilder<String, Object>? _info;
   MapBuilder<String, Object> get info =>
       _$this._info ??= new MapBuilder<String, Object>();
-  set info(MapBuilder<String, Object> info) => _$this._info = info;
+  set info(MapBuilder<String, Object>? info) => _$this._info = info;
 
   ProblemBuilder();
 
   ProblemBuilder get _$this {
-    if (_$v != null) {
-      _errorString = _$v.errorString;
-      _traceString = _$v.traceString;
-      _info = _$v.info?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _errorString = $v.errorString;
+      _traceString = $v.traceString;
+      _info = $v.info?.toBuilder();
       _$v = null;
     }
     return this;
@@ -148,14 +152,12 @@ class ProblemBuilder implements Builder<Problem, ProblemBuilder> {
 
   @override
   void replace(Problem other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Problem;
   }
 
   @override
-  void update(void Function(ProblemBuilder) updates) {
+  void update(void Function(ProblemBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -165,11 +167,12 @@ class ProblemBuilder implements Builder<Problem, ProblemBuilder> {
     try {
       _$result = _$v ??
           new _$Problem._(
-              errorString: errorString,
+              errorString: BuiltValueNullFieldError.checkNotNull(
+                  errorString, 'Problem', 'errorString'),
               traceString: traceString,
               info: _info?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'info';
         _info?.build();

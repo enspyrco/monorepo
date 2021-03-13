@@ -12,7 +12,7 @@ class ListenForProblemsMiddleware
           store.onChange.listen((state) {
             if (state.displayProblem != null &&
                 !navigationService.displayingProblem) {
-              navigationService.display(state.displayProblem);
+              navigationService.display(state.displayProblem!);
             }
           });
         });

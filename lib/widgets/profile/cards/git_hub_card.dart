@@ -16,9 +16,9 @@ class GitHubCard extends StatelessWidget {
           ),
           ButtonBar(
             children: <Widget>[
-              FlatButton(
-                child: const Text('DEACTIVATE'),
+              ElevatedButton(
                 onPressed: () {},
+                child: const Text('DEACTIVATE'),
               ),
             ],
           ),

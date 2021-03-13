@@ -18,8 +18,7 @@ part 'app_state.g.dart';
 abstract class AppState implements Built<AppState, AppStateBuilder> {
   /// Problems
   BuiltList<Problem> get problems;
-  @nullable
-  Problem get displayProblem;
+  Problem? get displayProblem;
 
   /// Settings
   Settings get settings;
@@ -29,16 +28,13 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   /// Auth
   SignInStep get signInStep;
-  @nullable
-  AuthData get authData;
+  AuthData? get authData;
 
   /// Flireator
-  @nullable
-  Flireator get flireator;
+  Flireator? get flireator;
 
   /// GitHub
-  @nullable
-  String get gitHubToken;
+  String? get gitHubToken;
 
   AppState._();
 
@@ -49,9 +45,9 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   factory AppState([void Function(AppStateBuilder) updates]) = _$AppState;
 
-  Object toJson() => serializers.serializeWith(AppState.serializer, this);
+  Object? toJson() => serializers.serializeWith(AppState.serializer, this);
 
-  static AppState fromJson(String jsonString) =>
+  static AppState? fromJson(String jsonString) =>
       serializers.deserializeWith(AppState.serializer, json.decode(jsonString));
 
   static Serializer<AppState> get serializer => _$appStateSerializer;

@@ -17,14 +17,14 @@ class _$RequestGitHubAuthSerializer
   final String wireName = 'RequestGitHubAuth';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, RequestGitHubAuth object,
+  Iterable<Object?> serialize(Serializers serializers, RequestGitHubAuth object,
       {FullType specifiedType = FullType.unspecified}) {
-    return <Object>[];
+    return <Object?>[];
   }
 
   @override
   RequestGitHubAuth deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new RequestGitHubAuthBuilder().build();
   }
@@ -32,7 +32,7 @@ class _$RequestGitHubAuthSerializer
 
 class _$RequestGitHubAuth extends RequestGitHubAuth {
   factory _$RequestGitHubAuth(
-          [void Function(RequestGitHubAuthBuilder) updates]) =>
+          [void Function(RequestGitHubAuthBuilder)? updates]) =>
       (new RequestGitHubAuthBuilder()..update(updates)).build();
 
   _$RequestGitHubAuth._() : super._();
@@ -59,20 +59,18 @@ class _$RequestGitHubAuth extends RequestGitHubAuth {
 
 class RequestGitHubAuthBuilder
     implements Builder<RequestGitHubAuth, RequestGitHubAuthBuilder> {
-  _$RequestGitHubAuth _$v;
+  _$RequestGitHubAuth? _$v;
 
   RequestGitHubAuthBuilder();
 
   @override
   void replace(RequestGitHubAuth other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$RequestGitHubAuth;
   }
 
   @override
-  void update(void Function(RequestGitHubAuthBuilder) updates) {
+  void update(void Function(RequestGitHubAuthBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

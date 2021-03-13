@@ -18,9 +18,9 @@ abstract class ThemeSet implements Built<ThemeSet, ThemeSetBuilder> {
 
   factory ThemeSet([void Function(ThemeSetBuilder) updates]) = _$ThemeSet;
 
-  Object toJson() => serializers.serializeWith(ThemeSet.serializer, this);
+  Object? toJson() => serializers.serializeWith(ThemeSet.serializer, this);
 
-  static ThemeSet fromJson(String jsonString) =>
+  static ThemeSet? fromJson(String jsonString) =>
       serializers.deserializeWith(ThemeSet.serializer, json.decode(jsonString));
 
   static Serializer<ThemeSet> get serializer => _$themeSetSerializer;

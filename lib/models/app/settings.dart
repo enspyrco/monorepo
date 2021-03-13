@@ -30,9 +30,9 @@ abstract class Settings implements Built<Settings, SettingsBuilder> {
 
   factory Settings([void Function(SettingsBuilder) updates]) = _$Settings;
 
-  Object toJson() => serializers.serializeWith(Settings.serializer, this);
+  Object? toJson() => serializers.serializeWith(Settings.serializer, this);
 
-  static Settings fromJson(String jsonString) =>
+  static Settings? fromJson(String jsonString) =>
       serializers.deserializeWith(Settings.serializer, json.decode(jsonString));
 
   static Serializer<Settings> get serializer => _$settingsSerializer;

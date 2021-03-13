@@ -17,14 +17,14 @@ class _$NavigateToProfileSerializer
   final String wireName = 'NavigateToProfile';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, NavigateToProfile object,
+  Iterable<Object?> serialize(Serializers serializers, NavigateToProfile object,
       {FullType specifiedType = FullType.unspecified}) {
-    return <Object>[];
+    return <Object?>[];
   }
 
   @override
   NavigateToProfile deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new NavigateToProfileBuilder().build();
   }
@@ -32,7 +32,7 @@ class _$NavigateToProfileSerializer
 
 class _$NavigateToProfile extends NavigateToProfile {
   factory _$NavigateToProfile(
-          [void Function(NavigateToProfileBuilder) updates]) =>
+          [void Function(NavigateToProfileBuilder)? updates]) =>
       (new NavigateToProfileBuilder()..update(updates)).build();
 
   _$NavigateToProfile._() : super._();
@@ -59,20 +59,18 @@ class _$NavigateToProfile extends NavigateToProfile {
 
 class NavigateToProfileBuilder
     implements Builder<NavigateToProfile, NavigateToProfileBuilder> {
-  _$NavigateToProfile _$v;
+  _$NavigateToProfile? _$v;
 
   NavigateToProfileBuilder();
 
   @override
   void replace(NavigateToProfile other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$NavigateToProfile;
   }
 
   @override
-  void update(void Function(NavigateToProfileBuilder) updates) {
+  void update(void Function(NavigateToProfileBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

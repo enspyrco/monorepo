@@ -20,15 +20,15 @@ class _$ConnectAuthStateToStoreSerializer
   final String wireName = 'ConnectAuthStateToStore';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, ConnectAuthStateToStore object,
       {FullType specifiedType = FullType.unspecified}) {
-    return <Object>[];
+    return <Object?>[];
   }
 
   @override
   ConnectAuthStateToStore deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new ConnectAuthStateToStoreBuilder().build();
   }
@@ -36,7 +36,7 @@ class _$ConnectAuthStateToStoreSerializer
 
 class _$ConnectAuthStateToStore extends ConnectAuthStateToStore {
   factory _$ConnectAuthStateToStore(
-          [void Function(ConnectAuthStateToStoreBuilder) updates]) =>
+          [void Function(ConnectAuthStateToStoreBuilder)? updates]) =>
       (new ConnectAuthStateToStoreBuilder()..update(updates)).build();
 
   _$ConnectAuthStateToStore._() : super._();
@@ -65,20 +65,18 @@ class _$ConnectAuthStateToStore extends ConnectAuthStateToStore {
 class ConnectAuthStateToStoreBuilder
     implements
         Builder<ConnectAuthStateToStore, ConnectAuthStateToStoreBuilder> {
-  _$ConnectAuthStateToStore _$v;
+  _$ConnectAuthStateToStore? _$v;
 
   ConnectAuthStateToStoreBuilder();
 
   @override
   void replace(ConnectAuthStateToStore other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ConnectAuthStateToStore;
   }
 
   @override
-  void update(void Function(ConnectAuthStateToStoreBuilder) updates) {
+  void update(void Function(ConnectAuthStateToStoreBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

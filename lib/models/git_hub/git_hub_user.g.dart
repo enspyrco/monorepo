@@ -15,9 +15,9 @@ class _$GitHubUserSerializer implements StructuredSerializer<GitHubUser> {
   final String wireName = 'GitHubUser';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, GitHubUser object,
+  Iterable<Object?> serialize(Serializers serializers, GitHubUser object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'login',
       serializers.serialize(object.login,
           specifiedType: const FullType(String)),
@@ -30,7 +30,7 @@ class _$GitHubUserSerializer implements StructuredSerializer<GitHubUser> {
   }
 
   @override
-  GitHubUser deserialize(Serializers serializers, Iterable<Object> serialized,
+  GitHubUser deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GitHubUserBuilder();
 
@@ -38,7 +38,7 @@ class _$GitHubUserSerializer implements StructuredSerializer<GitHubUser> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'login':
           result.login = serializers.deserialize(value,
@@ -61,16 +61,12 @@ class _$GitHubUser extends GitHubUser {
   @override
   final String avatarUrl;
 
-  factory _$GitHubUser([void Function(GitHubUserBuilder) updates]) =>
+  factory _$GitHubUser([void Function(GitHubUserBuilder)? updates]) =>
       (new GitHubUserBuilder()..update(updates)).build();
 
-  _$GitHubUser._({this.login, this.avatarUrl}) : super._() {
-    if (login == null) {
-      throw new BuiltValueNullFieldError('GitHubUser', 'login');
-    }
-    if (avatarUrl == null) {
-      throw new BuiltValueNullFieldError('GitHubUser', 'avatarUrl');
-    }
+  _$GitHubUser._({required this.login, required this.avatarUrl}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(login, 'GitHubUser', 'login');
+    BuiltValueNullFieldError.checkNotNull(avatarUrl, 'GitHubUser', 'avatarUrl');
   }
 
   @override
@@ -95,22 +91,23 @@ class _$GitHubUser extends GitHubUser {
 }
 
 class GitHubUserBuilder implements Builder<GitHubUser, GitHubUserBuilder> {
-  _$GitHubUser _$v;
+  _$GitHubUser? _$v;
 
-  String _login;
-  String get login => _$this._login;
-  set login(String login) => _$this._login = login;
+  String? _login;
+  String? get login => _$this._login;
+  set login(String? login) => _$this._login = login;
 
-  String _avatarUrl;
-  String get avatarUrl => _$this._avatarUrl;
-  set avatarUrl(String avatarUrl) => _$this._avatarUrl = avatarUrl;
+  String? _avatarUrl;
+  String? get avatarUrl => _$this._avatarUrl;
+  set avatarUrl(String? avatarUrl) => _$this._avatarUrl = avatarUrl;
 
   GitHubUserBuilder();
 
   GitHubUserBuilder get _$this {
-    if (_$v != null) {
-      _login = _$v.login;
-      _avatarUrl = _$v.avatarUrl;
+    final $v = _$v;
+    if ($v != null) {
+      _login = $v.login;
+      _avatarUrl = $v.avatarUrl;
       _$v = null;
     }
     return this;
@@ -118,21 +115,23 @@ class GitHubUserBuilder implements Builder<GitHubUser, GitHubUserBuilder> {
 
   @override
   void replace(GitHubUser other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GitHubUser;
   }
 
   @override
-  void update(void Function(GitHubUserBuilder) updates) {
+  void update(void Function(GitHubUserBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
   _$GitHubUser build() {
-    final _$result =
-        _$v ?? new _$GitHubUser._(login: login, avatarUrl: avatarUrl);
+    final _$result = _$v ??
+        new _$GitHubUser._(
+            login: BuiltValueNullFieldError.checkNotNull(
+                login, 'GitHubUser', 'login'),
+            avatarUrl: BuiltValueNullFieldError.checkNotNull(
+                avatarUrl, 'GitHubUser', 'avatarUrl'));
     replace(_$result);
     return _$result;
   }
