@@ -21,7 +21,7 @@ packages:
       name: archive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.1.2"
   args:
     dependency: transitive
     description:
@@ -86,14 +86,14 @@ packages:
     source: hosted
     version: "6.1.10"
   built_collection:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: built_collection
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0"
   built_value:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: built_value
       url: "https://pub.dartlang.org"

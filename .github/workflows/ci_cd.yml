@@ -1,4 +1,4 @@
-name: fns-tests
+name: tests
 
 on:
   pull_request:
@@ -9,40 +9,33 @@ on:
       - dev
 
 jobs:
-  run-tests:
-    name: Cloud Functions Tests
+  build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: functions
-
     steps:
-    - uses: actions/checkout@v2
-
-    ##############################################
-    # Install Node.
-    ##############################################
-    - name: Use Node.js 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
     
-    ##############################################
-    # Setup gcloud to download credential files.
-    ##############################################
-    - name: Set up gcloud SDK
-      uses: google-github-actions/setup-gcloud@master
-      with:
-        project_id: the-process-tool
-        service_account_key: ${{ secrets.CREDENTIALS_SERVICE_ACCOUNT_KEY }}
-    - name: Download credential files
-      run: gsutil cp gs://the-process-tool-credentials/project_credentials.json src/project_credentials.json
+    - uses: actions/checkout@v1
 
-    ##############################################
-    # Install dependencies, build, lint and test.
-    ##############################################
-    - run: npm install
-    - run: npm run build
-    - run: npm run lint
-    - run: npm run test
+    # Install Java, needed by flutter-action.
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
     
+    # Install Flutter.
+    - uses: subosito/flutter-action@v1
+      with:
+        channel: 'dev'
+    
+    # Get project dependencies.
+    - run: flutter pub get
+
+    # Statically analyze the Dart code for any errors.
+    - run: flutter analyze .
+
+    # Generate missing files.
+    - run: flutter pub run build_runner build
+    
+    # Check for any formatting issues in the code.
+    - run: flutter format --set-exit-if-changed .
+    
+    # Run tests.
+    - run: flutter test

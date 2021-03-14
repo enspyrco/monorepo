@@ -17,9 +17,7 @@ dependencies:
   google_sign_in: any
   sign_in_with_apple: any
 
-  # built_value
-  built_collection: any
-  built_value: any
+  # freezed
   freezed_annotation: any
   json_serializable: any
   
@@ -55,7 +53,6 @@ dev_dependencies:
   mockito: any
   
   build_runner: any
-  # built_value_generator: 8.0.0-nullsafety.0
   freezed: any
   
 
