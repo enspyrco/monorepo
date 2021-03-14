@@ -1,5 +1,6 @@
+import 'package:immutable_collections/immutable_collections.dart';
+import 'package:the_process/models/auth/auth_provider_data.dart';
 import 'package:the_process/models/auth/auth_user_data.dart';
-import 'package:the_process/utils/immutable_collections/immutable_list.dart';
 
 class AuthUserDataExamples {
   static AuthUserData get minimal => AuthUserData(
@@ -8,5 +9,5 @@ class AuthUserDataExamples {
       lastSignedInOn: DateTime.fromMillisecondsSinceEpoch(1607774928554),
       isAnonymous: false,
       emailVerified: false,
-      providers: ImmutableList());
+      providers: ImmutableList<AuthProviderData>());
 }

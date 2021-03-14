@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:immutable_collections/immutable_collections.dart';
 import 'package:the_process/models/sections/new_section_v_m.dart';
 import 'package:the_process/models/sections/section.dart';
-import 'package:the_process/utils/immutable_collections/immutable_list.dart';
 
 part 'sections_v_m.freezed.dart';
 part 'sections_v_m.g.dart';

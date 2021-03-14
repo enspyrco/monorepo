@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:immutable_collections/immutable_collections.dart';
 import 'package:redux/redux.dart';
 import 'package:the_process/actions/app_init/plumb_streams_action.dart';
 import 'package:the_process/actions/auth/observe_auth_state_action.dart';
@@ -10,7 +11,6 @@ import 'package:the_process/extensions/settings_extensions.dart';
 import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/models/navigation/page_data/page_data.dart';
 import 'package:the_process/models/settings/settings.dart';
-import 'package:the_process/utils/immutable_collections/immutable_list.dart';
 import 'package:the_process/utils/redux_bundle.dart';
 import 'package:the_process/utils/wrappers/firebase_wrapper.dart';
 import 'package:the_process/widgets/app_widget/initializing_error_page.dart';

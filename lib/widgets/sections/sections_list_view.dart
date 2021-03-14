@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:immutable_collections/immutable_collections.dart';
 import 'package:the_process/models/sections/section.dart';
-import 'package:the_process/utils/immutable_collections/immutable_list.dart';
 import 'package:the_process/widgets/sections/sections_list_item.dart';
 
 class SectionsListView extends StatelessWidget {

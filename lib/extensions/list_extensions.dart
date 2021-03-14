@@ -1,5 +1,5 @@
-import 'package:the_process/utils/immutable_collections/immutable_list.dart';
+import 'package:immutable_collections/immutable_collections.dart';
 
 extension ListExtension<T> on List<T> {
-  ImmutableList<T> toImmutableList() => ImmutableList<T>.fromList(this);
+  ImmutableList<T> toImmutableList() => ImmutableList<T>.from(this);
 }

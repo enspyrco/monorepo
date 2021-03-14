@@ -41,6 +41,9 @@ dependencies:
   # utils 
   uuid: any
   http: any
+  immutable_collections:
+    git: 
+      url: https://github.com/Adventures-In/immutable_collections.git
 
 dev_dependencies:
   integration_test:

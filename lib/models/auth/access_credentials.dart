@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:the_process/utils/immutable_collections/immutable_list.dart';
+import 'package:immutable_collections/immutable_collections.dart';
 
 part 'access_credentials.freezed.dart';
 part 'access_credentials.g.dart';

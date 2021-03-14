@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:immutable_collections/immutable_collections.dart';
 import 'package:the_process/enums/auth/auth_step.dart';
 import 'package:the_process/models/auth/auth_user_data.dart';
 import 'package:the_process/models/navigation/page_data/page_data.dart';
@@ -7,7 +8,6 @@ import 'package:the_process/models/profile/profile_data.dart';
 import 'package:the_process/models/sections/sections_v_m.dart';
 import 'package:the_process/models/settings/settings.dart';
 import 'package:the_process/models/team/team_member.dart';
-import 'package:the_process/utils/immutable_collections/immutable_list.dart';
 import 'package:the_process/extensions/list_extensions.dart';
 
 part 'app_state.freezed.dart';

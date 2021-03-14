@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:immutable_collections/immutable_collections.dart';
 import 'package:the_process/models/auth/auth_provider_data.dart';
-import 'package:the_process/utils/immutable_collections/immutable_list.dart';
 
 part 'auth_user_data.freezed.dart';
 part 'auth_user_data.g.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:immutable_collections/immutable_collections.dart';
 import 'package:the_process/models/navigation/page_data/page_data.dart';
-import 'package:the_process/utils/immutable_collections/immutable_list.dart';
 import 'package:the_process/widgets/app_widget/initial_page.dart';
 import 'package:the_process/widgets/profile/profile_page.dart';
 import 'package:the_process/widgets/shared/problem_page.dart';
