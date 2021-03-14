@@ -28,14 +28,14 @@ jobs:
     # Get project dependencies.
     - run: flutter pub get
 
-    # Statically analyze the Dart code for any errors.
-    - run: flutter analyze .
-
     # Generate missing files.
     - run: flutter pub run build_runner build
     
     # Check for any formatting issues in the code.
     - run: flutter format --set-exit-if-changed .
+
+    # Statically analyze the Dart code for any errors.
+    - run: dart analyze .
     
     # Run tests.
     - run: flutter test
