@@ -2,8 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'hash_utils.dart';
 
-part 'immutable_list.g.dart';
-
 /// At the time of writing (8 Mar 2021) this class was built quickly as a
 /// solution to freezed lacking a good solution for immutable collections.
 /// It has not been tested (tasks have been created) and should be treated
@@ -28,7 +26,6 @@ part 'immutable_list.g.dart';
 /// - functions that return an iterable that may allow side effects first clones
 ///   the list
 ///
-@JsonSerializable()
 class ImmutableList<T> implements Iterable<T> {
   final List<T> _list;
 
@@ -44,6 +41,8 @@ class ImmutableList<T> implements Iterable<T> {
   ImmutableList<T> copyAndRemoveLast() =>
       ImmutableList._([..._list]..removeLast());
 
+  factory ImmutableList.fromJson(List<T> json) => ImmutableList.fromList(json);
+
   @override
   int get length => _list.length;
 
@@ -51,9 +50,6 @@ class ImmutableList<T> implements Iterable<T> {
   T get first => _list.first;
 
   T operator [](int i) => _list[i]; // get
-
-  factory ImmutableList.fromJson(Map<String, dynamic> json) =>
-      _$ImmutableListFromJson(json);
 
   @override
   bool operator ==(o) =>

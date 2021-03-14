@@ -7,6 +7,7 @@ part 'store_profile_data_action.g.dart';
 
 @freezed
 class StoreProfileDataAction with _$StoreProfileDataAction, ReduxAction {
+  @JsonSerializable(explicitToJson: true)
   factory StoreProfileDataAction({required ProfileData data}) =
       _StoreProfileDataAction;
 

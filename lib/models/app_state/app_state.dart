@@ -36,6 +36,7 @@ part 'app_state.g.dart';
 /// required [Settings] settings,
 @freezed
 class AppState with _$AppState {
+  @JsonSerializable(explicitToJson: true)
   factory AppState({
     /// Teams
     TeamMember? teamMember,

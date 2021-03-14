@@ -7,6 +7,7 @@ part 'push_page_action.g.dart';
 
 @freezed
 class PushPageAction with _$PushPageAction, ReduxAction {
+  @JsonSerializable(explicitToJson: true)
   factory PushPageAction({required PageData data}) = _PushPageAction;
 
   factory PushPageAction.fromJson(Map<String, dynamic> json) =>

@@ -7,6 +7,7 @@ part 'remove_problem_action.g.dart';
 
 @freezed
 class RemoveProblemAction with _$RemoveProblemAction, ReduxAction {
+  @JsonSerializable(explicitToJson: true)
   factory RemoveProblemAction({required Problem problem}) =
       _RemoveProblemAction;
 

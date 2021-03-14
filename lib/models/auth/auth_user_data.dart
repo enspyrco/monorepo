@@ -7,6 +7,7 @@ part 'auth_user_data.g.dart';
 
 @freezed
 class AuthUserData with _$AuthUserData {
+  @JsonSerializable(explicitToJson: true)
   factory AuthUserData({
     required String uid,
     String? displayName,

@@ -8,6 +8,7 @@ part 'sections_v_m.g.dart';
 
 @freezed
 class SectionsVM with _$SectionsVM {
+  @JsonSerializable(explicitToJson: true)
   factory SectionsVM({
     required NewSectionVM newSection,
     required ImmutableList<Section> list,

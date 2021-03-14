@@ -19,6 +19,6 @@ _$_AuthProviderProjectCredentials _$_$_AuthProviderProjectCredentialsFromJson(
 Map<String, dynamic> _$_$_AuthProviderProjectCredentialsToJson(
         _$_AuthProviderProjectCredentials instance) =>
     <String, dynamic>{
-      'google': instance.google,
-      'asana': instance.asana,
+      'google': instance.google.toJson(),
+      'asana': instance.asana.toJson(),
     };

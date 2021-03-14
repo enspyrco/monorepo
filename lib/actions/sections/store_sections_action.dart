@@ -8,6 +8,7 @@ part 'store_sections_action.g.dart';
 
 @freezed
 class StoreSectionsAction with _$StoreSectionsAction, ReduxAction {
+  @JsonSerializable(explicitToJson: true)
   factory StoreSectionsAction({required ImmutableList<Section> list}) =
       _StoreSectionsAction;
 

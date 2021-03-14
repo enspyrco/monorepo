@@ -9,6 +9,7 @@ part 'auth_provider_project_credentials.g.dart';
 @freezed
 abstract class AuthProviderProjectCredentials
     with _$AuthProviderProjectCredentials {
+  @JsonSerializable(explicitToJson: true)
   factory AuthProviderProjectCredentials(
           {required GoogleProjectCredentials google,
           required AsanaProjectCredentials asana}) =
