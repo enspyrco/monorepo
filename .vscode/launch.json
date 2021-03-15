@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Flutter",
+            "name": "flireator",
             "program": "lib/main.dart",
             "deviceId": "macOS",
             "request": "launch",
@@ -13,12 +13,12 @@
             "args": [ "--no-sound-null-safety" ]
         },
         {
-            "name": "Integration Test - RDT",
+            "name": "Emulators & RDT",
             "type": "dart",
             "deviceId": "macOS",
             "request": "launch",
-            "program": "lib/main.dart",
-            "args": ["--no-sound-null-safety", "--dart-define=RDT=true"]
+            "program": "lib/main_rdt.dart",
+            "args": ["--no-sound-null-safety"]
         },
     ]
 }

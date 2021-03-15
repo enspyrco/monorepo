@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flireator/models/app/app_state.dart';
 import 'package:flireator/utils/redux/redux_bundle.dart';
 import 'package:flireator/utils/redux/store_operation.dart';
@@ -18,17 +19,21 @@ void main() {
     await _rdtMiddleware.connect();
   });
 
-  // Settings to make the firestore package use the local emulator
-  final _firestoreSettings = Settings(
-      host: 'localhost:8080', sslEnabled: false, persistenceEnabled: false);
+  // Setting the auth emulator must be done after Firebase has been initialized
+  final _authEmulatorOperation = StoreOperation((store) async {
+    await FirebaseAuth.instance.useEmulator('http://localhost:9099');
+  });
 
   // Setup the redux bundle to use a different bucket and with an extra
   // middleware that sends each action and state to the rdt server for display.
   ReduxBundle.setup(
       bucketName: 'gs://profile-pics-prototyping',
       extraMiddlewares: [_rdtMiddleware],
-      storeOperations: [_rdtOperation],
-      firestoreSettings: _firestoreSettings);
+      storeOperations: [_rdtOperation, _authEmulatorOperation],
+      firestoreSettings: Settings(
+          host: 'localhost:8080',
+          sslEnabled: false,
+          persistenceEnabled: false));
 
   runApp(AppWidget());
 }

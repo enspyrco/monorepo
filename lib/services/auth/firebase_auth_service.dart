@@ -8,43 +8,39 @@ import 'package:flireator/extensions/auth/firebase_auth_extensions.dart';
 import 'package:flireator/extensions/auth/firebase_user_extensions.dart';
 import 'package:flireator/models/auth/auth_data.dart';
 import 'package:flireator/services/auth/auth_service.dart';
-import 'package:flireator/utils/problems_utils.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:flireator/extensions/dart/stream_controller_extensions.dart';
 
 class FirebaseAuthService implements AuthService {
   final FirebaseAuth _firebaseAuth;
 
   /// [StreamController] for adding auth state actions
-  final StreamController<ReduxAction> _storeStreamController;
+  final StreamController<ReduxAction> _actionsController;
+
+  /// We keep a subscription to the firebase auth state stream so we can
+  /// disconnect at a later time.
+  StreamSubscription<User?>? _subscription;
 
   /// The [Stream] is used just once on app load, to
   /// connect the [Database] to the redux [Store]
   @override
-  Stream<ReduxAction> get storeStream => _storeStreamController.stream;
+  Stream<ReduxAction> get storeStream => _actionsController.stream;
 
-  /// We keep a subscription to the firebase auth state stream so we can
-  /// disconnect at a later time.
-  StreamSubscription<User?>? _firebaseAuthStateSubscription;
+  FirebaseAuthService({
+    FirebaseAuth? auth,
+    StreamController<ReduxAction>? actionsController,
+  })  : _firebaseAuth = auth ?? FirebaseAuth.instance,
+        _actionsController =
+            actionsController ?? StreamController<ReduxAction>();
 
-  FirebaseAuthService(
-      {FirebaseAuth? auth, StreamController<ReduxAction>? eventsController})
-      : _firebaseAuth = auth ?? FirebaseAuth.instance,
-        _storeStreamController =
-            eventsController ?? StreamController<ReduxAction>();
-
+  /// Connect the firebase auth state to the store and keep the subscription.
   @override
   void connectAuthStateToStore() {
-    // create a function to be called on finding an error
-    final handleProblem = generateProblemHandler(_storeStreamController.add,
-        'FirebaseAuthService -> connectAuthStateToStore');
-
     try {
-      // connect the firebase auth state to the store and keep the subscription
-      _firebaseAuthStateSubscription?.cancel();
-      _firebaseAuthStateSubscription =
-          _firebaseAuth.connectAuthStateToStore(_storeStreamController);
+      _subscription?.cancel();
+      _subscription = _firebaseAuth.connectAuthStateToStore(_actionsController);
     } catch (error, trace) {
-      handleProblem(error, trace);
+      _actionsController.addProblem(error, trace);
     }
   }
 
@@ -56,7 +52,7 @@ class FirebaseAuthService implements AuthService {
 
   @override
   void disconnectAuthState() {
-    _firebaseAuthStateSubscription?.cancel();
+    _subscription?.cancel();
   }
 
   // The sign in updates the app state as the services have been plumbed so
@@ -64,7 +60,7 @@ class FirebaseAuthService implements AuthService {
   @override
   Future<AuthData?> signInWithApple() async {
     // update the app state to show the sign in step
-    _storeStreamController
+    _actionsController
         .add(StoreSignInStepAction(step: SignInStep.contactingApple));
 
     // perform the sign in
@@ -88,7 +84,7 @@ class FirebaseAuthService implements AuthService {
     );
 
     // update app state to show we are now signing in with firebase
-    _storeStreamController
+    _actionsController
         .add(StoreSignInStepAction(step: SignInStep.signingInWithFirebase));
 
     // use the credential to sign in to firebase

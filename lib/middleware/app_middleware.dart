@@ -1,4 +1,4 @@
-import 'package:flireator/middleware/auth/connect_auth_state_middleware.dart';
+import 'package:flireator/middleware/auth/observe_auth_state_middleware.dart';
 import 'package:flireator/middleware/auth/plumb_services_middleware.dart';
 import 'package:flireator/middleware/auth/request_github_auth_middleware.dart';
 import 'package:flireator/middleware/auth/retrieve_flireator_data_middleware.dart';
@@ -29,7 +29,7 @@ List<Middleware<AppState>> createAppMiddleware({
 }) {
   return [
     // Auth
-    ConnectAuthStateMiddleware(authService),
+    ObserveAuthStateMiddleware(authService),
     PlumbServicesMiddleware(authService, databaseService),
     RequestGitHubAuthMiddleware(platformService),
     RetrieveFlireatorDataMiddleware(databaseService),

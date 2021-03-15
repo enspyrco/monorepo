@@ -4,14 +4,14 @@ import 'package:flireator/services/auth/auth_service.dart';
 import 'package:flireator/utils/problems_utils.dart';
 import 'package:redux/redux.dart';
 
-class ConnectAuthStateMiddleware
+class ObserveAuthStateMiddleware
     extends TypedMiddleware<AppState, ObserveAuthStateAction> {
-  ConnectAuthStateMiddleware(AuthService authService)
+  ObserveAuthStateMiddleware(AuthService authService)
       : super((store, action, next) async {
           next(action);
 
           final handleProblem = generateProblemHandler(
-              store.dispatch, 'ConnectAuthStateMiddleware');
+              store.dispatch, 'ObserveAuthStateMiddleware');
 
           try {
             authService.connectAuthStateToStore();
