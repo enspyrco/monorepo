@@ -1,7 +1,7 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flireator/models/auth/auth_data.dart';
 import 'package:flireator/models/auth/auth_provider_data.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
 import 'user_info_extensions.dart';
 
@@ -17,7 +17,8 @@ extension FirebaseUserExt on User {
             metadata.lastSignInTime?.toUtc() ?? DateTime.now().toUtc(),
         isAnonymous: isAnonymous,
         emailVerified: emailVerified,
-        providers: BuiltList(providerData.map<AuthProviderData>(
-            (userInfo) => userInfo.toAuthProviderData())),
+        providers: providerData
+            .map<AuthProviderData>((userInfo) => userInfo.toAuthProviderData())
+            .toIList(),
       );
 }

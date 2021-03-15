@@ -1,27 +1,11 @@
-library git_hub_repository;
-
-import 'dart:convert';
-
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
 import 'package:flireator/models/git_hub/git_hub_user.dart';
-import 'package:flireator/utils/serializers.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'git_hub_repository.freezed.dart';
 part 'git_hub_repository.g.dart';
 
-abstract class GitHubRepository
-    implements Built<GitHubRepository, GitHubRepositoryBuilder> {
-  String get name;
-  String? get description;
-  bool get isFork;
-  bool get isPrivate;
-  int get stargazers;
-  String get url;
-  int get issues;
-  GitHubUser get owner;
-
-  GitHubRepository._();
-
+@freezed
+class GitHubRepository with _$GitHubRepository {
   factory GitHubRepository(
       {required String name,
       required String description,
@@ -30,17 +14,8 @@ abstract class GitHubRepository
       required int stargazers,
       required String url,
       required int issues,
-      required GitHubUser owner}) = _$GitHubRepository._;
+      required GitHubUser owner}) = _GitHubRepository;
 
-  factory GitHubRepository.by(
-      [void Function(GitHubRepositoryBuilder) updates]) = _$GitHubRepository;
-
-  Object? toJson() =>
-      serializers.serializeWith(GitHubRepository.serializer, this);
-
-  static GitHubRepository? fromJson(String jsonString) => serializers
-      .deserializeWith(GitHubRepository.serializer, json.decode(jsonString));
-
-  static Serializer<GitHubRepository> get serializer =>
-      _$gitHubRepositorySerializer;
+  factory GitHubRepository.fromJson(Map<String, dynamic> json) =>
+      _$GitHubRepositoryFromJson(json);
 }

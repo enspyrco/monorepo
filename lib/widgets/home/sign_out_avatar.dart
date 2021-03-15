@@ -1,5 +1,3 @@
-import 'package:flireator/actions/navigation/navigate_to_profile.dart';
-import 'package:flireator/extensions/flutter/build_context_extensions.dart';
 import 'package:flireator/models/app/app_state.dart';
 import 'package:flireator/models/flireator/flireator.dart';
 import 'package:flireator/widgets/shared/profile_avatar.dart';
@@ -20,7 +18,7 @@ class SignOutAvatar extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: ProfileAvatar(flireator.photoURL, onPressed: () {
-            context.dispatch(NavigateToProfile());
+            // context.dispatch(NavigateToProfileAction());
           }),
         );
       },

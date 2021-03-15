@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flireator/actions/redux_action.dart';
 import 'package:flireator/enums/database/database_section.dart';
 import 'package:flireator/models/credentials/credential_info.dart';
 import 'package:flireator/models/flireator/flireator.dart';
 import 'package:flireator/services/database/database_service.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
 class FirestoreService implements DatabaseService {
   /// The [Firestore] instance
@@ -51,6 +51,6 @@ class FirestoreService implements DatabaseService {
         id: userId,
         displayName: docSnapshot.data()?['displayName'] as String? ?? '-',
         photoURL: docSnapshot.data()?['photoURL'] as String? ?? '-',
-        credentials: BuiltMap<String, CredentialInfo>());
+        credentials: IMap<String, CredentialInfo>());
   }
 }

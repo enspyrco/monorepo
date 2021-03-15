@@ -1,54 +1,40 @@
-library app_state;
-
-import 'dart:convert';
-
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
 import 'package:flireator/enums/auth/sign_in_step.dart';
-import 'package:flireator/enums/navigation/nav_selection.dart';
 import 'package:flireator/models/app/settings.dart';
 import 'package:flireator/models/auth/auth_data.dart';
 import 'package:flireator/models/flireator/flireator.dart';
 import 'package:flireator/models/problems/problem.dart';
-import 'package:flireator/utils/serializers.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
+part 'app_state.freezed.dart';
 part 'app_state.g.dart';
 
-abstract class AppState implements Built<AppState, AppStateBuilder> {
-  /// Problems
-  BuiltList<Problem> get problems;
-  Problem? get displayProblem;
+@freezed
+class AppState with _$AppState {
+  factory AppState({
+    /// Problems
+    required IList<Problem> problems,
+    Problem? displayProblem,
 
-  /// Settings
-  Settings get settings;
+    /// Settings
+    required Settings settings,
 
-  /// Navigation
-  NavSelection get navSelection;
+    /// Auth
+    required SignInStep signInStep,
+    AuthData? authData,
 
-  /// Auth
-  SignInStep get signInStep;
-  AuthData? get authData;
+    /// Flireator
+    Flireator? flireator,
 
-  /// Flireator
-  Flireator? get flireator;
+    /// GitHub
+    String? gitHubToken,
+  }) = _AppState;
 
-  /// GitHub
-  String? get gitHubToken;
+  factory AppState.fromJson(Map<String, dynamic> json) =>
+      _$AppStateFromJson(json);
 
-  AppState._();
-
-  factory AppState.init() => AppState((a) => a
-    ..navSelection = NavSelection.local
-    ..settings = Settings.initBuilder()
-    ..signInStep = SignInStep.checking);
-
-  factory AppState([void Function(AppStateBuilder) updates]) = _$AppState;
-
-  Object? toJson() => serializers.serializeWith(AppState.serializer, this);
-
-  static AppState? fromJson(String jsonString) =>
-      serializers.deserializeWith(AppState.serializer, json.decode(jsonString));
-
-  static Serializer<AppState> get serializer => _$appStateSerializer;
+  factory AppState.init() => AppState(
+      problems: IList<Problem>(),
+      signInStep: SignInStep.checking,
+      settings: Settings.init());
 }

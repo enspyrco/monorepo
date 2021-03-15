@@ -49,5 +49,6 @@ app.*.map.json
 .firebaserc
 macos/Runner/GoogleService-Info.plist
 
-# Built value generated files 
+# generated files 
 *.g.dart
+*.freezed.dart

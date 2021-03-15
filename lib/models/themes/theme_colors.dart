@@ -1,14 +1,19 @@
-library theme_colors;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'dart:convert';
-
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:flireator/utils/serializers.dart';
-
+part 'theme_colors.freezed.dart';
 part 'theme_colors.g.dart';
 
-abstract class ThemeColors implements Built<ThemeColors, ThemeColorsBuilder> {
+@freezed
+class ThemeColors with _$ThemeColors {
+  factory ThemeColors({
+    required int primary,
+    required int secondary,
+    int? error,
+  }) = _ThemeColors;
+
+  factory ThemeColors.fromJson(Map<String, dynamic> json) =>
+      _$ThemeColorsFromJson(json);
+
   // colors
 
   static const int adventures_in_blue = 0xFF2196F3;
@@ -22,29 +27,9 @@ abstract class ThemeColors implements Built<ThemeColors, ThemeColorsBuilder> {
   static const int primary_grey = 0xFFAAAAAA;
   static const int secondary_grey = 0xFF999999;
 
-  // members
+  factory ThemeColors.standard() =>
+      ThemeColors(primary: adventures_in_blue, secondary: firebase_yellow);
 
-  int get primary;
-  int get secondary;
-  int? get error;
-
-  ThemeColors._();
-
-  factory ThemeColors([void Function(ThemeColorsBuilder) updates]) =
-      _$ThemeColors;
-
-  static final standard = ThemeColors((b) => b
-    ..primary = adventures_in_blue
-    ..secondary = firebase_yellow);
-
-  static final greyscale = ThemeColors((b) => b
-    ..primary = primary_grey
-    ..secondary = secondary_grey);
-
-  Object? toJson() => serializers.serializeWith(ThemeColors.serializer, this);
-
-  static ThemeColors? fromJson(String jsonString) => serializers
-      .deserializeWith(ThemeColors.serializer, json.decode(jsonString));
-
-  static Serializer<ThemeColors> get serializer => _$themeColorsSerializer;
+  factory ThemeColors.greyscale() =>
+      ThemeColors(primary: primary_grey, secondary: secondary_grey);
 }

@@ -1,11 +1,11 @@
-import 'package:flireator/actions/auth/request_git_hub_auth.dart';
+import 'package:flireator/actions/auth/request_git_hub_auth_action.dart';
 import 'package:flireator/models/app/app_state.dart';
 import 'package:flireator/services/platform_service.dart';
 import 'package:flireator/utils/problems_utils.dart';
 import 'package:redux/redux.dart';
 
 class RequestGitHubAuthMiddleware
-    extends TypedMiddleware<AppState, RequestGitHubAuth> {
+    extends TypedMiddleware<AppState, RequestGitHubAuthAction> {
   RequestGitHubAuthMiddleware(PlatformService platformService)
       : super((store, action, next) async {
           next(action);

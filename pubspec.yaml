@@ -13,17 +13,20 @@ dependencies:
   flutter:
     sdk: flutter
   
-  built_value:
-  built_collection:
-  redux:
-  flutter_redux:
+  # freezed
+  freezed_annotation: any
+  json_serializable: any
 
-  flutter_auth_buttons:
-  sign_in_with_apple:
-  firebase_auth:
-  url_launcher:
-  oauth2:
-  cloud_firestore:
+  # redux
+  redux: any
+  flutter_redux: any
+
+  flutter_auth_buttons: any
+  sign_in_with_apple: any
+  firebase_auth: any
+  url_launcher: any
+  oauth2: any
+  cloud_firestore: any
 
 dev_dependencies:
   flutter_test:
@@ -31,12 +34,15 @@ dev_dependencies:
   flutter_driver:
     sdk: flutter
   
-  build_runner:
-  built_value_generator:
-  pedantic:
-  test:
-  mockito:
-  redux_remote_devtools:
+  build_runner: any
+  freezed: any
+  pedantic: any
+  test: any
+  mockito: any
+  redux_remote_devtools: any
+
+  fast_immutable_collections: any
+  json_serializable_fic: any
 
 flutter:
   uses-material-design: true

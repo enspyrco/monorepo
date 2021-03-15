@@ -1,4 +1,4 @@
-import 'package:flireator/actions/auth/sign_in_with_apple.dart';
+import 'package:flireator/actions/auth/sign_in_with_apple_action.dart';
 import 'package:flireator/enums/auth/sign_in_step.dart';
 import 'package:flireator/extensions/flutter/build_context_extensions.dart';
 import 'package:flireator/models/app/app_state.dart';
@@ -26,10 +26,10 @@ class SignInPage extends StatelessWidget {
                 case SignInStep.waitingForInput:
                   return AppleSignInButton(
                     onPressed: () {
-                      context.dispatch(SignInWithApple());
+                      context.dispatch(SignInWithAppleAction());
                     },
                   );
-                case SignInStep.signingInWithApple:
+                case SignInStep.contactingApple:
                   return WaitingIndicator('Signing In With Apple');
                 case SignInStep.signingInWithFirebase:
                   return WaitingIndicator('Signing in to Firebase');

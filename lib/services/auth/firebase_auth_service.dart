@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flireator/actions/auth/store_sign_in_step.dart';
+import 'package:flireator/actions/auth/store_sign_in_step_action.dart';
 import 'package:flireator/actions/redux_action.dart';
 import 'package:flireator/enums/auth/sign_in_step.dart';
 import 'package:flireator/extensions/auth/firebase_auth_extensions.dart';
@@ -65,7 +65,7 @@ class FirebaseAuthService implements AuthService {
   Future<AuthData?> signInWithApple() async {
     // update the app state to show the sign in step
     _storeStreamController
-        .add(StoreSignInStep(step: SignInStep.signingInWithApple));
+        .add(StoreSignInStepAction(step: SignInStep.contactingApple));
 
     // perform the sign in
     final appleIdCredential = await SignInWithApple.getAppleIDCredential(
@@ -89,7 +89,7 @@ class FirebaseAuthService implements AuthService {
 
     // update app state to show we are now signing in with firebase
     _storeStreamController
-        .add(StoreSignInStep(step: SignInStep.signingInWithFirebase));
+        .add(StoreSignInStepAction(step: SignInStep.signingInWithFirebase));
 
     // use the credential to sign in to firebase
     final authResult =

@@ -1,53 +1,30 @@
-library auth_provider_data;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'dart:convert';
-
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:flireator/utils/serializers.dart';
-
+part 'auth_provider_data.freezed.dart';
 part 'auth_provider_data.g.dart';
 
-abstract class AuthProviderData
-    implements Built<AuthProviderData, AuthProviderDataBuilder> {
-  /// The provider identifier.
-  String get providerId;
-
-  /// The provider’s user ID for the user.
-  String get uid;
-
-  /// The name of the user.
-  String? get displayName;
-
-  /// The URL of the user’s profile photo.
-  String? get photoURL;
-
-  /// The user’s email address.
-  String? get email;
-
-  /// The user's phone number.
-  String? get phoneNumber;
-
-  AuthProviderData._();
-
+@freezed
+class AuthProviderData with _$AuthProviderData {
   factory AuthProviderData({
+    /// The provider identifier.
     required String providerId,
+
+    /// The provider’s user ID for the user.
     required String uid,
-    required String displayName,
-    required String photoURL,
-    required String email,
-    required String phoneNumber,
-  }) = _$AuthProviderData._;
 
-  factory AuthProviderData.by(
-      [void Function(AuthProviderDataBuilder) updates]) = _$AuthProviderData;
+    /// The name of the user.
+    String? displayName,
 
-  Object? toJson() =>
-      serializers.serializeWith(AuthProviderData.serializer, this);
+    /// The URL of the user’s profile photo.
+    String? photoURL,
 
-  static AuthProviderData? fromJson(String jsonString) => serializers
-      .deserializeWith(AuthProviderData.serializer, json.decode(jsonString));
+    /// The user’s email address.
+    String? email,
 
-  static Serializer<AuthProviderData> get serializer =>
-      _$authProviderDataSerializer;
+    /// The user's phone number.
+    String? phoneNumber,
+  }) = _AuthProviderData;
+
+  factory AuthProviderData.fromJson(Map<String, dynamic> json) =>
+      _$AuthProviderDataFromJson(json);
 }

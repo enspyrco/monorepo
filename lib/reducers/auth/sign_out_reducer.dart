@@ -1,11 +1,10 @@
-import 'package:flireator/actions/auth/sign_out.dart';
+import 'package:flireator/actions/auth/sign_out_action.dart';
 import 'package:flireator/enums/auth/sign_in_step.dart';
 import 'package:flireator/models/app/app_state.dart';
 import 'package:redux/redux.dart';
 
-class SignOutReducer extends TypedReducer<AppState, SignOut> {
+class SignOutReducer extends TypedReducer<AppState, SignOutAction> {
   SignOutReducer()
-      : super((state, action) => state.rebuild((b) => b
-          ..gitHubToken = null
-          ..signInStep = SignInStep.signingOut));
+      : super((state, action) => state.copyWith(
+            gitHubToken: null, signInStep: SignInStep.signingOut));
 }

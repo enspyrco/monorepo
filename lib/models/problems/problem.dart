@@ -1,32 +1,16 @@
-library problem;
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
-import 'dart:convert';
-
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:flireator/utils/serializers.dart';
-
+part 'problem.freezed.dart';
 part 'problem.g.dart';
 
-abstract class Problem implements Built<Problem, ProblemBuilder> {
-  String get errorString;
-  String? get traceString;
-  BuiltMap<String, Object>? get info;
-
-  Problem._();
-
+@freezed
+class Problem with _$Problem {
   factory Problem(
       {required String errorString,
-      String traceString,
-      BuiltMap<String, Object> info}) = _$Problem._;
+      String? traceString,
+      IMap<String, Object>? info}) = _Problem;
 
-  factory Problem.by([void Function(ProblemBuilder) updates]) = _$Problem;
-
-  Object? toJson() => serializers.serializeWith(Problem.serializer, this);
-
-  static Problem? fromJson(String jsonString) =>
-      serializers.deserializeWith(Problem.serializer, json.decode(jsonString));
-
-  static Serializer<Problem> get serializer => _$problemSerializer;
+  factory Problem.fromJson(Map<String, dynamic> json) =>
+      _$ProblemFromJson(json);
 }

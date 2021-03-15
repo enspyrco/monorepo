@@ -1,6 +1,6 @@
-import 'package:flireator/actions/auth/retrieve_flireator_data.dart';
-import 'package:flireator/actions/auth/sign_in_with_apple.dart';
-import 'package:flireator/actions/auth/store_sign_in_step.dart';
+import 'package:flireator/actions/auth/retrieve_flireator_data_action.dart';
+import 'package:flireator/actions/auth/sign_in_with_apple_action.dart';
+import 'package:flireator/actions/auth/store_sign_in_step_action.dart';
 import 'package:flireator/enums/auth/sign_in_step.dart';
 import 'package:flireator/models/app/app_state.dart';
 import 'package:flireator/services/auth/auth_service.dart';
@@ -8,7 +8,7 @@ import 'package:flireator/services/database/database_service.dart';
 import 'package:redux/redux.dart';
 
 class SignInWithAppleMiddleware
-    extends TypedMiddleware<AppState, SignInWithApple> {
+    extends TypedMiddleware<AppState, SignInWithAppleAction> {
   SignInWithAppleMiddleware(
       AuthService authService, DatabaseService databaseService)
       : super((store, action, next) async {
@@ -20,7 +20,7 @@ class SignInWithAppleMiddleware
           if (userData == null) return;
 
           store.dispatch(
-              StoreSignInStep(step: SignInStep.retrievingFlireatorData));
-          store.dispatch(RetrieveFlireatorData(userId: userData.uid));
+              StoreSignInStepAction(step: SignInStep.retrievingFlireatorData));
+          store.dispatch(RetrieveFlireatorDataAction(userId: userData.uid));
         });
 }
