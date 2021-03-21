@@ -15,8 +15,8 @@ void main() {
         () {
       final state = AppState.init();
       final updatedState = state.copyWith(
-          pagesData: state.pagesData.copyAndAdd(problemPageData),
-          problems: state.problems.copyAndAdd(problem));
+          pagesData: state.pagesData.add(problemPageData),
+          problems: state.problems.add(problem));
 
       expect(updatedState.problems.length, 1);
       expect(updatedState.pagesData.length, 2);

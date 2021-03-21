@@ -1,4 +1,4 @@
-import 'package:immutable_collections/immutable_collections.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:the_process/models/auth/auth_provider_data.dart';
 import 'package:the_process/models/auth/auth_user_data.dart';
 
@@ -9,5 +9,5 @@ class AuthUserDataExamples {
       lastSignedInOn: DateTime.fromMillisecondsSinceEpoch(1607774928554),
       isAnonymous: false,
       emailVerified: false,
-      providers: ImmutableList<AuthProviderData>());
+      providers: IList<AuthProviderData>());
 }

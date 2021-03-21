@@ -1,5 +1,5 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
-import 'package:immutable_collections/immutable_collections.dart';
 import 'package:the_process/models/navigation/page_data/page_data.dart';
 import 'package:the_process/widgets/app_widget/initial_page.dart';
 import 'package:the_process/widgets/profile/profile_page.dart';
@@ -7,7 +7,7 @@ import 'package:the_process/widgets/shared/problem_page.dart';
 
 /// We are using extensions in order to keep models as PODOs and avoid other
 /// dependencies in the app state.
-extension NavigatorEntriesExt on ImmutableList<PageData> {
+extension NavigatorEntriesExt on IList<PageData> {
   /// Creates a list of [MaterialPage]s from [PagesData] used as the history
   /// for [Navigator]
   List<MaterialPage> toPages() {

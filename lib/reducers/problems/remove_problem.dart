@@ -6,7 +6,7 @@ import 'package:the_process/models/navigation/page_data/page_data.dart';
 class RemoveProblemReducer extends TypedReducer<AppState, RemoveProblemAction> {
   RemoveProblemReducer()
       : super((state, action) => state.copyWith(
-            problems: state.problems.copyAndRemove(action.problem),
-            pagesData: state.pagesData
-                .copyAndRemove(ProblemPageData(action.problem))));
+            problems: state.problems.remove(action.problem),
+            pagesData:
+                state.pagesData.remove(ProblemPageData(action.problem))));
 }

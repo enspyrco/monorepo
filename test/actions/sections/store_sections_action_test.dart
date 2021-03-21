@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:immutable_collections/immutable_collections.dart';
 import 'package:test/test.dart';
 import 'package:the_process/actions/sections/store_sections_action.dart';
 import 'package:the_process/models/sections/section.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
 void main() {
   group('StoreSectionsAction', () {
@@ -34,10 +34,10 @@ void main() {
     test(
         'Two StoreSectionsAction one created fromJson and another created with constructor should equal each other if they have same sections on same order ',
         () {
-      var sections = ImmutableList<Section>();
+      var sections = <Section>[].lock;
       var sectionsListJson = <Map<String, dynamic>>[];
       for (var i = 0; i < 5; i++) {
-        sections = sections.copyAndAdd(Section(
+        sections = sections.add(Section(
             name: 'name$i',
             folderId: 'folderId$i',
             useCasesDocId: 'usecase$i'));

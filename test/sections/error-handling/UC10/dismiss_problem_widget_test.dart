@@ -37,8 +37,8 @@ void main() {
         (WidgetTester tester) async {
       final problemPageData = ProblemPageData(problem);
       final state = AppState.init();
-      final updatedState = state.copyWith(
-          pagesData: state.pagesData.copyAndAdd(problemPageData));
+      final updatedState =
+          state.copyWith(pagesData: state.pagesData.add(problemPageData));
       final store = FakeStore(state: updatedState);
       final appWidget = AppWidgetHarness(store: store).widget;
 
@@ -47,8 +47,8 @@ void main() {
 
       expect(find.byType(ProblemPage), findsOneWidget);
 
-      store.updateState(store.state.copyWith(
-          pagesData: store.state.pagesData.copyAndRemove(problemPageData)));
+      store.updateState(store.state
+          .copyWith(pagesData: store.state.pagesData.remove(problemPageData)));
       store.updateState(store.state);
 
       await tester.pump();

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:immutable_collections/immutable_collections.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:the_process/actions/auth/store_auth_user_data_action.dart';
 import 'package:the_process/actions/redux_action.dart';
@@ -11,6 +10,7 @@ import 'package:the_process/models/auth/apple_id_credential.dart';
 import 'package:the_process/models/auth/auth_provider_data.dart';
 import 'package:the_process/models/auth/auth_user_data.dart';
 import 'package:the_process/models/auth/google_sign_in_credential.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
 extension GoogleSignInAuthenticationExt on GoogleSignInAuthentication {
   GoogleSignInCredential toModel() => GoogleSignInCredential(
@@ -59,8 +59,9 @@ extension FirebaseUserExt on User {
       lastSignedInOn: metadata.lastSignInTime?.toUtc(),
       isAnonymous: isAnonymous,
       emailVerified: emailVerified,
-      providers: ImmutableList.from(providerData
-          .map<AuthProviderData>((userInfo) => userInfo.toModel())));
+      providers: providerData
+          .map<AuthProviderData>((userInfo) => userInfo.toModel())
+          .toIList());
 }
 
 extension UserInfoExt on UserInfo {

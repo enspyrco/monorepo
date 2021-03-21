@@ -9,7 +9,7 @@ on:
       - dev
 
 jobs:
-  build:
+  flutter_test:
     runs-on: ubuntu-latest
     steps:
     

@@ -6,7 +6,6 @@ import 'package:the_process/models/navigation/page_data/page_data.dart';
 class AddProblemReducer extends TypedReducer<AppState, AddProblemAction> {
   AddProblemReducer()
       : super((state, action) => state.copyWith(
-            problems: state.problems.copyAndAdd(action.problem),
-            pagesData:
-                state.pagesData.copyAndAdd(ProblemPageData(action.problem))));
+            problems: state.problems.add(action.problem),
+            pagesData: state.pagesData.add(ProblemPageData(action.problem))));
 }

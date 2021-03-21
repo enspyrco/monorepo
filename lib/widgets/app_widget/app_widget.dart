@@ -1,6 +1,6 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:immutable_collections/immutable_collections.dart';
 import 'package:redux/redux.dart';
 import 'package:the_process/actions/app_init/plumb_streams_action.dart';
 import 'package:the_process/actions/auth/observe_auth_state_action.dart';
@@ -97,7 +97,7 @@ class _AppWidgetState extends State<AppWidget> {
             theme: MakeThemeData.from(settings.lightTheme),
             darkTheme: MakeThemeData.from(settings.darkTheme),
             themeMode: MakeThemeMode.from(settings.brightnessMode),
-            home: StoreConnector<AppState, ImmutableList<PageData>>(
+            home: StoreConnector<AppState, IList<PageData>>(
               distinct: true,
               converter: (store) => store.state.pagesData,
               builder: (context, pagesData) => Navigator(
