@@ -1,7 +1,7 @@
 import 'package:redux/redux.dart';
 import 'package:the_process/actions/platform/detect_platform_action.dart';
-import 'package:the_process/actions/problems/add_problem_action.dart';
 import 'package:the_process/actions/settings/update_settings_action.dart';
+import 'package:the_process/extensions/redux_extensions.dart';
 import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/services/platform_service.dart';
 
@@ -15,8 +15,7 @@ class DetectPlatformMiddleware
             final platform = platformService.detectPlatform();
             store.dispatch(UpdateSettingsAction(platform: platform));
           } catch (error, trace) {
-            store.dispatch(AddProblemAction(
-                errorString: error.toString(), traceString: trace.toString()));
+            store.dispatchProblem(error, trace);
           }
         });
 }

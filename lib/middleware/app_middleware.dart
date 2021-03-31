@@ -5,7 +5,7 @@ import 'package:the_process/middleware/auth/sign_in_with_apple.dart';
 import 'package:the_process/middleware/auth/sign_in_with_google.dart';
 import 'package:the_process/middleware/auth/sign_out.dart';
 import 'package:the_process/middleware/platform/detect_platform.dart';
-import 'package:the_process/middleware/platform/launch_u_r_l.dart';
+import 'package:the_process/middleware/platform/launch_url.dart';
 import 'package:the_process/middleware/profile/disregard_profile_data.dart';
 import 'package:the_process/middleware/profile/get_authorized.dart';
 import 'package:the_process/middleware/profile/observe_profile_data.dart';
@@ -41,7 +41,7 @@ List<Middleware<AppState>> createAppMiddleware({
     SignOutMiddleware(authService),
     // Platform
     DetectPlatformMiddleware(platformService),
-    LaunchURLMiddleware(platformService),
+    LaunchUrlMiddleware(platformService),
     // Profile
     DisregardProfileDataMiddleware(databaseService),
     GetAuthorizedMiddleware(databaseService, platformService),

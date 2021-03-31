@@ -52,7 +52,7 @@ class PlatformService {
     }
   }
 
-  Future<void> launchURL(String url) async {
+  Future<void> launchUrl(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:the_process/actions/shared/connect_database.dart';
+import 'package:the_process/actions/shared/connect_database_action.dart';
 import 'package:the_process/enums/database/database_section.dart';
 import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/models/sections/sections_v_m.dart';
@@ -13,8 +13,8 @@ class SectionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, SectionsVM?>(
-      onInit: (store) =>
-          store.dispatch(ConnectDatabase(section: DatabaseSection.sections)),
+      onInit: (store) => store
+          .dispatch(ConnectDatabaseAction(section: DatabaseSection.sections)),
       distinct: true,
       converter: (store) => store.state.sections,
       builder: (context, vm) {

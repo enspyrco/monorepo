@@ -9,10 +9,10 @@ class SectionFolderButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // if (folderId == null) return
-    final folderURL = 'https://drive.google.com/drive/folders/$folderId';
+    final folderUrl = 'https://drive.google.com/drive/folders/$folderId';
     return IconButton(
       icon: Icon(Icons.folder_open_outlined),
-      onPressed: () => context.dispatch(LaunchUrlAction(url: folderURL)),
+      onPressed: () => context.dispatch(LaunchUrlAction(url: folderUrl)),
     );
   }
 }
