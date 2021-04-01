@@ -29,18 +29,15 @@ import 'package:the_process/middleware/profile/observe_profile_data.dart';
 import 'package:the_process/middleware/sections/create_section.dart';
 import 'package:the_process/middleware/shared/connect_database.dart';
 
+import '../mocks/services/service_test_doubles.mocks.dart';
 import '../mocks/redux/fake_store.dart';
-import '../mocks/services/auth_service_mock.dart';
-import '../mocks/services/database_service_mock.dart';
-import '../mocks/services/http_service_mock.dart';
-import '../mocks/services/platform_service_mock.dart';
 
 void main() {
   group('Middleware ', () {
     test('PlumStreams catches error', () {
       // Create the middleware and mocks.
-      final authServiceMock = AuthServiceMock();
-      final databaseServiceMock = DatabaseServiceMock();
+      final authServiceMock = MockAuthService();
+      final databaseServiceMock = MockDatabaseService();
       final middleware =
           PlumbStreamsMiddleware(authServiceMock, databaseServiceMock);
 
@@ -61,7 +58,7 @@ void main() {
 
     test('ObserveAuthState catches error', () {
       // Setup the middleware and mocks.
-      final authServiceMock = AuthServiceMock();
+      final authServiceMock = MockAuthService();
       final middleware = ObserveAuthStateMiddleware(authServiceMock);
 
       // Create the middleware dependencies.
@@ -81,7 +78,7 @@ void main() {
 
     test('SignInWithApple catches error', () {
       // Setup the middleware and mocks.
-      final authServiceMock = AuthServiceMock();
+      final authServiceMock = MockAuthService();
       final middleware = SignInWithAppleMiddleware(authServiceMock);
 
       // Create the middleware dependencies.
@@ -101,8 +98,8 @@ void main() {
 
     test('SignInWithGoogle catches error', () {
       // Setup the middleware and mocks.
-      final authServiceMock = AuthServiceMock();
-      final databaseServiceMock = DatabaseServiceMock();
+      final authServiceMock = MockAuthService();
+      final databaseServiceMock = MockDatabaseService();
       final middleware =
           SignInWithGoogleMiddleware(authServiceMock, databaseServiceMock);
 
@@ -123,7 +120,7 @@ void main() {
 
     test('SignOut catches error', () {
       // Setup the middleware and mocks.
-      final authServiceMock = AuthServiceMock();
+      final authServiceMock = MockAuthService();
       final middleware = SignOutMiddleware(authServiceMock);
 
       // Create the middleware dependencies.
@@ -143,7 +140,7 @@ void main() {
 
     test('DetectPlatform catches error', () {
       // Setup the middleware and mocks.
-      final platformServiceMock = PlatformServiceMock();
+      final platformServiceMock = MockPlatformService();
       final middleware = DetectPlatformMiddleware(platformServiceMock);
 
       // Create the middleware dependencies.
@@ -163,7 +160,7 @@ void main() {
 
     test('LaunchUrl catches error', () {
       // Setup the middleware and mocks.
-      final platformServiceMock = PlatformServiceMock();
+      final platformServiceMock = MockPlatformService();
       final middleware = LaunchUrlMiddleware(platformServiceMock);
 
       // Create the middleware dependencies.
@@ -183,7 +180,7 @@ void main() {
 
     test('DisregardProfileData catches error', () {
       // Setup the middleware and mocks.
-      final databaseServiceMock = DatabaseServiceMock();
+      final databaseServiceMock = MockDatabaseService();
       final middleware = DisregardProfileDataMiddleware(databaseServiceMock);
 
       // Create the middleware dependencies.
@@ -204,8 +201,8 @@ void main() {
 
     test('GetAuthorized catches error', () {
       // Setup the middleware and mocks.
-      final databaseServiceMock = DatabaseServiceMock();
-      final platformServiceMock = PlatformServiceMock();
+      final databaseServiceMock = MockDatabaseService();
+      final platformServiceMock = MockPlatformService();
       final middleware =
           GetAuthorizedMiddleware(databaseServiceMock, platformServiceMock);
 
@@ -230,7 +227,7 @@ void main() {
 
     test('ObserveProfileData catches error', () {
       // Setup the middleware and mocks.
-      final databaseServiceMock = DatabaseServiceMock();
+      final databaseServiceMock = MockDatabaseService();
       final middleware = ObserveProfileDataMiddleware(databaseServiceMock);
 
       // Create the middleware dependencies.
@@ -250,7 +247,7 @@ void main() {
 
     test('CreateSection catches error', () {
       // Setup the middleware and mocks.
-      final httpServiceMock = HttpServiceMock();
+      final httpServiceMock = MockHttpService();
       final middleware = CreateSectionMiddleware(httpServiceMock);
 
       // Create the middleware dependencies.
@@ -270,7 +267,7 @@ void main() {
 
     test('ConnectDatabase catches error', () {
       // Setup the middleware and mocks.
-      final databaseServiceMock = DatabaseServiceMock();
+      final databaseServiceMock = MockDatabaseService();
       final middleware = ConnectDatabaseMiddleware(databaseServiceMock);
 
       // Create the middleware dependencies.

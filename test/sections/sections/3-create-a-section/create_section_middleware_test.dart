@@ -5,9 +5,9 @@ import 'package:the_process/actions/sections/update_sections_v_m_action.dart';
 import 'package:the_process/middleware/sections/create_section.dart';
 import 'package:the_process/models/app_state/app_state.dart';
 
+import '../../../mocks/services/service_test_doubles.mocks.dart';
 import '../../../data/models/auth_user_data_examples.dart';
 import '../../../mocks/redux/fake_store.dart';
-import '../../../mocks/services/http_service_mock.dart';
 
 void main() {
   group('CreateSectionMiddleware', () {
@@ -18,16 +18,15 @@ void main() {
           authUserData: AuthUserDataExamples.minimal,
           sections: state.sections.copyWith.newSection(name: 'testy'));
       final fakeStore = FakeStore(state: state);
-      final httpServiceMock = HttpServiceMock();
+      final httpServiceMock = MockHttpService();
       final nullDispatcher = (dynamic _) => null;
 
       // Create then invoke the middleware under test.
       final middleware = CreateSectionMiddleware(httpServiceMock);
       await middleware(fakeStore, CreateSectionAction(), nullDispatcher);
 
-      verifyInOrder<dynamic>(<dynamic>[
-        fakeStore.dispatch(UpdateSectionsVMAction(creatingNewSection: true)),
-      ]);
+      expect(fakeStore.dispatchedActions,
+          contains(UpdateSectionsVMAction(creatingNewSection: true)));
 
       verify(httpServiceMock.createSection(name: 'testy'));
     });

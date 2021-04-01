@@ -15,7 +15,7 @@ class CreateSectionMiddleware
             store.dispatch(UpdateSectionsVMAction(creatingNewSection: true));
 
             await httpService.createSection(
-              name: store.state.sections!.newSection.name,
+              name: store.state.sections.newSection.name,
             );
           } catch (error, trace) {
             store.dispatchProblem(error, trace);

@@ -44,7 +44,7 @@ void main() {
           document: exampleDocument, onCalling: DocsFunctionNamed.create);
 
       // Create the subject under test.
-      final service = await DriveService(mockDriveApi, mockDocsApi);
+      final service = DriveService(mockDriveApi, mockDocsApi);
 
       // Run the function we are testing.
       final result = await service.createDocInFolder(
@@ -62,7 +62,7 @@ void main() {
       when(mockDocsApi.documents).thenThrow(Exception('Whoop!'));
 
       // Create the subject under test.
-      final service = await DriveService(mockDriveApi, mockDocsApi);
+      final service = DriveService(mockDriveApi, mockDocsApi);
 
       // Run the function we are testing.
       expect(
@@ -95,7 +95,7 @@ void main() {
           document: exampleDocument, onCalling: DocsFunctionNamed.create);
 
       // Create the subject under test.
-      final service = await DriveService(mockDriveApi, mockDocsApi);
+      final service = DriveService(mockDriveApi, mockDocsApi);
 
       // Run the function we are testing.
       final result = await service.createFolder(name: exampleFolderName);

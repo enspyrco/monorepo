@@ -16,7 +16,7 @@ void main() {
     final serviceClient =
         await clientViaApplicationDefaultCredentials(scopes: []);
     final secretManagerApi = SecretManagerApi(serviceClient);
-    final authService = await AuthService();
+    final authService = AuthService();
     final fakeFirestoreService = FakeFirestoreService();
     final userClient = await authService.getUserClient(
       enspyrTesterId,
@@ -40,7 +40,7 @@ void main() {
 
     // move the doc inside the folder
     final updatedFile = await driveApi.files
-        .update(File(), savedDoc.documentId, addParents: savedTestFolder.id);
+        .update(File(), savedDoc.documentId!, addParents: savedTestFolder.id);
 
     // check the doc has the folder as a parent
     expect(updatedFile.parents, contains(savedTestFolder.id));

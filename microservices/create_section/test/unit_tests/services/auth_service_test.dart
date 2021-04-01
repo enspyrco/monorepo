@@ -48,7 +48,7 @@ void main() {
           onCalling: SecretmanagerFunctionNamed.access);
 
       // Create the subject under test.
-      final authService = await AuthService();
+      final authService = AuthService();
 
       // Run the function we are testing.
       final userClient = await authService.getUserClient(
@@ -90,7 +90,7 @@ void main() {
           onCalling: SecretmanagerFunctionNamed.access);
 
       // Create the subject under test.
-      final authService = await AuthService();
+      final authService = AuthService();
 
       // Run the function we are testing.
       expect(
@@ -112,7 +112,7 @@ void main() {
           createSecretmanagerApiMockThatThrows(exception: exampleException);
 
       // Create the subject under test.
-      final authService = await AuthService();
+      final authService = AuthService();
 
       // Run the function we are testing.
       expect(
@@ -135,7 +135,7 @@ void main() {
           onCalling: SecretmanagerFunctionNamed.access);
 
       // Create the subject under test.
-      final authService = await AuthService();
+      final authService = AuthService();
 
       // Run the function we are testing.
       expect(
@@ -160,13 +160,13 @@ void main() {
           onCalling: SecretmanagerFunctionNamed.access);
 
       // Create the subject under test.
-      final authService = await AuthService();
+      final authService = AuthService();
 
       // Run the function we are testing.
       expect(
           authService.getUserClient(
               'testUserId', fakeFirestoreService, mockSecretmanagerApi),
-          throwsA(const TypeMatcher<NoSuchMethodError>()));
+          throwsA(TypeMatcher<TypeError>()));
     });
   });
 }

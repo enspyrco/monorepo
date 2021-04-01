@@ -19,7 +19,7 @@ void main() {
       final credentialsDoc =
           await firestoreApi.projects.databases.documents.get(documentName);
 
-      final jsonMap = credentialsDoc.fields['google']!.toJson();
+      final jsonMap = credentialsDoc.fields!['google']!.toJson();
 
       print(json.encode(jsonMap));
     });

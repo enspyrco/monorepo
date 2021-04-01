@@ -9,6 +9,7 @@ import 'package:the_process/utils/redux_bundle.dart';
 import 'package:the_process/utils/wrappers/firebase_wrapper.dart';
 import 'package:the_process/widgets/app_widget/app_widget.dart';
 
+import '../../mocks/firebase/firebase_test_doubles.mocks.dart';
 import '../../mocks/redux/fake_store.dart';
 import '../../mocks/redux/redux_bundle_completable_fake.dart';
 import '../../mocks/wrappers/firebase_wrapper_completable_fake.dart';
@@ -39,7 +40,7 @@ class CompletableAppWidgetHarnessWithFakeStore {
 
   Widget get widget => _appWidget;
 
-  void completeFirebase() => _firebaseCompleter.complete();
+  void completeFirebase() => _firebaseCompleter.complete(MockFirebaseApp());
   void completeRedux() => _reduxCompleter.complete(_fakeStore);
 
   void updateAppState(AppState state) => _fakeStore.updateState(state);

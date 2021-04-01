@@ -19,7 +19,7 @@ class DriveService {
 
     // move the doc inside the folder
     return await _driveApi.files
-        .update(File(), savedDoc.documentId, addParents: parentId);
+        .update(File(), savedDoc.documentId!, addParents: parentId);
   }
 
   /// If the [parentId] parameter is not passed, the folder will be top-level

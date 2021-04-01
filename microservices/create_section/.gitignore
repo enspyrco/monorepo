@@ -15,5 +15,6 @@ doc/api/
 
 # Ignore generated files.
 bin/server.dart
-*.freezed.dart
 *.g.dart
+*.freezed.dart
+*.mocks.dart

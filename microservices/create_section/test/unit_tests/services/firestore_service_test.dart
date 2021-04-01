@@ -28,14 +28,14 @@ void main() {
           document: exampleDoc, onCalling: FirestoreFunctionNamed.documentsGet);
 
       // Create the subject under test.
-      final firestoreService = await FirestoreService(mockFirestoreApi);
+      final firestoreService = FirestoreService(mockFirestoreApi);
 
       // Run the function we are testing.
       final googleUserCredentials =
           await firestoreService.getGoogleUserCredentials(exampleUserId);
 
       // Save a variable for easier access.
-      final googleFields = exampleDoc.fields['google']!.mapValue.fields;
+      final googleFields = exampleDoc.fields!['google']!.mapValue!.fields!;
 
       // Check the model object contains the same data provided by the api.
       expect(googleUserCredentials.accessToken,
@@ -61,7 +61,7 @@ void main() {
           .thenThrow(Exception(exampleExceptionMessage));
 
       // Create the subject under test.
-      final firestoreService = await FirestoreService(mockFirestoreApi);
+      final firestoreService = FirestoreService(mockFirestoreApi);
 
       // Run the function we are testing.
       expect(firestoreService.getGoogleUserCredentials(exampleUserId),
@@ -78,7 +78,7 @@ void main() {
           document: exampleDoc, onCalling: FirestoreFunctionNamed.documentsGet);
 
       // Create the subject under test.
-      final firestoreService = await FirestoreService(mockFirestoreApi);
+      final firestoreService = FirestoreService(mockFirestoreApi);
 
       // Run the function we are testing.
       expect(firestoreService.getGoogleUserCredentials(exampleUserId),

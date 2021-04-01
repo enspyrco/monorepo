@@ -17,10 +17,10 @@ import 'package:the_process/widgets/auth/auth_page_buttons/apple_sign_in_button.
 import 'package:the_process/widgets/sections/new_section_item.dart';
 import 'package:the_process/widgets/shared/waiting_indicator.dart';
 
+import '../../mocks/services/service_test_doubles.mocks.dart';
 import '../../mocks/firebase/firebase_auth_fake.dart';
 import '../../mocks/firebase/firebase_firestore_fake.dart';
 import '../../mocks/http/fake_client.dart';
-import '../../mocks/services/platform_service_mock.dart';
 import '../../utils/testing/app_widget_harness.dart';
 
 void main() {
@@ -38,7 +38,7 @@ void main() {
     final httpService = HttpService(client: fakeClient);
 
     // We just need the platform service to return a platform so we use a mock.
-    final mockPlatformService = PlatformServiceMock();
+    final mockPlatformService = MockPlatformService();
     when(mockPlatformService.detectPlatform()).thenReturn(PlatformEnum.iOS);
 
     final store = Store<AppState>(

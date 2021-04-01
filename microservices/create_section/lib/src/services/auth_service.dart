@@ -30,7 +30,7 @@ class AuthService {
 
     // Use ClientId & AccessCredentials to create the AutoRefreshingAuthClient.
     return autoRefreshingClient(
-        accessSecretVersionResponse.payload.toClientId(),
+        accessSecretVersionResponse.payload!.toClientId(),
         googleUserCredentials.toAccessCredentials(),
         http.IOClient());
   }

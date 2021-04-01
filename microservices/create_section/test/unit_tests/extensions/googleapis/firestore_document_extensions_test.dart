@@ -13,14 +13,14 @@ void main() {
 
       final googleUserCredentials = doc.toGoogleUserCredentials();
 
-      final googleFields = doc.fields['google']!.mapValue.fields;
+      final googleFields = doc.fields!['google']!.mapValue!.fields!;
 
       expect(googleUserCredentials.accessToken,
           googleFields['access_token']!.stringValue);
       expect(googleUserCredentials.refreshToken,
           googleFields['refresh_token']!.stringValue);
       expect(googleUserCredentials.expiryDate,
-          int.parse(googleFields['expiry_date']!.integerValue));
+          int.parse(googleFields['expiry_date']!.integerValue!));
       expect(
           googleUserCredentials.idToken, googleFields['id_token']!.stringValue);
       expect(googleUserCredentials.tokenType,

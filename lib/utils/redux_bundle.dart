@@ -14,13 +14,13 @@ import 'package:the_process/utils/store_operation.dart';
 /// Services can be injected, or if missing are given default values
 class ReduxBundle {
   static var _bucketName = 'gs://crowdleague-profile-pics';
-  static var _extraMiddlewares = <Middleware>[];
+  static var _extraMiddlewares = <Middleware<AppState>>[];
   static var _storeOperations = <StoreOperation>[];
   static Settings? _firestoreSettings;
 
   static void setup(
       {String? bucketName,
-      List<Middleware>? extraMiddlewares,
+      List<Middleware<AppState>>? extraMiddlewares,
       List<StoreOperation>? storeOperations,
       Settings? firestoreSettings}) {
     _bucketName = bucketName ?? _bucketName;

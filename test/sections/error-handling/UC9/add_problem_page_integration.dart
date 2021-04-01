@@ -11,10 +11,10 @@ import 'package:the_process/services/database_service.dart';
 import 'package:the_process/services/http_service.dart';
 import 'package:the_process/widgets/shared/problem_page.dart';
 
+import '../../../mocks/services/service_test_doubles.mocks.dart';
 import '../../../mocks/firebase/firebase_auth_fake.dart';
 import '../../../mocks/firebase/firebase_firestore_fake.dart';
 import '../../../mocks/http/fake_client.dart';
-import '../../../mocks/services/platform_service_mock.dart';
 import '../../../utils/testing/app_widget_harness.dart';
 
 void main() {
@@ -36,7 +36,7 @@ void main() {
       final httpService = HttpService(client: fakeClient);
 
       // We just need the platform service to return a platform so we use a mock.
-      final mockPlatformService = PlatformServiceMock();
+      final mockPlatformService = MockPlatformService();
       when(mockPlatformService.detectPlatform())
           .thenThrow('Just an error for a ProblemPage');
 
