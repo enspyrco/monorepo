@@ -6,10 +6,10 @@ import 'package:the_process/utils/redux_bundle.dart';
 
 /// The purpose of this class is to take a [Completer] that completes with
 /// a fake [Store] with the desired properties.
-class ReduxBundleCompletableFake implements ReduxBundle {
+class FakeReduxBundleCompletable implements ReduxBundle {
   final Completer<Store<AppState>> _reduxCompleter;
 
-  ReduxBundleCompletableFake({required Completer<Store<AppState>> completer})
+  FakeReduxBundleCompletable({required Completer<Store<AppState>> completer})
       : _reduxCompleter = completer {
     ;
   }

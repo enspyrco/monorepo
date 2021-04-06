@@ -8,10 +8,10 @@ import 'package:the_process/utils/redux_bundle.dart';
 /// a parameter, when [ReduxBundle.createStore()] is called by the [AppWidget].
 /// The store could be a fake with the desired properties, or a real store with
 /// fake services.
-class ReduxBundleFake implements ReduxBundle {
+class FakeReduxBundle implements ReduxBundle {
   final Store<AppState> _store;
 
-  ReduxBundleFake({required Store<AppState> store}) : _store = store;
+  FakeReduxBundle({required Store<AppState> store}) : _store = store;
 
   @override
   Future<Store<AppState>> createStore() => Future.value(_store);

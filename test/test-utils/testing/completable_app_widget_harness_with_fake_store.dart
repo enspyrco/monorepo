@@ -11,8 +11,8 @@ import 'package:the_process/widgets/app_widget/app_widget.dart';
 
 import '../../test-doubles/firebase/firebase_test_doubles.mocks.dart';
 import '../../test-doubles/redux/fake_store.dart';
-import '../../test-doubles/redux/redux_bundle_completable_fake.dart';
-import '../../test-doubles/wrappers/firebase_wrapper_completable_fake.dart';
+import '../../test-doubles/redux/fake_redux_bundle_completable.dart';
+import '../../test-doubles/wrappers/fake_firebase_wrapper_completable.dart';
 
 /// A test harness that wraps AppWidget to provide the
 /// functionality that a test may want in order to interact with the widget,
@@ -33,8 +33,8 @@ class CompletableAppWidgetHarnessWithFakeStore {
 
   //{FakeStore store}
   CompletableAppWidgetHarnessWithFakeStore() : _fakeStore = FakeStore() {
-    _firebase = FirebaseWrapperCompletableFake(completer: _firebaseCompleter);
-    _redux = ReduxBundleCompletableFake(completer: _reduxCompleter);
+    _firebase = FakeFirebaseWrapperCompletable(completer: _firebaseCompleter);
+    _redux = FakeReduxBundleCompletable(completer: _reduxCompleter);
     _appWidget = AppWidget(firebase: _firebase, redux: _redux);
   }
 

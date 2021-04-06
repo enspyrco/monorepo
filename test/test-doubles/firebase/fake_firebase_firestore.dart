@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 /// A fake [FirebaseFirestore] that can be used to emit given data at any point.
 ///
 /// Only partly implemented, can be added to as more use cases are required.
-class FirebaseFirestoreFake extends Fake implements FirebaseFirestore {
+class FakeFirebaseFirestore extends Fake implements FirebaseFirestore {
   final _sectionsController = StreamController<QuerySnapshot>();
 
   @override

@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-class UserMetadataFake extends Fake implements UserMetadata {
+class FakeUserMetadata extends Fake implements UserMetadata {
   final int _creationTimestamp;
   final int _lastSignInTime;
 
-  UserMetadataFake(
+  FakeUserMetadata(
       {required int creationTimestamp, required int lastSignInTime})
       : _creationTimestamp = creationTimestamp,
         _lastSignInTime = lastSignInTime;

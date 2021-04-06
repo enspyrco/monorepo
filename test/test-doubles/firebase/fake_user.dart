@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'user_info_fake.dart';
-import 'user_metadata_fake.dart';
+import 'fake_user_info.dart';
+import 'fake_user_metadata.dart';
 
-class UserFake extends Fake implements User {
+class FakeUser extends Fake implements User {
   final String? _displayName;
   final String? _email;
   final bool? _emailVerified;
@@ -17,7 +17,7 @@ class UserFake extends Fake implements User {
   final String? _tenantId;
   final String? _uid;
 
-  UserFake(
+  FakeUser(
       {String? displayName,
       String? email,
       bool? emailVerified,
@@ -56,7 +56,7 @@ class UserFake extends Fake implements User {
   @override
   UserMetadata get metadata =>
       _metadata ??
-      UserMetadataFake(creationTimestamp: 1000, lastSignInTime: 1000);
+      FakeUserMetadata(creationTimestamp: 1000, lastSignInTime: 1000);
 
   @override
   String get phoneNumber => _phoneNumber ?? 'phoneNumber';
@@ -65,7 +65,7 @@ class UserFake extends Fake implements User {
   String get photoURL => _photoURL ?? 'photoURL';
 
   @override
-  List<UserInfo> get providerData => _providerData ?? [UserInfoFake()];
+  List<UserInfo> get providerData => _providerData ?? [FakeUserInfo()];
 
   @override
   String get refreshToken => _refreshToken ?? 'refreshToken';

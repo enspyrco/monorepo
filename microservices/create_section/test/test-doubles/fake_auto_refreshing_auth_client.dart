@@ -2,11 +2,11 @@ import 'package:googleapis_auth/auth_io.dart';
 import 'package:test/fake.dart';
 
 ///
-class AutoRefreshingAuthClientFake extends Fake
+class FakeAutoRefreshingAuthClient extends Fake
     implements AutoRefreshingAuthClient {
   final AccessCredentials _credentials;
 
-  AutoRefreshingAuthClientFake({AccessCredentials? credentials})
+  FakeAutoRefreshingAuthClient({AccessCredentials? credentials})
       : _credentials = credentials ??
             AccessCredentials(
                 AccessToken(

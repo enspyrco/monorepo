@@ -1,33 +1,39 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:the_process/enums/auth/provider_name.dart';
 import 'package:the_process/enums/platform/platform_enum.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:the_process/utils/wrappers/platform_wrapper.dart';
+import 'package:the_process/utils/wrappers/url_launcher_wrapper.dart';
 
 class PlatformService {
-  PlatformService();
+  PlatformService(
+      {PlatformWrapper? platformWrapper,
+      UrlLauncherWrapper? urlLauncherWrapper})
+      : _platformWrapper = platformWrapper ?? PlatformWrapper(),
+        _urlLauncherWrapper = urlLauncherWrapper ?? UrlLauncherWrapper();
+
+  final UrlLauncherWrapper _urlLauncherWrapper;
+  final PlatformWrapper _platformWrapper;
 
   PlatformEnum detectPlatform() {
     if (kIsWeb) {
       return PlatformEnum.web;
     }
-    if (Platform.isMacOS) {
+    if (_platformWrapper.isMacOS) {
       return PlatformEnum.macOS;
     }
-    if (Platform.isFuchsia) {
+    if (_platformWrapper.isFuchsia) {
       return PlatformEnum.fuchsia;
     }
-    if (Platform.isLinux) {
+    if (_platformWrapper.isLinux) {
       return PlatformEnum.linux;
     }
-    if (Platform.isWindows) {
+    if (_platformWrapper.isWindows) {
       return PlatformEnum.windows;
     }
-    if (Platform.isIOS) {
+    if (_platformWrapper.isIOS) {
       return PlatformEnum.iOS;
     }
-    if (Platform.isAndroid) {
+    if (_platformWrapper.isAndroid) {
       return PlatformEnum.android;
     }
     return PlatformEnum.unknown;
@@ -45,16 +51,16 @@ class PlatformService {
           'https://us-central1-the-process-tool.cloudfunctions.net/startAsanaAuthorization?state=$state';
     }
 
-    if (await canLaunch(url)) {
-      await launch(url);
+    if (await _urlLauncherWrapper.canLaunch(url)) {
+      await _urlLauncherWrapper.launch(url);
     } else {
       throw 'Could not launch $url';
     }
   }
 
   Future<void> launchUrl(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    if (await _urlLauncherWrapper.canLaunch(url)) {
+      await _urlLauncherWrapper.launch(url);
     } else {
       throw 'Could not launch $url';
     }
