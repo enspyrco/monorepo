@@ -7,7 +7,7 @@ import 'package:the_process/services/database_service.dart';
 import 'package:the_process/widgets/app_widget/initializing_error_page.dart';
 import 'package:the_process/widgets/app_widget/initializing_indicator.dart';
 import 'package:the_process/widgets/auth/auth_page_buttons/apple_sign_in_button.dart';
-import 'package:the_process/widgets/sections/new_section_item.dart';
+import 'package:the_process/widgets/home/project-overview/sections/new_section_item.dart';
 import 'package:the_process/widgets/shared/waiting_indicator.dart';
 
 import '../../test-doubles/firebase/fake_firebase_auth.dart';

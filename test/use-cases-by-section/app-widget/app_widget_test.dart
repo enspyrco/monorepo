@@ -1,14 +1,14 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:the_process/actions/app_init/plumb_streams_action.dart';
 import 'package:the_process/actions/auth/observe_auth_state_action.dart';
 import 'package:the_process/actions/platform/detect_platform_action.dart';
-import 'package:the_process/enums/auth/auth_step.dart';
-import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/widgets/app_widget/initializing_error_page.dart';
 import 'package:the_process/widgets/app_widget/initializing_indicator.dart';
-import 'package:the_process/widgets/sections/new_section_item.dart';
+import 'package:the_process/widgets/home/home_page.dart';
+import 'package:the_process/widgets/home/project-overview/project_overview.dart';
+import 'package:the_process/widgets/home/section-detail/section_detail_page.dart';
 
-import '../../test-data/models/auth_user_data_examples.dart';
 import '../../test-doubles/redux/fake_store.dart';
 import '../../test-utils/testing/app_widget_harness.dart';
 import '../../test-utils/testing/completable_app_widget_harness.dart';
@@ -16,27 +16,71 @@ import '../../test-utils/testing/completable_app_widget_harness_with_fake_store.
 
 void main() {
   group('AppWidget', () {
-    testWidgets('shows NewSectionItem after authentication',
+    testWidgets('shows HomePage after authentication',
         (WidgetTester tester) async {
       /// Build a test harness that updates the app state so the [InitialPage]
       /// builds the [HomePage].
-      final state = AppState.init();
-      final updatedState = state.copyWith(
-          authUserData: AuthUserDataExamples.minimal,
-          authStep: AuthStep.waitingForInput);
-      final fakeAuthenticatedStore = FakeStore(state: updatedState);
-      final harness = AppWidgetHarness(store: fakeAuthenticatedStore);
+      final harness = AppWidgetHarness(store: FakeStore.authenticated());
 
       // Build the widget tree.
       await tester.pumpWidget(harness.widget);
 
       await tester.pump();
 
+      // check we got past app initialization
       expect(find.byType(InitializingIndicator), findsNothing);
-
       expect(find.byType(InitializingErrorPage), findsNothing);
 
-      expect(find.byType(NewSectionItem), findsOneWidget);
+      expect(find.byType(HomePage), findsOneWidget);
+    });
+
+    testWidgets('shows item/detail view on large screens',
+        (WidgetTester tester) async {
+      /// Build a test harness that updates the app state so the [InitialPage]
+      /// builds the [HomePage].
+      final harness = AppWidgetHarness(store: FakeStore.authenticated());
+
+      // Set the screen size to large and ensure reset after the test ends
+      // This is actually the default size but added for clarity
+      tester.binding.window.physicalSizeTestValue = Size(800, 600);
+      tester.binding.window.devicePixelRatioTestValue = 1.0;
+      addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
+
+      // Build the widget tree.
+      await tester.pumpWidget(harness.widget);
+
+      await tester.pump();
+
+      // check we got past app initialization
+      expect(find.byType(InitializingIndicator), findsNothing);
+      expect(find.byType(InitializingErrorPage), findsNothing);
+
+      expect(find.byType(ProjectOverview), findsOneWidget);
+      expect(find.byType(SectionDetailPage), findsOneWidget);
+    });
+
+    testWidgets('shows ProjectOverview only on small screens',
+        (WidgetTester tester) async {
+      /// Build a test harness that updates the app state so the [InitialPage]
+      /// builds the [HomePage].
+      final harness = AppWidgetHarness(store: FakeStore.authenticated());
+
+      // Set the screen size and ensure reset after the test ends
+      tester.binding.window.physicalSizeTestValue = Size(600, 600);
+      tester.binding.window.devicePixelRatioTestValue = 1.0;
+      addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
+
+      // Build the widget tree.
+      await tester.pumpWidget(harness.widget);
+
+      await tester.pump();
+
+      // check we got past app initialization
+      expect(find.byType(InitializingIndicator), findsNothing);
+      expect(find.byType(InitializingErrorPage), findsNothing);
+
+      expect(find.byType(ProjectOverview), findsOneWidget);
+      expect(find.byType(SectionDetailPage), findsOneWidget);
     });
 
     testWidgets('shows expected UI while initializing',

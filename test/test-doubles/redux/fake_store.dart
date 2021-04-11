@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:redux/redux.dart';
 import 'package:the_process/actions/redux_action.dart';
+import 'package:the_process/enums/auth/auth_step.dart';
 import 'package:the_process/models/app_state/app_state.dart';
 
+import '../../test-data/models/auth_user_data_examples.dart';
 import 'empty_reducer.dart';
 
 /// A [Store] with no reducers that takes an optional [AppState] and
@@ -11,6 +13,15 @@ import 'empty_reducer.dart';
 class FakeStore implements Store<AppState> {
   FakeStore({AppState? state})
       : _state = state ?? AppState.init(),
+        _changeController = StreamController<AppState>.broadcast(),
+        reducer = EmptyReducer();
+
+  // Named constructor for creating an authenticated fake store that will
+  // allow tests to bypass the auth UI
+  FakeStore.authenticated()
+      : _state = AppState.init().copyWith(
+            authUserData: AuthUserDataExamples.minimal,
+            authStep: AuthStep.waitingForInput),
         _changeController = StreamController<AppState>.broadcast(),
         reducer = EmptyReducer();
 
