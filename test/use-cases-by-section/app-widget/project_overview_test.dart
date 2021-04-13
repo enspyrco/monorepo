@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:the_process/widgets/home/project-overview/organisation-selection-view/orgnanisation_selection_view.dart';
+import 'package:the_process/widgets/home/project-overview/organisation-selection-view/organisation_selection_view.dart';
 import 'package:the_process/widgets/home/project-overview/project-selection-view/project_selection_view.dart';
 import 'package:the_process/widgets/home/project-overview/project_overview.dart';
 import 'package:the_process/widgets/home/project-overview/sections-view/sections_view.dart';
@@ -17,7 +17,7 @@ void main() {
 
       await tester.pump();
 
-      // check we got past app initialization
+      // check the expected views have been laid out
       expect(find.byType(ProjectSelectionView), findsOneWidget);
       expect(find.byType(OrganisationSelectionView), findsOneWidget);
       expect(find.byType(SectionsView), findsOneWidget);
