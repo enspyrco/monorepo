@@ -9,7 +9,7 @@ class SelectionContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         alignment: Alignment.center,
-        margin: const EdgeInsets.all(15.0),
+        margin: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
         decoration: BoxDecoration(border: Border.all(color: Colors.blueAccent)),
         height: 40,
         child: Row(

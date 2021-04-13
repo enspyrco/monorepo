@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
 /// This is the stateful widget that the main application instantiates.
-class OrganisationSelectionDropdown extends StatefulWidget {
-  const OrganisationSelectionDropdown({Key? key}) : super(key: key);
+class ProjectSelectionDropdown extends StatefulWidget {
+  const ProjectSelectionDropdown({Key? key}) : super(key: key);
 
   @override
-  _OrganisationSelectionDropdownState createState() =>
-      _OrganisationSelectionDropdownState();
+  _ProjectSelectionDropdownState createState() =>
+      _ProjectSelectionDropdownState();
 }
 
-/// This is the private State class that goes with OrganisationSelectionDropdown.
-class _OrganisationSelectionDropdownState
-    extends State<OrganisationSelectionDropdown> {
+/// This is the private State class that goes with ProjectSelectionDropdown.
+class _ProjectSelectionDropdownState extends State<ProjectSelectionDropdown> {
   String dropdownValue = 'One';
 
   @override

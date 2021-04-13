@@ -12,7 +12,6 @@ class ProjectOverview extends StatelessWidget {
         children: <Widget>[
           OrganisationSelectionView(),
           ProjectSelectionView(),
-          SizedBox(height: 10),
           SectionsView(),
           UserInfoView(),
         ],
