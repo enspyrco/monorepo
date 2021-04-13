@@ -1,33 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:the_process/models/app_state/app_state.dart';
-import 'package:the_process/widgets/home/project-overview/sections/sections_page.dart';
-import 'package:the_process/widgets/shared/profile_avatar.dart';
+import 'package:the_process/widgets/home/project-overview/organisation-selection-view/orgnanisation_selection_view.dart';
+import 'package:the_process/widgets/home/project-overview/project-selection-view/project_selection_view.dart';
+import 'package:the_process/widgets/home/project-overview/sections-view/sections_view.dart';
+import 'package:the_process/widgets/home/project-overview/user-info-view/user_info_view.dart';
 
-class ProjectOverview extends StatefulWidget {
-  ProjectOverview({Key? key}) : super(key: key);
-
-  @override
-  _ProjectOverviewState createState() => _ProjectOverviewState();
-}
-
-class _ProjectOverviewState extends State<ProjectOverview> {
+class ProjectOverview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          SectionsPage(),
-          StoreConnector<AppState, String?>(
-            distinct: true,
-            converter: (store) => store.state.profileData?.photoURL,
-            builder: (context, photoURL) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ProfileAvatar(photoURL),
-              );
-            },
-          ),
+          OrganisationSelectionView(),
+          ProjectSelectionView(),
+          SizedBox(height: 10),
+          SectionsView(),
+          UserInfoView(),
         ],
       ),
     );

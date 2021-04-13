@@ -2,8 +2,8 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/models/sections/section.dart';
-import 'package:the_process/widgets/home/project-overview/sections/new_section_item.dart';
-import 'package:the_process/widgets/home/project-overview/sections/sections_page.dart';
+import 'package:the_process/widgets/home/project-overview/sections-view/new_section_item.dart';
+import 'package:the_process/widgets/home/project-overview/sections-view/sections_view.dart';
 import 'package:the_process/widgets/shared/waiting_indicator.dart';
 
 import '../../../test-doubles/redux/fake_store.dart';
@@ -15,7 +15,7 @@ void main() {
     // Setup the harness and check it is in the initial state.
     final state = AppState.init();
     final harness = WidgetTestHarness(
-        widgetUnderTest: SectionsPage(), fakeStore: FakeStore(state: state));
+        widgetUnderTest: SectionsView(), fakeStore: FakeStore(state: state));
     expect(harness.state.sections.creatingNewSection, false);
     expect(harness.state.sections.list, BuiltList<Section>());
 
