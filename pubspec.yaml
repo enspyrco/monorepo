@@ -10,14 +10,28 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # firebase 
-  firebase_core: "^1.1.0"
+  
+  firebase_core: any
   redux: any
+  flutter_redux: any
+  fast_immutable_collections: any
   freezed_annotation: any
+  json_annotation: any
+  
+  # plugins - might pull these out into separate packages
+  sign_in_with_apple: any
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  pedantic: any
+  build_runner: any
+  freezed: any
+  json_serializable: any
+  test: any
+  mockito: any
 
 flutter:
+  assets:
+    - assets/

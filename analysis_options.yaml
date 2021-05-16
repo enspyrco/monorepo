@@ -1,0 +1,11 @@
+include: package:pedantic/analysis_options.yaml
+
+analyzer:
+  exclude: 
+    - build/**
+    # - lib/**/*.g.dart
+    # - lib/**/*.freezed.dart
+    - test/**/*.mocks.dart
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
