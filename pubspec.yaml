@@ -14,6 +14,7 @@ dependencies:
   # firebase 
   firebase_core: "^1.1.0"
   redux: any
+  freezed_annotation: any
 
 dev_dependencies:
   flutter_test:
