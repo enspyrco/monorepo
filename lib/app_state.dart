@@ -13,8 +13,6 @@ abstract class RedFireState {
   Settings get settings;
   AuthStepEnum get authStep;
   AuthUserData? get authUserData;
-
-  RedFireState.init();
 }
 
 @freezed
