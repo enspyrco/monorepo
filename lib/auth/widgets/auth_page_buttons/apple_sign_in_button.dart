@@ -59,7 +59,8 @@ class AppleSignInButton extends StatelessWidget {
                   child: Center(
                     child: Image(
                       image: AssetImage(
-                          "assets/apple_${style == AppleButtonStyle.black ? "white" : "black"}.png"),
+                          "assets/apple_${style == AppleButtonStyle.black ? "white" : "black"}.png",
+                          package: 'redfire'),
                       height: 17.0,
                       width: 17.0,
                     ),

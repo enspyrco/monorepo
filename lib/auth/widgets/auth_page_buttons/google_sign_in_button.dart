@@ -63,9 +63,7 @@ class GoogleSignInButton extends StatelessWidget {
             ),
             child: Center(
               child: Image(
-                image: AssetImage(
-                  'assets/google.png',
-                ),
+                image: AssetImage('assets/google.png', package: 'redfire'),
                 height: 18.0,
                 width: 18.0,
               ),
