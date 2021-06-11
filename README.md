@@ -9,4 +9,4 @@ A Redux based architecture connected to Firebase streams.
 
 The AppState for each package using `redfire` is required to use RedFireState as a mixin.
 
-When using widgets from `redfire`, a type parameter of the store's state must be used, ie. Widget<AppState>.  This is so that the parameterised StoreConnector<AppState, Output> can find the StoreProvider<AppState>.
+When using widgets from `redfire`, a type parameter of the store's state must be used, ie. Widget<RedFireAppState>.  This is so that the parameterised StoreConnector<AppState, Output> can find the StoreProvider<RedFireAppState>.

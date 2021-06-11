@@ -8,4 +8,4 @@ analyzer:
     - test/**/*.mocks.dart
   strong-mode:
     implicit-casts: false
-    implicit-dynamic: false
+    # implicit-dynamic: false

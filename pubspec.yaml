@@ -12,15 +12,16 @@ dependencies:
     sdk: flutter
   
   firebase_core: any
+  firebase_auth: any
+  google_sign_in: any
+  sign_in_with_apple: any 
+
   redux: any
   flutter_redux: any
   fast_immutable_collections: any
   freezed_annotation: any
   json_annotation: any
   
-  # plugins - might pull these out into separate packages
-  sign_in_with_apple: any
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
