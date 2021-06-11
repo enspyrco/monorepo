@@ -4,6 +4,11 @@ A Redux based architecture connected to Firebase streams.
 
 [Notes](https://docs.google.com/document/d/1rBQXUmoKRiEMn_fNqlosWEt30sysB9-d4ucPWcVn8QI/edit?usp=sharing)
 
+## Setup 
+
+- [Add required code](docs/setup-code.md)
+- [Configure platform settings](docs/setup-settings.md)
+- Configure Apple Sign In, follow: [apple-sign-in-flutter-firebase](https://github.com/nickmeinhold/apple-sign-in-flutter-firebase) 
 
 ## Widgets 
 
