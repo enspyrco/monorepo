@@ -15,18 +15,25 @@ A Redux based architecture connected to Firebase streams.
 We added a custom plugin to the Flutter DevTools for visualising how state change flows through a Redux app. You can clone then install it with: 
 
 ```sh
-git clone https://github.com/nickmeinhold/devtools.git devtools_with_redux
-dart pub global activate --source path <path to devtools_with_redux>/tool
-```
-
-An example of the install line is:
-
-```sh
-dart pub global activate --source path /Users/nick/git/languages/dart/contributing/devtools/tool
+git clone https://github.com/nickmeinhold/devtools.git devtools_with_redux && cd devtools_with_redux
+./tool/build_release.sh
+dart pub global activate --source path ./packages/devtools
 ```
 
 > If later you want to change back to the original Flutter DevTools you can just enter:
 > - `dart pub global activate devtools`
+
+If you use VS Code and want the DevTools to open every time you can update `settings.json` with:
+```yaml
+{
+  ...
+  "dart.openDevTools": "always",
+  "dart.embedDevTools": false,
+  ...
+}
+```
+
+Note: The embedded version of devtools currently uses a hardcoded set of tabs so doesn't work but we have filed an issue to get this sorted.
 
 ## Widgets 
 
