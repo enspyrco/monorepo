@@ -75,6 +75,6 @@ build/
 !**/ios/**/default.perspectivev3
 
 # generated files 
-*.g.dart
-*.freezed.dart
+# *.g.dart
+# *.freezed.dart
 *.mocks.dart
