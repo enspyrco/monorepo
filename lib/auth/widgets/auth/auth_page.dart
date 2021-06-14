@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redfire/auth/actions/sign_in_with_apple_action.dart';
-import 'package:redfire/auth/actions/sign_in_with_google_action.dart';
+import 'package:redfire/actions/sign_in_with_apple_action.dart';
+import 'package:redfire/actions/sign_in_with_google_action.dart';
 import 'package:redfire/redux/extensions/build_context_extensions.dart';
 import 'package:redfire/settings/enums/platform_enum.dart';
 import 'package:redfire/types/red_fire_state.dart';

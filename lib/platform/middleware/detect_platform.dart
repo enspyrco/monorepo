@@ -1,6 +1,6 @@
+import 'package:redfire/actions/detect_platform_action.dart';
+import 'package:redfire/actions/update_settings_action.dart';
 import 'package:redfire/redux/extensions/store_extensions.dart';
-import 'package:redfire/settings/actions/detect_platform_action.dart';
-import 'package:redfire/settings/actions/update_settings_action.dart';
 import 'package:redfire/types/red_fire_state.dart';
 import 'package:redfire/utils/locator.dart';
 import 'package:redux/redux.dart';

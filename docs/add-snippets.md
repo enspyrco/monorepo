@@ -44,8 +44,8 @@ Add a file at `.vscode/project.code-snippets` with contents:
   "middleware class": {
     "prefix": "mdlware",
     "body": [
-      "import 'package:${WORKSPACE_NAME}/actions/${TM_FILENAME_BASE}_action.dart';",
-      "import 'package:${WORKSPACE_NAME}/models/app_state.dart';",
+      "import 'package:redfire/actions/${TM_FILENAME_BASE}_action.dart';",
+      "import 'package:${WORKSPACE_NAME}/state/app_state.dart';",
       "import 'package:redux/redux.dart';",
       "",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Middleware extends TypedMiddleware<AppState, ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Action> {",
@@ -62,8 +62,8 @@ Add a file at `.vscode/project.code-snippets` with contents:
   "reducer class": {
     "prefix": "reducer",
     "body": [
-      "import 'package:${WORKSPACE_NAME}/actions/${TM_FILENAME_BASE}_action.dart';",
-      "import 'package:${WORKSPACE_NAME}/models/app_state.dart';",
+      "import 'package:redfire/actions/${TM_FILENAME_BASE}_action.dart';",
+      "import 'package:${WORKSPACE_NAME}/state/app_state.dart';",
       "import 'package:redux/redux.dart';",
       "",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Reducer extends TypedReducer<AppState, ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Action> {",

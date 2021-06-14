@@ -1,4 +1,4 @@
-import 'package:redfire/auth/actions/sign_in_with_google_action.dart';
+import 'package:redfire/actions/sign_in_with_google_action.dart';
 import 'package:redfire/types/red_fire_state.dart';
 import 'package:redfire/utils/locator.dart';
 import 'package:redux/redux.dart';

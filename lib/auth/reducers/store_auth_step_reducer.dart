@@ -1,4 +1,4 @@
-import 'package:redfire/auth/actions/store_auth_step_action.dart';
+import 'package:redfire/actions/store_auth_step_action.dart';
 import 'package:redfire/types/red_fire_state.dart';
 import 'package:redux/redux.dart';
 

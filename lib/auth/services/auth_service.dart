@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:redfire/auth/actions/store_auth_step_action.dart';
-import 'package:redfire/auth/actions/store_auth_user_data_action.dart';
+import 'package:redfire/actions/store_auth_step_action.dart';
+import 'package:redfire/actions/store_auth_user_data_action.dart';
 import 'package:redfire/auth/extensions/auth_extensions.dart';
 import 'package:redfire/auth/models/apple_id_credential.dart';
 import 'package:redfire/auth/models/auth_user_data.dart';

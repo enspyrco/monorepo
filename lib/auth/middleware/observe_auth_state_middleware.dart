@@ -1,4 +1,4 @@
-import 'package:redfire/auth/actions/observe_auth_state_action.dart';
+import 'package:redfire/actions/observe_auth_state_action.dart';
 import 'package:redfire/types/red_fire_state.dart';
 import 'package:redfire/utils/locator.dart';
 import 'package:redux/redux.dart';

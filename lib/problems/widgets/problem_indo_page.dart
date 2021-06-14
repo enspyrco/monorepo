@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:redfire/problems/actions/remove_problem_action.dart';
+import 'package:redfire/actions/remove_problem_action.dart';
 import 'package:redfire/problems/models/problem_info.dart';
 import 'package:redfire/redux/extensions/build_context_extensions.dart';
 

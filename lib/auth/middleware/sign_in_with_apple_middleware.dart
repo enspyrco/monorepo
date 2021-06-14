@@ -1,6 +1,6 @@
-import 'package:redfire/auth/actions/sign_in_with_apple_action.dart';
-import 'package:redfire/auth/actions/store_auth_step_action.dart';
-import 'package:redfire/auth/actions/store_auth_user_data_action.dart';
+import 'package:redfire/actions/sign_in_with_apple_action.dart';
+import 'package:redfire/actions/store_auth_step_action.dart';
+import 'package:redfire/actions/store_auth_user_data_action.dart';
 import 'package:redfire/redux/extensions/store_extensions.dart';
 import 'package:redfire/types/red_fire_state.dart';
 import 'package:redfire/utils/locator.dart';

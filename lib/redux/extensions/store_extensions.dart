@@ -1,4 +1,4 @@
-import 'package:redfire/problems/actions/add_problem_action.dart';
+import 'package:redfire/actions/add_problem_action.dart';
 import 'package:redfire/problems/models/problem_info.dart';
 import 'package:redux/redux.dart';
 

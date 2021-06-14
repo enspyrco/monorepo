@@ -1,4 +1,4 @@
-import 'package:redfire/settings/actions/update_settings_action.dart';
+import 'package:redfire/actions/update_settings_action.dart';
 import 'package:redfire/types/red_fire_state.dart';
 import 'package:redux/redux.dart';
 

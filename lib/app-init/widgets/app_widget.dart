@@ -1,11 +1,11 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redfire/actions/remove_current_page_action.dart';
 import 'package:redfire/app-init/redfire_initial_actions.dart';
 import 'package:redfire/app-init/widgets/initializing_error_page.dart';
 import 'package:redfire/app-init/widgets/initializing_indicator.dart';
 import 'package:redfire/auth/widgets/auth/auth_page.dart';
-import 'package:redfire/navigation/actions/remove_current_page_action.dart';
 import 'package:redfire/navigation/extensions/red_fire_page_list_extensions.dart';
 import 'package:redfire/navigation/models/red_fire_page.dart';
 import 'package:redfire/platform/plugins/wrappers/firebase_wrapper.dart';
