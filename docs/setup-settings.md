@@ -2,18 +2,65 @@
 
 [< README](../README.md)
 
-Relevant links: [Firebase console](https://console.firebase.google.com/)
-
 ### web 
 
-1. Add App 
+Go to [Firebase console](https://console.firebase.google.com/) and:
+1. Tap "Add App"
 2. Select Web Platform 
 3. Enter app nickname (eg. Web)
 4. Check the box to setup Firebase hosting (if desired)
 5. Keep clicking Next, then Return to console
 
-[FlutterFire > Web Installation](https://firebase.flutter.dev/docs/installation/web)
-- add the firebase-auth JS SDK 
+Follow [FlutterFire > Web Installation](https://firebase.flutter.dev/docs/installation/web)
+- also, add the firebase-auth JS SDK: `<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>`
+
+#### Local dev without commiting Firebase credentials
+
+- move & gitignore `index.html`, *then commit* - so there is no index.html to confuse things 
+- re-add `index.html` with the Firebase config details (so local dev works)
+- add a file called `index.auto` with the autoimport versions 
+- go to Settings: https://console.firebase.google.com/project/<project_name>/settings/general 
+- under "SDK setup and configuration" 
+- select the "Automatic" radio button
+- copy the contents to `index.auto` 
+- copy and rename `web/index.auto` to `web/index.html`, then replace:
+
+```javascript
+<script src="/__/firebase/8.6.1/firebase-app.js"></script>
+<script src="/__/firebase/8.6.1/firebase-auth.js"></script>
+<script src="/__/firebase/init.js"></script>
+```
+> with the javascript found by selecting the "CDN" radio button under the "SDK setup and configuration" section of the [project page](https://console.firebase.google.com/project)
+
+
+#### CI for Firebase hosting 
+
+- setup hosting -> Firease console -> Hosting -> Get Started 
+- follow the prompts, including adding CI (use "flutter build web" for the predeploy script)
+- edit the created .yml file to add the following lines after `- uses: actions/checkout@v2`:
+
+```yml
+# Setup flutter using the dev channel.
+- name: Install Java for Flutter tool
+  uses: actions/setup-java@v1
+  with:
+    java-version: '12.x'
+- name: Install Flutter tool
+  uses: subosito/flutter-action@v1
+  with:
+    channel: dev
+
+# Get app dependencies, run code gen & run tests.
+- run: flutter pub get
+- run: flutter pub run build_runner build 
+- run: flutter test
+
+# Rename index.html and build for web.
+- run: cp web/index.auto web/index.html
+- run: flutter build web
+```
+
+> Note: currently the url for each deploy must be added to the "Authorized JavaScript origins" for the relevant OAuth2 Client Id at the [credentials page](https://console.cloud.google.com/apis/credentials)... we're searching for a better way
 
 #### Google Sign In 
 
