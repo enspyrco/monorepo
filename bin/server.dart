@@ -14,7 +14,7 @@
 // limitations under the License.
 
 import 'package:functions_framework/serve.dart';
-import 'package:tech_world_server/functions.dart' as function_library;
+import 'package:web_socket_game_server/functions.dart' as function_library;
 
 Future<void> main(List<String> args) async {
   await serve(args, _nameToFunctionTarget);
