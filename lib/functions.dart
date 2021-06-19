@@ -7,36 +7,34 @@ import 'package:googleapis_auth/auth_io.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_web_socket/shelf_web_socket.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
-import 'package:web_socket_game_server_types/web_socket_game_server_types.dart';
+import 'package:web_socket_game_server/clients.dart';
 
 FirestoreApi? globalFirestore;
-final presentIds = <String>[];
-
 // final process = <String, Function(Map<String, Object?>)>{'present': (json) => };
+final clients = Clients();
 
 /// Assumptions
-/// - the first thing sent by the client will be the userId
+/// -
 final handler = webSocketHandler((WebSocketChannel webSocket) {
-  // On connection, store the webSocket against the first data event (the userId)
-  // and send out the list of userIds currently connected
-
   // Now attach a listener to the websocket that will perform the ongoing logic
   webSocket.stream.listen(
     (message) {
       final jsonData = jsonDecode(message);
+      // If a user is announcing their presence, store the webSocket against the
+      // userId and broadcast the current connections
       if (jsonData['type'] == 'announce_presence') {
-        presentIds.add(jsonData['userId'] as String);
-        webSocket.sink.add(jsonEncode(PresentList(ids: presentIds).toJson()));
+        clients.addAndBroadcast(webSocket, jsonData['userId'] as String);
       } else {
-        webSocket.sink.add('$message');
+        clients.broadcast('$message');
       }
     },
     onError: (error) {
       print(error);
       webSocket.sink.add('$error');
     },
-    onDone: () => webSocket.sink
-        .add('DONE ${webSocket.closeCode}: ${webSocket.closeReason}'),
+    onDone: () {
+      clients.removeAndBroadcast(webSocket);
+    },
   );
 });
 

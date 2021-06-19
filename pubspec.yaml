@@ -20,5 +20,6 @@ dependencies:
 dev_dependencies:
   build_runner: ^2.0.4
   functions_framework_builder: ^0.4.2
+  lints: ^1.0.1
   test: ^1.15.7
   test_process: ^2.0.0
