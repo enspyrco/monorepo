@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:redfire/auth/enums/auth_step_enum.dart';
-import 'package:redfire/types/redux_action.dart';
+import 'package:redfire/src/auth/enums/auth_step_enum.dart';
+import 'package:redfire/src/types/redux_action.dart';
 import 'package:redux/redux.dart';
 
 import '../test-data/app_state.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:redfire/actions/observe_auth_state_action.dart';
-import 'package:redfire/utils/dev_tools_middleware.dart';
+import 'package:redfire/src/auth/actions/observe_auth_state_action.dart';
+import 'package:redfire/src/utils/dev_tools_middleware.dart';
 
 import 'test-data/app_state.dart';
 import 'test-doubles/fake_store.dart';

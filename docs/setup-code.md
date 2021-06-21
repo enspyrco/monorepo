@@ -39,35 +39,30 @@ dev_dependencies:
 ```Dart
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/auth/enums/auth_step_enum.dart';
-import 'package:redfire/auth/models/auth_user_data.dart';
-import 'package:redfire/navigation/models/red_fire_page.dart';
-import 'package:redfire/problems/models/problem_info.dart';
-import 'package:redfire/settings/models/settings.dart';
-import 'package:redfire/types/red_fire_state.dart';
+import 'package:redfire/types.dart';
  
 part 'app_state.freezed.dart';
 part 'app_state.g.dart';
  
 @freezed
 class AppState with _$AppState, RedFireState {
- factory AppState({
-   required IList<RedFirePage> redFirePages,
-   required IList<ProblemInfo> problems,
-   required Settings settings,
-   required AuthStepEnum authStep,
-   required AuthUserData? authUserData,
- }) = _AppState;
+  factory AppState({
+    required IList<RedFirePage> redFirePages,
+    required IList<ProblemInfo> problems,
+    required Settings settings,
+    required AuthStepEnum authStep,
+    required AuthUserData? authUserData,
+  }) = _AppState;
  
  factory AppState.init() => AppState(
-     redFirePages: <RedFirePage>[RedFireInitialPage()].lock,
-     problems: IList(),
-     settings: Settings.init(),
-     authStep: AuthStepEnum.waitingForInput,
-     authUserData: null);
+  redFirePages: <RedFirePage>[RedFireInitialPage()].lock,
+  problems: IList(),
+  settings: Settings.init(),
+  authStep: AuthStepEnum.waitingForInput,
+  authUserData: null);
  
- factory AppState.fromJson(Map<String, Object?> json) =>
-     _$AppStateFromJson(json);
+  factory AppState.fromJson(Map<String, Object?> json) =>
+    _$AppStateFromJson(json);
 }
 ```
 
@@ -76,14 +71,15 @@ class AppState with _$AppState, RedFireState {
 ```Dart
 import 'package:flutter/widgets.dart';
 import 'package:.../main_page.dart';
-import 'package:redfire/app-init/widgets/app_widget.dart';
+import 'package:redfire/src/app-init/widgets/app_widget.dart';
  
 import 'models/app_state.dart';
  
 void main() => runApp(AppWidget<AppState>(
-     initialState: AppState.init(),
-     initialActions: [],
-     reducers: [],
-     mainPage: MainPage(),
-   ));
+  initialState: AppState.init(),
+  initialActions: [],
+  middlewares: [],
+  reducers: [],
+  mainPage: MainPage(),
+));
 ```

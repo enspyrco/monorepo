@@ -10,12 +10,13 @@ Add a file at `.vscode/project.code-snippets` with contents:
     "prefix": "freezed_model",
     "body": [
       "import 'package:freezed_annotation/freezed_annotation.dart';",
+      "import 'package:redfire/types.dart';",
       "",
       "part '${TM_FILENAME_BASE}.freezed.dart';",
       "part '${TM_FILENAME_BASE}.g.dart';",
       "",
       "@freezed",
-      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} {",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxModel  {",
       "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({ ${1} }) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
       "",
       "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(Map<String, Object?> json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
@@ -27,7 +28,7 @@ Add a file at `.vscode/project.code-snippets` with contents:
     "prefix": "freezed_action",
     "body": [
       "import 'package:freezed_annotation/freezed_annotation.dart';",
-      "import 'package:redfire/types/redux_action.dart';",
+      "import 'package:redfire/types.dart';",
       "",
       "part '${TM_FILENAME_BASE}.freezed.dart';",
       "part '${TM_FILENAME_BASE}.g.dart';",
@@ -42,9 +43,9 @@ Add a file at `.vscode/project.code-snippets` with contents:
     "description": "freezed action"
   },
   "middleware class": {
-    "prefix": "mdlware",
+    "prefix": "mdlware - redfire",
     "body": [
-      "import 'package:redfire/actions/${TM_FILENAME_BASE}_action.dart';",
+      "import 'package:redfire/actions.dart';",
       "import 'package:${WORKSPACE_NAME}/state/app_state.dart';",
       "import 'package:redux/redux.dart';",
       "",
@@ -57,12 +58,12 @@ Add a file at `.vscode/project.code-snippets` with contents:
       "\t});",
       "}"
     ],
-    "description": "middleware class"
+    "description": "middleware for redfire action"
   },
   "reducer class": {
-    "prefix": "reducer",
+    "prefix": "reducer - redfire",
     "body": [
-      "import 'package:redfire/actions/${TM_FILENAME_BASE}_action.dart';",
+      "import 'package:redfire/actions.dart';",
       "import 'package:${WORKSPACE_NAME}/state/app_state.dart';",
       "import 'package:redux/redux.dart';",
       "",
@@ -70,7 +71,7 @@ Add a file at `.vscode/project.code-snippets` with contents:
       "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Reducer() : super((state, action) => state.copyWith(${1}: action.${1}),);",
       "}",
     ],
-    "description": "reducer class"
+    "description": "reducer for redfire action"
   }
 }
 ```

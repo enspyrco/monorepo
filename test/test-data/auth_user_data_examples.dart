@@ -1,6 +1,6 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:redfire/auth/models/auth_provider_data.dart';
-import 'package:redfire/auth/models/auth_user_data.dart';
+import 'package:redfire/src/auth/models/auth_provider_data.dart';
+import 'package:redfire/src/auth/models/auth_user_data.dart';
 
 class AuthUserDataExamples {
   static AuthUserData get minimal => AuthUserData(
