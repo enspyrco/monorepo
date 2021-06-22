@@ -7,6 +7,7 @@ class StoreAuthUserDataReducer<T extends RedFireState>
   StoreAuthUserDataReducer()
       : super(
           (state, action) => (state as dynamic)
-              .copyWith(authUserData: action.authUserData) as T,
+              .copyWith
+              .auth(userData: action.authUserData) as T,
         );
 }

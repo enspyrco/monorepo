@@ -13,7 +13,7 @@ class InitialPage<T extends RedFireState> extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<T, AuthStepEnum>(
         distinct: true,
-        converter: (store) => store.state.authStep,
+        converter: (store) => store.state.auth.step,
         builder: (context, authStep) {
           switch (authStep) {
             case AuthStepEnum.checking:
@@ -27,7 +27,7 @@ class InitialPage<T extends RedFireState> extends StatelessWidget {
             case AuthStepEnum.waitingForInput:
               return StoreConnector<T, AuthUserData?>(
                   distinct: true,
-                  converter: (store) => store.state.authUserData,
+                  converter: (store) => store.state.auth.userData,
                   builder: (context, userData) =>
                       (userData == null) ? _authPage : _mainPage);
             case AuthStepEnum.signingOut:

@@ -1,7 +1,7 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/src/auth/enums/auth_step_enum.dart';
-import 'package:redfire/src/auth/models/auth_user_data.dart';
+import 'package:redfire/src/auth/models/auth_state.dart';
 import 'package:redfire/src/navigation/models/red_fire_page.dart';
 import 'package:redfire/src/problems/models/problem_info.dart';
 import 'package:redfire/src/settings/models/settings.dart';
@@ -16,16 +16,14 @@ class AppState with _$AppState, RedFireState {
     required IList<RedFirePage> redFirePages,
     required IList<ProblemInfo> problems,
     required Settings settings,
-    required AuthStepEnum authStep,
-    required AuthUserData? authUserData,
+    required AuthState auth,
   }) = _AppState;
 
   factory AppState.init() => AppState(
         redFirePages: <RedFirePage>[RedFireInitialPage()].lock,
         problems: IList(),
         settings: Settings.init(),
-        authStep: AuthStepEnum.waitingForInput,
-        authUserData: null,
+        auth: AuthState(step: AuthStepEnum.waitingForInput),
       );
 
   factory AppState.fromJson(Map<String, Object?> json) =>

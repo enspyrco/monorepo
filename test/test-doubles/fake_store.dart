@@ -19,9 +19,9 @@ class FakeStore implements Store<AppState> {
   // Named constructor for creating an authenticated fake store that will
   // allow tests to bypass the auth UI
   FakeStore.authenticated()
-      : _state = AppState.init().copyWith(
-            authUserData: AuthUserDataExamples.minimal,
-            authStep: AuthStepEnum.waitingForInput),
+      : _state = AppState.init().copyWith.auth(
+            userData: AuthUserDataExamples.minimal,
+            step: AuthStepEnum.waitingForInput),
         _changeController = StreamController<AppState>.broadcast(),
         reducer = EmptyReducer();
 

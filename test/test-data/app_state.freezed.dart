@@ -24,14 +24,12 @@ class _$AppStateTearOff {
       {required IList<RedFirePage> redFirePages,
       required IList<ProblemInfo> problems,
       required Settings settings,
-      required AuthStepEnum authStep,
-      required AuthUserData? authUserData}) {
+      required AuthState auth}) {
     return _AppState(
       redFirePages: redFirePages,
       problems: problems,
       settings: settings,
-      authStep: authStep,
-      authUserData: authUserData,
+      auth: auth,
     );
   }
 
@@ -48,8 +46,7 @@ mixin _$AppState {
   IList<RedFirePage> get redFirePages => throw _privateConstructorUsedError;
   IList<ProblemInfo> get problems => throw _privateConstructorUsedError;
   Settings get settings => throw _privateConstructorUsedError;
-  AuthStepEnum get authStep => throw _privateConstructorUsedError;
-  AuthUserData? get authUserData => throw _privateConstructorUsedError;
+  AuthState get auth => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,11 +62,10 @@ abstract class $AppStateCopyWith<$Res> {
       {IList<RedFirePage> redFirePages,
       IList<ProblemInfo> problems,
       Settings settings,
-      AuthStepEnum authStep,
-      AuthUserData? authUserData});
+      AuthState auth});
 
   $SettingsCopyWith<$Res> get settings;
-  $AuthUserDataCopyWith<$Res>? get authUserData;
+  $AuthStateCopyWith<$Res> get auth;
 }
 
 /// @nodoc
@@ -85,8 +81,7 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
     Object? redFirePages = freezed,
     Object? problems = freezed,
     Object? settings = freezed,
-    Object? authStep = freezed,
-    Object? authUserData = freezed,
+    Object? auth = freezed,
   }) {
     return _then(_value.copyWith(
       redFirePages: redFirePages == freezed
@@ -101,14 +96,10 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
           ? _value.settings
           : settings // ignore: cast_nullable_to_non_nullable
               as Settings,
-      authStep: authStep == freezed
-          ? _value.authStep
-          : authStep // ignore: cast_nullable_to_non_nullable
-              as AuthStepEnum,
-      authUserData: authUserData == freezed
-          ? _value.authUserData
-          : authUserData // ignore: cast_nullable_to_non_nullable
-              as AuthUserData?,
+      auth: auth == freezed
+          ? _value.auth
+          : auth // ignore: cast_nullable_to_non_nullable
+              as AuthState,
     ));
   }
 
@@ -120,13 +111,9 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
   }
 
   @override
-  $AuthUserDataCopyWith<$Res>? get authUserData {
-    if (_value.authUserData == null) {
-      return null;
-    }
-
-    return $AuthUserDataCopyWith<$Res>(_value.authUserData!, (value) {
-      return _then(_value.copyWith(authUserData: value));
+  $AuthStateCopyWith<$Res> get auth {
+    return $AuthStateCopyWith<$Res>(_value.auth, (value) {
+      return _then(_value.copyWith(auth: value));
     });
   }
 }
@@ -140,13 +127,12 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       {IList<RedFirePage> redFirePages,
       IList<ProblemInfo> problems,
       Settings settings,
-      AuthStepEnum authStep,
-      AuthUserData? authUserData});
+      AuthState auth});
 
   @override
   $SettingsCopyWith<$Res> get settings;
   @override
-  $AuthUserDataCopyWith<$Res>? get authUserData;
+  $AuthStateCopyWith<$Res> get auth;
 }
 
 /// @nodoc
@@ -163,8 +149,7 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
     Object? redFirePages = freezed,
     Object? problems = freezed,
     Object? settings = freezed,
-    Object? authStep = freezed,
-    Object? authUserData = freezed,
+    Object? auth = freezed,
   }) {
     return _then(_AppState(
       redFirePages: redFirePages == freezed
@@ -179,14 +164,10 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
           ? _value.settings
           : settings // ignore: cast_nullable_to_non_nullable
               as Settings,
-      authStep: authStep == freezed
-          ? _value.authStep
-          : authStep // ignore: cast_nullable_to_non_nullable
-              as AuthStepEnum,
-      authUserData: authUserData == freezed
-          ? _value.authUserData
-          : authUserData // ignore: cast_nullable_to_non_nullable
-              as AuthUserData?,
+      auth: auth == freezed
+          ? _value.auth
+          : auth // ignore: cast_nullable_to_non_nullable
+              as AuthState,
     ));
   }
 }
@@ -198,8 +179,7 @@ class _$_AppState implements _AppState {
       {required this.redFirePages,
       required this.problems,
       required this.settings,
-      required this.authStep,
-      required this.authUserData});
+      required this.auth});
 
   factory _$_AppState.fromJson(Map<String, dynamic> json) =>
       _$_$_AppStateFromJson(json);
@@ -211,13 +191,11 @@ class _$_AppState implements _AppState {
   @override
   final Settings settings;
   @override
-  final AuthStepEnum authStep;
-  @override
-  final AuthUserData? authUserData;
+  final AuthState auth;
 
   @override
   String toString() {
-    return 'AppState(redFirePages: $redFirePages, problems: $problems, settings: $settings, authStep: $authStep, authUserData: $authUserData)';
+    return 'AppState(redFirePages: $redFirePages, problems: $problems, settings: $settings, auth: $auth)';
   }
 
   @override
@@ -233,12 +211,8 @@ class _$_AppState implements _AppState {
             (identical(other.settings, settings) ||
                 const DeepCollectionEquality()
                     .equals(other.settings, settings)) &&
-            (identical(other.authStep, authStep) ||
-                const DeepCollectionEquality()
-                    .equals(other.authStep, authStep)) &&
-            (identical(other.authUserData, authUserData) ||
-                const DeepCollectionEquality()
-                    .equals(other.authUserData, authUserData)));
+            (identical(other.auth, auth) ||
+                const DeepCollectionEquality().equals(other.auth, auth)));
   }
 
   @override
@@ -247,8 +221,7 @@ class _$_AppState implements _AppState {
       const DeepCollectionEquality().hash(redFirePages) ^
       const DeepCollectionEquality().hash(problems) ^
       const DeepCollectionEquality().hash(settings) ^
-      const DeepCollectionEquality().hash(authStep) ^
-      const DeepCollectionEquality().hash(authUserData);
+      const DeepCollectionEquality().hash(auth);
 
   @JsonKey(ignore: true)
   @override
@@ -266,8 +239,7 @@ abstract class _AppState implements AppState {
       {required IList<RedFirePage> redFirePages,
       required IList<ProblemInfo> problems,
       required Settings settings,
-      required AuthStepEnum authStep,
-      required AuthUserData? authUserData}) = _$_AppState;
+      required AuthState auth}) = _$_AppState;
 
   factory _AppState.fromJson(Map<String, dynamic> json) = _$_AppState.fromJson;
 
@@ -278,9 +250,7 @@ abstract class _AppState implements AppState {
   @override
   Settings get settings => throw _privateConstructorUsedError;
   @override
-  AuthStepEnum get authStep => throw _privateConstructorUsedError;
-  @override
-  AuthUserData? get authUserData => throw _privateConstructorUsedError;
+  AuthState get auth => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AppStateCopyWith<_AppState> get copyWith =>

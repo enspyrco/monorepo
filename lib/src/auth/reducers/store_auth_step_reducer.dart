@@ -7,6 +7,6 @@ class StoreAuthStepReducer<T extends RedFireState>
   StoreAuthStepReducer()
       : super(
           (state, action) =>
-              (state as dynamic).copyWith(authStep: action.step) as T,
+              (state as dynamic).copyWith.auth(step: action.step) as T,
         );
 }

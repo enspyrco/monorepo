@@ -1,8 +1,7 @@
 library redfire_types;
 
 // Types needed for child packages to declare AppState, models, etc.
-export 'src/auth/enums/auth_step_enum.dart';
-export 'src/auth/models/auth_user_data.dart';
+export 'src/auth/models/auth_state.dart';
 export 'src/navigation/models/red_fire_page.dart';
 export 'src/problems/models/problem_info.dart';
 export 'src/settings/models/settings.dart';
