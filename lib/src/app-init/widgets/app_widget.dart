@@ -106,7 +106,7 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
               themeMode: settings.brightnessMode.theme,
               home: StoreConnector<T, IList<RedFirePage>>(
                 distinct: true,
-                converter: (store) => store.state.redFirePages,
+                converter: (store) => store.state.pages,
                 builder: (context, redFirePages) => Navigator(
                     pages: redFirePages.toMaterialPages<T>(
                         AuthPage<T>(), widget._mainPage),

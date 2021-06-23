@@ -10,7 +10,7 @@ abstract class RedFireState {
   AuthState get auth;
 
   /// Navigation
-  IList<RedFirePage> get redFirePages;
+  IList<RedFirePage> get pages;
 
   Map<String, Object?> toJson();
 }

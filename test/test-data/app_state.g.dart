@@ -8,7 +8,7 @@ part of 'app_state.dart';
 
 _$_AppState _$_$_AppStateFromJson(Map<String, dynamic> json) {
   return _$_AppState(
-    redFirePages: IList.fromJson(json['redFirePages'],
+    pages: IList.fromJson(json['pages'],
         (value) => RedFirePage.fromJson(value as Map<String, dynamic>)),
     problems: IList.fromJson(json['problems'],
         (value) => ProblemInfo.fromJson(value as Map<String, dynamic>)),
@@ -19,7 +19,7 @@ _$_AppState _$_$_AppStateFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_AppStateToJson(_$_AppState instance) =>
     <String, dynamic>{
-      'redFirePages': instance.redFirePages.toJson(
+      'pages': instance.pages.toJson(
         (value) => value,
       ),
       'problems': instance.problems.toJson(
