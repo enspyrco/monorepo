@@ -35,3 +35,12 @@ If you use VS Code and want the DevTools to open every time you can update `sett
 The current pub version is [here](https://pub.dev/packages/devtools/changelog) and the current repo version is [here](https://github.com/flutter/devtools/blob/master/packages/devtools/CHANGELOG.md).
 
 You can increase the version number [here](https://github.com/flutter/devtools/blob/master/packages/devtools/pubspec.yaml#L11) in the local copy, and then VS Code should not re-activate it. It's fine for it to be the same as the one on pub, as VS Code will only re-activate it if there's a newer version on pub.
+
+### Alias' for rebuild/activate
+
+You can add alias' to iterate faster (update path for your system):
+
+```sh
+alias devtools_activate="dart pub global activate --source path /Users/nick/git/languages/dart/contributing/devtools/packages/devtools"
+alias devtools_rebuild="cd /Users/nick/git/languages/dart/contributing/devtools && ./rebuild.sh && dart pub global activate --source path ./packages/devtools"
+```
