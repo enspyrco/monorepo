@@ -18,7 +18,7 @@ class AppleSignInButton extends StatelessWidget {
   /// Creates a new button. Set [darkMode] to `true` to use the dark
   /// black background variant with white text, otherwise an all-white background
   /// with dark text is used.
-  AppleSignInButton(
+  const AppleSignInButton(
       {this.onPressed,
       // 'Continue with Apple' is also an available variant depdening on App's sign-in experience.
       this.text = 'Sign in with Apple',

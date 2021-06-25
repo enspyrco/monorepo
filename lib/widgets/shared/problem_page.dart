@@ -8,12 +8,12 @@ import 'package:the_process/models/problems/problem.dart';
 class ProblemPage extends StatelessWidget {
   final Problem problem;
 
-  const ProblemPage(this.problem);
+  const ProblemPage(this.problem, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Whoops'),
+      title: const Text('Whoops'),
       content: SingleChildScrollView(
         child: Text(problem.errorString),
       ),
@@ -21,7 +21,7 @@ class ProblemPage extends StatelessWidget {
         OutlinedButton(
             onPressed: () =>
                 context.dispatch(RemoveProblemAction(problem: problem)),
-            child: Text('Dismiss'))
+            child: const Text('Dismiss'))
       ],
     );
   }

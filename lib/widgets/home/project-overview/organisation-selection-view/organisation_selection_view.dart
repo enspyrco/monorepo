@@ -6,9 +6,10 @@ import 'package:the_process/widgets/home/project-overview/shared_widgets/selecti
 import 'package:the_process/widgets/home/project-overview/shared_widgets/selection_label.dart';
 
 class OrganisationSelectionView extends StatelessWidget {
+  const OrganisationSelectionView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SelectionContainer(
+    return const SelectionContainer(
       widgets: [
         SelectionLabel(iconData: Icons.domain),
         OrganisationSelectionDropdown(),

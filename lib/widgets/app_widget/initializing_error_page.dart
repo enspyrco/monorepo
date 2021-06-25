@@ -21,12 +21,12 @@ class InitializingErrorPage extends StatelessWidget {
       child: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
-            SizedBox(height: 50),
-            Text('Looks like there was a problem.',
+            const SizedBox(height: 50),
+            const Text('Looks like there was a problem.',
                 textDirection: TextDirection.ltr),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(_error.toString(), textDirection: TextDirection.ltr),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             Text(_trace.toString(), textDirection: TextDirection.ltr),
           ],
         ),

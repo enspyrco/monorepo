@@ -13,16 +13,16 @@ class ProfileAvatar extends StatelessWidget {
     final localPhotoURL = photoURL; // gimme that flow analysis
     return RawMaterialButton(
       onPressed: () =>
-          context.dispatch(PushPageAction(data: ProfilePageData())),
+          context.dispatch(PushPageAction(data: const ProfilePageData())),
       elevation: 0.0,
       fillColor: Colors.white,
-      padding: EdgeInsets.all(5.0),
-      shape: CircleBorder(),
+      padding: const EdgeInsets.all(5.0),
+      shape: const CircleBorder(),
       child: CircleAvatar(
         radius: 17,
-        backgroundColor: Color(0xffFDCF09),
+        backgroundColor: const Color(0xffFDCF09),
         child: (localPhotoURL == null)
-            ? Icon(Icons.account_circle_outlined)
+            ? const Icon(Icons.account_circle_outlined)
             : CheckedCircleAvatar(radius: 15, url: localPhotoURL),
       ),
     );

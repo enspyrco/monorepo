@@ -1,4 +1,4 @@
-import 'package:the_process/enums/auth/auth_step.dart';
+import 'package:the_process/enums/auth/auth_step_enum.dart';
 import 'package:the_process/enums/auth/authorization_step.dart';
 import 'package:the_process/enums/auth/provider_name.dart';
 
@@ -8,8 +8,8 @@ extension EnumParser on String {
         .firstWhere((e) => e.toString().toLowerCase() == 'providerName.$this');
   }
 
-  AuthStep toAuthStepEnum() {
-    return AuthStep.values
+  AuthStepEnum toAuthStepEnum() {
+    return AuthStepEnum.values
         .firstWhere((e) => e.toString().toLowerCase() == 'authStep.$this');
   }
 

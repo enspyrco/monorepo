@@ -5,11 +5,12 @@ import 'package:the_process/widgets/home/project-overview/sections-view/sections
 import 'package:the_process/widgets/home/project-overview/user-info-view/user_info_view.dart';
 
 class ProjectOverview extends StatelessWidget {
+  const ProjectOverview({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        children: <Widget>[
+        children: const <Widget>[
           OrganisationSelectionView(),
           ProjectSelectionView(),
           SectionsView(),

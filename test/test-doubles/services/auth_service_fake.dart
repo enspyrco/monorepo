@@ -6,7 +6,7 @@ import '../../test-data/auth_test_data.dart';
 
 class AuthServiceFake extends Fake implements AuthService {
   @override
-  Future<String> getCurrentUserId() => Future.value('uid');
+  String? getCurrentUserId() => 'uid';
 
   @override
   Future<GoogleSignInCredential> getGoogleCredential() =>

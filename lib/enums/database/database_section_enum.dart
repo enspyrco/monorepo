@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum DatabaseSection {
+enum DatabaseSectionEnum {
   @JsonValue('PROFILE_DATA')
   profileData,
   @JsonValue('NEW_ENTRIES')

@@ -20,9 +20,10 @@ class AppWidget extends StatefulWidget {
   final FirebaseWrapper _firebase;
   final ReduxBundle? _redux;
 
-  AppWidget({FirebaseWrapper? firebase, ReduxBundle? redux})
+  AppWidget({FirebaseWrapper? firebase, ReduxBundle? redux, Key? key})
       : _firebase = firebase ?? FirebaseWrapper(),
-        _redux = redux;
+        _redux = redux,
+        super(key: key);
 
   @override
   _AppWidgetState createState() => _AppWidgetState();

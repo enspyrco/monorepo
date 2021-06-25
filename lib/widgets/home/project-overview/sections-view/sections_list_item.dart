@@ -6,13 +6,15 @@ import 'package:the_process/widgets/home/project-overview/sections-view/buttons/
 class SectionsListItem extends StatelessWidget {
   final Section _section;
 
-  SectionsListItem(Section section) : _section = section;
+  const SectionsListItem(Section section, {Key? key})
+      : _section = section,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 0.0),
-      child: Container(
+      child: SizedBox(
         height: 65,
         child: Card(
           color: Colors.black12,
@@ -23,7 +25,7 @@ class SectionsListItem extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 15.0),
                 child: Text(
                   _section.name,
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                 ),
               ),
               Row(

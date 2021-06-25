@@ -10,7 +10,7 @@ void main() {
   group('OrganisationSelectionView', () {
     testWidgets('lays out expected views', (WidgetTester tester) async {
       final harness =
-          WidgetTestHarness(widgetUnderTest: ProjectSelectionView());
+          WidgetTestHarness(widgetUnderTest: const ProjectSelectionView());
 
       // Build the widget tree.
       await tester.pumpWidget(harness.widget);

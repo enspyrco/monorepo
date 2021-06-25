@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:the_process/actions/redux_action.dart';
+import 'package:the_process/enums/platform/platform_enum.dart';
 import 'package:the_process/extensions/auth_plugin_extensions.dart';
 import 'package:the_process/extensions/stream_extensions.dart';
 import 'package:the_process/models/auth/apple_id_credential.dart';
@@ -12,6 +13,7 @@ import 'package:the_process/models/auth/google_sign_in_credential.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth;
+  PlatformEnum? _platform;
 
   /// [StreamController] for adding auth state actions
   final StreamController<ReduxAction> _eventsController;
@@ -30,6 +32,8 @@ class AuthService {
       : _firebaseAuth = auth ?? FirebaseAuth.instance,
         _eventsController = eventsController ?? StreamController<ReduxAction>();
 
+  set platform(PlatformEnum platform) => _platform = platform;
+
   void connectAuthStateToStore() {
     try {
       // connect the firebase auth state to the store and keep the subscription
@@ -41,10 +45,10 @@ class AuthService {
     }
   }
 
-  Future<String?> getCurrentUserId() async {
-    final user = _firebaseAuth.currentUser;
-    return user?.uid;
-  }
+  String? getCurrentUserId() => _firebaseAuth.currentUser?.uid;
+
+  Future<String>? getCurrentUserIdToken() =>
+      _firebaseAuth.currentUser?.getIdToken();
 
   void disconnectAuthState() {
     _firebaseAuthStateSubscription?.cancel();
@@ -104,8 +108,12 @@ class AuthService {
   /// The stream of auth state is connected to the store so the app state will
   /// be automatically updated
   Future<void> signOut() async {
-    final _googleSignIn = GoogleSignIn(scopes: ['email']);
-    await _googleSignIn.signOut();
+    // The available auth plugins depend on platform so if it's not set just return
+    if (_platform == null) return;
+    if (_platform != PlatformEnum.iOS && _platform != PlatformEnum.macOS) {
+      final googleSignIn = GoogleSignIn(scopes: ['email']);
+      await googleSignIn.signOut();
+    }
     await _firebaseAuth.signOut();
   }
 }

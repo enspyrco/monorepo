@@ -42,7 +42,7 @@ void main() {
 
       // Set the screen size to large and ensure reset after the test ends
       // This is actually the default size but added for clarity
-      tester.binding.window.physicalSizeTestValue = Size(800, 600);
+      tester.binding.window.physicalSizeTestValue = const Size(800, 600);
       tester.binding.window.devicePixelRatioTestValue = 1.0;
       addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
 
@@ -66,7 +66,7 @@ void main() {
       final harness = AppWidgetHarness(store: FakeStore.authenticated());
 
       // Set the screen size and ensure reset after the test ends
-      tester.binding.window.physicalSizeTestValue = Size(600, 600);
+      tester.binding.window.physicalSizeTestValue = const Size(600, 600);
       tester.binding.window.devicePixelRatioTestValue = 1.0;
       addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
 

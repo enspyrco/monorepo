@@ -7,7 +7,8 @@ import 'package:the_process/extensions/flutter_extensions.dart';
 class AsanaAuthorizationButton extends StatelessWidget {
   final AuthorizationStep step;
 
-  AsanaAuthorizationButton({required this.step});
+  const AsanaAuthorizationButton({required this.step, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class AsanaAuthorizationButton extends StatelessWidget {
           ? () => context
               .dispatch(GetAuthorizedAction(provider: ProviderName.asana))
           : null,
-      child: ImageIcon(AssetImage('assets/asana_white.png'),
+      child: ImageIcon(const AssetImage('assets/asana_white.png'),
           color: (step == AuthorizationStep.waitingForInput)
               ? Colors.grey
               : Colors.amberAccent),

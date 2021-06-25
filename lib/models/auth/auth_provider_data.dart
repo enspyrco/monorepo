@@ -10,7 +10,7 @@ class AuthProviderData with _$AuthProviderData {
     required String providerId,
 
     /// The provider’s user ID for the user.
-    required String uid,
+    required String? uid,
 
     /// The name of the user.
     String? displayName,

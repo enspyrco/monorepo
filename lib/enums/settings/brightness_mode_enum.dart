@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum BrightnessMode {
+enum BrightnessModeEnum {
   @JsonValue('LIGHT')
   light,
   @JsonValue('DARK')

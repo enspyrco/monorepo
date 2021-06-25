@@ -13,8 +13,7 @@ extension ConvertDocumentSnapshot on DocumentSnapshot {
     // convert from the format of the firestore data (map of strings) to what
     // want (map of enums)
     final authorizationStatusAsStrings =
-        data()?['authorizationStatus'] as Map<String, String>? ??
-            <String, String>{};
+        ['authorizationStatus'] as Map<String, String>? ?? <String, String>{};
 
     final authorizationStatus = authorizationStatusAsStrings
         .map<ProviderName, AuthorizationStep>((name, step) => MapEntry(
@@ -22,18 +21,18 @@ extension ConvertDocumentSnapshot on DocumentSnapshot {
 
     return ProfileData(
         id: id,
-        displayName: data()?['displayName'] as String,
-        photoURL: data()?['photoURL'] as String? ??
+        displayName: ['displayName'] as String,
+        photoURL: ['photoURL'] as String? ??
             'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
-        firstName: data()?['firstName'] as String? ?? '_',
-        lastName: data()?['lastName'] as String? ?? '_',
+        firstName: ['firstName'] as String? ?? '_',
+        lastName: ['lastName'] as String? ?? '_',
         authorizationStatus: authorizationStatus);
   }
 }
 
 extension ConvertQueryDocumentSnapshot on QueryDocumentSnapshot {
   Section toSection() => Section(
-      name: data()['name'] as String,
-      folderId: data()['folderId'] as String,
-      useCasesDocId: data()['useCasesDocId'] as String);
+      name: ['name'] as String,
+      folderId: ['folderId'] as String,
+      useCasesDocId: ['useCasesDocId'] as String);
 }

@@ -15,18 +15,18 @@ extension NavigatorEntriesExt on IList<PageData> {
 
     for (final pageData in this) {
       if (pageData is InitialPageData) {
-        materialPages.add(MaterialPage<InitialPage>(
+        materialPages.add(const MaterialPage<InitialPage>(
           key: ValueKey(InitialPage),
           child: InitialPage(),
         ));
       } else if (pageData is ProfilePageData) {
-        materialPages.add(MaterialPage<ProfilePage>(
+        materialPages.add(const MaterialPage<ProfilePage>(
           key: ValueKey(ProfilePage),
           child: ProfilePage(),
         ));
       } else if ((pageData is ProblemPageData)) {
         materialPages.add(MaterialPage<ProblemPage>(
-          key: ValueKey(ProblemPage),
+          key: const ValueKey(ProblemPage),
           child: ProblemPage(pageData.problem),
         ));
       }

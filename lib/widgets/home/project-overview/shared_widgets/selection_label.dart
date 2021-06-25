@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SelectionLabel extends StatelessWidget {
-  const SelectionLabel({required this.iconData});
+  const SelectionLabel({required this.iconData, Key? key}) : super(key: key);
 
   final IconData iconData;
 

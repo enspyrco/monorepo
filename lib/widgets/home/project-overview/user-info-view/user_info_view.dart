@@ -4,6 +4,7 @@ import 'package:the_process/models/app_state/app_state.dart';
 import 'package:the_process/widgets/shared/profile_avatar.dart';
 
 class UserInfoView extends StatelessWidget {
+  const UserInfoView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, String?>(
@@ -16,7 +17,7 @@ class UserInfoView extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: ProfileAvatar(photoURL),
             ),
-            Text('User Name')
+            const Text('User Name')
           ],
         );
       },

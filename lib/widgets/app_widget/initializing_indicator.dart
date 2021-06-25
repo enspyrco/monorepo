@@ -26,8 +26,8 @@ class InitializingIndicator extends StatelessWidget {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            CircularProgressIndicator(),
-            SizedBox(height: 30),
+            const CircularProgressIndicator(),
+            const SizedBox(height: 30),
             Text(message, textDirection: TextDirection.ltr)
           ]),
     );

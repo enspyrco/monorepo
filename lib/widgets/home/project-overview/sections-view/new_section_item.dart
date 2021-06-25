@@ -25,7 +25,7 @@ class NewSectionItem extends StatelessWidget {
               foregroundColor: Colors.white,
               mini: true,
               elevation: 1,
-              child: Icon(Icons.add),
+              child: const Icon(Icons.add),
             ),
           ),
         ),

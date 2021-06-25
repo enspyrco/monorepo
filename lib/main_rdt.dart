@@ -20,7 +20,7 @@ void main() {
   });
 
   // Settings to make the firestore package use the local emulator
-  final _firestoreSettings = Settings(
+  const _firestoreSettings = Settings(
       host: 'localhost:8080', sslEnabled: false, persistenceEnabled: false);
 
   // Setup the redux bundle to use a different bucket and with an extra

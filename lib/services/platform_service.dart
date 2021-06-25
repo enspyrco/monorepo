@@ -8,7 +8,7 @@ class PlatformService {
   PlatformService(
       {PlatformWrapper? platformWrapper,
       UrlLauncherWrapper? urlLauncherWrapper})
-      : _platformWrapper = platformWrapper ?? PlatformWrapper(),
+      : _platformWrapper = platformWrapper ?? const PlatformWrapper(),
         _urlLauncherWrapper = urlLauncherWrapper ?? UrlLauncherWrapper();
 
   final UrlLauncherWrapper _urlLauncherWrapper;

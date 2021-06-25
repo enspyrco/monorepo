@@ -21,7 +21,7 @@ class GetAuthorizedMiddleware
                 step: AuthorizationStep.gettingAuthorized);
 
             // can improve security by saving to database and sending in 'state'
-            final unguessable = Uuid().v1();
+            final unguessable = const Uuid().v1();
 
             await platformService.getAuthorized(
                 provider: action.provider, state: unguessable);

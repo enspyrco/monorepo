@@ -1,4 +1,11 @@
 {
+    "constructor": {
+        "prefix": "key constructor",
+        "body": [
+            "const ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({Key? key}) : super(key: key);",
+        ],
+        "description": "key constructor"
+    },
     "import extensions": {
         "prefix": "extensions import",
         "body": [

@@ -19,8 +19,7 @@
                 "--web-hostname",
                 "localhost",
                 "--web-port",
-                "5000",
-                "--no-sound-null-safety"
+                "5000"
             ]
         },
         {
@@ -28,7 +27,6 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main_rdt.dart",
-            "args": [ "--no-sound-null-safety" ]
         },
         {
             "name": "the_webt_rdt_process",
@@ -40,8 +38,7 @@
                 "--web-hostname",
                 "localhost",
                 "--web-port",
-                "5000",
-                "--no-sound-null-safety"
+                "5000"
             ]
         },
     ]

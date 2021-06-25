@@ -10,7 +10,7 @@ void main() {
   testWidgets('NewSectionItem dispatches UpdateNewSectionVM on text entry',
       (WidgetTester tester) async {
     // Setup the harness and check it is in the initial state.
-    final harness = WidgetTestHarness(widgetUnderTest: NewSectionItem());
+    final harness = WidgetTestHarness(widgetUnderTest: const NewSectionItem());
     expect(harness.state.sections.newSection.name, '');
 
     // Build the widget tree.
@@ -31,7 +31,7 @@ void main() {
   testWidgets('NewSectionItem dispatches CreateSection on submit',
       (WidgetTester tester) async {
     // setup the harness and check it is in the initial state
-    final harness = WidgetTestHarness(widgetUnderTest: NewSectionItem());
+    final harness = WidgetTestHarness(widgetUnderTest: const NewSectionItem());
     expect(harness.state.sections.newSection.name, '');
 
     // Build the widget tree.

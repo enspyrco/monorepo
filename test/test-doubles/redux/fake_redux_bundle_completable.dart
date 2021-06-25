@@ -10,9 +10,7 @@ class FakeReduxBundleCompletable implements ReduxBundle {
   final Completer<Store<AppState>> _reduxCompleter;
 
   FakeReduxBundleCompletable({required Completer<Store<AppState>> completer})
-      : _reduxCompleter = completer {
-    ;
-  }
+      : _reduxCompleter = completer;
 
   @override
   Future<Store<AppState>> createStore() => _reduxCompleter.future;

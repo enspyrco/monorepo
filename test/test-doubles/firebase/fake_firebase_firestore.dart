@@ -7,10 +7,11 @@ import 'package:flutter_test/flutter_test.dart';
 ///
 /// Only partly implemented, can be added to as more use cases are required.
 class FakeFirebaseFirestore extends Fake implements FirebaseFirestore {
-  final _sectionsController = StreamController<QuerySnapshot>();
+  final _sectionsController =
+      StreamController<QuerySnapshot<Map<String, dynamic>>>();
 
   @override
-  CollectionReference collection(String collectionPath) {
+  CollectionReference<Map<String, dynamic>> collection(String collectionPath) {
     if (collectionPath == 'sections') {
       return CollectionReferenceFake(snapshotsController: _sectionsController);
     } else {
@@ -35,16 +36,20 @@ class FakeFirebaseFirestore extends Fake implements FirebaseFirestore {
 
 /// A fake [CollectionReference] that takes a [StreamController], allowing for
 /// events to be emitted during tests.
-class CollectionReferenceFake extends Fake implements CollectionReference {
-  final StreamController<QuerySnapshot> _snapshotsController;
+class CollectionReferenceFake extends Fake
+    implements CollectionReference<Map<String, dynamic>> {
+  final StreamController<QuerySnapshot<Map<String, dynamic>>>
+      _snapshotsController;
 
   CollectionReferenceFake(
-      {StreamController<QuerySnapshot>? snapshotsController})
-      : _snapshotsController =
-            snapshotsController ?? StreamController<QuerySnapshot>();
+      {StreamController<QuerySnapshot<Map<String, dynamic>>>?
+          snapshotsController})
+      : _snapshotsController = snapshotsController ??
+            StreamController<QuerySnapshot<Map<String, dynamic>>>();
 
   @override
-  Stream<QuerySnapshot> snapshots({bool includeMetadataChanges = false}) =>
+  Stream<QuerySnapshot<Map<String, dynamic>>> snapshots(
+          {bool includeMetadataChanges = false}) =>
       _snapshotsController.stream;
 
   @override
@@ -53,16 +58,19 @@ class CollectionReferenceFake extends Fake implements CollectionReference {
 }
 
 /// A fake [QuerySnapshot] that holds a list of [QueryDocumentSnapshot].
-class FakeQuerySnapshot extends Fake implements QuerySnapshot {
-  final List<QueryDocumentSnapshot> _docs;
-  FakeQuerySnapshot({List<QueryDocumentSnapshot>? docs}) : _docs = docs ?? [];
+class FakeQuerySnapshot extends Fake
+    implements QuerySnapshot<Map<String, dynamic>> {
+  final List<QueryDocumentSnapshot<Map<String, dynamic>>> _docs;
+  FakeQuerySnapshot({List<QueryDocumentSnapshot<Map<String, dynamic>>>? docs})
+      : _docs = docs ?? [];
 
   @override
-  List<QueryDocumentSnapshot> get docs => _docs;
+  List<QueryDocumentSnapshot<Map<String, dynamic>>> get docs => _docs;
 }
 
 /// A fake [QueryDocumentSnapshot] that holds the data [DocumentSnapshot] data.
-class FakeQueryDocumentSnapshot extends Fake implements QueryDocumentSnapshot {
+class FakeQueryDocumentSnapshot extends Fake
+    implements QueryDocumentSnapshot<Map<String, dynamic>> {
   final String _id;
   final bool _exists;
   final Map<String, dynamic> _data;

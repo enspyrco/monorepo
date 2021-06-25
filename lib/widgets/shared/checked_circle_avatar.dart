@@ -8,9 +8,11 @@ import 'package:flutter/material.dart';
 class CheckedCircleAvatar extends StatelessWidget {
   final String _url;
   final double _radius;
-  CheckedCircleAvatar({required String url, required double radius})
+  const CheckedCircleAvatar(
+      {required String url, required double radius, Key? key})
       : _url = url,
-        _radius = radius;
+        _radius = radius,
+        super(key: key);
   Future<bool> cacheImage(String url, BuildContext context) async {
     var hasNoError = true;
     var output = Completer<bool>();
@@ -30,18 +32,18 @@ class CheckedCircleAvatar extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.none ||
             snapshot.hasError) {
-          return ErrorAvatar();
+          return const ErrorAvatar();
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(
-            decoration: BoxDecoration(color: Colors.grey),
-            child: Center(
+            decoration: const BoxDecoration(color: Colors.grey),
+            child: const Center(
               child: CircularProgressIndicator(),
             ),
           );
         }
         if (snapshot.data == false) {
-          return ErrorAvatar();
+          return const ErrorAvatar();
         }
         return CircleAvatar(
             radius: _radius, backgroundImage: Image.network(_url).image);
@@ -57,8 +59,8 @@ class ErrorAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 80.0,
-      decoration: BoxDecoration(color: Colors.grey),
-      child: Center(
+      decoration: const BoxDecoration(color: Colors.grey),
+      child: const Center(
         child: Text(
           'Error',
         ),

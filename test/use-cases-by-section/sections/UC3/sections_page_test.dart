@@ -15,7 +15,8 @@ void main() {
     // Setup the harness and check it is in the initial state.
     final state = AppState.init();
     final harness = WidgetTestHarness(
-        widgetUnderTest: SectionsView(), fakeStore: FakeStore(state: state));
+        widgetUnderTest: const SectionsView(),
+        fakeStore: FakeStore(state: state));
     expect(harness.state.sections.creatingNewSection, false);
     expect(harness.state.sections.list, BuiltList<Section>());
 

@@ -10,7 +10,8 @@ import '../../test-utils/widget_test_harness.dart';
 void main() {
   group('ProjectOverview', () {
     testWidgets('lays out expected views', (WidgetTester tester) async {
-      final harness = WidgetTestHarness(widgetUnderTest: ProjectOverview());
+      final harness =
+          WidgetTestHarness(widgetUnderTest: const ProjectOverview());
 
       // Build the widget tree.
       await tester.pumpWidget(harness.widget);

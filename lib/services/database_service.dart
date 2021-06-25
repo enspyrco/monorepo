@@ -1,17 +1,17 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:the_process/actions/profile/store_profile_data_action.dart';
 import 'package:the_process/actions/redux_action.dart';
 import 'package:the_process/actions/sections/store_sections_action.dart';
 import 'package:the_process/actions/sections/update_sections_v_m_action.dart';
 import 'package:the_process/enums/auth/authorization_step.dart';
 import 'package:the_process/enums/auth/provider_name.dart';
-import 'package:the_process/enums/database/database_section.dart';
+import 'package:the_process/enums/database/database_section_enum.dart';
 import 'package:the_process/extensions/firestore_extensions.dart';
 import 'package:the_process/extensions/stream_extensions.dart';
 import 'package:the_process/models/sections/section.dart';
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
 class DatabaseService {
   /// The [FirebaseFirestore] instance
@@ -26,7 +26,7 @@ class DatabaseService {
   Stream<ReduxAction> get storeStream => _eventsController.stream;
 
   /// Keep track of the subscriptions so we can cancel them later.
-  Map<DatabaseSection, StreamSubscription> subscriptions = {};
+  Map<DatabaseSectionEnum, StreamSubscription> subscriptions = {};
 
   /// The [_storeController] is connected to the redux [Store] via [storeStrea]
   /// and is used by the [DatabaseService] to add actions to the stream where
@@ -43,7 +43,7 @@ class DatabaseService {
   /// [DocumentSnapshot] into a [ReduxAction] then send to the store using the
   /// passed in [StreamController].
   void connectProfileData({required String uid}) {
-    final dbSection = DatabaseSection.profileData;
+    const dbSection = DatabaseSectionEnum.profileData;
 
     try {
       // connect the database to the store and keep the subscription
@@ -63,7 +63,7 @@ class DatabaseService {
     }
   }
 
-  void disconnect(DatabaseSection dbSection) =>
+  void disconnect(DatabaseSectionEnum dbSection) =>
       subscriptions[dbSection]?.cancel();
 
   Future<void> updateAuthorizationStep(
@@ -85,7 +85,7 @@ class DatabaseService {
         'section': {'name': name}
       });
 
-      final dbSection = DatabaseSection.newEntries;
+      const dbSection = DatabaseSectionEnum.newEntries;
       subscriptions[dbSection] =
           _firestore.doc('new/$uid').snapshots().listen((doc) {
         try {
@@ -108,7 +108,7 @@ class DatabaseService {
   /// [CollectionSnapshot] into a [ReduxAction] then send to the store using the
   /// passed in [StreamController].
   void connectSections() {
-    final dbSection = DatabaseSection.sections;
+    const dbSection = DatabaseSectionEnum.sections;
 
     try {
       // connect the database to the store and keep the subscription

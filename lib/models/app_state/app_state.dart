@@ -1,6 +1,6 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:the_process/enums/auth/auth_step.dart';
+import 'package:the_process/enums/auth/auth_step_enum.dart';
 import 'package:the_process/models/auth/auth_user_data.dart';
 import 'package:the_process/models/navigation/page_data/page_data.dart';
 import 'package:the_process/models/problems/problem.dart';
@@ -12,27 +12,6 @@ import 'package:the_process/models/team/team_member.dart';
 part 'app_state.freezed.dart';
 part 'app_state.g.dart';
 
-/// Teams
-/// [TeamMember]? teamMember,
-///
-/// Auth
-/// required [AuthStep] authStep,
-/// [AuthUserData]? authUserData,
-///
-/// Navigation
-/// required [List<PageData>] pagesData,
-///
-/// Problems
-/// required [List<Problem>] problems,
-///
-/// Profile
-/// [ProfileData]? profileData,
-///
-/// Sections
-/// required [SectionsVM] sections,
-///
-/// Settings
-/// required [Settings] settings,
 @freezed
 class AppState with _$AppState {
   @JsonSerializable(explicitToJson: true)
@@ -41,7 +20,7 @@ class AppState with _$AppState {
     TeamMember? teamMember,
 
     /// Auth
-    required AuthStep authStep,
+    required AuthStepEnum authStep,
     AuthUserData? authUserData,
 
     /// Navigation
@@ -65,8 +44,8 @@ class AppState with _$AppState {
 
   factory AppState.init() => AppState(
       problems: IList(),
-      pagesData: <PageData>[InitialPageData()].lock,
-      authStep: AuthStep.checking,
+      pagesData: <PageData>[const InitialPageData()].lock,
+      authStep: AuthStepEnum.checking,
       settings: Settings.init(),
       sections: SectionsVM.init());
 }

@@ -11,7 +11,7 @@ class SectionFolderButton extends StatelessWidget {
     // if (folderId == null) return
     final folderUrl = 'https://drive.google.com/drive/folders/$folderId';
     return IconButton(
-      icon: Icon(Icons.folder_open_outlined),
+      icon: const Icon(Icons.folder_open_outlined),
       onPressed: () => context.dispatch(LaunchUrlAction(url: folderUrl)),
     );
   }

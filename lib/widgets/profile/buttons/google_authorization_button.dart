@@ -7,7 +7,8 @@ import 'package:the_process/extensions/flutter_extensions.dart';
 class GoogleAuthorizationButton extends StatelessWidget {
   final AuthorizationStep step;
 
-  GoogleAuthorizationButton({required this.step});
+  const GoogleAuthorizationButton({required this.step, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class GoogleAuthorizationButton extends StatelessWidget {
           ? () => context
               .dispatch(GetAuthorizedAction(provider: ProviderName.google))
           : null,
-      child: ImageIcon(AssetImage('assets/google.png'),
+      child: ImageIcon(const AssetImage('assets/google.png'),
           color: (step == AuthorizationStep.waitingForInput)
               ? Colors.grey
               : Colors.amberAccent),

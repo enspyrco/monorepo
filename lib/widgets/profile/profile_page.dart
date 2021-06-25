@@ -13,14 +13,14 @@ import 'package:the_process/widgets/profile/buttons/google_authorization_button.
 import 'package:the_process/widgets/shared/waiting_indicator.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage();
+  const ProfilePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
         ),
       ),
@@ -34,7 +34,7 @@ class ProfilePage extends StatelessWidget {
           return Column(
             children: [
               if (profileData == null)
-                WaitingIndicator('Connecting to database...')
+                const WaitingIndicator('Connecting to database...')
               else ...[
                 Text(
                     profileData.displayName ?? 'they who have yet to be named'),
@@ -42,7 +42,7 @@ class ProfilePage extends StatelessWidget {
                   children: [
                     if (profileData.authorizationStatus[ProviderName.google] ==
                         AuthorizationStep.gettingAuthorized)
-                      CircularProgressIndicator()
+                      const CircularProgressIndicator()
                     else
                       GoogleAuthorizationButton(
                           step: profileData
@@ -50,7 +50,7 @@ class ProfilePage extends StatelessWidget {
                               AuthorizationStep.unknown),
                     if (profileData.authorizationStatus[ProviderName.asana] ==
                         AuthorizationStep.gettingAuthorized)
-                      CircularProgressIndicator()
+                      const CircularProgressIndicator()
                     else
                       AsanaAuthorizationButton(
                           step: profileData
@@ -61,7 +61,7 @@ class ProfilePage extends StatelessWidget {
               ],
               MaterialButton(
                 onPressed: () => context.dispatch(SignOutAction()),
-                child: Text('Sign Out'),
+                child: const Text('Sign Out'),
               ),
             ],
           );

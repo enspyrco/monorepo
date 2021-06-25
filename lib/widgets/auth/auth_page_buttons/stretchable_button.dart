@@ -12,16 +12,17 @@ class StretchableButton extends StatelessWidget {
   final List<Widget> children;
   final bool centered;
 
-  StretchableButton({
-    required this.buttonColor,
-    required this.borderRadius,
-    required this.children,
-    this.splashColor,
-    this.buttonBorderColor,
-    this.onPressed,
-    this.buttonPadding,
-    this.centered = false,
-  });
+  const StretchableButton(
+      {required this.buttonColor,
+      required this.borderRadius,
+      required this.children,
+      this.splashColor,
+      this.buttonBorderColor,
+      this.onPressed,
+      this.buttonPadding,
+      this.centered = false,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +31,12 @@ class StretchableButton extends StatelessWidget {
         var contents = List<Widget>.from(children);
 
         if (constraints.minWidth == 0) {
-          contents.add(SizedBox.shrink());
+          contents.add(const SizedBox.shrink());
         } else {
           if (centered) {
-            contents.insert(0, Spacer());
+            contents.insert(0, const Spacer());
           }
-          contents.add(Spacer());
+          contents.add(const Spacer());
         }
 
         BorderSide bs;

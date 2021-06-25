@@ -5,9 +5,9 @@ import 'package:the_process/actions/sections/update_sections_v_m_action.dart';
 import 'package:the_process/middleware/sections/create_section.dart';
 import 'package:the_process/models/app_state/app_state.dart';
 
-import '../../../test-doubles/services/service_test_doubles.mocks.dart';
 import '../../../test-data/models/auth_user_data_examples.dart';
 import '../../../test-doubles/redux/fake_store.dart';
+import '../../../test-doubles/services/service_test_doubles.mocks.dart';
 
 void main() {
   group('CreateSectionMiddleware', () {
@@ -19,7 +19,7 @@ void main() {
           sections: state.sections.copyWith.newSection(name: 'testy'));
       final fakeStore = FakeStore(state: state);
       final httpServiceMock = MockHttpService();
-      final nullDispatcher = (dynamic _) => null;
+      nullDispatcher(dynamic _) => null;
 
       // Create then invoke the middleware under test.
       final middleware = CreateSectionMiddleware(httpServiceMock);

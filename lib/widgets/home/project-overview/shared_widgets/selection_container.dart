@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SelectionContainer extends StatelessWidget {
-  const SelectionContainer({required this.widgets});
+  const SelectionContainer({required this.widgets, Key? key}) : super(key: key);
 
   final List<Widget> widgets;
 
