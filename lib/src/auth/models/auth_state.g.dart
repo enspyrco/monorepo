@@ -11,14 +11,14 @@ _$_AuthState _$_$_AuthStateFromJson(Map<String, dynamic> json) {
     userData: json['userData'] == null
         ? null
         : AuthUserData.fromJson(json['userData'] as Map<String, dynamic>),
-    step: _$enumDecode(_$AuthStepEnumEnumMap, json['step']),
+    step: _$enumDecode(_$AuthenticationEnumEnumMap, json['step']),
   );
 }
 
 Map<String, dynamic> _$_$_AuthStateToJson(_$_AuthState instance) =>
     <String, dynamic>{
       'userData': instance.userData,
-      'step': _$AuthStepEnumEnumMap[instance.step],
+      'step': _$AuthenticationEnumEnumMap[instance.step],
     };
 
 K _$enumDecode<K, V>(
@@ -47,11 +47,11 @@ K _$enumDecode<K, V>(
   ).key;
 }
 
-const _$AuthStepEnumEnumMap = {
-  AuthStepEnum.checking: 'CHECKING',
-  AuthStepEnum.waitingForInput: 'WAITING_FOR_INPUT',
-  AuthStepEnum.contactingApple: 'CONTACTING_APPLE',
-  AuthStepEnum.contactingGoogle: 'CONTACTING_GOOGLE',
-  AuthStepEnum.signingInWithFirebase: 'SIGNING_IN_WITH_FIREBASE',
-  AuthStepEnum.signingOut: 'SIGNING_OUT',
+const _$AuthenticationEnumEnumMap = {
+  AuthenticationEnum.checking: 'CHECKING',
+  AuthenticationEnum.waitingForInput: 'WAITING_FOR_INPUT',
+  AuthenticationEnum.contactingApple: 'CONTACTING_APPLE',
+  AuthenticationEnum.contactingGoogle: 'CONTACTING_GOOGLE',
+  AuthenticationEnum.signingInWithFirebase: 'SIGNING_IN_WITH_FIREBASE',
+  AuthenticationEnum.signingOut: 'SIGNING_OUT',
 };

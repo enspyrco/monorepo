@@ -13,12 +13,12 @@ class AuthPage<T extends RedFireState> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: StoreConnector<T, PlatformEnum>(
+        child: StoreConnector<T, PlatformsEnum>(
             distinct: true,
             converter: (store) => store.state.settings.platform,
             builder: (context, platform) {
-              return (platform == PlatformEnum.macOS ||
-                      platform == PlatformEnum.iOS)
+              return (platform == PlatformsEnum.macOS ||
+                      platform == PlatformsEnum.iOS)
                   ? AppleSignInButton(
                       style: AppleButtonStyle.black,
                       onPressed: () =>

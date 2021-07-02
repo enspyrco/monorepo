@@ -47,7 +47,7 @@ part 'app_state.g.dart';
 @freezed
 class AppState with _$AppState, RedFireState {
   factory AppState({
-    required IList<RedFirePage> redFirePages,
+    required IList<RedFirePage> pages,
     required IList<ProblemInfo> problems,
     required Settings settings,
     required AuthStepEnum authStep,
@@ -55,7 +55,7 @@ class AppState with _$AppState, RedFireState {
   }) = _AppState;
  
  factory AppState.init() => AppState(
-  redFirePages: <RedFirePage>[RedFireInitialPage()].lock,
+  pages: <RedFirePage>[RedFireInitialPage()].lock,
   problems: IList(),
   settings: Settings.init(),
   authStep: AuthStepEnum.waitingForInput,

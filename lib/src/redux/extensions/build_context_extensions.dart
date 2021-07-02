@@ -11,4 +11,8 @@ extension BuildContextExtension on BuildContext {
   dynamic dispatchAndListen<T extends RedFireState>(ReduxAction action) {
     return StoreProvider.of<T>(this).dispatch(action);
   }
+
+  RedFireState getAppState<T extends RedFireState>() {
+    return StoreProvider.of<T>(this).state;
+  }
 }

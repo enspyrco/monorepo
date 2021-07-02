@@ -16,7 +16,8 @@ void main() {
       final middleware = DevToolsMiddleware();
       await middleware(fakeStore, ObserveAuthStateAction(), nullDispatcher);
 
-      // TODO: inject a wrapper around postEvent so we can mock it and verify calls
+      // The rest of the test is waiting for when we have a wrapper around
+      // postEvent so we can mock, inject it and verify calls.
     });
   });
 }

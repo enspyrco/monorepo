@@ -20,7 +20,7 @@ StoreAuthStepAction _$StoreAuthStepActionFromJson(Map<String, dynamic> json) {
 class _$StoreAuthStepActionTearOff {
   const _$StoreAuthStepActionTearOff();
 
-  _StoreAuthStepAction call(AuthStepEnum step) {
+  _StoreAuthStepAction call(AuthenticationEnum step) {
     return _StoreAuthStepAction(
       step,
     );
@@ -36,7 +36,7 @@ const $StoreAuthStepAction = _$StoreAuthStepActionTearOff();
 
 /// @nodoc
 mixin _$StoreAuthStepAction {
-  AuthStepEnum get step => throw _privateConstructorUsedError;
+  AuthenticationEnum get step => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +49,7 @@ abstract class $StoreAuthStepActionCopyWith<$Res> {
   factory $StoreAuthStepActionCopyWith(
           StoreAuthStepAction value, $Res Function(StoreAuthStepAction) then) =
       _$StoreAuthStepActionCopyWithImpl<$Res>;
-  $Res call({AuthStepEnum step});
+  $Res call({AuthenticationEnum step});
 }
 
 /// @nodoc
@@ -69,7 +69,7 @@ class _$StoreAuthStepActionCopyWithImpl<$Res>
       step: step == freezed
           ? _value.step
           : step // ignore: cast_nullable_to_non_nullable
-              as AuthStepEnum,
+              as AuthenticationEnum,
     ));
   }
 }
@@ -81,7 +81,7 @@ abstract class _$StoreAuthStepActionCopyWith<$Res>
           $Res Function(_StoreAuthStepAction) then) =
       __$StoreAuthStepActionCopyWithImpl<$Res>;
   @override
-  $Res call({AuthStepEnum step});
+  $Res call({AuthenticationEnum step});
 }
 
 /// @nodoc
@@ -103,7 +103,7 @@ class __$StoreAuthStepActionCopyWithImpl<$Res>
       step == freezed
           ? _value.step
           : step // ignore: cast_nullable_to_non_nullable
-              as AuthStepEnum,
+              as AuthenticationEnum,
     ));
   }
 }
@@ -117,7 +117,7 @@ class _$_StoreAuthStepAction implements _StoreAuthStepAction {
       _$_$_StoreAuthStepActionFromJson(json);
 
   @override
-  final AuthStepEnum step;
+  final AuthenticationEnum step;
 
   @override
   String toString() {
@@ -149,13 +149,14 @@ class _$_StoreAuthStepAction implements _StoreAuthStepAction {
 }
 
 abstract class _StoreAuthStepAction implements StoreAuthStepAction {
-  factory _StoreAuthStepAction(AuthStepEnum step) = _$_StoreAuthStepAction;
+  factory _StoreAuthStepAction(AuthenticationEnum step) =
+      _$_StoreAuthStepAction;
 
   factory _StoreAuthStepAction.fromJson(Map<String, dynamic> json) =
       _$_StoreAuthStepAction.fromJson;
 
   @override
-  AuthStepEnum get step => throw _privateConstructorUsedError;
+  AuthenticationEnum get step => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$StoreAuthStepActionCopyWith<_StoreAuthStepAction> get copyWith =>

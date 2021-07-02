@@ -12,7 +12,7 @@ _$_Settings _$_$_SettingsFromJson(Map<String, dynamic> json) {
     lightTheme: ThemeSet.fromJson(json['lightTheme'] as Map<String, dynamic>),
     brightnessMode:
         _$enumDecode(_$BrightnessModeEnumEnumMap, json['brightnessMode']),
-    platform: _$enumDecode(_$PlatformEnumEnumMap, json['platform']),
+    platform: _$enumDecode(_$PlatformsEnumEnumMap, json['platform']),
   );
 }
 
@@ -21,7 +21,7 @@ Map<String, dynamic> _$_$_SettingsToJson(_$_Settings instance) =>
       'darkTheme': instance.darkTheme.toJson(),
       'lightTheme': instance.lightTheme.toJson(),
       'brightnessMode': _$BrightnessModeEnumEnumMap[instance.brightnessMode],
-      'platform': _$PlatformEnumEnumMap[instance.platform],
+      'platform': _$PlatformsEnumEnumMap[instance.platform],
     };
 
 K _$enumDecode<K, V>(
@@ -56,13 +56,13 @@ const _$BrightnessModeEnumEnumMap = {
   BrightnessModeEnum.system: 'SYSTEM',
 };
 
-const _$PlatformEnumEnumMap = {
-  PlatformEnum.web: 'WEB',
-  PlatformEnum.android: 'ANDROID',
-  PlatformEnum.iOS: 'IOS',
-  PlatformEnum.macOS: 'MACOS',
-  PlatformEnum.fuchsia: 'FUCHSIA',
-  PlatformEnum.linux: 'LINUX',
-  PlatformEnum.windows: 'WINDOWS',
-  PlatformEnum.unknown: 'UNKNOWN',
+const _$PlatformsEnumEnumMap = {
+  PlatformsEnum.web: 'WEB',
+  PlatformsEnum.android: 'ANDROID',
+  PlatformsEnum.iOS: 'IOS',
+  PlatformsEnum.macOS: 'MACOS',
+  PlatformsEnum.fuchsia: 'FUCHSIA',
+  PlatformsEnum.linux: 'LINUX',
+  PlatformsEnum.windows: 'WINDOWS',
+  PlatformsEnum.unknown: 'UNKNOWN',
 };

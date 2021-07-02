@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum AuthStepEnum {
+enum AuthenticationEnum {
   @JsonValue('CHECKING')
   checking,
   @JsonValue('WAITING_FOR_INPUT')

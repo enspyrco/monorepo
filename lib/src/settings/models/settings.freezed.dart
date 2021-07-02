@@ -24,7 +24,7 @@ class _$SettingsTearOff {
       {required ThemeSet darkTheme,
       required ThemeSet lightTheme,
       required BrightnessModeEnum brightnessMode,
-      required PlatformEnum platform}) {
+      required PlatformsEnum platform}) {
     return _Settings(
       darkTheme: darkTheme,
       lightTheme: lightTheme,
@@ -46,7 +46,7 @@ mixin _$Settings {
   ThemeSet get darkTheme => throw _privateConstructorUsedError;
   ThemeSet get lightTheme => throw _privateConstructorUsedError;
   BrightnessModeEnum get brightnessMode => throw _privateConstructorUsedError;
-  PlatformEnum get platform => throw _privateConstructorUsedError;
+  PlatformsEnum get platform => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,7 +62,7 @@ abstract class $SettingsCopyWith<$Res> {
       {ThemeSet darkTheme,
       ThemeSet lightTheme,
       BrightnessModeEnum brightnessMode,
-      PlatformEnum platform});
+      PlatformsEnum platform});
 
   $ThemeSetCopyWith<$Res> get darkTheme;
   $ThemeSetCopyWith<$Res> get lightTheme;
@@ -99,7 +99,7 @@ class _$SettingsCopyWithImpl<$Res> implements $SettingsCopyWith<$Res> {
       platform: platform == freezed
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
-              as PlatformEnum,
+              as PlatformsEnum,
     ));
   }
 
@@ -127,7 +127,7 @@ abstract class _$SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
       {ThemeSet darkTheme,
       ThemeSet lightTheme,
       BrightnessModeEnum brightnessMode,
-      PlatformEnum platform});
+      PlatformsEnum platform});
 
   @override
   $ThemeSetCopyWith<$Res> get darkTheme;
@@ -167,7 +167,7 @@ class __$SettingsCopyWithImpl<$Res> extends _$SettingsCopyWithImpl<$Res>
       platform: platform == freezed
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
-              as PlatformEnum,
+              as PlatformsEnum,
     ));
   }
 }
@@ -192,7 +192,7 @@ class _$_Settings implements _Settings {
   @override
   final BrightnessModeEnum brightnessMode;
   @override
-  final PlatformEnum platform;
+  final PlatformsEnum platform;
 
   @override
   String toString() {
@@ -241,7 +241,7 @@ abstract class _Settings implements Settings {
       {required ThemeSet darkTheme,
       required ThemeSet lightTheme,
       required BrightnessModeEnum brightnessMode,
-      required PlatformEnum platform}) = _$_Settings;
+      required PlatformsEnum platform}) = _$_Settings;
 
   factory _Settings.fromJson(Map<String, dynamic> json) = _$_Settings.fromJson;
 
@@ -252,7 +252,7 @@ abstract class _Settings implements Settings {
   @override
   BrightnessModeEnum get brightnessMode => throw _privateConstructorUsedError;
   @override
-  PlatformEnum get platform => throw _privateConstructorUsedError;
+  PlatformsEnum get platform => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SettingsCopyWith<_Settings> get copyWith =>

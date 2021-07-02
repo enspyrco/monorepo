@@ -20,7 +20,7 @@ UpdateSettingsAction _$UpdateSettingsActionFromJson(Map<String, dynamic> json) {
 class _$UpdateSettingsActionTearOff {
   const _$UpdateSettingsActionTearOff();
 
-  _UpdateSettingsAction call({required PlatformEnum platform}) {
+  _UpdateSettingsAction call({required PlatformsEnum platform}) {
     return _UpdateSettingsAction(
       platform: platform,
     );
@@ -36,7 +36,7 @@ const $UpdateSettingsAction = _$UpdateSettingsActionTearOff();
 
 /// @nodoc
 mixin _$UpdateSettingsAction {
-  PlatformEnum get platform => throw _privateConstructorUsedError;
+  PlatformsEnum get platform => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +49,7 @@ abstract class $UpdateSettingsActionCopyWith<$Res> {
   factory $UpdateSettingsActionCopyWith(UpdateSettingsAction value,
           $Res Function(UpdateSettingsAction) then) =
       _$UpdateSettingsActionCopyWithImpl<$Res>;
-  $Res call({PlatformEnum platform});
+  $Res call({PlatformsEnum platform});
 }
 
 /// @nodoc
@@ -69,7 +69,7 @@ class _$UpdateSettingsActionCopyWithImpl<$Res>
       platform: platform == freezed
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
-              as PlatformEnum,
+              as PlatformsEnum,
     ));
   }
 }
@@ -81,7 +81,7 @@ abstract class _$UpdateSettingsActionCopyWith<$Res>
           $Res Function(_UpdateSettingsAction) then) =
       __$UpdateSettingsActionCopyWithImpl<$Res>;
   @override
-  $Res call({PlatformEnum platform});
+  $Res call({PlatformsEnum platform});
 }
 
 /// @nodoc
@@ -103,7 +103,7 @@ class __$UpdateSettingsActionCopyWithImpl<$Res>
       platform: platform == freezed
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
-              as PlatformEnum,
+              as PlatformsEnum,
     ));
   }
 }
@@ -117,7 +117,7 @@ class _$_UpdateSettingsAction implements _UpdateSettingsAction {
       _$_$_UpdateSettingsActionFromJson(json);
 
   @override
-  final PlatformEnum platform;
+  final PlatformsEnum platform;
 
   @override
   String toString() {
@@ -150,14 +150,14 @@ class _$_UpdateSettingsAction implements _UpdateSettingsAction {
 }
 
 abstract class _UpdateSettingsAction implements UpdateSettingsAction {
-  factory _UpdateSettingsAction({required PlatformEnum platform}) =
+  factory _UpdateSettingsAction({required PlatformsEnum platform}) =
       _$_UpdateSettingsAction;
 
   factory _UpdateSettingsAction.fromJson(Map<String, dynamic> json) =
       _$_UpdateSettingsAction.fromJson;
 
   @override
-  PlatformEnum get platform => throw _privateConstructorUsedError;
+  PlatformsEnum get platform => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UpdateSettingsActionCopyWith<_UpdateSettingsAction> get copyWith =>

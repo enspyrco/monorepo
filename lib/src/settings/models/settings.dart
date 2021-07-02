@@ -15,7 +15,7 @@ class Settings with _$Settings {
     required ThemeSet darkTheme,
     required ThemeSet lightTheme,
     required BrightnessModeEnum brightnessMode,
-    required PlatformEnum platform,
+    required PlatformsEnum platform,
   }) = _Settings;
 
   factory Settings.init() => Settings(
@@ -24,7 +24,7 @@ class Settings with _$Settings {
       lightTheme: ThemeSet(
           brightness: ThemeBrightnessEnum.light, colors: ThemeColors.standard),
       brightnessMode: BrightnessModeEnum.light,
-      platform: PlatformEnum.unknown);
+      platform: PlatformsEnum.unknown);
 
   factory Settings.fromJson(Map<String, dynamic> json) =>
       _$SettingsFromJson(json);

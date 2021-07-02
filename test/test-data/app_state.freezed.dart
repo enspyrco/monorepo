@@ -21,7 +21,7 @@ class _$AppStateTearOff {
   const _$AppStateTearOff();
 
   _AppState call(
-      {required IList<RedFirePage> pages,
+      {required IList<PageData> pages,
       required IList<ProblemInfo> problems,
       required Settings settings,
       required AuthState auth}) {
@@ -43,7 +43,7 @@ const $AppState = _$AppStateTearOff();
 
 /// @nodoc
 mixin _$AppState {
-  IList<RedFirePage> get pages => throw _privateConstructorUsedError;
+  IList<PageData> get pages => throw _privateConstructorUsedError;
   IList<ProblemInfo> get problems => throw _privateConstructorUsedError;
   Settings get settings => throw _privateConstructorUsedError;
   AuthState get auth => throw _privateConstructorUsedError;
@@ -59,7 +59,7 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res>;
   $Res call(
-      {IList<RedFirePage> pages,
+      {IList<PageData> pages,
       IList<ProblemInfo> problems,
       Settings settings,
       AuthState auth});
@@ -87,7 +87,7 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
       pages: pages == freezed
           ? _value.pages
           : pages // ignore: cast_nullable_to_non_nullable
-              as IList<RedFirePage>,
+              as IList<PageData>,
       problems: problems == freezed
           ? _value.problems
           : problems // ignore: cast_nullable_to_non_nullable
@@ -124,7 +124,7 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       __$AppStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {IList<RedFirePage> pages,
+      {IList<PageData> pages,
       IList<ProblemInfo> problems,
       Settings settings,
       AuthState auth});
@@ -155,7 +155,7 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
       pages: pages == freezed
           ? _value.pages
           : pages // ignore: cast_nullable_to_non_nullable
-              as IList<RedFirePage>,
+              as IList<PageData>,
       problems: problems == freezed
           ? _value.problems
           : problems // ignore: cast_nullable_to_non_nullable
@@ -185,7 +185,7 @@ class _$_AppState implements _AppState {
       _$_$_AppStateFromJson(json);
 
   @override
-  final IList<RedFirePage> pages;
+  final IList<PageData> pages;
   @override
   final IList<ProblemInfo> problems;
   @override
@@ -235,7 +235,7 @@ class _$_AppState implements _AppState {
 
 abstract class _AppState implements AppState {
   factory _AppState(
-      {required IList<RedFirePage> pages,
+      {required IList<PageData> pages,
       required IList<ProblemInfo> problems,
       required Settings settings,
       required AuthState auth}) = _$_AppState;
@@ -243,7 +243,7 @@ abstract class _AppState implements AppState {
   factory _AppState.fromJson(Map<String, dynamic> json) = _$_AppState.fromJson;
 
   @override
-  IList<RedFirePage> get pages => throw _privateConstructorUsedError;
+  IList<PageData> get pages => throw _privateConstructorUsedError;
   @override
   IList<ProblemInfo> get problems => throw _privateConstructorUsedError;
   @override

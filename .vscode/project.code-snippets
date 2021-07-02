@@ -37,18 +37,27 @@
   "middleware class": {
     "prefix": "mdlware",
     "body": [
-      "import 'package:${WORKSPACE_NAME}/actions/${TM_FILENAME_BASE}_action.dart';",
-      "import 'package:${WORKSPACE_NAME}/models/app_state.dart';",
       "import 'package:redux/redux.dart';",
       "",
-      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Middleware extends TypedMiddleware<AppState, ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Action> {",
-      "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Middleware(${1/(.*)/${1:/pascalcase}/g}Service ${1}Service) : super((store, action, next) async {",
+      "import '../../../actions.dart';",
+      "import '../../../types.dart';",
+      "import '../../redux/extensions/store_extensions.dart';",
+      "import '../../utils/locator.dart';",
+      "",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Middleware<T extends RedFireState> extends TypedMiddleware<T, ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Action> {",
+      "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Middleware() : super((store, action, next) async {",
       "\t\tnext(action);",
       "",
-      "\t\tfinal  = await ${1/(.*)/${1:/pascalcase}/g}Service${2};",
-      "\t\tstore.dispatch();",
+      "\t\ttry {",
+      "\t\t\tfinal ${1}Service = Locator.get${1}Service();",
+      "\t\t\tstore.dispatch();",
+      "\t\t} catch (error, trace) {",
+      "\t\t\tstore.dispatchProblem(error, trace);",
+      "\t\t}",
       "\t});",
       "}"
+        
+      
     ],
     "description": "middleware class"
   },

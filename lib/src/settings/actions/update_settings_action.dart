@@ -7,7 +7,7 @@ part 'update_settings_action.g.dart';
 
 @freezed
 class UpdateSettingsAction with _$UpdateSettingsAction, ReduxAction {
-  factory UpdateSettingsAction({required PlatformEnum platform}) =
+  factory UpdateSettingsAction({required PlatformsEnum platform}) =
       _UpdateSettingsAction;
 
   factory UpdateSettingsAction.fromJson(Map<String, dynamic> json) =>

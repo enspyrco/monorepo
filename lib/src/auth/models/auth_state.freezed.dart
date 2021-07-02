@@ -20,7 +20,7 @@ AuthState _$AuthStateFromJson(Map<String, dynamic> json) {
 class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
-  _AuthState call({AuthUserData? userData, required AuthStepEnum step}) {
+  _AuthState call({AuthUserData? userData, required AuthenticationEnum step}) {
     return _AuthState(
       userData: userData,
       step: step,
@@ -38,7 +38,7 @@ const $AuthState = _$AuthStateTearOff();
 /// @nodoc
 mixin _$AuthState {
   AuthUserData? get userData => throw _privateConstructorUsedError;
-  AuthStepEnum get step => throw _privateConstructorUsedError;
+  AuthenticationEnum get step => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +50,7 @@ mixin _$AuthState {
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res>;
-  $Res call({AuthUserData? userData, AuthStepEnum step});
+  $Res call({AuthUserData? userData, AuthenticationEnum step});
 
   $AuthUserDataCopyWith<$Res>? get userData;
 }
@@ -76,7 +76,7 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
       step: step == freezed
           ? _value.step
           : step // ignore: cast_nullable_to_non_nullable
-              as AuthStepEnum,
+              as AuthenticationEnum,
     ));
   }
 
@@ -98,7 +98,7 @@ abstract class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
           _AuthState value, $Res Function(_AuthState) then) =
       __$AuthStateCopyWithImpl<$Res>;
   @override
-  $Res call({AuthUserData? userData, AuthStepEnum step});
+  $Res call({AuthUserData? userData, AuthenticationEnum step});
 
   @override
   $AuthUserDataCopyWith<$Res>? get userData;
@@ -126,7 +126,7 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
       step: step == freezed
           ? _value.step
           : step // ignore: cast_nullable_to_non_nullable
-              as AuthStepEnum,
+              as AuthenticationEnum,
     ));
   }
 }
@@ -142,7 +142,7 @@ class _$_AuthState implements _AuthState {
   @override
   final AuthUserData? userData;
   @override
-  final AuthStepEnum step;
+  final AuthenticationEnum step;
 
   @override
   String toString() {
@@ -178,8 +178,9 @@ class _$_AuthState implements _AuthState {
 }
 
 abstract class _AuthState implements AuthState {
-  factory _AuthState({AuthUserData? userData, required AuthStepEnum step}) =
-      _$_AuthState;
+  factory _AuthState(
+      {AuthUserData? userData,
+      required AuthenticationEnum step}) = _$_AuthState;
 
   factory _AuthState.fromJson(Map<String, dynamic> json) =
       _$_AuthState.fromJson;
@@ -187,7 +188,7 @@ abstract class _AuthState implements AuthState {
   @override
   AuthUserData? get userData => throw _privateConstructorUsedError;
   @override
-  AuthStepEnum get step => throw _privateConstructorUsedError;
+  AuthenticationEnum get step => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AuthStateCopyWith<_AuthState> get copyWith =>

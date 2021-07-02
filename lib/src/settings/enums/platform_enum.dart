@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum PlatformEnum {
+enum PlatformsEnum {
   @JsonValue('WEB')
   web,
   @JsonValue('ANDROID')

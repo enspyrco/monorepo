@@ -6,8 +6,8 @@ import 'package:redfire/src/app-init/widgets/initializing_error_page.dart';
 import 'package:redfire/src/app-init/widgets/initializing_indicator.dart';
 import 'package:redfire/src/auth/widgets/auth/auth_page.dart';
 import 'package:redfire/src/navigation/actions/remove_current_page_action.dart';
-import 'package:redfire/src/navigation/extensions/red_fire_page_list_extensions.dart';
-import 'package:redfire/src/navigation/models/red_fire_page.dart';
+import 'package:redfire/src/navigation/extensions/page_data_list_extension.dart';
+import 'package:redfire/src/navigation/models/page_data.dart';
 import 'package:redfire/src/platform/plugins/wrappers/firebase_wrapper.dart';
 import 'package:redfire/src/redux/redux_bundle.dart';
 import 'package:redfire/src/settings/extensions/brightness_mode_enum_extensions.dart';
@@ -104,11 +104,11 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
               theme: settings.lightTheme.data,
               darkTheme: settings.darkTheme.data,
               themeMode: settings.brightnessMode.theme,
-              home: StoreConnector<T, IList<RedFirePage>>(
+              home: StoreConnector<T, IList<PageData>>(
                 distinct: true,
                 converter: (store) => store.state.pages,
-                builder: (context, redFirePages) => Navigator(
-                    pages: redFirePages.toMaterialPages<T>(
+                builder: (context, pages) => Navigator(
+                    pages: pages.toMaterialPages<T>(
                         AuthPage<T>(), widget._mainPage),
                     onPopPage: (route, dynamic result) {
                       if (!route.didPop(result)) {

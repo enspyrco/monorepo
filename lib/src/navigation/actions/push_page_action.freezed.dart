@@ -20,9 +20,9 @@ PushPageAction _$PushPageActionFromJson(Map<String, dynamic> json) {
 class _$PushPageActionTearOff {
   const _$PushPageActionTearOff();
 
-  _PushPageAction call({required RedFirePage data}) {
+  _PushPageAction call({required PageData page}) {
     return _PushPageAction(
-      data: data,
+      page: page,
     );
   }
 
@@ -36,7 +36,7 @@ const $PushPageAction = _$PushPageActionTearOff();
 
 /// @nodoc
 mixin _$PushPageAction {
-  RedFirePage get data => throw _privateConstructorUsedError;
+  PageData get page => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,9 +49,9 @@ abstract class $PushPageActionCopyWith<$Res> {
   factory $PushPageActionCopyWith(
           PushPageAction value, $Res Function(PushPageAction) then) =
       _$PushPageActionCopyWithImpl<$Res>;
-  $Res call({RedFirePage data});
+  $Res call({PageData page});
 
-  $RedFirePageCopyWith<$Res> get data;
+  $PageDataCopyWith<$Res> get page;
 }
 
 /// @nodoc
@@ -65,20 +65,20 @@ class _$PushPageActionCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? data = freezed,
+    Object? page = freezed,
   }) {
     return _then(_value.copyWith(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as RedFirePage,
+      page: page == freezed
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as PageData,
     ));
   }
 
   @override
-  $RedFirePageCopyWith<$Res> get data {
-    return $RedFirePageCopyWith<$Res>(_value.data, (value) {
-      return _then(_value.copyWith(data: value));
+  $PageDataCopyWith<$Res> get page {
+    return $PageDataCopyWith<$Res>(_value.page, (value) {
+      return _then(_value.copyWith(page: value));
     });
   }
 }
@@ -90,10 +90,10 @@ abstract class _$PushPageActionCopyWith<$Res>
           _PushPageAction value, $Res Function(_PushPageAction) then) =
       __$PushPageActionCopyWithImpl<$Res>;
   @override
-  $Res call({RedFirePage data});
+  $Res call({PageData page});
 
   @override
-  $RedFirePageCopyWith<$Res> get data;
+  $PageDataCopyWith<$Res> get page;
 }
 
 /// @nodoc
@@ -109,13 +109,13 @@ class __$PushPageActionCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? data = freezed,
+    Object? page = freezed,
   }) {
     return _then(_PushPageAction(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as RedFirePage,
+      page: page == freezed
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as PageData,
     ));
   }
 }
@@ -123,30 +123,30 @@ class __$PushPageActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PushPageAction implements _PushPageAction {
-  _$_PushPageAction({required this.data});
+  _$_PushPageAction({required this.page});
 
   factory _$_PushPageAction.fromJson(Map<String, dynamic> json) =>
       _$_$_PushPageActionFromJson(json);
 
   @override
-  final RedFirePage data;
+  final PageData page;
 
   @override
   String toString() {
-    return 'PushPageAction(data: $data)';
+    return 'PushPageAction(page: $page)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _PushPageAction &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+            (identical(other.page, page) ||
+                const DeepCollectionEquality().equals(other.page, page)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(page);
 
   @JsonKey(ignore: true)
   @override
@@ -160,13 +160,13 @@ class _$_PushPageAction implements _PushPageAction {
 }
 
 abstract class _PushPageAction implements PushPageAction {
-  factory _PushPageAction({required RedFirePage data}) = _$_PushPageAction;
+  factory _PushPageAction({required PageData page}) = _$_PushPageAction;
 
   factory _PushPageAction.fromJson(Map<String, dynamic> json) =
       _$_PushPageAction.fromJson;
 
   @override
-  RedFirePage get data => throw _privateConstructorUsedError;
+  PageData get page => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PushPageActionCopyWith<_PushPageAction> get copyWith =>

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:redfire/src/auth/enums/auth_step_enum.dart';
+import 'package:redfire/src/auth/enums/authentication_enum.dart';
 import 'package:redfire/src/types/redux_action.dart';
 import 'package:redux/redux.dart';
 
@@ -21,7 +21,7 @@ class FakeStore implements Store<AppState> {
   FakeStore.authenticated()
       : _state = AppState.init().copyWith.auth(
             userData: AuthUserDataExamples.minimal,
-            step: AuthStepEnum.waitingForInput),
+            step: AuthenticationEnum.waitingForInput),
         _changeController = StreamController<AppState>.broadcast(),
         reducer = EmptyReducer();
 

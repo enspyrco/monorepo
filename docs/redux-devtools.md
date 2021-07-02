@@ -44,3 +44,5 @@ You can add alias' to iterate faster (update path for your system):
 alias devtools_activate="dart pub global activate --source path /Users/nick/git/languages/dart/contributing/devtools/packages/devtools"
 alias devtools_rebuild="cd /Users/nick/git/languages/dart/contributing/devtools && ./rebuild.sh && dart pub global activate --source path ./packages/devtools"
 ```
+
+> ** Note: You may need to restart VS Code to see the updated version of DevTools 

@@ -1,13 +1,15 @@
-import 'package:redfire/src/problems/actions/add_problem_action.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
+import 'package:redfire/src/navigation/models/page_data.dart';
 import 'package:redux/redux.dart';
+
+import '../../../actions.dart';
+import '../../../types.dart';
 
 class AddProblemReducer<T extends RedFireState>
     extends TypedReducer<T, AddProblemAction> {
   AddProblemReducer()
       : super(
           (state, action) => (state as dynamic).copyWith(
-            problems: state.problems.add(action.info),
-          ) as T,
+              problems: state.problems.add(action.info),
+              pages: state.pages.add(ProblemPageData(action.info))) as T,
         );
 }

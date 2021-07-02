@@ -1,7 +1,11 @@
-import 'package:redfire/src/auth/actions/sign_in_with_google_action.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
-import 'package:redfire/src/utils/locator.dart';
 import 'package:redux/redux.dart';
+
+import '../../../actions.dart';
+import '../../../types.dart';
+import '../../auth/actions/sign_in_with_google_action.dart';
+import '../../redux/extensions/store_extensions.dart';
+import '../../types/red_fire_state.dart';
+import '../../utils/locator.dart';
 
 class SignInWithGoogleMiddleware<T extends RedFireState>
     extends TypedMiddleware<T, SignInWithGoogleAction> {
@@ -11,7 +15,33 @@ class SignInWithGoogleMiddleware<T extends RedFireState>
 
           final authService = Locator.getAuthService();
 
-          // signin and listen to the stream and dispatch actions
-          authService.googleSignInStream.listen(store.dispatch);
+          try {
+            store.dispatch(
+                StoreAuthStepAction(AuthenticationEnum.contactingGoogle));
+
+            final credential = await authService.getGoogleCredential();
+
+            // If user cancelled sign in, reset UI and return
+            if (credential == null) {
+              store.dispatch(
+                  StoreAuthStepAction(AuthenticationEnum.waitingForInput));
+              return;
+            }
+
+            store.dispatch(
+                StoreAuthStepAction(AuthenticationEnum.signingInWithFirebase));
+
+            // The authStateChanges stream will emit the same AuthUserData and
+            // we are already listening to that stream and updating the app state
+            // with whatever gets emitted.
+            final authUserData =
+                await authService.signInWithGoogle(credential: credential);
+
+            store.dispatch(StoreAuthUserDataAction(authUserData));
+            store.dispatch(
+                StoreAuthStepAction(AuthenticationEnum.waitingForInput));
+          } catch (error, trace) {
+            store.dispatchProblem(error, trace);
+          }
         });
 }

@@ -1,9 +1,9 @@
-import 'package:redfire/src/platform/actions/detect_platform_action.dart';
-import 'package:redfire/src/redux/extensions/store_extensions.dart';
-import 'package:redfire/src/settings/actions/update_settings_action.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
-import 'package:redfire/src/utils/locator.dart';
 import 'package:redux/redux.dart';
+
+import '../../../actions.dart';
+import '../../../types.dart';
+import '../../redux/extensions/store_extensions.dart';
+import '../../utils/locator.dart';
 
 class DetectPlatformMiddleware<T extends RedFireState>
     extends TypedMiddleware<T, DetectPlatformAction> {
@@ -11,9 +11,9 @@ class DetectPlatformMiddleware<T extends RedFireState>
       : super((store, action, next) async {
           next(action);
 
-          final platformService = Locator.getPlatformService();
-
           try {
+            final platformService = Locator.getPlatformService();
+
             final platform = platformService.detectPlatform();
             store.dispatch(UpdateSettingsAction(platform: platform));
           } catch (error, trace) {
