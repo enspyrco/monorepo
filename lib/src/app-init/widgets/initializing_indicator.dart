@@ -7,16 +7,13 @@ import 'package:flutter/material.dart';
 /// need to have it's contents in a Material widget.
 class InitializingIndicator extends StatelessWidget {
   final bool _firebaseDone;
-  final bool _reduxDone;
-  const InitializingIndicator(this._firebaseDone, this._reduxDone);
+  const InitializingIndicator(this._firebaseDone);
 
   @override
   Widget build(BuildContext context) {
     var message = '';
     if (!_firebaseDone) {
-      message = 'Firing up the machine...';
-    } else if (!_reduxDone) {
-      message = 'Taking care to not cross streams...';
+      message = 'Firing up the machine, taking care to not cross streams...';
     }
     return Material(
       child: Column(

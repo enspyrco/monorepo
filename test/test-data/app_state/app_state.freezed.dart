@@ -24,12 +24,14 @@ class _$AppStateTearOff {
       {required IList<PageData> pages,
       required IList<ProblemInfo> problems,
       required Settings settings,
-      required AuthState auth}) {
+      required AuthState auth,
+      ProfileData? profile}) {
     return _AppState(
       pages: pages,
       problems: problems,
       settings: settings,
       auth: auth,
+      profile: profile,
     );
   }
 
@@ -47,6 +49,7 @@ mixin _$AppState {
   IList<ProblemInfo> get problems => throw _privateConstructorUsedError;
   Settings get settings => throw _privateConstructorUsedError;
   AuthState get auth => throw _privateConstructorUsedError;
+  ProfileData? get profile => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,10 +65,12 @@ abstract class $AppStateCopyWith<$Res> {
       {IList<PageData> pages,
       IList<ProblemInfo> problems,
       Settings settings,
-      AuthState auth});
+      AuthState auth,
+      ProfileData? profile});
 
   $SettingsCopyWith<$Res> get settings;
   $AuthStateCopyWith<$Res> get auth;
+  $ProfileDataCopyWith<$Res>? get profile;
 }
 
 /// @nodoc
@@ -82,6 +87,7 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
     Object? problems = freezed,
     Object? settings = freezed,
     Object? auth = freezed,
+    Object? profile = freezed,
   }) {
     return _then(_value.copyWith(
       pages: pages == freezed
@@ -100,6 +106,10 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
           ? _value.auth
           : auth // ignore: cast_nullable_to_non_nullable
               as AuthState,
+      profile: profile == freezed
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as ProfileData?,
     ));
   }
 
@@ -116,6 +126,17 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
       return _then(_value.copyWith(auth: value));
     });
   }
+
+  @override
+  $ProfileDataCopyWith<$Res>? get profile {
+    if (_value.profile == null) {
+      return null;
+    }
+
+    return $ProfileDataCopyWith<$Res>(_value.profile!, (value) {
+      return _then(_value.copyWith(profile: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -127,12 +148,15 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       {IList<PageData> pages,
       IList<ProblemInfo> problems,
       Settings settings,
-      AuthState auth});
+      AuthState auth,
+      ProfileData? profile});
 
   @override
   $SettingsCopyWith<$Res> get settings;
   @override
   $AuthStateCopyWith<$Res> get auth;
+  @override
+  $ProfileDataCopyWith<$Res>? get profile;
 }
 
 /// @nodoc
@@ -150,6 +174,7 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
     Object? problems = freezed,
     Object? settings = freezed,
     Object? auth = freezed,
+    Object? profile = freezed,
   }) {
     return _then(_AppState(
       pages: pages == freezed
@@ -168,6 +193,10 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
           ? _value.auth
           : auth // ignore: cast_nullable_to_non_nullable
               as AuthState,
+      profile: profile == freezed
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as ProfileData?,
     ));
   }
 }
@@ -179,7 +208,8 @@ class _$_AppState implements _AppState {
       {required this.pages,
       required this.problems,
       required this.settings,
-      required this.auth});
+      required this.auth,
+      this.profile});
 
   factory _$_AppState.fromJson(Map<String, dynamic> json) =>
       _$_$_AppStateFromJson(json);
@@ -192,10 +222,12 @@ class _$_AppState implements _AppState {
   final Settings settings;
   @override
   final AuthState auth;
+  @override
+  final ProfileData? profile;
 
   @override
   String toString() {
-    return 'AppState(pages: $pages, problems: $problems, settings: $settings, auth: $auth)';
+    return 'AppState(pages: $pages, problems: $problems, settings: $settings, auth: $auth, profile: $profile)';
   }
 
   @override
@@ -211,7 +243,9 @@ class _$_AppState implements _AppState {
                 const DeepCollectionEquality()
                     .equals(other.settings, settings)) &&
             (identical(other.auth, auth) ||
-                const DeepCollectionEquality().equals(other.auth, auth)));
+                const DeepCollectionEquality().equals(other.auth, auth)) &&
+            (identical(other.profile, profile) ||
+                const DeepCollectionEquality().equals(other.profile, profile)));
   }
 
   @override
@@ -220,7 +254,8 @@ class _$_AppState implements _AppState {
       const DeepCollectionEquality().hash(pages) ^
       const DeepCollectionEquality().hash(problems) ^
       const DeepCollectionEquality().hash(settings) ^
-      const DeepCollectionEquality().hash(auth);
+      const DeepCollectionEquality().hash(auth) ^
+      const DeepCollectionEquality().hash(profile);
 
   @JsonKey(ignore: true)
   @override
@@ -238,7 +273,8 @@ abstract class _AppState implements AppState {
       {required IList<PageData> pages,
       required IList<ProblemInfo> problems,
       required Settings settings,
-      required AuthState auth}) = _$_AppState;
+      required AuthState auth,
+      ProfileData? profile}) = _$_AppState;
 
   factory _AppState.fromJson(Map<String, dynamic> json) = _$_AppState.fromJson;
 
@@ -250,6 +286,8 @@ abstract class _AppState implements AppState {
   Settings get settings => throw _privateConstructorUsedError;
   @override
   AuthState get auth => throw _privateConstructorUsedError;
+  @override
+  ProfileData? get profile => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AppStateCopyWith<_AppState> get copyWith =>

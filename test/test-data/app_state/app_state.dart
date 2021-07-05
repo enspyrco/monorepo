@@ -17,6 +17,7 @@ class AppState with _$AppState, RedFireState {
     required IList<ProblemInfo> problems,
     required Settings settings,
     required AuthState auth,
+    ProfileData? profile,
   }) = _AppState;
 
   factory AppState.init() => AppState(

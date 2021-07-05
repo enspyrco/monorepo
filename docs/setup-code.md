@@ -47,19 +47,23 @@ part 'app_state.g.dart';
 @freezed
 class AppState with _$AppState, RedFireState {
   factory AppState({
-    required IList<RedFirePage> pages,
+    /// RedFire
+    required AuthState auth,
+    required IList<PageData> pages,
     required IList<ProblemInfo> problems,
     required Settings settings,
-    required AuthStepEnum authStep,
-    required AuthUserData? authUserData,
+    ProfileData? profile,
+
+    /// Your additional AppState members
   }) = _AppState;
  
  factory AppState.init() => AppState(
-  pages: <RedFirePage>[RedFireInitialPage()].lock,
-  problems: IList(),
-  settings: Settings.init(),
-  authStep: AuthStepEnum.waitingForInput,
-  authUserData: null);
+    auth: AuthState.init(),
+    pages: <PageData>[const InitialPageData()].lock,
+    problems: IList(),
+    settings: Settings.init(),
+    /// Your additional init code
+  );
  
   factory AppState.fromJson(Map<String, Object?> json) =>
     _$AppStateFromJson(json);

@@ -20,9 +20,9 @@ RemoveProblemAction _$RemoveProblemActionFromJson(Map<String, dynamic> json) {
 class _$RemoveProblemActionTearOff {
   const _$RemoveProblemActionTearOff();
 
-  _RemoveProblemAction call({required ProblemInfo info}) {
+  _RemoveProblemAction call(ProblemInfo info) {
     return _RemoveProblemAction(
-      info: info,
+      info,
     );
   }
 
@@ -112,7 +112,7 @@ class __$RemoveProblemActionCopyWithImpl<$Res>
     Object? info = freezed,
   }) {
     return _then(_RemoveProblemAction(
-      info: info == freezed
+      info == freezed
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
               as ProblemInfo,
@@ -121,10 +121,9 @@ class __$RemoveProblemActionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class _$_RemoveProblemAction implements _RemoveProblemAction {
-  _$_RemoveProblemAction({required this.info});
+  _$_RemoveProblemAction(this.info);
 
   factory _$_RemoveProblemAction.fromJson(Map<String, dynamic> json) =>
       _$_$_RemoveProblemActionFromJson(json);
@@ -162,8 +161,7 @@ class _$_RemoveProblemAction implements _RemoveProblemAction {
 }
 
 abstract class _RemoveProblemAction implements RemoveProblemAction {
-  factory _RemoveProblemAction({required ProblemInfo info}) =
-      _$_RemoveProblemAction;
+  factory _RemoveProblemAction(ProblemInfo info) = _$_RemoveProblemAction;
 
   factory _RemoveProblemAction.fromJson(Map<String, dynamic> json) =
       _$_RemoveProblemAction.fromJson;

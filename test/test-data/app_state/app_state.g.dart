@@ -14,6 +14,9 @@ _$_AppState _$_$_AppStateFromJson(Map<String, dynamic> json) {
         (value) => ProblemInfo.fromJson(value as Map<String, dynamic>)),
     settings: Settings.fromJson(json['settings'] as Map<String, dynamic>),
     auth: AuthState.fromJson(json['auth'] as Map<String, dynamic>),
+    profile: json['profile'] == null
+        ? null
+        : ProfileData.fromJson(json['profile'] as Map<String, dynamic>),
   );
 }
 
@@ -27,4 +30,5 @@ Map<String, dynamic> _$_$_AppStateToJson(_$_AppState instance) =>
       ),
       'settings': instance.settings,
       'auth': instance.auth,
+      'profile': instance.profile,
     };
