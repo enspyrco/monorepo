@@ -7,18 +7,17 @@ import 'package:redfire/src/auth/middleware/sign_in_with_google_middleware.dart'
 import 'package:redfire/src/auth/middleware/sign_out_middleware.dart';
 import 'package:redfire/src/platform/middleware/detect_platform_middleware.dart';
 import 'package:redfire/src/platform/middleware/launch_url_middleware.dart';
-import 'package:redfire/src/utils/locator.dart';
+import 'package:redfire/src/utils/red_fire_locator.dart';
 import 'package:redfire_test/redfire_test.dart';
 
-import '../test-data/app_state/app_state.dart';
+import '../test-doubles/app_state/app_state.dart';
 
 void main() {
   group('Middleware ', () {
     test('ObserveAuthState catches error', () {
       // Setup the middleware and mocks.
       final authServiceMock = MockAuthService();
-      Locator.provide(
-          authServiceMock, MockDatabaseService(), MockPlatformService());
+      RedFireLocator.provide(authService: authServiceMock);
       final middleware = ObserveAuthStateMiddleware();
 
       // Create the middleware dependencies.
@@ -39,8 +38,7 @@ void main() {
     test('SignInWithApple catches error', () {
       // Setup the middleware and mocks.
       final authServiceMock = MockAuthService();
-      Locator.provide(
-          authServiceMock, MockDatabaseService(), MockPlatformService());
+      RedFireLocator.provide(authService: authServiceMock);
       final middleware = SignInWithAppleMiddleware();
 
       // Create the middleware dependencies.
@@ -61,8 +59,7 @@ void main() {
     test('SignInWithGoogle catches error', () {
       // Setup the middleware and mocks.
       final authServiceMock = MockAuthService();
-      Locator.provide(
-          authServiceMock, MockDatabaseService(), MockPlatformService());
+      RedFireLocator.provide(authService: authServiceMock);
       final middleware = SignInWithGoogleMiddleware();
 
       // Create the middleware dependencies.
@@ -83,8 +80,7 @@ void main() {
     test('SignOut catches error', () {
       // Setup the middleware and mocks.
       final authServiceMock = MockAuthService();
-      Locator.provide(
-          authServiceMock, MockDatabaseService(), MockPlatformService());
+      RedFireLocator.provide(authService: authServiceMock);
       final middleware = SignOutMiddleware();
 
       // Create the middleware dependencies.
@@ -106,8 +102,8 @@ void main() {
       // Setup the middleware and mocks.
       final platformServiceMock = MockPlatformService();
       final authServiceMock = MockAuthService();
-      Locator.provide(
-          authServiceMock, MockDatabaseService(), platformServiceMock);
+      RedFireLocator.provide(
+          authService: authServiceMock, platformService: platformServiceMock);
       final middleware = DetectPlatformMiddleware();
 
       // Create the middleware dependencies.
@@ -128,8 +124,7 @@ void main() {
     test('LaunchUrl catches error', () {
       // Setup the middleware and mocks.
       final platformServiceMock = MockPlatformService();
-      Locator.provide(
-          MockAuthService(), MockDatabaseService(), platformServiceMock);
+      RedFireLocator.provide(platformService: platformServiceMock);
       final middleware = LaunchUrlMiddleware();
 
       // Create the middleware dependencies.

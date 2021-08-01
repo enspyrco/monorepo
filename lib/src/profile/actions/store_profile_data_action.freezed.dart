@@ -122,8 +122,7 @@ class __$StoreProfileDataActionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class _$_StoreProfileDataAction implements _StoreProfileDataAction {
   _$_StoreProfileDataAction({required this.data});
 

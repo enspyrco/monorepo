@@ -10,7 +10,6 @@ part 'settings.g.dart';
 
 @freezed
 class Settings with _$Settings {
-  @JsonSerializable(explicitToJson: true)
   factory Settings({
     required ThemeSet darkTheme,
     required ThemeSet lightTheme,

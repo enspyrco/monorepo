@@ -49,7 +49,7 @@
       "\t\tnext(action);",
       "",
       "\t\ttry {",
-      "\t\t\tfinal ${1}Service = Locator.get${1}Service();",
+      "\t\t\tfinal ${1}Service = RedFireLocator.get${1}Service();",
       "\t\t\tstore.dispatch();",
       "\t\t} catch (error, trace) {",
       "\t\t\tstore.dispatchProblem(error, trace);",

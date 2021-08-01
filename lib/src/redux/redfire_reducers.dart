@@ -7,7 +7,7 @@ import '../navigation/reducers/push_page_reducer.dart';
 import '../navigation/reducers/remove_current_page_reducer.dart';
 import '../problems/reducers/add_problem_reducer.dart';
 import '../problems/reducers/remove_problem_reducer.dart';
-import '../settings/reducers/update_settings.dart';
+import '../settings/reducers/update_settings_reducer.dart';
 import '../types/red_fire_state.dart';
 
 /// Reducers specify how the application"s state changes in response to actions

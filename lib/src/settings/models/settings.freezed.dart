@@ -173,8 +173,7 @@ class __$SettingsCopyWithImpl<$Res> extends _$SettingsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class _$_Settings implements _Settings {
   _$_Settings(
       {required this.darkTheme,

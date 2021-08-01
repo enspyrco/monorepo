@@ -15,7 +15,7 @@ _$_ThemeSet _$_$_ThemeSetFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_ThemeSetToJson(_$_ThemeSet instance) =>
     <String, dynamic>{
-      'colors': instance.colors.toJson(),
+      'colors': instance.colors,
       'brightness': _$ThemeBrightnessEnumEnumMap[instance.brightness],
     };
 

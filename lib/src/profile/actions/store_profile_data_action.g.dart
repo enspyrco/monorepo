@@ -16,5 +16,5 @@ _$_StoreProfileDataAction _$_$_StoreProfileDataActionFromJson(
 Map<String, dynamic> _$_$_StoreProfileDataActionToJson(
         _$_StoreProfileDataAction instance) =>
     <String, dynamic>{
-      'data': instance.data.toJson(),
+      'data': instance.data,
     };

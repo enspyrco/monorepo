@@ -128,8 +128,7 @@ class __$ThemeSetCopyWithImpl<$Res> extends _$ThemeSetCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class _$_ThemeSet implements _ThemeSet {
   _$_ThemeSet({required this.colors, required this.brightness});
 

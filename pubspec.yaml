@@ -18,8 +18,6 @@ dependencies:
   sign_in_with_apple: any 
   # database
   cloud_firestore: any
-  # # messaging 
-  # firebase_messaging: ^9.0.0-1.0.nullsafety.0
   # platform 
   url_launcher: any
 
@@ -32,16 +30,15 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
-  redfire_test:
-    git: https://github.com/enspyrco/redfire_test.git
-    # path: /Users/nick/git/orgs/enspyrco/redfire_test
   pedantic: any
   build_runner: any
   freezed: any
   json_serializable: any
   test: any
   mockito: any
+  redfire_test:
+    git: https://github.com/enspyrco/redfire_test.git
+    # path: /Users/nick/git/orgs/enspyrco/redfire_test
 
 flutter:
   assets:

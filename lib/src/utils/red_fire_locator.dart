@@ -5,7 +5,7 @@ import 'package:redfire/src/database/services/database_service.dart';
 import 'package:redfire/src/platform/plugins/wrappers/apple_signin_wrapper.dart';
 import 'package:redfire/src/platform/services/platform_service.dart';
 
-class Locator {
+class RedFireLocator {
   static AuthService getAuthService() =>
       _authService ??
       AuthService(FirebaseAuth.instance,
@@ -15,8 +15,20 @@ class Locator {
   static PlatformService getPlatformService() =>
       _platformService ?? PlatformService();
 
-  static void provide(AuthService authService, DatabaseService databaseService,
-      PlatformService platformService) {
+  // Provide one or more
+  static void provide(
+      {AuthService? authService,
+      DatabaseService? databaseService,
+      PlatformService? platformService}) {
+    _authService = authService;
+    _databaseService = databaseService;
+    _platformService = platformService;
+  }
+
+  static void provideAll(
+      {required AuthService authService,
+      required DatabaseService databaseService,
+      required PlatformService platformService}) {
     _authService = authService;
     _databaseService = databaseService;
     _platformService = platformService;

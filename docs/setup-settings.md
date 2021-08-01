@@ -12,30 +12,23 @@ Go to [Firebase console](https://console.firebase.google.com/) and:
 5. Keep clicking Next, then Return to console
 
 Follow [FlutterFire > Web Installation](https://firebase.flutter.dev/docs/installation/web)
-- also, add the firebase-auth JS SDK: `<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>`
+- also import the firebase-auth & firebase-firestore JS SDKs: 
+  - `<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>`
+  - `<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>`
 
 #### Local dev without commiting Firebase credentials
 
-- move & gitignore `index.html`, *then commit* - so there is no index.html to confuse things 
-- re-add `index.html` with the Firebase config details (so local dev works)
+- temporarily move `index.html` out of the project, *then add to gitignore & commit*
+- move `index.html` back (with the CDN version of the Firebase config details, for local dev)
 - add a file called `index.auto` with the autoimport versions 
 - go to Settings: https://console.firebase.google.com/project/<project_name>/settings/general 
 - under "SDK setup and configuration" 
 - select the "Automatic" radio button
-- copy the contents to `index.auto` 
-- copy and rename `web/index.auto` to `web/index.html`, then replace:
-
-```javascript
-<script src="/__/firebase/8.6.1/firebase-app.js"></script>
-<script src="/__/firebase/8.6.1/firebase-auth.js"></script>
-<script src="/__/firebase/init.js"></script>
-```
-> with the javascript found by selecting the "CDN" radio button under the "SDK setup and configuration" section of the [project page](https://console.firebase.google.com/project)
-
+- copy the contents to `index.auto`
 
 #### CI for Firebase hosting 
 
-- setup hosting -> Firease console -> Hosting -> Get Started 
+- setup hosting -> Firebase console -> Hosting -> Get Started 
 - follow the prompts, including adding CI (use "flutter build web" for the predeploy script)
 - edit the created .yml file to add the following lines after `- uses: actions/checkout@v2`:
 

@@ -25,6 +25,7 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
   final Widget _mainPage;
   final FirebaseWrapper _firebase;
   final String _title;
+  final List<ReduxAction> _initialActions;
 
   // The default constructor takes an initialized store, currently only used
   // in tests.
@@ -36,7 +37,8 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
       : _store = initializedStore,
         _firebase = firebaseWrapper ?? FirebaseWrapper(),
         _mainPage = mainPage,
-        _title = title ?? 'Title Not Set';
+        _title = title ?? 'Title Not Set',
+        _initialActions = [];
 
   AppWidget(
       {required T initialState,
@@ -48,19 +50,12 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
       String? title})
       : _firebase = firebaseWrapper ?? FirebaseWrapper(),
         _mainPage = mainPage,
-        _title = title ?? 'Title Not Set' {
+        _title = title ?? 'Title Not Set',
+        _initialActions = initialActions ?? [] {
     // create the redux store, combining any provided reducers and middleware
     _store = Store<T>((redfireReducers<T>() + (reducers ?? [])).combine(),
         initialState: initialState,
         middleware: [...redfireMiddleware(), ...(middlewares ?? [])]);
-
-    // Dispatch any actions that were passed in.
-    for (final action in [
-      ...(initialActions ?? []),
-      ...redfireInitialActions
-    ]) {
-      _store.dispatch(action);
-    }
   }
 
   @override
@@ -69,7 +64,7 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
 
 class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
   dynamic _error;
-  bool _initializedFirebase = false;
+  bool _initialized = false;
 
   @override
   void initState() {
@@ -84,7 +79,16 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
   void _initializeFlutterFire() async {
     // firebase must be initialised first so createStore() can run
     await widget._firebase.init();
-    setState(() => _initializedFirebase = true);
+
+    // Dispatch any actions that were passed in.
+    for (final action in [
+      ...(widget._initialActions),
+      ...redfireInitialActions
+    ]) {
+      widget._store.dispatch(action);
+    }
+
+    setState(() => _initialized = true);
   }
 
   @override
@@ -94,8 +98,8 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
     }
 
     // Show a loader until FlutterFire is initialized
-    if (!_initializedFirebase) {
-      return InitializingIndicator(_initializedFirebase);
+    if (!_initialized) {
+      return InitializingIndicator(_initialized);
     }
 
     return StoreProvider<T>(

@@ -5,7 +5,7 @@ import '../../../types.dart';
 import '../../auth/actions/sign_in_with_google_action.dart';
 import '../../redux/extensions/store_extensions.dart';
 import '../../types/red_fire_state.dart';
-import '../../utils/locator.dart';
+import '../../utils/red_fire_locator.dart';
 
 class SignInWithGoogleMiddleware<T extends RedFireState>
     extends TypedMiddleware<T, SignInWithGoogleAction> {
@@ -13,7 +13,7 @@ class SignInWithGoogleMiddleware<T extends RedFireState>
       : super((store, action, next) async {
           next(action);
 
-          final authService = Locator.getAuthService();
+          final authService = RedFireLocator.getAuthService();
 
           try {
             store.dispatch(

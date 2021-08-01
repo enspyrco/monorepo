@@ -38,6 +38,6 @@ Map<String, dynamic> _$_$_AuthUserDataToJson(_$_AuthUserData instance) =>
       'isAnonymous': instance.isAnonymous,
       'emailVerified': instance.emailVerified,
       'providers': instance.providers.toJson(
-        (value) => value.toJson(),
+        (value) => value,
       ),
     };

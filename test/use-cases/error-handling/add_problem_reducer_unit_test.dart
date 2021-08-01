@@ -4,7 +4,7 @@ import 'package:redfire/src/problems/actions/add_problem_action.dart';
 import 'package:redfire/src/problems/models/problem_info.dart';
 import 'package:redfire/src/problems/reducers/add_problem_reducer.dart';
 
-import '../../test-data/app_state/app_state.dart';
+import '../../test-doubles/app_state/app_state.dart';
 
 void main() {
   group('AddProblemReducer', () {

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/src/profile/actions/store_profile_data_action.dart';
 import 'package:redfire/src/profile/actions/tap_profile_action.dart';
-import 'package:redfire/src/utils/locator.dart';
+import 'package:redfire/src/utils/red_fire_locator.dart';
 import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
 
@@ -22,7 +22,7 @@ class TapProfileMiddleware<T extends RedFireState>
             }
 
             // Otherwise tap the database at the appropriate location and...
-            final databaseService = Locator.getDatabaseService();
+            final databaseService = RedFireLocator.getDatabaseService();
             final userId = store.state.auth.userData?.uid;
             final profilePath = 'profiles/$userId';
             final profileChanges =

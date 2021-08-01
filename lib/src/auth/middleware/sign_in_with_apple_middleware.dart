@@ -1,6 +1,6 @@
 import 'package:redfire/src/redux/extensions/store_extensions.dart';
 import 'package:redfire/src/types/red_fire_state.dart';
-import 'package:redfire/src/utils/locator.dart';
+import 'package:redfire/src/utils/red_fire_locator.dart';
 import 'package:redux/redux.dart';
 
 import '../../../actions.dart';
@@ -12,7 +12,7 @@ class SignInWithAppleMiddleware<T extends RedFireState>
           next(action);
 
           try {
-            final authService = Locator.getAuthService();
+            final authService = RedFireLocator.getAuthService();
 
             store.dispatch(StoreAuthStepAction.contactingApple());
 

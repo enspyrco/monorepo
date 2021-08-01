@@ -6,7 +6,7 @@ import 'package:redfire/src/problems/models/problem_info.dart';
 import 'package:redfire/src/problems/widgets/problem_info_page.dart';
 import 'package:redfire_test/redfire_test.dart';
 
-import '../../test-data/app_state/app_state.dart';
+import '../../test-doubles/app_state/app_state.dart';
 
 void main() {
   group('ProblemInfoPage', () {
@@ -29,7 +29,7 @@ void main() {
           state.copyWith(pages: state.pages.add(problemPageData));
       final store = FakeStore(updatedState);
       final appWidget =
-          AppWidgetHarness.withStore(intializedStore: store).widget;
+          AppWidgetHarness.withStore(initializedStore: store).widget;
 
       await tester.pumpWidget(appWidget);
       await tester.pump();

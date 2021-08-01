@@ -1,5 +1,5 @@
 import 'package:redfire/src/redux/extensions/store_extensions.dart';
-import 'package:redfire/src/utils/locator.dart';
+import 'package:redfire/src/utils/red_fire_locator.dart';
 import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
 
@@ -12,7 +12,7 @@ class LaunchUrlMiddleware<T extends RedFireState>
           next(action);
 
           try {
-            final platformService = Locator.getPlatformService();
+            final platformService = RedFireLocator.getPlatformService();
 
             await platformService.launchUrl(action.url);
           } catch (error, trace) {

@@ -18,8 +18,8 @@ _$_Settings _$_$_SettingsFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_SettingsToJson(_$_Settings instance) =>
     <String, dynamic>{
-      'darkTheme': instance.darkTheme.toJson(),
-      'lightTheme': instance.lightTheme.toJson(),
+      'darkTheme': instance.darkTheme,
+      'lightTheme': instance.lightTheme,
       'brightnessMode': _$BrightnessModeEnumEnumMap[instance.brightnessMode],
       'platform': _$PlatformsEnumEnumMap[instance.platform],
     };

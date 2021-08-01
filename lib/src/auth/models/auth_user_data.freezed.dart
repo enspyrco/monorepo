@@ -245,8 +245,7 @@ class __$AuthUserDataCopyWithImpl<$Res> extends _$AuthUserDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class _$_AuthUserData implements _AuthUserData {
   _$_AuthUserData(
       {required this.uid,

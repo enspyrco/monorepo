@@ -3,7 +3,7 @@ import 'package:redfire/src/problems/actions/remove_problem_action.dart';
 import 'package:redfire/src/problems/reducers/remove_problem_reducer.dart';
 import 'package:redfire/types.dart';
 
-import '../../test-data/app_state/app_state.dart';
+import '../../test-doubles/app_state/app_state.dart';
 
 void main() {
   group('RemoveProblemReducer', () {

@@ -7,8 +7,7 @@ import 'package:redfire/types.dart';
 import 'package:redfire/widgets.dart';
 import 'package:redfire_test/redfire_test.dart';
 
-import '../../test-data/app_state/app_state.dart';
-import '../../test-data/auth/auth_user_data_examples.dart';
+import '../../test-doubles/app_state/app_state.dart';
 
 void main() {
   group('AppWidget', () {
@@ -32,7 +31,7 @@ void main() {
     testWidgets('shows MainPage if authenticated', (WidgetTester tester) async {
       // Create an AppState representing an authenticated state.
       final authenticatedState = AppState.init().copyWith.auth(
-          userData: AuthUserDataExamples.minimal,
+          userData: AuthUserDataExample.minimal,
           step: AuthenticationEnum.waitingForInput);
 
       // Create app widget test harness, with a fake store & authenticated state
@@ -71,7 +70,7 @@ void main() {
       expect(find.byType(AppleSignInButton), findsOneWidget);
 
       // Simulate an auth state change with an authenticated user being emitted.
-      services.emitMockAuthUser();
+      services.emitStubbedUser();
 
       await tester.pump();
 

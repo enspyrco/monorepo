@@ -29,61 +29,75 @@ dependencies:
  
 dev_dependencies:
 ... 
+  redfire_test:
+    git: https://github.com/enspyrco/redfire_test.git
   build_runner:
   freezed:
   json_serializable:
 ```
 
-### Add app_state.dart
+### Update main.dart 
 
 ```Dart
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
+import 'package:redfire/widgets.dart';
+
+part 'main.freezed.dart';
+part 'main.g.dart';
  
-part 'app_state.freezed.dart';
-part 'app_state.g.dart';
- 
+void main() => runApp(AppWidget<AppState>(
+  initialState: AppState.init(),
+  initialActions: const [],
+  middlewares: const [],
+  reducers: const [],
+  mainPage: const MainPage(),
+));
+
 @freezed
 class AppState with _$AppState, RedFireState {
   factory AppState({
-    /// RedFire
+    /// RedFire AppState members
     required AuthState auth,
     required IList<PageData> pages,
     required IList<ProblemInfo> problems,
     required Settings settings,
     ProfileData? profile,
 
-    /// Your additional AppState members
+    /// Additional AppState members
   }) = _AppState;
  
  factory AppState.init() => AppState(
+    /// RedFire init code
     auth: AuthState.init(),
     pages: <PageData>[const InitialPageData()].lock,
     problems: IList(),
     settings: Settings.init(),
-    /// Your additional init code
+    
+    /// Additional init code
   );
  
   factory AppState.fromJson(Map<String, Object?> json) =>
     _$AppStateFromJson(json);
 }
+
+class MainPage extends StatelessWidget {
+  const MainPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('MainPage'));
+  }
+}
 ```
 
-### Update main.dart 
+Add to `.gitignore` (delete any commited generated files & commit first):
 
-```Dart
-import 'package:flutter/widgets.dart';
-import 'package:.../main_page.dart';
-import 'package:redfire/src/app-init/widgets/app_widget.dart';
- 
-import 'models/app_state.dart';
- 
-void main() => runApp(AppWidget<AppState>(
-  initialState: AppState.init(),
-  initialActions: [],
-  middlewares: [],
-  reducers: [],
-  mainPage: MainPage(),
-));
+```sh
+# Generated files
+*.g.dart
+*.freezed.dart
+*.mocks.dart
 ```

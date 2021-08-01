@@ -5,7 +5,7 @@ import 'package:redfire/src/problems/models/problem_info.dart';
 import 'package:redfire/src/problems/widgets/problem_info_page.dart';
 import 'package:redfire_test/redfire_test.dart';
 
-import '../../test-data/app_state/app_state.dart';
+import '../../test-doubles/app_state/app_state.dart';
 
 void main() {
   group('ProblemPage', () {
