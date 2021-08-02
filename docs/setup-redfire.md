@@ -1,4 +1,4 @@
-# redfire setup 
+# Setup RedFire
 
 [< README](../README.md)
 

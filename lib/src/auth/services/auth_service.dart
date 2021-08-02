@@ -33,8 +33,6 @@ class AuthService extends ReduxService {
 
   /// `null` in case where sign in process was aborted
   Future<GoogleSignInCredential?> getGoogleCredential() async {
-    final _googleSignIn = GoogleSignIn(scopes: ['email']);
-
     final googleSignInAccount = await _googleSignIn.signIn();
     final googleSignInAuthentication =
         await googleSignInAccount?.authentication;

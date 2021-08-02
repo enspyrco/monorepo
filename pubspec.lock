@@ -495,9 +495,11 @@ packages:
   redfire_test:
     dependency: "direct dev"
     description:
-      path: "/Users/nick/git/orgs/enspyrco/redfire_test"
-      relative: false
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: d701ad201387b214e4cc9d41f7534917fabcac74
+      url: "https://github.com/enspyrco/redfire_test.git"
+    source: git
     version: "0.0.1"
   redux:
     dependency: "direct main"

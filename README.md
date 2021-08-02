@@ -6,9 +6,11 @@ A Redux based architecture connected to Firebase streams.
 
 ## Setup 
 
-- [Add required code](docs/setup-code.md)
-- [Configure platform settings](docs/setup-settings.md)
-- Configure Apple Sign In, follow: [apple-sign-in-flutter-firebase](https://github.com/nickmeinhold/apple-sign-in-flutter-firebase) 
+- [Setup RedFire](docs/setup-redfire.md)
+- [Configure Firebase](docs/setup-firebase.md)
+- [Setup Auth](docs/setup-auth.md)
+- [Setup CI/CD](docs/setup-cicd.md)
+- [Setup Databases](docs/setup-databases.md)
 
 ### Optional setup
 
