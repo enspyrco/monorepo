@@ -27,7 +27,7 @@ void main() {
         // create a StoreProvider to wrap widget
         StoreProvider<AppState>(
           store: fakeStore,
-          child: MaterialApp(home: AuthPage()),
+          child: const MaterialApp(home: AuthPage()),
         ),
       );
 

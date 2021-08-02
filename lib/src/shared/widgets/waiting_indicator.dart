@@ -10,8 +10,8 @@ class WaitingIndicator extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          CircularProgressIndicator(),
-          SizedBox(height: 15),
+          const CircularProgressIndicator(),
+          const SizedBox(height: 15),
           Text(message)
         ],
       ),

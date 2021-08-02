@@ -16,24 +16,22 @@ class ThemeColors with _$ThemeColors {
 
   // colors
 
-  static const int adventures_in_blue = 0xFF2196F3;
+  static const int adventuresInBlue = 0xFF2196F3;
 
-  static const int flutter_dark_blue = 0xFF04599C;
-  static const int flutter_middle_blue = 0xFF30B8F6;
-  static const int flutter_light_blue = 0xFF5EC8F8;
+  static const int flutterDarkBlue = 0xFF04599C;
+  static const int flutterMiddleBlue = 0xFF30B8F6;
+  static const int flutterLightBlue = 0xFF5EC8F8;
 
-  static const int firebase_yellow = 0xFFFFCB2C;
+  static const int firebaseYellow = 0xFFFFCB2C;
 
-  static const int primary_grey = 0xFFAAAAAA;
-  static const int secondary_grey = 0xFF999999;
+  static const int primaryGrey = 0xFFAAAAAA;
+  static const int secondaryGrey = 0xFF999999;
 
-  static const int error_red = 0xFF990000;
+  static const int errorRed = 0xFF990000;
 
   static final standard = ThemeColors(
-      primary: adventures_in_blue,
-      secondary: firebase_yellow,
-      error: error_red);
+      primary: adventuresInBlue, secondary: firebaseYellow, error: errorRed);
 
   static final greyscale = ThemeColors(
-      primary: primary_grey, secondary: secondary_grey, error: error_red);
+      primary: primaryGrey, secondary: secondaryGrey, error: errorRed);
 }

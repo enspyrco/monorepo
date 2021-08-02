@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 /// need to have it's contents in a Material widget.
 class InitializingIndicator extends StatelessWidget {
   final bool _firebaseDone;
-  const InitializingIndicator(this._firebaseDone);
+  const InitializingIndicator(this._firebaseDone, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,8 @@ class InitializingIndicator extends StatelessWidget {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            CircularProgressIndicator(),
-            SizedBox(height: 30),
+            const CircularProgressIndicator(),
+            const SizedBox(height: 30),
             Text(message, textDirection: TextDirection.ltr)
           ]),
     );

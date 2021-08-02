@@ -6,7 +6,8 @@ import 'package:redfire/src/shared/widgets/waiting_indicator.dart';
 import 'package:redfire/src/types/red_fire_state.dart';
 
 class InitialPage<T extends RedFireState> extends StatelessWidget {
-  InitialPage(this._authPage, this._mainPage);
+  const InitialPage(this._authPage, this._mainPage, {Key? key})
+      : super(key: key);
   final Widget _authPage;
   final Widget _mainPage;
   @override
@@ -17,13 +18,13 @@ class InitialPage<T extends RedFireState> extends StatelessWidget {
         builder: (context, authStep) {
           switch (authStep) {
             case AuthenticationEnum.checking:
-              return WaitingIndicator('Checking where we\'re at...');
+              return const WaitingIndicator('Checking where we\'re at...');
             case AuthenticationEnum.contactingApple:
-              return WaitingIndicator('Contacting Apple...');
+              return const WaitingIndicator('Contacting Apple...');
             case AuthenticationEnum.contactingGoogle:
-              return WaitingIndicator('Contacting Google...');
+              return const WaitingIndicator('Contacting Google...');
             case AuthenticationEnum.signingInWithFirebase:
-              return WaitingIndicator('Preparing your Adventure...');
+              return const WaitingIndicator('Preparing your Adventure...');
             case AuthenticationEnum.waitingForInput:
               return StoreConnector<T, AuthUserData?>(
                   distinct: true,
@@ -31,7 +32,7 @@ class InitialPage<T extends RedFireState> extends StatelessWidget {
                   builder: (context, userData) =>
                       (userData == null) ? _authPage : _mainPage);
             case AuthenticationEnum.signingOut:
-              return WaitingIndicator('Signing Out...');
+              return const WaitingIndicator('Signing Out...');
           }
         });
   }

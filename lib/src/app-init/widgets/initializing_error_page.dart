@@ -8,21 +8,22 @@ import 'package:flutter/material.dart';
 class InitializingErrorPage extends StatelessWidget {
   final dynamic _error;
   final StackTrace _trace;
-  const InitializingErrorPage(dynamic error, StackTrace trace)
+  const InitializingErrorPage(dynamic error, StackTrace trace, {Key? key})
       : _error = error,
-        _trace = trace;
+        _trace = trace,
+        super(key: key);
   @override
   Widget build(BuildContext context) {
     return Material(
       child: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
-            SizedBox(height: 50),
-            Text('Looks like there was a problem.',
+            const SizedBox(height: 50),
+            const Text('Looks like there was a problem.',
                 textDirection: TextDirection.ltr),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(_error.toString(), textDirection: TextDirection.ltr),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             Text(_trace.toString(), textDirection: TextDirection.ltr),
           ],
         ),

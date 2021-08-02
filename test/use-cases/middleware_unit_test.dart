@@ -23,13 +23,12 @@ void main() {
       // Create the middleware dependencies.
       final fakeStore = FakeStore(AppState.init());
       final action = ObserveAuthStateAction();
-      void nullDispatcher(dynamic _) => null;
 
       // Create the error to catch.
       when(authServiceMock.streamOfStoreAuthState).thenThrow('error');
 
       // Call the middleware.
-      middleware.call(fakeStore, action, nullDispatcher);
+      middleware.call(fakeStore, action, (dynamic _) => null);
 
       // Error should be caught and AddProblemAction dispatched.
       expect(fakeStore.dispatchedActions.last is AddProblemAction, true);
@@ -44,13 +43,12 @@ void main() {
       // Create the middleware dependencies.
       final fakeStore = FakeStore(AppState.init());
       final action = SignInWithAppleAction();
-      void nullDispatcher(dynamic _) => null;
 
       // Create the error to catch.
       when(authServiceMock.getAppleCredential()).thenThrow('error');
 
       // Call the middleware.
-      middleware.call(fakeStore, action, nullDispatcher);
+      middleware.call(fakeStore, action, (dynamic _) => null);
 
       // Error should be caught and AddProblemAction dispatched.
       expect(fakeStore.dispatchedActions.last is AddProblemAction, true);
@@ -65,13 +63,12 @@ void main() {
       // Create the middleware dependencies.
       final fakeStore = FakeStore(AppState.init());
       final action = SignInWithGoogleAction();
-      void nullDispatcher(dynamic _) => null;
 
       // Create the error to catch.
       when(authServiceMock.getGoogleCredential()).thenThrow('error');
 
       // Call the middleware.
-      middleware.call(fakeStore, action, nullDispatcher);
+      middleware.call(fakeStore, action, (dynamic _) => null);
 
       // Error should be caught and AddProblemAction dispatched.
       expect(fakeStore.dispatchedActions.last is AddProblemAction, true);
@@ -86,13 +83,12 @@ void main() {
       // Create the middleware dependencies.
       final fakeStore = FakeStore(AppState.init());
       final action = SignOutAction();
-      void nullDispatcher(dynamic _) => null;
 
       // Create the error to catch.
       when(authServiceMock.signOut(any)).thenThrow('error');
 
       // Call the middleware.
-      middleware.call(fakeStore, action, nullDispatcher);
+      middleware.call(fakeStore, action, (dynamic _) => null);
 
       // Error should be caught and AddProblemAction dispatched.
       expect(fakeStore.dispatchedActions.last is AddProblemAction, true);
@@ -109,13 +105,12 @@ void main() {
       // Create the middleware dependencies.
       final fakeStore = FakeStore(AppState.init());
       final action = DetectPlatformAction();
-      void nullDispatcher(dynamic _) => null;
 
       // Create the error to catch.
       when(platformServiceMock.detectPlatform()).thenThrow('error');
 
       // Call the middleware.
-      middleware.call(fakeStore, action, nullDispatcher);
+      middleware.call(fakeStore, action, (dynamic _) => null);
 
       // Error should be caught and AddProblemAction dispatched.
       expect(fakeStore.dispatchedActions.last is AddProblemAction, true);
@@ -130,13 +125,12 @@ void main() {
       // Create the middleware dependencies.
       final fakeStore = FakeStore(AppState.init());
       final action = LaunchUrlAction(url: 'url');
-      void nullDispatcher(dynamic _) => null;
 
       // Create the error to catch.
       when(platformServiceMock.launchUrl(action.url)).thenThrow('error');
 
       // Call the middleware.
-      middleware.call(fakeStore, action, nullDispatcher);
+      middleware.call(fakeStore, action, (dynamic _) => null);
 
       // Error should be caught and AddProblemAction dispatched.
       expect(fakeStore.dispatchedActions.last is AddProblemAction, true);

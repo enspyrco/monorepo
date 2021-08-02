@@ -10,7 +10,7 @@ class DevToolsMiddleware<T extends RedFireState>
       : super((store, action, next) async {
           next(action);
 
-          postEvent('redfire:action_dispatched', {
+          postEvent('redfire:action_dispatched', <String, Object?>{
             'state_json': store.state.toJson(),
             'action': {
               'description': action.toString().split('(').first,
@@ -20,6 +20,6 @@ class DevToolsMiddleware<T extends RedFireState>
         }) {
     // When the middleware is created, send an event to clear data from devtools.
     // This is useful when user performs a hot restart.
-    postEvent('redfire:remove_all', {});
+    postEvent('redfire:remove_all', <String, Object?>{});
   }
 }

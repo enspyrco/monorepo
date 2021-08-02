@@ -19,7 +19,7 @@ class GoogleSignInButton extends StatelessWidget {
   /// Creates a new button. Set [darkMode] to `true` to use the dark
   /// blue background variant with white text, otherwise an all-white background
   /// with dark text is used.
-  GoogleSignInButton(
+  const GoogleSignInButton(
       {this.onPressed,
       this.text = 'Sign in with Google',
       this.textStyle,
@@ -34,7 +34,7 @@ class GoogleSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StretchableButton(
-      buttonColor: darkMode ? Color(0xFF4285F4) : Colors.white,
+      buttonColor: darkMode ? const Color(0xFF4285F4) : Colors.white,
       borderRadius: borderRadius,
       splashColor: splashColor,
       onPressed: onPressed,
@@ -61,7 +61,7 @@ class GoogleSignInButton extends StatelessWidget {
               color: darkMode ? Colors.white : null,
               borderRadius: BorderRadius.circular(borderRadius),
             ),
-            child: Center(
+            child: const Center(
               child: Image(
                 image: AssetImage('assets/google.png', package: 'redfire'),
                 height: 18.0,
@@ -71,7 +71,7 @@ class GoogleSignInButton extends StatelessWidget {
           ),
         ),
 
-        SizedBox(width: 14.0 /* 24.0 - 10dp padding */),
+        const SizedBox(width: 14.0 /* 24.0 - 10dp padding */),
         Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 8.0, 8.0, 8.0),
           child: Text(

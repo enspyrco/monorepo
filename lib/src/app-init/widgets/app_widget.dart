@@ -30,7 +30,8 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
   // The default constructor takes an initialized store, currently only used
   // in tests.
   AppWidget.fromStore(
-      {required Widget mainPage,
+      {Key? key,
+      required Widget mainPage,
       required Store<T> initializedStore,
       FirebaseWrapper? firebaseWrapper,
       String? title})
@@ -38,10 +39,12 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
         _firebase = firebaseWrapper ?? FirebaseWrapper(),
         _mainPage = mainPage,
         _title = title ?? 'Title Not Set',
-        _initialActions = [];
+        _initialActions = [],
+        super(key: key);
 
   AppWidget(
-      {required T initialState,
+      {Key? key,
+      required T initialState,
       List<ReduxAction>? initialActions,
       List<Reducer<T>>? reducers,
       List<Middleware<T>>? middlewares,
@@ -51,7 +54,8 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
       : _firebase = firebaseWrapper ?? FirebaseWrapper(),
         _mainPage = mainPage,
         _title = title ?? 'Title Not Set',
-        _initialActions = initialActions ?? [] {
+        _initialActions = initialActions ?? [],
+        super(key: key) {
     // create the redux store, combining any provided reducers and middleware
     _store = Store<T>((redfireReducers<T>() + (reducers ?? [])).combine(),
         initialState: initialState,

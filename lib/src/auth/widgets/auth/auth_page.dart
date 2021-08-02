@@ -10,6 +10,7 @@ import 'auth_page_buttons/apple_sign_in_button.dart';
 import 'auth_page_buttons/google_sign_in_button.dart';
 
 class AuthPage<T extends RedFireState> extends StatelessWidget {
+  const AuthPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Center(

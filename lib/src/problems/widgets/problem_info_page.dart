@@ -10,17 +10,17 @@ import '../../../types.dart';
 class ProblemInfoPage<T extends RedFireState> extends StatelessWidget {
   final ProblemInfo info;
 
-  const ProblemInfoPage(this.info);
+  const ProblemInfoPage(this.info, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Whoops'),
+      title: const Text('Whoops'),
       content: SingleChildScrollView(child: Text(info.message)),
       actions: [
         OutlinedButton(
             onPressed: () => context.dispatch(RemoveProblemAction(info)),
-            child: Text('Dismiss'))
+            child: const Text('Dismiss'))
       ],
     );
   }

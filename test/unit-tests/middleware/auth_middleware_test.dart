@@ -14,11 +14,11 @@ void main() {
   group('ObserveAuthStateMiddleware', () {
     test('should ', () async {
       final mockStore = MockStore<RedFireState>();
-      final nullDispatcher = (dynamic _) => null;
 
       // Create then invoke the middleware under test.
       final middleware = ObserveAuthStateMiddleware();
-      await middleware(mockStore, ObserveAuthStateAction(), nullDispatcher);
+      await middleware(
+          mockStore, ObserveAuthStateAction(), (dynamic _) => null);
       expect(true, false);
     });
   });
@@ -26,11 +26,10 @@ void main() {
   group('SignInWithAppleMiddleware', () {
     test('should ', () async {
       final mockStore = MockStore<RedFireState>();
-      final nullDispatcher = (dynamic _) => null;
 
       // Create then invoke the middleware under test.
       final middleware = SignInWithAppleMiddleware();
-      await middleware(mockStore, SignInWithAppleAction(), nullDispatcher);
+      await middleware(mockStore, SignInWithAppleAction(), (dynamic _) => null);
       expect(true, false);
     });
   });
@@ -38,11 +37,10 @@ void main() {
   group('SignInWithGoogleMiddleware', () {
     test('should ', () async {
       final mockStore = MockStore<RedFireState>();
-      final nullDispatcher = (dynamic _) => null;
 
       // Create then invoke the middleware under test.
       final middleware = SignInWithGoogleMiddleware();
-      await middleware(mockStore, SignInWithGoogleAction, nullDispatcher);
+      await middleware(mockStore, SignInWithGoogleAction, (dynamic _) => null);
       expect(true, false);
     });
   });
@@ -50,11 +48,10 @@ void main() {
   group('SignOutMiddleware', () {
     test('should ', () async {
       final mockStore = MockStore<RedFireState>();
-      final nullDispatcher = (dynamic _) => null;
 
       // Create then invoke the middleware under test.
       final middleware = SignOutMiddleware();
-      await middleware(mockStore, SignOutAction(), nullDispatcher);
+      await middleware(mockStore, SignOutAction(), (dynamic _) => null);
       expect(true, false);
     });
   });

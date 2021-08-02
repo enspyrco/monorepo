@@ -10,11 +10,11 @@ void main() {
     test('should post events with serialized action and state', () async {
       var state = AppState.init();
       final fakeStore = FakeStore(state);
-      final nullDispatcher = (dynamic _) => null;
 
       // Create then invoke the middleware under test.
       final middleware = DevToolsMiddleware();
-      await middleware(fakeStore, ObserveAuthStateAction(), nullDispatcher);
+      await middleware(
+          fakeStore, ObserveAuthStateAction(), (dynamic _) => null);
 
       // TODO: The rest of the test is waiting for when we have a wrapper around
       // postEvent so we can mock, inject it and verify calls.

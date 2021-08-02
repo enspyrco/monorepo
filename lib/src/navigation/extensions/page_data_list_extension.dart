@@ -18,17 +18,17 @@ extension PageDataListExtension on IList<PageData> {
     for (final pageData in this) {
       if (pageData is InitialPageData) {
         materialPages.add(MaterialPage<InitialPage>(
-          key: ValueKey(InitialPage),
+          key: const ValueKey(InitialPage),
           child: InitialPage<T>(authPage, mainPage),
         ));
       } else if (pageData is ProfilePageData) {
         materialPages.add(MaterialPage<ProfilePage>(
-          key: ValueKey(ProfilePage),
+          key: const ValueKey(ProfilePage),
           child: ProfilePage<T>(),
         ));
       } else if (pageData is ProblemPageData) {
         materialPages.add(MaterialPage<ProblemInfoPage>(
-          key: ValueKey(ProblemInfoPage),
+          key: const ValueKey(ProblemInfoPage),
           child: ProblemInfoPage<T>(pageData.problem),
         ));
       }

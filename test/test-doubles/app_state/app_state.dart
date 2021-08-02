@@ -21,7 +21,7 @@ class AppState with _$AppState, RedFireState {
   }) = _AppState;
 
   factory AppState.init() => AppState(
-        pages: <PageData>[InitialPageData()].lock,
+        pages: <PageData>[const InitialPageData()].lock,
         problems: IList(),
         settings: Settings.init(),
         auth: AuthState(step: AuthenticationEnum.waitingForInput),
