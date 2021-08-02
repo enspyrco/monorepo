@@ -7,6 +7,7 @@ A Redux based architecture connected to Firebase streams.
 ## Setup 
 
 - [Setup RedFire](docs/setup-redfire.md)
+- [Setup GitHub](docs/setup-github.md)
 - [Configure Firebase](docs/setup-firebase.md)
 - [Setup Auth](docs/setup-auth.md)
 - [Setup CI/CD](docs/setup-cicd.md)
@@ -22,3 +23,7 @@ A Redux based architecture connected to Firebase streams.
 The AppState for each package using `redfire` is required to use RedFireState as a mixin.
 
 When using widgets from `redfire`, a type parameter of the store's state must be used, ie. Widget<RedFireAppState>.  This is so that the parameterised StoreConnector<AppState, Output> can find the StoreProvider<RedFireAppState>.
+
+## In Progress
+
+See [In Progress](docs/in-progress.md) for discussion of current work and future plans.

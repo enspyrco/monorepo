@@ -14,8 +14,8 @@ import 'package:test/test.dart';
 import '../../test-doubles/app_state/app_state.dart';
 
 void main() {
-  group('StoreAuthUserDataAction', () {
-    test('stores auth user data', () {
+  group('StoreAuthUserDataReducer', () {
+    test('should correctly update the user data', () {
       final initialState = AppState.init();
       expect(initialState.auth.userData, null);
 
@@ -25,15 +25,15 @@ void main() {
 
       expect(newState.auth.userData!.uid, equals('uid'));
       expect(newState.auth.userData!.email, equals('email'));
-      expect(newState.auth.userData!.photoURL, equals('url'));
-      expect(newState.auth.userData!.displayName, equals('name'));
+      expect(newState.auth.userData!.photoURL, equals('photoURL'));
+      expect(newState.auth.userData!.displayName, equals('displayName'));
     });
   });
 
   group('AddProblemReducer', () {
     test('adds to the list', () {
       final initialState = AppState.init();
-      expect(initialState.problems, []);
+      expect(initialState.problems, <ProblemInfo>[]);
 
       final reducer = AddProblemReducer();
       final newState = reducer.reducer(

@@ -53,6 +53,7 @@ void main() => runApp(AppWidget<AppState>(
   initialActions: const [],
   middlewares: const [],
   reducers: const [],
+  title: <Your App Title>, // optional, defaults to 'Title Note Set'
   mainPage: const MainPage(),
 ));
 
@@ -101,3 +102,19 @@ Add to `.gitignore` (delete any commited generated files & commit first):
 *.freezed.dart
 *.mocks.dart
 ```
+
+Add to `analysis_options.yaml`:
+
+```yaml
+analyzer:
+  exclude: 
+    - build/**
+    - lib/**/*.g.dart
+    - lib/**/*.freezed.dart
+    - test/**/*.mocks.dart
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+```
+
+You may not want all of the above, see [Customizing static analysis](https://dart.dev/guides/language/analysis-options) for more info.

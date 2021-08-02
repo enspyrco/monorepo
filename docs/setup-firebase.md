@@ -2,6 +2,20 @@
 
 [< README](../README.md)
 
+### Project config setup 
+
+Create a firebase project and ios app, then add: 
+- GoogleServices.info to 
+  - macos/Runner/ 
+  - ios/…? 
+- Android file … 
+
+Add to `.gitignore`
+```.gitignore
+# Firebase config files
+/macos/Runner/GoogleService-Info.plist
+```
+
 ### web 
 
 Go to [Firebase console](https://console.firebase.google.com/) and:
