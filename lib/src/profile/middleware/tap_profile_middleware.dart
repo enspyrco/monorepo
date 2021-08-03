@@ -25,8 +25,7 @@ class TapProfileMiddleware<T extends RedFireState>
             final databaseService = RedFireLocator.getDatabaseService();
             final userId = store.state.auth.userData?.uid;
             final profilePath = 'profiles/$userId';
-            final profileChanges =
-                databaseService.tapDocumentAt(path: profilePath);
+            final profileChanges = databaseService.tapDocument(at: profilePath);
 
             // ... direct the stream to the store.
             _subscription = profileChanges.listen((event) {

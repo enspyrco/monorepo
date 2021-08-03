@@ -17,6 +17,7 @@ class DatabaseService {
     final ref = await _firestore.collection(path).add(jsonData);
     return ref.id;
   }
+
   // TODO: use set/update in a single 'update' function with set/merge options?
   // - need to read up on how each one works
   // /// Takes a [ReduxModel] and the path where it should be saved
@@ -33,16 +34,46 @@ class DatabaseService {
 
   /// Tap the database to create a stream from the document at [path],
   /// converting the data in each [DocumentSnapshot] into a [JsonMap]
-  Stream<JsonMap> tapDocumentAt({required String path}) {
-    return _firestore.doc(path).snapshots().map((event) => event.data() ?? {});
+  Stream<JsonMap> tapDocument({required String at}) {
+    return _firestore.doc(at).snapshots().map((event) => event.data() ?? {});
   }
 
   /// Tap the database to create a stream from the collection at [path],
   /// converting the data in each [QuerySnapshot] into a [JsonMap]
-  Stream<ListOfJsonMap> tapCollectionAt({required String path}) {
-    return _firestore
-        .collection(path)
-        .snapshots()
-        .map((event) => event.docs.map((doc) => doc.data()).toList());
+  Stream<ListOfJsonMap> tapCollection(
+      {required String at,
+      Object? where,
+      Object? isEqualTo,
+      Object? isNotEqualTo,
+      Object? isLessThan,
+      Object? isLessThanOrEqualTo,
+      Object? isGreaterThan,
+      Object? isGreaterThanOrEqualTo,
+      Object? arrayContains,
+      List<Object?>? arrayContainsAny,
+      List<Object?>? whereIn,
+      List<Object?>? whereNotIn,
+      bool? isNull}) {
+    return (where == null)
+        ? _firestore
+            .collection(at)
+            .snapshots()
+            .map((event) => event.docs.map((doc) => doc.data()).toList())
+        : _firestore
+            .collection(at)
+            .where(where,
+                isEqualTo: isEqualTo,
+                isNotEqualTo: isNotEqualTo,
+                isLessThan: isLessThan,
+                isLessThanOrEqualTo: isLessThanOrEqualTo,
+                isGreaterThan: isGreaterThan,
+                isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+                arrayContains: arrayContains,
+                arrayContainsAny: arrayContainsAny,
+                whereIn: whereIn,
+                whereNotIn: whereNotIn,
+                isNull: isNull)
+            .snapshots()
+            .map((event) => event.docs.map((doc) => doc.data()).toList());
   }
 }
