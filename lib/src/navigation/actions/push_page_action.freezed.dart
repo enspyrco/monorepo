@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'push_page_action.dart';
 
@@ -20,9 +20,9 @@ PushPageAction _$PushPageActionFromJson(Map<String, dynamic> json) {
 class _$PushPageActionTearOff {
   const _$PushPageActionTearOff();
 
-  _PushPageAction call({required PageData page}) {
+  _PushPageAction call(@PageDataConverter() PageData page) {
     return _PushPageAction(
-      page: page,
+      page,
     );
   }
 
@@ -36,6 +36,7 @@ const $PushPageAction = _$PushPageActionTearOff();
 
 /// @nodoc
 mixin _$PushPageAction {
+  @PageDataConverter()
   PageData get page => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,9 +50,7 @@ abstract class $PushPageActionCopyWith<$Res> {
   factory $PushPageActionCopyWith(
           PushPageAction value, $Res Function(PushPageAction) then) =
       _$PushPageActionCopyWithImpl<$Res>;
-  $Res call({PageData page});
-
-  $PageDataCopyWith<$Res> get page;
+  $Res call({@PageDataConverter() PageData page});
 }
 
 /// @nodoc
@@ -74,13 +73,6 @@ class _$PushPageActionCopyWithImpl<$Res>
               as PageData,
     ));
   }
-
-  @override
-  $PageDataCopyWith<$Res> get page {
-    return $PageDataCopyWith<$Res>(_value.page, (value) {
-      return _then(_value.copyWith(page: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -90,10 +82,7 @@ abstract class _$PushPageActionCopyWith<$Res>
           _PushPageAction value, $Res Function(_PushPageAction) then) =
       __$PushPageActionCopyWithImpl<$Res>;
   @override
-  $Res call({PageData page});
-
-  @override
-  $PageDataCopyWith<$Res> get page;
+  $Res call({@PageDataConverter() PageData page});
 }
 
 /// @nodoc
@@ -112,7 +101,7 @@ class __$PushPageActionCopyWithImpl<$Res>
     Object? page = freezed,
   }) {
     return _then(_PushPageAction(
-      page: page == freezed
+      page == freezed
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as PageData,
@@ -123,12 +112,13 @@ class __$PushPageActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PushPageAction implements _PushPageAction {
-  _$_PushPageAction({required this.page});
+  const _$_PushPageAction(@PageDataConverter() this.page);
 
   factory _$_PushPageAction.fromJson(Map<String, dynamic> json) =>
-      _$_$_PushPageActionFromJson(json);
+      _$$_PushPageActionFromJson(json);
 
   @override
+  @PageDataConverter()
   final PageData page;
 
   @override
@@ -155,17 +145,19 @@ class _$_PushPageAction implements _PushPageAction {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PushPageActionToJson(this);
+    return _$$_PushPageActionToJson(this);
   }
 }
 
 abstract class _PushPageAction implements PushPageAction {
-  factory _PushPageAction({required PageData page}) = _$_PushPageAction;
+  const factory _PushPageAction(@PageDataConverter() PageData page) =
+      _$_PushPageAction;
 
   factory _PushPageAction.fromJson(Map<String, dynamic> json) =
       _$_PushPageAction.fromJson;
 
   @override
+  @PageDataConverter()
   PageData get page => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

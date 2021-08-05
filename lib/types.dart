@@ -12,7 +12,10 @@ export 'src/auth/models/auth_state.dart';
 export 'src/auth/models/auth_user_data.dart';
 export 'src/auth/models/google_sign_in_credential.dart';
 // navigation
+export 'src/navigation/models/initial_page_data.dart';
 export 'src/navigation/models/page_data.dart';
+export 'src/navigation/models/problem_page_data.dart';
+export 'src/navigation/models/profile_page_data.dart';
 // platform wrappers
 export 'src/platform/plugins/wrappers/apple_signin_wrapper.dart';
 export 'src/platform/plugins/wrappers/firebase_wrapper.dart';

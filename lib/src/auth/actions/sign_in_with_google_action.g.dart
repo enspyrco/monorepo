@@ -6,11 +6,10 @@ part of 'sign_in_with_google_action.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SignInWithGoogleAction _$_$_SignInWithGoogleActionFromJson(
-    Map<String, dynamic> json) {
-  return _$_SignInWithGoogleAction();
-}
+_$_SignInWithGoogleAction _$$_SignInWithGoogleActionFromJson(
+        Map<String, dynamic> json) =>
+    _$_SignInWithGoogleAction();
 
-Map<String, dynamic> _$_$_SignInWithGoogleActionToJson(
+Map<String, dynamic> _$$_SignInWithGoogleActionToJson(
         _$_SignInWithGoogleAction instance) =>
     <String, dynamic>{};

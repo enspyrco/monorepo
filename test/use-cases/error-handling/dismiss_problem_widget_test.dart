@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:redfire/src/navigation/models/page_data.dart';
+import 'package:redfire/src/navigation/models/problem_page_data.dart';
 import 'package:redfire/src/problems/models/problem_info.dart';
-import 'package:redfire/src/problems/widgets/problem_info_page.dart';
+import 'package:redfire/src/problems/widgets/problem_page.dart';
 import 'package:redfire_test/redfire_test.dart';
 
 import '../../test-doubles/app_state/app_state.dart';
 
 void main() {
-  group('ProblemInfoPage', () {
+  group('ProblemPage', () {
     final problem = ProblemInfo('Problem error message');
     testWidgets('has \'Dismiss\' button', (WidgetTester tester) async {
-      final problemPage = ProblemInfoPage(problem);
+      final problemPage = ProblemPage(problem);
 
       await tester.pumpWidget(MaterialApp(home: problemPage));
 
@@ -34,7 +34,7 @@ void main() {
       await tester.pumpWidget(appWidget);
       await tester.pump();
 
-      expect(find.byType(ProblemInfoPage), findsOneWidget);
+      expect(find.byType(ProblemPage), findsOneWidget);
 
       store.updateState(store.state
           .copyWith(pages: store.state.pages.remove(problemPageData)));
@@ -42,13 +42,13 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(ProblemInfoPage), findsNothing);
+      expect(find.byType(ProblemPage), findsNothing);
     });
 
     testWidgets('is removed on button tap', (WidgetTester tester) async {
       // Setup the services with mock plugins, leaving one function, ie.
       // FirebaseAuth.onStateChanges, not stubbed so an exception is thrown
-      // and a ProblemInfoPage added to the pages.
+      // and a ProblemPage added to the pages.
       final services = ServicesHarness();
       when(services.mockPlatformWrapper.isMacOS).thenReturn(true);
 
@@ -59,13 +59,13 @@ void main() {
       await tester.pumpWidget(harness.widget);
       await tester.pumpAndSettle();
 
-      expect(find.byType(ProblemInfoPage), findsOneWidget);
+      expect(find.byType(ProblemPage), findsOneWidget);
 
       // Tap the dismiss button and let the page transition settle.
       await tester.tap(find.byType(OutlinedButton));
       await tester.pumpAndSettle();
 
-      expect(find.byType(ProblemInfoPage), findsNothing);
+      expect(find.byType(ProblemPage), findsNothing);
     });
   });
 }

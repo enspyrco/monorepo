@@ -24,6 +24,24 @@ Add a file at `.vscode/project.code-snippets` with contents:
     ],
     "description": "freezed model"
   },
+  "freezed model (page data)": {
+    "prefix": "freezed_model",
+    "body": [
+      "import 'package:freezed_annotation/freezed_annotation.dart';",
+      "import 'package:redfire/types.dart';",
+      "",
+      "part '${TM_FILENAME_BASE}.freezed.dart';",
+      "part '${TM_FILENAME_BASE}.g.dart';",
+      "",
+      "@freezed",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} extends PageData with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxModel  {",
+      "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({ ${1} }) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
+      "",
+      "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(Map<String, Object?> json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
+      "}"
+    ],
+    "description": "freezed model"
+  },
   "freezed action": {
     "prefix": "freezed_action",
     "body": [

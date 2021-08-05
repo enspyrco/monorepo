@@ -6,14 +6,13 @@ part of 'store_auth_step_action.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_StoreAuthStepAction _$_$_StoreAuthStepActionFromJson(
-    Map<String, dynamic> json) {
-  return _$_StoreAuthStepAction(
-    _$enumDecode(_$AuthenticationEnumEnumMap, json['step']),
-  );
-}
+_$_StoreAuthStepAction _$$_StoreAuthStepActionFromJson(
+        Map<String, dynamic> json) =>
+    _$_StoreAuthStepAction(
+      _$enumDecode(_$AuthenticationEnumEnumMap, json['step']),
+    );
 
-Map<String, dynamic> _$_$_StoreAuthStepActionToJson(
+Map<String, dynamic> _$$_StoreAuthStepActionToJson(
         _$_StoreAuthStepAction instance) =>
     <String, dynamic>{
       'step': _$AuthenticationEnumEnumMap[instance.step],

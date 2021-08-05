@@ -6,22 +6,21 @@ part of 'profile_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ProfileData _$_$_ProfileDataFromJson(Map<String, dynamic> json) {
-  return _$_ProfileData(
-    id: json['id'] as String,
-    displayName: json['displayName'] as String?,
-    photoURL: json['photoURL'] as String?,
-    firstName: json['firstName'] as String?,
-    lastName: json['lastName'] as String?,
-    authorizationStatus:
-        (json['authorizationStatus'] as Map<String, dynamic>).map(
-      (k, e) => MapEntry(_$enumDecode(_$ProvidersEnumEnumMap, k),
-          _$enumDecode(_$AuthorizationEnumEnumMap, e)),
-    ),
-  );
-}
+_$_ProfileData _$$_ProfileDataFromJson(Map<String, dynamic> json) =>
+    _$_ProfileData(
+      id: json['id'] as String,
+      displayName: json['displayName'] as String?,
+      photoURL: json['photoURL'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      authorizationStatus:
+          (json['authorizationStatus'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(_$enumDecode(_$ProvidersEnumEnumMap, k),
+            _$enumDecode(_$AuthorizationEnumEnumMap, e)),
+      ),
+    );
 
-Map<String, dynamic> _$_$_ProfileDataToJson(_$_ProfileData instance) =>
+Map<String, dynamic> _$$_ProfileDataToJson(_$_ProfileData instance) =>
     <String, dynamic>{
       'id': instance.id,
       'displayName': instance.displayName,

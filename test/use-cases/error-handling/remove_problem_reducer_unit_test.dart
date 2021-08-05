@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:redfire/src/navigation/models/problem_page_data.dart';
 import 'package:redfire/src/problems/actions/remove_problem_action.dart';
 import 'package:redfire/src/problems/reducers/remove_problem_reducer.dart';
 import 'package:redfire/types.dart';

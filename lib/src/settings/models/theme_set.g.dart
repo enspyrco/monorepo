@@ -6,14 +6,13 @@ part of 'theme_set.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ThemeSet _$_$_ThemeSetFromJson(Map<String, dynamic> json) {
-  return _$_ThemeSet(
-    colors: ThemeColors.fromJson(json['colors'] as Map<String, dynamic>),
-    brightness: _$enumDecode(_$ThemeBrightnessEnumEnumMap, json['brightness']),
-  );
-}
+_$_ThemeSet _$$_ThemeSetFromJson(Map<String, dynamic> json) => _$_ThemeSet(
+      colors: ThemeColors.fromJson(json['colors'] as Map<String, dynamic>),
+      brightness:
+          _$enumDecode(_$ThemeBrightnessEnumEnumMap, json['brightness']),
+    );
 
-Map<String, dynamic> _$_$_ThemeSetToJson(_$_ThemeSet instance) =>
+Map<String, dynamic> _$$_ThemeSetToJson(_$_ThemeSet instance) =>
     <String, dynamic>{
       'colors': instance.colors,
       'brightness': _$ThemeBrightnessEnumEnumMap[instance.brightness],

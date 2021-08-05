@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'app_state.dart';
 
@@ -21,7 +21,7 @@ class _$AppStateTearOff {
   const _$AppStateTearOff();
 
   _AppState call(
-      {required IList<PageData> pages,
+      {@PageDataConverter() required IList<PageData> pages,
       required IList<ProblemInfo> problems,
       required Settings settings,
       required AuthState auth,
@@ -45,6 +45,7 @@ const $AppState = _$AppStateTearOff();
 
 /// @nodoc
 mixin _$AppState {
+  @PageDataConverter()
   IList<PageData> get pages => throw _privateConstructorUsedError;
   IList<ProblemInfo> get problems => throw _privateConstructorUsedError;
   Settings get settings => throw _privateConstructorUsedError;
@@ -62,7 +63,7 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res>;
   $Res call(
-      {IList<PageData> pages,
+      {@PageDataConverter() IList<PageData> pages,
       IList<ProblemInfo> problems,
       Settings settings,
       AuthState auth,
@@ -145,7 +146,7 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       __$AppStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {IList<PageData> pages,
+      {@PageDataConverter() IList<PageData> pages,
       IList<ProblemInfo> problems,
       Settings settings,
       AuthState auth,
@@ -205,16 +206,17 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AppState implements _AppState {
   _$_AppState(
-      {required this.pages,
+      {@PageDataConverter() required this.pages,
       required this.problems,
       required this.settings,
       required this.auth,
       this.profile});
 
   factory _$_AppState.fromJson(Map<String, dynamic> json) =>
-      _$_$_AppStateFromJson(json);
+      _$$_AppStateFromJson(json);
 
   @override
+  @PageDataConverter()
   final IList<PageData> pages;
   @override
   final IList<ProblemInfo> problems;
@@ -264,13 +266,13 @@ class _$_AppState implements _AppState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AppStateToJson(this);
+    return _$$_AppStateToJson(this);
   }
 }
 
 abstract class _AppState implements AppState {
   factory _AppState(
-      {required IList<PageData> pages,
+      {@PageDataConverter() required IList<PageData> pages,
       required IList<ProblemInfo> problems,
       required Settings settings,
       required AuthState auth,
@@ -279,6 +281,7 @@ abstract class _AppState implements AppState {
   factory _AppState.fromJson(Map<String, dynamic> json) = _$_AppState.fromJson;
 
   @override
+  @PageDataConverter()
   IList<PageData> get pages => throw _privateConstructorUsedError;
   @override
   IList<ProblemInfo> get problems => throw _privateConstructorUsedError;

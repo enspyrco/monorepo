@@ -6,11 +6,10 @@ part of 'sign_in_with_apple_action.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SignInWithAppleAction _$_$_SignInWithAppleActionFromJson(
-    Map<String, dynamic> json) {
-  return _$_SignInWithAppleAction();
-}
+_$_SignInWithAppleAction _$$_SignInWithAppleActionFromJson(
+        Map<String, dynamic> json) =>
+    _$_SignInWithAppleAction();
 
-Map<String, dynamic> _$_$_SignInWithAppleActionToJson(
+Map<String, dynamic> _$$_SignInWithAppleActionToJson(
         _$_SignInWithAppleAction instance) =>
     <String, dynamic>{};

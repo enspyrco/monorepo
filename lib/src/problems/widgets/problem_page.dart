@@ -5,12 +5,12 @@ import 'package:redfire/src/redux/extensions/build_context_extensions.dart';
 
 import '../../../types.dart';
 
-/// Creates a widget to show an error from a type of [Problem].
-/// The [ProblemInfoPage] is used for alerting a user to an error.
-class ProblemInfoPage<T extends RedFireState> extends StatelessWidget {
+/// Creates a widget to show an error from a type of [ProblemInfo].
+/// The [ProblemPage] is used for alerting a user to an error.
+class ProblemPage<T extends RedFireState> extends StatelessWidget {
   final ProblemInfo info;
 
-  const ProblemInfoPage(this.info, {Key? key}) : super(key: key);
+  const ProblemPage(this.info, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

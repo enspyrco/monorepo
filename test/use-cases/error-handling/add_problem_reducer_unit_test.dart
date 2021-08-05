@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:redfire/src/navigation/models/page_data.dart';
+import 'package:redfire/src/navigation/models/problem_page_data.dart';
 import 'package:redfire/src/problems/actions/add_problem_action.dart';
 import 'package:redfire/src/problems/models/problem_info.dart';
 import 'package:redfire/src/problems/reducers/add_problem_reducer.dart';

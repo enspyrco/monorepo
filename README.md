@@ -27,3 +27,23 @@ When using widgets from `redfire`, a type parameter of the store's state must be
 ## In Progress
 
 See [In Progress](docs/in-progress.md) for discussion of current work and future plans.
+
+## Using in your app
+
+### Naming
+
+A `Page` is something that has corresponding objects of type `PageData` (stored in the AppState) and `MaterialPage` (passed to the Navigator to create the navigation stack).
+
+### Navigation
+
+Still very much a work in progress and very clunky, but...
+
+- make a file called just `blah.dart` in the case where you have `BlahPage` and `BlahPageData`
+- use the `page_data_transforms` snippet
+- auto add missing imports 
+- if needed, cast `pageData` to `BlahPageData` and use it to create the `Page`
+- rename `blah.dart` to `blah_page_data_transforms.dart`
+- add `BlahPageDataTransforms()` to `AppWidget(..., pageTransforms: _)`
+- use 
+  - `dispatch<AppState>(PushPageAction(BlahPageData()))` to push the Page onto the stack
+  - `dispatch<AppState>(RemoveCurrentPageAction())` to pop a Page

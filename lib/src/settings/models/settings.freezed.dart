@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'settings.dart';
 
@@ -182,7 +182,7 @@ class _$_Settings implements _Settings {
       required this.platform});
 
   factory _$_Settings.fromJson(Map<String, dynamic> json) =>
-      _$_$_SettingsFromJson(json);
+      _$$_SettingsFromJson(json);
 
   @override
   final ThemeSet darkTheme;
@@ -231,7 +231,7 @@ class _$_Settings implements _Settings {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SettingsToJson(this);
+    return _$$_SettingsToJson(this);
   }
 }
 

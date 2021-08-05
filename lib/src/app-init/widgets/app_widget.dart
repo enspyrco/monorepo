@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redfire/src/app-init/widgets/initializing_error_page.dart';
 import 'package:redfire/src/app-init/widgets/initializing_indicator.dart';
-import 'package:redfire/src/auth/widgets/auth/auth_page.dart';
 import 'package:redfire/src/navigation/actions/remove_current_page_action.dart';
 import 'package:redfire/src/navigation/extensions/page_data_list_extension.dart';
 import 'package:redfire/src/navigation/models/page_data.dart';
@@ -22,7 +21,7 @@ import '../redfire_initial_actions.dart';
 
 class AppWidget<T extends RedFireState> extends StatefulWidget {
   late final Store<T> _store;
-  final Widget _mainPage;
+  final PageDataMaps _pageDataMaps;
   final FirebaseWrapper _firebase;
   final String _title;
   final List<ReduxAction> _initialActions;
@@ -32,12 +31,13 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
   AppWidget.fromStore(
       {Key? key,
       required Widget mainPage,
+      required List<PageDataTransforms> pageTransforms,
       required Store<T> initializedStore,
       FirebaseWrapper? firebaseWrapper,
       String? title})
       : _store = initializedStore,
         _firebase = firebaseWrapper ?? FirebaseWrapper(),
-        _mainPage = mainPage,
+        _pageDataMaps = PageDataMaps<T>(mainPage, pageTransforms),
         _title = title ?? 'Title Not Set',
         _initialActions = [],
         super(key: key);
@@ -49,10 +49,11 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
       List<Reducer<T>>? reducers,
       List<Middleware<T>>? middlewares,
       required Widget mainPage,
+      required List<PageDataTransforms> pageTransforms,
       FirebaseWrapper? firebaseWrapper,
       String? title})
       : _firebase = firebaseWrapper ?? FirebaseWrapper(),
-        _mainPage = mainPage,
+        _pageDataMaps = PageDataMaps<T>(mainPage, pageTransforms),
         _title = title ?? 'Title Not Set',
         _initialActions = initialActions ?? [],
         super(key: key) {
@@ -121,8 +122,7 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
                 distinct: true,
                 converter: (store) => store.state.pages,
                 builder: (context, pages) => Navigator(
-                    pages: pages.toMaterialPages<T>(
-                        AuthPage<T>(), widget._mainPage),
+                    pages: pages.toMaterialPages<T>(),
                     onPopPage: (route, dynamic result) {
                       if (!route.didPop(result)) {
                         return false;

@@ -94,6 +94,8 @@ class MainPage extends StatelessWidget {
 }
 ```
 
+### Ignore generated files
+
 Add to `.gitignore` (delete any commited generated files & commit first):
 
 ```sh
@@ -102,6 +104,8 @@ Add to `.gitignore` (delete any commited generated files & commit first):
 *.freezed.dart
 *.mocks.dart
 ```
+
+### Configure static analysis
 
 Add to `analysis_options.yaml`:
 
@@ -118,3 +122,26 @@ analyzer:
 ```
 
 You may not want all of the above, see [Customizing static analysis](https://dart.dev/guides/language/analysis-options) for more info.
+
+### (optionally) Hide generated & irrelevant files
+
+#### VS Code 
+
+Add `settings.json` with the following to the `.vscode` folder:
+
+```json
+{
+  "files.exclude": {
+    "**/*.g.dart": true,
+    "**/*.freezed.dart": true,
+    // "build": true,
+    // ".flutter-plugins": true,
+    // ".flutter-plugins-dependencies": true,
+    // ".metadata": true,
+    // ".packages": true,
+    // "CHANGELOG.md": true,
+    // "LICENSE": true,
+    // "lib/generated_plugin_registrant.dart": true,
+  }
+}
+```

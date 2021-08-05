@@ -6,16 +6,14 @@ part of 'auth_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AuthState _$_$_AuthStateFromJson(Map<String, dynamic> json) {
-  return _$_AuthState(
-    userData: json['userData'] == null
-        ? null
-        : AuthUserData.fromJson(json['userData'] as Map<String, dynamic>),
-    step: _$enumDecode(_$AuthenticationEnumEnumMap, json['step']),
-  );
-}
+_$_AuthState _$$_AuthStateFromJson(Map<String, dynamic> json) => _$_AuthState(
+      userData: json['userData'] == null
+          ? null
+          : AuthUserData.fromJson(json['userData'] as Map<String, dynamic>),
+      step: _$enumDecode(_$AuthenticationEnumEnumMap, json['step']),
+    );
 
-Map<String, dynamic> _$_$_AuthStateToJson(_$_AuthState instance) =>
+Map<String, dynamic> _$$_AuthStateToJson(_$_AuthState instance) =>
     <String, dynamic>{
       'userData': instance.userData,
       'step': _$AuthenticationEnumEnumMap[instance.step],

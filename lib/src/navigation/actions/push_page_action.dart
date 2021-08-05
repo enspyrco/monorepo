@@ -7,7 +7,8 @@ part 'push_page_action.g.dart';
 
 @freezed
 class PushPageAction with _$PushPageAction, ReduxAction {
-  factory PushPageAction({required PageData page}) = _PushPageAction;
+  const factory PushPageAction(@PageDataConverter() PageData page) =
+      _PushPageAction;
 
   factory PushPageAction.fromJson(Map<String, dynamic> json) =>
       _$PushPageActionFromJson(json);

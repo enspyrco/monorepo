@@ -2,6 +2,7 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/src/auth/enums/authentication_enum.dart';
 import 'package:redfire/src/auth/models/auth_state.dart';
+import 'package:redfire/src/navigation/models/initial_page_data.dart';
 import 'package:redfire/src/problems/models/problem_info.dart';
 import 'package:redfire/src/settings/models/settings.dart';
 import 'package:redfire/src/types/red_fire_state.dart';
@@ -13,7 +14,7 @@ part 'app_state.g.dart';
 @freezed
 class AppState with _$AppState, RedFireState {
   factory AppState({
-    required IList<PageData> pages,
+    @PageDataConverter() required IList<PageData> pages,
     required IList<ProblemInfo> problems,
     required Settings settings,
     required AuthState auth,
@@ -21,7 +22,7 @@ class AppState with _$AppState, RedFireState {
   }) = _AppState;
 
   factory AppState.init() => AppState(
-        pages: <PageData>[const InitialPageData()].lock,
+        pages: <PageData>[InitialPageData()].lock,
         problems: IList(),
         settings: Settings.init(),
         auth: AuthState(step: AuthenticationEnum.waitingForInput),

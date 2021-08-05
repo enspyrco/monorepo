@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'launch_url_action.dart';
 
@@ -114,7 +114,7 @@ class _$_LaunchUrlAction implements _LaunchUrlAction {
   _$_LaunchUrlAction({required this.url});
 
   factory _$_LaunchUrlAction.fromJson(Map<String, dynamic> json) =>
-      _$_$_LaunchUrlActionFromJson(json);
+      _$$_LaunchUrlActionFromJson(json);
 
   @override
   final String url;
@@ -143,7 +143,7 @@ class _$_LaunchUrlAction implements _LaunchUrlAction {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_LaunchUrlActionToJson(this);
+    return _$$_LaunchUrlActionToJson(this);
   }
 }
 

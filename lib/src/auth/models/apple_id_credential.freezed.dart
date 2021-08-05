@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'apple_id_credential.dart';
 
@@ -252,7 +252,7 @@ class _$_AppleIdCredential implements _AppleIdCredential {
       this.state});
 
   factory _$_AppleIdCredential.fromJson(Map<String, dynamic> json) =>
-      _$_$_AppleIdCredentialFromJson(json);
+      _$$_AppleIdCredentialFromJson(json);
 
   @override
 
@@ -356,7 +356,7 @@ class _$_AppleIdCredential implements _AppleIdCredential {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AppleIdCredentialToJson(this);
+    return _$$_AppleIdCredentialToJson(this);
   }
 }
 

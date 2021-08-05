@@ -78,3 +78,6 @@ build/
 # *.g.dart
 # *.freezed.dart
 *.mocks.dart
+
+# Except for application packages
+pubspec.lock  

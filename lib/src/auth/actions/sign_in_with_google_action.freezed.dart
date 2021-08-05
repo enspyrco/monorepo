@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'sign_in_with_google_action.dart';
 
@@ -80,7 +80,7 @@ class _$_SignInWithGoogleAction implements _SignInWithGoogleAction {
   _$_SignInWithGoogleAction();
 
   factory _$_SignInWithGoogleAction.fromJson(Map<String, dynamic> json) =>
-      _$_$_SignInWithGoogleActionFromJson(json);
+      _$$_SignInWithGoogleActionFromJson(json);
 
   @override
   String toString() {
@@ -97,7 +97,7 @@ class _$_SignInWithGoogleAction implements _SignInWithGoogleAction {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SignInWithGoogleActionToJson(this);
+    return _$$_SignInWithGoogleActionToJson(this);
   }
 }
 

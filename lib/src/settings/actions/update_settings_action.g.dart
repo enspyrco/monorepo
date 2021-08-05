@@ -6,14 +6,13 @@ part of 'update_settings_action.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UpdateSettingsAction _$_$_UpdateSettingsActionFromJson(
-    Map<String, dynamic> json) {
-  return _$_UpdateSettingsAction(
-    platform: _$enumDecode(_$PlatformsEnumEnumMap, json['platform']),
-  );
-}
+_$_UpdateSettingsAction _$$_UpdateSettingsActionFromJson(
+        Map<String, dynamic> json) =>
+    _$_UpdateSettingsAction(
+      platform: _$enumDecode(_$PlatformsEnumEnumMap, json['platform']),
+    );
 
-Map<String, dynamic> _$_$_UpdateSettingsActionToJson(
+Map<String, dynamic> _$$_UpdateSettingsActionToJson(
         _$_UpdateSettingsAction instance) =>
     <String, dynamic>{
       'platform': _$PlatformsEnumEnumMap[instance.platform],

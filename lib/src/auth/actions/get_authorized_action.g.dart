@@ -6,14 +6,13 @@ part of 'get_authorized_action.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GetAuthorizedAction _$_$_GetAuthorizedActionFromJson(
-    Map<String, dynamic> json) {
-  return _$_GetAuthorizedAction(
-    provider: _$enumDecode(_$ProvidersEnumEnumMap, json['provider']),
-  );
-}
+_$_GetAuthorizedAction _$$_GetAuthorizedActionFromJson(
+        Map<String, dynamic> json) =>
+    _$_GetAuthorizedAction(
+      provider: _$enumDecode(_$ProvidersEnumEnumMap, json['provider']),
+    );
 
-Map<String, dynamic> _$_$_GetAuthorizedActionToJson(
+Map<String, dynamic> _$$_GetAuthorizedActionToJson(
         _$_GetAuthorizedAction instance) =>
     <String, dynamic>{
       'provider': _$ProvidersEnumEnumMap[instance.provider],

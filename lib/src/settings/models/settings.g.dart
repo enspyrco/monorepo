@@ -6,17 +6,15 @@ part of 'settings.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Settings _$_$_SettingsFromJson(Map<String, dynamic> json) {
-  return _$_Settings(
-    darkTheme: ThemeSet.fromJson(json['darkTheme'] as Map<String, dynamic>),
-    lightTheme: ThemeSet.fromJson(json['lightTheme'] as Map<String, dynamic>),
-    brightnessMode:
-        _$enumDecode(_$BrightnessModeEnumEnumMap, json['brightnessMode']),
-    platform: _$enumDecode(_$PlatformsEnumEnumMap, json['platform']),
-  );
-}
+_$_Settings _$$_SettingsFromJson(Map<String, dynamic> json) => _$_Settings(
+      darkTheme: ThemeSet.fromJson(json['darkTheme'] as Map<String, dynamic>),
+      lightTheme: ThemeSet.fromJson(json['lightTheme'] as Map<String, dynamic>),
+      brightnessMode:
+          _$enumDecode(_$BrightnessModeEnumEnumMap, json['brightnessMode']),
+      platform: _$enumDecode(_$PlatformsEnumEnumMap, json['platform']),
+    );
 
-Map<String, dynamic> _$_$_SettingsToJson(_$_Settings instance) =>
+Map<String, dynamic> _$$_SettingsToJson(_$_Settings instance) =>
     <String, dynamic>{
       'darkTheme': instance.darkTheme,
       'lightTheme': instance.lightTheme,

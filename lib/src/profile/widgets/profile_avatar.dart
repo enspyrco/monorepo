@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:redfire/actions.dart';
+import 'package:redfire/src/navigation/models/profile_page_data.dart';
 import 'package:redfire/src/redux/extensions/build_context_extensions.dart';
 import 'package:redfire/types.dart';
 
@@ -13,8 +14,7 @@ class ProfileAvatar<T extends RedFireState> extends StatelessWidget {
   Widget build(BuildContext context) {
     final localPhotoURL = photoURL; // gimme that flow analysis
     return RawMaterialButton(
-      onPressed: () =>
-          context.dispatch<T>(PushPageAction(page: const ProfilePageData())),
+      onPressed: () => context.dispatch<T>(PushPageAction(ProfilePageData())),
       elevation: 0.0,
       fillColor: Colors.white,
       padding: const EdgeInsets.all(5.0),

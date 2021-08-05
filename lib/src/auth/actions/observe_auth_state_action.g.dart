@@ -6,11 +6,10 @@ part of 'observe_auth_state_action.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ObserveAuthStateAction _$_$_ObserveAuthStateActionFromJson(
-    Map<String, dynamic> json) {
-  return _$_ObserveAuthStateAction();
-}
+_$_ObserveAuthStateAction _$$_ObserveAuthStateActionFromJson(
+        Map<String, dynamic> json) =>
+    _$_ObserveAuthStateAction();
 
-Map<String, dynamic> _$_$_ObserveAuthStateActionToJson(
+Map<String, dynamic> _$$_ObserveAuthStateActionToJson(
         _$_ObserveAuthStateAction instance) =>
     <String, dynamic>{};

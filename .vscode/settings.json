@@ -1,7 +1,7 @@
 {
   "files.exclude": {
-    // "**/*.g.dart": true,
-    // "**/*.freezed.dart": true,
+    "**/*.g.dart": true,
+    "**/*.freezed.dart": true,
     "build": true,
     ".flutter-plugins": true,
     ".flutter-plugins-dependencies": true,
