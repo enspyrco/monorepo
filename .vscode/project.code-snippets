@@ -16,6 +16,24 @@
     ],
     "description": "freezed model"
   },
+  "freezed model (page data)": {
+    "prefix": "freezed_model",
+    "body": [
+      "import 'package:freezed_annotation/freezed_annotation.dart';",
+      "import 'package:redfire/types.dart';",
+      "",
+      "part '${TM_FILENAME_BASE}.freezed.dart';",
+      "part '${TM_FILENAME_BASE}.g.dart';",
+      "",
+      "@freezed",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} extends PageData with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxModel  {",
+      "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({ ${1} }) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
+      "",
+      "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(Map<String, Object?> json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
+      "}"
+    ],
+    "description": "freezed model"
+  },
   "freezed action": {
     "prefix": "freezed_action",
     "body": [
@@ -30,6 +48,22 @@
       "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({${1}}) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
       "",
       "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(Map<String, Object?> json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
+      "}"
+    ],
+    "description": "freezed action"
+  },
+  "page data transforms": {
+    "prefix": "page_data_transforms",
+    "body": [
+      "import 'package:flutter/material.dart';",
+      "import 'package:quiz_questions/main.dart';",
+      "import 'package:redfire/types.dart';",
+      "",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageDataTransforms extends PageDataTransforms {",
+      "${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageDataTransforms() : super(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageData,",
+      "\t\t(pageData) => const MaterialPage<${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page>(key: ValueKey(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page), child: ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page<AppState>(pageData)),",
+      "\t\t(json) => ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageData.fromJson(json));",
+      "",
       "}"
     ],
     "description": "freezed action"

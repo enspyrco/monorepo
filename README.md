@@ -15,7 +15,8 @@ A Redux based architecture connected to Firebase streams.
 
 ### Optional setup
 
-- [Add snippets](docs/add-snippets.md) to save you time if you plan to add your own actions, reducers or middleware
+- Use code snippets to save you *lots* of time & hassle
+  - *VS Code*: copy the `.vscode/project.code-snippets` file from the redfire package into your project
 - [Install Redux DevTools](docs/redux-devtools.md) if you want to visualise how state change flows through the app 
 
 ## Widgets 
