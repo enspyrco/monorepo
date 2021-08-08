@@ -44,3 +44,4 @@ flutter:
   assets:
     - packages/redfire/assets/apple_white.png
     - packages/redfire/assets/google.png
+    - packages/redfire/assets/github.png

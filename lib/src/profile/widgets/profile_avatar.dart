@@ -8,13 +8,16 @@ import 'checked_circle_avatar.dart';
 
 class ProfileAvatar<T extends RedFireState> extends StatelessWidget {
   final String? photoURL;
-  const ProfileAvatar(this.photoURL, {Key? key}) : super(key: key);
+  final void Function()? onPressed;
+  const ProfileAvatar(this.photoURL, {this.onPressed, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final localPhotoURL = photoURL; // gimme that flow analysis
     return RawMaterialButton(
-      onPressed: () => context.dispatch<T>(PushPageAction(ProfilePageData())),
+      onPressed: onPressed ??
+          () => context.dispatch<T>(PushPageAction(ProfilePageData())),
       elevation: 0.0,
       fillColor: Colors.white,
       padding: const EdgeInsets.all(5.0),
