@@ -7,18 +7,9 @@
         {
             "name": "flireator",
             "program": "lib/main.dart",
-            "deviceId": "macOS",
+            "deviceId": "macos",
             "request": "launch",
             "type": "dart",
-            "args": [ "--no-sound-null-safety" ]
-        },
-        {
-            "name": "Emulators & RDT",
-            "type": "dart",
-            "deviceId": "macOS",
-            "request": "launch",
-            "program": "lib/main_rdt.dart",
-            "args": ["--no-sound-null-safety"]
-        },
+        }
     ]
 }

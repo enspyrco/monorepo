@@ -1,10 +1,6 @@
-include: package:pedantic/analysis_options.yaml
+include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  errors:
-    todo: error
-    unused_import: error
-    import_of_legacy_library_into_null_safe: ignore
   exclude: 
     - build/**
     - lib/**/*.g.dart

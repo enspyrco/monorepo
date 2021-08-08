@@ -1,52 +1,39 @@
 name: flireator
 description: A project creation tool for Flutter projects with a Firebase
   backend, stored on GitHub.
-
 publish_to: 'none'
-
-version: 1.0.0+1
+version: 0.0.1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.13.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  
-  # freezed
-  freezed_annotation: any
-  json_serializable: any
+  redfire:
+    git: https://github.com/enspyrco/redfire.git
+    # path: /Users/nick/git/orgs/enspyrco/redfire
+  freezed_annotation:
+  json_annotation:
+  redux:
+  flutter_redux:
+  fast_immutable_collections:
 
-  # redux
-  redux: any
-  flutter_redux: any
-
-  flutter_auth_buttons: any
-  sign_in_with_apple: any
-  firebase_auth: any
   url_launcher: any
   oauth2: any
-  cloud_firestore: any
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_driver:
-    sdk: flutter
-  
-  build_runner: any
-  freezed: any
-  pedantic: any
+  flutter_lints: any
+  redfire_test:
+    git: https://github.com/enspyrco/redfire_test.git
+    # path: /Users/nick/git/orgs/enspyrco/redfire_test
+  build_runner:
+  freezed:
+  json_serializable:
   test: any
   mockito: any
-  redux_remote_devtools: any
-
-  fast_immutable_collections: any
-  json_serializable_fic: any
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/git_hub_logo/GitHub-Mark-120px-plus.png
-    - assets/apple_logo/apple_logo_PNG19692.png
-    - assets/google_logo/google_PNG19630.png

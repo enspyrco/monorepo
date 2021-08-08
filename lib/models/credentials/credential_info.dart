@@ -5,7 +5,6 @@ part 'credential_info.g.dart';
 
 @freezed
 class CredentialInfo with _$CredentialInfo {
-  @JsonSerializable(explicitToJson: true)
   factory CredentialInfo({
     required String uid,
     String? token,
