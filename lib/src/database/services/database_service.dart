@@ -74,6 +74,7 @@ class DatabaseService {
                 whereNotIn: whereNotIn,
                 isNull: isNull)
             .snapshots()
-            .map((event) => event.docs.map((doc) => doc.data()).toList());
+            .map((event) =>
+                event.docs.map((doc) => doc.data()..['id'] = doc.id).toList());
   }
 }

@@ -36,7 +36,7 @@ dev_dependencies:
   json_serializable:
 ```
 
-### Update main.dart 
+### Update main.dart
 
 ```Dart
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
@@ -47,22 +47,13 @@ import 'package:redfire/widgets.dart';
 
 part 'main.freezed.dart';
 part 'main.g.dart';
- 
-void main() => runApp(AppWidget<AppState>(
-  initialState: AppState.init(),
-  initialActions: const [],
-  middlewares: const [],
-  reducers: const [],
-  title: <Your App Title>, // optional, defaults to 'Title Note Set'
-  mainPage: const MainPage(),
-));
 
 @freezed
 class AppState with _$AppState, RedFireState {
   factory AppState({
     /// RedFire AppState members
     required AuthState auth,
-    required IList<PageData> pages,
+    @PageDataConverter() required IList<PageData> pages,
     required IList<ProblemInfo> problems,
     required Settings settings,
     ProfileData? profile,
@@ -73,7 +64,7 @@ class AppState with _$AppState, RedFireState {
  factory AppState.init() => AppState(
     /// RedFire init code
     auth: AuthState.init(),
-    pages: <PageData>[const InitialPageData()].lock,
+    pages: <PageData>[InitialPageData()].lock,
     problems: IList(),
     settings: Settings.init(),
     
@@ -83,6 +74,22 @@ class AppState with _$AppState, RedFireState {
   factory AppState.fromJson(Map<String, Object?> json) =>
     _$AppStateFromJson(json);
 }
+ 
+void main() => runApp(AppWidget<AppState>(
+  initialState: AppState.init(),
+  initialActions: const [],
+  middlewares: const [],
+  reducers: const [],
+  pageTransforms: const [],
+  title: <Your App Title>, // optional, defaults to 'Title Note Set'
+  mainPage: const MainPage(),
+));
+```
+
+### Add pages/main_page.dart
+
+```Dart
+import 'package:flutter/material.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);

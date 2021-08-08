@@ -13,6 +13,17 @@ A Redux based architecture connected to Firebase streams.
 - [Setup CI/CD](docs/setup-cicd.md)
 - [Setup Databases](docs/setup-databases.md)
 
+### Project Structure
+
+#### Suggestions
+
+-  the only thing in `main.dart` is `runApp(AppWidget(...));`
+
+#### Assumed (by snippets)
+
+- `app_state.dart` lives in `lib/models/`
+- `main_page.dart` lives in `lib/pages/`
+
 ### Optional setup
 
 - Use code snippets to save you *lots* of time & hassle

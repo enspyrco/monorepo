@@ -3,12 +3,13 @@
     "prefix": "freezed_model",
     "body": [
       "import 'package:freezed_annotation/freezed_annotation.dart';",
+      "import 'package:redfire/types.dart';",
       "",
       "part '${TM_FILENAME_BASE}.freezed.dart';",
       "part '${TM_FILENAME_BASE}.g.dart';",
       "",
       "@freezed",
-      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} {",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxModel  {",
       "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({ ${1} }) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
       "",
       "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(Map<String, Object?> json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
@@ -38,7 +39,7 @@
     "prefix": "freezed_action",
     "body": [
       "import 'package:freezed_annotation/freezed_annotation.dart';",
-      "import 'package:redfire/src/types/redux_action.dart';",
+      "import 'package:redfire/types.dart';",
       "",
       "part '${TM_FILENAME_BASE}.freezed.dart';",
       "part '${TM_FILENAME_BASE}.g.dart';",
