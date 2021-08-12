@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:the_process/models/sections/section.dart';
+import 'package:the_process/models/project_sections/project_section.dart';
 import 'package:the_process/widgets/home/project-overview/sections-view/buttons/section_folder_button.dart';
 import 'package:the_process/widgets/home/project-overview/sections-view/buttons/use_case_document_button.dart';
 
 class SectionsListItem extends StatelessWidget {
-  final Section _section;
+  final ProjectSection _section;
 
-  const SectionsListItem(Section section, {Key? key})
+  const SectionsListItem(ProjectSection section, {Key? key})
       : _section = section,
         super(key: key);
 

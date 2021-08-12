@@ -20,6 +20,7 @@
         "prefix": "freezed_action",
         "body": [
             "import 'package:freezed_annotation/freezed_annotation.dart';",
+            "import 'package:redfire/types.dart';",
             "",
             "part '${TM_FILENAME_BASE}.freezed.dart';",
             "part '${TM_FILENAME_BASE}.g.dart';",

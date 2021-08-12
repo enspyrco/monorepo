@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:the_process/actions/shared/connect_database_action.dart';
-import 'package:the_process/enums/database/database_section_enum.dart';
-import 'package:the_process/models/app_state/app_state.dart';
-import 'package:the_process/models/sections/sections_v_m.dart';
+import 'package:redfire/widgets.dart';
+import 'package:the_process/actions/project_sections/tap_project_sections_action.dart';
+import 'package:the_process/models/project_sections/project_sections_v_m.dart';
 import 'package:the_process/widgets/home/project-overview/sections-view/new_section_item.dart';
 import 'package:the_process/widgets/home/project-overview/sections-view/sections_list_view.dart';
-import 'package:the_process/widgets/shared/waiting_indicator.dart';
+
+import '../../../../main.dart';
 
 class SectionsView extends StatelessWidget {
   const SectionsView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, SectionsVM?>(
-      onInit: (store) => store.dispatch(
-          ConnectDatabaseAction(section: DatabaseSectionEnum.sections)),
+    return StoreConnector<AppState, ProjectSectionsVM?>(
+      onInit: (store) => store.dispatch(TapProjectSectionsAction()),
       distinct: true,
       converter: (store) => store.state.sections,
       builder: (context, vm) {

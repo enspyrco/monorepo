@@ -1,13 +1,12 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  errors:
-    todo: error
-    unused_import: error
   exclude: 
     - build/**
     - lib/**/*.g.dart
     - lib/**/*.freezed.dart
+    - test/**/*.g.dart
+    - test/**/*.freezed.dart
     - test/**/*.mocks.dart
   strong-mode:
     implicit-casts: false

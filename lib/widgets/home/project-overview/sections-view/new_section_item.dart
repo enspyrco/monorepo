@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:the_process/actions/sections/create_section_action.dart';
-import 'package:the_process/actions/sections/update_new_section_v_m_action.dart';
-import 'package:the_process/extensions/flutter_extensions.dart';
+import 'package:redfire/extensions.dart';
+import 'package:the_process/actions/project_sections/create_project_section_action.dart';
+import 'package:the_process/actions/project_sections/update_new_project_section_v_m_action.dart';
+
+import '../../../../main.dart';
 
 class NewSectionItem extends StatelessWidget {
   const NewSectionItem({Key? key}) : super(key: key);
@@ -13,14 +15,13 @@ class NewSectionItem extends StatelessWidget {
       child: TextFormField(
         autofocus: true,
         decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
-          ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
           hintText: 'Enter a name...',
           suffixIcon: Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: FloatingActionButton(
-              onPressed: () => context.dispatch(CreateSectionAction()),
+              onPressed: () =>
+                  context.dispatch<AppState>(CreateProjectSectionAction()),
               backgroundColor: Colors.blue,
               foregroundColor: Colors.white,
               mini: true,
@@ -29,8 +30,8 @@ class NewSectionItem extends StatelessWidget {
             ),
           ),
         ),
-        onChanged: (value) =>
-            context.dispatch(UpdateNewSectionVMAction(name: value)),
+        onChanged: (value) => context
+            .dispatch<AppState>(UpdateNewProjectSectionVMAction(name: value)),
       ),
     );
   }

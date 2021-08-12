@@ -1,8 +1,6 @@
 name: the_process
 description: A tool to automate "the process".
-
 publish_to: 'none'
-
 version: 1.0.0+1
 
 environment:
@@ -12,36 +10,19 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # auth
-  firebase_auth: any
-  google_sign_in: any
-  sign_in_with_apple: any
-
-  # freezed
+  # redfire 
+  redfire:
+    git: https://github.com/enspyrco/redfire.git
+    # path: /Users/nick/git/orgs/enspyrco/redfire
   freezed_annotation: any
-  json_serializable: any
-  
-  # database
-  cloud_firestore: any
-
-  # firebase 
-  firebase_core: any
-
-  # # messaging 
-  # firebase_messaging: ^9.0.0-1.0.nullsafety.0
-
-  # platform 
-  url_launcher: any
-
-  # redux
+  json_annotation: any
   redux: any
   flutter_redux: any
-  redux_remote_devtools: any
+  fast_immutable_collections: any
 
   # utils 
   uuid: any
   http: any
-  fast_immutable_collections: any
 
 dev_dependencies:
   integration_test:
@@ -53,12 +34,13 @@ dev_dependencies:
   flutter_lints: any
   test: any
   mockito: any
+  redfire_test:
+    git: https://github.com/enspyrco/redfire_test.git
+    # path: /Users/nick/git/orgs/enspyrco/redfire_test
   
   build_runner: any
   freezed: any
-  json_serializable_fic: any
+  json_serializable: any
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/

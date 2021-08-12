@@ -1,10 +1,10 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
-import 'package:the_process/models/sections/section.dart';
+import 'package:the_process/models/project_sections/project_section.dart';
 import 'package:the_process/widgets/home/project-overview/sections-view/sections_list_item.dart';
 
 class SectionsListView extends StatelessWidget {
-  final IList<Section> sections;
+  final IList<ProjectSection> sections;
 
   const SectionsListView(this.sections, {Key? key}) : super(key: key);
 
