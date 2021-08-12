@@ -1,5 +1,5 @@
 typedef JsonMap = Map<String, Object?>;
-typedef ListOfJsonMap = List<JsonMap>;
+typedef JsonList = List<Object?>;
 
 /// I thought maybe we couldn't use [Object?] as (eg.) the Firebase 
 /// [DocumentSnapshot.data()] returns a Map<String, dynamic> but it seems I was 

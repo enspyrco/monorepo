@@ -40,7 +40,7 @@ class DatabaseService {
 
   /// Tap the database to create a stream from the collection at [path],
   /// converting the data in each [QuerySnapshot] into a [JsonMap]
-  Stream<ListOfJsonMap> tapCollection(
+  Stream<JsonList> tapCollection(
       {required String at,
       Object? where,
       Object? isEqualTo,
