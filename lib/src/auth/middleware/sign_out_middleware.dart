@@ -19,6 +19,8 @@ class SignOutMiddleware<T extends RedFireState>
             // set the auth step and use the service to sign out
             store.dispatch(StoreAuthStepAction(AuthenticationEnum.signingOut));
             await authService.signOut(platformService.detectPlatform());
+            store.dispatch(
+                StoreAuthStepAction(AuthenticationEnum.waitingForInput));
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           }

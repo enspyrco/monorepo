@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mockito/mockito.dart';
 import 'package:redfire/src/auth/actions/store_auth_user_data_action.dart';
 import 'package:redfire/src/auth/services/auth_service.dart';
 import 'package:redfire_test/redfire_test.dart';
@@ -10,9 +11,13 @@ void main() {
   group('AuthService', () {
     test('should provide a stream of user objects converted to actions', () {
       // Create the auth service with a stubbed FirebaseAuth plugin.
+      final mockFirebaseAuth = MockFirebaseAuth();
       final controller = StreamController<User>();
+      when(mockFirebaseAuth.authStateChanges())
+          .thenAnswer((_) => controller.stream);
       final authService = AuthService(
-          FakeFirebaseAuth(authStateEventsController: controller),
+          // FakeFirebaseAuth(authStateEventsController: controller),
+          mockFirebaseAuth,
           MockGoogleSignIn(),
           MockAppleSignInWrapper());
 
