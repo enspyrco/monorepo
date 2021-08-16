@@ -24,7 +24,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   actions: [
                 MaterialButton(
-                  onPressed: () => context.dispatch(SignOutAction()),
+                  onPressed: () => context.dispatch<AppState>(SignOutAction()),
                   child: const Text('Sign Out'),
                 ),
                 Padding(

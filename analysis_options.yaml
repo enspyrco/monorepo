@@ -3,6 +3,7 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude: 
     - build/**
+    - lib/*.g.dart
     - lib/**/*.g.dart
     - lib/**/*.freezed.dart
   strong-mode:
