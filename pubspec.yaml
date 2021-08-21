@@ -37,8 +37,8 @@ dev_dependencies:
   test: any
   mockito: any
   redfire_test:
-    # git: https://github.com/enspyrco/redfire_test.git
-    path: /Users/nick/git/orgs/enspyrco/redfire_test
+    git: https://github.com/enspyrco/redfire_test.git
+    # path: /Users/nick/git/orgs/enspyrco/redfire_test
 
 flutter:
   assets:
