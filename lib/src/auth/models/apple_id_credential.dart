@@ -3,6 +3,18 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'apple_id_credential.freezed.dart';
 part 'apple_id_credential.g.dart';
 
+/// A freezed version of [sign_in_with_apple/authorization_credential.dart]
+///
+/// Authorization details from a successful Sign in with Apple flow.
+///
+/// Most fields are optional in this class.
+///
+/// Especially [givenName], [familyName], and [email] member will only be provided on the first authorization between
+/// the app and Apple ID.
+///
+/// The [authorizationCode] member is always present and should be used to check the authorizations with Apple servers
+/// from your backend. Upon successful validation, you should create a session in your system for the current user,
+/// or consider her now logged in.
 @freezed
 class AppleIdCredential with _$AppleIdCredential {
   factory AppleIdCredential({

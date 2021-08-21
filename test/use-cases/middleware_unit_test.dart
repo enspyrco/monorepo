@@ -85,7 +85,7 @@ void main() {
       final action = SignOutAction();
 
       // Create the error to catch.
-      when(authServiceMock.signOut(any)).thenThrow('error');
+      when(authServiceMock.signOut()).thenThrow('error');
 
       // Call the middleware.
       middleware.call(fakeStore, action, (dynamic _) => null);

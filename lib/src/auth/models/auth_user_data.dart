@@ -5,8 +5,10 @@ import 'package:redfire/src/auth/models/auth_provider_data.dart';
 part 'auth_user_data.freezed.dart';
 part 'auth_user_data.g.dart';
 
+/// [createdOn] and [lastSignedInOn] are in UTC as required for serialization
 @freezed
 class AuthUserData with _$AuthUserData {
+  AuthUserData._();
   factory AuthUserData({
     required String uid,
     String? displayName,
@@ -19,6 +21,10 @@ class AuthUserData with _$AuthUserData {
     required bool emailVerified,
     required IList<AuthProviderData> providers,
   }) = _AuthUserData;
+
+  bool get hasGitHub => providers
+      .where((provider) => provider.providerId == 'github.com')
+      .isNotEmpty;
 
   factory AuthUserData.fromJson(Map<String, dynamic> json) =>
       _$AuthUserDataFromJson(json);

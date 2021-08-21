@@ -1,6 +1,6 @@
 {   
-  "freezed model": {
-    "prefix": "freezed_model",
+  "redfire model": {
+    "prefix": "rf_model",
     "body": [
       "import 'package:freezed_annotation/freezed_annotation.dart';",
       "import 'package:redfire/types.dart';",
@@ -15,10 +15,10 @@
       "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(Map<String, Object?> json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
       "}"
     ],
-    "description": "freezed model"
+    "description": "redfire model with freezed"
   },
-  "freezed model (page data)": {
-    "prefix": "freezed_model",
+  "redfire page data": {
+    "prefix": "rf_page_data",
     "body": [
       "import 'package:freezed_annotation/freezed_annotation.dart';",
       "import 'package:redfire/types.dart';",
@@ -33,10 +33,26 @@
       "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(Map<String, Object?> json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
       "}"
     ],
-    "description": "freezed model"
+    "description": "redfire page data with freezed"
   },
-  "freezed action": {
-    "prefix": "freezed_action",
+  "redfire page data transforms": {
+    "prefix": "rf_page_data_transforms",
+    "body": [
+      "import 'package:flutter/material.dart';",
+      "import 'package:quiz_questions/main.dart';",
+      "import 'package:redfire/types.dart';",
+      "",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageDataTransforms extends PageDataTransforms {",
+      "${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageDataTransforms() : super(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageData,",
+      "\t\t(pageData) => const MaterialPage<${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page>(key: ValueKey(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page), child: ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page<AppState>(pageData)),",
+      "\t\t(json) => ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageData.fromJson(json));",
+      "",
+      "}"
+    ],
+    "description": "redfire page data transforms with freezed"
+  },
+  "redfire action": {
+    "prefix": "rf_action",
     "body": [
       "import 'package:freezed_annotation/freezed_annotation.dart';",
       "import 'package:redfire/types.dart';",
@@ -51,26 +67,28 @@
       "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(Map<String, Object?> json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
       "}"
     ],
-    "description": "freezed action"
+    "description": "redfire action with freezed"
   },
-  "page data transforms": {
-    "prefix": "page_data_transforms",
+  "redfire tap action": {
+    "prefix": "rf_tap_action",
     "body": [
-      "import 'package:flutter/material.dart';",
-      "import 'package:quiz_questions/main.dart';",
+      "import 'package:freezed_annotation/freezed_annotation.dart';",
       "import 'package:redfire/types.dart';",
       "",
-      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageDataTransforms extends PageDataTransforms {",
-      "${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageDataTransforms() : super(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageData,",
-      "\t\t(pageData) => const MaterialPage<${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page>(key: ValueKey(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page), child: ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page<AppState>(pageData)),",
-      "\t\t(json) => ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageData.fromJson(json));",
+      "part '${TM_FILENAME_BASE}.freezed.dart';",
+      "part '${TM_FILENAME_BASE}.g.dart';",
       "",
+      "@freezed",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxAction {",
+      "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({@Default(false) bool turnOff}) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
+      "",
+      "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(Map<String, Object?> json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
       "}"
     ],
-    "description": "freezed action"
+    "description": "redfire tap action with freezed"
   },
-  "middleware class": {
-    "prefix": "mdlware",
+  "redfire middleware": {
+    "prefix": "rf_middleware",
     "body": [
       "import 'package:redux/redux.dart';",
       "",
@@ -91,13 +109,11 @@
       "\t\t}",
       "\t});",
       "}"
-        
-      
     ],
-    "description": "middleware class"
+    "description": "redfire middleware with freezed"
   },
-  "reducer class": {
-    "prefix": "reducer",
+  "redfire reducer": {
+    "prefix": "rf_reducer",
     "body": [
       "import 'package:${WORKSPACE_NAME}/actions/${TM_FILENAME_BASE}_action.dart';",
       "import 'package:${WORKSPACE_NAME}/models/app_state.dart';",
@@ -107,6 +123,6 @@
       "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Reducer() : super((state, action) => state.copyWith(${1}: action.${1}),);",
       "}",
     ],
-    "description": "reducer class"
+    "description": "redfire reducer with freezed"
   }
 }

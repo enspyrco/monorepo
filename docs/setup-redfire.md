@@ -152,3 +152,35 @@ Add `settings.json` with the following to the `.vscode` folder:
   }
 }
 ```
+
+### (possibly) Add a `build.yaml` with `explicit_to_json: true`
+
+If you are using `fast_immutable_collections` and get errors serializing classes with list members, create a `build.yaml` file and add the following (the defaults + explicit_to_json: true)
+  - For more info see: https://pub.dev/packages/json_serializable#build-configuration
+
+```yaml
+targets:
+  $default:
+    builders:
+      json_serializable:
+        options:
+          # Options configure how source code is generated for every
+          # `@JsonSerializable`-annotated class in the package.
+          #
+          # The default value for each is listed, but with 
+          # explicit_to_json: true so FIC collections will serialize
+          any_map: false
+          checked: false
+          create_factory: true
+          create_to_json: true
+          disallow_unrecognized_keys: false
+          explicit_to_json: true
+          field_rename: none
+          generic_argument_factories: false
+          ignore_unannotated: false
+          include_if_null: true
+```
+
+This is needed because `freezed` generates the toJson. In the [FIC example](https://github.com/marcglasberg/fast_immutable_collections#11-json-support) they have an explicit toJson added manually.
+
+We can look into better ways around this if it is problematic.

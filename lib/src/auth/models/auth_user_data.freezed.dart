@@ -247,7 +247,7 @@ class __$AuthUserDataCopyWithImpl<$Res> extends _$AuthUserDataCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_AuthUserData implements _AuthUserData {
+class _$_AuthUserData extends _AuthUserData {
   _$_AuthUserData(
       {required this.uid,
       this.displayName,
@@ -258,7 +258,8 @@ class _$_AuthUserData implements _AuthUserData {
       this.lastSignedInOn,
       required this.isAnonymous,
       required this.emailVerified,
-      required this.providers});
+      required this.providers})
+      : super._();
 
   factory _$_AuthUserData.fromJson(Map<String, dynamic> json) =>
       _$$_AuthUserDataFromJson(json);
@@ -348,7 +349,7 @@ class _$_AuthUserData implements _AuthUserData {
   }
 }
 
-abstract class _AuthUserData implements AuthUserData {
+abstract class _AuthUserData extends AuthUserData {
   factory _AuthUserData(
       {required String uid,
       String? displayName,
@@ -360,6 +361,7 @@ abstract class _AuthUserData implements AuthUserData {
       required bool isAnonymous,
       required bool emailVerified,
       required IList<AuthProviderData> providers}) = _$_AuthUserData;
+  _AuthUserData._() : super._();
 
   factory _AuthUserData.fromJson(Map<String, dynamic> json) =
       _$_AuthUserData.fromJson;

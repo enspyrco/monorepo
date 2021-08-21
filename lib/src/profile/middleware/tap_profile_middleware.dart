@@ -1,10 +1,11 @@
 import 'dart:async';
 
-import 'package:redfire/extensions.dart';
 import 'package:redfire/src/profile/actions/store_profile_data_action.dart';
 import 'package:redfire/src/profile/actions/tap_profile_action.dart';
+import 'package:redfire/src/profile/models/profile_data.dart';
+import 'package:redfire/src/redux/extensions/store_extensions.dart';
+import 'package:redfire/src/types/red_fire_state.dart';
 import 'package:redfire/src/utils/red_fire_locator.dart';
-import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
 
 import '../../types/typedefs.dart';

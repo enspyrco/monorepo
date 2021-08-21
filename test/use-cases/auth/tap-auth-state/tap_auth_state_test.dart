@@ -16,7 +16,9 @@ void main() {
   group('AuthService', () {
     test('_observeAuthState listens to stream and emits actions', () async {
       final stubbedAuthService = AuthService(
-          MockFirebaseAuth(), MockGoogleSignIn(), MockAppleSignInWrapper());
+          firebase: MockFirebaseAuth(),
+          google: MockGoogleSignIn(),
+          apple: MockSignInWithAppleWrapper());
 
       stubbedAuthService.streamOfStoreAuthState;
 

@@ -19,6 +19,12 @@ A Redux based architecture connected to Firebase streams.
 
 -  the only thing in `main.dart` is `runApp(AppWidget(...));`
 
+#### Tests
+
+*Test doubles* have the following types: 
+
+- commonly used test doubles that are available pre-configured are referred to as *examples* and take the form `ClassNameExample.configuration` eg. `UserExample.nullMembers`
+
 #### Assumed (by snippets)
 
 - `app_state.dart` lives in `lib/models/`
@@ -26,9 +32,13 @@ A Redux based architecture connected to Firebase streams.
 
 ### Optional setup
 
-- Use code snippets to save you *lots* of time & hassle
-  - *VS Code*: copy the `.vscode/project.code-snippets` file from the redfire package into your project
-- [Install Redux DevTools](docs/redux-devtools.md) if you want to visualise how state change flows through the app 
+Use code snippets to save you *lots* of time & hassle
+
+- *VS Code*: 
+  - copy the `.vscode/project.code-snippets` file from the redfire package into your project
+  - some snippets need to be changed slightly as they are designed for use by redfire... TODO: update here (longer term this will be handled by flireator)
+
+[Install Redux DevTools](docs/redux-devtools.md) if you want to visualise how state change flows through the app 
 
 ## Widgets 
 

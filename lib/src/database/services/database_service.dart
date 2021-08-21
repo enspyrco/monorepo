@@ -18,19 +18,26 @@ class DatabaseService {
     return ref.id;
   }
 
-  // TODO: use set/update in a single 'update' function with set/merge options?
-  // - need to read up on how each one works
-  // /// Takes a [ReduxModel] and the path where it should be saved
-  // Future<void> setDocumentAt(
-  //     {required String path, required ReduxModel entry}) async {
-  //   return await _firestore.doc(path).set(entry.toJson());
-  // }
+  /// Takes a [JsonMap] and the path where it should be saved
+  ///
+  /// If the document exists, its contents will be overwritten with the newly
+  /// provided json, unless "merge = true", whereby [json] is merged into the
+  /// existing document.
+  ///
+  /// If the document does not exist, it will be created.
+  Future<void> setDocument(
+      {required String at, required JsonMap to, bool merge = false}) async {
+    return await _firestore.doc(at).set(to);
+  }
 
-  // /// Takes a [JsonMap] consisting of the members to be updated and the values
-  // Future<void> updateDocumentAt(
-  //     {required String path, required JsonMap updates}) async {
-  //   return await _firestore.doc(path).update(updates);
-  // }
+  /// Takes a [JsonMap] consisting of the members to be updated and the path.
+  ///
+  /// Updates the fields of the document without overwriting the entire document.
+  ///
+  /// If the document does not exist, an error is produced.
+  Future<void> updateDocument({required String at, required JsonMap to}) async {
+    return await _firestore.doc(at).update(to);
+  }
 
   /// Tap the database to create a stream from the document at [path],
   /// converting the data in each [DocumentSnapshot] into a [JsonMap]

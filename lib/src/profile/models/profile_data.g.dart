@@ -67,4 +67,5 @@ const _$AuthorizationEnumEnumMap = {
 const _$ProvidersEnumEnumMap = {
   ProvidersEnum.google: 'GOOGLE',
   ProvidersEnum.asana: 'ASANA',
+  ProvidersEnum.gitHub: 'GIT_HUB',
 };

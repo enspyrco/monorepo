@@ -5,4 +5,6 @@ enum ProvidersEnum {
   google,
   @JsonValue('ASANA')
   asana,
+  @JsonValue('GIT_HUB')
+  gitHub,
 }

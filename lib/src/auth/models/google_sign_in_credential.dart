@@ -3,6 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'google_sign_in_credential.freezed.dart';
 part 'google_sign_in_credential.g.dart';
 
+/// A freezed version of google_sign_in/GoogleSignInAuthentication
+///
+/// Holds authentication tokens after sign in.
 @freezed
 class GoogleSignInCredential with _$GoogleSignInCredential {
   factory GoogleSignInCredential({

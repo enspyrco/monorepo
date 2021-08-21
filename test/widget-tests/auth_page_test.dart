@@ -14,7 +14,9 @@ void main() {
     testWidgets('displays sign in button', (WidgetTester tester) async {
       // create a basic store with middleware, services and reducers
       final stubbedAuthService = AuthService(
-          MockFirebaseAuth(), MockGoogleSignIn(), MockAppleSignInWrapper());
+          firebase: MockFirebaseAuth(),
+          google: MockGoogleSignIn(),
+          apple: MockSignInWithAppleWrapper());
 
       RedFireLocator.provide(authService: stubbedAuthService);
 

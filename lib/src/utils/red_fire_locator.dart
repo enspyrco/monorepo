@@ -9,8 +9,10 @@ import 'package:redfire/src/platform/services/platform_service.dart';
 class RedFireLocator {
   static AuthService getAuthService() =>
       _authService ??
-      AuthService(FirebaseAuth.instance,
-          GoogleSignIn(scopes: <String>['email']), AppleSignInWrapper());
+      AuthService(
+          firebase: FirebaseAuth.instance,
+          google: GoogleSignIn(scopes: <String>['email']),
+          apple: SignInWithAppleWrapper());
   static DatabaseService getDatabaseService() =>
       _databaseService ?? DatabaseService();
   static PlatformService getPlatformService() =>
