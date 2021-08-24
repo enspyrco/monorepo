@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:redfire/types.dart';
 import 'package:test/test.dart';
 import 'package:the_process/actions/project_sections/store_project_sections_action.dart';
 import 'package:the_process/models/project_sections/project_section.dart';
@@ -28,7 +29,7 @@ void main() {
         'Two StoreSectionsAction one created fromJson and another created with constructor should equal each other if they have same sections on same order ',
         () {
       var sections = <ProjectSection>[].lock;
-      var sectionsListJson = <Map<String, dynamic>>[];
+      var sectionsListJson = <JsonMap>[];
       for (var i = 0; i < 5; i++) {
         sections = sections.add(ProjectSection(
             name: 'name$i',

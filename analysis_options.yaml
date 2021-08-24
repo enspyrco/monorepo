@@ -3,6 +3,8 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude: 
     - build/**
+    - lib/*.g.dart
+    - lib/*.freezed.dart
     - lib/**/*.g.dart
     - lib/**/*.freezed.dart
     - test/**/*.g.dart

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:redfire/types.dart';
 
 part 'project_section.freezed.dart';
 part 'project_section.g.dart';
@@ -11,6 +12,6 @@ class ProjectSection with _$ProjectSection {
     required String useCasesDocId,
   }) = _ProjectSection;
 
-  factory ProjectSection.fromJson(Map<String, dynamic> json) =>
+  factory ProjectSection.fromJson(JsonMap json) =>
       _$ProjectSectionFromJson(json);
 }

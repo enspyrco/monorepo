@@ -1,6 +1,6 @@
 # the_process
 
-A tool to automate "the process".
+A tool to automate "the process", a system for organising collaboration.
 
 ## Help Docs
 

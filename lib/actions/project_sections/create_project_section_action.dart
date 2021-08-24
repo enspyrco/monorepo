@@ -9,6 +9,6 @@ class CreateProjectSectionAction
     with _$CreateProjectSectionAction, ReduxAction {
   factory CreateProjectSectionAction() = _CreateProjectSectionAction;
 
-  factory CreateProjectSectionAction.fromJson(Map<String, dynamic> json) =>
+  factory CreateProjectSectionAction.fromJson(JsonMap json) =>
       _$CreateProjectSectionActionFromJson(json);
 }

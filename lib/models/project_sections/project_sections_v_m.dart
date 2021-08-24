@@ -1,5 +1,6 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:redfire/types.dart';
 import 'package:the_process/models/project_sections/project_section.dart';
 
 part 'project_sections_v_m.freezed.dart';
@@ -14,7 +15,7 @@ class ProjectSectionsVM with _$ProjectSectionsVM {
     required bool creatingNewSection,
   }) = _ProjectSectionsVM;
 
-  factory ProjectSectionsVM.fromJson(Map<String, dynamic> json) =>
+  factory ProjectSectionsVM.fromJson(JsonMap json) =>
       _$ProjectSectionsVMFromJson(json);
 
   factory ProjectSectionsVM.init() => ProjectSectionsVM(

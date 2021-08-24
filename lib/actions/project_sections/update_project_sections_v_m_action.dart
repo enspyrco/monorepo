@@ -10,6 +10,6 @@ class UpdateProjectSectionsVMAction
   factory UpdateProjectSectionsVMAction({required bool creatingNewSection}) =
       _UpdateProjectSectionsVMAction;
 
-  factory UpdateProjectSectionsVMAction.fromJson(Map<String, dynamic> json) =>
+  factory UpdateProjectSectionsVMAction.fromJson(JsonMap json) =>
       _$UpdateProjectSectionsVMActionFromJson(json);
 }

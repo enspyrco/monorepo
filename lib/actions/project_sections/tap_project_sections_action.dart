@@ -9,6 +9,6 @@ class TapProjectSectionsAction with _$TapProjectSectionsAction, ReduxAction {
   factory TapProjectSectionsAction({@Default(false) bool turnOff}) =
       _TapProjectSectionsAction;
 
-  factory TapProjectSectionsAction.fromJson(Map<String, dynamic> json) =>
+  factory TapProjectSectionsAction.fromJson(JsonMap json) =>
       _$TapProjectSectionsActionFromJson(json);
 }

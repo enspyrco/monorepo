@@ -41,8 +41,7 @@ class AppState with _$AppState, RedFireState {
         settings: Settings.init(),
       );
 
-  factory AppState.fromJson(Map<String, Object?> json) =>
-      _$AppStateFromJson(json);
+  factory AppState.fromJson(JsonMap json) => _$AppStateFromJson(json);
 }
 
 void main() => runApp(AppWidget<AppState>(

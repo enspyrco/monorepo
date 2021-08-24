@@ -12,6 +12,6 @@ class StoreProjectSectionsAction
   factory StoreProjectSectionsAction({required IList<ProjectSection> list}) =
       _StoreProjectSectionsAction;
 
-  factory StoreProjectSectionsAction.fromJson(Map<String, dynamic> json) =>
+  factory StoreProjectSectionsAction.fromJson(JsonMap json) =>
       _$StoreProjectSectionsActionFromJson(json);
 }

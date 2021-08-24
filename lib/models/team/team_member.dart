@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:redfire/types.dart';
 
 part 'team_member.freezed.dart';
 part 'team_member.g.dart';
@@ -13,6 +14,5 @@ class TeamMember with _$TeamMember {
     required String photoURL,
   }) = _TeamMember;
 
-  factory TeamMember.fromJson(Map<String, dynamic> json) =>
-      _$TeamMemberFromJson(json);
+  factory TeamMember.fromJson(JsonMap json) => _$TeamMemberFromJson(json);
 }
