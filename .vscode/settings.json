@@ -1,0 +1,14 @@
+{
+  "files.exclude": {
+    "**/*.g.dart": true,
+    "**/*.freezed.dart": true,
+    "build": true,
+    "lib/generated_plugin_registrant.dart": true,
+    ".flutter-plugins": true,
+    ".flutter-plugins-dependencies": true,
+    ".metadata": true,
+    ".packages": true,
+    // "CHANGELOG.md": true,
+    // "LICENSE": true,
+  }
+}

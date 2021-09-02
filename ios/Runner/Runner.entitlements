@@ -6,7 +6,5 @@
 	<array>
 		<string>Default</string>
 	</array>
-	<key>com.apple.security.app-sandbox</key>
-	<true/>
 </dict>
 </plist>

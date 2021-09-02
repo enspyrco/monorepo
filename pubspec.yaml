@@ -5,15 +5,33 @@ version: 0.0.1
 
 environment:
   sdk: ">=2.13.0 <3.0.0"
+  flutter: ">=2.6.0-0.0.pre"
 
 dependencies:
   flutter:
     sdk: flutter
+  
+  redfire:
+    git: https://github.com/enspyrco/redfire.git
+    # path: /Users/nick/git/orgs/enspyrco/redfire
+  freezed_annotation:
+  json_annotation:
+  redux:
+  flutter_redux:
+  fast_immutable_collections:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+
+  redfire_test:
+    git: https://github.com/enspyrco/redfire_test.git
+    # path: /Users/nick/git/orgs/enspyrco/redfire_test
+
+  build_runner:
+  freezed:
+  json_serializable:
 
 flutter:
   uses-material-design: true

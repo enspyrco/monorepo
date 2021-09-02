@@ -5,9 +5,22 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "adventures",
+      "name": "vs-code-device",
       "request": "launch",
       "type": "dart"
+    },
+    {
+      "name": "macos",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "macos"
+    },
+    {
+      "name": "web",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
+      "args": ["--web-hostname", "localhost", "--web-port", "5000"]
     },
     {
       "name": "adventures (profile mode)",

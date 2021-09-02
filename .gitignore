@@ -44,3 +44,17 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+
+# Firebase config files
+/ios/Runner/GoogleService-Info.plist
+/macos/Runner/GoogleService-Info.plist
+/android/app/google-services.json
+/web/index.html
+
+# Firebase hosting
+.firebase/hosting.*.cache
