@@ -9,8 +9,7 @@ extension PageDataListExtension on IList<PageData> {
   /// Creates a list of [MaterialPage] from a list of [PageData]
   /// - used as the history for [Navigator]
   List<MaterialPage> toMaterialPages<T extends RedFireState>() {
-    return map<MaterialPage>((pageData) =>
-            PageDataMaps.pageDataToPage['${pageData.runtimeType}']!(pageData))
-        .toList();
+    return map<MaterialPage>(
+        (pageData) => toMaterialPageMap[pageData.typeName]!(pageData)).toList();
   }
 }

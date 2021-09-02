@@ -9,6 +9,5 @@ part 'sign_out_action.g.dart';
 class SignOutAction with _$SignOutAction, ReduxAction {
   factory SignOutAction() = _SignOutAction;
 
-  factory SignOutAction.fromJson(Map<String, dynamic> json) =>
-      _$SignOutActionFromJson(json);
+  factory SignOutAction.fromJson(JsonMap json) => _$SignOutActionFromJson(json);
 }

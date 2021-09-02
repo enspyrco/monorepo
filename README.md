@@ -4,11 +4,11 @@ A Redux based architecture connected to Firebase streams.
 
 [Notes](https://docs.google.com/document/d/1rBQXUmoKRiEMn_fNqlosWEt30sysB9-d4ucPWcVn8QI/edit?usp=sharing)
 
-## Setup 
+## Setup
 
 - [Setup RedFire](docs/setup-redfire.md)
 - [Setup GitHub](docs/setup-github.md)
-- [Configure Firebase](docs/setup-firebase.md)
+- [Configure Firebase](docs/configure-firebase.md)
 - [Setup Auth](docs/setup-auth.md)
 - [Setup CI/CD](docs/setup-cicd.md)
 - [Setup Databases](docs/setup-databases.md)
@@ -17,17 +17,11 @@ A Redux based architecture connected to Firebase streams.
 
 #### Suggestions
 
--  the only thing in `main.dart` is `runApp(AppWidget(...));`
-
-#### Tests
-
-*Test doubles* have the following types: 
-
-- commonly used test doubles that are available pre-configured are referred to as *examples* and take the form `ClassNameExample.configuration` eg. `UserExample.nullMembers`
+-  the only things in `main.dart` are `AppState` and `runApp(AppWidget(...));`
 
 #### Assumed (by snippets)
 
-- `app_state.dart` lives in `lib/models/`
+- `AppState` lives in `main.dart`
 - `main_page.dart` lives in `lib/pages/`
 
 ### Optional setup
@@ -44,7 +38,7 @@ Use code snippets to save you *lots* of time & hassle
 
 The AppState for each package using `redfire` is required to use RedFireState as a mixin.
 
-When using widgets from `redfire`, a type parameter of the store's state must be used, ie. Widget<RedFireAppState>.  This is so that the parameterised StoreConnector<AppState, Output> can find the StoreProvider<RedFireAppState>.
+When using widgets from `redfire`, a type parameter of the store's state must be used, ie. `Widget<AppState>`.  This is so that the `AppState` type parameter is used in any of the widget's child `StoreConnector<AppState, Output>` widgets, and they can in turn find the `StoreProvider<AppState>`.
 
 ## In Progress
 
@@ -54,9 +48,15 @@ See [In Progress](docs/in-progress.md) for discussion of current work and future
 
 ### Naming
 
+#### Page
+
 A `Page` is something that has corresponding objects of type `PageData` (stored in the AppState) and `MaterialPage` (passed to the Navigator to create the navigation stack).
 
 ### Navigation
+
+`PageData` subtypes are assumed to have a static `staticTypeName` member
+and an instance member `typeName` that refers to the static member.  Using the snippets will create this automatically.
+- this allows us to easily get the type of a `PageData` in the `AppState`'s `pages` at runtime so we can find the appropriate toMaterialPage function
 
 Still very much a work in progress and very clunky, but...
 
@@ -69,3 +69,7 @@ Still very much a work in progress and very clunky, but...
 - use 
   - `dispatch<AppState>(PushPageAction(BlahPageData()))` to push the Page onto the stack
   - `dispatch<AppState>(RemoveCurrentPageAction())` to pop a Page
+
+### Testing 
+
+See [Testing](docs/testing.md)

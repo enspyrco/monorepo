@@ -71,7 +71,7 @@ class AppState with _$AppState, RedFireState {
     /// Additional init code
   );
  
-  factory AppState.fromJson(Map<String, Object?> json) =>
+  factory AppState.fromJson(JsonMap json) =>
     _$AppStateFromJson(json);
 }
  
@@ -120,6 +120,8 @@ Add to `analysis_options.yaml`:
 analyzer:
   exclude: 
     - build/**
+    - lib/*.g.dart
+    - lib/*.freezed.dart
     - lib/**/*.g.dart
     - lib/**/*.freezed.dart
     - test/**/*.mocks.dart
@@ -184,3 +186,15 @@ targets:
 This is needed because `freezed` generates the toJson. In the [FIC example](https://github.com/marcglasberg/fast_immutable_collections#11-json-support) they have an explicit toJson added manually.
 
 We can look into better ways around this if it is problematic.
+
+### (possibly) Add a launch configuration for web that uses port 5000:
+
+```json
+{
+  "name": "web",
+  "request": "launch",
+  "type": "dart",
+  "deviceId": "chrome",
+  "args": ["--web-hostname", "localhost", "--web-port", "5000"]
+},
+```

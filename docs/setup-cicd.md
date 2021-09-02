@@ -5,7 +5,12 @@
 #### CD for Firebase hosting
 
 - setup hosting -> Firebase console -> Hosting -> Get Started 
-- follow the prompts, including adding CI (use "flutter build web" for the predeploy script)
+- follow the prompts, including adding CI 
+  - use "build/web" for the public directory
+  - enter 'y' for "rewrite all urls to /index.html"
+  - enter 'y' for "Set up automatic builds and deploys with GitHub?"
+  - use "flutter build web" for the predeploy script
+  - if there is an error: follow any Required Action prompts in the output
 - edit the created .yml file to add the following lines after `- uses: actions/checkout@v2`:
 
 ```yml

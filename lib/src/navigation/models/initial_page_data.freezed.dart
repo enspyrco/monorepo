@@ -76,8 +76,8 @@ class __$InitialPageDataCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_InitialPageData implements _InitialPageData {
-  _$_InitialPageData();
+class _$_InitialPageData extends _InitialPageData {
+  _$_InitialPageData() : super._();
 
   factory _$_InitialPageData.fromJson(Map<String, dynamic> json) =>
       _$$_InitialPageDataFromJson(json);
@@ -101,8 +101,9 @@ class _$_InitialPageData implements _InitialPageData {
   }
 }
 
-abstract class _InitialPageData implements InitialPageData {
+abstract class _InitialPageData extends InitialPageData {
   factory _InitialPageData() = _$_InitialPageData;
+  _InitialPageData._() : super._();
 
   factory _InitialPageData.fromJson(Map<String, dynamic> json) =
       _$_InitialPageData.fromJson;

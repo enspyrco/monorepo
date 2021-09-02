@@ -1,3 +1,5 @@
+import 'package:redfire/types.dart';
+
 abstract class ReduxAction {
-  Map<String, Object?> toJson();
+  JsonMap toJson();
 }

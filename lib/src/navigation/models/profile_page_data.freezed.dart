@@ -76,8 +76,8 @@ class __$ProfilePageDataCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProfilePageData implements _ProfilePageData {
-  _$_ProfilePageData();
+class _$_ProfilePageData extends _ProfilePageData {
+  _$_ProfilePageData() : super._();
 
   factory _$_ProfilePageData.fromJson(Map<String, dynamic> json) =>
       _$$_ProfilePageDataFromJson(json);
@@ -101,8 +101,9 @@ class _$_ProfilePageData implements _ProfilePageData {
   }
 }
 
-abstract class _ProfilePageData implements ProfilePageData {
+abstract class _ProfilePageData extends ProfilePageData {
   factory _ProfilePageData() = _$_ProfilePageData;
+  _ProfilePageData._() : super._();
 
   factory _ProfilePageData.fromJson(Map<String, dynamic> json) =
       _$_ProfilePageData.fromJson;

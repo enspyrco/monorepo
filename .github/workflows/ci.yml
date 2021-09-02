@@ -31,9 +31,8 @@ jobs:
         channel: 'dev'
 
     ############################################
-    # get dependencies, generate code and run tests
+    # get dependencies, and run tests
     ############################################
     - run: flutter pub get
-    - run: flutter pub run build_runner build
     - run: flutter test --coverage
     

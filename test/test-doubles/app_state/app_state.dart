@@ -28,6 +28,5 @@ class AppState with _$AppState, RedFireState {
         auth: AuthState(step: AuthenticationEnum.waitingForInput),
       );
 
-  factory AppState.fromJson(Map<String, Object?> json) =>
-      _$AppStateFromJson(json);
+  factory AppState.fromJson(JsonMap json) => _$AppStateFromJson(json);
 }

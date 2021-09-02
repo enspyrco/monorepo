@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/src/types/redux_action.dart';
+import 'package:redfire/src/types/typedefs.dart';
 
 part 'sign_in_with_google_action.freezed.dart';
 part 'sign_in_with_google_action.g.dart';
@@ -8,6 +9,6 @@ part 'sign_in_with_google_action.g.dart';
 class SignInWithGoogleAction with _$SignInWithGoogleAction, ReduxAction {
   factory SignInWithGoogleAction() = _SignInWithGoogleAction;
 
-  factory SignInWithGoogleAction.fromJson(Map<String, Object?> json) =>
+  factory SignInWithGoogleAction.fromJson(JsonMap json) =>
       _$SignInWithGoogleActionFromJson(json);
 }

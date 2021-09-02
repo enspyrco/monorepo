@@ -8,6 +8,6 @@ part 'launch_url_action.g.dart';
 class LaunchUrlAction with _$LaunchUrlAction, ReduxAction {
   factory LaunchUrlAction({required String url}) = _LaunchUrlAction;
 
-  factory LaunchUrlAction.fromJson(Map<String, dynamic> json) =>
+  factory LaunchUrlAction.fromJson(JsonMap json) =>
       _$LaunchUrlActionFromJson(json);
 }

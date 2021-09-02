@@ -4,16 +4,15 @@
 
 ## Why do I get errors about not finding StoreProvider?
 
-We parameterise the functions with <T extends RedFireState> and then they must be used with `AppState` as a type parameter (eg.)
+We parameterise the extension methods with `<T extends RedFireState>` so they must be used with `<AppState>` so that the `StoreProvider<AppState>` can be found, ie use:
 
 ```Dart
-dispatch<AppState>(...) 
+store.dispatch<AppState>(...) 
 ```
 
 Problems:
-- extra typing
-- easy to forget as
-:warning: this is a runtime error :warning:
+1. extra typing
+2. easy to forget as :warning: this will be a *runtime* error :warning:
 
 ### Ideas 
 - make an analyzer plugin that checks for the appropriate type parameter

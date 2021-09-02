@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:redfire/src/types/typedefs.dart';
 
 part 'auth_provider_data.freezed.dart';
 part 'auth_provider_data.g.dart';
@@ -25,6 +26,6 @@ class AuthProviderData with _$AuthProviderData {
     String? phoneNumber,
   }) = _AuthProviderData;
 
-  factory AuthProviderData.fromJson(Map<String, dynamic> json) =>
+  factory AuthProviderData.fromJson(JsonMap json) =>
       _$AuthProviderDataFromJson(json);
 }

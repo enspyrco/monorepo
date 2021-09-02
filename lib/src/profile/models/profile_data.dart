@@ -15,6 +15,5 @@ class ProfileData with _$ProfileData {
     required Map<ProvidersEnum, AuthorizationEnum> authorizationStatus,
   }) = _ProfileData;
 
-  factory ProfileData.fromJson(Map<String, dynamic> json) =>
-      _$ProfileDataFromJson(json);
+  factory ProfileData.fromJson(JsonMap json) => _$ProfileDataFromJson(json);
 }

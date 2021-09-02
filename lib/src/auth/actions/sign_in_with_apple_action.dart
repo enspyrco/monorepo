@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/src/types/redux_action.dart';
+import 'package:redfire/src/types/typedefs.dart';
 
 part 'sign_in_with_apple_action.freezed.dart';
 part 'sign_in_with_apple_action.g.dart';
@@ -8,6 +9,6 @@ part 'sign_in_with_apple_action.g.dart';
 class SignInWithAppleAction with _$SignInWithAppleAction, ReduxAction {
   factory SignInWithAppleAction() = _SignInWithAppleAction;
 
-  factory SignInWithAppleAction.fromJson(Map<String, Object?> json) =>
+  factory SignInWithAppleAction.fromJson(JsonMap json) =>
       _$SignInWithAppleActionFromJson(json);
 }

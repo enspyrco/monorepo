@@ -16,8 +16,12 @@ class ObserveAuthStateMiddleware<T extends RedFireState>
             // listen to the stream that emits actions on any auth change
             // and call dispatch on the action
             authService.streamOfStoreAuthState.listen((action) {
-              store.dispatch(action);
-            });
+              try {
+                store.dispatch(action);
+              } catch (error, trace) {
+                store.dispatchProblem(error, trace);
+              }
+            }, onError: store.dispatchProblem);
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           }

@@ -5,6 +5,8 @@ import 'package:redfire/src/problems/models/problem_info.dart';
 import 'package:redfire/src/profile/models/profile_data.dart';
 import 'package:redfire/src/settings/models/settings.dart';
 
+import 'typedefs.dart';
+
 abstract class RedFireState {
   IList<ProblemInfo> get problems;
   Settings get settings;
@@ -14,5 +16,5 @@ abstract class RedFireState {
   /// Navigation
   IList<PageData> get pages;
 
-  Map<String, Object?> toJson();
+  JsonMap toJson();
 }

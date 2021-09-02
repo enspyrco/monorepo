@@ -25,24 +25,41 @@ void main() {
       RedFireLocator.provide(authService: mockAuthService);
 
       // Create then invoke the middleware under test.
-      final middleware = ObserveAuthStateMiddleware();
-      await middleware(
-          mockStore, ObserveAuthStateAction(), (dynamic _) => null);
+      await ObserveAuthStateMiddleware()(
+          mockStore, ObserveAuthStateAction(), emptyAppReducer);
 
       final data = AuthUserDataExample.normal;
       final action = StoreAuthUserDataAction(data);
       controller.add(action);
 
-      verify<dynamic>(mockStore.dispatch(any));
+      await untilCalled<dynamic>(mockStore.dispatch(action));
+    });
 
-      // controller.stream.listen(expectAsync1((action) {
-      //   expect(action is AddProblem, true);
-      //   final addProblemAction = action as AddProblem;
-      //   final problemInfo = addProblemAction.problem.info;
-      //   expect(problemInfo['type'], UnimplementedError);
-      //   expect(problemInfo['location'],
-      //       'ConnectAndConvert on FirebaseAuth -> connectAuthStateToStore'); // StoreUserData
-      // }, count: 1));
+    // We can't verify [store.dispatchProblem] (as it is an extension member)
+    // so we use the FakeStore and listen for dispatched actions.
+    test('should dispatch a problem if store throws', () async {
+      // Setup and provide a mock auth service
+      final controller = StreamController<ReduxAction>();
+      final mockAuthService = MockAuthService();
+      when(mockAuthService.streamOfStoreAuthState)
+          .thenAnswer((_) => controller.stream);
+      RedFireLocator.provide(authService: mockAuthService);
+
+      final fakeStore = FakeStore(AppState.init());
+
+      await ObserveAuthStateMiddleware()(
+          fakeStore, ObserveAuthStateAction(), emptyAppReducer);
+
+      // Setup the FakeStore to throw when asked to dispatch action.
+      final action = StoreAuthUserDataAction(AuthUserDataExample.normal);
+      fakeStore.throwOn(action);
+
+      // Simulate an auth state change by making the mock auth service emit a StoreAuthStateAction
+      controller.add(action);
+
+      // Check that an AddProblemAction was dispatched.
+      expect(fakeStore.dispatches,
+          emitsInOrder(<dynamic>[isA<AddProblemAction>()]));
     });
   });
 }

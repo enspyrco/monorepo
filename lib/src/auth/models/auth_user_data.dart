@@ -1,6 +1,7 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/src/auth/models/auth_provider_data.dart';
+import 'package:redfire/src/types/typedefs.dart';
 
 part 'auth_user_data.freezed.dart';
 part 'auth_user_data.g.dart';
@@ -26,6 +27,5 @@ class AuthUserData with _$AuthUserData {
       .where((provider) => provider.providerId == 'github.com')
       .isNotEmpty;
 
-  factory AuthUserData.fromJson(Map<String, dynamic> json) =>
-      _$AuthUserDataFromJson(json);
+  factory AuthUserData.fromJson(JsonMap json) => _$AuthUserDataFromJson(json);
 }

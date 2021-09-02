@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:redfire/src/types/typedefs.dart';
 
 part 'google_sign_in_credential.freezed.dart';
 part 'google_sign_in_credential.g.dart';
@@ -19,6 +20,6 @@ class GoogleSignInCredential with _$GoogleSignInCredential {
     String? serverAuthCode,
   }) = _GoogleSignInCredential;
 
-  factory GoogleSignInCredential.fromJson(Map<String, dynamic> json) =>
+  factory GoogleSignInCredential.fromJson(JsonMap json) =>
       _$GoogleSignInCredentialFromJson(json);
 }

@@ -1,3 +1,7 @@
+# Update to Blaze plan
+
+[< Configure Firebase](./configure-firebase.md)
+
 Click "Spark Plan":
 
 <img width="458" alt="Screen Shot 2021-08-30 at 11 31 56 pm" src="https://user-images.githubusercontent.com/1059276/131348251-1ab5d9f5-75d9-44e0-9497-c3adba1d8008.png">

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:redfire/src/types/typedefs.dart';
 
 part 'apple_id_credential.freezed.dart';
 part 'apple_id_credential.g.dart';
@@ -65,6 +66,6 @@ class AppleIdCredential with _$AppleIdCredential {
     String? state,
   }) = _AppleIdCredential;
 
-  factory AppleIdCredential.fromJson(Map<String, dynamic> json) =>
+  factory AppleIdCredential.fromJson(JsonMap json) =>
       _$AppleIdCredentialFromJson(json);
 }

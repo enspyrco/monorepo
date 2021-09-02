@@ -1,14 +1,19 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/navigation/models/page_data.dart';
-import 'package:redfire/src/problems/models/problem_info.dart';
+import 'package:redfire/types.dart';
 
 part 'problem_page_data.freezed.dart';
 part 'problem_page_data.g.dart';
 
 @freezed
-class ProblemPageData extends PageData with _$ProblemPageData {
+class ProblemPageData extends PageData with _$ProblemPageData, ReduxModel {
+  static String staticTypeName = 'ProblemPageData';
+
+  ProblemPageData._();
   factory ProblemPageData(ProblemInfo problem) = _ProblemPageData;
 
-  factory ProblemPageData.fromJson(Map<String, Object?> json) =>
+  factory ProblemPageData.fromJson(JsonMap json) =>
       _$ProblemPageDataFromJson(json);
+
+  @override
+  String get typeName => staticTypeName;
 }

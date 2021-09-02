@@ -18,15 +18,3 @@ Add a meta tag to the `head` section of `index.html`, of the form:
 ```
 
 Set up the app’s OAuth consent screen in the Google Cloud Console https://console.developers.google.com/apis/credentials/consent?project=${your_project_number}
-
-Add a launch configuration that uses port 5000:
-
-```json
-{
-  "name": "web",
-  "request": "launch",
-  "type": "dart",
-  "deviceId": "chrome",
-  "args": ["--web-hostname", "localhost", "--web-port", "5000"]
-},
-```

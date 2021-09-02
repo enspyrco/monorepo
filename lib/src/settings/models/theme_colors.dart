@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:redfire/src/types/typedefs.dart';
 
 part 'theme_colors.freezed.dart';
 part 'theme_colors.g.dart';
@@ -11,8 +12,7 @@ class ThemeColors with _$ThemeColors {
     required int error,
   }) = _ThemeColors;
 
-  factory ThemeColors.fromJson(Map<String, dynamic> json) =>
-      _$ThemeColorsFromJson(json);
+  factory ThemeColors.fromJson(JsonMap json) => _$ThemeColorsFromJson(json);
 
   // colors
 

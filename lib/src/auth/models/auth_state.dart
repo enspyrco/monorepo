@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:redfire/src/types/typedefs.dart';
 
 import '../enums/authentication_enum.dart';
 import 'auth_user_data.dart';
@@ -15,6 +16,5 @@ class AuthState with _$AuthState {
   factory AuthState.init() =>
       AuthState(step: AuthenticationEnum.waitingForInput);
 
-  factory AuthState.fromJson(Map<String, Object?> json) =>
-      _$AuthStateFromJson(json);
+  factory AuthState.fromJson(JsonMap json) => _$AuthStateFromJson(json);
 }

@@ -4,6 +4,7 @@ import 'package:redfire/src/settings/enums/platform_enum.dart';
 import 'package:redfire/src/settings/enums/theme_brightness_enum.dart';
 import 'package:redfire/src/settings/models/theme_colors.dart';
 import 'package:redfire/src/settings/models/theme_set.dart';
+import 'package:redfire/src/types/typedefs.dart';
 
 part 'settings.freezed.dart';
 part 'settings.g.dart';
@@ -25,6 +26,5 @@ class Settings with _$Settings {
       brightnessMode: BrightnessModeEnum.light,
       platform: PlatformsEnum.unknown);
 
-  factory Settings.fromJson(Map<String, dynamic> json) =>
-      _$SettingsFromJson(json);
+  factory Settings.fromJson(JsonMap json) => _$SettingsFromJson(json);
 }

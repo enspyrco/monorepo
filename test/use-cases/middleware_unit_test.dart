@@ -31,7 +31,7 @@ void main() {
       middleware.call(fakeStore, action, (dynamic _) => null);
 
       // Error should be caught and AddProblemAction dispatched.
-      expect(fakeStore.dispatchedActions.last is AddProblemAction, true);
+      expect(fakeStore.dispatched.last is AddProblemAction, true);
     });
 
     test('SignInWithApple catches error', () {
@@ -51,7 +51,7 @@ void main() {
       middleware.call(fakeStore, action, (dynamic _) => null);
 
       // Error should be caught and AddProblemAction dispatched.
-      expect(fakeStore.dispatchedActions.last is AddProblemAction, true);
+      expect(fakeStore.dispatched.last is AddProblemAction, true);
     });
 
     test('SignInWithGoogle catches error', () {
@@ -71,7 +71,7 @@ void main() {
       middleware.call(fakeStore, action, (dynamic _) => null);
 
       // Error should be caught and AddProblemAction dispatched.
-      expect(fakeStore.dispatchedActions.last is AddProblemAction, true);
+      expect(fakeStore.dispatched.last is AddProblemAction, true);
     });
 
     test('SignOut catches error', () {
@@ -91,7 +91,7 @@ void main() {
       middleware.call(fakeStore, action, (dynamic _) => null);
 
       // Error should be caught and AddProblemAction dispatched.
-      expect(fakeStore.dispatchedActions.last is AddProblemAction, true);
+      expect(fakeStore.dispatched.last is AddProblemAction, true);
     });
 
     test('DetectPlatform catches error', () {
@@ -113,7 +113,7 @@ void main() {
       middleware.call(fakeStore, action, (dynamic _) => null);
 
       // Error should be caught and AddProblemAction dispatched.
-      expect(fakeStore.dispatchedActions.last is AddProblemAction, true);
+      expect(fakeStore.dispatched.last is AddProblemAction, true);
     });
 
     test('LaunchUrl catches error', () {
@@ -133,7 +133,7 @@ void main() {
       middleware.call(fakeStore, action, (dynamic _) => null);
 
       // Error should be caught and AddProblemAction dispatched.
-      expect(fakeStore.dispatchedActions.last is AddProblemAction, true);
+      expect(fakeStore.dispatched.last is AddProblemAction, true);
     });
   });
 }

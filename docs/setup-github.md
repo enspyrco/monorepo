@@ -3,6 +3,8 @@
 [< README](../README.md)
 
 - Settings... Options 
+  - (optionally) remove anything not wanted (Wikis, Projects, Allow merge commits, etc.)
+  - select "Allow auto merge" if desired
   - select "Automatically delete head branches"
 
 - Settings... Branches

@@ -21,7 +21,6 @@ import '../redfire_initial_actions.dart';
 
 class AppWidget<T extends RedFireState> extends StatefulWidget {
   late final Store<T> _store;
-  final PageDataMaps _pageDataMaps;
   final FirebaseWrapper _firebase;
   final String _title;
   final List<ReduxAction> _initialActions;
@@ -37,7 +36,6 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
       String? title})
       : _store = initializedStore,
         _firebase = firebaseWrapper ?? FirebaseWrapper(),
-        _pageDataMaps = PageDataMaps<T>(mainPage, pageTransforms),
         _title = title ?? 'Title Not Set',
         _initialActions = [],
         super(key: key);
@@ -53,10 +51,10 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
       FirebaseWrapper? firebaseWrapper,
       String? title})
       : _firebase = firebaseWrapper ?? FirebaseWrapper(),
-        _pageDataMaps = PageDataMaps<T>(mainPage, pageTransforms),
         _title = title ?? 'Title Not Set',
         _initialActions = initialActions ?? [],
         super(key: key) {
+    addPageTransforms<T>(mainPage, pageTransforms);
     // create the redux store, combining any provided reducers and middleware
     _store = Store<T>((redfireReducers<T>() + (reducers ?? [])).combine(),
         initialState: initialState,

@@ -1,3 +1,5 @@
+import 'typedefs.dart';
+
 abstract class ReduxModel {
-  Map<String, Object?> toJson();
+  JsonMap toJson();
 }

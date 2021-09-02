@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/src/problems/models/problem_info.dart';
 import 'package:redfire/src/types/redux_action.dart';
+import 'package:redfire/src/types/typedefs.dart';
 
 part 'remove_problem_action.freezed.dart';
 part 'remove_problem_action.g.dart';
@@ -9,6 +10,6 @@ part 'remove_problem_action.g.dart';
 class RemoveProblemAction with _$RemoveProblemAction, ReduxAction {
   factory RemoveProblemAction(ProblemInfo info) = _RemoveProblemAction;
 
-  factory RemoveProblemAction.fromJson(Map<String, dynamic> json) =>
+  factory RemoveProblemAction.fromJson(JsonMap json) =>
       _$RemoveProblemActionFromJson(json);
 }

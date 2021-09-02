@@ -10,6 +10,6 @@ class StoreProfileDataAction with _$StoreProfileDataAction, ReduxAction {
   factory StoreProfileDataAction({required ProfileData data}) =
       _StoreProfileDataAction;
 
-  factory StoreProfileDataAction.fromJson(Map<String, dynamic> json) =>
+  factory StoreProfileDataAction.fromJson(JsonMap json) =>
       _$StoreProfileDataActionFromJson(json);
 }

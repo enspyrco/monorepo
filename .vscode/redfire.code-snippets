@@ -12,7 +12,7 @@
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxModel  {",
       "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({ ${1} }) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
       "",
-      "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(Map<String, Object?> json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
+      "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
       "}"
     ],
     "description": "redfire model with freezed"
@@ -28,9 +28,15 @@
       "",
       "@freezed",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} extends PageData with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxModel  {",
+      "\tstatic String staticTypeName = '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}';",
+      "",
+      "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._();",
       "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({ ${1} }) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
       "",
-      "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(Map<String, Object?> json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
+      "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
+      "",
+      "\t@override",
+      "\tString get typeName => staticTypeName;",
       "}"
     ],
     "description": "redfire page data with freezed"
@@ -64,7 +70,7 @@
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxAction {",
       "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({${1}}) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
       "",
-      "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(Map<String, Object?> json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
+      "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
       "}"
     ],
     "description": "redfire action with freezed"
@@ -82,7 +88,7 @@
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxAction {",
       "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({@Default(false) bool turnOff}) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
       "",
-      "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(Map<String, Object?> json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
+      "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
       "}"
     ],
     "description": "redfire tap action with freezed"

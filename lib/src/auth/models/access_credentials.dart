@@ -1,5 +1,6 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:redfire/types.dart';
 
 part 'access_credentials.freezed.dart';
 part 'access_credentials.g.dart';
@@ -22,6 +23,6 @@ class AccessCredentials with _$AccessCredentials {
     required IList<String> scopes,
   }) = _AccessCredentials;
 
-  factory AccessCredentials.fromJson(Map<String, dynamic> json) =>
+  factory AccessCredentials.fromJson(JsonMap json) =>
       _$AccessCredentialsFromJson(json);
 }
