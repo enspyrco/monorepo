@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:redfire/src/app-init/widgets/initializing_error_page.dart';
 import 'package:redfire/src/app-init/widgets/initializing_indicator.dart';
-import 'package:redfire/src/auth/widgets/auth/auth_page_buttons/apple_sign_in_button.dart';
-import 'package:redfire/src/auth/widgets/auth/auth_page_buttons/google_sign_in_button.dart';
+import 'package:redfire/src/auth/widgets/auth_page_buttons/apple_sign_in_button.dart';
+import 'package:redfire/src/auth/widgets/auth_page_buttons/google_sign_in_button.dart';
 import 'package:redfire/types.dart';
 import 'package:redfire/widgets.dart';
 import 'package:redfire_test/redfire_test.dart';

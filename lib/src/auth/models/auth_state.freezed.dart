@@ -21,8 +21,14 @@ AuthState _$AuthStateFromJson(Map<String, dynamic> json) {
 class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
-  _AuthState call({AuthUserData? userData, required AuthenticationEnum step}) {
+  _AuthState call(
+      {String? email,
+      List<String>? signInMethodsForEmail,
+      AuthUserData? userData,
+      required AuthenticationEnum step}) {
     return _AuthState(
+      email: email,
+      signInMethodsForEmail: signInMethodsForEmail,
       userData: userData,
       step: step,
     );
@@ -38,6 +44,8 @@ const $AuthState = _$AuthStateTearOff();
 
 /// @nodoc
 mixin _$AuthState {
+  String? get email => throw _privateConstructorUsedError;
+  List<String>? get signInMethodsForEmail => throw _privateConstructorUsedError;
   AuthUserData? get userData => throw _privateConstructorUsedError;
   AuthenticationEnum get step => throw _privateConstructorUsedError;
 
@@ -51,7 +59,11 @@ mixin _$AuthState {
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res>;
-  $Res call({AuthUserData? userData, AuthenticationEnum step});
+  $Res call(
+      {String? email,
+      List<String>? signInMethodsForEmail,
+      AuthUserData? userData,
+      AuthenticationEnum step});
 
   $AuthUserDataCopyWith<$Res>? get userData;
 }
@@ -66,10 +78,20 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? email = freezed,
+    Object? signInMethodsForEmail = freezed,
     Object? userData = freezed,
     Object? step = freezed,
   }) {
     return _then(_value.copyWith(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signInMethodsForEmail: signInMethodsForEmail == freezed
+          ? _value.signInMethodsForEmail
+          : signInMethodsForEmail // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       userData: userData == freezed
           ? _value.userData
           : userData // ignore: cast_nullable_to_non_nullable
@@ -99,7 +121,11 @@ abstract class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
           _AuthState value, $Res Function(_AuthState) then) =
       __$AuthStateCopyWithImpl<$Res>;
   @override
-  $Res call({AuthUserData? userData, AuthenticationEnum step});
+  $Res call(
+      {String? email,
+      List<String>? signInMethodsForEmail,
+      AuthUserData? userData,
+      AuthenticationEnum step});
 
   @override
   $AuthUserDataCopyWith<$Res>? get userData;
@@ -116,10 +142,20 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? email = freezed,
+    Object? signInMethodsForEmail = freezed,
     Object? userData = freezed,
     Object? step = freezed,
   }) {
     return _then(_AuthState(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signInMethodsForEmail: signInMethodsForEmail == freezed
+          ? _value.signInMethodsForEmail
+          : signInMethodsForEmail // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       userData: userData == freezed
           ? _value.userData
           : userData // ignore: cast_nullable_to_non_nullable
@@ -135,11 +171,19 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_AuthState implements _AuthState {
-  _$_AuthState({this.userData, required this.step});
+  _$_AuthState(
+      {this.email,
+      this.signInMethodsForEmail,
+      this.userData,
+      required this.step});
 
   factory _$_AuthState.fromJson(Map<String, dynamic> json) =>
       _$$_AuthStateFromJson(json);
 
+  @override
+  final String? email;
+  @override
+  final List<String>? signInMethodsForEmail;
   @override
   final AuthUserData? userData;
   @override
@@ -147,13 +191,18 @@ class _$_AuthState implements _AuthState {
 
   @override
   String toString() {
-    return 'AuthState(userData: $userData, step: $step)';
+    return 'AuthState(email: $email, signInMethodsForEmail: $signInMethodsForEmail, userData: $userData, step: $step)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _AuthState &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.signInMethodsForEmail, signInMethodsForEmail) ||
+                const DeepCollectionEquality().equals(
+                    other.signInMethodsForEmail, signInMethodsForEmail)) &&
             (identical(other.userData, userData) ||
                 const DeepCollectionEquality()
                     .equals(other.userData, userData)) &&
@@ -164,6 +213,8 @@ class _$_AuthState implements _AuthState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(signInMethodsForEmail) ^
       const DeepCollectionEquality().hash(userData) ^
       const DeepCollectionEquality().hash(step);
 
@@ -180,12 +231,18 @@ class _$_AuthState implements _AuthState {
 
 abstract class _AuthState implements AuthState {
   factory _AuthState(
-      {AuthUserData? userData,
+      {String? email,
+      List<String>? signInMethodsForEmail,
+      AuthUserData? userData,
       required AuthenticationEnum step}) = _$_AuthState;
 
   factory _AuthState.fromJson(Map<String, dynamic> json) =
       _$_AuthState.fromJson;
 
+  @override
+  String? get email => throw _privateConstructorUsedError;
+  @override
+  List<String>? get signInMethodsForEmail => throw _privateConstructorUsedError;
   @override
   AuthUserData? get userData => throw _privateConstructorUsedError;
   @override

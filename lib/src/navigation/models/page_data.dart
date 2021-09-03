@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/src/app-init/widgets/initial_page.dart';
-import 'package:redfire/src/auth/widgets/auth/auth_page.dart';
+import 'package:redfire/src/auth/widgets/auth_page.dart';
 import 'package:redfire/src/navigation/models/initial_page_data.dart';
+import 'package:redfire/src/problems/widgets/problem_page.dart';
+import 'package:redfire/src/profile/widgets/profile_page.dart';
 import 'package:redfire/types.dart';
 
 import '../../types/typedefs.dart';
@@ -42,22 +44,21 @@ void addPageTransforms<T extends RedFireState>(
       MaterialPage<InitialPage>(
           key: const ValueKey(InitialPage),
           child: InitialPage<T>(AuthPage<T>(), mainPage));
-  toMaterialPageMap[InitialPageData.staticTypeName] = (_) =>
-      MaterialPage<InitialPage>(
-          key: const ValueKey(InitialPage),
-          child: InitialPage<T>(AuthPage<T>(), mainPage));
-  toMaterialPageMap[InitialPageData.staticTypeName] = (_) =>
-      MaterialPage<InitialPage>(
-          key: const ValueKey(InitialPage),
-          child: InitialPage<T>(AuthPage<T>(), mainPage));
+  toMaterialPageMap[ProfilePageData.staticTypeName] = (_) =>
+      MaterialPage<ProfilePage>(
+          key: const ValueKey(ProfilePage), child: ProfilePage<T>());
+  toMaterialPageMap[ProblemPageData.staticTypeName] = (pageData) =>
+      MaterialPage<ProblemPage>(
+          key: const ValueKey(ProblemPage),
+          child: ProblemPage<T>((pageData as ProblemPageData).problem));
 
   // add the redfire fromJson transforms
   _fromJsonMap[InitialPageData.staticTypeName] =
       (JsonMap json) => InitialPageData.fromJson(json);
-  _fromJsonMap[InitialPageData.staticTypeName] =
-      (JsonMap json) => InitialPageData.fromJson(json);
-  _fromJsonMap[InitialPageData.staticTypeName] =
-      (JsonMap json) => InitialPageData.fromJson(json);
+  _fromJsonMap[ProfilePageData.staticTypeName] =
+      (JsonMap json) => ProfilePageData.fromJson(json);
+  _fromJsonMap[ProblemPageData.staticTypeName] =
+      (JsonMap json) => ProblemPageData.fromJson(json);
 }
 
 class PageDataTransforms {

@@ -10,7 +10,10 @@ part 'auth_state.g.dart';
 @freezed
 class AuthState with _$AuthState {
   factory AuthState(
-      {AuthUserData? userData, required AuthenticationEnum step}) = _AuthState;
+      {String? email,
+      List<String>? signInMethodsForEmail,
+      AuthUserData? userData,
+      required AuthenticationEnum step}) = _AuthState;
 
   // Initial state is null user data and waiting for input
   factory AuthState.init() =>

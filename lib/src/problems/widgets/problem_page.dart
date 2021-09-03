@@ -19,7 +19,7 @@ class ProblemPage<T extends RedFireState> extends StatelessWidget {
       content: SingleChildScrollView(child: Text(info.message)),
       actions: [
         OutlinedButton(
-            onPressed: () => context.dispatch(RemoveProblemAction(info)),
+            onPressed: () => context.dispatch<T>(RemoveProblemAction(info)),
             child: const Text('Dismiss'))
       ],
     );

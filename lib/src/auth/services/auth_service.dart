@@ -43,6 +43,19 @@ class AuthService extends ReduxService {
     return user.toModel();
   }
 
+  Future<List<String>> retrieveSignInMethodsFor(String email) =>
+      _firebaseAuth.fetchSignInMethodsForEmail(email);
+
+  Future<UserCredential> signUpWithEmailAndPassword(
+          String email, String password) =>
+      _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
+
+  Future<UserCredential> signInWithEmailAndPassword(
+          String email, String password) =>
+      _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
+
   /// `null` in case where sign in process was aborted
   Future<GoogleSignInCredential?> getGoogleCredential() async {
     final googleSignInAccount = await _googleSignIn!.signIn();

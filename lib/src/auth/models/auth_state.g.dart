@@ -7,6 +7,10 @@ part of 'auth_state.dart';
 // **************************************************************************
 
 _$_AuthState _$$_AuthStateFromJson(Map<String, dynamic> json) => _$_AuthState(
+      email: json['email'] as String?,
+      signInMethodsForEmail: (json['signInMethodsForEmail'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       userData: json['userData'] == null
           ? null
           : AuthUserData.fromJson(json['userData'] as Map<String, dynamic>),
@@ -15,6 +19,8 @@ _$_AuthState _$$_AuthStateFromJson(Map<String, dynamic> json) => _$_AuthState(
 
 Map<String, dynamic> _$$_AuthStateToJson(_$_AuthState instance) =>
     <String, dynamic>{
+      'email': instance.email,
+      'signInMethodsForEmail': instance.signInMethodsForEmail,
       'userData': instance.userData,
       'step': _$AuthenticationEnumEnumMap[instance.step],
     };

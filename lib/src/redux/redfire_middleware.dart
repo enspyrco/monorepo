@@ -1,7 +1,10 @@
+import 'package:redfire/src/auth/middleware/check_sign_in_methods_for_email_middleware.dart';
 import 'package:redfire/src/auth/middleware/observe_auth_state_middleware.dart';
 import 'package:redfire/src/auth/middleware/sign_in_with_apple_middleware.dart';
+import 'package:redfire/src/auth/middleware/sign_in_with_email_middleware.dart';
 import 'package:redfire/src/auth/middleware/sign_in_with_google_middleware.dart';
 import 'package:redfire/src/auth/middleware/sign_out_middleware.dart';
+import 'package:redfire/src/auth/middleware/sign_up_with_email_middleware.dart';
 import 'package:redfire/src/platform/middleware/detect_platform_middleware.dart';
 import 'package:redfire/src/platform/middleware/launch_url_middleware.dart';
 import 'package:redfire/src/types/red_fire_state.dart';
@@ -19,6 +22,9 @@ List<Middleware<T>> redfireMiddleware<T extends RedFireState>() => [
       SignInWithAppleMiddleware<T>(),
       SignInWithGoogleMiddleware<T>(),
       SignOutMiddleware<T>(),
+      CheckSignInMethodsForEmailMiddleware<T>(),
+      SignUpWithEmailMiddleware(),
+      SignInWithEmailMiddleware(),
 
       // DevTools
       DevToolsMiddleware<T>(),

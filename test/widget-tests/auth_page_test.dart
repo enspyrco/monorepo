@@ -3,8 +3,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire/src/auth/services/auth_service.dart';
-import 'package:redfire/src/auth/widgets/auth/auth_page.dart';
-import 'package:redfire/src/auth/widgets/auth/auth_page_buttons/google_sign_in_button.dart';
+import 'package:redfire/src/auth/widgets/auth_page.dart';
+import 'package:redfire/src/auth/widgets/auth_page_buttons/google_sign_in_button.dart';
 import 'package:redfire_test/redfire_test.dart';
 
 import '../test-doubles/app_state/app_state.dart';

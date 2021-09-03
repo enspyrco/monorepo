@@ -1,3 +1,5 @@
+import 'package:redfire/src/auth/reducers/store_email_reducer.dart';
+import 'package:redfire/src/auth/reducers/store_sign_in_methods_for_email.dart';
 import 'package:redux/redux.dart';
 
 import '../auth/reducers/sign_out_reducer.dart';
@@ -19,6 +21,8 @@ List<Reducer<T>> redfireReducers<T extends RedFireState>() => [
       SignOutReducer<T>(),
       StoreAuthStepReducer<T>(),
       StoreAuthUserDataReducer<T>(),
+      StoreEmailReducer<T>(),
+      StoreSignInMethodsForEmailReducer<T>(),
 
       // Navigation
       PushPageReducer<T>(),

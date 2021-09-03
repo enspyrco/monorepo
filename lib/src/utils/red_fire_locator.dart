@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:redfire/src/auth/services/auth_service.dart';
 import 'package:redfire/src/database/services/database_service.dart';
@@ -9,10 +12,14 @@ import 'package:redfire/src/platform/services/platform_service.dart';
 class RedFireLocator {
   static AuthService getAuthService() =>
       _authService ??
+      // Create an AuthService with only the relevant auth providers
       AuthService(
           firebase: FirebaseAuth.instance,
-          google: GoogleSignIn(scopes: <String>['email']),
-          apple: SignInWithAppleWrapper());
+          google: (kIsWeb || Platform.isAndroid)
+              ? GoogleSignIn(scopes: <String>['email'])
+              : null,
+          apple:
+              (kIsWeb || Platform.isAndroid) ? null : SignInWithAppleWrapper());
   static DatabaseService getDatabaseService() =>
       _databaseService ?? DatabaseService();
   static PlatformService getPlatformService() =>
