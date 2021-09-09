@@ -29,7 +29,7 @@ void main() {
           mockStore, ObserveAuthStateAction(), emptyAppReducer);
 
       final data = AuthUserDataExample.normal;
-      final action = StoreAuthUserDataAction(data);
+      final action = SetAuthUserDataAction(data);
       controller.add(action);
 
       await untilCalled<dynamic>(mockStore.dispatch(action));
@@ -51,7 +51,7 @@ void main() {
           fakeStore, ObserveAuthStateAction(), emptyAppReducer);
 
       // Setup the FakeStore to throw when asked to dispatch action.
-      final action = StoreAuthUserDataAction(AuthUserDataExample.normal);
+      final action = SetAuthUserDataAction(AuthUserDataExample.normal);
       fakeStore.throwOn(action);
 
       // Simulate an auth state change by making the mock auth service emit a StoreAuthStateAction

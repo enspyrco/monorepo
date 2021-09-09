@@ -18,12 +18,12 @@ class SignUpWithEmailMiddleware<T extends RedFireState>
             var email = store.state.auth.email!;
 
             store.dispatch(
-                StoreAuthStepAction(AuthenticationEnum.signingInWithFirebase));
+                SetAuthStepAction(AuthenticationEnum.signingInWithFirebase));
 
             await service.signUpWithEmailAndPassword(email, action.password);
 
             store.dispatch(
-                StoreAuthStepAction(AuthenticationEnum.waitingForInput));
+                SetAuthStepAction(AuthenticationEnum.waitingForInput));
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           }

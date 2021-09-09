@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'store_auth_user_data_action.dart';
+part of 'set_auth_user_data_action.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_StoreAuthUserDataAction _$$_StoreAuthUserDataActionFromJson(
+_$_SetAuthUserDataAction _$$_SetAuthUserDataActionFromJson(
         Map<String, dynamic> json) =>
-    _$_StoreAuthUserDataAction(
+    _$_SetAuthUserDataAction(
       json['authUserData'] == null
           ? null
           : AuthUserData.fromJson(json['authUserData'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_StoreAuthUserDataActionToJson(
-        _$_StoreAuthUserDataAction instance) =>
+Map<String, dynamic> _$$_SetAuthUserDataActionToJson(
+        _$_SetAuthUserDataAction instance) =>
     <String, dynamic>{
       'authUserData': instance.authUserData,
     };

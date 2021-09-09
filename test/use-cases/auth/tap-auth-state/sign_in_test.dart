@@ -8,7 +8,7 @@ void main() {
   //   final mockAuthService = MockAuthService();
   //   when(mockAuthService.googleSignInStream).thenAnswer(
   //     (_) => Stream.fromIterable([
-  //       StoreAuthStepAction.contactingGoogle(),
+  //       SetAuthStepAction.contactingGoogle(),
   //       AddProblemAction(ProblemInfo('m'))
   //     ]),
   //   );
@@ -39,7 +39,7 @@ void main() {
     // final expectedAuthSteps = [1, 0];
 
     // service.googleSignInStream.listen(expectAsync1((action) {
-    //   expect((action as StoreAuthStepAction).step,
+    //   expect((action as SetAuthStepAction).step,
     //       expectedAuthSteps.removeAt(0));
     // }, count: 2));
   });
@@ -53,7 +53,7 @@ void main() {
     // final expectedAuthSteps = [1, 2, 0];
 
     // service.googleSignInStream.listen(expectAsync1((action) {
-    //   expect((action as StoreAuthStepAction).step,
+    //   expect((action as SetAuthStepAction).step,
     //       expectedAuthSteps.removeAt(0));
     // }, count: 3));
   });
@@ -71,9 +71,9 @@ void main() {
     // expect(
     //     service.googleSignInStream,
     //     emitsInOrder(<dynamic>[
-    //       TypeMatcher<StoreAuthStepAction>()
+    //       TypeMatcher<SetAuthStepAction>()
     //         ..having((a) => a.step, 'step', 1),
-    //       TypeMatcher<StoreAuthStepAction>()
+    //       TypeMatcher<SetAuthStepAction>()
     //         ..having((a) => a.step, 'step', 0),
     //       TypeMatcher<AddProblemAction>()
     //         ..having((p) => p.info.message, 'message',
@@ -88,7 +88,7 @@ void main() {
     // final mockAuthService = MockAuthService();
     // when(mockAuthService.appleSignInStream).thenAnswer(
     //   (_) => Stream.fromIterable(
-    //       [StoreAuthStepAction(1), AddProblemAction(Problem(message: 'm'))]),
+    //       [SetAuthStepAction(1), AddProblemAction(Problem(message: 'm'))]),
     // );
 
     // final store = FakedOutStore(authService: mockAuthService);
@@ -117,7 +117,7 @@ void main() {
 
     // // check that the stream emits the expected value
     // service.appleSignInStream.listen(expectAsync1((action) {
-    //   expect((action as StoreAuthStepAction).step,
+    //   expect((action as SetAuthStepAction).step,
     //       expectedAuthSteps.removeAt(0));
     // }, count: 2));
   });
@@ -136,7 +136,7 @@ void main() {
     //   if (expectedAuthSteps.isEmpty) {
     //     expect(action is AddProblemAction, true);
     //   } else {
-    //     expect((action as StoreAuthStepAction).step,
+    //     expect((action as SetAuthStepAction).step,
     //         expectedAuthSteps.removeAt(0));
     //   }
     // }, count: 4));
@@ -155,9 +155,9 @@ void main() {
     // expect(
     //     service.googleSignInStream,
     //     emitsInOrder(<dynamic>[
-    //       TypeMatcher<StoreAuthStepAction>()
+    //       TypeMatcher<SetAuthStepAction>()
     //         ..having((a) => a.step, 'step', 1),
-    //       TypeMatcher<StoreAuthStepAction>()
+    //       TypeMatcher<SetAuthStepAction>()
     //         ..having((a) => a.step, 'step', 0),
     //       TypeMatcher<AddProblemAction>()
     //         ..having((p) => p.info.message, 'message',

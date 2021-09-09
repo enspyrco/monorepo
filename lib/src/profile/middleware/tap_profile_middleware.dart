@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:redfire/src/profile/actions/store_profile_data_action.dart';
+import 'package:redfire/src/profile/actions/set_profile_data_action.dart';
 import 'package:redfire/src/profile/actions/tap_profile_action.dart';
 import 'package:redfire/src/profile/models/profile_data.dart';
 import 'package:redfire/src/redux/extensions/store_extensions.dart';
@@ -31,7 +31,7 @@ class TapProfileMiddleware<T extends RedFireState>
             // ... direct the stream to the store.
             _subscription = profileChanges.listen((event) {
               store.dispatch(
-                  StoreProfileDataAction(data: ProfileData.fromJson(event)));
+                  SetProfileDataAction(data: ProfileData.fromJson(event)));
             }, onError: store.dispatchProblem);
           } catch (error, trace) {
             store.dispatchProblem(error, trace);

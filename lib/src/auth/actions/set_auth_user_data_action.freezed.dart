@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'store_auth_user_data_action.dart';
+part of 'set_auth_user_data_action.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,57 +13,57 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-StoreAuthUserDataAction _$StoreAuthUserDataActionFromJson(
+SetAuthUserDataAction _$SetAuthUserDataActionFromJson(
     Map<String, dynamic> json) {
-  return _StoreAuthUserDataAction.fromJson(json);
+  return _SetAuthUserDataAction.fromJson(json);
 }
 
 /// @nodoc
-class _$StoreAuthUserDataActionTearOff {
-  const _$StoreAuthUserDataActionTearOff();
+class _$SetAuthUserDataActionTearOff {
+  const _$SetAuthUserDataActionTearOff();
 
-  _StoreAuthUserDataAction call(AuthUserData? authUserData) {
-    return _StoreAuthUserDataAction(
+  _SetAuthUserDataAction call(AuthUserData? authUserData) {
+    return _SetAuthUserDataAction(
       authUserData,
     );
   }
 
-  StoreAuthUserDataAction fromJson(Map<String, Object> json) {
-    return StoreAuthUserDataAction.fromJson(json);
+  SetAuthUserDataAction fromJson(Map<String, Object> json) {
+    return SetAuthUserDataAction.fromJson(json);
   }
 }
 
 /// @nodoc
-const $StoreAuthUserDataAction = _$StoreAuthUserDataActionTearOff();
+const $SetAuthUserDataAction = _$SetAuthUserDataActionTearOff();
 
 /// @nodoc
-mixin _$StoreAuthUserDataAction {
+mixin _$SetAuthUserDataAction {
   AuthUserData? get authUserData => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $StoreAuthUserDataActionCopyWith<StoreAuthUserDataAction> get copyWith =>
+  $SetAuthUserDataActionCopyWith<SetAuthUserDataAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StoreAuthUserDataActionCopyWith<$Res> {
-  factory $StoreAuthUserDataActionCopyWith(StoreAuthUserDataAction value,
-          $Res Function(StoreAuthUserDataAction) then) =
-      _$StoreAuthUserDataActionCopyWithImpl<$Res>;
+abstract class $SetAuthUserDataActionCopyWith<$Res> {
+  factory $SetAuthUserDataActionCopyWith(SetAuthUserDataAction value,
+          $Res Function(SetAuthUserDataAction) then) =
+      _$SetAuthUserDataActionCopyWithImpl<$Res>;
   $Res call({AuthUserData? authUserData});
 
   $AuthUserDataCopyWith<$Res>? get authUserData;
 }
 
 /// @nodoc
-class _$StoreAuthUserDataActionCopyWithImpl<$Res>
-    implements $StoreAuthUserDataActionCopyWith<$Res> {
-  _$StoreAuthUserDataActionCopyWithImpl(this._value, this._then);
+class _$SetAuthUserDataActionCopyWithImpl<$Res>
+    implements $SetAuthUserDataActionCopyWith<$Res> {
+  _$SetAuthUserDataActionCopyWithImpl(this._value, this._then);
 
-  final StoreAuthUserDataAction _value;
+  final SetAuthUserDataAction _value;
   // ignore: unused_field
-  final $Res Function(StoreAuthUserDataAction) _then;
+  final $Res Function(SetAuthUserDataAction) _then;
 
   @override
   $Res call({
@@ -90,11 +90,11 @@ class _$StoreAuthUserDataActionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$StoreAuthUserDataActionCopyWith<$Res>
-    implements $StoreAuthUserDataActionCopyWith<$Res> {
-  factory _$StoreAuthUserDataActionCopyWith(_StoreAuthUserDataAction value,
-          $Res Function(_StoreAuthUserDataAction) then) =
-      __$StoreAuthUserDataActionCopyWithImpl<$Res>;
+abstract class _$SetAuthUserDataActionCopyWith<$Res>
+    implements $SetAuthUserDataActionCopyWith<$Res> {
+  factory _$SetAuthUserDataActionCopyWith(_SetAuthUserDataAction value,
+          $Res Function(_SetAuthUserDataAction) then) =
+      __$SetAuthUserDataActionCopyWithImpl<$Res>;
   @override
   $Res call({AuthUserData? authUserData});
 
@@ -103,22 +103,21 @@ abstract class _$StoreAuthUserDataActionCopyWith<$Res>
 }
 
 /// @nodoc
-class __$StoreAuthUserDataActionCopyWithImpl<$Res>
-    extends _$StoreAuthUserDataActionCopyWithImpl<$Res>
-    implements _$StoreAuthUserDataActionCopyWith<$Res> {
-  __$StoreAuthUserDataActionCopyWithImpl(_StoreAuthUserDataAction _value,
-      $Res Function(_StoreAuthUserDataAction) _then)
-      : super(_value, (v) => _then(v as _StoreAuthUserDataAction));
+class __$SetAuthUserDataActionCopyWithImpl<$Res>
+    extends _$SetAuthUserDataActionCopyWithImpl<$Res>
+    implements _$SetAuthUserDataActionCopyWith<$Res> {
+  __$SetAuthUserDataActionCopyWithImpl(_SetAuthUserDataAction _value,
+      $Res Function(_SetAuthUserDataAction) _then)
+      : super(_value, (v) => _then(v as _SetAuthUserDataAction));
 
   @override
-  _StoreAuthUserDataAction get _value =>
-      super._value as _StoreAuthUserDataAction;
+  _SetAuthUserDataAction get _value => super._value as _SetAuthUserDataAction;
 
   @override
   $Res call({
     Object? authUserData = freezed,
   }) {
-    return _then(_StoreAuthUserDataAction(
+    return _then(_SetAuthUserDataAction(
       authUserData == freezed
           ? _value.authUserData
           : authUserData // ignore: cast_nullable_to_non_nullable
@@ -129,24 +128,24 @@ class __$StoreAuthUserDataActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_StoreAuthUserDataAction implements _StoreAuthUserDataAction {
-  _$_StoreAuthUserDataAction(this.authUserData);
+class _$_SetAuthUserDataAction implements _SetAuthUserDataAction {
+  _$_SetAuthUserDataAction(this.authUserData);
 
-  factory _$_StoreAuthUserDataAction.fromJson(Map<String, dynamic> json) =>
-      _$$_StoreAuthUserDataActionFromJson(json);
+  factory _$_SetAuthUserDataAction.fromJson(Map<String, dynamic> json) =>
+      _$$_SetAuthUserDataActionFromJson(json);
 
   @override
   final AuthUserData? authUserData;
 
   @override
   String toString() {
-    return 'StoreAuthUserDataAction(authUserData: $authUserData)';
+    return 'SetAuthUserDataAction(authUserData: $authUserData)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _StoreAuthUserDataAction &&
+        (other is _SetAuthUserDataAction &&
             (identical(other.authUserData, authUserData) ||
                 const DeepCollectionEquality()
                     .equals(other.authUserData, authUserData)));
@@ -158,27 +157,27 @@ class _$_StoreAuthUserDataAction implements _StoreAuthUserDataAction {
 
   @JsonKey(ignore: true)
   @override
-  _$StoreAuthUserDataActionCopyWith<_StoreAuthUserDataAction> get copyWith =>
-      __$StoreAuthUserDataActionCopyWithImpl<_StoreAuthUserDataAction>(
+  _$SetAuthUserDataActionCopyWith<_SetAuthUserDataAction> get copyWith =>
+      __$SetAuthUserDataActionCopyWithImpl<_SetAuthUserDataAction>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StoreAuthUserDataActionToJson(this);
+    return _$$_SetAuthUserDataActionToJson(this);
   }
 }
 
-abstract class _StoreAuthUserDataAction implements StoreAuthUserDataAction {
-  factory _StoreAuthUserDataAction(AuthUserData? authUserData) =
-      _$_StoreAuthUserDataAction;
+abstract class _SetAuthUserDataAction implements SetAuthUserDataAction {
+  factory _SetAuthUserDataAction(AuthUserData? authUserData) =
+      _$_SetAuthUserDataAction;
 
-  factory _StoreAuthUserDataAction.fromJson(Map<String, dynamic> json) =
-      _$_StoreAuthUserDataAction.fromJson;
+  factory _SetAuthUserDataAction.fromJson(Map<String, dynamic> json) =
+      _$_SetAuthUserDataAction.fromJson;
 
   @override
   AuthUserData? get authUserData => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$StoreAuthUserDataActionCopyWith<_StoreAuthUserDataAction> get copyWith =>
+  _$SetAuthUserDataActionCopyWith<_SetAuthUserDataAction> get copyWith =>
       throw _privateConstructorUsedError;
 }

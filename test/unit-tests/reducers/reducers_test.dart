@@ -1,12 +1,12 @@
-import 'package:redfire/src/auth/actions/store_auth_step_action.dart';
-import 'package:redfire/src/auth/actions/store_auth_user_data_action.dart';
+import 'package:redfire/src/auth/actions/set_auth_step_action.dart';
+import 'package:redfire/src/auth/actions/set_auth_user_data_action.dart';
 import 'package:redfire/src/auth/enums/authentication_enum.dart';
 import 'package:redfire/src/auth/reducers/store_auth_step_reducer.dart';
 import 'package:redfire/src/auth/reducers/store_auth_user_data_reducer.dart';
 import 'package:redfire/src/problems/actions/add_problem_action.dart';
 import 'package:redfire/src/problems/models/problem_info.dart';
 import 'package:redfire/src/problems/reducers/add_problem_reducer.dart';
-import 'package:redfire/src/settings/actions/store_theme_mode_action.dart';
+import 'package:redfire/src/settings/actions/set_theme_mode_action.dart';
 import 'package:redfire/src/settings/reducers/store_theme_mode_reducer.dart';
 import 'package:redfire_test/redfire_test.dart';
 import 'package:test/test.dart';
@@ -21,7 +21,7 @@ void main() {
 
       final reducer = StoreAuthUserDataReducer();
       final newState = reducer.reducer(
-          initialState, StoreAuthUserDataAction(AuthUserDataExample.basic));
+          initialState, SetAuthUserDataAction(AuthUserDataExample.basic));
 
       expect(newState.auth.userData!.uid, equals('uid'));
       expect(newState.auth.userData!.email, equals('email'));
@@ -53,7 +53,7 @@ void main() {
 
       final reducer = StoreAuthStepReducer();
       final newState =
-          reducer.reducer(initialState, StoreAuthStepAction.contactingApple());
+          reducer.reducer(initialState, SetAuthStepAction.contactingApple());
 
       expect(newState.auth.step, AuthenticationEnum.contactingApple);
     });
@@ -65,7 +65,7 @@ void main() {
       expect(initialState.settings.brightnessMode, 0);
 
       final reducer = StoreThemeModeReducer();
-      final newState = reducer.reducer(initialState, StoreThemeModeAction(1));
+      final newState = reducer.reducer(initialState, SetThemeModeAction(1));
 
       expect(newState.settings.brightnessMode, 1);
     });

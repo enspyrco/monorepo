@@ -1,5 +1,5 @@
+import 'package:redfire/src/auth/actions/set_auth_step_action.dart';
 import 'package:redfire/src/auth/actions/sign_out_action.dart';
-import 'package:redfire/src/auth/actions/store_auth_step_action.dart';
 import 'package:redfire/src/utils/red_fire_locator.dart';
 import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
@@ -16,10 +16,10 @@ class SignOutMiddleware<T extends RedFireState>
             final authService = RedFireLocator.getAuthService();
 
             // set the auth step and use the service to sign out
-            store.dispatch(StoreAuthStepAction(AuthenticationEnum.signingOut));
+            store.dispatch(SetAuthStepAction(AuthenticationEnum.signingOut));
             await authService.signOut();
             store.dispatch(
-                StoreAuthStepAction(AuthenticationEnum.waitingForInput));
+                SetAuthStepAction(AuthenticationEnum.waitingForInput));
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           }

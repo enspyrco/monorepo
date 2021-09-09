@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mockito/mockito.dart';
 import 'package:redfire/actions.dart';
-import 'package:redfire/src/auth/actions/store_auth_user_data_action.dart';
 import 'package:redfire/src/auth/enums/authentication_enum.dart';
 import 'package:redfire/src/auth/services/auth_service.dart';
 import 'package:redfire/src/types/redux_action.dart';
@@ -13,7 +12,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('AuthService', () {
-    test('should map FirebaseAuth.authStateChanges to StoreAuthUserDataActions',
+    test('should map FirebaseAuth.authStateChanges to SetAuthUserDataActions',
         () {
       // Create the auth service with a stubbed FirebaseAuth plugin.
       final mockFirebaseAuth = MockFirebaseAuth();
@@ -26,10 +25,10 @@ void main() {
       final stubbedUser = Stubbed.firebaseUser();
 
       // Check that the streamOfStoreAuthState returned by the auth service
-      // eventually emits a StoreAuthUserDataAction with expected state.
+      // eventually emits a SetAuthUserDataAction with expected state.
       authService.streamOfStoreAuthState.listen(expectAsync1((action) {
-        expect(action is StoreAuthUserDataAction, true);
-        action = action as StoreAuthUserDataAction;
+        expect(action is SetAuthUserDataAction, true);
+        action = action as SetAuthUserDataAction;
         expect(action.authUserData!.uid, stubbedUser.uid);
         expect(action.authUserData!.displayName, stubbedUser.displayName);
         expect(action.authUserData!.photoURL, stubbedUser.photoURL);
@@ -60,8 +59,8 @@ void main() {
       ];
 
       service.streamOfStoreAuthState.listen(expectAsync1((action) {
-        expect((action as StoreAuthStepAction).step,
-            expectedAuthSteps.removeAt(0));
+        expect(
+            (action as SetAuthStepAction).step, expectedAuthSteps.removeAt(0));
       }, count: 2));
     });
 
@@ -76,9 +75,9 @@ void main() {
       expect(
           service.streamOfStoreAuthState,
           emitsInOrder(<ReduxAction>[
-            StoreAuthStepAction(AuthenticationEnum.contactingGoogle),
-            StoreAuthStepAction(AuthenticationEnum.signingInWithFirebase),
-            StoreAuthStepAction(AuthenticationEnum.waitingForInput),
+            SetAuthStepAction(AuthenticationEnum.contactingGoogle),
+            SetAuthStepAction(AuthenticationEnum.signingInWithFirebase),
+            SetAuthStepAction(AuthenticationEnum.waitingForInput),
             // NavigatorPopAll()
           ]));
     });
@@ -99,8 +98,8 @@ void main() {
       expect(
           service.streamOfStoreAuthState,
           emitsInOrder(<dynamic>[
-            StoreAuthStepAction(AuthenticationEnum.contactingGoogle),
-            StoreAuthStepAction(AuthenticationEnum.waitingForInput),
+            SetAuthStepAction(AuthenticationEnum.contactingGoogle),
+            SetAuthStepAction(AuthenticationEnum.waitingForInput),
             const TypeMatcher<AddProblemAction>()
               ..having((p) => p.info.message, 'message',
                   equals('Exception: GoogleSignIn.signIn')),

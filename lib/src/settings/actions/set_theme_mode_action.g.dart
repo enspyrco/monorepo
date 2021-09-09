@@ -1,19 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'store_theme_mode_action.dart';
+part of 'set_theme_mode_action.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_StoreThemeModeAction _$$_StoreThemeModeActionFromJson(
+_$_SetThemeModeAction _$$_SetThemeModeActionFromJson(
         Map<String, dynamic> json) =>
-    _$_StoreThemeModeAction(
+    _$_SetThemeModeAction(
       json['themeMode'] as int,
     );
 
-Map<String, dynamic> _$$_StoreThemeModeActionToJson(
-        _$_StoreThemeModeAction instance) =>
+Map<String, dynamic> _$$_SetThemeModeActionToJson(
+        _$_SetThemeModeAction instance) =>
     <String, dynamic>{
       'themeMode': instance.themeMode,
     };

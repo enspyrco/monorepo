@@ -27,8 +27,8 @@ void main() {
       // expect(
       //     service.appleSignInStream,
       //     emitsInOrder(<dynamic>[
-      //       StoreAuthStepAction(AuthenticationEnum.contactingApple),
-      //       StoreAuthStepAction(AuthenticationEnum.waitingForInput),
+      //       SetAuthStepAction(AuthenticationEnum.contactingApple),
+      //       SetAuthStepAction(AuthenticationEnum.waitingForInput),
       //     ]));
     });
 
@@ -54,9 +54,9 @@ void main() {
       // expect(
       //     service.appleSignInStream,
       //     emitsInOrder(<dynamic>[
-      //       StoreAuthStepAction(AuthenticationEnum.contactingApple),
-      //       StoreAuthStepAction(AuthenticationEnum.signingInWithFirebase),
-      //       StoreAuthStepAction(AuthenticationEnum.waitingForInput),
+      //       SetAuthStepAction(AuthenticationEnum.contactingApple),
+      //       SetAuthStepAction(AuthenticationEnum.signingInWithFirebase),
+      //       SetAuthStepAction(AuthenticationEnum.waitingForInput),
       //       const TypeMatcher<AddProblemAction>()
       //         ..having((p) => p.info.message, 'message',
       //             equals('Exception: AppleSignIn.signIn')),
@@ -81,9 +81,9 @@ void main() {
       // expect(
       //     service.appleSignInStream,
       //     emitsInOrder(<dynamic>[
-      //       const TypeMatcher<StoreAuthStepAction>()
+      //       const TypeMatcher<SetAuthStepAction>()
       //         ..having((a) => a.step, 'step', 1),
-      //       const TypeMatcher<StoreAuthStepAction>()
+      //       const TypeMatcher<SetAuthStepAction>()
       //         ..having((a) => a.step, 'step', 0),
       //       const TypeMatcher<AddProblemAction>()
       //         ..having((p) => p.info.message, 'message',

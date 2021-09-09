@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:redfire/src/auth/actions/store_auth_user_data_action.dart';
+import 'package:redfire/src/auth/actions/set_auth_user_data_action.dart';
 import 'package:redfire/src/auth/extensions/auth_extensions.dart';
 import 'package:redfire/src/auth/models/apple_id_credential.dart';
 import 'package:redfire/src/auth/models/auth_user_data.dart';
@@ -33,7 +33,7 @@ class AuthService extends ReduxService {
   Stream<ReduxAction> get streamOfStoreAuthState {
     return _firebaseAuth
         .authStateChanges()
-        .map((user) => StoreAuthUserDataAction(user?.toModel()));
+        .map((user) => SetAuthUserDataAction(user?.toModel()));
   }
 
   Future<AuthUserData> signInAnonymously() async {

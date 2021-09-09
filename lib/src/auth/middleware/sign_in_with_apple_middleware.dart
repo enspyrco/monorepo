@@ -14,11 +14,11 @@ class SignInWithAppleMiddleware<T extends RedFireState>
           try {
             final authService = RedFireLocator.getAuthService();
 
-            store.dispatch(StoreAuthStepAction.contactingApple());
+            store.dispatch(SetAuthStepAction.contactingApple());
 
             final appleIdCredential = await authService.getAppleCredential();
 
-            store.dispatch(StoreAuthStepAction.signingInWithFirebase());
+            store.dispatch(SetAuthStepAction.signingInWithFirebase());
 
             // We don't do anyting with the UserData object here as the
             // authStateChanges stream will emit the same object and the state is
@@ -26,8 +26,8 @@ class SignInWithAppleMiddleware<T extends RedFireState>
             final authUserData = await authService.signInWithApple(
                 credential: appleIdCredential);
 
-            store.dispatch(StoreAuthUserDataAction(authUserData));
-            store.dispatch(StoreAuthStepAction.waitingForInput());
+            store.dispatch(SetAuthUserDataAction(authUserData));
+            store.dispatch(SetAuthStepAction.waitingForInput());
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           }

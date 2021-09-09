@@ -1,6 +1,6 @@
 import 'package:mockito/mockito.dart';
 import 'package:redfire/src/auth/actions/observe_auth_state_action.dart';
-import 'package:redfire/src/auth/actions/store_auth_user_data_action.dart';
+import 'package:redfire/src/auth/actions/set_auth_user_data_action.dart';
 import 'package:redfire/src/auth/reducers/store_auth_user_data_reducer.dart';
 import 'package:redfire/src/auth/services/auth_service.dart';
 import 'package:redfire/src/redux/extensions/reducers_list_extension.dart';
@@ -25,7 +25,7 @@ void main() {
       final mockAuthService = MockAuthService();
       when(mockAuthService.streamOfStoreAuthState).thenAnswer(
         (_) => Stream.fromIterable(
-            [StoreAuthUserDataAction(AuthUserDataExample.basic)]),
+            [SetAuthUserDataAction(AuthUserDataExample.basic)]),
       );
 
       RedFireLocator.provide(authService: mockAuthService);

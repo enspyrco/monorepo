@@ -17,19 +17,19 @@ class SignInWithGoogleMiddleware<T extends RedFireState>
 
           try {
             store.dispatch(
-                StoreAuthStepAction(AuthenticationEnum.contactingGoogle));
+                SetAuthStepAction(AuthenticationEnum.contactingGoogle));
 
             final credential = await authService.getGoogleCredential();
 
             // If user cancelled sign in, reset UI and return
             if (credential == null) {
               store.dispatch(
-                  StoreAuthStepAction(AuthenticationEnum.waitingForInput));
+                  SetAuthStepAction(AuthenticationEnum.waitingForInput));
               return;
             }
 
             store.dispatch(
-                StoreAuthStepAction(AuthenticationEnum.signingInWithFirebase));
+                SetAuthStepAction(AuthenticationEnum.signingInWithFirebase));
 
             // The authStateChanges stream will emit the same AuthUserData and
             // we are already listening to that stream and updating the app state
@@ -37,9 +37,9 @@ class SignInWithGoogleMiddleware<T extends RedFireState>
             final authUserData =
                 await authService.signInWithGoogle(credential: credential);
 
-            store.dispatch(StoreAuthUserDataAction(authUserData));
+            store.dispatch(SetAuthUserDataAction(authUserData));
             store.dispatch(
-                StoreAuthStepAction(AuthenticationEnum.waitingForInput));
+                SetAuthStepAction(AuthenticationEnum.waitingForInput));
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           }

@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'store_profile_data_action.dart';
+part of 'set_profile_data_action.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,57 +13,56 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-StoreProfileDataAction _$StoreProfileDataActionFromJson(
-    Map<String, dynamic> json) {
-  return _StoreProfileDataAction.fromJson(json);
+SetProfileDataAction _$SetProfileDataActionFromJson(Map<String, dynamic> json) {
+  return _SetProfileDataAction.fromJson(json);
 }
 
 /// @nodoc
-class _$StoreProfileDataActionTearOff {
-  const _$StoreProfileDataActionTearOff();
+class _$SetProfileDataActionTearOff {
+  const _$SetProfileDataActionTearOff();
 
-  _StoreProfileDataAction call({required ProfileData data}) {
-    return _StoreProfileDataAction(
+  _SetProfileDataAction call({required ProfileData data}) {
+    return _SetProfileDataAction(
       data: data,
     );
   }
 
-  StoreProfileDataAction fromJson(Map<String, Object> json) {
-    return StoreProfileDataAction.fromJson(json);
+  SetProfileDataAction fromJson(Map<String, Object> json) {
+    return SetProfileDataAction.fromJson(json);
   }
 }
 
 /// @nodoc
-const $StoreProfileDataAction = _$StoreProfileDataActionTearOff();
+const $SetProfileDataAction = _$SetProfileDataActionTearOff();
 
 /// @nodoc
-mixin _$StoreProfileDataAction {
+mixin _$SetProfileDataAction {
   ProfileData get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $StoreProfileDataActionCopyWith<StoreProfileDataAction> get copyWith =>
+  $SetProfileDataActionCopyWith<SetProfileDataAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StoreProfileDataActionCopyWith<$Res> {
-  factory $StoreProfileDataActionCopyWith(StoreProfileDataAction value,
-          $Res Function(StoreProfileDataAction) then) =
-      _$StoreProfileDataActionCopyWithImpl<$Res>;
+abstract class $SetProfileDataActionCopyWith<$Res> {
+  factory $SetProfileDataActionCopyWith(SetProfileDataAction value,
+          $Res Function(SetProfileDataAction) then) =
+      _$SetProfileDataActionCopyWithImpl<$Res>;
   $Res call({ProfileData data});
 
   $ProfileDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
-class _$StoreProfileDataActionCopyWithImpl<$Res>
-    implements $StoreProfileDataActionCopyWith<$Res> {
-  _$StoreProfileDataActionCopyWithImpl(this._value, this._then);
+class _$SetProfileDataActionCopyWithImpl<$Res>
+    implements $SetProfileDataActionCopyWith<$Res> {
+  _$SetProfileDataActionCopyWithImpl(this._value, this._then);
 
-  final StoreProfileDataAction _value;
+  final SetProfileDataAction _value;
   // ignore: unused_field
-  final $Res Function(StoreProfileDataAction) _then;
+  final $Res Function(SetProfileDataAction) _then;
 
   @override
   $Res call({
@@ -86,11 +85,11 @@ class _$StoreProfileDataActionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$StoreProfileDataActionCopyWith<$Res>
-    implements $StoreProfileDataActionCopyWith<$Res> {
-  factory _$StoreProfileDataActionCopyWith(_StoreProfileDataAction value,
-          $Res Function(_StoreProfileDataAction) then) =
-      __$StoreProfileDataActionCopyWithImpl<$Res>;
+abstract class _$SetProfileDataActionCopyWith<$Res>
+    implements $SetProfileDataActionCopyWith<$Res> {
+  factory _$SetProfileDataActionCopyWith(_SetProfileDataAction value,
+          $Res Function(_SetProfileDataAction) then) =
+      __$SetProfileDataActionCopyWithImpl<$Res>;
   @override
   $Res call({ProfileData data});
 
@@ -99,21 +98,21 @@ abstract class _$StoreProfileDataActionCopyWith<$Res>
 }
 
 /// @nodoc
-class __$StoreProfileDataActionCopyWithImpl<$Res>
-    extends _$StoreProfileDataActionCopyWithImpl<$Res>
-    implements _$StoreProfileDataActionCopyWith<$Res> {
-  __$StoreProfileDataActionCopyWithImpl(_StoreProfileDataAction _value,
-      $Res Function(_StoreProfileDataAction) _then)
-      : super(_value, (v) => _then(v as _StoreProfileDataAction));
+class __$SetProfileDataActionCopyWithImpl<$Res>
+    extends _$SetProfileDataActionCopyWithImpl<$Res>
+    implements _$SetProfileDataActionCopyWith<$Res> {
+  __$SetProfileDataActionCopyWithImpl(
+      _SetProfileDataAction _value, $Res Function(_SetProfileDataAction) _then)
+      : super(_value, (v) => _then(v as _SetProfileDataAction));
 
   @override
-  _StoreProfileDataAction get _value => super._value as _StoreProfileDataAction;
+  _SetProfileDataAction get _value => super._value as _SetProfileDataAction;
 
   @override
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(_StoreProfileDataAction(
+    return _then(_SetProfileDataAction(
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -124,24 +123,24 @@ class __$StoreProfileDataActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_StoreProfileDataAction implements _StoreProfileDataAction {
-  _$_StoreProfileDataAction({required this.data});
+class _$_SetProfileDataAction implements _SetProfileDataAction {
+  _$_SetProfileDataAction({required this.data});
 
-  factory _$_StoreProfileDataAction.fromJson(Map<String, dynamic> json) =>
-      _$$_StoreProfileDataActionFromJson(json);
+  factory _$_SetProfileDataAction.fromJson(Map<String, dynamic> json) =>
+      _$$_SetProfileDataActionFromJson(json);
 
   @override
   final ProfileData data;
 
   @override
   String toString() {
-    return 'StoreProfileDataAction(data: $data)';
+    return 'SetProfileDataAction(data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _StoreProfileDataAction &&
+        (other is _SetProfileDataAction &&
             (identical(other.data, data) ||
                 const DeepCollectionEquality().equals(other.data, data)));
   }
@@ -152,27 +151,27 @@ class _$_StoreProfileDataAction implements _StoreProfileDataAction {
 
   @JsonKey(ignore: true)
   @override
-  _$StoreProfileDataActionCopyWith<_StoreProfileDataAction> get copyWith =>
-      __$StoreProfileDataActionCopyWithImpl<_StoreProfileDataAction>(
+  _$SetProfileDataActionCopyWith<_SetProfileDataAction> get copyWith =>
+      __$SetProfileDataActionCopyWithImpl<_SetProfileDataAction>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StoreProfileDataActionToJson(this);
+    return _$$_SetProfileDataActionToJson(this);
   }
 }
 
-abstract class _StoreProfileDataAction implements StoreProfileDataAction {
-  factory _StoreProfileDataAction({required ProfileData data}) =
-      _$_StoreProfileDataAction;
+abstract class _SetProfileDataAction implements SetProfileDataAction {
+  factory _SetProfileDataAction({required ProfileData data}) =
+      _$_SetProfileDataAction;
 
-  factory _StoreProfileDataAction.fromJson(Map<String, dynamic> json) =
-      _$_StoreProfileDataAction.fromJson;
+  factory _SetProfileDataAction.fromJson(Map<String, dynamic> json) =
+      _$_SetProfileDataAction.fromJson;
 
   @override
   ProfileData get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$StoreProfileDataActionCopyWith<_StoreProfileDataAction> get copyWith =>
+  _$SetProfileDataActionCopyWith<_SetProfileDataAction> get copyWith =>
       throw _privateConstructorUsedError;
 }

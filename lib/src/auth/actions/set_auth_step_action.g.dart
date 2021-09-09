@@ -1,19 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'store_auth_step_action.dart';
+part of 'set_auth_step_action.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_StoreAuthStepAction _$$_StoreAuthStepActionFromJson(
-        Map<String, dynamic> json) =>
-    _$_StoreAuthStepAction(
+_$_SetAuthStepAction _$$_SetAuthStepActionFromJson(Map<String, dynamic> json) =>
+    _$_SetAuthStepAction(
       _$enumDecode(_$AuthenticationEnumEnumMap, json['step']),
     );
 
-Map<String, dynamic> _$$_StoreAuthStepActionToJson(
-        _$_StoreAuthStepAction instance) =>
+Map<String, dynamic> _$$_SetAuthStepActionToJson(
+        _$_SetAuthStepAction instance) =>
     <String, dynamic>{
       'step': _$AuthenticationEnumEnumMap[instance.step],
     };
