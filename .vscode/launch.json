@@ -8,6 +8,7 @@
       "name": "web_socket_game_server",
       "request": "launch",
       "type": "dart",
+      "cwd": "./web_socket_game_server",
       "program": "bin/server.dart"
     },
   ]
