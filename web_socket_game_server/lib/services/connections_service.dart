@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_game_server_types/web_socket_game_server_types.dart';
 
@@ -26,10 +27,11 @@ class ConnectionsService {
         // If a user is announcing their presence, store the webSocket against the
         // userId and broadcast the current connections
         if (jsonData['type'] == 'announce_presence') {
-          print('received: $message \nAdding user & broadcasting present list');
+          print(
+              'server received: $message \nAdding user & broadcasting present list');
           addAndBroadcast(webSocket, jsonData['userId'] as String);
         } else {
-          print('received: $message, broadcasting');
+          print('server received: $message, broadcasting');
           broadcast('$message');
         }
       },
@@ -57,7 +59,7 @@ class ConnectionsService {
 
   void _broadcastPresentList() {
     final presentListMessage =
-        jsonEncode(PresentList(ids: presenceMap.values.toList()).toJson());
+        jsonEncode(PresentSet(ids: presenceMap.values.toISet()).toJson());
     broadcast(presentListMessage);
   }
 
