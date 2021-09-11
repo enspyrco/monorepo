@@ -1,0 +1,32 @@
+name: redfire_test
+description: Testing utilities for redfire.
+publish_to: 'none'
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ">=2.14.0 <3.0.0"
+  flutter: ">=2.6.0-0.0.pre"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  firebase_auth:
+  google_sign_in:
+  sign_in_with_apple:
+  http:
+  redux:
+  mockito:
+
+  redfire:
+    # git: 
+    #   url: https://github.com/enspyrco/redfire.git
+    #   path: redfire
+    path: ../redfire
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints:
+  build_runner:

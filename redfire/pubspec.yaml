@@ -1,0 +1,45 @@
+name: redfire
+description: A Redux based architecture connected to Firebase streams.
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ">=2.14.0 <3.0.0"
+  flutter: ">=2.6.0-0.0.pre"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  firebase_core:
+  firebase_auth:
+  google_sign_in:
+  sign_in_with_apple:
+  cloud_firestore:
+  url_launcher:
+  redux:
+  flutter_redux:
+  fast_immutable_collections:
+  freezed_annotation:
+  json_annotation:
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints:
+  build_runner:
+  freezed:
+  json_serializable:
+  test:
+  mockito:
+  redfire_test:
+    # git: 
+    #   url: https://github.com/enspyrco/redfire_test.git
+    #   path: redfire_test
+    path: ../redfire_test
+
+flutter:
+  assets:
+    - packages/redfire/assets/apple_white.png
+    - packages/redfire/assets/google.png
+    - packages/redfire/assets/github.png
