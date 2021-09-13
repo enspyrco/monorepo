@@ -1,18 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'present_set.dart';
+part of 'other_player_ids_message.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PresentSet _$$_PresentSetFromJson(Map<String, dynamic> json) =>
-    _$_PresentSet(
-      type: json['type'] as String? ?? 'present_set',
+_$_OtherPlayerIdsMessage _$$_OtherPlayerIdsMessageFromJson(
+        Map<String, dynamic> json) =>
+    _$_OtherPlayerIdsMessage(
+      type: json['type'] as String? ?? 'other_player_ids',
       ids: ISet.fromJson(json['ids'], (value) => value as String),
     );
 
-Map<String, dynamic> _$$_PresentSetToJson(_$_PresentSet instance) =>
+Map<String, dynamic> _$$_OtherPlayerIdsMessageToJson(
+        _$_OtherPlayerIdsMessage instance) =>
     <String, dynamic>{
       'type': instance.type,
       'ids': instance.ids.toJson(

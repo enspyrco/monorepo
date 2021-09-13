@@ -1,18 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'announce_presence.dart';
+part of 'present_message.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AnnouncePresence _$$_AnnouncePresenceFromJson(Map<String, dynamic> json) =>
-    _$_AnnouncePresence(
+_$_PresentMessage _$$_PresentMessageFromJson(Map<String, dynamic> json) =>
+    _$_PresentMessage(
       json['userId'] as String,
-      type: json['type'] as String? ?? 'announce_presence',
+      type: json['type'] as String? ?? 'present',
     );
 
-Map<String, dynamic> _$$_AnnouncePresenceToJson(_$_AnnouncePresence instance) =>
+Map<String, dynamic> _$$_PresentMessageToJson(_$_PresentMessage instance) =>
     <String, dynamic>{
       'userId': instance.userId,
       'type': instance.type,

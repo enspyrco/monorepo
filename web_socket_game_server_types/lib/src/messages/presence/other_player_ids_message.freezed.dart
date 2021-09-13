@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'present_set.dart';
+part of 'other_player_ids_message.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,55 +13,59 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PresentSet _$PresentSetFromJson(Map<String, dynamic> json) {
-  return _PresentSet.fromJson(json);
+OtherPlayerIdsMessage _$OtherPlayerIdsMessageFromJson(
+    Map<String, dynamic> json) {
+  return _OtherPlayerIdsMessage.fromJson(json);
 }
 
 /// @nodoc
-class _$PresentSetTearOff {
-  const _$PresentSetTearOff();
+class _$OtherPlayerIdsMessageTearOff {
+  const _$OtherPlayerIdsMessageTearOff();
 
-  _PresentSet call({String type = 'present_set', required ISet<String> ids}) {
-    return _PresentSet(
+  _OtherPlayerIdsMessage call(
+      {String type = OtherPlayerIdsMessage.jsonType,
+      required ISet<String> ids}) {
+    return _OtherPlayerIdsMessage(
       type: type,
       ids: ids,
     );
   }
 
-  PresentSet fromJson(Map<String, Object> json) {
-    return PresentSet.fromJson(json);
+  OtherPlayerIdsMessage fromJson(Map<String, Object> json) {
+    return OtherPlayerIdsMessage.fromJson(json);
   }
 }
 
 /// @nodoc
-const $PresentSet = _$PresentSetTearOff();
+const $OtherPlayerIdsMessage = _$OtherPlayerIdsMessageTearOff();
 
 /// @nodoc
-mixin _$PresentSet {
+mixin _$OtherPlayerIdsMessage {
   String get type => throw _privateConstructorUsedError;
   ISet<String> get ids => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PresentSetCopyWith<PresentSet> get copyWith =>
+  $OtherPlayerIdsMessageCopyWith<OtherPlayerIdsMessage> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PresentSetCopyWith<$Res> {
-  factory $PresentSetCopyWith(
-          PresentSet value, $Res Function(PresentSet) then) =
-      _$PresentSetCopyWithImpl<$Res>;
+abstract class $OtherPlayerIdsMessageCopyWith<$Res> {
+  factory $OtherPlayerIdsMessageCopyWith(OtherPlayerIdsMessage value,
+          $Res Function(OtherPlayerIdsMessage) then) =
+      _$OtherPlayerIdsMessageCopyWithImpl<$Res>;
   $Res call({String type, ISet<String> ids});
 }
 
 /// @nodoc
-class _$PresentSetCopyWithImpl<$Res> implements $PresentSetCopyWith<$Res> {
-  _$PresentSetCopyWithImpl(this._value, this._then);
+class _$OtherPlayerIdsMessageCopyWithImpl<$Res>
+    implements $OtherPlayerIdsMessageCopyWith<$Res> {
+  _$OtherPlayerIdsMessageCopyWithImpl(this._value, this._then);
 
-  final PresentSet _value;
+  final OtherPlayerIdsMessage _value;
   // ignore: unused_field
-  final $Res Function(PresentSet) _then;
+  final $Res Function(OtherPlayerIdsMessage) _then;
 
   @override
   $Res call({
@@ -82,30 +86,32 @@ class _$PresentSetCopyWithImpl<$Res> implements $PresentSetCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$PresentSetCopyWith<$Res> implements $PresentSetCopyWith<$Res> {
-  factory _$PresentSetCopyWith(
-          _PresentSet value, $Res Function(_PresentSet) then) =
-      __$PresentSetCopyWithImpl<$Res>;
+abstract class _$OtherPlayerIdsMessageCopyWith<$Res>
+    implements $OtherPlayerIdsMessageCopyWith<$Res> {
+  factory _$OtherPlayerIdsMessageCopyWith(_OtherPlayerIdsMessage value,
+          $Res Function(_OtherPlayerIdsMessage) then) =
+      __$OtherPlayerIdsMessageCopyWithImpl<$Res>;
   @override
   $Res call({String type, ISet<String> ids});
 }
 
 /// @nodoc
-class __$PresentSetCopyWithImpl<$Res> extends _$PresentSetCopyWithImpl<$Res>
-    implements _$PresentSetCopyWith<$Res> {
-  __$PresentSetCopyWithImpl(
-      _PresentSet _value, $Res Function(_PresentSet) _then)
-      : super(_value, (v) => _then(v as _PresentSet));
+class __$OtherPlayerIdsMessageCopyWithImpl<$Res>
+    extends _$OtherPlayerIdsMessageCopyWithImpl<$Res>
+    implements _$OtherPlayerIdsMessageCopyWith<$Res> {
+  __$OtherPlayerIdsMessageCopyWithImpl(_OtherPlayerIdsMessage _value,
+      $Res Function(_OtherPlayerIdsMessage) _then)
+      : super(_value, (v) => _then(v as _OtherPlayerIdsMessage));
 
   @override
-  _PresentSet get _value => super._value as _PresentSet;
+  _OtherPlayerIdsMessage get _value => super._value as _OtherPlayerIdsMessage;
 
   @override
   $Res call({
     Object? type = freezed,
     Object? ids = freezed,
   }) {
-    return _then(_PresentSet(
+    return _then(_OtherPlayerIdsMessage(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -120,13 +126,14 @@ class __$PresentSetCopyWithImpl<$Res> extends _$PresentSetCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PresentSet implements _PresentSet {
-  _$_PresentSet({this.type = 'present_set', required this.ids});
+class _$_OtherPlayerIdsMessage implements _OtherPlayerIdsMessage {
+  _$_OtherPlayerIdsMessage(
+      {this.type = OtherPlayerIdsMessage.jsonType, required this.ids});
 
-  factory _$_PresentSet.fromJson(Map<String, dynamic> json) =>
-      _$$_PresentSetFromJson(json);
+  factory _$_OtherPlayerIdsMessage.fromJson(Map<String, dynamic> json) =>
+      _$$_OtherPlayerIdsMessageFromJson(json);
 
-  @JsonKey(defaultValue: 'present_set')
+  @JsonKey(defaultValue: OtherPlayerIdsMessage.jsonType)
   @override
   final String type;
   @override
@@ -134,13 +141,13 @@ class _$_PresentSet implements _PresentSet {
 
   @override
   String toString() {
-    return 'PresentSet(type: $type, ids: $ids)';
+    return 'OtherPlayerIdsMessage(type: $type, ids: $ids)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PresentSet &&
+        (other is _OtherPlayerIdsMessage &&
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)) &&
             (identical(other.ids, ids) ||
@@ -155,20 +162,22 @@ class _$_PresentSet implements _PresentSet {
 
   @JsonKey(ignore: true)
   @override
-  _$PresentSetCopyWith<_PresentSet> get copyWith =>
-      __$PresentSetCopyWithImpl<_PresentSet>(this, _$identity);
+  _$OtherPlayerIdsMessageCopyWith<_OtherPlayerIdsMessage> get copyWith =>
+      __$OtherPlayerIdsMessageCopyWithImpl<_OtherPlayerIdsMessage>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PresentSetToJson(this);
+    return _$$_OtherPlayerIdsMessageToJson(this);
   }
 }
 
-abstract class _PresentSet implements PresentSet {
-  factory _PresentSet({String type, required ISet<String> ids}) = _$_PresentSet;
+abstract class _OtherPlayerIdsMessage implements OtherPlayerIdsMessage {
+  factory _OtherPlayerIdsMessage({String type, required ISet<String> ids}) =
+      _$_OtherPlayerIdsMessage;
 
-  factory _PresentSet.fromJson(Map<String, dynamic> json) =
-      _$_PresentSet.fromJson;
+  factory _OtherPlayerIdsMessage.fromJson(Map<String, dynamic> json) =
+      _$_OtherPlayerIdsMessage.fromJson;
 
   @override
   String get type => throw _privateConstructorUsedError;
@@ -176,6 +185,6 @@ abstract class _PresentSet implements PresentSet {
   ISet<String> get ids => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PresentSetCopyWith<_PresentSet> get copyWith =>
+  _$OtherPlayerIdsMessageCopyWith<_OtherPlayerIdsMessage> get copyWith =>
       throw _privateConstructorUsedError;
 }
