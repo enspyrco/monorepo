@@ -7,6 +7,6 @@ enum AuthorizationEnum {
   gettingAuthorized,
   @JsonValue('AUTHORIZED')
   authorized,
-  @JsonValue('UNKOWN')
+  @JsonValue('UNKNOWN')
   unknown,
 }

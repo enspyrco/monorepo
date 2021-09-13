@@ -28,7 +28,7 @@
       "",
       "@freezed",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} extends PageData with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxModel  {",
-      "\tstatic String staticTypeName = '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}';",
+      "\tstatic const String staticTypeName = '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}';",
       "",
       "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._();",
       "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({ ${1} }) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
