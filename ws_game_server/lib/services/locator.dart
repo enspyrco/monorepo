@@ -1,5 +1,5 @@
-import 'package:web_socket_game_server/services/client_connections_service.dart';
-import 'package:web_socket_game_server/services/firestore_service.dart';
+import 'package:ws_game_server/services/client_connections_service.dart';
+import 'package:ws_game_server/services/firestore_service.dart';
 
 /// Services are nullable so that we can only provide a service if none exists,
 /// allowing for mocks to be set in tests.

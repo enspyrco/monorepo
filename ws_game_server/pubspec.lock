@@ -526,13 +526,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  web_socket_game_server_types:
-    dependency: "direct main"
-    description:
-      path: "../web_socket_game_server_types"
-      relative: true
-    source: path
-    version: "0.0.1"
   webkit_inspection_protocol:
     dependency: transitive
     description:
@@ -540,6 +533,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  ws_game_server_types:
+    dependency: "direct main"
+    description:
+      path: "../ws_game_server_types"
+      relative: true
+    source: path
+    version: "0.0.1"
   yaml:
     dependency: transitive
     description:

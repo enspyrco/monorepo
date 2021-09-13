@@ -1,5 +1,5 @@
-name: web_socket_game_server_types
-description: Types for game objects sent via a web_socket_game_server.
+name: ws_game_server_types
+description: Types for game objects sent via a ws_game_server.
 version: 0.0.1
 # homepage: https://www.example.com
 

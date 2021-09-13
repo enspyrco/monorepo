@@ -1,7 +1,7 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../web_socket_game_server_types.dart';
+import '../../../ws_game_server_types.dart';
 import '../../types/typedefs.dart';
 
 part 'other_player_ids_message.freezed.dart';

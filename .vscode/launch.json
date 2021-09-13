@@ -5,10 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "web_socket_game_server",
+      "name": "ws_game_server",
       "request": "launch",
       "type": "dart",
-      "cwd": "./web_socket_game_server",
+      "cwd": "./ws_game_server",
       "program": "bin/server.dart"
     },
   ]
