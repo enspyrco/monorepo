@@ -1,5 +1,5 @@
 import 'typedefs.dart';
 
-abstract class GameServerMessage {
+abstract class ServerMessage {
   JsonMap toJson();
 }

@@ -9,7 +9,7 @@ part 'present_message.g.dart';
 /// A message each user sends on app load to register their presence with the
 /// server.
 @freezed
-class PresentMessage with _$PresentMessage, GameServerMessage {
+class PresentMessage with _$PresentMessage, ServerMessage {
   static const String jsonType = 'present';
   factory PresentMessage(String userId,
       {@Default(PresentMessage.jsonType) String type}) = _PresentMessage;

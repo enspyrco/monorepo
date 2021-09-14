@@ -10,7 +10,7 @@ part 'player_path_message.g.dart';
 
 /// The path a player will move along
 @freezed
-class PlayerPathMessage with _$PlayerPathMessage, GameServerMessage {
+class PlayerPathMessage with _$PlayerPathMessage, ServerMessage {
   static const String jsonType = 'player_path';
 
   factory PlayerPathMessage(
