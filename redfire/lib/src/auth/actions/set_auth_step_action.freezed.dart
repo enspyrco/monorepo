@@ -21,7 +21,7 @@ SetAuthStepAction _$SetAuthStepActionFromJson(Map<String, dynamic> json) {
 class _$SetAuthStepActionTearOff {
   const _$SetAuthStepActionTearOff();
 
-  _SetAuthStepAction call(AuthenticationEnum step) {
+  _SetAuthStepAction call(AuthStepEnum step) {
     return _SetAuthStepAction(
       step,
     );
@@ -37,7 +37,7 @@ const $SetAuthStepAction = _$SetAuthStepActionTearOff();
 
 /// @nodoc
 mixin _$SetAuthStepAction {
-  AuthenticationEnum get step => throw _privateConstructorUsedError;
+  AuthStepEnum get step => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +50,7 @@ abstract class $SetAuthStepActionCopyWith<$Res> {
   factory $SetAuthStepActionCopyWith(
           SetAuthStepAction value, $Res Function(SetAuthStepAction) then) =
       _$SetAuthStepActionCopyWithImpl<$Res>;
-  $Res call({AuthenticationEnum step});
+  $Res call({AuthStepEnum step});
 }
 
 /// @nodoc
@@ -70,7 +70,7 @@ class _$SetAuthStepActionCopyWithImpl<$Res>
       step: step == freezed
           ? _value.step
           : step // ignore: cast_nullable_to_non_nullable
-              as AuthenticationEnum,
+              as AuthStepEnum,
     ));
   }
 }
@@ -82,7 +82,7 @@ abstract class _$SetAuthStepActionCopyWith<$Res>
           _SetAuthStepAction value, $Res Function(_SetAuthStepAction) then) =
       __$SetAuthStepActionCopyWithImpl<$Res>;
   @override
-  $Res call({AuthenticationEnum step});
+  $Res call({AuthStepEnum step});
 }
 
 /// @nodoc
@@ -104,7 +104,7 @@ class __$SetAuthStepActionCopyWithImpl<$Res>
       step == freezed
           ? _value.step
           : step // ignore: cast_nullable_to_non_nullable
-              as AuthenticationEnum,
+              as AuthStepEnum,
     ));
   }
 }
@@ -118,7 +118,7 @@ class _$_SetAuthStepAction implements _SetAuthStepAction {
       _$$_SetAuthStepActionFromJson(json);
 
   @override
-  final AuthenticationEnum step;
+  final AuthStepEnum step;
 
   @override
   String toString() {
@@ -149,13 +149,13 @@ class _$_SetAuthStepAction implements _SetAuthStepAction {
 }
 
 abstract class _SetAuthStepAction implements SetAuthStepAction {
-  factory _SetAuthStepAction(AuthenticationEnum step) = _$_SetAuthStepAction;
+  factory _SetAuthStepAction(AuthStepEnum step) = _$_SetAuthStepAction;
 
   factory _SetAuthStepAction.fromJson(Map<String, dynamic> json) =
       _$_SetAuthStepAction.fromJson;
 
   @override
-  AuthenticationEnum get step => throw _privateConstructorUsedError;
+  AuthStepEnum get step => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SetAuthStepActionCopyWith<_SetAuthStepAction> get copyWith =>

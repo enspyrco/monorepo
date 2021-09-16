@@ -2,7 +2,7 @@ import 'package:mockito/mockito.dart';
 import 'package:redfire/src/auth/actions/observe_auth_state_action.dart';
 import 'package:redfire/src/auth/actions/set_auth_user_data_action.dart';
 import 'package:redfire/src/auth/middleware/observe_auth_state_middleware.dart';
-import 'package:redfire/src/auth/reducers/store_auth_user_data_reducer.dart';
+import 'package:redfire/src/auth/reducers/set_auth_user_data_reducer.dart';
 import 'package:redfire/src/redux/extensions/reducers_list_extension.dart';
 import 'package:redfire/src/types/redux_action.dart';
 import 'package:redfire/src/utils/red_fire_locator.dart';
@@ -25,7 +25,7 @@ void main() {
 
       // Create a store with the relevant reducer
       final appReducer =
-          <Reducer<AppState>>[StoreAuthUserDataReducer<AppState>()].combine();
+          <Reducer<AppState>>[SetAuthUserDataReducer<AppState>()].combine();
       final store = Store(appReducer,
           initialState: AppState.init(),
           middleware: <Middleware<AppState>>[

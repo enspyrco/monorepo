@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redfire/src/auth/enums/email_sign_in_step_enum.dart';
 import 'package:redfire/src/auth/models/auth_page_v_m.dart';
 import 'package:redfire/src/auth/widgets/auth_page_buttons/platform_default_sign_in_button.dart';
 import 'package:redfire/src/auth/widgets/auth_page_text_fields/email_text_field.dart';
@@ -21,13 +22,13 @@ class AuthPage<T extends RedFireState> extends StatelessWidget {
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                if (vm.auth.email == null)
+                if (vm.auth.emailVM.email == null)
                   EmailTextField<T>()
-                else if (vm.auth.signInMethodsForEmail == null)
+                else if (vm.auth.emailVM.emailSignInStep ==
+                    EmailSignInStepEnum.checkingEmail)
                   const CircularProgressIndicator()
                 else
-                  PasswordTextField<T>(
-                      signInMethods: vm.auth.signInMethodsForEmail!),
+                  PasswordTextField<T>(step: vm.auth.emailVM.emailSignInStep),
                 PlatformDefaultSignInButton<T>(vm.platform)
               ],
             );

@@ -7,22 +7,23 @@ part of 'auth_state.dart';
 // **************************************************************************
 
 _$_AuthState _$$_AuthStateFromJson(Map<String, dynamic> json) => _$_AuthState(
-      email: json['email'] as String?,
-      signInMethodsForEmail: (json['signInMethodsForEmail'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
+      emailVM: EmailAuthVM.fromJson(json['emailVM'] as Map<String, dynamic>),
       userData: json['userData'] == null
           ? null
           : AuthUserData.fromJson(json['userData'] as Map<String, dynamic>),
-      step: _$enumDecode(_$AuthenticationEnumEnumMap, json['step']),
+      idTokenResult: json['idTokenResult'] == null
+          ? null
+          : IdTokenResult.fromJson(
+              json['idTokenResult'] as Map<String, dynamic>),
+      step: _$enumDecode(_$AuthStepEnumEnumMap, json['step']),
     );
 
 Map<String, dynamic> _$$_AuthStateToJson(_$_AuthState instance) =>
     <String, dynamic>{
-      'email': instance.email,
-      'signInMethodsForEmail': instance.signInMethodsForEmail,
+      'emailVM': instance.emailVM,
       'userData': instance.userData,
-      'step': _$AuthenticationEnumEnumMap[instance.step],
+      'idTokenResult': instance.idTokenResult,
+      'step': _$AuthStepEnumEnumMap[instance.step],
     };
 
 K _$enumDecode<K, V>(
@@ -51,11 +52,11 @@ K _$enumDecode<K, V>(
   ).key;
 }
 
-const _$AuthenticationEnumEnumMap = {
-  AuthenticationEnum.checking: 'CHECKING',
-  AuthenticationEnum.waitingForInput: 'WAITING_FOR_INPUT',
-  AuthenticationEnum.contactingApple: 'CONTACTING_APPLE',
-  AuthenticationEnum.contactingGoogle: 'CONTACTING_GOOGLE',
-  AuthenticationEnum.signingInWithFirebase: 'SIGNING_IN_WITH_FIREBASE',
-  AuthenticationEnum.signingOut: 'SIGNING_OUT',
+const _$AuthStepEnumEnumMap = {
+  AuthStepEnum.checking: 'CHECKING',
+  AuthStepEnum.waitingForInput: 'WAITING_FOR_INPUT',
+  AuthStepEnum.contactingApple: 'CONTACTING_APPLE',
+  AuthStepEnum.contactingGoogle: 'CONTACTING_GOOGLE',
+  AuthStepEnum.signingInWithFirebase: 'SIGNING_IN_WITH_FIREBASE',
+  AuthStepEnum.signingOut: 'SIGNING_OUT',
 };

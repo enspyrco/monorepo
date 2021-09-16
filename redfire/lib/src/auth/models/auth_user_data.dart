@@ -12,6 +12,7 @@ class AuthUserData with _$AuthUserData {
   AuthUserData._();
   factory AuthUserData({
     required String uid,
+    String? tenantId,
     String? displayName,
     String? photoURL,
     String? email,

@@ -1,17 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'store_email_action.dart';
+part of 'set_email_action.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_StoreEmailAction _$$_StoreEmailActionFromJson(Map<String, dynamic> json) =>
-    _$_StoreEmailAction(
+_$_SetEmailAction _$$_SetEmailActionFromJson(Map<String, dynamic> json) =>
+    _$_SetEmailAction(
       json['text'] as String?,
     );
 
-Map<String, dynamic> _$$_StoreEmailActionToJson(_$_StoreEmailAction instance) =>
+Map<String, dynamic> _$$_SetEmailActionToJson(_$_SetEmailAction instance) =>
     <String, dynamic>{
       'text': instance.text,
     };

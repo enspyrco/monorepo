@@ -45,7 +45,10 @@ K _$enumDecode<K, V>(
 }
 
 const _$ProvidersEnumEnumMap = {
+  ProvidersEnum.apple: 'APPLE',
   ProvidersEnum.google: 'GOOGLE',
+  ProvidersEnum.email: 'EMAIL',
   ProvidersEnum.asana: 'ASANA',
   ProvidersEnum.gitHub: 'GIT_HUB',
+  ProvidersEnum.phone: 'PHONE',
 };

@@ -15,15 +15,14 @@ class SignUpWithEmailMiddleware<T extends RedFireState>
           try {
             final service = RedFireLocator.getAuthService();
 
-            var email = store.state.auth.email!;
+            var email = store.state.auth.emailVM.email!;
 
             store.dispatch(
-                SetAuthStepAction(AuthenticationEnum.signingInWithFirebase));
+                SetAuthStepAction(AuthStepEnum.signingInWithFirebase));
 
             await service.signUpWithEmailAndPassword(email, action.password);
 
-            store.dispatch(
-                SetAuthStepAction(AuthenticationEnum.waitingForInput));
+            store.dispatch(SetAuthStepAction(AuthStepEnum.waitingForInput));
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           }

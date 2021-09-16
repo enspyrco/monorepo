@@ -20,10 +20,10 @@ dependencies:
   mockito:
 
   redfire:
-    git: 
-      url: https://github.com/enspyrco/redfire.git
-      path: redfire
-    # path: ../redfire
+    # git:
+    #   url: https://github.com/enspyrco/redfire.git
+    #   path: redfire
+    path: ../redfire
 
 dev_dependencies:
   flutter_test:

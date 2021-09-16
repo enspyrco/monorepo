@@ -33,8 +33,8 @@ extension EnumParsers on String {
         .firstWhere((e) => e.toString().toLowerCase() == 'providersEnum.$this');
   }
 
-  AuthenticationEnum toAuthenticationEnum() {
-    return AuthenticationEnum.values.firstWhere(
+  AuthStepEnum toAuthStepEnum() {
+    return AuthStepEnum.values.firstWhere(
         (e) => e.toString().toLowerCase() == 'authenticationEnum.$this');
   }
 

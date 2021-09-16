@@ -8,13 +8,13 @@ part of 'set_auth_step_action.dart';
 
 _$_SetAuthStepAction _$$_SetAuthStepActionFromJson(Map<String, dynamic> json) =>
     _$_SetAuthStepAction(
-      _$enumDecode(_$AuthenticationEnumEnumMap, json['step']),
+      _$enumDecode(_$AuthStepEnumEnumMap, json['step']),
     );
 
 Map<String, dynamic> _$$_SetAuthStepActionToJson(
         _$_SetAuthStepAction instance) =>
     <String, dynamic>{
-      'step': _$AuthenticationEnumEnumMap[instance.step],
+      'step': _$AuthStepEnumEnumMap[instance.step],
     };
 
 K _$enumDecode<K, V>(
@@ -43,11 +43,11 @@ K _$enumDecode<K, V>(
   ).key;
 }
 
-const _$AuthenticationEnumEnumMap = {
-  AuthenticationEnum.checking: 'CHECKING',
-  AuthenticationEnum.waitingForInput: 'WAITING_FOR_INPUT',
-  AuthenticationEnum.contactingApple: 'CONTACTING_APPLE',
-  AuthenticationEnum.contactingGoogle: 'CONTACTING_GOOGLE',
-  AuthenticationEnum.signingInWithFirebase: 'SIGNING_IN_WITH_FIREBASE',
-  AuthenticationEnum.signingOut: 'SIGNING_OUT',
+const _$AuthStepEnumEnumMap = {
+  AuthStepEnum.checking: 'CHECKING',
+  AuthStepEnum.waitingForInput: 'WAITING_FOR_INPUT',
+  AuthStepEnum.contactingApple: 'CONTACTING_APPLE',
+  AuthStepEnum.contactingGoogle: 'CONTACTING_GOOGLE',
+  AuthStepEnum.signingInWithFirebase: 'SIGNING_IN_WITH_FIREBASE',
+  AuthStepEnum.signingOut: 'SIGNING_OUT',
 };

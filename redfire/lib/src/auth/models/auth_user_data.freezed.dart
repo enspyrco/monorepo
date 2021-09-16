@@ -23,6 +23,7 @@ class _$AuthUserDataTearOff {
 
   _AuthUserData call(
       {required String uid,
+      String? tenantId,
       String? displayName,
       String? photoURL,
       String? email,
@@ -34,6 +35,7 @@ class _$AuthUserDataTearOff {
       required IList<AuthProviderData> providers}) {
     return _AuthUserData(
       uid: uid,
+      tenantId: tenantId,
       displayName: displayName,
       photoURL: photoURL,
       email: email,
@@ -57,6 +59,7 @@ const $AuthUserData = _$AuthUserDataTearOff();
 /// @nodoc
 mixin _$AuthUserData {
   String get uid => throw _privateConstructorUsedError;
+  String? get tenantId => throw _privateConstructorUsedError;
   String? get displayName => throw _privateConstructorUsedError;
   String? get photoURL => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
@@ -80,6 +83,7 @@ abstract class $AuthUserDataCopyWith<$Res> {
       _$AuthUserDataCopyWithImpl<$Res>;
   $Res call(
       {String uid,
+      String? tenantId,
       String? displayName,
       String? photoURL,
       String? email,
@@ -102,6 +106,7 @@ class _$AuthUserDataCopyWithImpl<$Res> implements $AuthUserDataCopyWith<$Res> {
   @override
   $Res call({
     Object? uid = freezed,
+    Object? tenantId = freezed,
     Object? displayName = freezed,
     Object? photoURL = freezed,
     Object? email = freezed,
@@ -117,6 +122,10 @@ class _$AuthUserDataCopyWithImpl<$Res> implements $AuthUserDataCopyWith<$Res> {
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
+      tenantId: tenantId == freezed
+          ? _value.tenantId
+          : tenantId // ignore: cast_nullable_to_non_nullable
+              as String?,
       displayName: displayName == freezed
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
@@ -166,6 +175,7 @@ abstract class _$AuthUserDataCopyWith<$Res>
   @override
   $Res call(
       {String uid,
+      String? tenantId,
       String? displayName,
       String? photoURL,
       String? email,
@@ -190,6 +200,7 @@ class __$AuthUserDataCopyWithImpl<$Res> extends _$AuthUserDataCopyWithImpl<$Res>
   @override
   $Res call({
     Object? uid = freezed,
+    Object? tenantId = freezed,
     Object? displayName = freezed,
     Object? photoURL = freezed,
     Object? email = freezed,
@@ -205,6 +216,10 @@ class __$AuthUserDataCopyWithImpl<$Res> extends _$AuthUserDataCopyWithImpl<$Res>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
+      tenantId: tenantId == freezed
+          ? _value.tenantId
+          : tenantId // ignore: cast_nullable_to_non_nullable
+              as String?,
       displayName: displayName == freezed
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
@@ -250,6 +265,7 @@ class __$AuthUserDataCopyWithImpl<$Res> extends _$AuthUserDataCopyWithImpl<$Res>
 class _$_AuthUserData extends _AuthUserData {
   _$_AuthUserData(
       {required this.uid,
+      this.tenantId,
       this.displayName,
       this.photoURL,
       this.email,
@@ -266,6 +282,8 @@ class _$_AuthUserData extends _AuthUserData {
 
   @override
   final String uid;
+  @override
+  final String? tenantId;
   @override
   final String? displayName;
   @override
@@ -287,7 +305,7 @@ class _$_AuthUserData extends _AuthUserData {
 
   @override
   String toString() {
-    return 'AuthUserData(uid: $uid, displayName: $displayName, photoURL: $photoURL, email: $email, phoneNumber: $phoneNumber, createdOn: $createdOn, lastSignedInOn: $lastSignedInOn, isAnonymous: $isAnonymous, emailVerified: $emailVerified, providers: $providers)';
+    return 'AuthUserData(uid: $uid, tenantId: $tenantId, displayName: $displayName, photoURL: $photoURL, email: $email, phoneNumber: $phoneNumber, createdOn: $createdOn, lastSignedInOn: $lastSignedInOn, isAnonymous: $isAnonymous, emailVerified: $emailVerified, providers: $providers)';
   }
 
   @override
@@ -296,6 +314,9 @@ class _$_AuthUserData extends _AuthUserData {
         (other is _AuthUserData &&
             (identical(other.uid, uid) ||
                 const DeepCollectionEquality().equals(other.uid, uid)) &&
+            (identical(other.tenantId, tenantId) ||
+                const DeepCollectionEquality()
+                    .equals(other.tenantId, tenantId)) &&
             (identical(other.displayName, displayName) ||
                 const DeepCollectionEquality()
                     .equals(other.displayName, displayName)) &&
@@ -328,6 +349,7 @@ class _$_AuthUserData extends _AuthUserData {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(uid) ^
+      const DeepCollectionEquality().hash(tenantId) ^
       const DeepCollectionEquality().hash(displayName) ^
       const DeepCollectionEquality().hash(photoURL) ^
       const DeepCollectionEquality().hash(email) ^
@@ -352,6 +374,7 @@ class _$_AuthUserData extends _AuthUserData {
 abstract class _AuthUserData extends AuthUserData {
   factory _AuthUserData(
       {required String uid,
+      String? tenantId,
       String? displayName,
       String? photoURL,
       String? email,
@@ -368,6 +391,8 @@ abstract class _AuthUserData extends AuthUserData {
 
   @override
   String get uid => throw _privateConstructorUsedError;
+  @override
+  String? get tenantId => throw _privateConstructorUsedError;
   @override
   String? get displayName => throw _privateConstructorUsedError;
   @override

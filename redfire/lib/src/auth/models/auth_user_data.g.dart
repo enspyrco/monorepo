@@ -9,6 +9,7 @@ part of 'auth_user_data.dart';
 _$_AuthUserData _$$_AuthUserDataFromJson(Map<String, dynamic> json) =>
     _$_AuthUserData(
       uid: json['uid'] as String,
+      tenantId: json['tenantId'] as String?,
       displayName: json['displayName'] as String?,
       photoURL: json['photoURL'] as String?,
       email: json['email'] as String?,
@@ -28,6 +29,7 @@ _$_AuthUserData _$$_AuthUserDataFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_AuthUserDataToJson(_$_AuthUserData instance) =>
     <String, dynamic>{
       'uid': instance.uid,
+      'tenantId': instance.tenantId,
       'displayName': instance.displayName,
       'photoURL': instance.photoURL,
       'email': instance.email,

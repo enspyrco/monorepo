@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'store_email_action.dart';
+part of 'set_email_action.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,54 +13,54 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-StoreEmailAction _$StoreEmailActionFromJson(Map<String, dynamic> json) {
-  return _StoreEmailAction.fromJson(json);
+SetEmailAction _$SetEmailActionFromJson(Map<String, dynamic> json) {
+  return _SetEmailAction.fromJson(json);
 }
 
 /// @nodoc
-class _$StoreEmailActionTearOff {
-  const _$StoreEmailActionTearOff();
+class _$SetEmailActionTearOff {
+  const _$SetEmailActionTearOff();
 
-  _StoreEmailAction call(String? text) {
-    return _StoreEmailAction(
+  _SetEmailAction call(String? text) {
+    return _SetEmailAction(
       text,
     );
   }
 
-  StoreEmailAction fromJson(Map<String, Object> json) {
-    return StoreEmailAction.fromJson(json);
+  SetEmailAction fromJson(Map<String, Object> json) {
+    return SetEmailAction.fromJson(json);
   }
 }
 
 /// @nodoc
-const $StoreEmailAction = _$StoreEmailActionTearOff();
+const $SetEmailAction = _$SetEmailActionTearOff();
 
 /// @nodoc
-mixin _$StoreEmailAction {
+mixin _$SetEmailAction {
   String? get text => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $StoreEmailActionCopyWith<StoreEmailAction> get copyWith =>
+  $SetEmailActionCopyWith<SetEmailAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StoreEmailActionCopyWith<$Res> {
-  factory $StoreEmailActionCopyWith(
-          StoreEmailAction value, $Res Function(StoreEmailAction) then) =
-      _$StoreEmailActionCopyWithImpl<$Res>;
+abstract class $SetEmailActionCopyWith<$Res> {
+  factory $SetEmailActionCopyWith(
+          SetEmailAction value, $Res Function(SetEmailAction) then) =
+      _$SetEmailActionCopyWithImpl<$Res>;
   $Res call({String? text});
 }
 
 /// @nodoc
-class _$StoreEmailActionCopyWithImpl<$Res>
-    implements $StoreEmailActionCopyWith<$Res> {
-  _$StoreEmailActionCopyWithImpl(this._value, this._then);
+class _$SetEmailActionCopyWithImpl<$Res>
+    implements $SetEmailActionCopyWith<$Res> {
+  _$SetEmailActionCopyWithImpl(this._value, this._then);
 
-  final StoreEmailAction _value;
+  final SetEmailAction _value;
   // ignore: unused_field
-  final $Res Function(StoreEmailAction) _then;
+  final $Res Function(SetEmailAction) _then;
 
   @override
   $Res call({
@@ -76,31 +76,31 @@ class _$StoreEmailActionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$StoreEmailActionCopyWith<$Res>
-    implements $StoreEmailActionCopyWith<$Res> {
-  factory _$StoreEmailActionCopyWith(
-          _StoreEmailAction value, $Res Function(_StoreEmailAction) then) =
-      __$StoreEmailActionCopyWithImpl<$Res>;
+abstract class _$SetEmailActionCopyWith<$Res>
+    implements $SetEmailActionCopyWith<$Res> {
+  factory _$SetEmailActionCopyWith(
+          _SetEmailAction value, $Res Function(_SetEmailAction) then) =
+      __$SetEmailActionCopyWithImpl<$Res>;
   @override
   $Res call({String? text});
 }
 
 /// @nodoc
-class __$StoreEmailActionCopyWithImpl<$Res>
-    extends _$StoreEmailActionCopyWithImpl<$Res>
-    implements _$StoreEmailActionCopyWith<$Res> {
-  __$StoreEmailActionCopyWithImpl(
-      _StoreEmailAction _value, $Res Function(_StoreEmailAction) _then)
-      : super(_value, (v) => _then(v as _StoreEmailAction));
+class __$SetEmailActionCopyWithImpl<$Res>
+    extends _$SetEmailActionCopyWithImpl<$Res>
+    implements _$SetEmailActionCopyWith<$Res> {
+  __$SetEmailActionCopyWithImpl(
+      _SetEmailAction _value, $Res Function(_SetEmailAction) _then)
+      : super(_value, (v) => _then(v as _SetEmailAction));
 
   @override
-  _StoreEmailAction get _value => super._value as _StoreEmailAction;
+  _SetEmailAction get _value => super._value as _SetEmailAction;
 
   @override
   $Res call({
     Object? text = freezed,
   }) {
-    return _then(_StoreEmailAction(
+    return _then(_SetEmailAction(
       text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -111,24 +111,24 @@ class __$StoreEmailActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_StoreEmailAction implements _StoreEmailAction {
-  _$_StoreEmailAction(this.text);
+class _$_SetEmailAction implements _SetEmailAction {
+  _$_SetEmailAction(this.text);
 
-  factory _$_StoreEmailAction.fromJson(Map<String, dynamic> json) =>
-      _$$_StoreEmailActionFromJson(json);
+  factory _$_SetEmailAction.fromJson(Map<String, dynamic> json) =>
+      _$$_SetEmailActionFromJson(json);
 
   @override
   final String? text;
 
   @override
   String toString() {
-    return 'StoreEmailAction(text: $text)';
+    return 'SetEmailAction(text: $text)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _StoreEmailAction &&
+        (other is _SetEmailAction &&
             (identical(other.text, text) ||
                 const DeepCollectionEquality().equals(other.text, text)));
   }
@@ -139,25 +139,25 @@ class _$_StoreEmailAction implements _StoreEmailAction {
 
   @JsonKey(ignore: true)
   @override
-  _$StoreEmailActionCopyWith<_StoreEmailAction> get copyWith =>
-      __$StoreEmailActionCopyWithImpl<_StoreEmailAction>(this, _$identity);
+  _$SetEmailActionCopyWith<_SetEmailAction> get copyWith =>
+      __$SetEmailActionCopyWithImpl<_SetEmailAction>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StoreEmailActionToJson(this);
+    return _$$_SetEmailActionToJson(this);
   }
 }
 
-abstract class _StoreEmailAction implements StoreEmailAction {
-  factory _StoreEmailAction(String? text) = _$_StoreEmailAction;
+abstract class _SetEmailAction implements SetEmailAction {
+  factory _SetEmailAction(String? text) = _$_SetEmailAction;
 
-  factory _StoreEmailAction.fromJson(Map<String, dynamic> json) =
-      _$_StoreEmailAction.fromJson;
+  factory _SetEmailAction.fromJson(Map<String, dynamic> json) =
+      _$_SetEmailAction.fromJson;
 
   @override
   String? get text => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$StoreEmailActionCopyWith<_StoreEmailAction> get copyWith =>
+  _$SetEmailActionCopyWith<_SetEmailAction> get copyWith =>
       throw _privateConstructorUsedError;
 }

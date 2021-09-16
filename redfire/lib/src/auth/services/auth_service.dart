@@ -6,8 +6,8 @@ import 'package:redfire/src/auth/models/apple_id_credential.dart';
 import 'package:redfire/src/auth/models/auth_user_data.dart';
 import 'package:redfire/src/auth/models/google_sign_in_credential.dart';
 import 'package:redfire/src/platform/plugins/wrappers/apple_signin_wrapper.dart';
-import 'package:redfire/src/types/redux_action.dart';
 import 'package:redfire/src/types/redux_service.dart';
+import 'package:redfire/types.dart';
 
 class AuthService extends ReduxService {
   AuthService(
@@ -30,7 +30,7 @@ class AuthService extends ReduxService {
   // which can be dispatched by the store.
   // If the FirebaseUser or the uid field is null, create an empty StoreUser
   // object that will set the user field of the AppState to null.
-  Stream<ReduxAction> get streamOfStoreAuthState {
+  Stream<SetAuthUserDataAction> get streamOfSetAuthUserData {
     return _firebaseAuth
         .authStateChanges()
         .map((user) => SetAuthUserDataAction(user?.toModel()));
@@ -41,6 +41,10 @@ class AuthService extends ReduxService {
     final user = userCredential.user!;
 
     return user.toModel();
+  }
+
+  Future<IdTokenResult>? getIdTokenResult() {
+    return FirebaseAuth.instance.currentUser?.getIdTokenResult();
   }
 
   Future<List<String>> retrieveSignInMethodsFor(String email) =>
@@ -143,8 +147,10 @@ class AuthService extends ReduxService {
 
   /// The stream of auth state is connected to the store at app load so the
   /// app state will be automatically updated.
-  Future<void> signOut() async {
-    await _googleSignIn?.signOut();
+  Future<void> signOut(ProvidersEnum? signInProvider) async {
+    if (signInProvider == ProvidersEnum.google) {
+      await _googleSignIn?.signOut();
+    }
     await _firebaseAuth.signOut();
   }
 }

@@ -10,6 +10,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 extension FirebaseUserExtension on User {
   AuthUserData toModel() => AuthUserData(
       uid: uid,
+      tenantId: tenantId,
       displayName: displayName,
       photoURL: photoURL,
       email: email,

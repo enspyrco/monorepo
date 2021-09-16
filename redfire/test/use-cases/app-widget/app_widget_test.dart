@@ -31,7 +31,7 @@ void main() {
       // Create an AppState representing an authenticated state.
       final authenticatedState = AppState.init().copyWith.auth(
           userData: AuthUserDataExample.minimal,
-          step: AuthenticationEnum.waitingForInput);
+          step: AuthStepEnum.waitingForInput);
 
       // Create app widget test harness, with a fake store & authenticated state
       final harness = AppWidgetHarness<AppState>.withFakeStore(

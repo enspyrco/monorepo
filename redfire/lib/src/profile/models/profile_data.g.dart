@@ -61,11 +61,14 @@ const _$AuthorizationEnumEnumMap = {
   AuthorizationEnum.waitingForInput: 'WAITING_FOR_INPUT',
   AuthorizationEnum.gettingAuthorized: 'GETTING_AUTHORIZED',
   AuthorizationEnum.authorized: 'AUTHORIZED',
-  AuthorizationEnum.unknown: 'UNKOWN',
+  AuthorizationEnum.unknown: 'UNKNOWN',
 };
 
 const _$ProvidersEnumEnumMap = {
+  ProvidersEnum.apple: 'APPLE',
   ProvidersEnum.google: 'GOOGLE',
+  ProvidersEnum.email: 'EMAIL',
   ProvidersEnum.asana: 'ASANA',
   ProvidersEnum.gitHub: 'GIT_HUB',
+  ProvidersEnum.phone: 'PHONE',
 };

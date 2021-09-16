@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mockito/mockito.dart';
 import 'package:redfire/actions.dart';
-import 'package:redfire/src/auth/enums/authentication_enum.dart';
+import 'package:redfire/src/auth/enums/auth_step_enum.dart';
 import 'package:redfire/src/auth/services/auth_service.dart';
 import 'package:redfire/src/types/redux_action.dart';
 import 'package:redfire/types.dart';
@@ -26,9 +26,8 @@ void main() {
 
       // Check that the streamOfStoreAuthState returned by the auth service
       // eventually emits a SetAuthUserDataAction with expected state.
-      authService.streamOfStoreAuthState.listen(expectAsync1((action) {
+      authService.streamOfSetAuthUserData.listen(expectAsync1((action) {
         expect(action is SetAuthUserDataAction, true);
-        action = action as SetAuthUserDataAction;
         expect(action.authUserData!.uid, stubbedUser.uid);
         expect(action.authUserData!.displayName, stubbedUser.displayName);
         expect(action.authUserData!.photoURL, stubbedUser.photoURL);
@@ -54,11 +53,11 @@ void main() {
       // then due to user cancel (which means google sign in returns null)
       // the service should reset the auth step to waiting for input
       final expectedAuthSteps = [
-        AuthenticationEnum.contactingGoogle,
-        AuthenticationEnum.waitingForInput
+        AuthStepEnum.contactingGoogle,
+        AuthStepEnum.waitingForInput
       ];
 
-      service.streamOfStoreAuthState.listen(expectAsync1((action) {
+      service.streamOfSetAuthUserData.listen(expectAsync1((action) {
         expect(
             (action as SetAuthStepAction).step, expectedAuthSteps.removeAt(0));
       }, count: 2));
@@ -73,11 +72,11 @@ void main() {
           google: MockGoogleSignIn());
 
       expect(
-          service.streamOfStoreAuthState,
+          service.streamOfSetAuthUserData,
           emitsInOrder(<ReduxAction>[
-            SetAuthStepAction(AuthenticationEnum.contactingGoogle),
-            SetAuthStepAction(AuthenticationEnum.signingInWithFirebase),
-            SetAuthStepAction(AuthenticationEnum.waitingForInput),
+            SetAuthStepAction(AuthStepEnum.contactingGoogle),
+            SetAuthStepAction(AuthStepEnum.signingInWithFirebase),
+            SetAuthStepAction(AuthStepEnum.waitingForInput),
             // NavigatorPopAll()
           ]));
     });
@@ -96,10 +95,10 @@ void main() {
       /// We use a [TypeMatcher] as it's difficult to create the expected
       /// [Problem] due to the [Problem.trace] member
       expect(
-          service.streamOfStoreAuthState,
+          service.streamOfSetAuthUserData,
           emitsInOrder(<dynamic>[
-            SetAuthStepAction(AuthenticationEnum.contactingGoogle),
-            SetAuthStepAction(AuthenticationEnum.waitingForInput),
+            SetAuthStepAction(AuthStepEnum.contactingGoogle),
+            SetAuthStepAction(AuthStepEnum.waitingForInput),
             const TypeMatcher<AddProblemAction>()
               ..having((p) => p.info.message, 'message',
                   equals('Exception: GoogleSignIn.signIn')),

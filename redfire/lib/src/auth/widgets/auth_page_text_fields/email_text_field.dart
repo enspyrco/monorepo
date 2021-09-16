@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:redfire/src/auth/actions/email/check_sign_in_methods_for_email_action.dart';
+import 'package:redfire/src/auth/actions/email/get_providers_for_email_action.dart';
 import 'package:redfire/src/redux/extensions/build_context_extensions.dart';
 import 'package:redfire/src/types/red_fire_state.dart';
 
@@ -20,7 +20,7 @@ class EmailTextField<T extends RedFireState> extends StatelessWidget {
             fillColor: Colors.grey[900],
             filled: true),
         onSubmitted: (email) =>
-            context.dispatch<T>(CheckSignInMethodsForEmailAction(email)),
+            context.dispatch<T>(GetProvidersForEmailAction(email)),
       ),
     );
   }

@@ -1,8 +1,8 @@
 import 'package:redfire/src/auth/actions/set_auth_step_action.dart';
 import 'package:redfire/src/auth/actions/set_auth_user_data_action.dart';
-import 'package:redfire/src/auth/enums/authentication_enum.dart';
-import 'package:redfire/src/auth/reducers/store_auth_step_reducer.dart';
-import 'package:redfire/src/auth/reducers/store_auth_user_data_reducer.dart';
+import 'package:redfire/src/auth/enums/auth_step_enum.dart';
+import 'package:redfire/src/auth/reducers/set_auth_step_reducer.dart';
+import 'package:redfire/src/auth/reducers/set_auth_user_data_reducer.dart';
 import 'package:redfire/src/problems/actions/add_problem_action.dart';
 import 'package:redfire/src/problems/models/problem_info.dart';
 import 'package:redfire/src/problems/reducers/add_problem_reducer.dart';
@@ -19,7 +19,7 @@ void main() {
       final initialState = AppState.init();
       expect(initialState.auth.userData, null);
 
-      final reducer = StoreAuthUserDataReducer();
+      final reducer = SetAuthUserDataReducer();
       final newState = reducer.reducer(
           initialState, SetAuthUserDataAction(AuthUserDataExample.basic));
 
@@ -49,13 +49,13 @@ void main() {
   group('StoreAuthStep', () {
     test('stores the auth step', () {
       final initialState = AppState.init();
-      expect(initialState.auth.step, AuthenticationEnum.checking);
+      expect(initialState.auth.step, AuthStepEnum.checking);
 
-      final reducer = StoreAuthStepReducer();
+      final reducer = SetAuthStepReducer();
       final newState =
           reducer.reducer(initialState, SetAuthStepAction.contactingApple());
 
-      expect(newState.auth.step, AuthenticationEnum.contactingApple);
+      expect(newState.auth.step, AuthStepEnum.contactingApple);
     });
   });
 

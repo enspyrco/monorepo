@@ -22,14 +22,14 @@ class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
   _AuthState call(
-      {String? email,
-      List<String>? signInMethodsForEmail,
+      {required EmailAuthVM emailVM,
       AuthUserData? userData,
-      required AuthenticationEnum step}) {
+      IdTokenResult? idTokenResult,
+      required AuthStepEnum step}) {
     return _AuthState(
-      email: email,
-      signInMethodsForEmail: signInMethodsForEmail,
+      emailVM: emailVM,
       userData: userData,
+      idTokenResult: idTokenResult,
       step: step,
     );
   }
@@ -44,10 +44,10 @@ const $AuthState = _$AuthStateTearOff();
 
 /// @nodoc
 mixin _$AuthState {
-  String? get email => throw _privateConstructorUsedError;
-  List<String>? get signInMethodsForEmail => throw _privateConstructorUsedError;
+  EmailAuthVM get emailVM => throw _privateConstructorUsedError;
   AuthUserData? get userData => throw _privateConstructorUsedError;
-  AuthenticationEnum get step => throw _privateConstructorUsedError;
+  IdTokenResult? get idTokenResult => throw _privateConstructorUsedError;
+  AuthStepEnum get step => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -60,12 +60,14 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res>;
   $Res call(
-      {String? email,
-      List<String>? signInMethodsForEmail,
+      {EmailAuthVM emailVM,
       AuthUserData? userData,
-      AuthenticationEnum step});
+      IdTokenResult? idTokenResult,
+      AuthStepEnum step});
 
+  $EmailAuthVMCopyWith<$Res> get emailVM;
   $AuthUserDataCopyWith<$Res>? get userData;
+  $IdTokenResultCopyWith<$Res>? get idTokenResult;
 }
 
 /// @nodoc
@@ -78,29 +80,36 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? email = freezed,
-    Object? signInMethodsForEmail = freezed,
+    Object? emailVM = freezed,
     Object? userData = freezed,
+    Object? idTokenResult = freezed,
     Object? step = freezed,
   }) {
     return _then(_value.copyWith(
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      signInMethodsForEmail: signInMethodsForEmail == freezed
-          ? _value.signInMethodsForEmail
-          : signInMethodsForEmail // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      emailVM: emailVM == freezed
+          ? _value.emailVM
+          : emailVM // ignore: cast_nullable_to_non_nullable
+              as EmailAuthVM,
       userData: userData == freezed
           ? _value.userData
           : userData // ignore: cast_nullable_to_non_nullable
               as AuthUserData?,
+      idTokenResult: idTokenResult == freezed
+          ? _value.idTokenResult
+          : idTokenResult // ignore: cast_nullable_to_non_nullable
+              as IdTokenResult?,
       step: step == freezed
           ? _value.step
           : step // ignore: cast_nullable_to_non_nullable
-              as AuthenticationEnum,
+              as AuthStepEnum,
     ));
+  }
+
+  @override
+  $EmailAuthVMCopyWith<$Res> get emailVM {
+    return $EmailAuthVMCopyWith<$Res>(_value.emailVM, (value) {
+      return _then(_value.copyWith(emailVM: value));
+    });
   }
 
   @override
@@ -113,6 +122,17 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
       return _then(_value.copyWith(userData: value));
     });
   }
+
+  @override
+  $IdTokenResultCopyWith<$Res>? get idTokenResult {
+    if (_value.idTokenResult == null) {
+      return null;
+    }
+
+    return $IdTokenResultCopyWith<$Res>(_value.idTokenResult!, (value) {
+      return _then(_value.copyWith(idTokenResult: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -122,13 +142,17 @@ abstract class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       __$AuthStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? email,
-      List<String>? signInMethodsForEmail,
+      {EmailAuthVM emailVM,
       AuthUserData? userData,
-      AuthenticationEnum step});
+      IdTokenResult? idTokenResult,
+      AuthStepEnum step});
 
   @override
+  $EmailAuthVMCopyWith<$Res> get emailVM;
+  @override
   $AuthUserDataCopyWith<$Res>? get userData;
+  @override
+  $IdTokenResultCopyWith<$Res>? get idTokenResult;
 }
 
 /// @nodoc
@@ -142,28 +166,28 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? email = freezed,
-    Object? signInMethodsForEmail = freezed,
+    Object? emailVM = freezed,
     Object? userData = freezed,
+    Object? idTokenResult = freezed,
     Object? step = freezed,
   }) {
     return _then(_AuthState(
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      signInMethodsForEmail: signInMethodsForEmail == freezed
-          ? _value.signInMethodsForEmail
-          : signInMethodsForEmail // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      emailVM: emailVM == freezed
+          ? _value.emailVM
+          : emailVM // ignore: cast_nullable_to_non_nullable
+              as EmailAuthVM,
       userData: userData == freezed
           ? _value.userData
           : userData // ignore: cast_nullable_to_non_nullable
               as AuthUserData?,
+      idTokenResult: idTokenResult == freezed
+          ? _value.idTokenResult
+          : idTokenResult // ignore: cast_nullable_to_non_nullable
+              as IdTokenResult?,
       step: step == freezed
           ? _value.step
           : step // ignore: cast_nullable_to_non_nullable
-              as AuthenticationEnum,
+              as AuthStepEnum,
     ));
   }
 }
@@ -172,40 +196,41 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AuthState implements _AuthState {
   _$_AuthState(
-      {this.email,
-      this.signInMethodsForEmail,
+      {required this.emailVM,
       this.userData,
+      this.idTokenResult,
       required this.step});
 
   factory _$_AuthState.fromJson(Map<String, dynamic> json) =>
       _$$_AuthStateFromJson(json);
 
   @override
-  final String? email;
-  @override
-  final List<String>? signInMethodsForEmail;
+  final EmailAuthVM emailVM;
   @override
   final AuthUserData? userData;
   @override
-  final AuthenticationEnum step;
+  final IdTokenResult? idTokenResult;
+  @override
+  final AuthStepEnum step;
 
   @override
   String toString() {
-    return 'AuthState(email: $email, signInMethodsForEmail: $signInMethodsForEmail, userData: $userData, step: $step)';
+    return 'AuthState(emailVM: $emailVM, userData: $userData, idTokenResult: $idTokenResult, step: $step)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _AuthState &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.signInMethodsForEmail, signInMethodsForEmail) ||
-                const DeepCollectionEquality().equals(
-                    other.signInMethodsForEmail, signInMethodsForEmail)) &&
+            (identical(other.emailVM, emailVM) ||
+                const DeepCollectionEquality()
+                    .equals(other.emailVM, emailVM)) &&
             (identical(other.userData, userData) ||
                 const DeepCollectionEquality()
                     .equals(other.userData, userData)) &&
+            (identical(other.idTokenResult, idTokenResult) ||
+                const DeepCollectionEquality()
+                    .equals(other.idTokenResult, idTokenResult)) &&
             (identical(other.step, step) ||
                 const DeepCollectionEquality().equals(other.step, step)));
   }
@@ -213,9 +238,9 @@ class _$_AuthState implements _AuthState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(signInMethodsForEmail) ^
+      const DeepCollectionEquality().hash(emailVM) ^
       const DeepCollectionEquality().hash(userData) ^
+      const DeepCollectionEquality().hash(idTokenResult) ^
       const DeepCollectionEquality().hash(step);
 
   @JsonKey(ignore: true)
@@ -231,22 +256,22 @@ class _$_AuthState implements _AuthState {
 
 abstract class _AuthState implements AuthState {
   factory _AuthState(
-      {String? email,
-      List<String>? signInMethodsForEmail,
+      {required EmailAuthVM emailVM,
       AuthUserData? userData,
-      required AuthenticationEnum step}) = _$_AuthState;
+      IdTokenResult? idTokenResult,
+      required AuthStepEnum step}) = _$_AuthState;
 
   factory _AuthState.fromJson(Map<String, dynamic> json) =
       _$_AuthState.fromJson;
 
   @override
-  String? get email => throw _privateConstructorUsedError;
-  @override
-  List<String>? get signInMethodsForEmail => throw _privateConstructorUsedError;
+  EmailAuthVM get emailVM => throw _privateConstructorUsedError;
   @override
   AuthUserData? get userData => throw _privateConstructorUsedError;
   @override
-  AuthenticationEnum get step => throw _privateConstructorUsedError;
+  IdTokenResult? get idTokenResult => throw _privateConstructorUsedError;
+  @override
+  AuthStepEnum get step => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AuthStateCopyWith<_AuthState> get copyWith =>
