@@ -8,13 +8,6 @@ environment:
   sdk: ">=2.14.0 <3.0.0"
   flutter: ">=2.6.0-0.0.pre"
 
-dependency_overrides:
-# redfire:
-#  git:
-#       url: https://github.com/enspyrco/redfire.git
-#       path: redfire
-  
-
 dependencies:
   flutter:
     sdk: flutter
@@ -25,6 +18,8 @@ dependencies:
   http:
   redux:
   mockito:
+  freezed_annotation:
+  json_annotation:
 
   redfire:
     path: ../redfire
@@ -34,3 +29,5 @@ dev_dependencies:
     sdk: flutter
   flutter_lints:
   build_runner:
+  freezed:
+  json_serializable:

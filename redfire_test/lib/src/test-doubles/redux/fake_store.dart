@@ -21,7 +21,7 @@ class FakeStore<T extends RedFireState> implements Store<T> {
   // // Named constructor for creating an authenticated fake store that will
   // // allow tests to bypass the auth UI
   // FakeStore.authenticated()
-  //     : _state = AppState.init().copyWith.auth(
+  //     : _state = ExampleAppState.init().copyWith.auth(
   //           userData: AuthUserDataExamples.minimal,
   //           step: AuthenticationEnum.waitingForInput),
   //       _changeController = StreamController<T>.broadcast(),

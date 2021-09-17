@@ -10,6 +10,7 @@ export 'src/auth/models/apple_id_credential.dart';
 export 'src/auth/models/auth_provider_data.dart';
 export 'src/auth/models/auth_state.dart';
 export 'src/auth/models/auth_user_data.dart';
+export 'src/auth/models/email_auth_v_m.dart';
 export 'src/auth/models/google_sign_in_credential.dart';
 // navigation
 export 'src/navigation/models/initial_page_data.dart';

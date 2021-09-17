@@ -34,12 +34,8 @@ jobs:
     # Run tests
     ############################################
     - name: Tests for redfire
-      run: |
-        flutter pub get
-        flutter test --coverage
+      run: flutter test
       working-directory: ./redfire
     - name: Tests for redfire_test
-      run: |
-        flutter pub get
-        flutter test --coverage
+      run: flutter test
       working-directory: ./redfire_test
