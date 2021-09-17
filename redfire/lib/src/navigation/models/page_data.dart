@@ -30,6 +30,10 @@ final toMaterialPageMap = <String, PageFromPageData>{};
 final _fromJsonMap = <String, PageDataFromJson>{};
 
 // should only be called once on app load
+// TODO: create the redfire set without needing to call the function so there
+// aren't separate steps that need to be discovered (eg. in tests)
+// eg. when creating _fromJsonMap start with a map literal populated with the redfire
+// fromJson functions (needs testing in place)
 void addPageTransforms<T extends RedFireState>(
     Widget mainPage, List<PageDataTransforms> transforms) {
   // add the transforms from the child package

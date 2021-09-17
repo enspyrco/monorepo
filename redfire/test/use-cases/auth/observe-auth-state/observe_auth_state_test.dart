@@ -16,7 +16,7 @@ void main() {
   group('ObserveAuthStateAction', () {
     test('conects FirebaseAuth to the store', () async {
       final mockAuthService = MockAuthService();
-      when(mockAuthService.streamOfStoreAuthState).thenAnswer(
+      when(mockAuthService.streamOfSetAuthUserData).thenAnswer(
         (_) => Stream.fromIterable(
             [SetAuthUserDataAction(AuthUserDataExample.basic)]),
       );
@@ -33,10 +33,10 @@ void main() {
           ]);
 
       store.dispatch(ObserveAuthStateAction());
-      verify(mockAuthService.streamOfStoreAuthState);
+      verify(mockAuthService.streamOfSetAuthUserData);
 
       // wait for the stream to complete so we can check the middleware did it's thing
-      await for (ReduxAction _ in mockAuthService.streamOfStoreAuthState) {}
+      await for (ReduxAction _ in mockAuthService.streamOfSetAuthUserData) {}
 
       // all the middleware does is dispatch a StoreAuthState action
       expect(store.state.auth.userData!.uid, 'uid');

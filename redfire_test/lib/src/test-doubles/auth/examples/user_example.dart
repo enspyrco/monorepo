@@ -1,33 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mockito/mockito.dart';
+import 'package:redfire_test/redfire_test.dart';
 
-/// Uses
 class UserExample {
-  static User get basicFake => _FakeUser();
-  static User get emptyFake => _FakeUserNull();
-}
+  static User stubBasicMock() {
+    final mockUser = MockUser();
 
-/// A [User] with all null members and empty list for
-class _FakeUserNull extends Fake implements User {
-  @override
-  String? get displayName => null;
-  @override
-  String? get email => null;
-  @override
-  String? get photoURL => null;
-  @override
-  List<UserInfo> get providerData => [];
-}
+    when(mockUser.uid).thenReturn('uid');
+    when(mockUser.tenantId).thenReturn(null);
+    when(mockUser.displayName).thenReturn('displayName');
+    when(mockUser.photoURL).thenReturn('photoURL');
+    when(mockUser.email).thenReturn('email');
+    when(mockUser.phoneNumber).thenReturn('phoneNumber');
+    when(mockUser.metadata).thenReturn(UserMetadata(0, 0));
+    when(mockUser.isAnonymous).thenReturn(false);
+    when(mockUser.emailVerified).thenReturn(false);
+    when(mockUser.providerData).thenReturn([]);
 
-class _FakeUser extends Fake implements User {
-  @override
-  String get uid => 'uid';
-  @override
-  String get displayName => 'name';
-  @override
-  String get email => 'email';
-  @override
-  String get photoURL => 'url';
-  @override
-  List<UserInfo> providerData = [];
+    return mockUser;
+  }
 }

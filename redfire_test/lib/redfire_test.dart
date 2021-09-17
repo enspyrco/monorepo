@@ -5,7 +5,6 @@ export 'src/test-doubles/auth/examples/auth_user_data_example.dart';
 export 'src/test-doubles/auth/examples/firebase_auth_example.dart';
 export 'src/test-doubles/auth/examples/google_sign_in_example.dart';
 export 'src/test-doubles/auth/examples/sign_in_with_apple_example.dart';
-export 'src/test-doubles/auth/examples/user_example.dart';
 export 'src/test-doubles/auth/mocks/auth_test_doubles.mocks.dart';
 export 'src/test-doubles/firebase/examples/fake_firebase_auth.dart';
 export 'src/test-doubles/firebase/mocks/firebase_test_doubles.mocks.dart';

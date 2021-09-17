@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mockito/mockito.dart';
+import 'package:redfire_test/src/test-doubles/auth/examples/user_example.dart';
 
-import '../../auth/examples/user_example.dart';
 import '../../firebase/mocks/firebase_test_doubles.mocks.dart';
 
 class FirebaseAuthExample {
@@ -13,11 +13,13 @@ class FirebaseAuthExample {
   /// or `null` if there isn't any (i.e. the user is signed out).
   static FirebaseAuth get signedInMock {
     final mockUserCredential = MockUserCredential();
-    when(mockUserCredential.user).thenReturn(UserExample.basicFake);
+    final stubbedUser = UserExample.stubBasicMock();
+    when(mockUserCredential.user).thenReturn(stubbedUser);
 
     final mockFirebaseAuth = MockFirebaseAuth();
-    when(mockFirebaseAuth.authStateChanges()).thenAnswer((_) =>
-        Stream.fromIterable([UserExample.emptyFake, UserExample.basicFake]));
+    final anotherStubbedUser = UserExample.stubBasicMock();
+    when(mockFirebaseAuth.authStateChanges())
+        .thenAnswer((_) => Stream.fromIterable([null, anotherStubbedUser]));
     when(mockFirebaseAuth.signInWithCredential(any))
         .thenAnswer((_) => Future.value(mockUserCredential));
 

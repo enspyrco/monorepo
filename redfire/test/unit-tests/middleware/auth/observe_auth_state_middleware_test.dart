@@ -4,7 +4,6 @@ import 'package:mockito/mockito.dart';
 import 'package:redfire/actions.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire/src/auth/middleware/observe_auth_state_middleware.dart';
-import 'package:redfire/types.dart';
 import 'package:redfire_test/redfire_test.dart';
 import 'package:test/test.dart';
 
@@ -17,9 +16,9 @@ void main() {
         () async {
       final mockStore = MockStore<AppState>();
       when<dynamic>(mockStore.dispatch(any)).thenReturn(null);
-      final controller = StreamController<ReduxAction>();
+      final controller = StreamController<SetAuthUserDataAction>();
       final mockAuthService = MockAuthService();
-      when(mockAuthService.streamOfStoreAuthState)
+      when(mockAuthService.streamOfSetAuthUserData)
           .thenAnswer((_) => controller.stream);
 
       RedFireLocator.provide(authService: mockAuthService);
@@ -39,9 +38,9 @@ void main() {
     // so we use the FakeStore and listen for dispatched actions.
     test('should dispatch a problem if store throws', () async {
       // Setup and provide a mock auth service
-      final controller = StreamController<ReduxAction>();
+      final controller = StreamController<SetAuthUserDataAction>();
       final mockAuthService = MockAuthService();
-      when(mockAuthService.streamOfStoreAuthState)
+      when(mockAuthService.streamOfSetAuthUserData)
           .thenAnswer((_) => controller.stream);
       RedFireLocator.provide(authService: mockAuthService);
 

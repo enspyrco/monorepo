@@ -4,11 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mockito/mockito.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire/types.dart';
+import 'package:redfire_test/src/test-doubles/auth/examples/user_example.dart';
 
 import '../../auth/mocks/auth_test_doubles.mocks.dart';
 import '../../firebase/mocks/firebase_test_doubles.mocks.dart';
 import '../../platform/mocks/platform_test_doubles.mocks.dart';
-import '../../stubbed.dart';
 
 class ServicesHarness {
   // auth
@@ -73,6 +73,6 @@ class ServicesHarnessForAuth extends ServicesHarness {
   }
 
   void emitStubbedUser() {
-    _userStreamController.add(Stubbed.firebaseUser());
+    _userStreamController.add(UserExample.stubBasicMock());
   }
 }

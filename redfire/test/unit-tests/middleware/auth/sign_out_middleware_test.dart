@@ -13,6 +13,6 @@ void main() {
       final middleware = SignOutMiddleware();
       await middleware(mockStore, SignOutAction(), (dynamic _) => null);
       expect(true, false);
-    });
+    }, skip: true); // haven't finished the test
   });
 }

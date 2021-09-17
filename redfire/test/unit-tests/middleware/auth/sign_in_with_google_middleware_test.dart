@@ -14,6 +14,6 @@ void main() {
       final middleware = SignInWithGoogleMiddleware();
       await middleware(mockStore, SignInWithGoogleAction, (dynamic _) => null);
       expect(true, false);
-    });
+    }, skip: true); // haven't finished the test
   });
 }

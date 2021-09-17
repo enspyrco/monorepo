@@ -15,7 +15,7 @@ void main() {
       final middleware = SignInWithAppleMiddleware();
       await middleware(mockStore, SignInWithAppleAction(), (dynamic _) => null);
       expect(true, false);
-    });
+    }, skip: true); // haven't finished the test
 
     /// If the user cancels sign in, the service will... and the middleware
     /// should ...

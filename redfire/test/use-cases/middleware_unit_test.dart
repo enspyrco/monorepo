@@ -25,7 +25,7 @@ void main() {
       final action = ObserveAuthStateAction();
 
       // Create the error to catch.
-      when(authServiceMock.streamOfStoreAuthState).thenThrow('error');
+      when(authServiceMock.streamOfSetAuthUserData).thenThrow('error');
 
       // Call the middleware.
       middleware.call(fakeStore, action, (dynamic _) => null);
@@ -85,7 +85,7 @@ void main() {
       final action = SignOutAction();
 
       // Create the error to catch.
-      when(authServiceMock.signOut()).thenThrow('error');
+      when(authServiceMock.signOut(any)).thenThrow('error');
 
       // Call the middleware.
       middleware.call(fakeStore, action, (dynamic _) => null);

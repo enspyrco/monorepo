@@ -18,12 +18,14 @@ class ObserveAuthStateMiddleware<T extends RedFireState>
             // and call dispatch on the action.
             authService.streamOfSetAuthUserData.listen((action) {
               try {
+                store.dispatch(action);
+
+                // If signing in, dispatch an action to get an id token.
+                // The logic is here in order to cover both signing in explicitly
+                // and when returning to the app already signed in.
                 if (action.authUserData != null) {
-                  // If signing in, dispatch action to get an id token. This covers
-                  // signing in explicitly and when returning to the app already signed in.
                   store.dispatch(GetIdTokenAction());
                 }
-                store.dispatch(action);
               } catch (error, trace) {
                 store.dispatchProblem(error, trace);
               }

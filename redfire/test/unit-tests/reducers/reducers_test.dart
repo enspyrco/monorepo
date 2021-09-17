@@ -6,8 +6,6 @@ import 'package:redfire/src/auth/reducers/set_auth_user_data_reducer.dart';
 import 'package:redfire/src/problems/actions/add_problem_action.dart';
 import 'package:redfire/src/problems/models/problem_info.dart';
 import 'package:redfire/src/problems/reducers/add_problem_reducer.dart';
-import 'package:redfire/src/settings/actions/set_theme_mode_action.dart';
-import 'package:redfire/src/settings/reducers/store_theme_mode_reducer.dart';
 import 'package:redfire_test/redfire_test.dart';
 import 'package:test/test.dart';
 
@@ -49,25 +47,13 @@ void main() {
   group('StoreAuthStep', () {
     test('stores the auth step', () {
       final initialState = AppState.init();
-      expect(initialState.auth.step, AuthStepEnum.checking);
+      expect(initialState.auth.step, AuthStepEnum.waitingForInput);
 
       final reducer = SetAuthStepReducer();
       final newState =
           reducer.reducer(initialState, SetAuthStepAction.contactingApple());
 
       expect(newState.auth.step, AuthStepEnum.contactingApple);
-    });
-  });
-
-  group('StoreThemeModeReducer', () {
-    test('correctly stores themeMode', () {
-      final initialState = AppState.init();
-      expect(initialState.settings.brightnessMode, 0);
-
-      final reducer = StoreThemeModeReducer();
-      final newState = reducer.reducer(initialState, SetThemeModeAction(1));
-
-      expect(newState.settings.brightnessMode, 1);
     });
   });
 }
