@@ -9,7 +9,9 @@ environment:
 
 dependency_overrides:
   # redfire_test:
-  #   path: ../redfire_test
+  # git: 
+  #     url: https://github.com/enspyrco/redfire.git
+  #     path: redfire_test
 
 dependencies:
   flutter:
@@ -37,9 +39,7 @@ dev_dependencies:
   test:
   mockito:
   redfire_test:
-    git: 
-      url: https://github.com/enspyrco/redfire.git
-      path: redfire_test
+    path: ../redfire_test
 
 flutter:
   assets:

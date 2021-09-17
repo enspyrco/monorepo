@@ -9,8 +9,11 @@ environment:
   flutter: ">=2.6.0-0.0.pre"
 
 dependency_overrides:
-  # redfire:
-  #   path: ../redfire
+# redfire:
+#  git:
+#       url: https://github.com/enspyrco/redfire.git
+#       path: redfire
+  
 
 dependencies:
   flutter:
@@ -24,9 +27,7 @@ dependencies:
   mockito:
 
   redfire:
-    git:
-      url: https://github.com/enspyrco/redfire.git
-      path: redfire
+    path: ../redfire
 
 dev_dependencies:
   flutter_test:
