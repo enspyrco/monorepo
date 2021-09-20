@@ -7,6 +7,6 @@ class SetEmailReducer<T extends RedFireState>
   SetEmailReducer()
       : super(
           (state, action) =>
-              (state as dynamic).copyWith.auth(email: action.text) as T,
+              (state as dynamic).copyWith.auth.emailVM(email: action.text) as T,
         );
 }

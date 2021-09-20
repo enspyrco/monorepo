@@ -5,9 +5,10 @@ import 'package:redux/redux.dart';
 class SetProvidersForEmailReducer<T extends RedFireState>
     extends TypedReducer<T, SetProvidersForEmailAction> {
   SetProvidersForEmailReducer()
-      : super(
-          (state, action) => (state as dynamic)
+      : super((state, action) {
+          return (state as dynamic)
               .copyWith
-              .auth(signInMethodsForEmail: action.methods) as T,
-        );
+              .auth
+              .emailVM(providers: action.providers) as T;
+        });
 }

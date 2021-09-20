@@ -1,6 +1,8 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:redfire/src/auth/actions/set_auth_user_data_action.dart';
+import 'package:redfire/src/auth/constants/auth_provider_names.dart';
 import 'package:redfire/src/auth/extensions/auth_extensions.dart';
 import 'package:redfire/src/auth/models/apple_id_credential.dart';
 import 'package:redfire/src/auth/models/auth_user_data.dart';
@@ -47,8 +49,12 @@ class AuthService extends ReduxService {
     return FirebaseAuth.instance.currentUser?.getIdTokenResult();
   }
 
-  Future<List<String>> retrieveSignInMethodsFor(String email) =>
-      _firebaseAuth.fetchSignInMethodsForEmail(email);
+  Future<ISet<ProvidersEnum>> retrieveProvidersFor(String email) async {
+    var providerNames = await _firebaseAuth.fetchSignInMethodsForEmail(email);
+    return providerNames
+        .map<ProvidersEnum>((name) => authProviderNamesMap[name]!)
+        .toISet();
+  }
 
   Future<UserCredential> signUpWithEmailAndPassword(
           String email, String password) =>

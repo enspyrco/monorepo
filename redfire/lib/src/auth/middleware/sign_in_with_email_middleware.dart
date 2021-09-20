@@ -1,4 +1,5 @@
 import 'package:redfire/src/auth/actions/email/sign_in_with_email_action.dart';
+import 'package:redfire/src/auth/actions/reset_auth_page_action.dart';
 import 'package:redfire/src/auth/actions/set_auth_step_action.dart';
 import 'package:redfire/src/utils/red_fire_locator.dart';
 import 'package:redux/redux.dart';
@@ -22,7 +23,7 @@ class SignInWithEmailMiddleware<T extends RedFireState>
 
             await service.signInWithEmailAndPassword(email, action.password);
 
-            store.dispatch(SetAuthStepAction(AuthStepEnum.waitingForInput));
+            store.dispatch(ResetAuthPageAction());
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           }

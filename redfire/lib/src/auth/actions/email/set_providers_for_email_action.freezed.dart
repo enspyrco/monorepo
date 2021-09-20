@@ -22,9 +22,9 @@ SetProvidersForEmailAction _$SetProvidersForEmailActionFromJson(
 class _$SetProvidersForEmailActionTearOff {
   const _$SetProvidersForEmailActionTearOff();
 
-  _SetProvidersForEmailAction call(List<String> methods) {
+  _SetProvidersForEmailAction call(ISet<ProvidersEnum> providers) {
     return _SetProvidersForEmailAction(
-      methods,
+      providers,
     );
   }
 
@@ -38,7 +38,7 @@ const $SetProvidersForEmailAction = _$SetProvidersForEmailActionTearOff();
 
 /// @nodoc
 mixin _$SetProvidersForEmailAction {
-  List<String> get methods => throw _privateConstructorUsedError;
+  ISet<ProvidersEnum> get providers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +51,7 @@ abstract class $SetProvidersForEmailActionCopyWith<$Res> {
   factory $SetProvidersForEmailActionCopyWith(SetProvidersForEmailAction value,
           $Res Function(SetProvidersForEmailAction) then) =
       _$SetProvidersForEmailActionCopyWithImpl<$Res>;
-  $Res call({List<String> methods});
+  $Res call({ISet<ProvidersEnum> providers});
 }
 
 /// @nodoc
@@ -65,13 +65,13 @@ class _$SetProvidersForEmailActionCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? methods = freezed,
+    Object? providers = freezed,
   }) {
     return _then(_value.copyWith(
-      methods: methods == freezed
-          ? _value.methods
-          : methods // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      providers: providers == freezed
+          ? _value.providers
+          : providers // ignore: cast_nullable_to_non_nullable
+              as ISet<ProvidersEnum>,
     ));
   }
 }
@@ -84,7 +84,7 @@ abstract class _$SetProvidersForEmailActionCopyWith<$Res>
           $Res Function(_SetProvidersForEmailAction) then) =
       __$SetProvidersForEmailActionCopyWithImpl<$Res>;
   @override
-  $Res call({List<String> methods});
+  $Res call({ISet<ProvidersEnum> providers});
 }
 
 /// @nodoc
@@ -101,13 +101,13 @@ class __$SetProvidersForEmailActionCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? methods = freezed,
+    Object? providers = freezed,
   }) {
     return _then(_SetProvidersForEmailAction(
-      methods == freezed
-          ? _value.methods
-          : methods // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      providers == freezed
+          ? _value.providers
+          : providers // ignore: cast_nullable_to_non_nullable
+              as ISet<ProvidersEnum>,
     ));
   }
 }
@@ -115,30 +115,31 @@ class __$SetProvidersForEmailActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SetProvidersForEmailAction implements _SetProvidersForEmailAction {
-  _$_SetProvidersForEmailAction(this.methods);
+  _$_SetProvidersForEmailAction(this.providers);
 
   factory _$_SetProvidersForEmailAction.fromJson(Map<String, dynamic> json) =>
       _$$_SetProvidersForEmailActionFromJson(json);
 
   @override
-  final List<String> methods;
+  final ISet<ProvidersEnum> providers;
 
   @override
   String toString() {
-    return 'SetProvidersForEmailAction(methods: $methods)';
+    return 'SetProvidersForEmailAction(providers: $providers)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _SetProvidersForEmailAction &&
-            (identical(other.methods, methods) ||
-                const DeepCollectionEquality().equals(other.methods, methods)));
+            (identical(other.providers, providers) ||
+                const DeepCollectionEquality()
+                    .equals(other.providers, providers)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(methods);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(providers);
 
   @JsonKey(ignore: true)
   @override
@@ -154,14 +155,14 @@ class _$_SetProvidersForEmailAction implements _SetProvidersForEmailAction {
 
 abstract class _SetProvidersForEmailAction
     implements SetProvidersForEmailAction {
-  factory _SetProvidersForEmailAction(List<String> methods) =
+  factory _SetProvidersForEmailAction(ISet<ProvidersEnum> providers) =
       _$_SetProvidersForEmailAction;
 
   factory _SetProvidersForEmailAction.fromJson(Map<String, dynamic> json) =
       _$_SetProvidersForEmailAction.fromJson;
 
   @override
-  List<String> get methods => throw _privateConstructorUsedError;
+  ISet<ProvidersEnum> get providers => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SetProvidersForEmailActionCopyWith<_SetProvidersForEmailAction>

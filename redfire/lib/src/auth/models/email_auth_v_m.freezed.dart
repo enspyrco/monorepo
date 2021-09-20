@@ -21,13 +21,10 @@ EmailAuthVM _$EmailAuthVMFromJson(Map<String, dynamic> json) {
 class _$EmailAuthVMTearOff {
   const _$EmailAuthVMTearOff();
 
-  _EmailAuthVM call(
-      {String? email,
-      EmailSignInStepEnum emailSignInStep =
-          EmailSignInStepEnum.waitingForEmail}) {
+  _EmailAuthVM call({String? email, ISet<ProvidersEnum>? providers}) {
     return _EmailAuthVM(
       email: email,
-      emailSignInStep: emailSignInStep,
+      providers: providers,
     );
   }
 
@@ -42,7 +39,7 @@ const $EmailAuthVM = _$EmailAuthVMTearOff();
 /// @nodoc
 mixin _$EmailAuthVM {
   String? get email => throw _privateConstructorUsedError;
-  EmailSignInStepEnum get emailSignInStep => throw _privateConstructorUsedError;
+  ISet<ProvidersEnum>? get providers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +52,7 @@ abstract class $EmailAuthVMCopyWith<$Res> {
   factory $EmailAuthVMCopyWith(
           EmailAuthVM value, $Res Function(EmailAuthVM) then) =
       _$EmailAuthVMCopyWithImpl<$Res>;
-  $Res call({String? email, EmailSignInStepEnum emailSignInStep});
+  $Res call({String? email, ISet<ProvidersEnum>? providers});
 }
 
 /// @nodoc
@@ -69,17 +66,17 @@ class _$EmailAuthVMCopyWithImpl<$Res> implements $EmailAuthVMCopyWith<$Res> {
   @override
   $Res call({
     Object? email = freezed,
-    Object? emailSignInStep = freezed,
+    Object? providers = freezed,
   }) {
     return _then(_value.copyWith(
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      emailSignInStep: emailSignInStep == freezed
-          ? _value.emailSignInStep
-          : emailSignInStep // ignore: cast_nullable_to_non_nullable
-              as EmailSignInStepEnum,
+      providers: providers == freezed
+          ? _value.providers
+          : providers // ignore: cast_nullable_to_non_nullable
+              as ISet<ProvidersEnum>?,
     ));
   }
 }
@@ -91,7 +88,7 @@ abstract class _$EmailAuthVMCopyWith<$Res>
           _EmailAuthVM value, $Res Function(_EmailAuthVM) then) =
       __$EmailAuthVMCopyWithImpl<$Res>;
   @override
-  $Res call({String? email, EmailSignInStepEnum emailSignInStep});
+  $Res call({String? email, ISet<ProvidersEnum>? providers});
 }
 
 /// @nodoc
@@ -107,17 +104,17 @@ class __$EmailAuthVMCopyWithImpl<$Res> extends _$EmailAuthVMCopyWithImpl<$Res>
   @override
   $Res call({
     Object? email = freezed,
-    Object? emailSignInStep = freezed,
+    Object? providers = freezed,
   }) {
     return _then(_EmailAuthVM(
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      emailSignInStep: emailSignInStep == freezed
-          ? _value.emailSignInStep
-          : emailSignInStep // ignore: cast_nullable_to_non_nullable
-              as EmailSignInStepEnum,
+      providers: providers == freezed
+          ? _value.providers
+          : providers // ignore: cast_nullable_to_non_nullable
+              as ISet<ProvidersEnum>?,
     ));
   }
 }
@@ -125,21 +122,19 @@ class __$EmailAuthVMCopyWithImpl<$Res> extends _$EmailAuthVMCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_EmailAuthVM implements _EmailAuthVM {
-  _$_EmailAuthVM(
-      {this.email, this.emailSignInStep = EmailSignInStepEnum.waitingForEmail});
+  _$_EmailAuthVM({this.email, this.providers});
 
   factory _$_EmailAuthVM.fromJson(Map<String, dynamic> json) =>
       _$$_EmailAuthVMFromJson(json);
 
   @override
   final String? email;
-  @JsonKey(defaultValue: EmailSignInStepEnum.waitingForEmail)
   @override
-  final EmailSignInStepEnum emailSignInStep;
+  final ISet<ProvidersEnum>? providers;
 
   @override
   String toString() {
-    return 'EmailAuthVM(email: $email, emailSignInStep: $emailSignInStep)';
+    return 'EmailAuthVM(email: $email, providers: $providers)';
   }
 
   @override
@@ -148,16 +143,16 @@ class _$_EmailAuthVM implements _EmailAuthVM {
         (other is _EmailAuthVM &&
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.emailSignInStep, emailSignInStep) ||
+            (identical(other.providers, providers) ||
                 const DeepCollectionEquality()
-                    .equals(other.emailSignInStep, emailSignInStep)));
+                    .equals(other.providers, providers)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(emailSignInStep);
+      const DeepCollectionEquality().hash(providers);
 
   @JsonKey(ignore: true)
   @override
@@ -171,7 +166,7 @@ class _$_EmailAuthVM implements _EmailAuthVM {
 }
 
 abstract class _EmailAuthVM implements EmailAuthVM {
-  factory _EmailAuthVM({String? email, EmailSignInStepEnum emailSignInStep}) =
+  factory _EmailAuthVM({String? email, ISet<ProvidersEnum>? providers}) =
       _$_EmailAuthVM;
 
   factory _EmailAuthVM.fromJson(Map<String, dynamic> json) =
@@ -180,7 +175,7 @@ abstract class _EmailAuthVM implements EmailAuthVM {
   @override
   String? get email => throw _privateConstructorUsedError;
   @override
-  EmailSignInStepEnum get emailSignInStep => throw _privateConstructorUsedError;
+  ISet<ProvidersEnum>? get providers => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$EmailAuthVMCopyWith<_EmailAuthVM> get copyWith =>

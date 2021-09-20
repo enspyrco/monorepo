@@ -26,7 +26,7 @@ void main() {
       middleware.call(fakeStore, action, (dynamic _) => null);
 
       // Error should be caught and AddProblemAction dispatched.
-      expect(fakeStore.dispatched.last is AddProblemAction, true);
+      expect(fakeStore.dispatched.last, isA<AddProblemAction>());
     });
 
     test(
