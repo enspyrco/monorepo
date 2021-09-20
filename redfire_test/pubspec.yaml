@@ -8,6 +8,10 @@ environment:
   sdk: ">=2.14.0 <3.0.0"
   flutter: ">=2.6.0-0.0.pre"
 
+# dependency_overrides: 
+#   redfire:
+#     path: ../redfire
+
 dependencies:
   flutter:
     sdk: flutter
@@ -22,7 +26,9 @@ dependencies:
   json_annotation:
 
   redfire:
-    path: ../redfire
+    git: 
+      url: https://github.com/enspyrco/redfire.git
+      path: redfire
 
 dev_dependencies:
   flutter_test:
