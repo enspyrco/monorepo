@@ -19,6 +19,8 @@ class ClientConnectionsService {
   // We keep the handler function as a member so that different handlers can
   // be constructor injected.
   late final Function(WebSocketChannel) _messageHandler;
+
+  // The default function that [_messageHandler] is set to.
   void defaultMessageHandler(WebSocketChannel webSocket) {
     // Now attach a listener to the websocket that will perform the ongoing logic
     webSocket.stream.listen(
