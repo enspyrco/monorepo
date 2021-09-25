@@ -12,8 +12,7 @@ dependencies:
     sdk: flutter
   
   redfire:
-    git: https://github.com/enspyrco/redfire.git
-    # path: /Users/nick/git/orgs/enspyrco/redfire
+    path: ../redfire
   freezed_annotation:
   json_annotation:
   redux:
@@ -26,8 +25,7 @@ dev_dependencies:
   flutter_lints: ^1.0.0
 
   redfire_test:
-    git: https://github.com/enspyrco/redfire_test.git
-    # path: /Users/nick/git/orgs/enspyrco/redfire_test
+    path: ../redfire_test
 
   build_runner:
   freezed:

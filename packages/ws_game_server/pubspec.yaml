@@ -13,10 +13,7 @@ dependencies:
   web_socket_channel:
   fast_immutable_collections:
   ws_game_server_types:
-    git:
-      url: https://github.com/adventures-in/ws_game_server_repo.git
-      path: ws_game_server_types
-    # path: ../ws_game_server_types
+    path: ../ws_game_server_types
 
 dev_dependencies:
   lints:
