@@ -33,9 +33,27 @@ jobs:
     ############################################
     # Run tests
     ############################################
+    - name: Tests for adventures
+      run: flutter test
+      working-directory: ./packages/adventures
+    - name: Tests for flireator
+      run: flutter test
+      working-directory: ./packages/flireator
     - name: Tests for redfire
       run: flutter test
       working-directory: ./packages/redfire
     - name: Tests for redfire_test
       run: flutter test
       working-directory: ./packages/redfire_test
+    - name: Tests for tech_world
+      run: flutter test
+      working-directory: ./packages/tech_world
+    - name: Tests for the_process
+      run: flutter test
+      working-directory: ./packages/the_process
+    - name: Tests for ws_game_server
+      run: flutter test
+      working-directory: ./packages/ws_game_server
+    - name: Tests for ws_game_server_types
+      run: flutter test
+      working-directory: ./packages/ws_game_server_types
