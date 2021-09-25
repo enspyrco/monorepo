@@ -1,0 +1,41 @@
+name: Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: CI
+    runs-on: ubuntu-latest
+    
+    steps:
+
+    - name: Output Run Info
+      run: echo "build-number=$GITHUB_RUN_NUMBER, event = ${{ github.event_name }}, branch = ${{ github.ref }}, target = ${{ github.base_ref }}"
+
+    - name: Install checkout
+      uses: actions/checkout@v2
+    
+    ##############################################
+    # Setup flutter-action
+    ##############################################
+    - name: Install Java for Flutter tool
+      uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    - name: Install Flutter tool
+      uses: subosito/flutter-action@v1
+      with:
+        channel: 'dev'
+
+    ############################################
+    # Run tests
+    ############################################
+    - name: Tests for redfire
+      run: flutter test
+      working-directory: ./packages/redfire
+    - name: Tests for redfire_test
+      run: flutter test
+      working-directory: ./packages/redfire_test

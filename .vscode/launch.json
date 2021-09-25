@@ -1,0 +1,92 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "ws_game_server",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "./packages/ws_game_server",
+      "program": "bin/server.dart"
+    },
+    {
+      "name": "redfire",
+      "cwd": "redfire",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "redfire (profile mode)",
+      "cwd": "redfire",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "tech_world (mac)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "macos"
+    },
+    {
+      "name": "tech_world (web)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
+      "args": [
+          "--web-hostname",
+          "localhost",
+          "--web-port",
+          "5000"
+      ]
+    },
+    {
+      "name": "flireator",
+      "program": "lib/main.dart",
+      "deviceId": "macos",
+      "request": "launch",
+      "type": "dart",
+    },
+    {
+      "name": "the_process",
+      "request": "launch",
+      "type": "dart",
+      "args": [ "--no-sound-null-safety" ]
+    },
+    {
+        "name": "the_process (web)",
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "chrome",
+        "args": [
+            "--web-hostname",
+            "localhost",
+            "--web-port",
+            "5000"
+        ]
+    },
+    {
+      "name": "vs-code-device",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "adventures (macos)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "macos"
+    },
+    {
+      "name": "adventures (web)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
+      "args": ["--web-hostname", "localhost", "--web-port", "5000"]
+    },
+    {
+      "name": "adventures (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    }
+  ]
+}
