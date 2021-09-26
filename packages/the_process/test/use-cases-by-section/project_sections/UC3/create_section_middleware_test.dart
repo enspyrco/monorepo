@@ -25,7 +25,7 @@ void main() {
       await middleware(
           fakeStore, CreateProjectSectionAction(), (dynamic _) => null);
 
-      expect(fakeStore.dispatchedActions,
+      expect(fakeStore.dispatched,
           contains(UpdateProjectSectionsVMAction(creatingNewSection: true)));
 
       verify(mockHttpService.createSection(name: 'testy'));

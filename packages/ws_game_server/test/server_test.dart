@@ -19,6 +19,7 @@ void main() {
     webSocket.sink.add(jsonEncode(PresentMessage('userId').toJson()));
   });
 
+  // TODO: test is not finished and so is skipped
   test('can communicate with a dart:io WebSocket client', () async {
     var mockService = MockClientConnectionsService();
     Locator.provide(service: mockService);
@@ -48,5 +49,5 @@ void main() {
     } finally {
       await server.close();
     }
-  });
+  }, skip: true);
 }
