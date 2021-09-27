@@ -1,31 +1,31 @@
 PODS:
   - cloud_firestore (2.5.3):
-    - Firebase/CoreOnly (~> 8.5.0)
-    - Firebase/Firestore (~> 8.5.0)
+    - Firebase/CoreOnly (~> 8.6.0)
+    - Firebase/Firestore (~> 8.6.0)
     - firebase_core
     - FlutterMacOS
-  - Firebase/Auth (8.5.0):
+  - Firebase/Auth (8.6.1):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 8.5.0)
-  - Firebase/CoreOnly (8.5.0):
-    - FirebaseCore (= 8.5.0)
-  - Firebase/Firestore (8.5.0):
+    - FirebaseAuth (~> 8.6.0)
+  - Firebase/CoreOnly (8.6.1):
+    - FirebaseCore (= 8.6.1)
+  - Firebase/Firestore (8.6.1):
     - Firebase/CoreOnly
-    - FirebaseFirestore (~> 8.5.0)
+    - FirebaseFirestore (~> 8.6.0)
   - firebase_auth (3.1.1):
-    - Firebase/Auth (~> 8.5.0)
-    - Firebase/CoreOnly (~> 8.5.0)
+    - Firebase/Auth (~> 8.6.0)
+    - Firebase/CoreOnly (~> 8.6.0)
     - firebase_core
     - FlutterMacOS
   - firebase_core (1.6.0):
-    - Firebase/CoreOnly (~> 8.5.0)
+    - Firebase/CoreOnly (~> 8.6.0)
     - FlutterMacOS
-  - FirebaseAuth (8.5.0):
+  - FirebaseAuth (8.6.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
     - GoogleUtilities/Environment (~> 7.4)
     - GTMSessionFetcher/Core (~> 1.5)
-  - FirebaseCore (8.5.0):
+  - FirebaseCore (8.6.1):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
@@ -34,13 +34,13 @@ PODS:
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
     - nanopb (~> 2.30908.0)
-  - FirebaseFirestore (8.5.0):
-    - FirebaseFirestore/AutodetectLeveldb (= 8.5.0)
-  - FirebaseFirestore/AutodetectLeveldb (8.5.0):
+  - FirebaseFirestore (8.6.0):
+    - FirebaseFirestore/AutodetectLeveldb (= 8.6.0)
+  - FirebaseFirestore/AutodetectLeveldb (8.6.0):
     - FirebaseFirestore/Base
     - FirebaseFirestore/WithLeveldb
-  - FirebaseFirestore/Base (8.5.0)
-  - FirebaseFirestore/WithLeveldb (8.5.0):
+  - FirebaseFirestore/Base (8.6.0)
+  - FirebaseFirestore/WithLeveldb (8.6.0):
     - FirebaseFirestore/Base
   - FlutterMacOS (1.0.0)
   - GoogleDataTransport (9.1.0):
@@ -78,7 +78,7 @@ DEPENDENCIES:
   - cloud_firestore (from `Flutter/ephemeral/.symlinks/plugins/cloud_firestore/macos`)
   - firebase_auth (from `Flutter/ephemeral/.symlinks/plugins/firebase_auth/macos`)
   - firebase_core (from `Flutter/ephemeral/.symlinks/plugins/firebase_core/macos`)
-  - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `8.5.0`)
+  - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `8.6.0`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - sign_in_with_apple (from `Flutter/ephemeral/.symlinks/plugins/sign_in_with_apple/macos`)
   - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
@@ -104,7 +104,7 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/firebase_core/macos
   FirebaseFirestore:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
-    :tag: 8.5.0
+    :tag: 8.6.0
   FlutterMacOS:
     :path: Flutter/ephemeral
   sign_in_with_apple:
@@ -115,17 +115,17 @@ EXTERNAL SOURCES:
 CHECKOUT OPTIONS:
   FirebaseFirestore:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
-    :tag: 8.5.0
+    :tag: 8.6.0
 
 SPEC CHECKSUMS:
-  cloud_firestore: 73e69775eb6d2a296e484fd100103b7efb3fc1ca
-  Firebase: ff8c73105b90e33e1dc6c8e5445d7adc2ccdc7c1
-  firebase_auth: 5f114e56a71d61c2f701b2103576add57e4ea839
-  firebase_core: 3bbb24e90340b7e17ca4f2f7c9414a7eadb4a6b1
-  FirebaseAuth: b152ea261b60eeb9419ae7e5bf34761382b33277
-  FirebaseCore: 1c1ca72483b59b17050f5b4cec4fb748425a3901
+  cloud_firestore: 8225c834676914dc425d6ae68815b923e98be6ad
+  Firebase: e84d95f6d3a91f634abc384f0751c434cb3aecfa
+  firebase_auth: a1c05788846aca0e6fa8fa71409a7b6d19c159c5
+  firebase_core: 9a84b9f2d3a597a3ddc716942bc7e47d6eb85649
+  FirebaseAuth: 223adeeb2262b417532e89bf06a960e3a0a1e9e4
+  FirebaseCore: a753c231801f04f5ccd10cc92119ad1b12a61165
   FirebaseCoreDiagnostics: b63732f581a1c6a453ec7241f9ab60b3a5bd3450
-  FirebaseFirestore: 69e4f06a375080a56ffd390fb034467b58ddeda0
+  FirebaseFirestore: 113b2724b363d79c98c965f43e8af970745c13f3
   FlutterMacOS: 57701585bf7de1b3fc2bb61f6378d73bbdea8424
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
   GoogleUtilities: 8de2a97a17e15b6b98e38e8770e2d129a57c0040
@@ -135,6 +135,6 @@ SPEC CHECKSUMS:
   sign_in_with_apple: a9e97e744e8edc36aefc2723111f652102a7a727
   url_launcher_macos: 45af3d61de06997666568a7149c1be98b41c95d4
 
-PODFILE CHECKSUM: 857ba4ab25826be5513f6d00fc8d5a252b6902f0
+PODFILE CHECKSUM: 97b701d7e8d5dfb4c50e67f1907f87137807d78f
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.11.2

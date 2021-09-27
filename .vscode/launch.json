@@ -2,11 +2,32 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ws_game_server",
+      "name": "adventures (macos)",
       "request": "launch",
       "type": "dart",
-      "cwd": "./packages/ws_game_server",
-      "program": "bin/server.dart"
+      "deviceId": "macos"
+    },
+    {
+      "name": "adventures (web)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
+      "args": ["--web-hostname", "localhost", "--web-port", "5000"]
+    },
+    {
+      "name": "adventures (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "flireator",
+      "type": "dart",
+      "deviceId": "macos",
+      "request": "launch",
+      "cwd": "packages/flireator",
+      "program": "lib/main.dart",
+      
     },
     {
       "name": "redfire",
@@ -23,9 +44,11 @@
     },
     {
       "name": "tech_world (mac)",
-      "request": "launch",
       "type": "dart",
-      "deviceId": "macos"
+      "deviceId": "macos",
+      "cwd": "packages/tech_world",
+      "request": "launch",
+      "program": "lib/main.dart"
     },
     {
       "name": "tech_world (web)",
@@ -38,13 +61,6 @@
           "--web-port",
           "5000"
       ]
-    },
-    {
-      "name": "flireator",
-      "program": "lib/main.dart",
-      "deviceId": "macos",
-      "request": "launch",
-      "type": "dart",
     },
     {
       "name": "the_process",
@@ -65,28 +81,11 @@
         ]
     },
     {
-      "name": "vs-code-device",
-      "request": "launch",
-      "type": "dart"
-    },
-    {
-      "name": "adventures (macos)",
+      "name": "ws_game_server",
+      "cwd": "./packages/ws_game_server",
       "request": "launch",
       "type": "dart",
-      "deviceId": "macos"
-    },
-    {
-      "name": "adventures (web)",
-      "request": "launch",
-      "type": "dart",
-      "deviceId": "chrome",
-      "args": ["--web-hostname", "localhost", "--web-port", "5000"]
-    },
-    {
-      "name": "adventures (profile mode)",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "profile"
+      "program": "bin/server.dart"
     }
   ]
 }

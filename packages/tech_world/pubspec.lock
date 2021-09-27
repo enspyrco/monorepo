@@ -530,20 +530,16 @@ packages:
   redfire:
     dependency: "direct main"
     description:
-      path: redfire
-      ref: HEAD
-      resolved-ref: c81f7f9f4ee405d5bd8c7027a8a22b76b7120f47
-      url: "https://github.com/enspyrco/redfire.git"
-    source: git
+      path: "../redfire"
+      relative: true
+    source: path
     version: "0.0.1"
   redfire_test:
     dependency: "direct dev"
     description:
-      path: redfire_test
-      ref: HEAD
-      resolved-ref: c81f7f9f4ee405d5bd8c7027a8a22b76b7120f47
-      url: "https://github.com/enspyrco/redfire.git"
-    source: git
+      path: "../redfire_test"
+      relative: true
+    source: path
     version: "0.0.1"
   redux:
     dependency: "direct main"
@@ -586,7 +582,7 @@ packages:
       name: sign_in_with_apple
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.0"
+    version: "3.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -605,7 +601,7 @@ packages:
       name: source_helper
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.1"
+    version: "1.3.0"
   source_map_stack_trace:
     dependency: transitive
     description:
@@ -703,7 +699,7 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.11"
+    version: "6.0.12"
   url_launcher_linux:
     dependency: transitive
     description:
@@ -777,11 +773,9 @@ packages:
   ws_game_server_types:
     dependency: "direct main"
     description:
-      path: "packages/ws_game_server_types"
-      ref: HEAD
-      resolved-ref: "1a4fb1f97b97c3b1da7278ed668b28566db4b05e"
-      url: "https://github.com/adventures-in/ws_game_server_repo.git"
-    source: git
+      path: "../ws_game_server_types"
+      relative: true
+    source: path
     version: "0.0.1"
   yaml:
     dependency: transitive
