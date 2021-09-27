@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "ws_game_server",
+      "cwd": "./packages/ws_game_server",
       "request": "launch",
       "type": "dart",
-      "cwd": "./packages/ws_game_server",
       "program": "bin/server.dart"
     },
     {
@@ -23,9 +23,11 @@
     },
     {
       "name": "tech_world (mac)",
-      "request": "launch",
       "type": "dart",
-      "deviceId": "macos"
+      "deviceId": "macos",
+      "cwd": "packages/tech_world",
+      "request": "launch",
+      "program": "lib/main.dart"
     },
     {
       "name": "tech_world (web)",

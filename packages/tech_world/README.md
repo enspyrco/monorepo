@@ -6,7 +6,7 @@ Step 1: gather.town + TwilioQuest
 
 ## Setup
 
-See [redfire](https://github.com/enspyrco/redfire) for setup guide.
+See [redfire](https://github.com/enspyrco/monorepo/tree/main/packages/redfire) for setup guide.
 
 ## Missing files
 
