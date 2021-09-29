@@ -21,7 +21,7 @@
       "flutterMode": "profile"
     },
     {
-      "name": "flireator",
+      "name": "flireator (mac)",
       "type": "dart",
       "deviceId": "macos",
       "request": "launch",
@@ -82,7 +82,7 @@
     },
     {
       "name": "ws_game_server",
-      "cwd": "./packages/ws_game_server",
+      "cwd": "packages/ws_game_server",
       "request": "launch",
       "type": "dart",
       "program": "bin/server.dart"
