@@ -3,10 +3,17 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redfire/src/profile/widgets/profile_avatar.dart';
 import 'package:redfire/types.dart';
 
-/// A [StatefulWidget] so that we can keep the global key [_popupKey] as state.
+/// Class extends [StatefulWidget] so we can keep a global key as state.
 ///
-/// [_popupKey] is passed in to both the hidden button and the displayed button
-/// so that the hidden button's menu can be popped by the displayed button.
+/// The button actually consists of two buttons in a stack.  A [PopupMenuButton]
+/// and our custom-made [ProfileAvatar].
+///
+/// The [PopupMenuButton] is disabled but the [ProfileAvatar] is setup to open
+/// the [PopupMenuButton]'s menu.
+///
+/// The global key is used as the [PopupMenuButton]'s key and given to the
+/// [ProfileAvatar] so it can pop the menu.
+///
 class AccountButton<T extends RedFireState> extends StatefulWidget {
   const AccountButton({Key? key}) : super(key: key);
 
