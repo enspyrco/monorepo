@@ -10,7 +10,7 @@ _$_PlayerPathMessage _$$_PlayerPathMessageFromJson(Map<String, dynamic> json) =>
     _$_PlayerPathMessage(
       type: json['type'] as String? ?? 'player_path',
       userId: json['userId'] as String,
-      points: IList.fromJson(json['points'],
+      points: IList<Double2>.fromJson(json['points'],
           (value) => Double2.fromJson(value as Map<String, dynamic>)),
     );
 

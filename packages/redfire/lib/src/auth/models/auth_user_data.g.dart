@@ -22,7 +22,7 @@ _$_AuthUserData _$$_AuthUserDataFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['lastSignedInOn'] as String),
       isAnonymous: json['isAnonymous'] as bool,
       emailVerified: json['emailVerified'] as bool,
-      providers: IList.fromJson(json['providers'],
+      providers: IList<AuthProviderData>.fromJson(json['providers'],
           (value) => AuthProviderData.fromJson(value as Map<String, dynamic>)),
     );
 

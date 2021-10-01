@@ -11,7 +11,8 @@ _$_AccessCredentials _$$_AccessCredentialsFromJson(Map<String, dynamic> json) =>
       accessToken: json['accessToken'] as String,
       refreshToken: json['refreshToken'] as String,
       idToken: json['idToken'] as String,
-      scopes: IList.fromJson(json['scopes'], (value) => value as String),
+      scopes:
+          IList<String>.fromJson(json['scopes'], (value) => value as String),
     );
 
 Map<String, dynamic> _$$_AccessCredentialsToJson(

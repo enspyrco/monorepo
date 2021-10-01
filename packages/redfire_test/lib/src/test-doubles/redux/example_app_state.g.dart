@@ -8,11 +8,11 @@ part of 'example_app_state.dart';
 
 _$_ExampleAppState _$$_ExampleAppStateFromJson(Map<String, dynamic> json) =>
     _$_ExampleAppState(
-      pages: IList.fromJson(
+      pages: IList<PageData>.fromJson(
           json['pages'],
           (value) => const PageDataConverter()
               .fromJson(value as Map<String, Object?>)),
-      problems: IList.fromJson(json['problems'],
+      problems: IList<ProblemInfo>.fromJson(json['problems'],
           (value) => ProblemInfo.fromJson(value as Map<String, dynamic>)),
       settings: Settings.fromJson(json['settings'] as Map<String, dynamic>),
       auth: AuthState.fromJson(json['auth'] as Map<String, dynamic>),

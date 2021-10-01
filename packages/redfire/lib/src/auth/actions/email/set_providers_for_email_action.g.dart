@@ -9,7 +9,7 @@ part of 'set_providers_for_email_action.dart';
 _$_SetProvidersForEmailAction _$$_SetProvidersForEmailActionFromJson(
         Map<String, dynamic> json) =>
     _$_SetProvidersForEmailAction(
-      ISet.fromJson(json['providers'],
+      ISet<ProvidersEnum>.fromJson(json['providers'],
           (value) => _$enumDecode(_$ProvidersEnumEnumMap, value)),
     );
 
