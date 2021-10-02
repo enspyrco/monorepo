@@ -8,7 +8,7 @@ import 'package:the_process/main.dart';
 import 'package:the_process/middleware/project_sections/create_project_section_middleware.dart';
 
 void main() {
-  group('CreateSectionMiddleware', () {
+  group('CreateProjectSectionMiddleware', () {
     test('dispatches UpdateSectionsVM and calls DatabaseServce.createSection',
         () async {
       var state = AppState.init();

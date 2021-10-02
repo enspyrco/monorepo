@@ -1,8 +1,8 @@
-# Configure Firebase 
-
-## Update platform settings
+# Configure Firebase
 
 [< README](../README.md)
+
+## Update platform settings
 
 ### Project config setup 
 
