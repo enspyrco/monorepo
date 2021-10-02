@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redfire/src/auth/actions/sign_out_action.dart';
 import 'package:redfire/src/profile/widgets/profile_avatar.dart';
+import 'package:redfire/src/redux/extensions/build_context_extensions.dart';
 import 'package:redfire/types.dart';
 
 /// Class extends [StatefulWidget] so we can keep a global key as state.
@@ -32,7 +34,7 @@ class _AccountButtonState<T extends RedFireState> extends State<AccountButton> {
       builder: (context, userData) {
         return Stack(
           children: [
-            HiddenPopupMenuButton(_popupKey),
+            HiddenPopupMenuButton<T>(_popupKey),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ProfileAvatar(
@@ -47,36 +49,39 @@ class _AccountButtonState<T extends RedFireState> extends State<AccountButton> {
   }
 }
 
-enum WhyFarther { harder, smarter, selfStarter, tradingCharter }
+enum AccountOption { signOut, edit }
 
-class HiddenPopupMenuButton extends StatelessWidget {
+class HiddenPopupMenuButton<T extends RedFireState> extends StatelessWidget {
   const HiddenPopupMenuButton(this._key, {Key? key}) : super(key: key);
 
   final Key _key;
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton<WhyFarther>(
+    return PopupMenuButton<AccountOption>(
       key: _key,
       child: Container(color: Colors.red),
       enabled: false,
-      onSelected: (WhyFarther result) {},
-      itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
-        const PopupMenuItem<WhyFarther>(
-          value: WhyFarther.harder,
-          child: Text('Working a lot harder'),
+      onSelected: (option) {
+        switch (option) {
+          case AccountOption.signOut:
+            {
+              context.dispatch<T>(SignOutAction());
+            }
+            break;
+          case AccountOption.edit:
+            {}
+            break;
+        }
+      },
+      itemBuilder: (context) => <PopupMenuEntry<AccountOption>>[
+        const PopupMenuItem<AccountOption>(
+          value: AccountOption.edit,
+          child: Text('Account Details'),
         ),
-        const PopupMenuItem<WhyFarther>(
-          value: WhyFarther.smarter,
-          child: Text('Being a lot smarter'),
-        ),
-        const PopupMenuItem<WhyFarther>(
-          value: WhyFarther.selfStarter,
-          child: Text('Being a self-starter'),
-        ),
-        const PopupMenuItem<WhyFarther>(
-          value: WhyFarther.tradingCharter,
-          child: Text('Placed in charge of trading charter'),
+        const PopupMenuItem<AccountOption>(
+          value: AccountOption.signOut,
+          child: Text('Sign Out'),
         ),
       ],
     );
