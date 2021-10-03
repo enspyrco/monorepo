@@ -10,7 +10,7 @@ _$_OtherPlayerIdsMessage _$$_OtherPlayerIdsMessageFromJson(
         Map<String, dynamic> json) =>
     _$_OtherPlayerIdsMessage(
       type: json['type'] as String? ?? 'other_player_ids',
-      ids: ISet.fromJson(json['ids'], (value) => value as String),
+      ids: ISet<String>.fromJson(json['ids'], (value) => value as String),
     );
 
 Map<String, dynamic> _$$_OtherPlayerIdsMessageToJson(

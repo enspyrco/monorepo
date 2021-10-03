@@ -11,7 +11,7 @@ _$_EmailAuthVM _$$_EmailAuthVMFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String?,
       providers: json['providers'] == null
           ? null
-          : ISet.fromJson(json['providers'],
+          : ISet<ProvidersEnum>.fromJson(json['providers'],
               (value) => _$enumDecode(_$ProvidersEnumEnumMap, value)),
     );
 

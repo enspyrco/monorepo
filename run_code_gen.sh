@@ -1,0 +1,8 @@
+(cd packages/adventures; flutter pub run build_runner build --delete-conflicting-outputs)
+(cd packages/flireator; flutter pub run build_runner build --delete-conflicting-outputs)
+(cd packages/redfire; flutter pub run build_runner build --delete-conflicting-outputs)
+(cd packages/redfire_test; flutter pub run build_runner build --delete-conflicting-outputs)
+(cd packages/tech_world; flutter pub run build_runner build --delete-conflicting-outputs)
+(cd packages/the_process; flutter pub run build_runner build --delete-conflicting-outputs)
+(cd packages/ws_game_server; flutter pub run build_runner build --delete-conflicting-outputs)
+(cd packages/ws_game_server_types; flutter pub run build_runner build --delete-conflicting-outputs)

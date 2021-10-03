@@ -21,26 +21,12 @@
       "flutterMode": "profile"
     },
     {
-      "name": "flireator",
+      "name": "flireator (mac)",
       "type": "dart",
       "deviceId": "macos",
       "request": "launch",
       "cwd": "packages/flireator",
       "program": "lib/main.dart",
-      
-    },
-    {
-      "name": "redfire",
-      "cwd": "redfire",
-      "request": "launch",
-      "type": "dart"
-    },
-    {
-      "name": "redfire (profile mode)",
-      "cwd": "redfire",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "profile"
     },
     {
       "name": "tech_world (mac)",
@@ -56,33 +42,34 @@
       "type": "dart",
       "deviceId": "chrome",
       "args": [
-          "--web-hostname",
-          "localhost",
-          "--web-port",
-          "5000"
+        "--web-hostname",
+        "localhost",
+        "--web-port",
+        "5000"
       ]
     },
     {
-      "name": "the_process",
+      "name": "the_process (mac)",
+      "cwd": "packages/the_process",
       "request": "launch",
       "type": "dart",
-      "args": [ "--no-sound-null-safety" ]
+      "deviceId": "macos",
     },
     {
-        "name": "the_process (web)",
-        "request": "launch",
-        "type": "dart",
-        "deviceId": "chrome",
-        "args": [
-            "--web-hostname",
-            "localhost",
-            "--web-port",
-            "5000"
-        ]
+      "name": "the_process (web)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
+      "args": [
+        "--web-hostname",
+        "localhost",
+        "--web-port",
+        "5000"
+      ]
     },
     {
       "name": "ws_game_server",
-      "cwd": "./packages/ws_game_server",
+      "cwd": "packages/ws_game_server",
       "request": "launch",
       "type": "dart",
       "program": "bin/server.dart"

@@ -7,6 +7,7 @@ export 'src/app-init/widgets/initializing_indicator.dart';
 // auth
 export 'src/auth/widgets/auth_page_buttons/apple_sign_in_button.dart';
 export 'src/auth/widgets/auth_page_buttons/google_sign_in_button.dart';
+export 'src/profile/widgets/buttons/account_button.dart';
 // profile
 export 'src/profile/widgets/profile_avatar.dart';
 // shared

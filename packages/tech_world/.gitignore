@@ -58,8 +58,9 @@ app.*.map.json
 # ignore the index.html file so we can use the cdns config method without 
 # adding the firebase config details to version control
 web/index.html
-# firebase credentials for mac target 
+# firebase credentials for ios & mac target 
 macos/Runner/GoogleService-Info.plist
+ios/Runner/GoogleService-Info.plist
 # settings for hiding files in VS Code 
 .vscode/settings.json
 web/index_cdn.html
