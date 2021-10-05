@@ -1,8 +1,10 @@
 # redfire
 
-A Redux based architecture connected to Firebase streams.
+[< monorepo](../../README.md)
 
-[Notes](https://docs.google.com/document/d/1rBQXUmoKRiEMn_fNqlosWEt30sysB9-d4ucPWcVn8QI/edit?usp=sharing)
+*A Redux based architecture connected to Firebase streams.*
+
+[Project Notes](https://enspyrco.notion.site/RedFire-406c10fbadfb44e3a6f2806a1b6023bf)
 
 ## Setup
 

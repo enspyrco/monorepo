@@ -1,6 +1,10 @@
 # the_process
 
-A tool to automate "the process", a system for organising collaboration.
+[< monorepo](../../README.md)
+
+*A tool to automate "the process", a system for organising collaboration.*
+
+[Project Notes](https://enspyrco.notion.site/TheProcess-c30833015cb84700b4692ccc897a0de1)
 
 ## Help Docs
 

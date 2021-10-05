@@ -1,6 +1,10 @@
 # ws_game_server
 
-Using [shelf](https://pub.dev/packages/shelf) and [shelf_web_socket](https://pub.dev/packages/shelf_web_socket) for a serverless websocket server.
+[< monorepo](../../README.md)
+
+*Using [shelf](https://pub.dev/packages/shelf) and [shelf_web_socket](https://pub.dev/packages/shelf_web_socket) for a serverless websocket server.*
+
+[Project Notes](https://enspyrco.notion.site/WS-Game-Server-c387081d4cc84c34b89bb92e1b78e48e)
 
 ## Running locally
 
