@@ -1,8 +1,6 @@
 # enspyrco monorepo
 
-A [monorepo](https://en.wikipedia.org/wiki/Monorepo) for tools to build & improve [adventuring](https://github.com/adventures-in/adventures_in).
-
-### [Dart](https://dart.dev/) &amp; [Flutter](https://flutter.dev/) projects from [Enspyr](https://github.com/enspyrco)
+*A [monorepo](https://en.wikipedia.org/wiki/Monorepo) of [Dart](https://dart.dev/) &amp; [Flutter](https://flutter.dev/) projects from [Enspyr](https://github.com/enspyrco), constituting a set of tools to facilitate & improve [adventuring](https://github.com/adventures-in/adventures_in).*
 
 #### [adventures](packages/adventures/README.md)
 *Create, organise & discover adventures taking place in tech-world.*
