@@ -1,5 +1,7 @@
 # adventures
 
-Create, organise & discover adventures taking place in tech-world.
+[< monorepo](../../README.md)
 
-[Project Notes](https://adventures-in.notion.site/Adventures-a34c84ca8de74def875383bfff93883a)
+*Create, organise & discover adventures taking place in tech-world.*
+
+[Project Notes](https://enspyrco.notion.site/Adventures-83bc88c84c834854872de24abe3d8a6c)

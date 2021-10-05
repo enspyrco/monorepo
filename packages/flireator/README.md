@@ -1,8 +1,10 @@
 # flireator
 
-A project creation tool for Flutter projects with a Firebase backend, stored on GitHub.
+[< monorepo](../../README.md)
 
-[Notes](https://docs.google.com/document/d/1zhhfxnetfFxlGYBYFOT-gAY6V_aKmjVbE18K_xcyXbU/edit?usp=sharing)
+*A project creation tool for Flutter projects with a Firebase backend, stored on GitHub.*
+
+[Project Notes](https://enspyrco.notion.site/Flireator-b8ec37f83eab4b268d8672fc715628f1)
 
 ## Sections
 

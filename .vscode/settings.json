@@ -7,11 +7,13 @@
     "**/.firebase": true,
     "**/.flutter-plugins": true,
     "**/.flutter-plugins-dependencies": true,
+    "**/.gitignore": true,
     "**/.metadata": true,
     "**/.packages": true,
     "**/build": true,
     "**/CHANGELOG.md": true,
     "**/lib/generated_plugin_registrant.dart": true,
-    "**/LICENSE": true
+    "**/LICENSE": true,
+    "**/pubspec.lock": true
   }
 }
