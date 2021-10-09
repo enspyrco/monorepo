@@ -1,5 +1,6 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:flireator/widgets/profile/profile_page.dart';
+import 'package:flireator/organisations/models/organisations_view_model.dart';
+import 'package:flireator/widgets/main_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
@@ -19,7 +20,7 @@ class AppState with _$AppState, RedFireState {
     ProfileData? profile,
 
     /// Additional AppState members
-    String? gitHubToken,
+    required OrganisationsViewModel organisations,
   }) = _AppState;
 
   factory AppState.init() => AppState(
@@ -30,6 +31,7 @@ class AppState with _$AppState, RedFireState {
         settings: Settings.init(),
 
         /// Additional init code
+        organisations: OrganisationsViewModel.init(),
       );
 
   factory AppState.fromJson(Map<String, Object?> json) =>
@@ -43,5 +45,5 @@ void main() => runApp(AppWidget<AppState>(
       reducers: const [],
       pageTransforms: const [],
       title: 'Flireator',
-      mainPage: const ProfilePage(), // const WaitingForFlireatorView()
+      mainPage: const MainPage(),
     ));

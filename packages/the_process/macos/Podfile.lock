@@ -12,12 +12,12 @@ PODS:
   - Firebase/Firestore (8.6.1):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 8.6.0)
-  - firebase_auth (3.1.1):
+  - firebase_auth (3.1.2):
     - Firebase/Auth (~> 8.6.0)
     - Firebase/CoreOnly (~> 8.6.0)
     - firebase_core
     - FlutterMacOS
-  - firebase_core (1.6.0):
+  - firebase_core (1.7.0):
     - Firebase/CoreOnly (~> 8.6.0)
     - FlutterMacOS
   - FirebaseAuth (8.6.0):
@@ -120,8 +120,8 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   cloud_firestore: 8225c834676914dc425d6ae68815b923e98be6ad
   Firebase: e84d95f6d3a91f634abc384f0751c434cb3aecfa
-  firebase_auth: a1c05788846aca0e6fa8fa71409a7b6d19c159c5
-  firebase_core: 9a84b9f2d3a597a3ddc716942bc7e47d6eb85649
+  firebase_auth: 4dae30686cd095140ebe0f3d74a69f0432fc5106
+  firebase_core: 1ac2cea3af2567d29e78f00c90a8b6968ba30cd6
   FirebaseAuth: 223adeeb2262b417532e89bf06a960e3a0a1e9e4
   FirebaseCore: a753c231801f04f5ccd10cc92119ad1b12a61165
   FirebaseCoreDiagnostics: b63732f581a1c6a453ec7241f9ab60b3a5bd3450
