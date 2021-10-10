@@ -1,11 +1,14 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:flireator/main.dart';
 import 'package:flireator/organisations/models/organisation.dart';
 import 'package:flireator/organisations/models/organisations_view_model.dart';
+import 'package:flireator/organisations/pages/create_organisation_page_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redfire/actions.dart';
+import 'package:redfire/extensions.dart';
 import 'package:redfire/types.dart';
 import 'package:redfire/widgets.dart';
-
-import '../main.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -22,7 +25,16 @@ class MainPage extends StatelessWidget {
             iconTheme: const IconThemeData(
               color: Colors.black, //change your color here
             ),
-            actions: const [AccountButton<AppState>()],
+            actions: [
+              AccountButton<AppState>(
+                options: ISet([
+                  AccountButtonOption(
+                      'Create Organisation',
+                      (context) => context.dispatch<AppState>(
+                          PushPageAction(CreateOrganisationPageData())))
+                ]),
+              )
+            ],
           ),
           body: Column(
             children: [

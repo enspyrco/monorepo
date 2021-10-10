@@ -109,7 +109,7 @@
       "import 'package:redfire/types.dart';",
       "",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageDataTransforms extends PageDataTransforms {",
-      "${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageDataTransforms() : super(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageData,",
+      "${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageDataTransforms() : super(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageData.staticTypeName,",
       "\t\t(pageData) => const MaterialPage<${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page>(key: ValueKey(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page), child: ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page<AppState>(pageData)),",
       "\t\t(json) => ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageData.fromJson(json));",
       "",

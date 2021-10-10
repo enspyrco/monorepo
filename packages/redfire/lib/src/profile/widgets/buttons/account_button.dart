@@ -18,8 +18,8 @@ import 'package:redfire/types.dart';
 /// [ProfileAvatar] so it can pop the menu.
 ///
 class AccountButton<T extends RedFireState> extends StatefulWidget {
-  const AccountButton({required ISet<AccountButtonOption> options, Key? key})
-      : _options = options,
+  const AccountButton({ISet<AccountButtonOption>? options, Key? key})
+      : _options = options ?? const ISetConst({}),
         super(key: key);
 
   final ISet<AccountButtonOption> _options;
