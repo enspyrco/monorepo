@@ -1,3 +1,4 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redfire/src/auth/actions/sign_out_action.dart';
@@ -17,7 +18,11 @@ import 'package:redfire/types.dart';
 /// [ProfileAvatar] so it can pop the menu.
 ///
 class AccountButton<T extends RedFireState> extends StatefulWidget {
-  const AccountButton({Key? key}) : super(key: key);
+  const AccountButton({required ISet<AccountButtonOption> options, Key? key})
+      : _options = options,
+        super(key: key);
+
+  final ISet<AccountButtonOption> _options;
 
   @override
   State<AccountButton> createState() => _AccountButtonState<T>();
@@ -34,7 +39,7 @@ class _AccountButtonState<T extends RedFireState> extends State<AccountButton> {
       builder: (context, userData) {
         return Stack(
           children: [
-            HiddenPopupMenuButton<T>(_popupKey),
+            HiddenPopupMenuButton<T>(_popupKey, widget._options),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ProfileAvatar(
@@ -49,41 +54,40 @@ class _AccountButtonState<T extends RedFireState> extends State<AccountButton> {
   }
 }
 
-enum AccountOption { signOut, edit }
+class AccountButtonOption {
+  AccountButtonOption(this.name, this.callback);
+  final String name;
+  final Function(BuildContext) callback;
+}
 
 class HiddenPopupMenuButton<T extends RedFireState> extends StatelessWidget {
-  const HiddenPopupMenuButton(this._key, {Key? key}) : super(key: key);
+  HiddenPopupMenuButton(this._key, ISet<AccountButtonOption> options,
+      {Key? key})
+      : super(key: key) {
+    _options = options.addAll([
+      AccountButtonOption('Account Details', (context) {}),
+      AccountButtonOption('Sign Out',
+          (BuildContext context) => context.dispatch<T>(SignOutAction()))
+    ]);
+  }
 
   final Key _key;
+  late final ISet<AccountButtonOption> _options;
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton<AccountOption>(
+    return PopupMenuButton<AccountButtonOption>(
       key: _key,
       child: Container(color: Colors.red),
       enabled: false,
-      onSelected: (option) {
-        switch (option) {
-          case AccountOption.signOut:
-            {
-              context.dispatch<T>(SignOutAction());
-            }
-            break;
-          case AccountOption.edit:
-            {}
-            break;
-        }
-      },
-      itemBuilder: (context) => <PopupMenuEntry<AccountOption>>[
-        const PopupMenuItem<AccountOption>(
-          value: AccountOption.edit,
-          child: Text('Account Details'),
-        ),
-        const PopupMenuItem<AccountOption>(
-          value: AccountOption.signOut,
-          child: Text('Sign Out'),
-        ),
-      ],
+      onSelected: (option) => option.callback(context),
+      itemBuilder: (context) => _options
+          .map<PopupMenuEntry<AccountButtonOption>>(
+              (option) => PopupMenuItem<AccountButtonOption>(
+                    value: option,
+                    child: Text(option.name),
+                  ))
+          .toList(),
     );
   }
 }
