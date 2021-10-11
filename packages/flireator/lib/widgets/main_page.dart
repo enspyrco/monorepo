@@ -2,7 +2,7 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flireator/main.dart';
 import 'package:flireator/organisations/models/organisation.dart';
 import 'package:flireator/organisations/models/organisations_view_model.dart';
-import 'package:flireator/organisations/pages/create_organisation_page_data.dart';
+import 'package:flireator/organisations/pages/edit_organisations_page_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redfire/actions.dart';
@@ -22,17 +22,17 @@ class MainPage extends StatelessWidget {
           appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.white,
-            iconTheme: const IconThemeData(
-              color: Colors.black, //change your color here
-            ),
+            iconTheme: const IconThemeData(color: Colors.black),
             actions: [
               AccountButton<AppState>(
-                options: ISet([
-                  AccountButtonOption(
-                      'Create Organisation',
-                      (context) => context.dispatch<AppState>(
-                          PushPageAction(CreateOrganisationPageData())))
-                ]),
+                options: ISet(
+                  [
+                    AccountButtonOption(
+                        'Edit Organisations',
+                        (context) => context.dispatch<AppState>(
+                            PushPageAction(EditOrganisationsPageData())))
+                  ],
+                ),
               )
             ],
           ),
@@ -40,9 +40,7 @@ class MainPage extends StatelessWidget {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  OrganisationsDropdown(),
-                ],
+                children: const [OrganisationsDropdown()],
               )
             ],
           ),

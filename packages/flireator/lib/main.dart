@@ -1,6 +1,6 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flireator/organisations/models/organisations_view_model.dart';
-import 'package:flireator/organisations/pages/create_organisation_page_data_transforms.dart';
+import 'package:flireator/organisations/pages/edit_organisations_page_data_transforms.dart';
 import 'package:flireator/widgets/main_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -44,7 +44,7 @@ void main() => runApp(AppWidget<AppState>(
       initialActions: const [],
       middlewares: const [],
       reducers: const [],
-      pageTransforms: [CreateOrganisationPageDataTransforms()],
+      pageTransforms: [EditOrganisationsPageDataTransforms()],
       title: 'Flireator',
       mainPage: const MainPage(),
     ));
