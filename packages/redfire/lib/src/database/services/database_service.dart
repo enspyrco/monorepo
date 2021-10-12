@@ -13,8 +13,8 @@ class DatabaseService {
   // Add a document with the given data at the given path and return the
   // document id.
   Future<String> createDocument(
-      {required String at, required JsonMap json}) async {
-    final ref = await _firestore.collection(at).add(json);
+      {required String at, required JsonMap from}) async {
+    final ref = await _firestore.collection(at).add(from);
     return ref.id;
   }
 

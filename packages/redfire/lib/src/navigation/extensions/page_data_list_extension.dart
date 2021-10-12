@@ -8,8 +8,8 @@ import 'package:redfire/src/types/red_fire_state.dart';
 extension PageDataListExtension on IList<PageData> {
   /// Creates a list of [MaterialPage] from a list of [PageData]
   /// - used as the history for [Navigator]
-  List<MaterialPage> toMaterialPages<T extends RedFireState>() {
-    return map<MaterialPage>(
+  List<Page> toPages<T extends RedFireState>() {
+    return map<Page>(
         (pageData) => toMaterialPageMap[pageData.typeName]!(pageData)).toList();
   }
 }
