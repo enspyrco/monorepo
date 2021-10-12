@@ -12,5 +12,9 @@ service cloud.firestore {
     match /users/{userId}/credentials/{providerId} {
       allow read, write: if request.auth.uid == userId;
     }
+
+    match /organisations/{organisationId} {
+      allow read, write: if true;
+    }
   }
 }

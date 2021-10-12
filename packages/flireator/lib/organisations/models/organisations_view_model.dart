@@ -9,8 +9,14 @@ part 'organisations_view_model.g.dart';
 @freezed
 class OrganisationsViewModel with _$OrganisationsViewModel, ReduxModel {
   factory OrganisationsViewModel({
+    /// all current organisations
     required ISet<Organisation> all,
+
+    /// the currently selected organisation
     Organisation? selected,
+
+    /// are we currently creating a new organisation
+    @Default(false) bool creating,
   }) = _OrganisationsViewModel;
 
   factory OrganisationsViewModel.init() => OrganisationsViewModel(all: ISet());

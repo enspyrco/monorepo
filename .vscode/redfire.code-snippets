@@ -39,9 +39,9 @@
     "prefix": "rf_middleware",
     "body": [
       "import 'package:redfire/extensions.dart';",
+      "import 'package:redfire/services.dart';",
       "import 'package:redfire/types.dart';",
       "import 'package:redux/redux.dart';",
-      "import 'package:tech_world/redux/services/locator.dart';",
 
       "",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Middleware<T extends RedFireState> extends TypedMiddleware<T, ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Action> {",
@@ -49,7 +49,7 @@
       "\t\tnext(action);",
       "",
       "\t\ttry {",
-      "\t\t\tfinal service = Locator${1}",
+      "\t\t\tfinal service = RedFireLocator${1}",
       "\t\t\tstore.dispatch();",
       "\t\t} catch (error, trace) {",
       "\t\t\tstore.dispatchProblem(error, trace);",
