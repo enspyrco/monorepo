@@ -1,7 +1,7 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flireator/organisations/actions/create_organisation_action.dart';
-import 'package:flireator/organisations/actions/update_organisations_view_model_action.dart';
-import 'package:flireator/organisations/models/organisation.dart';
+import 'package:flireator/organisations/actions/update_organisations_view_action.dart';
+import 'package:flireator/organisations/models/organisation_model.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire/types.dart';
@@ -14,7 +14,7 @@ class CreateOrganisationMiddleware<T extends RedFireState>
           next(action);
 
           try {
-            var organisation = Organisation(
+            var organisation = OrganisationModel(
               name: action.name,
               owners: ISet({store.state.auth.userData!.uid}),
             );
@@ -25,7 +25,7 @@ class CreateOrganisationMiddleware<T extends RedFireState>
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           } finally {
-            store.dispatch(UpdateOrganisationsViewModelAction(creating: false));
+            store.dispatch(UpdateOrganisationsViewAction(creating: false));
           }
         });
 }

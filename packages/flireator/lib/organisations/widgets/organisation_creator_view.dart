@@ -4,22 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redfire/extensions.dart';
 
-class CreateOrganisationInput extends StatefulWidget {
-  const CreateOrganisationInput({Key? key}) : super(key: key);
+class OrganisationCreatorView extends StatefulWidget {
+  const OrganisationCreatorView({Key? key}) : super(key: key);
 
   @override
-  State<CreateOrganisationInput> createState() =>
-      _CreateOrganisationInputState();
+  State<OrganisationCreatorView> createState() =>
+      _OrganisationCreatorViewState();
 }
 
-class _CreateOrganisationInputState extends State<CreateOrganisationInput> {
+class _OrganisationCreatorViewState extends State<OrganisationCreatorView> {
   final _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, bool>(
         distinct: true,
-        converter: (store) => store.state.organisations.creating,
+        converter: (store) => store.state.organisations.editor.creator.creating,
         builder: (context, creating) {
           return SizedBox(
             height: 50,

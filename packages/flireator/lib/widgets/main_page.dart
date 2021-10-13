@@ -1,7 +1,7 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flireator/main.dart';
 import 'package:flireator/organisations/pages/edit_organisations_page_data.dart';
-import 'package:flireator/organisations/widgets/organisations_dropdown.dart';
+import 'package:flireator/organisations/widgets/organisation_selector_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redfire/actions.dart';
@@ -27,9 +27,13 @@ class MainPage extends StatelessWidget {
                 options: ISet(
                   [
                     AccountButtonOption(
-                        'Edit Organisations',
-                        (context) => context.dispatch<AppState>(
-                            PushPageAction(EditOrganisationsPageData())))
+                      'Edit Organisations',
+                      (context) => context.dispatch<AppState>(
+                        PushPageAction(
+                          EditOrganisationsPageData(),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               )
@@ -39,7 +43,7 @@ class MainPage extends StatelessWidget {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [OrganisationsDropdown()],
+                children: const [OrganisationSelectorView()],
               )
             ],
           ),

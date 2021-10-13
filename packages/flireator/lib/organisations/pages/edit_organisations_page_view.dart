@@ -1,18 +1,18 @@
 import 'package:flireator/main.dart';
-import 'package:flireator/organisations/models/organisations_view_model.dart';
-import 'package:flireator/organisations/widgets/create_organisation_input.dart';
-import 'package:flireator/organisations/widgets/organisations_dropdown.dart';
+import 'package:flireator/organisations/models/organisations_editor_view_model.dart';
+import 'package:flireator/organisations/widgets/organisation_creator_view.dart';
+import 'package:flireator/organisations/widgets/organisation_selector_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
-class EditOrganisationsPage extends StatelessWidget {
-  const EditOrganisationsPage({Key? key}) : super(key: key);
+class EditOrganisationsPageView extends StatelessWidget {
+  const EditOrganisationsPageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, OrganisationsViewModel>(
+    return StoreConnector<AppState, OrganisationsEditorViewModel>(
       distinct: true,
-      converter: (store) => store.state.organisations,
+      converter: (store) => store.state.organisations.editor,
       builder: (context, vm) {
         return Scaffold(
           appBar: AppBar(
@@ -25,8 +25,8 @@ class EditOrganisationsPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
-                  OrganisationsDropdown(),
-                  CreateOrganisationInput()
+                  OrganisationSelectorView(),
+                  OrganisationCreatorView()
                 ],
               ),
             ],
