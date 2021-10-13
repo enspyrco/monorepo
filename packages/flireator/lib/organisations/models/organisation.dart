@@ -1,5 +1,4 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:flireator/shared/models/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
 
@@ -10,7 +9,9 @@ part 'organisation.g.dart';
 class Organisation with _$Organisation, ReduxModel {
   factory Organisation({
     required String name,
-    ISet<User>? owners,
+    ISet<String>? owners,
+    ISet<String>? admins,
+    ISet<String>? members,
   }) = _Organisation;
 
   factory Organisation.fromJson(JsonMap json) => _$OrganisationFromJson(json);

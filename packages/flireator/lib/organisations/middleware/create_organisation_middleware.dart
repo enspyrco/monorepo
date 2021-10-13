@@ -1,3 +1,4 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flireator/organisations/actions/create_organisation_action.dart';
 import 'package:flireator/organisations/actions/update_organisations_view_model_action.dart';
 import 'package:flireator/organisations/models/organisation.dart';
@@ -13,7 +14,10 @@ class CreateOrganisationMiddleware<T extends RedFireState>
           next(action);
 
           try {
-            var organisation = Organisation(name: action.name);
+            var organisation = Organisation(
+              name: action.name,
+              owners: ISet({store.state.auth.userData!.uid}),
+            );
 
             final service = RedFireLocator.getDatabaseService();
             await service.createDocument(
