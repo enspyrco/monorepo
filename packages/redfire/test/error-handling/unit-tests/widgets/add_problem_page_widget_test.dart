@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:redfire/src/navigation/models/problem_page_data.dart';
 import 'package:redfire/src/problems/models/problem_info.dart';
-import 'package:redfire/src/problems/pages/problem_page.dart';
+import 'package:redfire/src/problems/widgets/problem_page_view.dart';
+import 'package:redfire/types.dart';
 import 'package:redfire_test/redfire_test.dart';
 
 void main() {
   group('ProblemPage', () {
     final problem = ProblemInfo('Problem error message');
-    final problemPage = ProblemPage(info: problem);
 
     testWidgets('is added to widget tree', (WidgetTester tester) async {
       final problemPageData = ProblemPageData(problem);
@@ -22,7 +22,7 @@ void main() {
       await tester.pumpWidget(appWidget);
       await tester.pump();
 
-      final finder = find.byType(ProblemPage);
+      final finder = find.byType(ProblemPageView);
 
       expect(finder, findsOneWidget);
     });
@@ -38,7 +38,7 @@ void main() {
       await tester.pumpWidget(harness.widget);
       await tester.pump();
 
-      expect(find.byType(ProblemPage), findsOneWidget);
+      expect(find.byType(ProblemPageView), findsOneWidget);
     });
   });
 }
