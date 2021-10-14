@@ -18,7 +18,7 @@ void main() {
       final service = RedFireLocator.getDatabaseService();
 
       service
-          .createDocument(at: 'new/uid', json: {'uid': 'uid', 'name': 'testy'});
+          .createDocument(at: 'new/uid', from: {'uid': 'uid', 'name': 'testy'});
 
       verify(firestoreMock.collection('new/uid'));
     });

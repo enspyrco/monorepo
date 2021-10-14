@@ -28,7 +28,7 @@ void main() {
       final service = DatabaseService(database: mockFirestore);
 
       // Interact with the service under test.
-      final id = await service.createDocument(at: testPath, json: testJson);
+      final id = await service.createDocument(at: testPath, from: testJson);
 
       // Verify the expected results of the interaction.
       verify(mockFirestore.collection(testPath));

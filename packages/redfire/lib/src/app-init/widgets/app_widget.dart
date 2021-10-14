@@ -122,7 +122,7 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
                 distinct: true,
                 converter: (store) => store.state.pages,
                 builder: (context, pages) => Navigator(
-                    pages: pages.toMaterialPages<T>(),
+                    pages: pages.toPages<T>(),
                     onPopPage: (route, dynamic result) {
                       if (!route.didPop(result)) {
                         return false;

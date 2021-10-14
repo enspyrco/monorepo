@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:redfire/src/problems/actions/remove_problem_action.dart';
-import 'package:redfire/src/problems/models/problem_info.dart';
 import 'package:redfire/src/redux/extensions/build_context_extensions.dart';
+import 'package:redfire/types.dart';
 
-import '../../../types.dart';
+class ProblemInfoView<T extends RedFireState> extends StatelessWidget {
+  const ProblemInfoView(this.info, {Key? key}) : super(key: key);
 
-/// Creates a widget to show an error from a type of [ProblemInfo].
-/// The [ProblemPage] is used for alerting a user to an error.
-class ProblemPage<T extends RedFireState> extends StatelessWidget {
   final ProblemInfo info;
-
-  const ProblemPage(this.info, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

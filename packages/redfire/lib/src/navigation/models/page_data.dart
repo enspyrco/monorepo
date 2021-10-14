@@ -3,14 +3,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/src/app-init/widgets/initial_page.dart';
 import 'package:redfire/src/auth/widgets/auth_page.dart';
 import 'package:redfire/src/navigation/models/initial_page_data.dart';
-import 'package:redfire/src/problems/widgets/problem_page.dart';
+import 'package:redfire/src/problems/pages/problem_page.dart';
 import 'package:redfire/src/profile/widgets/profile_page.dart';
 import 'package:redfire/types.dart';
 
 import '../../types/typedefs.dart';
 
 typedef PageDataFromJson = PageData Function(JsonMap json);
-typedef PageFromPageData = MaterialPage Function(PageData pageData);
+typedef PageFromPageData = Page Function(PageData pageData);
 
 /// [RedFireState.pages] is a list of [PageData] and we use [PageDataConverter]
 /// to add a 'type' key to the json during serialisation. The value stored
@@ -51,10 +51,8 @@ void addPageTransforms<T extends RedFireState>(
   toMaterialPageMap[ProfilePageData.staticTypeName] = (_) =>
       MaterialPage<ProfilePage>(
           key: const ValueKey(ProfilePage), child: ProfilePage<T>());
-  toMaterialPageMap[ProblemPageData.staticTypeName] = (pageData) =>
-      MaterialPage<ProblemPage>(
-          key: const ValueKey(ProblemPage),
-          child: ProblemPage<T>((pageData as ProblemPageData).problem));
+  toMaterialPageMap[ProblemPageData.staticTypeName] =
+      (pageData) => ProblemPage<T>(info: (pageData as ProblemPageData).problem);
 
   // add the redfire fromJson transforms
   _fromJsonMap[InitialPageData.staticTypeName] =
