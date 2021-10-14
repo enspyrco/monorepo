@@ -56,9 +56,16 @@ A `Page` is something that has corresponding objects of type `PageData` (stored 
 
 ### Navigation
 
+#### Make a PageData class
+
+- make a file called just `blah_page_data.dart`
+- use the `page_data` snippet
+
 `PageData` subtypes are assumed to have a static `staticTypeName` member
 and an instance member `typeName` that refers to the static member.  Using the snippets will create this automatically.
 - this allows us to easily get the type of a `PageData` in the `AppState`'s `pages` at runtime so we can find the appropriate toMaterialPage function
+
+#### Make a PageDataTransforms class
 
 Still very much a work in progress and very clunky, but...
 

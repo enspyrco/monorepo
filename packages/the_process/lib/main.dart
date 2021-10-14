@@ -5,6 +5,14 @@ import 'package:redfire/types.dart';
 import 'package:redfire/widgets.dart';
 import 'package:the_process/middleware/project_sections/create_project_section_middleware.dart';
 import 'package:the_process/middleware/project_sections/tap_project_sections_middleware.dart';
+import 'package:the_process/organisations/actions/tap_organisations_action.dart';
+import 'package:the_process/organisations/middleware/create_organisation_middleware.dart';
+import 'package:the_process/organisations/middleware/tap_organisations_middleware.dart';
+import 'package:the_process/organisations/models/organisations_section_model.dart';
+import 'package:the_process/organisations/pages/edit_organisations_page.dart';
+import 'package:the_process/organisations/reducers/set_organisations_reducer.dart';
+import 'package:the_process/organisations/reducers/update_organisation_editor_reducer.dart';
+import 'package:the_process/projects/pages/project_detail_page.dart';
 import 'package:the_process/reducers/sections/store_project_sections.dart';
 import 'package:the_process/reducers/sections/update_new_project_section_v_m.dart';
 import 'package:the_process/reducers/sections/update_project_sections_v_m.dart';
@@ -31,14 +39,20 @@ class AppState with _$AppState, RedFireState {
 
     /// Teams
     TeamMember? teamMember,
+    required OrganisationsSectionModel organisations,
   }) = _AppState;
 
   factory AppState.init() => AppState(
         auth: AuthState.init(),
         pages: <PageData>[InitialPageData()].lock,
         problems: IList(),
-        sections: ProjectSectionsVM.init(),
         settings: Settings.init(),
+
+        /// Sections
+        sections: ProjectSectionsVM.init(),
+
+        /// Organisations
+        organisations: OrganisationsSectionModel.init(),
       );
 
   factory AppState.fromJson(JsonMap json) => _$AppStateFromJson(json);
@@ -46,18 +60,29 @@ class AppState with _$AppState, RedFireState {
 
 void main() => runApp(AppWidget<AppState>(
       initialState: AppState.init(),
-      initialActions: const [],
+      initialActions: [TapOrganisationsAction()],
       middlewares: [
-        // Sections
+        /// Sections
         CreateProjectSectionMiddleware(),
         TapProjectSectionsMiddleware(),
+
+        /// Organisations
+        CreateOrganisationMiddleware(),
+        TapOrganisationsMiddleware(),
       ],
       reducers: [
-        // Sections
+        /// Sections
         StoreProjectSectionsReducer(),
         UpdateNewProjectSectionVMReducer(),
         UpdateProjectSectionsVMReducer(),
+
+        /// Organisations
+        UpdateOrganisationEditorReducer(),
+        SetOrganisationsReducer(),
       ],
-      pageTransforms: const [],
+      pageTransforms: [
+        EditOrganisationsPageTransforms(),
+        ProjectDetailPageTransforms()
+      ],
       mainPage: const HomePage(),
     ));

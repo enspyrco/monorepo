@@ -1,5 +1,5 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:flireator/widgets/profile/profile_page.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
@@ -19,7 +19,6 @@ class AppState with _$AppState, RedFireState {
     ProfileData? profile,
 
     /// Additional AppState members
-    String? gitHubToken,
   }) = _AppState;
 
   factory AppState.init() => AppState(
@@ -43,5 +42,5 @@ void main() => runApp(AppWidget<AppState>(
       reducers: const [],
       pageTransforms: const [],
       title: 'Flireator',
-      mainPage: const ProfilePage(), // const WaitingForFlireatorView()
+      mainPage: Container(color: Colors.red),
     ));

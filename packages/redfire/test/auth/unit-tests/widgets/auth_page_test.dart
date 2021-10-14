@@ -46,7 +46,7 @@ void main() {
       final fakeStore = FakeStore(ExampleAppState.init());
 
       final textFieldFinder =
-          find.byType((<T>() => T)<EmailTextField<ExampleAppState>>());
+          find.byType(typeOf<EmailTextField<ExampleAppState>>());
 
       await tester.pumpWidget(
         StoreProvider<ExampleAppState>(
