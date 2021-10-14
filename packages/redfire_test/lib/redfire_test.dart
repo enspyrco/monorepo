@@ -22,4 +22,5 @@ export 'src/test-doubles/widgets/examples/empty_main_page.dart';
 export 'src/test-doubles/wrappers/examples/fake_firebase_wrapper.dart';
 export 'src/utils/app_widget_harness.dart';
 export 'src/utils/locator_utils.dart';
+export 'src/utils/type_utils.dart';
 export 'src/utils/widget_test_harness.dart';
