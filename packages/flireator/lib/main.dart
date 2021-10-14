@@ -1,13 +1,5 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:flireator/organisations/actions/tap_organisations_action.dart';
-import 'package:flireator/organisations/middleware/create_organisation_middleware.dart';
-import 'package:flireator/organisations/middleware/tap_organisations_middleware.dart';
-import 'package:flireator/organisations/models/organisations_editor_view_model.dart';
-import 'package:flireator/organisations/models/organisations_section_model.dart';
-import 'package:flireator/organisations/pages/edit_organisations_page_transforms.dart';
-import 'package:flireator/organisations/reducers/set_organisations_reducer.dart';
-import 'package:flireator/organisations/reducers/update_organisation_editor_reducer.dart';
-import 'package:flireator/widgets/main_page.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
@@ -27,7 +19,6 @@ class AppState with _$AppState, RedFireState {
     ProfileData? profile,
 
     /// Additional AppState members
-    required OrganisationsSectionModel organisations,
   }) = _AppState;
 
   factory AppState.init() => AppState(
@@ -38,7 +29,6 @@ class AppState with _$AppState, RedFireState {
         settings: Settings.init(),
 
         /// Additional init code
-        organisations: OrganisationsSectionModel.init(),
       );
 
   factory AppState.fromJson(Map<String, Object?> json) =>
@@ -47,13 +37,10 @@ class AppState with _$AppState, RedFireState {
 
 void main() => runApp(AppWidget<AppState>(
       initialState: AppState.init(),
-      initialActions: [TapOrganisationsAction()],
-      middlewares: [
-        CreateOrganisationMiddleware(),
-        TapOrganisationsMiddleware()
-      ],
-      reducers: [UpdateOrganisationEditorReducer(), SetOrganisationsReducer()],
-      pageTransforms: [EditOrganisationsPageTransforms()],
+      initialActions: const [],
+      middlewares: const [],
+      reducers: const [],
+      pageTransforms: const [],
       title: 'Flireator',
-      mainPage: const MainPage(),
+      mainPage: Container(color: Colors.red),
     ));

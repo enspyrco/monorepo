@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:flireator/organisations/actions/set_organisations_action.dart';
-import 'package:flireator/organisations/actions/tap_organisations_action.dart';
-import 'package:flireator/organisations/models/organisation_model.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
+import 'package:the_process/organisations/actions/set_organisations_action.dart';
+import 'package:the_process/organisations/actions/tap_organisations_action.dart';
+import 'package:the_process/organisations/models/organisation_model.dart';
 
 class TapOrganisationsMiddleware<T extends RedFireState>
     extends TypedMiddleware<T, TapOrganisationsAction> {

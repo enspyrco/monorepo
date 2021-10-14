@@ -1,8 +1,8 @@
-import 'package:flireator/main.dart';
-import 'package:flireator/organisations/actions/create_organisation_action.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redfire/extensions.dart';
+import 'package:the_process/main.dart';
+import 'package:the_process/organisations/actions/create_organisation_action.dart';
 
 class OrganisationCreatorView extends StatefulWidget {
   const OrganisationCreatorView({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _OrganisationCreatorViewState extends State<OrganisationCreatorView> {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, bool>(
         distinct: true,
-        converter: (store) => store.state.organisations.editor.creator.creating,
+        converter: (store) => store.state.organisations.creator.creating,
         builder: (context, creating) {
           return SizedBox(
             height: 50,

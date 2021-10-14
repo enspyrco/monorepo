@@ -1,7 +1,7 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:flireator/organisations/models/organisation_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
+import 'package:the_process/organisations/models/organisation_model.dart';
 
 part 'organisation_selector_view_model.freezed.dart';
 part 'organisation_selector_view_model.g.dart';

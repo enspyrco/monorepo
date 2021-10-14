@@ -1,6 +1,6 @@
-import 'package:flireator/organisations/models/organisation_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
+import 'package:the_process/organisations/models/organisation_model.dart';
 
 part 'update_organisations_view_action.freezed.dart';
 part 'update_organisations_view_action.g.dart';

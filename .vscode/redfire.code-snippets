@@ -77,9 +77,10 @@
     ],
     "description": "redfire model with freezed"
   },
-  "redfire page data": {
-    "prefix": "rf_page_data",
+  "redfire page": {
+    "prefix": "rf_page",
     "body": [
+      "import 'package:flutter/material.dart';",
       "import 'package:freezed_annotation/freezed_annotation.dart';",
       "import 'package:redfire/types.dart';",
       "",
@@ -97,25 +98,16 @@
       "",
       "\t@override",
       "\tString get typeName => staticTypeName;",
-      "}"
-    ],
-    "description": "redfire page data with freezed"
-  },
-  "redfire page data transforms": {
-    "prefix": "rf_page_data_transforms",
-    "body": [
-      "import 'package:flutter/material.dart';",
-      "import 'package:quiz_questions/main.dart';",
-      "import 'package:redfire/types.dart';",
+      "}",
       "",
-      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageDataTransforms extends PageDataTransforms {",
-      "${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageDataTransforms() : super(typeName: ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageData.staticTypeName,",
-      "\t\ttoMaterialPage: (pageData) => const MaterialPage<${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page>(key: ValueKey(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page), child: ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page<AppState>(pageData)),",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageTransforms extends PageDataTransforms {",
+      "${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageTransforms() : super(typeName: ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageData.staticTypeName,",
+      "\t\ttoMaterialPage: (pageData) => const MaterialPage<dynamic>(key: ValueKey(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageData), child: ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageView(pageData)),",
       "\t\tfromJson: (json) => ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageData.fromJson(json),);",
       "",
       "}"
     ],
-    "description": "redfire page data transforms with freezed"
+    "description": "redfire page - freezed class for state, classes for transforms and a view"
   },
   "redfire reducer": {
     "prefix": "rf_reducer",
