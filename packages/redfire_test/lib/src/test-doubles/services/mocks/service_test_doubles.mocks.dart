@@ -153,9 +153,9 @@ class MockDatabaseService extends _i1.Mock implements _i8.DatabaseService {
   }
 
   @override
-  _i6.Future<String> createDocument({String? at, Map<String, Object?>? json}) =>
+  _i6.Future<String> createDocument({String? at, Map<String, Object?>? from}) =>
       (super.noSuchMethod(
-          Invocation.method(#createDocument, [], {#at: at, #json: json}),
+          Invocation.method(#createDocument, [], {#at: at, #from: from}),
           returnValue: Future<String>.value('')) as _i6.Future<String>);
   @override
   _i6.Future<void> setDocument(

@@ -4,6 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:redfire/src/navigation/models/problem_page_data.dart';
 import 'package:redfire/src/problems/models/problem_info.dart';
 import 'package:redfire/src/problems/pages/problem_page.dart';
+import 'package:redfire/src/problems/widgets/problem_page_view.dart';
 import 'package:redfire_test/redfire_test.dart';
 
 void main() {
@@ -24,7 +25,7 @@ void main() {
       await tester.pumpWidget(appWidget);
       await tester.pump();
 
-      expect(find.byType(ProblemPage), findsOneWidget);
+      expect(find.byType(ProblemPageView), findsOneWidget);
 
       store.updateState(store.state
           .copyWith(pages: store.state.pages.remove(problemPageData)));

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:redfire/src/problems/models/problem_info.dart';
-import 'package:redfire/src/problems/widgets/problem_info_view.dart';
+import 'package:redfire/src/problems/widgets/problem_page_view.dart';
 
 import '../../../types.dart';
 
@@ -24,7 +24,7 @@ class ProblemPage<T extends RedFireState> extends Page<dynamic> {
         final curveTween = CurveTween(curve: Curves.easeInOut);
         return SlideTransition(
           position: animation.drive(curveTween).drive(tween),
-          child: ProblemInfoView<T>(
+          child: ProblemPageView<T>(
             info,
             key: ValueKey(info),
           ),
