@@ -2,7 +2,7 @@
 
 [< monorepo](../../README.md)
 
-*A project creation tool for Flutter projects with a Firebase backend, stored on GitHub.*
+*A Flutter plugin for creating & managing projects built using Dart, Flutter, & Firebase.*
 
 [Project Notes](https://enspyrco.notion.site/Flireator-b8ec37f83eab4b268d8672fc715628f1)
 
