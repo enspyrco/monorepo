@@ -1,0 +1,87 @@
+name: Coverage
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: CI
+    runs-on: ubuntu-latest
+    
+    steps:
+
+    - name: Output Run Info
+      run: echo "build-number=$GITHUB_RUN_NUMBER, event = ${{ github.event_name }}, branch = ${{ github.ref }}, target = ${{ github.base_ref }}"
+
+    - name: Install checkout
+      uses: actions/checkout@v2
+    
+    ##############################################
+    # Setup flutter-action
+    ##############################################
+    - name: Install Java for Flutter tool
+      uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    - name: Install Flutter tool
+      uses: subosito/flutter-action@v1
+      with:
+        channel: 'dev'
+
+    ############################################
+    # Run tests
+    ############################################
+    - name: Tests for adventures
+      run: |
+        flutter pub get
+        flutter pub run build_runner build
+        flutter test --coverage
+      working-directory: ./packages/adventures
+    - name: Tests for flireator
+      run: |
+        flutter pub get
+        flutter test --coverage
+      working-directory: ./packages/flireator
+    - name: Tests for redfire
+      run: flutter test --coverage
+      working-directory: ./packages/redfire
+    - name: Tests for redfire_test
+      run: flutter test --coverage
+      working-directory: ./packages/redfire_test
+    - name: Tests for tech_world
+      run: |
+        flutter pub get
+        flutter pub run build_runner build
+        flutter test --coverage
+      working-directory: ./packages/tech_world
+    - name: Tests for the_process
+      run: |
+        flutter pub get
+        flutter pub run build_runner build
+        flutter test --coverage
+      working-directory: ./packages/the_process
+    - name: Tests for ws_game_server
+      run: flutter test --coverage
+      working-directory: ./packages/ws_game_server
+    - name: Tests for ws_game_server_types
+      run: flutter test --coverage
+      working-directory: ./packages/ws_game_server_types
+
+    ############################################
+    # Coverage
+    ############################################
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        directory: ./packages/
+        files: >
+          adventures/coverage/lcov.info,
+          flireator/coverage/lcov.info,
+          redfire/coverage/lcov.info,
+          redfire_test/coverage/lcov.info,
+          tech_world/coverage/lcov.info,
+          the_process/coverage/lcov.info
+        fail_ci_if_error: true
+        verbose: true
