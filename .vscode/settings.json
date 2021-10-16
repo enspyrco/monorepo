@@ -1,19 +1,19 @@
 {
   "files.exclude": {
-    "**/*.g.dart": true,
-    "**/*.freezed.dart": true,
-    "**/.dart_tool": true,
-    "**/.firebaserc": true,
-    "**/.firebase": true,
-    "**/.flutter-plugins": true,
-    "**/.flutter-plugins-dependencies": true,
-    "**/.gitignore": true,
-    "**/.metadata": true,
-    "**/.packages": true,
-    "**/build": true,
-    "**/CHANGELOG.md": true,
-    "**/lib/generated_plugin_registrant.dart": true,
-    "**/LICENSE": true,
-    "**/pubspec.lock": true
+    "**/*.g.dart": false,
+    "**/*.freezed.dart": false,
+    "**/.dart_tool": false,
+    "**/.firebaserc": false,
+    "**/.firebase": false,
+    "**/.flutter-plugins": false,
+    "**/.flutter-plugins-dependencies": false,
+    "**/.gitignore": false,
+    "**/.metadata": false,
+    "**/.packages": false,
+    "**/build": false,
+    "**/CHANGELOG.md": false,
+    "**/lib/generated_plugin_registrant.dart": false,
+    "**/LICENSE": false,
+    "**/pubspec.lock": false
   }
 }

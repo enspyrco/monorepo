@@ -45,10 +45,12 @@ jobs:
         flutter test --coverage
       working-directory: ./packages/flireator
     - name: Tests for redfire
-      run: flutter test --coverage
+      run: |
+        flutter test --coverage
       working-directory: ./packages/redfire
     - name: Tests for redfire_test
-      run: flutter test --coverage
+      run: |
+        flutter test --coverage
       working-directory: ./packages/redfire_test
     - name: Tests for tech_world
       run: |
@@ -63,10 +65,12 @@ jobs:
         flutter test --coverage
       working-directory: ./packages/the_process
     - name: Tests for ws_game_server
-      run: flutter test --coverage
+      run: |
+        flutter test --coverage
       working-directory: ./packages/ws_game_server
     - name: Tests for ws_game_server_types
-      run: flutter test --coverage
+      run: |
+        flutter test --coverage
       working-directory: ./packages/ws_game_server_types
 
     ############################################
