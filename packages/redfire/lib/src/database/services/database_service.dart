@@ -39,6 +39,11 @@ class DatabaseService {
     return await _firestore.doc(at).update(to);
   }
 
+  /// Delete the document at the given location.
+  Future<void> deleteDocument({required String at}) async {
+    return await _firestore.doc(at).delete();
+  }
+
   /// Tap the database to create a stream from the document at [path],
   /// converting the data in each [DocumentSnapshot] into a [JsonMap]
   Stream<JsonMap> tapDocument({required String at}) {
