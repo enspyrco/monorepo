@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redfire/extensions.dart';
 import 'package:the_process/main.dart';
-import 'package:the_process/organisations/actions/update_organisations_view_action.dart';
+import 'package:the_process/organisations/actions/update_organisation_selector_action.dart';
 import 'package:the_process/organisations/models/organisation_model.dart';
 import 'package:the_process/organisations/models/organisation_selector_view_model.dart';
 
@@ -27,7 +27,7 @@ class OrganisationSelectorView extends StatelessWidget {
             ),
             onChanged: (OrganisationModel? selected) {
               context.dispatch<AppState>(
-                  UpdateOrganisationsViewAction(selected: selected));
+                  UpdateOrganisationSelectorAction(selected: selected));
             },
             items: selector.all.map<DropdownMenuItem<OrganisationModel>>(
                 (OrganisationModel value) {

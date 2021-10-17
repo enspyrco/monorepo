@@ -11,7 +11,7 @@ import 'package:the_process/organisations/middleware/tap_organisations_middlewar
 import 'package:the_process/organisations/models/organisations_section_model.dart';
 import 'package:the_process/organisations/pages/edit_organisations_page.dart';
 import 'package:the_process/organisations/reducers/set_organisations_reducer.dart';
-import 'package:the_process/organisations/reducers/update_organisation_editor_reducer.dart';
+import 'package:the_process/organisations/reducers/update_organisation_selector_reducer.dart';
 import 'package:the_process/projects/pages/project_detail_page.dart';
 import 'package:the_process/reducers/sections/store_project_sections.dart';
 import 'package:the_process/reducers/sections/update_new_project_section_v_m.dart';
@@ -77,7 +77,7 @@ void main() => runApp(AppWidget<AppState>(
         UpdateProjectSectionsVMReducer(),
 
         /// Organisations
-        UpdateOrganisationEditorReducer(),
+        UpdateOrganisationSelectorReducer(),
         SetOrganisationsReducer(),
       ],
       pageTransforms: [

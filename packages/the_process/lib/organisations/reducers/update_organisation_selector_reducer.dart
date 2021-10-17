@@ -1,10 +1,10 @@
 import 'package:redux/redux.dart';
 import 'package:the_process/main.dart';
-import 'package:the_process/organisations/actions/update_organisations_view_action.dart';
+import 'package:the_process/organisations/actions/update_organisation_selector_action.dart';
 
-class UpdateOrganisationEditorReducer
-    extends TypedReducer<AppState, UpdateOrganisationsViewAction> {
-  UpdateOrganisationEditorReducer()
+class UpdateOrganisationSelectorReducer
+    extends TypedReducer<AppState, UpdateOrganisationSelectorAction> {
+  UpdateOrganisationSelectorReducer()
       : super((state, action) {
           final oldSelected = state.organisations.selector.selected;
           final oldCreating = state.organisations.creator.creating;

@@ -4,7 +4,7 @@ import 'package:redfire/services.dart';
 import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
 import 'package:the_process/organisations/actions/create_organisation_action.dart';
-import 'package:the_process/organisations/actions/update_organisations_view_action.dart';
+import 'package:the_process/organisations/actions/update_organisation_selector_action.dart';
 import 'package:the_process/organisations/models/organisation_model.dart';
 
 class CreateOrganisationMiddleware<T extends RedFireState>
@@ -14,6 +14,8 @@ class CreateOrganisationMiddleware<T extends RedFireState>
           next(action);
 
           try {
+            store.dispatch(UpdateOrganisationSelectorAction(creating: true));
+
             var organisation = OrganisationModel(
               name: action.name,
               owners: ISet({store.state.auth.userData!.uid}),
@@ -25,7 +27,7 @@ class CreateOrganisationMiddleware<T extends RedFireState>
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           } finally {
-            store.dispatch(UpdateOrganisationsViewAction(creating: false));
+            store.dispatch(UpdateOrganisationSelectorAction(creating: false));
           }
         });
 }
