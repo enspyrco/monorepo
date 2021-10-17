@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:the_process/organisations/widgets/delete_organisation_button.dart';
 import 'package:the_process/organisations/widgets/organisation_creator_view.dart';
 import 'package:the_process/organisations/widgets/organisation_selector_view.dart';
 
-class EditOrganisationsPageView extends StatelessWidget {
-  const EditOrganisationsPageView({Key? key}) : super(key: key);
+class OrganisationsPageView extends StatelessWidget {
+  const OrganisationsPageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class EditOrganisationsPageView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [
               OrganisationSelectorView(),
+              DeleteOrganisationButton(),
               OrganisationCreatorView()
             ],
           ),

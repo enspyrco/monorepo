@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
-import 'package:the_process/organisations/pages/edit_organisations_page_view.dart';
+import 'package:the_process/organisations/pages/organisations_page_view.dart';
 
 part 'edit_organisations_page.freezed.dart';
 part 'edit_organisations_page.g.dart';
@@ -27,7 +27,7 @@ class EditOrganisationsPageTransforms extends PageDataTransforms {
           typeName: EditOrganisationsPageData.staticTypeName,
           toMaterialPage: (pageData) => const MaterialPage<dynamic>(
               key: ValueKey(EditOrganisationsPageData),
-              child: EditOrganisationsPageView()),
+              child: OrganisationsPageView()),
           fromJson: (json) => EditOrganisationsPageData.fromJson(json),
         );
 }

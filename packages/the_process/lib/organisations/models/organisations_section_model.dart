@@ -11,11 +11,13 @@ class OrganisationsSectionModel with _$OrganisationsSectionModel, ReduxModel {
   factory OrganisationsSectionModel({
     required OrganisationCreatorViewModel creator,
     required OrganisationSelectorViewModel selector,
+    required bool deleting,
   }) = _OrganisationsSectionModel;
 
   factory OrganisationsSectionModel.init() => OrganisationsSectionModel(
       creator: OrganisationCreatorViewModel(),
-      selector: OrganisationSelectorViewModel.init());
+      selector: OrganisationSelectorViewModel.init(),
+      deleting: false);
 
   factory OrganisationsSectionModel.fromJson(JsonMap json) =>
       _$OrganisationsSectionModelFromJson(json);

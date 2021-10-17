@@ -1,0 +1,28 @@
+import 'package:redfire/extensions.dart';
+import 'package:redfire/services.dart';
+import 'package:redux/redux.dart';
+import 'package:the_process/main.dart';
+import 'package:the_process/organisations/actions/delete_organisation_action.dart';
+import 'package:the_process/organisations/actions/update_organisations_page_action.dart';
+
+class DeleteOrganisationMiddleware
+    extends TypedMiddleware<AppState, DeleteOrganisationAction> {
+  DeleteOrganisationMiddleware()
+      : super((store, action, next) async {
+          next(action);
+
+          try {
+            store.dispatch(UpdateOrganisationsPageAction(deleting: true));
+
+            var selected = store.state.organisations.selector.selected;
+            if (selected == null) return;
+
+            final service = RedFireLocator.getDatabaseService();
+            service.updateDocument(at: 'organisations/${selected.id}', to: {});
+          } catch (error, trace) {
+            store.dispatchProblem(error, trace);
+          } finally {
+            store.dispatch(UpdateOrganisationsPageAction(deleting: false));
+          }
+        });
+}
