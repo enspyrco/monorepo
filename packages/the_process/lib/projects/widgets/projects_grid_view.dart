@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_process/projects/models/project_model.dart';
+import 'package:the_process/projects/widgets/projects_grid_item_new_button.dart';
 import 'package:the_process/projects/widgets/projects_grid_item_view.dart';
 
 class ProjectsGridView extends StatelessWidget {
@@ -20,7 +21,8 @@ class ProjectsGridView extends StatelessWidget {
       // Generate 100 widgets that display their index in the List.
       children: _projects
           .map<ProjectsGridItemView>((project) => ProjectsGridItemView(project))
-          .toList(),
+          .toList()
+        ..insert(0, const ProjectsGridItemNewButton()),
     );
   }
 }

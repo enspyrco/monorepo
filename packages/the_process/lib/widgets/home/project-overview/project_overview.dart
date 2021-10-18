@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_process/shared/widgets/empty_app_bar.dart';
 import 'package:the_process/widgets/home/project-overview/organisation-selection-view/organisation_selection_view.dart';
 import 'package:the_process/widgets/home/project-overview/project-selection-view/project_selection_view.dart';
 import 'package:the_process/widgets/home/project-overview/sections-view/sections_view.dart';
@@ -9,6 +10,7 @@ class ProjectOverview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: EmptyAppBar(),
       body: Column(
         children: const <Widget>[
           OrganisationSelectionView(),

@@ -10,9 +10,10 @@ import 'package:the_process/organisations/middleware/create_organisation_middlew
 import 'package:the_process/organisations/middleware/delete_organisation_middleware.dart';
 import 'package:the_process/organisations/middleware/tap_organisations_middleware.dart';
 import 'package:the_process/organisations/models/organisations_section_model.dart';
-import 'package:the_process/organisations/pages/edit_organisations_page.dart';
+import 'package:the_process/organisations/pages/manage_organisations_page.dart';
 import 'package:the_process/organisations/reducers/set_organisations_reducer.dart';
 import 'package:the_process/organisations/reducers/update_organisations_page_reducer.dart';
+import 'package:the_process/projects/pages/create_project_page.dart';
 import 'package:the_process/projects/pages/project_detail_page.dart';
 import 'package:the_process/reducers/sections/store_project_sections.dart';
 import 'package:the_process/reducers/sections/update_new_project_section_v_m.dart';
@@ -83,8 +84,9 @@ void main() => runApp(AppWidget<AppState>(
         SetOrganisationsReducer(),
       ],
       pageTransforms: [
-        EditOrganisationsPageTransforms(),
-        ProjectDetailPageTransforms()
+        ManageOrganisationsPageTransforms(),
+        ProjectDetailPageTransforms(),
+        CreateProjectPageTransforms(),
       ],
       mainPage: const HomePage(),
     ));

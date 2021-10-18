@@ -2,18 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:the_process/organisations/widgets/delete_organisation_button.dart';
 import 'package:the_process/organisations/widgets/organisation_creator_view.dart';
 import 'package:the_process/organisations/widgets/organisation_selector_view.dart';
+import 'package:the_process/shared/widgets/empty_app_bar.dart';
 
-class OrganisationsPageView extends StatelessWidget {
-  const OrganisationsPageView({Key? key}) : super(key: key);
+class ManageOrganisationsPageView extends StatelessWidget {
+  const ManageOrganisationsPageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 0,
-      ),
+      appBar: EmptyAppBar(),
       body: Column(
         children: [
           Row(
