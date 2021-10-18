@@ -39,6 +39,11 @@ class DatabaseService {
     return await _firestore.doc(at).update(to);
   }
 
+  /// Delete the document at the given location.
+  Future<void> deleteDocument({required String at}) async {
+    return await _firestore.doc(at).delete();
+  }
+
   /// Tap the database to create a stream from the document at [path],
   /// converting the data in each [DocumentSnapshot] into a [JsonMap]
   Stream<JsonMap> tapDocument({required String at}) {
@@ -47,6 +52,7 @@ class DatabaseService {
 
   /// Tap the database to create a stream from the collection at [path],
   /// converting the data in each [QuerySnapshot] into a [JsonMap]
+  /// The document id is added to the json.
   Stream<JsonList> tapCollection(
       {required String at,
       Object? where,
@@ -62,24 +68,24 @@ class DatabaseService {
       List<Object?>? whereNotIn,
       bool? isNull}) {
     return (where == null)
-        ? _firestore
-            .collection(at)
-            .snapshots()
-            .map((event) => event.docs.map((doc) => doc.data()).toList())
+        ? _firestore.collection(at).snapshots().map((event) =>
+            event.docs.map((doc) => doc.data()..['id'] = doc.id).toList())
         : _firestore
             .collection(at)
-            .where(where,
-                isEqualTo: isEqualTo,
-                isNotEqualTo: isNotEqualTo,
-                isLessThan: isLessThan,
-                isLessThanOrEqualTo: isLessThanOrEqualTo,
-                isGreaterThan: isGreaterThan,
-                isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
-                arrayContains: arrayContains,
-                arrayContainsAny: arrayContainsAny,
-                whereIn: whereIn,
-                whereNotIn: whereNotIn,
-                isNull: isNull)
+            .where(
+              where,
+              isEqualTo: isEqualTo,
+              isNotEqualTo: isNotEqualTo,
+              isLessThan: isLessThan,
+              isLessThanOrEqualTo: isLessThanOrEqualTo,
+              isGreaterThan: isGreaterThan,
+              isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+              arrayContains: arrayContains,
+              arrayContainsAny: arrayContainsAny,
+              whereIn: whereIn,
+              whereNotIn: whereNotIn,
+              isNull: isNull,
+            )
             .snapshots()
             .map((event) =>
                 event.docs.map((doc) => doc.data()..['id'] = doc.id).toList());
