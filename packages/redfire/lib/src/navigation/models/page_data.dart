@@ -64,7 +64,7 @@ void addPageTransforms<T extends RedFireState>(
 }
 
 class PageDataTransforms {
-  PageDataTransforms(
+  const PageDataTransforms(
       {required this.typeName,
       required this.toMaterialPage,
       required this.fromJson});

@@ -10,7 +10,7 @@
       "",
       "@freezed",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxAction {",
-      "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({${1}}) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
+      "\tconst factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({${1}}) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
       "",
       "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
       "}"
@@ -28,9 +28,9 @@
       "",
       "@freezed",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxAction {",
-      "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({@Default(false) bool turnOff}) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
+      "\tconst factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({@Default(false) bool turnOff}) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
       "",
-      "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
+      "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
       "}"
     ],
     "description": "redfire action for tapping the db, with freezed"
@@ -70,9 +70,9 @@
       "",
       "@freezed",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxModel  {",
-      "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({ ${1} }) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
+      "\tconst factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({ ${1} }) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
       "",
-      "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
+      "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
       "}"
     ],
     "description": "redfire model with freezed"
@@ -92,7 +92,7 @@
       "\tstatic const String staticTypeName = '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}';",
       "",
       "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._();",
-      "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({ ${1} }) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
+      "\tconst factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({ ${1} }) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
       "",
       "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
       "",
