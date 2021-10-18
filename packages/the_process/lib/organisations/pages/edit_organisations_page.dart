@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
-import 'package:the_process/organisations/widgets/organisation_creator_view.dart';
-import 'package:the_process/organisations/widgets/organisation_selector_view.dart';
+import 'package:the_process/organisations/pages/organisations_page_view.dart';
 
 part 'edit_organisations_page.freezed.dart';
 part 'edit_organisations_page.g.dart';
@@ -28,33 +27,7 @@ class EditOrganisationsPageTransforms extends PageDataTransforms {
           typeName: EditOrganisationsPageData.staticTypeName,
           toMaterialPage: (pageData) => const MaterialPage<dynamic>(
               key: ValueKey(EditOrganisationsPageData),
-              child: EditOrganisationsPageView()),
+              child: OrganisationsPageView()),
           fromJson: (json) => EditOrganisationsPageData.fromJson(json),
         );
-}
-
-class EditOrganisationsPageView extends StatelessWidget {
-  const EditOrganisationsPageView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 0,
-      ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              OrganisationSelectorView(),
-              OrganisationCreatorView()
-            ],
-          ),
-        ],
-      ),
-    );
-  }
 }

@@ -21,6 +21,7 @@ class _OrganisationCreatorViewState extends State<OrganisationCreatorView> {
         distinct: true,
         converter: (store) => store.state.organisations.creator.creating,
         builder: (context, creating) {
+          if (!creating) _controller.text = '';
           return SizedBox(
             height: 50,
             child: Row(

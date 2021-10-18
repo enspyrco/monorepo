@@ -8,6 +8,7 @@ part 'organisation_model.g.dart';
 @freezed
 class OrganisationModel with _$OrganisationModel, ReduxModel {
   factory OrganisationModel({
+    required String id,
     required String name,
     ISet<String>? owners,
     ISet<String>? admins,
