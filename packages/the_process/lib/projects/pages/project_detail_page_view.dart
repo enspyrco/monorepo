@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:the_process/widgets/home/project-overview/project_overview.dart';
-import 'package:the_process/widgets/home/section-detail/section_detail_page.dart';
+import 'package:the_process/projects/widgets/project-overview/project_overview.dart';
+import 'package:the_process/sections/widgets/section-detail/section_detail_page.dart';
 
 class ProjectDetailPageView extends StatelessWidget {
   const ProjectDetailPageView({Key? key}) : super(key: key);

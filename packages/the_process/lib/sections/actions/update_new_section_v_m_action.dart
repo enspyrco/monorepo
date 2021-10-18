@@ -1,0 +1,13 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:redfire/types.dart';
+
+part 'update_new_section_v_m_action.freezed.dart';
+part 'update_new_section_v_m_action.g.dart';
+
+@freezed
+class UpdateNewSectionVMAction with _$UpdateNewSectionVMAction, ReduxAction {
+  factory UpdateNewSectionVMAction({String? name}) = _UpdateNewSectionVMAction;
+
+  factory UpdateNewSectionVMAction.fromJson(JsonMap json) =>
+      _$UpdateNewSectionVMActionFromJson(json);
+}

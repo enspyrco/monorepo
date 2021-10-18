@@ -20,7 +20,7 @@ class ProjectsGridView extends StatelessWidget {
       crossAxisCount: 3,
       // Generate 100 widgets that display their index in the List.
       children: _projects
-          .map<ProjectsGridItemView>((project) => ProjectsGridItemView(project))
+          .map<Widget>((project) => ProjectsGridItemView(project))
           .toList()
         ..insert(0, const ProjectsGridItemNewButton()),
     );
