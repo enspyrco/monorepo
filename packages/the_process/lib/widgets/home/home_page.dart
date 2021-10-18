@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:redfire/actions.dart';
-import 'package:redfire/extensions.dart';
-import 'package:the_process/main.dart';
 import 'package:the_process/organisations/widgets/organisation_selector_view.dart';
-import 'package:the_process/projects/pages/project_detail_page.dart';
+import 'package:the_process/projects/widgets/projects_grid_view.dart';
 import 'package:the_process/widgets/home/app_account_button.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,15 +19,11 @@ class HomePage extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const OrganisationSelectorView(),
-              MaterialButton(
-                onPressed: () => context.dispatch<AppState>(
-                    PushPageAction(ProjectDetailPageData())),
-                child: const Text('Project'),
-              )
+            children: const [
+              OrganisationSelectorView(),
             ],
-          )
+          ),
+          const ProjectsGridView()
         ],
       ),
     );
