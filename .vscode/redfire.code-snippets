@@ -40,6 +40,69 @@
     "body": [
       "import 'package:redfire/extensions.dart';",
       "import 'package:redfire/services.dart';",
+      "import 'package:redux/redux.dart';",
+
+      "",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Middleware extends TypedMiddleware<AppState, ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Action> {",
+      "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Middleware() : super((store, action, next) async {",
+      "\t\tnext(action);",
+      "",
+      "\t\ttry {",
+      "\t\t\tfinal service = RedFireLocator${1}",
+      "\t\t\tstore.dispatch();",
+      "\t\t} catch (error, trace) {",
+      "\t\t\tstore.dispatchProblem(error, trace);",
+      "\t\t}",
+      "\t});",
+      "}"
+    ],
+    "description": "redfire middleware with freezed"
+  },
+  "redfire middleware (tap)": {
+    "prefix": "rf_middleware_tap",
+    "body": [
+      "import 'dart:async';",
+      "",
+      "import 'package:fast_immutable_collections/fast_immutable_collections.dart';",
+      "import 'package:redfire/extensions.dart';",
+      "import 'package:redfire/services.dart';",
+      "import 'package:redfire/types.dart';",
+      "import 'package:redux/redux.dart';",
+
+      "",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Middleware extends TypedMiddleware<AppState, ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Action> {",
+      "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Middleware() : super((store, action, next) async {",
+      "\t\tnext(action);",
+      "",
+      "\t\ttry {",
+      "\t\t\tawait _subscription?.cancel();",
+      "",
+      "\t\t\t// The subscription is cancelled, so to turn off we just return ...",
+      "\t\t\tif (action.turnOff) { return; }",
+      "",
+      "\t\t\t// ... otherwise tap the database at the appropriate location...",
+      "\t\t\tfinal service = RedFireLocator.getDatabaseService();",
+      "\t\t\tfinal changes = service.tapCollection(at: '${1}');",
+      "",
+      "\t\t\t// ... and direct the stream to the store.",
+      "\t\t\t_subscription = changes.listen((jsonList) {",
+      "\t\t\tvar models = jsonList.map<${2}Model>((jsonItem) => ${2}Model.fromJson(jsonItem as JsonMap)).toISet();",
+      "\t\t\tstore.dispatch(Set${2}sAction(models));",
+      "\t\t}, onError: store.dispatchProblem);",
+      "\t\t} catch (error, trace) {",
+      "\t\t\tstore.dispatchProblem(error, trace);",
+      "\t\t}",
+      "\t});",
+      "\tstatic StreamSubscription<JsonList>? _subscription;",
+      "}"
+    ],
+    "description": "redfire middleware for tapping the db, with freezed"
+  },
+  "redfire middleware for redfire": {
+    "prefix": "rf_middleware_redfire",
+    "body": [
+      "import 'package:redfire/extensions.dart';",
+      "import 'package:redfire/services.dart';",
       "import 'package:redfire/types.dart';",
       "import 'package:redux/redux.dart';",
 
@@ -57,7 +120,7 @@
       "\t});",
       "}"
     ],
-    "description": "redfire middleware with freezed"
+    "description": "redfire middleware with freezed, for use in redfire"
   },
   "redfire model": {
     "prefix": "rf_model",

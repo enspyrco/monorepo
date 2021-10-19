@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_process/projects/actions/create_project_action.dart';
 import 'package:the_process/projects/actions/update_projects_view_action.dart';
+import 'package:the_process/projects/models/project_model.dart';
 import 'package:the_process/utils/build_context_extensions.dart';
 
 class CreateProjectForm extends StatefulWidget {
@@ -46,8 +47,8 @@ class CreateProjectFormState extends State<CreateProjectForm> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      context.dispatch(
-                          CreateProjectAction(name: _controller.text));
+                      context.dispatch(CreateProjectAction(
+                          ProjectModel.init(name: _controller.text)));
                     }
                   },
                   child: const Text('Submit'),

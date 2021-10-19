@@ -12,6 +12,7 @@ import 'package:the_process/organisations/models/organisations_section_model.dar
 import 'package:the_process/organisations/pages/manage_organisations_page.dart';
 import 'package:the_process/organisations/reducers/set_organisations_reducer.dart';
 import 'package:the_process/organisations/reducers/update_organisations_page_reducer.dart';
+import 'package:the_process/projects/middleware/create_project_middleware.dart';
 import 'package:the_process/projects/models/projects_section.dart';
 import 'package:the_process/projects/models/sections_v_m.dart';
 import 'package:the_process/projects/pages/project_detail_page.dart';
@@ -82,6 +83,9 @@ void main() => runApp(AppWidget<AppState>(
         CreateOrganisationMiddleware(),
         TapOrganisationsMiddleware(),
         DeleteOrganisationMiddleware(),
+
+        /// Projects
+        CreateProjectMiddleware(),
       ],
       reducers: [
         /// Sections

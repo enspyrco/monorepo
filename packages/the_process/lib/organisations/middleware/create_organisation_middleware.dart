@@ -1,3 +1,4 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redux/redux.dart';
@@ -14,14 +15,12 @@ class CreateOrganisationMiddleware
           try {
             store.dispatch(UpdateOrganisationsPageAction(creating: true));
 
-            var organisationJson = <String, Object?>{
-              'name': action.name,
-              'owners': [store.state.auth.userData!.uid],
-            };
+            var organisation = action.organisation
+                .copyWith(ownerIds: ISet([store.state.auth.userData!.uid]));
 
             final service = RedFireLocator.getDatabaseService();
             await service.createDocument(
-                at: 'organisations', from: organisationJson);
+                at: 'organisations', from: organisation.toJson());
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           } finally {

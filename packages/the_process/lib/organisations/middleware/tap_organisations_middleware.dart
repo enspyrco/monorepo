@@ -17,16 +17,18 @@ class TapOrganisationsMiddleware<T extends RedFireState>
 
           try {
             await _subscription?.cancel();
+
+            // The subscription is cancelled, so to turn off we just return ...
             if (action.turnOff) {
               return;
             }
 
-            // Otherwise tap the database at the appropriate location and...
+            // ... otherwise tap the database at the appropriate location...
             final service = RedFireLocator.getDatabaseService();
             final organisationsChanges =
                 service.tapCollection(at: 'organisations');
 
-            // ... direct the stream to the store.
+            // ... and direct the stream to the store.
             _subscription = organisationsChanges.listen((newJsonList) {
               var organisations = newJsonList
                   .map<OrganisationModel>((jsonItem) =>
