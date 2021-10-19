@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:the_process/main.dart';
 import 'package:the_process/projects/actions/update_projects_view_action.dart';
-import 'package:the_process/projects/widgets/create_project_form.dart';
+import 'package:the_process/projects/widgets/grid-view/create_project_form.dart';
 import 'package:the_process/utils/build_context_extensions.dart';
 
 class ProjectsGridItemNewButton extends StatelessWidget {

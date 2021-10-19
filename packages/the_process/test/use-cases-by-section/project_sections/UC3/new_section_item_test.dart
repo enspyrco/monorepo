@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:redfire_test/redfire_test.dart';
 import 'package:the_process/main.dart';
-import 'package:the_process/projects/widgets/project-overview/sections-view/new_section_item.dart';
+import 'package:the_process/projects/widgets/project-detail/new_section_item.dart';
 import 'package:the_process/sections/actions/create_section_action.dart';
 import 'package:the_process/sections/actions/update_new_section_v_m_action.dart';
 

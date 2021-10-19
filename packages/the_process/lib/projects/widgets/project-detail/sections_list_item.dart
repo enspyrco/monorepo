@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_process/projects/models/section_model.dart';
-import 'package:the_process/projects/widgets/project-overview/sections-view/buttons/section_folder_button.dart';
-import 'package:the_process/projects/widgets/project-overview/sections-view/buttons/use_case_document_button.dart';
+import 'package:the_process/projects/widgets/project-detail/buttons/section_folder_button.dart';
+import 'package:the_process/projects/widgets/project-detail/buttons/use_case_document_button.dart';
 
 class SectionsListItem extends StatelessWidget {
   final SectionModel _section;

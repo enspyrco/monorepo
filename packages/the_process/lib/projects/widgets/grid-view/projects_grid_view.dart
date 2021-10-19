@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_process/projects/models/project_model.dart';
-import 'package:the_process/projects/widgets/projects_grid_item_new_button.dart';
-import 'package:the_process/projects/widgets/projects_grid_item_view.dart';
+import 'package:the_process/projects/widgets/grid-view/projects_grid_item_new_button.dart';
+import 'package:the_process/projects/widgets/grid-view/projects_grid_item_view.dart';
 
 class ProjectsGridView extends StatelessWidget {
   const ProjectsGridView({Key? key}) : super(key: key);

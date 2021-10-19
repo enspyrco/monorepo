@@ -57,12 +57,10 @@ class CreateProjectFormState extends State<CreateProjectForm> {
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      context.dispatch(
-                          const UpdateProjectsViewAction(creating: true));
-                    }
+                    context.dispatch(
+                        const UpdateProjectsViewAction(creating: false));
                   },
-                  child: const Text('Submit'),
+                  child: const Text('Cancel'),
                 ),
               ),
             ],

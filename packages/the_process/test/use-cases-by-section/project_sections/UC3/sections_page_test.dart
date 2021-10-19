@@ -4,8 +4,8 @@ import 'package:redfire/widgets.dart';
 import 'package:redfire_test/redfire_test.dart';
 import 'package:the_process/main.dart';
 import 'package:the_process/projects/models/section_model.dart';
-import 'package:the_process/projects/widgets/project-overview/sections-view/new_section_item.dart';
-import 'package:the_process/projects/widgets/project-overview/sections-view/sections_view.dart';
+import 'package:the_process/projects/widgets/project-detail/new_section_item.dart';
+import 'package:the_process/projects/widgets/project-detail/sections_view.dart';
 
 // TODO: test the outgoing part
 // eg.

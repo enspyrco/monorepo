@@ -14,7 +14,7 @@ class ProjectsGridItemView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(25.0),
       child: Card(
-        elevation: 1.5,
+        elevation: 0.5,
         shape: RoundedRectangleBorder(
           side: BorderSide(color: Colors.blue[100]!, width: 2),
           borderRadius: BorderRadius.circular(10),
