@@ -11,11 +11,14 @@ import 'package:the_process/organisations/middleware/tap_organisations_middlewar
 import 'package:the_process/organisations/models/organisations_section_model.dart';
 import 'package:the_process/organisations/pages/manage_organisations_page.dart';
 import 'package:the_process/organisations/reducers/set_organisations_reducer.dart';
+import 'package:the_process/organisations/reducers/set_selected_organisation_reducer.dart';
 import 'package:the_process/organisations/reducers/update_organisations_page_reducer.dart';
 import 'package:the_process/projects/middleware/create_project_middleware.dart';
+import 'package:the_process/projects/middleware/tap_projects_middleware.dart';
 import 'package:the_process/projects/models/projects_section.dart';
 import 'package:the_process/projects/models/sections_v_m.dart';
 import 'package:the_process/projects/pages/project_detail_page.dart';
+import 'package:the_process/projects/reducers/set_projects_reducer.dart';
 import 'package:the_process/projects/reducers/update_projects_view.dart';
 import 'package:the_process/sections/middleware/create_section_middleware.dart';
 import 'package:the_process/sections/middleware/tap_sections_middleware.dart';
@@ -86,6 +89,7 @@ void main() => runApp(AppWidget<AppState>(
 
         /// Projects
         CreateProjectMiddleware(),
+        TapProjectsMiddleware(),
       ],
       reducers: [
         /// Sections
@@ -96,9 +100,11 @@ void main() => runApp(AppWidget<AppState>(
         /// Organisations
         UpdateOrganisationsPageReducer(),
         SetOrganisationsReducer(),
+        SetSelectedOrganisationReducer(),
 
         /// Projects
         UpdateProjectsViewReducer(),
+        SetProjectsReducer(),
       ],
       pageTransforms: [
         ManageOrganisationsPageTransforms(),

@@ -19,9 +19,7 @@ class HomePage extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              OrganisationSelectorView(),
-            ],
+            children: const [OrganisationSelectorView()],
           ),
           const ProjectsGridView()
         ],
