@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:redfire/types.dart';
 import 'package:test/test.dart';
-import 'package:the_process/actions/project_sections/store_project_sections_action.dart';
-import 'package:the_process/models/project_sections/project_section.dart';
+import 'package:the_process/projects/models/section_model.dart';
+import 'package:the_process/sections/actions/set_sections_action.dart';
 
 import '../../../test-doubles/data/example_data.dart' as example_data;
 
@@ -15,7 +15,7 @@ void main() {
       var jsonMap = example_data.storeProjectSectionsActionJson;
 
       // create the action from given json data
-      var action = StoreProjectSectionsAction.fromJson(jsonMap);
+      var action = SetSectionsAction.fromJson(jsonMap);
 
       var newJsonMap = action.toJson();
 
@@ -23,15 +23,15 @@ void main() {
       expect(jsonEncode(jsonMap), jsonEncode(newJsonMap));
 
       // check the json data produced by toJson deserializes back to an equivalent object
-      expect(StoreProjectSectionsAction.fromJson(newJsonMap), action);
+      expect(SetSectionsAction.fromJson(newJsonMap), action);
     });
     test(
         'Two StoreSectionsAction one created fromJson and another created with constructor should equal each other if they have same sections on same order ',
         () {
-      var sections = <ProjectSection>[].lock;
+      var sections = <SectionModel>[].lock;
       var sectionsListJson = <JsonMap>[];
       for (var i = 0; i < 5; i++) {
-        sections = sections.add(ProjectSection(
+        sections = sections.add(SectionModel(
             name: 'name$i',
             folderId: 'folderId$i',
             useCasesDocId: 'usecase$i'));
@@ -41,11 +41,9 @@ void main() {
           'useCasesDocId': 'usecase$i'
         });
       }
-      var storeProjectSectionsAction =
-          StoreProjectSectionsAction(list: sections);
-      var storeProjectSectionsActionFromJson =
-          StoreProjectSectionsAction.fromJson(
-              <String, dynamic>{'list': sectionsListJson});
+      var storeProjectSectionsAction = SetSectionsAction(list: sections);
+      var storeProjectSectionsActionFromJson = SetSectionsAction.fromJson(
+          <String, dynamic>{'list': sectionsListJson});
       expect(storeProjectSectionsAction == storeProjectSectionsActionFromJson,
           true);
     });

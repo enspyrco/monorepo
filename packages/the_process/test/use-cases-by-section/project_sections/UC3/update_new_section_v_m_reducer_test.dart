@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:the_process/actions/project_sections/update_new_project_section_v_m_action.dart';
 import 'package:the_process/main.dart';
-import 'package:the_process/reducers/sections/update_new_project_section_v_m.dart';
+import 'package:the_process/sections/actions/update_new_section_v_m_action.dart';
+import 'package:the_process/sections/reducers/update_new_section_v_m_reducer.dart';
 
 void main() {
   group('UpdateNewSectionVMReducer', () {
@@ -10,11 +10,11 @@ void main() {
       final initialState = AppState.init();
       expect(initialState.sections.newName, '');
 
-      final reducerUnderTest = UpdateNewProjectSectionVMReducer();
+      final reducerUnderTest = UpdateNewSectionVMReducer();
 
       // Invoke the reducer to update the app state.
       final newState = reducerUnderTest.reducer(
-          initialState, UpdateNewProjectSectionVMAction(name: 'testy'));
+          initialState, UpdateNewSectionVMAction(name: 'testy'));
 
       expect(newState.sections.newName, 'testy');
     });

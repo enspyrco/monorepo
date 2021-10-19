@@ -21,6 +21,7 @@ typedef PageFromPageData = Page Function(PageData pageData);
 /// This means serialisation will only work when PageData is a member declared
 /// with the @PageDataConverter() annotation.
 abstract class PageData {
+  const PageData();
   String get typeName;
   JsonMap toJson();
 }
@@ -64,7 +65,7 @@ void addPageTransforms<T extends RedFireState>(
 }
 
 class PageDataTransforms {
-  PageDataTransforms(
+  const PageDataTransforms(
       {required this.typeName,
       required this.toMaterialPage,
       required this.fromJson});

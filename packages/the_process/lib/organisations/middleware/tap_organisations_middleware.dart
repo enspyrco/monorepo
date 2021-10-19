@@ -5,35 +5,61 @@ import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
+import 'package:the_process/main.dart';
 import 'package:the_process/organisations/actions/set_organisations_action.dart';
+import 'package:the_process/organisations/actions/set_selected_organisation_action.dart';
 import 'package:the_process/organisations/actions/tap_organisations_action.dart';
 import 'package:the_process/organisations/models/organisation_model.dart';
+import 'package:the_process/projects/actions/tap_projects_action.dart';
 
-class TapOrganisationsMiddleware<T extends RedFireState>
-    extends TypedMiddleware<T, TapOrganisationsAction> {
+class TapOrganisationsMiddleware
+    extends TypedMiddleware<AppState, TapOrganisationsAction> {
   TapOrganisationsMiddleware()
       : super((store, action, next) async {
           next(action);
 
           try {
             await _subscription?.cancel();
+
+            // The subscription is cancelled, so to turn off we just return ...
             if (action.turnOff) {
               return;
             }
 
-            // Otherwise tap the database at the appropriate location and...
+            // ... otherwise tap the database at the appropriate location...
             final service = RedFireLocator.getDatabaseService();
             final organisationsChanges =
                 service.tapCollection(at: 'organisations');
 
-            // ... direct the stream to the store.
+            // ... and direct the stream to the store.
             _subscription = organisationsChanges.listen((newJsonList) {
               var organisations = newJsonList
                   .map<OrganisationModel>((jsonItem) =>
                       OrganisationModel.fromJson(jsonItem as JsonMap))
                   .toISet();
 
+              // Find any added organisatons.
+              var added = organisations
+                  .difference(store.state.organisations.selector.all)
+                  .firstOrNull;
+              // Find any removed organisatons.
+              var removed = store.state.organisations.selector.all
+                  .difference(organisations)
+                  .firstOrNull;
+
+              // If an organisation was removed, selected will be set to null.
+              // If org was added, it gets set as the selected org.
+              // Otherwise leave selected as it was.
+              OrganisationModel? nextSelected;
+              if (removed == null) {
+                nextSelected =
+                    added ?? store.state.organisations.selector.selected;
+              }
+
               store.dispatch(SetOrganisationsAction(organisations));
+              store.dispatch(SetSelectedOrganisationAction(nextSelected));
+              store.dispatch(
+                  TapProjectsAction(organisationId: nextSelected?.id));
             }, onError: store.dispatchProblem);
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
