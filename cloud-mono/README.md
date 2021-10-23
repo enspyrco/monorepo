@@ -1,6 +1,6 @@
 # coding-challenge-verifier
 
-*.*
+*A Dart microservice that verifies pull requests for coding challenges.*
 
 [Project Notes](https://enspyrco.notion.site/coding-challenge-verifier-c4d552c506a74fddbef4147cbc4f749c)
 

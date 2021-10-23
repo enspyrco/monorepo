@@ -1,5 +1,5 @@
 name: coding_challenge_verifier
-description: .
+description: A Dart microservice that verifies pull requests for coding challenges.
 # version: 0.1.0
 # homepage: https://www.example.com
 publish_to: none
@@ -8,6 +8,7 @@ environment:
   sdk: ">=2.14.4 <3.0.0"
 
 dependencies:
+  crypto:
   shelf:
 
 dev_dependencies:
