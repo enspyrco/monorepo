@@ -2,6 +2,7 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redfire/src/auth/actions/sign_out_action.dart';
+import 'package:redfire/src/navigation/actions/push_page_action.dart';
 import 'package:redfire/src/profile/widgets/profile_avatar.dart';
 import 'package:redfire/src/redux/extensions/build_context_extensions.dart';
 import 'package:redfire/types.dart';
@@ -65,7 +66,8 @@ class HiddenPopupMenuButton<T extends RedFireState> extends StatelessWidget {
       {Key? key})
       : super(key: key) {
     _options = options.addAll([
-      AccountButtonOption('Account Details', (context) {}),
+      AccountButtonOption('Account Details',
+          (context) => context.dispatch<T>(PushPageAction(ProfilePageData()))),
       AccountButtonOption('Sign Out',
           (BuildContext context) => context.dispatch<T>(SignOutAction()))
     ]);

@@ -1,7 +1,6 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:redfire/actions.dart';
-import 'package:redfire/extensions.dart';
+import 'package:redfire/widgets.dart';
 import 'package:tech_world/redux/app_state.dart';
 import 'package:tech_world/tech_world_game.dart';
 
@@ -14,14 +13,15 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        GameWidget(game: _game),
-        ElevatedButton(
-          onPressed: () => context.dispatch<AppState>(SignOutAction()),
-          child: const Text('Sign Out'),
-        ),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        actions: const [AccountButton<AppState>()],
+      ),
+      body: Stack(
+        children: [
+          GameWidget(game: _game),
+        ],
+      ),
     );
   }
 }
