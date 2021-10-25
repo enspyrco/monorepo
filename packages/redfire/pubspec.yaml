@@ -36,6 +36,13 @@ dev_dependencies:
     path: ../redfire_test
 
 flutter:
+  # uses-material-design: true
+  
+  fonts:
+    - family:  RedFireIcons
+      fonts:
+        - asset: packages/redfire/assets/RedFireIcons.ttf
+        
   assets:
     - packages/redfire/assets/apple_white.png
     - packages/redfire/assets/google.png

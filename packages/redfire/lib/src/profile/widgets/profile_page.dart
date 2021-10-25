@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:redfire/src/auth/link-providers/widgets/link_providers_view.dart';
 import 'package:redfire/types.dart';
 import 'package:redfire/widgets.dart';
 
@@ -8,7 +9,7 @@ class ProfilePage<T extends RedFireState> extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: EmptyAppBar(),
-      body: const LinkProvidersView(),
+      body: LinkProvidersView<T>(),
     );
   }
 }

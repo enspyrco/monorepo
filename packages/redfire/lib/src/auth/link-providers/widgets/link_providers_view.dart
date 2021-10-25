@@ -15,12 +15,16 @@ class LinkProvidersView<T extends RedFireState> extends StatelessWidget {
       converter: (store) => store.state.auth.userData,
       builder: (context, data) => (data == null)
           ? Container()
-          : ListView.builder(
-              itemCount: ProvidersEnum.values.length,
-              itemBuilder: (context, index) {
-                return LinkProviderButton(
-                    ProvidersEnum.values.elementAt(index));
-              }),
+          : SizedBox(
+              height: 50,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  for (var provider in ProvidersEnum.values)
+                    LinkProviderButton(provider)
+                ],
+              ),
+            ),
     );
   }
 }
