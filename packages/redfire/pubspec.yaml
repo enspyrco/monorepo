@@ -35,9 +35,7 @@ dev_dependencies:
   redfire_test:
     path: ../redfire_test
 
-flutter:
-  # uses-material-design: true
-  
+flutter:  
   fonts:
     - family:  RedFireIcons
       fonts:

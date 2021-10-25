@@ -8,6 +8,6 @@ extension IdTokenResultExtension on firebase.IdTokenResult {
       claims: claims,
       expirationTime: expirationTime,
       issuedAtTime: issuedAtTime,
-      signInProvider: authProviderNamesMap[signInProvider],
+      signInProvider: authProviderEnumFrom[signInProvider],
       token: token);
 }

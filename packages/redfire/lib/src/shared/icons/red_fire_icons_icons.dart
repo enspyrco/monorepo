@@ -35,12 +35,12 @@ class RedFireIcons {
 
   static const IconData mail =
       IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData mail_alt =
+  static const IconData mailAlt =
       IconData(0xf0e0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData apple =
       IconData(0xf179, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData google =
       IconData(0xf1a0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData mark_github =
+  static const IconData github =
       IconData(0xf308, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

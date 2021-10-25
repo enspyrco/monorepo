@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:redfire/src/auth/constants/auth_provider_names.dart';
 import 'package:redfire/src/auth/enums/providers_enum.dart';
-import 'package:redfire/src/shared/icons/red_fire_icons_icons.dart';
 
 class LinkProviderButton extends StatelessWidget {
   const LinkProviderButton(ProvidersEnum provider, {Key? key})
@@ -12,7 +12,7 @@ class LinkProviderButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        onPressed: () {}, icon: const Icon(RedFireIcons.mark_github));
+        onPressed: () {}, icon: Icon(authProviderIconFrom[_provider]));
     // ElevatedButton.icon(
     //     onPressed: () {},
     //     icon: const Icon(Icons.ac_unit),

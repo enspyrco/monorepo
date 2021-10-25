@@ -52,7 +52,7 @@ class AuthService extends ReduxService {
   Future<ISet<ProvidersEnum>> retrieveProvidersFor(String email) async {
     var providerNames = await _firebaseAuth.fetchSignInMethodsForEmail(email);
     return providerNames
-        .map<ProvidersEnum>((name) => authProviderNamesMap[name]!)
+        .map<ProvidersEnum>((name) => authProviderEnumFrom[name]!)
         .toISet();
   }
 
