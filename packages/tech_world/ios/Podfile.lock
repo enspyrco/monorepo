@@ -16,11 +16,11 @@ PODS:
   - Firebase/Firestore (8.6.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 8.6.0)
-  - firebase_auth (3.1.1):
+  - firebase_auth (3.1.2):
     - Firebase/Auth (= 8.6.0)
     - firebase_core
     - Flutter
-  - firebase_core (1.6.0):
+  - firebase_core (1.7.0):
     - Firebase/CoreOnly (= 8.6.0)
     - Flutter
   - FirebaseAuth (8.6.0):
@@ -86,6 +86,8 @@ PODS:
     - Flutter
   - url_launcher (0.0.1):
     - Flutter
+  - webview_flutter_wkwebview (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
@@ -96,6 +98,7 @@ DEPENDENCIES:
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
   - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 SPEC REPOS:
   trunk:
@@ -130,6 +133,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sign_in_with_apple/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
+  webview_flutter_wkwebview:
+    :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 CHECKOUT OPTIONS:
   FirebaseFirestore:
@@ -140,8 +145,8 @@ SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   cloud_firestore: bb4fcf1d62a2bf48586fad7a7e9612f20a719cda
   Firebase: 21ac9f28b09a8bdfc005f34c984fca84e7e8786d
-  firebase_auth: a5da789c2876fda3ad7407bd2828e502dfeebc42
-  firebase_core: c21ac09a8d23afd3594b56ed786bad12e5266bba
+  firebase_auth: 3ae897de0859b217e547f65432a3460a45596989
+  firebase_core: 5e2eaa51f481bb42cdaaeb7c23c121440782f08b
   FirebaseAuth: 223adeeb2262b417532e89bf06a960e3a0a1e9e4
   FirebaseCore: 620b677f70f5470a8e59cb77f3ddc666f6f09785
   FirebaseCoreDiagnostics: b63732f581a1c6a453ec7241f9ab60b3a5bd3450
@@ -157,6 +162,7 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
   url_launcher: b6e016d912f04be9f5bf6e8e82dc599b7ba59649
+  webview_flutter_wkwebview: 44aa025fbcf6730d808f1e0d86a5af5ac25fa8de
 
 PODFILE CHECKSUM: 4039e65725112f63bda9d599ecb90ccfab214632
 
