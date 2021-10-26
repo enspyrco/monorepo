@@ -31,7 +31,7 @@ class _$GoogleSignInCredentialTearOff {
     );
   }
 
-  GoogleSignInCredential fromJson(Map<String, Object> json) {
+  GoogleSignInCredential fromJson(Map<String, Object?> json) {
     return GoogleSignInCredential.fromJson(json);
   }
 }
@@ -170,24 +170,18 @@ class _$_GoogleSignInCredential implements _GoogleSignInCredential {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GoogleSignInCredential &&
-            (identical(other.idToken, idToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.idToken, idToken)) &&
+        (other.runtimeType == runtimeType &&
+            other is _GoogleSignInCredential &&
+            (identical(other.idToken, idToken) || other.idToken == idToken) &&
             (identical(other.accessToken, accessToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.accessToken, accessToken)) &&
+                other.accessToken == accessToken) &&
             (identical(other.serverAuthCode, serverAuthCode) ||
-                const DeepCollectionEquality()
-                    .equals(other.serverAuthCode, serverAuthCode)));
+                other.serverAuthCode == serverAuthCode));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(idToken) ^
-      const DeepCollectionEquality().hash(accessToken) ^
-      const DeepCollectionEquality().hash(serverAuthCode);
+      Object.hash(runtimeType, idToken, accessToken, serverAuthCode);
 
   @JsonKey(ignore: true)
   @override
@@ -213,15 +207,15 @@ abstract class _GoogleSignInCredential implements GoogleSignInCredential {
   @override
 
   /// An OpenID Connect ID token that identifies the user.
-  String? get idToken => throw _privateConstructorUsedError;
+  String? get idToken;
   @override
 
   /// The OAuth2 access token to access Google services.
-  String? get accessToken => throw _privateConstructorUsedError;
+  String? get accessToken;
   @override
 
   /// Server auth code used to access Google Login
-  String? get serverAuthCode => throw _privateConstructorUsedError;
+  String? get serverAuthCode;
   @override
   @JsonKey(ignore: true)
   _$GoogleSignInCredentialCopyWith<_GoogleSignInCredential> get copyWith =>

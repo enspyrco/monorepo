@@ -27,7 +27,7 @@ class _$GetAuthorizedActionTearOff {
     );
   }
 
-  GetAuthorizedAction fromJson(Map<String, Object> json) {
+  GetAuthorizedAction fromJson(Map<String, Object?> json) {
     return GetAuthorizedAction.fromJson(json);
   }
 }
@@ -128,15 +128,14 @@ class _$_GetAuthorizedAction implements _GetAuthorizedAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GetAuthorizedAction &&
+        (other.runtimeType == runtimeType &&
+            other is _GetAuthorizedAction &&
             (identical(other.provider, provider) ||
-                const DeepCollectionEquality()
-                    .equals(other.provider, provider)));
+                other.provider == provider));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(provider);
+  int get hashCode => Object.hash(runtimeType, provider);
 
   @JsonKey(ignore: true)
   @override
@@ -158,7 +157,7 @@ abstract class _GetAuthorizedAction implements GetAuthorizedAction {
       _$_GetAuthorizedAction.fromJson;
 
   @override
-  ProvidersEnum get provider => throw _privateConstructorUsedError;
+  ProvidersEnum get provider;
   @override
   @JsonKey(ignore: true)
   _$GetAuthorizedActionCopyWith<_GetAuthorizedAction> get copyWith =>

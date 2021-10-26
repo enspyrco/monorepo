@@ -48,7 +48,7 @@ class _$AuthUserDataTearOff {
     );
   }
 
-  AuthUserData fromJson(Map<String, Object> json) {
+  AuthUserData fromJson(Map<String, Object?> json) {
     return AuthUserData.fromJson(json);
   }
 }
@@ -311,54 +311,44 @@ class _$_AuthUserData extends _AuthUserData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AuthUserData &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)) &&
+        (other.runtimeType == runtimeType &&
+            other is _AuthUserData &&
+            (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.tenantId, tenantId) ||
-                const DeepCollectionEquality()
-                    .equals(other.tenantId, tenantId)) &&
+                other.tenantId == tenantId) &&
             (identical(other.displayName, displayName) ||
-                const DeepCollectionEquality()
-                    .equals(other.displayName, displayName)) &&
+                other.displayName == displayName) &&
             (identical(other.photoURL, photoURL) ||
-                const DeepCollectionEquality()
-                    .equals(other.photoURL, photoURL)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
+                other.photoURL == photoURL) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.phoneNumber, phoneNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.phoneNumber, phoneNumber)) &&
+                other.phoneNumber == phoneNumber) &&
             (identical(other.createdOn, createdOn) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdOn, createdOn)) &&
+                other.createdOn == createdOn) &&
             (identical(other.lastSignedInOn, lastSignedInOn) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastSignedInOn, lastSignedInOn)) &&
+                other.lastSignedInOn == lastSignedInOn) &&
             (identical(other.isAnonymous, isAnonymous) ||
-                const DeepCollectionEquality()
-                    .equals(other.isAnonymous, isAnonymous)) &&
+                other.isAnonymous == isAnonymous) &&
             (identical(other.emailVerified, emailVerified) ||
-                const DeepCollectionEquality()
-                    .equals(other.emailVerified, emailVerified)) &&
+                other.emailVerified == emailVerified) &&
             (identical(other.providers, providers) ||
-                const DeepCollectionEquality()
-                    .equals(other.providers, providers)));
+                other.providers == providers));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(uid) ^
-      const DeepCollectionEquality().hash(tenantId) ^
-      const DeepCollectionEquality().hash(displayName) ^
-      const DeepCollectionEquality().hash(photoURL) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(phoneNumber) ^
-      const DeepCollectionEquality().hash(createdOn) ^
-      const DeepCollectionEquality().hash(lastSignedInOn) ^
-      const DeepCollectionEquality().hash(isAnonymous) ^
-      const DeepCollectionEquality().hash(emailVerified) ^
-      const DeepCollectionEquality().hash(providers);
+  int get hashCode => Object.hash(
+      runtimeType,
+      uid,
+      tenantId,
+      displayName,
+      photoURL,
+      email,
+      phoneNumber,
+      createdOn,
+      lastSignedInOn,
+      isAnonymous,
+      emailVerified,
+      providers);
 
   @JsonKey(ignore: true)
   @override
@@ -390,27 +380,27 @@ abstract class _AuthUserData extends AuthUserData {
       _$_AuthUserData.fromJson;
 
   @override
-  String get uid => throw _privateConstructorUsedError;
+  String get uid;
   @override
-  String? get tenantId => throw _privateConstructorUsedError;
+  String? get tenantId;
   @override
-  String? get displayName => throw _privateConstructorUsedError;
+  String? get displayName;
   @override
-  String? get photoURL => throw _privateConstructorUsedError;
+  String? get photoURL;
   @override
-  String? get email => throw _privateConstructorUsedError;
+  String? get email;
   @override
-  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get phoneNumber;
   @override
-  DateTime? get createdOn => throw _privateConstructorUsedError;
+  DateTime? get createdOn;
   @override
-  DateTime? get lastSignedInOn => throw _privateConstructorUsedError;
+  DateTime? get lastSignedInOn;
   @override
-  bool get isAnonymous => throw _privateConstructorUsedError;
+  bool get isAnonymous;
   @override
-  bool get emailVerified => throw _privateConstructorUsedError;
+  bool get emailVerified;
   @override
-  IList<AuthProviderData> get providers => throw _privateConstructorUsedError;
+  IList<AuthProviderData> get providers;
   @override
   @JsonKey(ignore: true)
   _$AuthUserDataCopyWith<_AuthUserData> get copyWith =>

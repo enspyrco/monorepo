@@ -26,7 +26,7 @@ class _$SignInWithGoogleActionTearOff {
     return _SignInWithGoogleAction();
   }
 
-  SignInWithGoogleAction fromJson(Map<String, Object> json) {
+  SignInWithGoogleAction fromJson(Map<String, Object?> json) {
     return SignInWithGoogleAction.fromJson(json);
   }
 }
@@ -90,7 +90,8 @@ class _$_SignInWithGoogleAction implements _SignInWithGoogleAction {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _SignInWithGoogleAction);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _SignInWithGoogleAction);
   }
 
   @override

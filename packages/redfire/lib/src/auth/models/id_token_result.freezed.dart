@@ -38,7 +38,7 @@ class _$IdTokenResultTearOff {
     );
   }
 
-  IdTokenResult fromJson(Map<String, Object> json) {
+  IdTokenResult fromJson(Map<String, Object?> json) {
     return IdTokenResult.fromJson(json);
   }
 }
@@ -251,34 +251,29 @@ class _$_IdTokenResult implements _IdTokenResult {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _IdTokenResult &&
+        (other.runtimeType == runtimeType &&
+            other is _IdTokenResult &&
             (identical(other.authTime, authTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.authTime, authTime)) &&
-            (identical(other.claims, claims) ||
-                const DeepCollectionEquality().equals(other.claims, claims)) &&
+                other.authTime == authTime) &&
+            const DeepCollectionEquality().equals(other.claims, claims) &&
             (identical(other.expirationTime, expirationTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.expirationTime, expirationTime)) &&
+                other.expirationTime == expirationTime) &&
             (identical(other.issuedAtTime, issuedAtTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.issuedAtTime, issuedAtTime)) &&
+                other.issuedAtTime == issuedAtTime) &&
             (identical(other.signInProvider, signInProvider) ||
-                const DeepCollectionEquality()
-                    .equals(other.signInProvider, signInProvider)) &&
-            (identical(other.token, token) ||
-                const DeepCollectionEquality().equals(other.token, token)));
+                other.signInProvider == signInProvider) &&
+            (identical(other.token, token) || other.token == token));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(authTime) ^
-      const DeepCollectionEquality().hash(claims) ^
-      const DeepCollectionEquality().hash(expirationTime) ^
-      const DeepCollectionEquality().hash(issuedAtTime) ^
-      const DeepCollectionEquality().hash(signInProvider) ^
-      const DeepCollectionEquality().hash(token);
+  int get hashCode => Object.hash(
+      runtimeType,
+      authTime,
+      const DeepCollectionEquality().hash(claims),
+      expirationTime,
+      issuedAtTime,
+      signInProvider,
+      token);
 
   @JsonKey(ignore: true)
   @override
@@ -307,29 +302,29 @@ abstract class _IdTokenResult implements IdTokenResult {
 
   /// The authentication time formatted as UTC string. This is the time the user
   /// authenticated (signed in) and not the time the token was refreshed.
-  DateTime? get authTime => throw _privateConstructorUsedError;
+  DateTime? get authTime;
   @override
 
   /// The entire payload claims of the ID token including the standard reserved
   /// claims as well as the custom claims.
-  Map<String, dynamic>? get claims => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get claims;
   @override
 
   /// The time when the ID token expires.
-  DateTime? get expirationTime => throw _privateConstructorUsedError;
+  DateTime? get expirationTime;
   @override
 
   /// The time when ID token was issued.
-  DateTime? get issuedAtTime => throw _privateConstructorUsedError;
+  DateTime? get issuedAtTime;
   @override
 
   /// The sign-in provider through which the ID token was obtained (anonymous,
   /// custom, phone, password, etc), converted to [ProvidersEnum].
-  ProvidersEnum? get signInProvider => throw _privateConstructorUsedError;
+  ProvidersEnum? get signInProvider;
   @override
 
   /// The Firebase Auth ID token JWT string.
-  String? get token => throw _privateConstructorUsedError;
+  String? get token;
   @override
   @JsonKey(ignore: true)
   _$IdTokenResultCopyWith<_IdTokenResult> get copyWith =>

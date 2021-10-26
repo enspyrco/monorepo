@@ -28,7 +28,7 @@ class _$AuthPageVMTearOff {
     );
   }
 
-  AuthPageVM fromJson(Map<String, Object> json) {
+  AuthPageVM fromJson(Map<String, Object?> json) {
     return AuthPageVM.fromJson(json);
   }
 }
@@ -151,19 +151,15 @@ class _$_AuthPageVM implements _AuthPageVM {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AuthPageVM &&
+        (other.runtimeType == runtimeType &&
+            other is _AuthPageVM &&
             (identical(other.platform, platform) ||
-                const DeepCollectionEquality()
-                    .equals(other.platform, platform)) &&
-            (identical(other.auth, auth) ||
-                const DeepCollectionEquality().equals(other.auth, auth)));
+                other.platform == platform) &&
+            (identical(other.auth, auth) || other.auth == auth));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(platform) ^
-      const DeepCollectionEquality().hash(auth);
+  int get hashCode => Object.hash(runtimeType, platform, auth);
 
   @JsonKey(ignore: true)
   @override
@@ -183,9 +179,9 @@ abstract class _AuthPageVM implements AuthPageVM {
       _$_AuthPageVM.fromJson;
 
   @override
-  PlatformsEnum get platform => throw _privateConstructorUsedError;
+  PlatformsEnum get platform;
   @override
-  AuthState get auth => throw _privateConstructorUsedError;
+  AuthState get auth;
   @override
   @JsonKey(ignore: true)
   _$AuthPageVMCopyWith<_AuthPageVM> get copyWith =>

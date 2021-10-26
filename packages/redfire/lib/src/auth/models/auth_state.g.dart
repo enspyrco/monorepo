@@ -15,7 +15,7 @@ _$_AuthState _$$_AuthStateFromJson(Map<String, dynamic> json) => _$_AuthState(
           ? null
           : IdTokenResult.fromJson(
               json['idTokenResult'] as Map<String, dynamic>),
-      step: _$enumDecode(_$AuthStepEnumEnumMap, json['step']),
+      step: $enumDecode(_$AuthStepEnumEnumMap, json['step']),
     );
 
 Map<String, dynamic> _$$_AuthStateToJson(_$_AuthState instance) =>
@@ -25,32 +25,6 @@ Map<String, dynamic> _$$_AuthStateToJson(_$_AuthState instance) =>
       'idTokenResult': instance.idTokenResult,
       'step': _$AuthStepEnumEnumMap[instance.step],
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$AuthStepEnumEnumMap = {
   AuthStepEnum.checking: 'CHECKING',

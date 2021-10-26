@@ -27,7 +27,7 @@ class _$LaunchUrlActionTearOff {
     );
   }
 
-  LaunchUrlAction fromJson(Map<String, Object> json) {
+  LaunchUrlAction fromJson(Map<String, Object?> json) {
     return LaunchUrlAction.fromJson(json);
   }
 }
@@ -128,14 +128,13 @@ class _$_LaunchUrlAction implements _LaunchUrlAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LaunchUrlAction &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)));
+        (other.runtimeType == runtimeType &&
+            other is _LaunchUrlAction &&
+            (identical(other.url, url) || other.url == url));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(url);
+  int get hashCode => Object.hash(runtimeType, url);
 
   @JsonKey(ignore: true)
   @override
@@ -155,7 +154,7 @@ abstract class _LaunchUrlAction implements LaunchUrlAction {
       _$_LaunchUrlAction.fromJson;
 
   @override
-  String get url => throw _privateConstructorUsedError;
+  String get url;
   @override
   @JsonKey(ignore: true)
   _$LaunchUrlActionCopyWith<_LaunchUrlAction> get copyWith =>

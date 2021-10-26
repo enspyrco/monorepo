@@ -29,7 +29,7 @@ class _$ThemeSetTearOff {
     );
   }
 
-  ThemeSet fromJson(Map<String, Object> json) {
+  ThemeSet fromJson(Map<String, Object?> json) {
     return ThemeSet.fromJson(json);
   }
 }
@@ -149,19 +149,15 @@ class _$_ThemeSet implements _ThemeSet {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ThemeSet &&
-            (identical(other.colors, colors) ||
-                const DeepCollectionEquality().equals(other.colors, colors)) &&
+        (other.runtimeType == runtimeType &&
+            other is _ThemeSet &&
+            (identical(other.colors, colors) || other.colors == colors) &&
             (identical(other.brightness, brightness) ||
-                const DeepCollectionEquality()
-                    .equals(other.brightness, brightness)));
+                other.brightness == brightness));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(colors) ^
-      const DeepCollectionEquality().hash(brightness);
+  int get hashCode => Object.hash(runtimeType, colors, brightness);
 
   @JsonKey(ignore: true)
   @override
@@ -182,9 +178,9 @@ abstract class _ThemeSet implements ThemeSet {
   factory _ThemeSet.fromJson(Map<String, dynamic> json) = _$_ThemeSet.fromJson;
 
   @override
-  ThemeColors get colors => throw _privateConstructorUsedError;
+  ThemeColors get colors;
   @override
-  ThemeBrightnessEnum get brightness => throw _privateConstructorUsedError;
+  ThemeBrightnessEnum get brightness;
   @override
   @JsonKey(ignore: true)
   _$ThemeSetCopyWith<_ThemeSet> get copyWith =>

@@ -25,7 +25,7 @@ class _$ResetAuthPageActionTearOff {
     return _ResetAuthPageAction();
   }
 
-  ResetAuthPageAction fromJson(Map<String, Object> json) {
+  ResetAuthPageAction fromJson(Map<String, Object?> json) {
     return ResetAuthPageAction.fromJson(json);
   }
 }
@@ -89,7 +89,8 @@ class _$_ResetAuthPageAction implements _ResetAuthPageAction {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ResetAuthPageAction);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _ResetAuthPageAction);
   }
 
   @override

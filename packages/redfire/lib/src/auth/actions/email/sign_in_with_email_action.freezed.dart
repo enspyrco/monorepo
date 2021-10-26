@@ -28,7 +28,7 @@ class _$SignInWithEmailActionTearOff {
     );
   }
 
-  SignInWithEmailAction fromJson(Map<String, Object> json) {
+  SignInWithEmailAction fromJson(Map<String, Object?> json) {
     return SignInWithEmailAction.fromJson(json);
   }
 }
@@ -129,15 +129,14 @@ class _$_SignInWithEmailAction implements _SignInWithEmailAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SignInWithEmailAction &&
+        (other.runtimeType == runtimeType &&
+            other is _SignInWithEmailAction &&
             (identical(other.password, password) ||
-                const DeepCollectionEquality()
-                    .equals(other.password, password)));
+                other.password == password));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(password);
+  int get hashCode => Object.hash(runtimeType, password);
 
   @JsonKey(ignore: true)
   @override
@@ -158,7 +157,7 @@ abstract class _SignInWithEmailAction implements SignInWithEmailAction {
       _$_SignInWithEmailAction.fromJson;
 
   @override
-  String get password => throw _privateConstructorUsedError;
+  String get password;
   @override
   @JsonKey(ignore: true)
   _$SignInWithEmailActionCopyWith<_SignInWithEmailAction> get copyWith =>

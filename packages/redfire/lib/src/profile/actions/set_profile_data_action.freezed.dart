@@ -27,7 +27,7 @@ class _$SetProfileDataActionTearOff {
     );
   }
 
-  SetProfileDataAction fromJson(Map<String, Object> json) {
+  SetProfileDataAction fromJson(Map<String, Object?> json) {
     return SetProfileDataAction.fromJson(json);
   }
 }
@@ -140,14 +140,13 @@ class _$_SetProfileDataAction implements _SetProfileDataAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SetProfileDataAction &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _SetProfileDataAction &&
+            (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+  int get hashCode => Object.hash(runtimeType, data);
 
   @JsonKey(ignore: true)
   @override
@@ -169,7 +168,7 @@ abstract class _SetProfileDataAction implements SetProfileDataAction {
       _$_SetProfileDataAction.fromJson;
 
   @override
-  ProfileData get data => throw _privateConstructorUsedError;
+  ProfileData get data;
   @override
   @JsonKey(ignore: true)
   _$SetProfileDataActionCopyWith<_SetProfileDataAction> get copyWith =>

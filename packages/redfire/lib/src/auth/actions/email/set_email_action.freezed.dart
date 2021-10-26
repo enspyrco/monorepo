@@ -27,7 +27,7 @@ class _$SetEmailActionTearOff {
     );
   }
 
-  SetEmailAction fromJson(Map<String, Object> json) {
+  SetEmailAction fromJson(Map<String, Object?> json) {
     return SetEmailAction.fromJson(json);
   }
 }
@@ -128,14 +128,13 @@ class _$_SetEmailAction implements _SetEmailAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SetEmailAction &&
-            (identical(other.text, text) ||
-                const DeepCollectionEquality().equals(other.text, text)));
+        (other.runtimeType == runtimeType &&
+            other is _SetEmailAction &&
+            (identical(other.text, text) || other.text == text));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(text);
+  int get hashCode => Object.hash(runtimeType, text);
 
   @JsonKey(ignore: true)
   @override
@@ -155,7 +154,7 @@ abstract class _SetEmailAction implements SetEmailAction {
       _$_SetEmailAction.fromJson;
 
   @override
-  String? get text => throw _privateConstructorUsedError;
+  String? get text;
   @override
   @JsonKey(ignore: true)
   _$SetEmailActionCopyWith<_SetEmailAction> get copyWith =>

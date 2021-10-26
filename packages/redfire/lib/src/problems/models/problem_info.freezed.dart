@@ -28,7 +28,7 @@ class _$ProblemInfoTearOff {
     );
   }
 
-  ProblemInfo fromJson(Map<String, Object> json) {
+  ProblemInfo fromJson(Map<String, Object?> json) {
     return ProblemInfo.fromJson(json);
   }
 }
@@ -140,19 +140,14 @@ class _$_ProblemInfo implements _ProblemInfo {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ProblemInfo &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality()
-                    .equals(other.message, message)) &&
-            (identical(other.trace, trace) ||
-                const DeepCollectionEquality().equals(other.trace, trace)));
+        (other.runtimeType == runtimeType &&
+            other is _ProblemInfo &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.trace, trace) || other.trace == trace));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(trace);
+  int get hashCode => Object.hash(runtimeType, message, trace);
 
   @JsonKey(ignore: true)
   @override
@@ -172,9 +167,9 @@ abstract class _ProblemInfo implements ProblemInfo {
       _$_ProblemInfo.fromJson;
 
   @override
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @override
-  String? get trace => throw _privateConstructorUsedError;
+  String? get trace;
   @override
   @JsonKey(ignore: true)
   _$ProblemInfoCopyWith<_ProblemInfo> get copyWith =>

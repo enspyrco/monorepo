@@ -27,7 +27,7 @@ class _$AddProblemActionTearOff {
     );
   }
 
-  AddProblemAction fromJson(Map<String, Object> json) {
+  AddProblemAction fromJson(Map<String, Object?> json) {
     return AddProblemAction.fromJson(json);
   }
 }
@@ -140,14 +140,13 @@ class _$_AddProblemAction implements _AddProblemAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AddProblemAction &&
-            (identical(other.info, info) ||
-                const DeepCollectionEquality().equals(other.info, info)));
+        (other.runtimeType == runtimeType &&
+            other is _AddProblemAction &&
+            (identical(other.info, info) || other.info == info));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(info);
+  int get hashCode => Object.hash(runtimeType, info);
 
   @JsonKey(ignore: true)
   @override
@@ -167,7 +166,7 @@ abstract class _AddProblemAction implements AddProblemAction {
       _$_AddProblemAction.fromJson;
 
   @override
-  ProblemInfo get info => throw _privateConstructorUsedError;
+  ProblemInfo get info;
   @override
   @JsonKey(ignore: true)
   _$AddProblemActionCopyWith<_AddProblemAction> get copyWith =>

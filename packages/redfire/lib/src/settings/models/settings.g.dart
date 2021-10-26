@@ -10,8 +10,8 @@ _$_Settings _$$_SettingsFromJson(Map<String, dynamic> json) => _$_Settings(
       darkTheme: ThemeSet.fromJson(json['darkTheme'] as Map<String, dynamic>),
       lightTheme: ThemeSet.fromJson(json['lightTheme'] as Map<String, dynamic>),
       brightnessMode:
-          _$enumDecode(_$BrightnessModeEnumEnumMap, json['brightnessMode']),
-      platform: _$enumDecode(_$PlatformsEnumEnumMap, json['platform']),
+          $enumDecode(_$BrightnessModeEnumEnumMap, json['brightnessMode']),
+      platform: $enumDecode(_$PlatformsEnumEnumMap, json['platform']),
     );
 
 Map<String, dynamic> _$$_SettingsToJson(_$_Settings instance) =>
@@ -21,32 +21,6 @@ Map<String, dynamic> _$$_SettingsToJson(_$_Settings instance) =>
       'brightnessMode': _$BrightnessModeEnumEnumMap[instance.brightnessMode],
       'platform': _$PlatformsEnumEnumMap[instance.platform],
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$BrightnessModeEnumEnumMap = {
   BrightnessModeEnum.light: 'LIGHT',

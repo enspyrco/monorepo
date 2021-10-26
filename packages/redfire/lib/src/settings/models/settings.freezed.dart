@@ -34,7 +34,7 @@ class _$SettingsTearOff {
     );
   }
 
-  Settings fromJson(Map<String, Object> json) {
+  Settings fromJson(Map<String, Object?> json) {
     return Settings.fromJson(json);
   }
 }
@@ -202,28 +202,21 @@ class _$_Settings implements _Settings {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Settings &&
+        (other.runtimeType == runtimeType &&
+            other is _Settings &&
             (identical(other.darkTheme, darkTheme) ||
-                const DeepCollectionEquality()
-                    .equals(other.darkTheme, darkTheme)) &&
+                other.darkTheme == darkTheme) &&
             (identical(other.lightTheme, lightTheme) ||
-                const DeepCollectionEquality()
-                    .equals(other.lightTheme, lightTheme)) &&
+                other.lightTheme == lightTheme) &&
             (identical(other.brightnessMode, brightnessMode) ||
-                const DeepCollectionEquality()
-                    .equals(other.brightnessMode, brightnessMode)) &&
+                other.brightnessMode == brightnessMode) &&
             (identical(other.platform, platform) ||
-                const DeepCollectionEquality()
-                    .equals(other.platform, platform)));
+                other.platform == platform));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(darkTheme) ^
-      const DeepCollectionEquality().hash(lightTheme) ^
-      const DeepCollectionEquality().hash(brightnessMode) ^
-      const DeepCollectionEquality().hash(platform);
+      Object.hash(runtimeType, darkTheme, lightTheme, brightnessMode, platform);
 
   @JsonKey(ignore: true)
   @override
@@ -246,13 +239,13 @@ abstract class _Settings implements Settings {
   factory _Settings.fromJson(Map<String, dynamic> json) = _$_Settings.fromJson;
 
   @override
-  ThemeSet get darkTheme => throw _privateConstructorUsedError;
+  ThemeSet get darkTheme;
   @override
-  ThemeSet get lightTheme => throw _privateConstructorUsedError;
+  ThemeSet get lightTheme;
   @override
-  BrightnessModeEnum get brightnessMode => throw _privateConstructorUsedError;
+  BrightnessModeEnum get brightnessMode;
   @override
-  PlatformsEnum get platform => throw _privateConstructorUsedError;
+  PlatformsEnum get platform;
   @override
   @JsonKey(ignore: true)
   _$SettingsCopyWith<_Settings> get copyWith =>

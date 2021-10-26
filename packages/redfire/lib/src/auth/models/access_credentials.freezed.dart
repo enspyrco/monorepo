@@ -34,7 +34,7 @@ class _$AccessCredentialsTearOff {
     );
   }
 
-  AccessCredentials fromJson(Map<String, Object> json) {
+  AccessCredentials fromJson(Map<String, Object?> json) {
     return AccessCredentials.fromJson(json);
   }
 }
@@ -205,27 +205,19 @@ class _$_AccessCredentials implements _AccessCredentials {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AccessCredentials &&
+        (other.runtimeType == runtimeType &&
+            other is _AccessCredentials &&
             (identical(other.accessToken, accessToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.accessToken, accessToken)) &&
+                other.accessToken == accessToken) &&
             (identical(other.refreshToken, refreshToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.refreshToken, refreshToken)) &&
-            (identical(other.idToken, idToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.idToken, idToken)) &&
-            (identical(other.scopes, scopes) ||
-                const DeepCollectionEquality().equals(other.scopes, scopes)));
+                other.refreshToken == refreshToken) &&
+            (identical(other.idToken, idToken) || other.idToken == idToken) &&
+            (identical(other.scopes, scopes) || other.scopes == scopes));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(accessToken) ^
-      const DeepCollectionEquality().hash(refreshToken) ^
-      const DeepCollectionEquality().hash(idToken) ^
-      const DeepCollectionEquality().hash(scopes);
+      Object.hash(runtimeType, accessToken, refreshToken, idToken, scopes);
 
   @JsonKey(ignore: true)
   @override
@@ -251,21 +243,21 @@ abstract class _AccessCredentials implements AccessCredentials {
   @override
 
   /// An access token.
-  String get accessToken => throw _privateConstructorUsedError;
+  String get accessToken;
   @override
 
   /// A refresh token, which can be used to refresh the access credentials.
   ///
   /// This field may be null.
-  String get refreshToken => throw _privateConstructorUsedError;
+  String get refreshToken;
   @override
 
   /// A JWT used in calls to Google APIs that accept an id_token param.
-  String get idToken => throw _privateConstructorUsedError;
+  String get idToken;
   @override
 
   /// Scopes these credentials are valid for.
-  IList<String> get scopes => throw _privateConstructorUsedError;
+  IList<String> get scopes;
   @override
   @JsonKey(ignore: true)
   _$AccessCredentialsCopyWith<_AccessCredentials> get copyWith =>

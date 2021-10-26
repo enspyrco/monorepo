@@ -27,7 +27,7 @@ class _$SetAuthStepActionTearOff {
     );
   }
 
-  SetAuthStepAction fromJson(Map<String, Object> json) {
+  SetAuthStepAction fromJson(Map<String, Object?> json) {
     return SetAuthStepAction.fromJson(json);
   }
 }
@@ -128,14 +128,13 @@ class _$_SetAuthStepAction implements _SetAuthStepAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SetAuthStepAction &&
-            (identical(other.step, step) ||
-                const DeepCollectionEquality().equals(other.step, step)));
+        (other.runtimeType == runtimeType &&
+            other is _SetAuthStepAction &&
+            (identical(other.step, step) || other.step == step));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(step);
+  int get hashCode => Object.hash(runtimeType, step);
 
   @JsonKey(ignore: true)
   @override
@@ -155,7 +154,7 @@ abstract class _SetAuthStepAction implements SetAuthStepAction {
       _$_SetAuthStepAction.fromJson;
 
   @override
-  AuthStepEnum get step => throw _privateConstructorUsedError;
+  AuthStepEnum get step;
   @override
   @JsonKey(ignore: true)
   _$SetAuthStepActionCopyWith<_SetAuthStepAction> get copyWith =>

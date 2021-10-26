@@ -25,7 +25,7 @@ class _$InitialPageDataTearOff {
     return _InitialPageData();
   }
 
-  InitialPageData fromJson(Map<String, Object> json) {
+  InitialPageData fromJson(Map<String, Object?> json) {
     return InitialPageData.fromJson(json);
   }
 }
@@ -89,7 +89,8 @@ class _$_InitialPageData extends _InitialPageData {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _InitialPageData);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _InitialPageData);
   }
 
   @override

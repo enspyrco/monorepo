@@ -34,7 +34,7 @@ class _$AuthStateTearOff {
     );
   }
 
-  AuthState fromJson(Map<String, Object> json) {
+  AuthState fromJson(Map<String, Object?> json) {
     return AuthState.fromJson(json);
   }
 }
@@ -221,27 +221,19 @@ class _$_AuthState implements _AuthState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AuthState &&
-            (identical(other.emailVM, emailVM) ||
-                const DeepCollectionEquality()
-                    .equals(other.emailVM, emailVM)) &&
+        (other.runtimeType == runtimeType &&
+            other is _AuthState &&
+            (identical(other.emailVM, emailVM) || other.emailVM == emailVM) &&
             (identical(other.userData, userData) ||
-                const DeepCollectionEquality()
-                    .equals(other.userData, userData)) &&
+                other.userData == userData) &&
             (identical(other.idTokenResult, idTokenResult) ||
-                const DeepCollectionEquality()
-                    .equals(other.idTokenResult, idTokenResult)) &&
-            (identical(other.step, step) ||
-                const DeepCollectionEquality().equals(other.step, step)));
+                other.idTokenResult == idTokenResult) &&
+            (identical(other.step, step) || other.step == step));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(emailVM) ^
-      const DeepCollectionEquality().hash(userData) ^
-      const DeepCollectionEquality().hash(idTokenResult) ^
-      const DeepCollectionEquality().hash(step);
+      Object.hash(runtimeType, emailVM, userData, idTokenResult, step);
 
   @JsonKey(ignore: true)
   @override
@@ -265,13 +257,13 @@ abstract class _AuthState implements AuthState {
       _$_AuthState.fromJson;
 
   @override
-  EmailAuthVM get emailVM => throw _privateConstructorUsedError;
+  EmailAuthVM get emailVM;
   @override
-  AuthUserData? get userData => throw _privateConstructorUsedError;
+  AuthUserData? get userData;
   @override
-  IdTokenResult? get idTokenResult => throw _privateConstructorUsedError;
+  IdTokenResult? get idTokenResult;
   @override
-  AuthStepEnum get step => throw _privateConstructorUsedError;
+  AuthStepEnum get step;
   @override
   @JsonKey(ignore: true)
   _$AuthStateCopyWith<_AuthState> get copyWith =>

@@ -38,7 +38,7 @@ class _$ProfileDataTearOff {
     );
   }
 
-  ProfileData fromJson(Map<String, Object> json) {
+  ProfileData fromJson(Map<String, Object?> json) {
     return ProfileData.fromJson(json);
   }
 }
@@ -221,35 +221,30 @@ class _$_ProfileData implements _ProfileData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ProfileData &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+        (other.runtimeType == runtimeType &&
+            other is _ProfileData &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.displayName, displayName) ||
-                const DeepCollectionEquality()
-                    .equals(other.displayName, displayName)) &&
+                other.displayName == displayName) &&
             (identical(other.photoURL, photoURL) ||
-                const DeepCollectionEquality()
-                    .equals(other.photoURL, photoURL)) &&
+                other.photoURL == photoURL) &&
             (identical(other.firstName, firstName) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstName, firstName)) &&
+                other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
-            (identical(other.authorizationStatus, authorizationStatus) ||
-                const DeepCollectionEquality()
-                    .equals(other.authorizationStatus, authorizationStatus)));
+                other.lastName == lastName) &&
+            const DeepCollectionEquality()
+                .equals(other.authorizationStatus, authorizationStatus));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(displayName) ^
-      const DeepCollectionEquality().hash(photoURL) ^
-      const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(authorizationStatus);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      displayName,
+      photoURL,
+      firstName,
+      lastName,
+      const DeepCollectionEquality().hash(authorizationStatus));
 
   @JsonKey(ignore: true)
   @override
@@ -276,18 +271,17 @@ abstract class _ProfileData implements ProfileData {
       _$_ProfileData.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String? get displayName => throw _privateConstructorUsedError;
+  String? get displayName;
   @override
-  String? get photoURL => throw _privateConstructorUsedError;
+  String? get photoURL;
   @override
-  String? get firstName => throw _privateConstructorUsedError;
+  String? get firstName;
   @override
-  String? get lastName => throw _privateConstructorUsedError;
+  String? get lastName;
   @override
-  Map<ProvidersEnum, AuthorizationEnum> get authorizationStatus =>
-      throw _privateConstructorUsedError;
+  Map<ProvidersEnum, AuthorizationEnum> get authorizationStatus;
   @override
   @JsonKey(ignore: true)
   _$ProfileDataCopyWith<_ProfileData> get copyWith =>

@@ -27,7 +27,7 @@ class _$TapProfileActionTearOff {
     );
   }
 
-  TapProfileAction fromJson(Map<String, Object> json) {
+  TapProfileAction fromJson(Map<String, Object?> json) {
     return TapProfileAction.fromJson(json);
   }
 }
@@ -129,14 +129,13 @@ class _$_TapProfileAction implements _TapProfileAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _TapProfileAction &&
-            (identical(other.turnOff, turnOff) ||
-                const DeepCollectionEquality().equals(other.turnOff, turnOff)));
+        (other.runtimeType == runtimeType &&
+            other is _TapProfileAction &&
+            (identical(other.turnOff, turnOff) || other.turnOff == turnOff));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(turnOff);
+  int get hashCode => Object.hash(runtimeType, turnOff);
 
   @JsonKey(ignore: true)
   @override
@@ -156,7 +155,7 @@ abstract class _TapProfileAction implements TapProfileAction {
       _$_TapProfileAction.fromJson;
 
   @override
-  bool get turnOff => throw _privateConstructorUsedError;
+  bool get turnOff;
   @override
   @JsonKey(ignore: true)
   _$TapProfileActionCopyWith<_TapProfileAction> get copyWith =>

@@ -25,7 +25,7 @@ class _$DetectPlatformActionTearOff {
     return _DetectPlatformAction();
   }
 
-  DetectPlatformAction fromJson(Map<String, Object> json) {
+  DetectPlatformAction fromJson(Map<String, Object?> json) {
     return DetectPlatformAction.fromJson(json);
   }
 }
@@ -89,7 +89,8 @@ class _$_DetectPlatformAction implements _DetectPlatformAction {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _DetectPlatformAction);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _DetectPlatformAction);
   }
 
   @override

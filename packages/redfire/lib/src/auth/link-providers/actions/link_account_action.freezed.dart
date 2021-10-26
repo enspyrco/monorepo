@@ -27,7 +27,7 @@ class _$LinkAccountActionTearOff {
     );
   }
 
-  LinkAccountAction fromJson(Map<String, Object> json) {
+  LinkAccountAction fromJson(Map<String, Object?> json) {
     return LinkAccountAction.fromJson(json);
   }
 }
@@ -128,15 +128,14 @@ class _$_LinkAccountAction implements _LinkAccountAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LinkAccountAction &&
+        (other.runtimeType == runtimeType &&
+            other is _LinkAccountAction &&
             (identical(other.provider, provider) ||
-                const DeepCollectionEquality()
-                    .equals(other.provider, provider)));
+                other.provider == provider));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(provider);
+  int get hashCode => Object.hash(runtimeType, provider);
 
   @JsonKey(ignore: true)
   @override
@@ -157,7 +156,7 @@ abstract class _LinkAccountAction implements LinkAccountAction {
       _$_LinkAccountAction.fromJson;
 
   @override
-  ProvidersEnum get provider => throw _privateConstructorUsedError;
+  ProvidersEnum get provider;
   @override
   @JsonKey(ignore: true)
   _$LinkAccountActionCopyWith<_LinkAccountAction> get copyWith =>

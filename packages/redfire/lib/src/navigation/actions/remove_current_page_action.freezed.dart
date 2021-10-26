@@ -26,7 +26,7 @@ class _$RemoveCurrentPageActionTearOff {
     return _RemoveCurrentPageAction();
   }
 
-  RemoveCurrentPageAction fromJson(Map<String, Object> json) {
+  RemoveCurrentPageAction fromJson(Map<String, Object?> json) {
     return RemoveCurrentPageAction.fromJson(json);
   }
 }
@@ -91,7 +91,8 @@ class _$_RemoveCurrentPageAction implements _RemoveCurrentPageAction {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _RemoveCurrentPageAction);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _RemoveCurrentPageAction);
   }
 
   @override
