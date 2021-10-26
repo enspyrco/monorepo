@@ -13,7 +13,7 @@ class LinkProvidersView<T extends RedFireState> extends StatelessWidget {
     return StoreConnector<T, AuthUserData?>(
       distinct: true,
       converter: (store) => store.state.auth.userData,
-      builder: (context, data) => (data == null)
+      builder: (context, userData) => (userData == null)
           ? Container()
           : SizedBox(
               height: 50,
@@ -21,7 +21,7 @@ class LinkProvidersView<T extends RedFireState> extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 children: [
                   for (var provider in ProvidersEnum.values)
-                    LinkProviderButton(provider)
+                    LinkProviderButton<T>(provider, userData)
                 ],
               ),
             ),
