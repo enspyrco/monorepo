@@ -22,9 +22,9 @@ LinkAccountsViewModel _$LinkAccountsViewModelFromJson(
 class _$LinkAccountsViewModelTearOff {
   const _$LinkAccountsViewModelTearOff();
 
-  _LinkAccountsViewModel call(IMap<ProvidersEnum, LinkingStateEnum> providers) {
+  _LinkAccountsViewModel call(IMap<ProvidersEnum, LinkingStateEnum> stateOf) {
     return _LinkAccountsViewModel(
-      providers,
+      stateOf,
     );
   }
 
@@ -38,7 +38,7 @@ const $LinkAccountsViewModel = _$LinkAccountsViewModelTearOff();
 
 /// @nodoc
 mixin _$LinkAccountsViewModel {
-  IMap<ProvidersEnum, LinkingStateEnum> get providers =>
+  IMap<ProvidersEnum, LinkingStateEnum> get stateOf =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,7 +52,7 @@ abstract class $LinkAccountsViewModelCopyWith<$Res> {
   factory $LinkAccountsViewModelCopyWith(LinkAccountsViewModel value,
           $Res Function(LinkAccountsViewModel) then) =
       _$LinkAccountsViewModelCopyWithImpl<$Res>;
-  $Res call({IMap<ProvidersEnum, LinkingStateEnum> providers});
+  $Res call({IMap<ProvidersEnum, LinkingStateEnum> stateOf});
 }
 
 /// @nodoc
@@ -66,12 +66,12 @@ class _$LinkAccountsViewModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? providers = freezed,
+    Object? stateOf = freezed,
   }) {
     return _then(_value.copyWith(
-      providers: providers == freezed
-          ? _value.providers
-          : providers // ignore: cast_nullable_to_non_nullable
+      stateOf: stateOf == freezed
+          ? _value.stateOf
+          : stateOf // ignore: cast_nullable_to_non_nullable
               as IMap<ProvidersEnum, LinkingStateEnum>,
     ));
   }
@@ -84,7 +84,7 @@ abstract class _$LinkAccountsViewModelCopyWith<$Res>
           $Res Function(_LinkAccountsViewModel) then) =
       __$LinkAccountsViewModelCopyWithImpl<$Res>;
   @override
-  $Res call({IMap<ProvidersEnum, LinkingStateEnum> providers});
+  $Res call({IMap<ProvidersEnum, LinkingStateEnum> stateOf});
 }
 
 /// @nodoc
@@ -100,12 +100,12 @@ class __$LinkAccountsViewModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? providers = freezed,
+    Object? stateOf = freezed,
   }) {
     return _then(_LinkAccountsViewModel(
-      providers == freezed
-          ? _value.providers
-          : providers // ignore: cast_nullable_to_non_nullable
+      stateOf == freezed
+          ? _value.stateOf
+          : stateOf // ignore: cast_nullable_to_non_nullable
               as IMap<ProvidersEnum, LinkingStateEnum>,
     ));
   }
@@ -114,17 +114,17 @@ class __$LinkAccountsViewModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_LinkAccountsViewModel implements _LinkAccountsViewModel {
-  const _$_LinkAccountsViewModel(this.providers);
+  const _$_LinkAccountsViewModel(this.stateOf);
 
   factory _$_LinkAccountsViewModel.fromJson(Map<String, dynamic> json) =>
       _$$_LinkAccountsViewModelFromJson(json);
 
   @override
-  final IMap<ProvidersEnum, LinkingStateEnum> providers;
+  final IMap<ProvidersEnum, LinkingStateEnum> stateOf;
 
   @override
   String toString() {
-    return 'LinkAccountsViewModel(providers: $providers)';
+    return 'LinkAccountsViewModel(stateOf: $stateOf)';
   }
 
   @override
@@ -132,12 +132,11 @@ class _$_LinkAccountsViewModel implements _LinkAccountsViewModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LinkAccountsViewModel &&
-            (identical(other.providers, providers) ||
-                other.providers == providers));
+            (identical(other.stateOf, stateOf) || other.stateOf == stateOf));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, providers);
+  int get hashCode => Object.hash(runtimeType, stateOf);
 
   @JsonKey(ignore: true)
   @override
@@ -153,14 +152,13 @@ class _$_LinkAccountsViewModel implements _LinkAccountsViewModel {
 
 abstract class _LinkAccountsViewModel implements LinkAccountsViewModel {
   const factory _LinkAccountsViewModel(
-          IMap<ProvidersEnum, LinkingStateEnum> providers) =
-      _$_LinkAccountsViewModel;
+      IMap<ProvidersEnum, LinkingStateEnum> stateOf) = _$_LinkAccountsViewModel;
 
   factory _LinkAccountsViewModel.fromJson(Map<String, dynamic> json) =
       _$_LinkAccountsViewModel.fromJson;
 
   @override
-  IMap<ProvidersEnum, LinkingStateEnum> get providers;
+  IMap<ProvidersEnum, LinkingStateEnum> get stateOf;
   @override
   @JsonKey(ignore: true)
   _$LinkAccountsViewModelCopyWith<_LinkAccountsViewModel> get copyWith =>

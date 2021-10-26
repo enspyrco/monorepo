@@ -20,7 +20,9 @@ class ExampleAppState with _$ExampleAppState, RedFireState {
         problems: IList(),
         settings: Settings.init(),
         auth: AuthState(
-            emailVM: EmailAuthVM(), step: AuthStepEnum.waitingForInput),
+            linking: LinkAccountsViewModel.init(),
+            emailVM: EmailAuthVM(),
+            step: AuthStepEnum.waitingForInput),
       );
 
   factory ExampleAppState.fromJson(JsonMap json) =>

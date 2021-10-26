@@ -29,9 +29,8 @@
       "program": "lib/main.dart",
     },
     {
-      "name": "tech_world (mac)",
+      "name": "tech_world",
       "type": "dart",
-      "deviceId": "macos",
       "cwd": "packages/tech_world",
       "request": "launch",
       "program": "lib/main.dart"

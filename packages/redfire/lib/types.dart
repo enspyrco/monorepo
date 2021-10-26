@@ -6,6 +6,7 @@ library redfire_types;
 export 'src/auth/enums/auth_step_enum.dart';
 export 'src/auth/enums/authorization_enum.dart';
 export 'src/auth/enums/providers_enum.dart';
+export 'src/auth/link-providers/models/link_accounts_view_model.dart';
 export 'src/auth/models/apple_id_credential.dart';
 export 'src/auth/models/auth_provider_data.dart';
 export 'src/auth/models/auth_state.dart';

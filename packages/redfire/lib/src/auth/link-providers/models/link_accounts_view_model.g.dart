@@ -10,7 +10,7 @@ _$_LinkAccountsViewModel _$$_LinkAccountsViewModelFromJson(
         Map<String, dynamic> json) =>
     _$_LinkAccountsViewModel(
       IMap<ProvidersEnum, LinkingStateEnum>.fromJson(
-          json['providers'] as Map<String, dynamic>,
+          json['stateOf'] as Map<String, dynamic>,
           (value) => $enumDecode(_$ProvidersEnumEnumMap, value),
           (value) => $enumDecode(_$LinkingStateEnumEnumMap, value)),
     );
@@ -18,7 +18,7 @@ _$_LinkAccountsViewModel _$$_LinkAccountsViewModelFromJson(
 Map<String, dynamic> _$$_LinkAccountsViewModelToJson(
         _$_LinkAccountsViewModel instance) =>
     <String, dynamic>{
-      'providers': instance.providers.toJson(
+      'stateOf': instance.stateOf.toJson(
         (value) => _$ProvidersEnumEnumMap[value],
         (value) => _$LinkingStateEnumEnumMap[value],
       ),

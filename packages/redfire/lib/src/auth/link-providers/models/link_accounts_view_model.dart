@@ -9,8 +9,11 @@ part 'link_accounts_view_model.g.dart';
 @freezed
 class LinkAccountsViewModel with _$LinkAccountsViewModel, ReduxModel {
   const factory LinkAccountsViewModel(
-      IMap<ProvidersEnum, LinkingStateEnum> providers) = _LinkAccountsViewModel;
+      IMap<ProvidersEnum, LinkingStateEnum> stateOf) = _LinkAccountsViewModel;
 
   factory LinkAccountsViewModel.fromJson(JsonMap json) =>
       _$LinkAccountsViewModelFromJson(json);
+
+  factory LinkAccountsViewModel.init() =>
+      LinkAccountsViewModel(IMap<ProvidersEnum, LinkingStateEnum>());
 }

@@ -15,6 +15,8 @@ _$_AuthState _$$_AuthStateFromJson(Map<String, dynamic> json) => _$_AuthState(
           ? null
           : IdTokenResult.fromJson(
               json['idTokenResult'] as Map<String, dynamic>),
+      linking: LinkAccountsViewModel.fromJson(
+          json['linking'] as Map<String, dynamic>),
       step: $enumDecode(_$AuthStepEnumEnumMap, json['step']),
     );
 
@@ -23,6 +25,7 @@ Map<String, dynamic> _$$_AuthStateToJson(_$_AuthState instance) =>
       'emailVM': instance.emailVM,
       'userData': instance.userData,
       'idTokenResult': instance.idTokenResult,
+      'linking': instance.linking,
       'step': _$AuthStepEnumEnumMap[instance.step],
     };
 

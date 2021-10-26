@@ -22,7 +22,7 @@ dependencies:
   flutter_redux:
   fast_immutable_collections:
   freezed_annotation:
-  json_annotation:
+  json_annotation: ^4.3.0
   
 dev_dependencies:
   flutter_test:
