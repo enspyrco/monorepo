@@ -1,32 +1,9 @@
-# name: Coverage
-
-# on:
-#   push:
-#     branches:
-#       - test_branch
-
-# jobs:
-#   test_coverage_job:
-#     runs-on: ubuntu-latest
-#     name: A job to calculate test coverage
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: Calculate test coverage
-#         id: coverage
-#         uses: enspyrco/test-coverage-action@v0.2
-#         with: 
-#           site_id: enspyrco
-#           service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-#           packages_path: packages/
-#           package_name: adventures
-
-
 name: Coverage
 
 on:
   push:
     branches:
-      - test_branch
+      - main
 
 jobs:
   coverage:
