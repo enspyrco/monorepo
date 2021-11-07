@@ -1,26 +1,3 @@
-name: Coverage
-
-on:
-  push:
-    branches:
-      - test_branch
-
-jobs:
-  test_coverage_job:
-    runs-on: ubuntu-latest
-    name: A job to calculate test coverage
-    steps:
-      - uses: actions/checkout@v2
-      - name: Calculate test coverage
-        id: coverage
-        uses: enspyrco/test-coverage-action@v0.2
-        with: 
-          site_id: enspyrco
-          service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          packages_path: packages/
-          package_name: adventures
-
-
 # name: Coverage
 
 # on:
@@ -29,33 +6,56 @@ jobs:
 #       - test_branch
 
 # jobs:
-#   coverage:
+#   test_coverage_job:
 #     runs-on: ubuntu-latest
-#     strategy:
-#       matrix:
-#         include:
-#           - package: adventures
-#             package_name: "adventures"
-#           - package: flireator
-#             package_name: "flireator"
-#           - package: redfire
-#             package_name: "redfire"
-#           - package: redfire_test
-#             package_name: "redfire_test"
-#           - package: tech_world
-#             package_name: "tech_world"
-#           - package: the_process
-#             package_name: "the_process"
-#           - package: ws_game_server
-#             package_name: "ws_game_server"
-#           - package: ws_game_server_types
-#             package_name: "ws_game_server_types"
+#     name: A job to calculate test coverage
 #     steps:
 #       - uses: actions/checkout@v2
-#       - uses: enspyrco/test-coverage-action@v0.1
-#         with:
+#       - name: Calculate test coverage
+#         id: coverage
+#         uses: enspyrco/test-coverage-action@v0.2
+#         with: 
 #           site_id: enspyrco
 #           service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
 #           packages_path: packages/
-#           package_name: ${{ matrix.package_name }}
+#           package_name: adventures
+
+
+name: Coverage
+
+on:
+  push:
+    branches:
+      - test_branch
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - package: adventures
+            package_name: "adventures"
+          - package: flireator
+            package_name: "flireator"
+          - package: redfire
+            package_name: "redfire"
+          - package: redfire_test
+            package_name: "redfire_test"
+          - package: tech_world
+            package_name: "tech_world"
+          - package: the_process
+            package_name: "the_process"
+          - package: ws_game_server
+            package_name: "ws_game_server"
+          - package: ws_game_server_types
+            package_name: "ws_game_server_types"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: enspyrco/test-coverage-action@v0.2
+        with:
+          site_id: enspyrco
+          service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          packages_path: packages/
+          package_name: ${{ matrix.package_name }}
           
