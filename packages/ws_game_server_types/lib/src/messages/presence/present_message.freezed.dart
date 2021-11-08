@@ -28,7 +28,7 @@ class _$PresentMessageTearOff {
     );
   }
 
-  PresentMessage fromJson(Map<String, Object> json) {
+  PresentMessage fromJson(Map<String, Object?> json) {
     return PresentMessage.fromJson(json);
   }
 }
@@ -143,18 +143,14 @@ class _$_PresentMessage implements _PresentMessage {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PresentMessage &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)));
+        (other.runtimeType == runtimeType &&
+            other is _PresentMessage &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(type);
+  int get hashCode => Object.hash(runtimeType, userId, type);
 
   @JsonKey(ignore: true)
   @override
@@ -174,9 +170,9 @@ abstract class _PresentMessage implements PresentMessage {
       _$_PresentMessage.fromJson;
 
   @override
-  String get userId => throw _privateConstructorUsedError;
+  String get userId;
   @override
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
   @JsonKey(ignore: true)
   _$PresentMessageCopyWith<_PresentMessage> get copyWith =>
