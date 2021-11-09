@@ -12,7 +12,7 @@ dependencies:
     sdk: flutter
 
   a_star_algorithm:
-  flame: 1.0.0-releasecandidate.13
+  flame: 1.0.0-releasecandidate.16
   vector_math: 
   ws_game_server_types:
     path: ../ws_game_server_types
