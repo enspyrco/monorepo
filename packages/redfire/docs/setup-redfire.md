@@ -22,7 +22,7 @@ dependencies:
   redfire:
     git: https://github.com/enspyrco/redfire.git
   freezed_annotation:
-  json_annotation:
+  json_annotation: ^4.3.0
   redux:
   flutter_redux:
   fast_immutable_collections:
@@ -33,7 +33,7 @@ dev_dependencies:
     git: https://github.com/enspyrco/redfire_test.git
   build_runner:
   freezed:
-  json_serializable:
+  json_serializable: ^6.0.1
 ```
 
 ### Update main.dart
