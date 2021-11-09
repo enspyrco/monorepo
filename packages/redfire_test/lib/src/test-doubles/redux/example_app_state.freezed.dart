@@ -36,7 +36,7 @@ class _$ExampleAppStateTearOff {
     );
   }
 
-  ExampleAppState fromJson(Map<String, Object> json) {
+  ExampleAppState fromJson(Map<String, Object?> json) {
     return ExampleAppState.fromJson(json);
   }
 }
@@ -242,29 +242,20 @@ class _$_ExampleAppState implements _ExampleAppState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ExampleAppState &&
-            (identical(other.pages, pages) ||
-                const DeepCollectionEquality().equals(other.pages, pages)) &&
+        (other.runtimeType == runtimeType &&
+            other is _ExampleAppState &&
+            (identical(other.pages, pages) || other.pages == pages) &&
             (identical(other.problems, problems) ||
-                const DeepCollectionEquality()
-                    .equals(other.problems, problems)) &&
+                other.problems == problems) &&
             (identical(other.settings, settings) ||
-                const DeepCollectionEquality()
-                    .equals(other.settings, settings)) &&
-            (identical(other.auth, auth) ||
-                const DeepCollectionEquality().equals(other.auth, auth)) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(other.profile, profile)));
+                other.settings == settings) &&
+            (identical(other.auth, auth) || other.auth == auth) &&
+            (identical(other.profile, profile) || other.profile == profile));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(pages) ^
-      const DeepCollectionEquality().hash(problems) ^
-      const DeepCollectionEquality().hash(settings) ^
-      const DeepCollectionEquality().hash(auth) ^
-      const DeepCollectionEquality().hash(profile);
+      Object.hash(runtimeType, pages, problems, settings, auth, profile);
 
   @JsonKey(ignore: true)
   @override
@@ -290,15 +281,15 @@ abstract class _ExampleAppState implements ExampleAppState {
 
   @override
   @PageDataConverter()
-  IList<PageData> get pages => throw _privateConstructorUsedError;
+  IList<PageData> get pages;
   @override
-  IList<ProblemInfo> get problems => throw _privateConstructorUsedError;
+  IList<ProblemInfo> get problems;
   @override
-  Settings get settings => throw _privateConstructorUsedError;
+  Settings get settings;
   @override
-  AuthState get auth => throw _privateConstructorUsedError;
+  AuthState get auth;
   @override
-  ProfileData? get profile => throw _privateConstructorUsedError;
+  ProfileData? get profile;
   @override
   @JsonKey(ignore: true)
   _$ExampleAppStateCopyWith<_ExampleAppState> get copyWith =>
