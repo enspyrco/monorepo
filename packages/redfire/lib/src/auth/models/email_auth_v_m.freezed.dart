@@ -28,7 +28,7 @@ class _$EmailAuthVMTearOff {
     );
   }
 
-  EmailAuthVM fromJson(Map<String, Object> json) {
+  EmailAuthVM fromJson(Map<String, Object?> json) {
     return EmailAuthVM.fromJson(json);
   }
 }
@@ -140,19 +140,15 @@ class _$_EmailAuthVM implements _EmailAuthVM {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _EmailAuthVM &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
+        (other.runtimeType == runtimeType &&
+            other is _EmailAuthVM &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.providers, providers) ||
-                const DeepCollectionEquality()
-                    .equals(other.providers, providers)));
+                other.providers == providers));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(providers);
+  int get hashCode => Object.hash(runtimeType, email, providers);
 
   @JsonKey(ignore: true)
   @override
@@ -173,9 +169,9 @@ abstract class _EmailAuthVM implements EmailAuthVM {
       _$_EmailAuthVM.fromJson;
 
   @override
-  String? get email => throw _privateConstructorUsedError;
+  String? get email;
   @override
-  ISet<ProvidersEnum>? get providers => throw _privateConstructorUsedError;
+  ISet<ProvidersEnum>? get providers;
   @override
   @JsonKey(ignore: true)
   _$EmailAuthVMCopyWith<_EmailAuthVM> get copyWith =>

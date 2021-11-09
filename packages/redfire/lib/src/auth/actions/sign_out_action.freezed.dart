@@ -25,7 +25,7 @@ class _$SignOutActionTearOff {
     return _SignOutAction();
   }
 
-  SignOutAction fromJson(Map<String, Object> json) {
+  SignOutAction fromJson(Map<String, Object?> json) {
     return SignOutAction.fromJson(json);
   }
 }
@@ -89,7 +89,8 @@ class _$_SignOutAction implements _SignOutAction {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _SignOutAction);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _SignOutAction);
   }
 
   @override

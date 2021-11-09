@@ -40,7 +40,7 @@ class _$AppleIdCredentialTearOff {
     );
   }
 
-  AppleIdCredential fromJson(Map<String, Object> json) {
+  AppleIdCredential fromJson(Map<String, Object?> json) {
     return AppleIdCredential.fromJson(json);
   }
 }
@@ -317,38 +317,25 @@ class _$_AppleIdCredential implements _AppleIdCredential {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AppleIdCredential &&
+        (other.runtimeType == runtimeType &&
+            other is _AppleIdCredential &&
             (identical(other.userIdentifier, userIdentifier) ||
-                const DeepCollectionEquality()
-                    .equals(other.userIdentifier, userIdentifier)) &&
+                other.userIdentifier == userIdentifier) &&
             (identical(other.givenName, givenName) ||
-                const DeepCollectionEquality()
-                    .equals(other.givenName, givenName)) &&
+                other.givenName == givenName) &&
             (identical(other.familyName, familyName) ||
-                const DeepCollectionEquality()
-                    .equals(other.familyName, familyName)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
+                other.familyName == familyName) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.authorizationCode, authorizationCode) ||
-                const DeepCollectionEquality()
-                    .equals(other.authorizationCode, authorizationCode)) &&
+                other.authorizationCode == authorizationCode) &&
             (identical(other.identityToken, identityToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.identityToken, identityToken)) &&
-            (identical(other.state, state) ||
-                const DeepCollectionEquality().equals(other.state, state)));
+                other.identityToken == identityToken) &&
+            (identical(other.state, state) || other.state == state));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(userIdentifier) ^
-      const DeepCollectionEquality().hash(givenName) ^
-      const DeepCollectionEquality().hash(familyName) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(authorizationCode) ^
-      const DeepCollectionEquality().hash(identityToken) ^
-      const DeepCollectionEquality().hash(state);
+  int get hashCode => Object.hash(runtimeType, userIdentifier, givenName,
+      familyName, email, authorizationCode, identityToken, state);
 
   @JsonKey(ignore: true)
   @override
@@ -380,7 +367,7 @@ abstract class _AppleIdCredential implements AppleIdCredential {
   ///
   /// This will always be provided on iOS and macOS systems. On Android, however, this will not be present.
   /// This will stay the same between sign ins, until the user deauthorizes your App.
-  String? get userIdentifier => throw _privateConstructorUsedError;
+  String? get userIdentifier;
   @override
 
   /// The users given name, in case it was requested.
@@ -390,7 +377,7 @@ abstract class _AppleIdCredential implements AppleIdCredential {
   /// Upon further authorizations, you will only  the [userIdentifier],
   /// meaning you will need to store this data securely on your servers.
   /// For more information see: https://forums.developer.apple.com/thread/121496
-  String? get givenName => throw _privateConstructorUsedError;
+  String? get givenName;
   @override
 
   /// The users family name, in case it was requested.
@@ -400,7 +387,7 @@ abstract class _AppleIdCredential implements AppleIdCredential {
   /// Upon further authorizations, you will only get the [userIdentifier],
   /// meaning you will need to store this data securely on your servers.
   /// For more information see: https://forums.developer.apple.com/thread/121496
-  String? get familyName => throw _privateConstructorUsedError;
+  String? get familyName;
   @override
 
   /// The users email in case it was requested.
@@ -410,23 +397,23 @@ abstract class _AppleIdCredential implements AppleIdCredential {
   /// Upon further authorizations, you will only get the [userIdentifier],
   /// meaning you will need to store this data securely on your servers.
   /// For more information see: https://forums.developer.apple.com/thread/121496
-  String? get email => throw _privateConstructorUsedError;
+  String? get email;
   @override
 
   /// The verification code for the current authorization.
   ///
   /// This code should be used by your server component to validate the authorization with Apple within 5 minutes upon receiving it.
-  String get authorizationCode => throw _privateConstructorUsedError;
+  String get authorizationCode;
   @override
 
   /// A JSON Web Token (JWT) that securely communicates information about the user to your app.
-  String? get identityToken => throw _privateConstructorUsedError;
+  String? get identityToken;
   @override
 
   /// The `state` parameter that was passed to the request.
   ///
   /// This data is not modified by Apple.
-  String? get state => throw _privateConstructorUsedError;
+  String? get state;
   @override
   @JsonKey(ignore: true)
   _$AppleIdCredentialCopyWith<_AppleIdCredential> get copyWith =>

@@ -25,16 +25,18 @@ class _$AuthStateTearOff {
       {required EmailAuthVM emailVM,
       AuthUserData? userData,
       IdTokenResult? idTokenResult,
+      required LinkAccountsViewModel linking,
       required AuthStepEnum step}) {
     return _AuthState(
       emailVM: emailVM,
       userData: userData,
       idTokenResult: idTokenResult,
+      linking: linking,
       step: step,
     );
   }
 
-  AuthState fromJson(Map<String, Object> json) {
+  AuthState fromJson(Map<String, Object?> json) {
     return AuthState.fromJson(json);
   }
 }
@@ -47,6 +49,7 @@ mixin _$AuthState {
   EmailAuthVM get emailVM => throw _privateConstructorUsedError;
   AuthUserData? get userData => throw _privateConstructorUsedError;
   IdTokenResult? get idTokenResult => throw _privateConstructorUsedError;
+  LinkAccountsViewModel get linking => throw _privateConstructorUsedError;
   AuthStepEnum get step => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -63,11 +66,13 @@ abstract class $AuthStateCopyWith<$Res> {
       {EmailAuthVM emailVM,
       AuthUserData? userData,
       IdTokenResult? idTokenResult,
+      LinkAccountsViewModel linking,
       AuthStepEnum step});
 
   $EmailAuthVMCopyWith<$Res> get emailVM;
   $AuthUserDataCopyWith<$Res>? get userData;
   $IdTokenResultCopyWith<$Res>? get idTokenResult;
+  $LinkAccountsViewModelCopyWith<$Res> get linking;
 }
 
 /// @nodoc
@@ -83,6 +88,7 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
     Object? emailVM = freezed,
     Object? userData = freezed,
     Object? idTokenResult = freezed,
+    Object? linking = freezed,
     Object? step = freezed,
   }) {
     return _then(_value.copyWith(
@@ -98,6 +104,10 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
           ? _value.idTokenResult
           : idTokenResult // ignore: cast_nullable_to_non_nullable
               as IdTokenResult?,
+      linking: linking == freezed
+          ? _value.linking
+          : linking // ignore: cast_nullable_to_non_nullable
+              as LinkAccountsViewModel,
       step: step == freezed
           ? _value.step
           : step // ignore: cast_nullable_to_non_nullable
@@ -133,6 +143,13 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
       return _then(_value.copyWith(idTokenResult: value));
     });
   }
+
+  @override
+  $LinkAccountsViewModelCopyWith<$Res> get linking {
+    return $LinkAccountsViewModelCopyWith<$Res>(_value.linking, (value) {
+      return _then(_value.copyWith(linking: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -145,6 +162,7 @@ abstract class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       {EmailAuthVM emailVM,
       AuthUserData? userData,
       IdTokenResult? idTokenResult,
+      LinkAccountsViewModel linking,
       AuthStepEnum step});
 
   @override
@@ -153,6 +171,8 @@ abstract class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
   $AuthUserDataCopyWith<$Res>? get userData;
   @override
   $IdTokenResultCopyWith<$Res>? get idTokenResult;
+  @override
+  $LinkAccountsViewModelCopyWith<$Res> get linking;
 }
 
 /// @nodoc
@@ -169,6 +189,7 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     Object? emailVM = freezed,
     Object? userData = freezed,
     Object? idTokenResult = freezed,
+    Object? linking = freezed,
     Object? step = freezed,
   }) {
     return _then(_AuthState(
@@ -184,6 +205,10 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
           ? _value.idTokenResult
           : idTokenResult // ignore: cast_nullable_to_non_nullable
               as IdTokenResult?,
+      linking: linking == freezed
+          ? _value.linking
+          : linking // ignore: cast_nullable_to_non_nullable
+              as LinkAccountsViewModel,
       step: step == freezed
           ? _value.step
           : step // ignore: cast_nullable_to_non_nullable
@@ -199,6 +224,7 @@ class _$_AuthState implements _AuthState {
       {required this.emailVM,
       this.userData,
       this.idTokenResult,
+      required this.linking,
       required this.step});
 
   factory _$_AuthState.fromJson(Map<String, dynamic> json) =>
@@ -211,37 +237,32 @@ class _$_AuthState implements _AuthState {
   @override
   final IdTokenResult? idTokenResult;
   @override
+  final LinkAccountsViewModel linking;
+  @override
   final AuthStepEnum step;
 
   @override
   String toString() {
-    return 'AuthState(emailVM: $emailVM, userData: $userData, idTokenResult: $idTokenResult, step: $step)';
+    return 'AuthState(emailVM: $emailVM, userData: $userData, idTokenResult: $idTokenResult, linking: $linking, step: $step)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AuthState &&
-            (identical(other.emailVM, emailVM) ||
-                const DeepCollectionEquality()
-                    .equals(other.emailVM, emailVM)) &&
+        (other.runtimeType == runtimeType &&
+            other is _AuthState &&
+            (identical(other.emailVM, emailVM) || other.emailVM == emailVM) &&
             (identical(other.userData, userData) ||
-                const DeepCollectionEquality()
-                    .equals(other.userData, userData)) &&
+                other.userData == userData) &&
             (identical(other.idTokenResult, idTokenResult) ||
-                const DeepCollectionEquality()
-                    .equals(other.idTokenResult, idTokenResult)) &&
-            (identical(other.step, step) ||
-                const DeepCollectionEquality().equals(other.step, step)));
+                other.idTokenResult == idTokenResult) &&
+            (identical(other.linking, linking) || other.linking == linking) &&
+            (identical(other.step, step) || other.step == step));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(emailVM) ^
-      const DeepCollectionEquality().hash(userData) ^
-      const DeepCollectionEquality().hash(idTokenResult) ^
-      const DeepCollectionEquality().hash(step);
+      Object.hash(runtimeType, emailVM, userData, idTokenResult, linking, step);
 
   @JsonKey(ignore: true)
   @override
@@ -259,19 +280,22 @@ abstract class _AuthState implements AuthState {
       {required EmailAuthVM emailVM,
       AuthUserData? userData,
       IdTokenResult? idTokenResult,
+      required LinkAccountsViewModel linking,
       required AuthStepEnum step}) = _$_AuthState;
 
   factory _AuthState.fromJson(Map<String, dynamic> json) =
       _$_AuthState.fromJson;
 
   @override
-  EmailAuthVM get emailVM => throw _privateConstructorUsedError;
+  EmailAuthVM get emailVM;
   @override
-  AuthUserData? get userData => throw _privateConstructorUsedError;
+  AuthUserData? get userData;
   @override
-  IdTokenResult? get idTokenResult => throw _privateConstructorUsedError;
+  IdTokenResult? get idTokenResult;
   @override
-  AuthStepEnum get step => throw _privateConstructorUsedError;
+  LinkAccountsViewModel get linking;
+  @override
+  AuthStepEnum get step;
   @override
   @JsonKey(ignore: true)
   _$AuthStateCopyWith<_AuthState> get copyWith =>

@@ -27,7 +27,7 @@ class _$SetThemeModeActionTearOff {
     );
   }
 
-  SetThemeModeAction fromJson(Map<String, Object> json) {
+  SetThemeModeAction fromJson(Map<String, Object?> json) {
     return SetThemeModeAction.fromJson(json);
   }
 }
@@ -128,15 +128,14 @@ class _$_SetThemeModeAction implements _SetThemeModeAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SetThemeModeAction &&
+        (other.runtimeType == runtimeType &&
+            other is _SetThemeModeAction &&
             (identical(other.themeMode, themeMode) ||
-                const DeepCollectionEquality()
-                    .equals(other.themeMode, themeMode)));
+                other.themeMode == themeMode));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(themeMode);
+  int get hashCode => Object.hash(runtimeType, themeMode);
 
   @JsonKey(ignore: true)
   @override
@@ -156,7 +155,7 @@ abstract class _SetThemeModeAction implements SetThemeModeAction {
       _$_SetThemeModeAction.fromJson;
 
   @override
-  int get themeMode => throw _privateConstructorUsedError;
+  int get themeMode;
   @override
   @JsonKey(ignore: true)
   _$SetThemeModeActionCopyWith<_SetThemeModeAction> get copyWith =>

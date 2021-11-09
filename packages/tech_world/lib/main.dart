@@ -24,7 +24,7 @@ void main() {
         .combine(),
     initialState: AppState.init(),
     middleware: [
-      ...redfireMiddleware(),
+      ...redfireMiddlewares(),
       ...[SetAuthUserDataMiddleware()]
     ],
   );

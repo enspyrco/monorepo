@@ -25,7 +25,7 @@ class _$ProfilePageDataTearOff {
     return _ProfilePageData();
   }
 
-  ProfilePageData fromJson(Map<String, Object> json) {
+  ProfilePageData fromJson(Map<String, Object?> json) {
     return ProfilePageData.fromJson(json);
   }
 }
@@ -89,7 +89,8 @@ class _$_ProfilePageData extends _ProfilePageData {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ProfilePageData);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _ProfilePageData);
   }
 
   @override

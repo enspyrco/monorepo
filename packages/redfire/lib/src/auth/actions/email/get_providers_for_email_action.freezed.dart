@@ -28,7 +28,7 @@ class _$GetProvidersForEmailActionTearOff {
     );
   }
 
-  GetProvidersForEmailAction fromJson(Map<String, Object> json) {
+  GetProvidersForEmailAction fromJson(Map<String, Object?> json) {
     return GetProvidersForEmailAction.fromJson(json);
   }
 }
@@ -131,14 +131,13 @@ class _$_GetProvidersForEmailAction implements _GetProvidersForEmailAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GetProvidersForEmailAction &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)));
+        (other.runtimeType == runtimeType &&
+            other is _GetProvidersForEmailAction &&
+            (identical(other.email, email) || other.email == email));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(email);
+  int get hashCode => Object.hash(runtimeType, email);
 
   @JsonKey(ignore: true)
   @override
@@ -161,7 +160,7 @@ abstract class _GetProvidersForEmailAction
       _$_GetProvidersForEmailAction.fromJson;
 
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
   @JsonKey(ignore: true)
   _$GetProvidersForEmailActionCopyWith<_GetProvidersForEmailAction>

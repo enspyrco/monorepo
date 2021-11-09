@@ -26,7 +26,7 @@ class _$SignInWithAppleActionTearOff {
     return _SignInWithAppleAction();
   }
 
-  SignInWithAppleAction fromJson(Map<String, Object> json) {
+  SignInWithAppleAction fromJson(Map<String, Object?> json) {
     return SignInWithAppleAction.fromJson(json);
   }
 }
@@ -90,7 +90,8 @@ class _$_SignInWithAppleAction implements _SignInWithAppleAction {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _SignInWithAppleAction);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _SignInWithAppleAction);
   }
 
   @override

@@ -1,14 +1,15 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redfire/src/app-init/redux/redfire_middlewares.dart';
+import 'package:redfire/src/app-init/redux/redfire_reducers.dart';
 import 'package:redfire/src/app-init/widgets/initializing_error_page.dart';
 import 'package:redfire/src/app-init/widgets/initializing_indicator.dart';
 import 'package:redfire/src/navigation/actions/remove_current_page_action.dart';
 import 'package:redfire/src/navigation/extensions/page_data_list_extension.dart';
 import 'package:redfire/src/navigation/models/page_data.dart';
 import 'package:redfire/src/platform/plugins/wrappers/firebase_wrapper.dart';
-import 'package:redfire/src/redux/redfire_middleware.dart';
-import 'package:redfire/src/redux/redfire_reducers.dart';
+import 'package:redfire/src/redux/extensions/reducers_list_extension.dart';
 import 'package:redfire/src/settings/extensions/brightness_mode_enum_extensions.dart';
 import 'package:redfire/src/settings/extensions/theme_set_extensions.dart';
 import 'package:redfire/src/settings/models/settings.dart';
@@ -16,8 +17,7 @@ import 'package:redfire/src/types/red_fire_state.dart';
 import 'package:redfire/src/types/redux_action.dart';
 import 'package:redux/redux.dart';
 
-import '../../redux/extensions/reducers_list_extension.dart';
-import '../redfire_initial_actions.dart';
+import '../redux/redfire_initial_actions.dart';
 
 class AppWidget<T extends RedFireState> extends StatefulWidget {
   late final Store<T> _store;
@@ -60,7 +60,7 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
     // create the redux store, combining any provided reducers and middleware
     _store = Store<T>((redfireReducers<T>() + (reducers ?? [])).combine(),
         initialState: initialState,
-        middleware: [...redfireMiddleware(), ...(middlewares ?? [])]);
+        middleware: [...redfireMiddlewares(), ...(middlewares ?? [])]);
   }
 
   @override

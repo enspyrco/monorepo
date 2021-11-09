@@ -30,7 +30,7 @@ class _$ThemeColorsTearOff {
     );
   }
 
-  ThemeColors fromJson(Map<String, Object> json) {
+  ThemeColors fromJson(Map<String, Object?> json) {
     return ThemeColors.fromJson(json);
   }
 }
@@ -156,23 +156,16 @@ class _$_ThemeColors implements _ThemeColors {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ThemeColors &&
-            (identical(other.primary, primary) ||
-                const DeepCollectionEquality()
-                    .equals(other.primary, primary)) &&
+        (other.runtimeType == runtimeType &&
+            other is _ThemeColors &&
+            (identical(other.primary, primary) || other.primary == primary) &&
             (identical(other.secondary, secondary) ||
-                const DeepCollectionEquality()
-                    .equals(other.secondary, secondary)) &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+                other.secondary == secondary) &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(primary) ^
-      const DeepCollectionEquality().hash(secondary) ^
-      const DeepCollectionEquality().hash(error);
+  int get hashCode => Object.hash(runtimeType, primary, secondary, error);
 
   @JsonKey(ignore: true)
   @override
@@ -195,11 +188,11 @@ abstract class _ThemeColors implements ThemeColors {
       _$_ThemeColors.fromJson;
 
   @override
-  int get primary => throw _privateConstructorUsedError;
+  int get primary;
   @override
-  int get secondary => throw _privateConstructorUsedError;
+  int get secondary;
   @override
-  int get error => throw _privateConstructorUsedError;
+  int get error;
   @override
   @JsonKey(ignore: true)
   _$ThemeColorsCopyWith<_ThemeColors> get copyWith =>

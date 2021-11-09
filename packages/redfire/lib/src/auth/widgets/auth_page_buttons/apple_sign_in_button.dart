@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'stretchable_button.dart';
+import '../../../shared/widgets/stretchable_button.dart';
 
 const double defaultBorderRadius = 3.0;
 

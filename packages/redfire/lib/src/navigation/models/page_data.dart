@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/src/app-init/widgets/initial_page.dart';
+import 'package:redfire/src/auth/pages/other_auth_options_page.dart';
+import 'package:redfire/src/auth/pages/other_auth_options_page_data.dart';
 import 'package:redfire/src/auth/widgets/auth_page.dart';
 import 'package:redfire/src/navigation/models/initial_page_data.dart';
 import 'package:redfire/src/problems/pages/problem_page.dart';
@@ -54,6 +56,10 @@ void addPageTransforms<T extends RedFireState>(
           key: const ValueKey(ProfilePage), child: ProfilePage<T>());
   toMaterialPageMap[ProblemPageData.staticTypeName] =
       (pageData) => ProblemPage<T>(info: (pageData as ProblemPageData).problem);
+  toMaterialPageMap[OtherAuthOptionsPageData.staticTypeName] = (pageData) =>
+      MaterialPage<OtherAuthOptionsPage>(
+          key: const ValueKey(OtherAuthOptionsPage),
+          child: OtherAuthOptionsPage<T>());
 
   // add the redfire fromJson transforms
   _fromJsonMap[InitialPageData.staticTypeName] =
@@ -62,6 +68,8 @@ void addPageTransforms<T extends RedFireState>(
       (JsonMap json) => ProfilePageData.fromJson(json);
   _fromJsonMap[ProblemPageData.staticTypeName] =
       (JsonMap json) => ProblemPageData.fromJson(json);
+  _fromJsonMap[OtherAuthOptionsPageData.staticTypeName] =
+      (JsonMap json) => OtherAuthOptionsPageData.fromJson(json);
 }
 
 class PageDataTransforms {

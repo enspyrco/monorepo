@@ -27,7 +27,7 @@ class _$RemoveProblemActionTearOff {
     );
   }
 
-  RemoveProblemAction fromJson(Map<String, Object> json) {
+  RemoveProblemAction fromJson(Map<String, Object?> json) {
     return RemoveProblemAction.fromJson(json);
   }
 }
@@ -140,14 +140,13 @@ class _$_RemoveProblemAction implements _RemoveProblemAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _RemoveProblemAction &&
-            (identical(other.info, info) ||
-                const DeepCollectionEquality().equals(other.info, info)));
+        (other.runtimeType == runtimeType &&
+            other is _RemoveProblemAction &&
+            (identical(other.info, info) || other.info == info));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(info);
+  int get hashCode => Object.hash(runtimeType, info);
 
   @JsonKey(ignore: true)
   @override
@@ -168,7 +167,7 @@ abstract class _RemoveProblemAction implements RemoveProblemAction {
       _$_RemoveProblemAction.fromJson;
 
   @override
-  ProblemInfo get info => throw _privateConstructorUsedError;
+  ProblemInfo get info;
   @override
   @JsonKey(ignore: true)
   _$RemoveProblemActionCopyWith<_RemoveProblemAction> get copyWith =>

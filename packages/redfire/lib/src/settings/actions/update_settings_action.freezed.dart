@@ -27,7 +27,7 @@ class _$UpdateSettingsActionTearOff {
     );
   }
 
-  UpdateSettingsAction fromJson(Map<String, Object> json) {
+  UpdateSettingsAction fromJson(Map<String, Object?> json) {
     return UpdateSettingsAction.fromJson(json);
   }
 }
@@ -128,15 +128,14 @@ class _$_UpdateSettingsAction implements _UpdateSettingsAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _UpdateSettingsAction &&
+        (other.runtimeType == runtimeType &&
+            other is _UpdateSettingsAction &&
             (identical(other.platform, platform) ||
-                const DeepCollectionEquality()
-                    .equals(other.platform, platform)));
+                other.platform == platform));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(platform);
+  int get hashCode => Object.hash(runtimeType, platform);
 
   @JsonKey(ignore: true)
   @override
@@ -158,7 +157,7 @@ abstract class _UpdateSettingsAction implements UpdateSettingsAction {
       _$_UpdateSettingsAction.fromJson;
 
   @override
-  PlatformsEnum get platform => throw _privateConstructorUsedError;
+  PlatformsEnum get platform;
   @override
   @JsonKey(ignore: true)
   _$UpdateSettingsActionCopyWith<_UpdateSettingsAction> get copyWith =>

@@ -52,7 +52,7 @@ class AuthService extends ReduxService {
   Future<ISet<ProvidersEnum>> retrieveProvidersFor(String email) async {
     var providerNames = await _firebaseAuth.fetchSignInMethodsForEmail(email);
     return providerNames
-        .map<ProvidersEnum>((name) => authProviderNamesMap[name]!)
+        .map<ProvidersEnum>((name) => authProviderEnumFrom[name]!)
         .toISet();
   }
 
@@ -132,6 +132,17 @@ class AuthService extends ReduxService {
     final user = userCredential.user!;
 
     return user.toModel();
+  }
+
+  Future<UserCredential> signInWithGithubOnWeb() async {
+    // Create a new provider
+    GithubAuthProvider githubProvider = GithubAuthProvider();
+
+    // Once signed in, return the UserCredential
+    return await _firebaseAuth.signInWithPopup(githubProvider);
+
+    // Or use signInWithRedirect
+    // return await _firebaseAuth.signInWithRedirect(githubProvider);
   }
 
   Future<AuthUserData> signInWithGithub(String token) async {

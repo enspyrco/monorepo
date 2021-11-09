@@ -25,7 +25,7 @@ class _$GetIdTokenActionTearOff {
     return _GetIdTokenAction();
   }
 
-  GetIdTokenAction fromJson(Map<String, Object> json) {
+  GetIdTokenAction fromJson(Map<String, Object?> json) {
     return GetIdTokenAction.fromJson(json);
   }
 }
@@ -89,7 +89,8 @@ class _$_GetIdTokenAction implements _GetIdTokenAction {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _GetIdTokenAction);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _GetIdTokenAction);
   }
 
   @override

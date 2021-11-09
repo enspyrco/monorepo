@@ -15,8 +15,8 @@ _$_ProfileData _$$_ProfileDataFromJson(Map<String, dynamic> json) =>
       lastName: json['lastName'] as String?,
       authorizationStatus:
           (json['authorizationStatus'] as Map<String, dynamic>).map(
-        (k, e) => MapEntry(_$enumDecode(_$ProvidersEnumEnumMap, k),
-            _$enumDecode(_$AuthorizationEnumEnumMap, e)),
+        (k, e) => MapEntry($enumDecode(_$ProvidersEnumEnumMap, k),
+            $enumDecode(_$AuthorizationEnumEnumMap, e)),
       ),
     );
 
@@ -31,32 +31,6 @@ Map<String, dynamic> _$$_ProfileDataToJson(_$_ProfileData instance) =>
           MapEntry(_$ProvidersEnumEnumMap[k], _$AuthorizationEnumEnumMap[e])),
     };
 
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
-
 const _$AuthorizationEnumEnumMap = {
   AuthorizationEnum.waitingForInput: 'WAITING_FOR_INPUT',
   AuthorizationEnum.gettingAuthorized: 'GETTING_AUTHORIZED',
@@ -68,7 +42,5 @@ const _$ProvidersEnumEnumMap = {
   ProvidersEnum.apple: 'APPLE',
   ProvidersEnum.google: 'GOOGLE',
   ProvidersEnum.email: 'EMAIL',
-  ProvidersEnum.asana: 'ASANA',
   ProvidersEnum.gitHub: 'GIT_HUB',
-  ProvidersEnum.phone: 'PHONE',
 };

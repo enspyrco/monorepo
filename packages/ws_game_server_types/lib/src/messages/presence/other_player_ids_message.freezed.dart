@@ -31,7 +31,7 @@ class _$OtherPlayerIdsMessageTearOff {
     );
   }
 
-  OtherPlayerIdsMessage fromJson(Map<String, Object> json) {
+  OtherPlayerIdsMessage fromJson(Map<String, Object?> json) {
     return OtherPlayerIdsMessage.fromJson(json);
   }
 }
@@ -147,18 +147,14 @@ class _$_OtherPlayerIdsMessage implements _OtherPlayerIdsMessage {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OtherPlayerIdsMessage &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.ids, ids) ||
-                const DeepCollectionEquality().equals(other.ids, ids)));
+        (other.runtimeType == runtimeType &&
+            other is _OtherPlayerIdsMessage &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.ids, ids) || other.ids == ids));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(ids);
+  int get hashCode => Object.hash(runtimeType, type, ids);
 
   @JsonKey(ignore: true)
   @override
@@ -180,9 +176,9 @@ abstract class _OtherPlayerIdsMessage implements OtherPlayerIdsMessage {
       _$_OtherPlayerIdsMessage.fromJson;
 
   @override
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
-  ISet<String> get ids => throw _privateConstructorUsedError;
+  ISet<String> get ids;
   @override
   @JsonKey(ignore: true)
   _$OtherPlayerIdsMessageCopyWith<_OtherPlayerIdsMessage> get copyWith =>

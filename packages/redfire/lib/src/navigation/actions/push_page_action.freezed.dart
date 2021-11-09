@@ -27,7 +27,7 @@ class _$PushPageActionTearOff {
     );
   }
 
-  PushPageAction fromJson(Map<String, Object> json) {
+  PushPageAction fromJson(Map<String, Object?> json) {
     return PushPageAction.fromJson(json);
   }
 }
@@ -130,14 +130,13 @@ class _$_PushPageAction implements _PushPageAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PushPageAction &&
-            (identical(other.page, page) ||
-                const DeepCollectionEquality().equals(other.page, page)));
+        (other.runtimeType == runtimeType &&
+            other is _PushPageAction &&
+            (identical(other.page, page) || other.page == page));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(page);
+  int get hashCode => Object.hash(runtimeType, page);
 
   @JsonKey(ignore: true)
   @override
@@ -159,7 +158,7 @@ abstract class _PushPageAction implements PushPageAction {
 
   @override
   @PageDataConverter()
-  PageData get page => throw _privateConstructorUsedError;
+  PageData get page;
   @override
   @JsonKey(ignore: true)
   _$PushPageActionCopyWith<_PushPageAction> get copyWith =>

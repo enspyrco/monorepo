@@ -7,10 +7,6 @@ enum ProvidersEnum {
   google,
   @JsonValue('EMAIL')
   email,
-  @JsonValue('ASANA')
-  asana,
   @JsonValue('GIT_HUB')
   gitHub,
-  @JsonValue('PHONE')
-  phone,
 }

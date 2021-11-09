@@ -28,7 +28,7 @@ class _$SetIdTokenResultActionTearOff {
     );
   }
 
-  SetIdTokenResultAction fromJson(Map<String, Object> json) {
+  SetIdTokenResultAction fromJson(Map<String, Object?> json) {
     return SetIdTokenResultAction.fromJson(json);
   }
 }
@@ -141,14 +141,13 @@ class _$_SetIdTokenResultAction implements _SetIdTokenResultAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SetIdTokenResultAction &&
-            (identical(other.result, result) ||
-                const DeepCollectionEquality().equals(other.result, result)));
+        (other.runtimeType == runtimeType &&
+            other is _SetIdTokenResultAction &&
+            (identical(other.result, result) || other.result == result));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(result);
+  int get hashCode => Object.hash(runtimeType, result);
 
   @JsonKey(ignore: true)
   @override
@@ -170,7 +169,7 @@ abstract class _SetIdTokenResultAction implements SetIdTokenResultAction {
       _$_SetIdTokenResultAction.fromJson;
 
   @override
-  IdTokenResult get result => throw _privateConstructorUsedError;
+  IdTokenResult get result;
   @override
   @JsonKey(ignore: true)
   _$SetIdTokenResultActionCopyWith<_SetIdTokenResultAction> get copyWith =>

@@ -38,7 +38,7 @@ class _$AuthProviderDataTearOff {
     );
   }
 
-  AuthProviderData fromJson(Map<String, Object> json) {
+  AuthProviderData fromJson(Map<String, Object?> json) {
     return AuthProviderData.fromJson(json);
   }
 }
@@ -245,34 +245,23 @@ class _$_AuthProviderData implements _AuthProviderData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AuthProviderData &&
+        (other.runtimeType == runtimeType &&
+            other is _AuthProviderData &&
             (identical(other.providerId, providerId) ||
-                const DeepCollectionEquality()
-                    .equals(other.providerId, providerId)) &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)) &&
+                other.providerId == providerId) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.displayName, displayName) ||
-                const DeepCollectionEquality()
-                    .equals(other.displayName, displayName)) &&
+                other.displayName == displayName) &&
             (identical(other.photoURL, photoURL) ||
-                const DeepCollectionEquality()
-                    .equals(other.photoURL, photoURL)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
+                other.photoURL == photoURL) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.phoneNumber, phoneNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.phoneNumber, phoneNumber)));
+                other.phoneNumber == phoneNumber));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(providerId) ^
-      const DeepCollectionEquality().hash(uid) ^
-      const DeepCollectionEquality().hash(displayName) ^
-      const DeepCollectionEquality().hash(photoURL) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(phoneNumber);
+  int get hashCode => Object.hash(
+      runtimeType, providerId, uid, displayName, photoURL, email, phoneNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -300,27 +289,27 @@ abstract class _AuthProviderData implements AuthProviderData {
   @override
 
   /// The provider identifier.
-  String get providerId => throw _privateConstructorUsedError;
+  String get providerId;
   @override
 
   /// The provider’s user ID for the user.
-  String? get uid => throw _privateConstructorUsedError;
+  String? get uid;
   @override
 
   /// The name of the user.
-  String? get displayName => throw _privateConstructorUsedError;
+  String? get displayName;
   @override
 
   /// The URL of the user’s profile photo.
-  String? get photoURL => throw _privateConstructorUsedError;
+  String? get photoURL;
   @override
 
   /// The user’s email address.
-  String? get email => throw _privateConstructorUsedError;
+  String? get email;
   @override
 
   /// The user's phone number.
-  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get phoneNumber;
   @override
   @JsonKey(ignore: true)
   _$AuthProviderDataCopyWith<_AuthProviderData> get copyWith =>

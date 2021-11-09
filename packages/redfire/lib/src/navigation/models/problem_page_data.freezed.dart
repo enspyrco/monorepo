@@ -27,7 +27,7 @@ class _$ProblemPageDataTearOff {
     );
   }
 
-  ProblemPageData fromJson(Map<String, Object> json) {
+  ProblemPageData fromJson(Map<String, Object?> json) {
     return ProblemPageData.fromJson(json);
   }
 }
@@ -140,14 +140,13 @@ class _$_ProblemPageData extends _ProblemPageData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ProblemPageData &&
-            (identical(other.problem, problem) ||
-                const DeepCollectionEquality().equals(other.problem, problem)));
+        (other.runtimeType == runtimeType &&
+            other is _ProblemPageData &&
+            (identical(other.problem, problem) || other.problem == problem));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(problem);
+  int get hashCode => Object.hash(runtimeType, problem);
 
   @JsonKey(ignore: true)
   @override
@@ -168,7 +167,7 @@ abstract class _ProblemPageData extends ProblemPageData {
       _$_ProblemPageData.fromJson;
 
   @override
-  ProblemInfo get problem => throw _privateConstructorUsedError;
+  ProblemInfo get problem;
   @override
   @JsonKey(ignore: true)
   _$ProblemPageDataCopyWith<_ProblemPageData> get copyWith =>

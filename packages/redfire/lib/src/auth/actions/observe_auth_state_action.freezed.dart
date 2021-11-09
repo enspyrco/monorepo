@@ -26,7 +26,7 @@ class _$ObserveAuthStateActionTearOff {
     return _ObserveAuthStateAction();
   }
 
-  ObserveAuthStateAction fromJson(Map<String, Object> json) {
+  ObserveAuthStateAction fromJson(Map<String, Object?> json) {
     return ObserveAuthStateAction.fromJson(json);
   }
 }
@@ -90,7 +90,8 @@ class _$_ObserveAuthStateAction implements _ObserveAuthStateAction {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ObserveAuthStateAction);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _ObserveAuthStateAction);
   }
 
   @override

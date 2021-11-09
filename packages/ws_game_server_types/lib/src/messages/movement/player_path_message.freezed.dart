@@ -32,7 +32,7 @@ class _$PlayerPathMessageTearOff {
     );
   }
 
-  PlayerPathMessage fromJson(Map<String, Object> json) {
+  PlayerPathMessage fromJson(Map<String, Object?> json) {
     return PlayerPathMessage.fromJson(json);
   }
 }
@@ -163,21 +163,15 @@ class _$_PlayerPathMessage implements _PlayerPathMessage {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PlayerPathMessage &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)));
+        (other.runtimeType == runtimeType &&
+            other is _PlayerPathMessage &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.points, points) || other.points == points));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(points);
+  int get hashCode => Object.hash(runtimeType, type, userId, points);
 
   @JsonKey(ignore: true)
   @override
@@ -200,11 +194,11 @@ abstract class _PlayerPathMessage implements PlayerPathMessage {
       _$_PlayerPathMessage.fromJson;
 
   @override
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
-  String get userId => throw _privateConstructorUsedError;
+  String get userId;
   @override
-  IList<Double2> get points => throw _privateConstructorUsedError;
+  IList<Double2> get points;
   @override
   @JsonKey(ignore: true)
   _$PlayerPathMessageCopyWith<_PlayerPathMessage> get copyWith =>

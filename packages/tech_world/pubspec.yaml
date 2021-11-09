@@ -22,7 +22,7 @@ dependencies:
   # redfire dependencies
   #######################
   freezed_annotation:
-  json_annotation:
+  json_annotation: ^4.3.0
   redfire:
     path: ../redfire
   redux:
@@ -38,9 +38,10 @@ dev_dependencies:
   flutter_lints:
   build_runner:
   freezed:
-  json_serializable:
+  json_serializable: ^6.0.1
 
 flutter:
+  uses-material-design: true
   assets:
     - assets/images/bald.png
     - assets/images/beard.png

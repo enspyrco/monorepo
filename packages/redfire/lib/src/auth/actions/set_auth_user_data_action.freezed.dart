@@ -28,7 +28,7 @@ class _$SetAuthUserDataActionTearOff {
     );
   }
 
-  SetAuthUserDataAction fromJson(Map<String, Object> json) {
+  SetAuthUserDataAction fromJson(Map<String, Object?> json) {
     return SetAuthUserDataAction.fromJson(json);
   }
 }
@@ -145,15 +145,14 @@ class _$_SetAuthUserDataAction implements _SetAuthUserDataAction {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SetAuthUserDataAction &&
+        (other.runtimeType == runtimeType &&
+            other is _SetAuthUserDataAction &&
             (identical(other.authUserData, authUserData) ||
-                const DeepCollectionEquality()
-                    .equals(other.authUserData, authUserData)));
+                other.authUserData == authUserData));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(authUserData);
+  int get hashCode => Object.hash(runtimeType, authUserData);
 
   @JsonKey(ignore: true)
   @override
@@ -175,7 +174,7 @@ abstract class _SetAuthUserDataAction implements SetAuthUserDataAction {
       _$_SetAuthUserDataAction.fromJson;
 
   @override
-  AuthUserData? get authUserData => throw _privateConstructorUsedError;
+  AuthUserData? get authUserData;
   @override
   @JsonKey(ignore: true)
   _$SetAuthUserDataActionCopyWith<_SetAuthUserDataAction> get copyWith =>
