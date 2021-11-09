@@ -53,7 +53,7 @@ class AppWidgetHarness<T extends RedFireState> {
   AppWidgetHarness.withMockedPlugins(T initialState, ServicesHarness services)
       : _firebase = FakeFirebaseWrapper(),
         _store = Store<T>(redfireReducers<T>().combine(),
-            initialState: initialState, middleware: redfireMiddleware()) {
+            initialState: initialState, middleware: redfireMiddlewares()) {
     RedFireLocator.provide(
         authService: services.auth,
         databaseService: services.database,

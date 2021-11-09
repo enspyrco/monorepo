@@ -3,6 +3,7 @@ import 'package:redfire/src/auth/middleware/get_providers_for_email_middleware.d
 import 'package:redfire/src/auth/middleware/observe_auth_state_middleware.dart';
 import 'package:redfire/src/auth/middleware/sign_in_with_apple_middleware.dart';
 import 'package:redfire/src/auth/middleware/sign_in_with_email_middleware.dart';
+import 'package:redfire/src/auth/middleware/sign_in_with_git_hub.dart';
 import 'package:redfire/src/auth/middleware/sign_in_with_google_middleware.dart';
 import 'package:redfire/src/auth/middleware/sign_out_middleware.dart';
 import 'package:redfire/src/auth/middleware/sign_up_with_email_middleware.dart';
@@ -17,7 +18,7 @@ import 'package:redux/redux.dart';
 /// network), Calling to system frameworks.
 ///
 /// The middleawre can also perform another action using the [NextDispatcher]
-List<Middleware<T>> redfireMiddleware<T extends RedFireState>() => [
+List<Middleware<T>> redfireMiddlewares<T extends RedFireState>() => [
       // Auth
       ObserveAuthStateMiddleware<T>(),
       SignInWithAppleMiddleware<T>(),
@@ -26,6 +27,7 @@ List<Middleware<T>> redfireMiddleware<T extends RedFireState>() => [
       GetProvidersForEmailMiddleware<T>(),
       SignUpWithEmailMiddleware<T>(),
       SignInWithEmailMiddleware<T>(),
+      SignInWithGitHubMiddleware<T>(),
       GetIdTokenMiddleware<T>(),
 
       // DevTools

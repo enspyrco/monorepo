@@ -31,14 +31,16 @@
     {
       "name": "tech_world",
       "type": "dart",
+      "program": "lib/main.dart",
       "cwd": "packages/tech_world",
-      "request": "launch",
-      "program": "lib/main.dart"
+      "request": "launch"
     },
     {
       "name": "tech_world (web)",
       "request": "launch",
       "type": "dart",
+      "program": "lib/main.dart",
+      "cwd": "packages/tech_world",
       "deviceId": "chrome",
       "args": [
         "--web-hostname",
