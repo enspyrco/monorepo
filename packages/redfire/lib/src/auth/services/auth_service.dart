@@ -134,6 +134,17 @@ class AuthService extends ReduxService {
     return user.toModel();
   }
 
+  Future<UserCredential> signInWithGithubOnWeb() async {
+    // Create a new provider
+    GithubAuthProvider githubProvider = GithubAuthProvider();
+
+    // Once signed in, return the UserCredential
+    return await _firebaseAuth.signInWithPopup(githubProvider);
+
+    // Or use signInWithRedirect
+    // return await _firebaseAuth.signInWithRedirect(githubProvider);
+  }
+
   Future<AuthUserData> signInWithGithub(String token) async {
     final credential = GithubAuthProvider.credential(token);
     final userCredential = await _firebaseAuth.signInWithCredential(credential);

@@ -15,7 +15,7 @@ class LinkAccountMiddleware<T extends RedFireState>
             store.dispatch(UpdateLinkAccountsViewAction(
                 provider: action.provider, state: LinkingStateEnum.linking));
 
-            // we are temporarily doing the github auth fromthe widget as the lib needs a context
+            // we are temporarily doing the github auth from the widget as the lib needs a context
             // final service = RedFireLocator.getAuthService();
             // service.linkGithub(token);
 
