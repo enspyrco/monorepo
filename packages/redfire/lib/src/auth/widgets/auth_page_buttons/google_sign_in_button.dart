@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'stretchable_button.dart';
+import '../../../shared/widgets/stretchable_button.dart';
 
 /// A sign in button that matches Google's design guidelines.
 ///

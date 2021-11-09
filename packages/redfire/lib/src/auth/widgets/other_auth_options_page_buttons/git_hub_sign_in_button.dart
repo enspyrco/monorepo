@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-
-import '../../../shared/widgets/stretchable_button.dart';
+import 'package:redfire/src/shared/widgets/stretchable_button.dart';
 
 const double defaultBorderRadius = 3.0;
 
-enum AppleButtonStyle { white, whiteOutline, black }
+enum GitHubButtonStyle { white, whiteOutline, black }
 
-/// A sign in button that matches Apple's design guidelines.
-class AppleSignInButton extends StatelessWidget {
+/// A sign in button that (plans to) match GitHub's design guidelines.
+class GitHubSignInButton extends StatelessWidget {
   final String text;
-  final AppleButtonStyle style;
+  final GitHubButtonStyle style;
   final double borderRadius;
   final VoidCallback? onPressed;
   final TextStyle? textStyle;
@@ -19,14 +18,12 @@ class AppleSignInButton extends StatelessWidget {
   /// Creates a new button. Set [darkMode] to `true` to use the dark
   /// black background variant with white text, otherwise an all-white background
   /// with dark text is used.
-  const AppleSignInButton(
+  const GitHubSignInButton(
       {this.onPressed,
-      // 'Continue with Apple' is also an available variant depdening on App's sign-in experience.
-      this.text = 'Sign in with Apple',
+      this.text = 'Sign in with GitHub',
       this.textStyle,
       this.splashColor,
-      this.style = AppleButtonStyle.white,
-      // Apple doesn't specify a border radius, but this looks about right.
+      this.style = GitHubButtonStyle.white,
       this.borderRadius = defaultBorderRadius,
       this.centered = false,
       Key? key})
@@ -36,11 +33,11 @@ class AppleSignInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return StretchableButton(
       buttonColor:
-          style == AppleButtonStyle.black ? Colors.black : Colors.white,
+          style == GitHubButtonStyle.black ? Colors.black : Colors.white,
       borderRadius: borderRadius,
       splashColor: splashColor,
       buttonBorderColor:
-          style == AppleButtonStyle.whiteOutline ? Colors.black : null,
+          style == GitHubButtonStyle.whiteOutline ? Colors.black : null,
       onPressed: onPressed,
       buttonPadding: 0.0,
       centered: centered,
@@ -56,11 +53,10 @@ class AppleSignInButton extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(borderRadius),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Image(
-                      image: AssetImage(
-                          "assets/apple_${style == AppleButtonStyle.black ? "white" : "black"}.png",
-                          package: 'redfire'),
+                      image:
+                          AssetImage("assets/github.png", package: 'redfire'),
                       height: 17.0,
                       width: 17.0,
                     ),
@@ -76,7 +72,7 @@ class AppleSignInButton extends StatelessWidget {
                         fontSize: 16.0,
                         fontFamily: 'SF Pro',
                         fontWeight: FontWeight.w500,
-                        color: style == AppleButtonStyle.black
+                        color: style == GitHubButtonStyle.black
                             ? Colors.white
                             : Colors.black,
                       ),

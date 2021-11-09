@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'auth_page_v_m.dart';
+part of 'auth_page_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,13 +13,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-AuthPageVM _$AuthPageVMFromJson(Map<String, dynamic> json) {
+AuthPageModel _$AuthPageModelFromJson(Map<String, dynamic> json) {
   return _AuthPageVM.fromJson(json);
 }
 
 /// @nodoc
-class _$AuthPageVMTearOff {
-  const _$AuthPageVMTearOff();
+class _$AuthPageModelTearOff {
+  const _$AuthPageModelTearOff();
 
   _AuthPageVM call(PlatformsEnum platform, AuthState auth) {
     return _AuthPageVM(
@@ -28,42 +28,43 @@ class _$AuthPageVMTearOff {
     );
   }
 
-  AuthPageVM fromJson(Map<String, Object?> json) {
-    return AuthPageVM.fromJson(json);
+  AuthPageModel fromJson(Map<String, Object?> json) {
+    return AuthPageModel.fromJson(json);
   }
 }
 
 /// @nodoc
-const $AuthPageVM = _$AuthPageVMTearOff();
+const $AuthPageModel = _$AuthPageModelTearOff();
 
 /// @nodoc
-mixin _$AuthPageVM {
+mixin _$AuthPageModel {
   PlatformsEnum get platform => throw _privateConstructorUsedError;
   AuthState get auth => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AuthPageVMCopyWith<AuthPageVM> get copyWith =>
+  $AuthPageModelCopyWith<AuthPageModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AuthPageVMCopyWith<$Res> {
-  factory $AuthPageVMCopyWith(
-          AuthPageVM value, $Res Function(AuthPageVM) then) =
-      _$AuthPageVMCopyWithImpl<$Res>;
+abstract class $AuthPageModelCopyWith<$Res> {
+  factory $AuthPageModelCopyWith(
+          AuthPageModel value, $Res Function(AuthPageModel) then) =
+      _$AuthPageModelCopyWithImpl<$Res>;
   $Res call({PlatformsEnum platform, AuthState auth});
 
   $AuthStateCopyWith<$Res> get auth;
 }
 
 /// @nodoc
-class _$AuthPageVMCopyWithImpl<$Res> implements $AuthPageVMCopyWith<$Res> {
-  _$AuthPageVMCopyWithImpl(this._value, this._then);
+class _$AuthPageModelCopyWithImpl<$Res>
+    implements $AuthPageModelCopyWith<$Res> {
+  _$AuthPageModelCopyWithImpl(this._value, this._then);
 
-  final AuthPageVM _value;
+  final AuthPageModel _value;
   // ignore: unused_field
-  final $Res Function(AuthPageVM) _then;
+  final $Res Function(AuthPageModel) _then;
 
   @override
   $Res call({
@@ -91,7 +92,8 @@ class _$AuthPageVMCopyWithImpl<$Res> implements $AuthPageVMCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AuthPageVMCopyWith<$Res> implements $AuthPageVMCopyWith<$Res> {
+abstract class _$AuthPageVMCopyWith<$Res>
+    implements $AuthPageModelCopyWith<$Res> {
   factory _$AuthPageVMCopyWith(
           _AuthPageVM value, $Res Function(_AuthPageVM) then) =
       __$AuthPageVMCopyWithImpl<$Res>;
@@ -103,7 +105,7 @@ abstract class _$AuthPageVMCopyWith<$Res> implements $AuthPageVMCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$AuthPageVMCopyWithImpl<$Res> extends _$AuthPageVMCopyWithImpl<$Res>
+class __$AuthPageVMCopyWithImpl<$Res> extends _$AuthPageModelCopyWithImpl<$Res>
     implements _$AuthPageVMCopyWith<$Res> {
   __$AuthPageVMCopyWithImpl(
       _AuthPageVM _value, $Res Function(_AuthPageVM) _then)
@@ -145,7 +147,7 @@ class _$_AuthPageVM implements _AuthPageVM {
 
   @override
   String toString() {
-    return 'AuthPageVM(platform: $platform, auth: $auth)';
+    return 'AuthPageModel(platform: $platform, auth: $auth)';
   }
 
   @override
@@ -172,7 +174,7 @@ class _$_AuthPageVM implements _AuthPageVM {
   }
 }
 
-abstract class _AuthPageVM implements AuthPageVM {
+abstract class _AuthPageVM implements AuthPageModel {
   factory _AuthPageVM(PlatformsEnum platform, AuthState auth) = _$_AuthPageVM;
 
   factory _AuthPageVM.fromJson(Map<String, dynamic> json) =
