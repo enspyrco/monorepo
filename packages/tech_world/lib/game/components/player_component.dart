@@ -4,7 +4,7 @@ import 'package:flame/effects.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/services.dart';
 import 'package:tech_world/shared/direction_enum.dart';
-import 'package:tech_world/utils/effects/sprite_direction_animation_effect.dart';
+import 'package:tech_world/utils/effects/move_character_effect.dart';
 import 'package:tech_world/utils/extensions/direction_enum_extension.dart';
 import 'package:tech_world/utils/input.dart';
 
@@ -20,8 +20,7 @@ class PlayerComponent extends SpriteAnimationGroupComponent<DirectionEnum> {
             animations: animations,
             current: DirectionEnum.down);
 
-  SpriteDirectionAnimationEffect? _animationEffect;
-  MoveEffect? _moveEffect;
+  MoveCharacterEffect? _moveEffect;
 
   // Static async create method so we can load sprite animations.
   static Future<PlayerComponent> create(String path,
@@ -47,21 +46,26 @@ class PlayerComponent extends SpriteAnimationGroupComponent<DirectionEnum> {
   void moveInDirection(RawKeyEvent event) {
     if (event is RawKeyDownEvent) {
       current = Input.directionFrom(event);
-      addEffect(
-          MoveEffect(path: [current.vector], speed: 200.0, isRelative: true));
+      add(MoveCharacterEffect(
+        path: [current.vector],
+        speed: 200.0,
+        startingDirection: current ?? DirectionEnum.down,
+        onDirectionChange: (direction) => current = direction,
+      ));
     }
   }
 
   void moveOnPath({required double speed, required IList<Vector2> points}) {
-    if (_animationEffect != null) removeEffect(_animationEffect!);
-    if (_moveEffect != null) removeEffect(_moveEffect!);
+    if (_moveEffect != null) remove(_moveEffect!);
 
-    _animationEffect =
-        SpriteDirectionAnimationEffect(speed: speed, pathPoints: points);
-    _moveEffect = MoveEffect(speed: speed, path: points.toList());
+    _moveEffect = MoveCharacterEffect(
+      path: points.toList(),
+      speed: speed,
+      startingDirection: current ?? DirectionEnum.down,
+      onDirectionChange: (direction) => current = direction,
+    );
 
-    addEffect(_animationEffect!);
-    addEffect(_moveEffect!);
+    add(_moveEffect!);
   }
 
   @override

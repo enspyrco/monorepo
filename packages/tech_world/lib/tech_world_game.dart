@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flame/extensions.dart';
 import 'package:flame/game.dart';
-import 'package:flame/gestures.dart';
-import 'package:flame/keyboard.dart';
+import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tech_world/game/components/map_component.dart';
 import 'package:tech_world/game/components/player_component.dart';
 import 'package:tech_world/redux/app_state.dart';
@@ -15,7 +15,7 @@ import 'package:ws_game_server_types/ws_game_server_types.dart';
 bool _paused = false;
 int departureTime = 0;
 
-class TechWorldGame extends BaseGame with KeyboardEvents, TapDetector {
+class TechWorldGame extends FlameGame with KeyboardEvents, TapDetector {
   TechWorldGame(
       {required Stream<AppState> appStateChanges,
       required Sink<ServerMessage> serverSink})
@@ -37,6 +37,8 @@ class TechWorldGame extends BaseGame with KeyboardEvents, TapDetector {
 
   @override
   Future<void> onLoad() async {
+    super.onLoad();
+
     add(_map);
 
     // Create a character at the origin for player1.
@@ -57,7 +59,8 @@ class TechWorldGame extends BaseGame with KeyboardEvents, TapDetector {
 
         for (var id in removeSet) {
           // remove from the local map of players and from the game
-          _otherPlayers.remove(id)?.remove();
+          var component = _otherPlayers.remove(id);
+          if (component != null) remove(component);
         }
 
         for (var id in addSet) {
@@ -88,10 +91,12 @@ class TechWorldGame extends BaseGame with KeyboardEvents, TapDetector {
   }
 
   @override
-  void onKeyEvent(RawKeyEvent event) {
-    print(event.data);
-    if (event.isShiftPressed) return _togglePausedState();
-    _player!.moveInDirection(event);
+  KeyEventResult onKeyEvent(
+      RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
+    if (event.isShiftPressed) {
+      _togglePausedState();
+    } else {}
+    return KeyEventResult.handled;
   }
 
   void _togglePausedState() =>
