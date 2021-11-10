@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta name="google-signin-client_id" content="331955495435-tdgmr0ptln0al9rkj44cagsoud9n5jkm.apps.googleusercontent.com">
+  <link rel="stylesheet" href="spinner.css">
 
   <base href="/">
 
@@ -19,6 +20,9 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+  <!-- Add a loading spinner in the center of the screen -->
+  <div id="centerOfScreen" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+
   <!-- Initialize Firebase -->
   <script src="/__/firebase/8.6.1/firebase-app.js"></script>
   <script src="/__/firebase/8.6.1/firebase-auth.js"></script>
