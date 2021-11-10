@@ -28,6 +28,7 @@ dependencies:
   redux:
   flutter_redux:
   fast_immutable_collections:
+  url_launcher: ^6.0.12
 
 dev_dependencies:
   flutter_test:
