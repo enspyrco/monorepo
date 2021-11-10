@@ -1,3 +1,4 @@
+import 'package:redfire/src/auth/reducers/pop_all_pages_reducer.dart';
 import 'package:redfire/src/auth/reducers/reset_auth_page_reducer.dart';
 import 'package:redfire/src/auth/reducers/set_email_reducer.dart';
 import 'package:redfire/src/auth/reducers/set_id_token_result_reducer.dart';
@@ -29,6 +30,7 @@ List<Reducer<T>> redfireReducers<T extends RedFireState>() => [
       ResetAuthPageReducer<T>(),
 
       // Navigation
+      PopAllPagesReducer<T>(),
       PushPageReducer<T>(),
       RemoveCurrentPageReducer<T>(),
 

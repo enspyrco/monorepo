@@ -184,5 +184,18 @@
       "}",
     ],
     "description": "redfire reducer with freezed"
+  },
+  "redfire reducer for redfire": {
+    "prefix": "rf_reducer_redfire",
+    "body": [
+      "import 'package:${WORKSPACE_NAME}/models/app_state.dart';",
+      "import 'package:redfire/src/types/red_fire_state.dart';",
+      "import 'package:redux/redux.dart';",
+      "",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Reducer<T extends RedFireState> extends TypedReducer<T, ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Action> {",
+      "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Reducer() : super((state, action) => (state as dynamic).copyWith.(${1}: action.${1}), as T);",
+      "}",
+    ],
+    "description": "redfire reducer with freezed, for use in redfire"
   }
 }

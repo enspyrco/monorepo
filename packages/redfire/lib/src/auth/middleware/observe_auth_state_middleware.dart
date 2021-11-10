@@ -1,5 +1,6 @@
 import 'package:redfire/actions.dart';
 import 'package:redfire/src/auth/actions/get_id_token_action.dart';
+import 'package:redfire/src/navigation/actions/pop_all_pages_action.dart';
 import 'package:redfire/src/redux/extensions/store_extensions.dart';
 import 'package:redfire/src/types/red_fire_state.dart';
 import 'package:redfire/src/utils/red_fire_locator.dart';
@@ -16,15 +17,16 @@ class ObserveAuthStateMiddleware<T extends RedFireState>
 
             // Listen to the stream that emits actions on any auth change
             // and call dispatch on the action.
-            authService.streamOfSetAuthUserData.listen((action) {
+            authService.streamOfSetAuthUserData.listen((setAuthUserDataAction) {
               try {
-                store.dispatch(action);
+                store.dispatch(setAuthUserDataAction);
 
                 // If signing in, dispatch an action to get an id token.
                 // The logic is here in order to cover both signing in explicitly
                 // and when returning to the app already signed in.
-                if (action.authUserData != null) {
+                if (setAuthUserDataAction.authUserData != null) {
                   store.dispatch(GetIdTokenAction());
+                  store.dispatch(const PopAllPagesAction());
                 }
               } catch (error, trace) {
                 store.dispatchProblem(error, trace);
