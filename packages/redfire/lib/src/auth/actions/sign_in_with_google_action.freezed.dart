@@ -77,8 +77,8 @@ class __$SignInWithGoogleActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SignInWithGoogleAction implements _SignInWithGoogleAction {
-  _$_SignInWithGoogleAction();
+class _$_SignInWithGoogleAction extends _SignInWithGoogleAction {
+  _$_SignInWithGoogleAction() : super._();
 
   factory _$_SignInWithGoogleAction.fromJson(Map<String, dynamic> json) =>
       _$$_SignInWithGoogleActionFromJson(json);
@@ -103,8 +103,9 @@ class _$_SignInWithGoogleAction implements _SignInWithGoogleAction {
   }
 }
 
-abstract class _SignInWithGoogleAction implements SignInWithGoogleAction {
+abstract class _SignInWithGoogleAction extends SignInWithGoogleAction {
   factory _SignInWithGoogleAction() = _$_SignInWithGoogleAction;
+  _SignInWithGoogleAction._() : super._();
 
   factory _SignInWithGoogleAction.fromJson(Map<String, dynamic> json) =
       _$_SignInWithGoogleAction.fromJson;

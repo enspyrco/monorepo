@@ -129,9 +129,10 @@ class __$UpdateLinkAccountsViewActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UpdateLinkAccountsViewAction implements _UpdateLinkAccountsViewAction {
+class _$_UpdateLinkAccountsViewAction extends _UpdateLinkAccountsViewAction {
   const _$_UpdateLinkAccountsViewAction(
-      {required this.provider, required this.state});
+      {required this.provider, required this.state})
+      : super._();
 
   factory _$_UpdateLinkAccountsViewAction.fromJson(Map<String, dynamic> json) =>
       _$$_UpdateLinkAccountsViewActionFromJson(json);
@@ -172,10 +173,11 @@ class _$_UpdateLinkAccountsViewAction implements _UpdateLinkAccountsViewAction {
 }
 
 abstract class _UpdateLinkAccountsViewAction
-    implements UpdateLinkAccountsViewAction {
+    extends UpdateLinkAccountsViewAction {
   const factory _UpdateLinkAccountsViewAction(
       {required ProvidersEnum provider,
       required LinkingStateEnum state}) = _$_UpdateLinkAccountsViewAction;
+  const _UpdateLinkAccountsViewAction._() : super._();
 
   factory _UpdateLinkAccountsViewAction.fromJson(Map<String, dynamic> json) =
       _$_UpdateLinkAccountsViewAction.fromJson;

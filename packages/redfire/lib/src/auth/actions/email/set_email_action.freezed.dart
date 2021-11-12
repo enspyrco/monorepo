@@ -111,8 +111,8 @@ class __$SetEmailActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SetEmailAction implements _SetEmailAction {
-  _$_SetEmailAction(this.text);
+class _$_SetEmailAction extends _SetEmailAction {
+  _$_SetEmailAction(this.text) : super._();
 
   factory _$_SetEmailAction.fromJson(Map<String, dynamic> json) =>
       _$$_SetEmailActionFromJson(json);
@@ -147,8 +147,9 @@ class _$_SetEmailAction implements _SetEmailAction {
   }
 }
 
-abstract class _SetEmailAction implements SetEmailAction {
+abstract class _SetEmailAction extends SetEmailAction {
   factory _SetEmailAction(String? text) = _$_SetEmailAction;
+  _SetEmailAction._() : super._();
 
   factory _SetEmailAction.fromJson(Map<String, dynamic> json) =
       _$_SetEmailAction.fromJson;

@@ -76,8 +76,8 @@ class __$SignOutActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SignOutAction implements _SignOutAction {
-  _$_SignOutAction();
+class _$_SignOutAction extends _SignOutAction {
+  _$_SignOutAction() : super._();
 
   factory _$_SignOutAction.fromJson(Map<String, dynamic> json) =>
       _$$_SignOutActionFromJson(json);
@@ -102,8 +102,9 @@ class _$_SignOutAction implements _SignOutAction {
   }
 }
 
-abstract class _SignOutAction implements SignOutAction {
+abstract class _SignOutAction extends SignOutAction {
   factory _SignOutAction() = _$_SignOutAction;
+  _SignOutAction._() : super._();
 
   factory _SignOutAction.fromJson(Map<String, dynamic> json) =
       _$_SignOutAction.fromJson;

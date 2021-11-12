@@ -112,8 +112,8 @@ class __$PushPageActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PushPageAction implements _PushPageAction {
-  const _$_PushPageAction(@PageDataConverter() this.page);
+class _$_PushPageAction extends _PushPageAction {
+  const _$_PushPageAction(@PageDataConverter() this.page) : super._();
 
   factory _$_PushPageAction.fromJson(Map<String, dynamic> json) =>
       _$$_PushPageActionFromJson(json);
@@ -149,9 +149,10 @@ class _$_PushPageAction implements _PushPageAction {
   }
 }
 
-abstract class _PushPageAction implements PushPageAction {
+abstract class _PushPageAction extends PushPageAction {
   const factory _PushPageAction(@PageDataConverter() PageData page) =
       _$_PushPageAction;
+  const _PushPageAction._() : super._();
 
   factory _PushPageAction.fromJson(Map<String, dynamic> json) =
       _$_PushPageAction.fromJson;

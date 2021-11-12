@@ -77,8 +77,8 @@ class __$SignInWithGitHubActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SignInWithGitHubAction implements _SignInWithGitHubAction {
-  const _$_SignInWithGitHubAction();
+class _$_SignInWithGitHubAction extends _SignInWithGitHubAction {
+  const _$_SignInWithGitHubAction() : super._();
 
   factory _$_SignInWithGitHubAction.fromJson(Map<String, dynamic> json) =>
       _$$_SignInWithGitHubActionFromJson(json);
@@ -103,8 +103,9 @@ class _$_SignInWithGitHubAction implements _SignInWithGitHubAction {
   }
 }
 
-abstract class _SignInWithGitHubAction implements SignInWithGitHubAction {
+abstract class _SignInWithGitHubAction extends SignInWithGitHubAction {
   const factory _SignInWithGitHubAction() = _$_SignInWithGitHubAction;
+  const _SignInWithGitHubAction._() : super._();
 
   factory _SignInWithGitHubAction.fromJson(Map<String, dynamic> json) =
       _$_SignInWithGitHubAction.fromJson;

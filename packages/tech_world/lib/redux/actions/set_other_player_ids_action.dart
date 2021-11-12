@@ -7,8 +7,12 @@ part 'set_other_player_ids_action.g.dart';
 
 @freezed
 class SetOtherPlayerIdsAction with _$SetOtherPlayerIdsAction, ReduxAction {
+  SetOtherPlayerIdsAction._();
   factory SetOtherPlayerIdsAction(ISet<String> ids) = _SetOtherPlayerIdsAction;
 
   factory SetOtherPlayerIdsAction.fromJson(Map<String, Object?> json) =>
       _$SetOtherPlayerIdsActionFromJson(json);
+
+  @override
+  String get typeName => 'SetOtherPlayerIdsAction';
 }

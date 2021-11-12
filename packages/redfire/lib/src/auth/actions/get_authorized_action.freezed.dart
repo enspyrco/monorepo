@@ -111,8 +111,8 @@ class __$GetAuthorizedActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GetAuthorizedAction implements _GetAuthorizedAction {
-  _$_GetAuthorizedAction({required this.provider});
+class _$_GetAuthorizedAction extends _GetAuthorizedAction {
+  _$_GetAuthorizedAction({required this.provider}) : super._();
 
   factory _$_GetAuthorizedAction.fromJson(Map<String, dynamic> json) =>
       _$$_GetAuthorizedActionFromJson(json);
@@ -149,9 +149,10 @@ class _$_GetAuthorizedAction implements _GetAuthorizedAction {
   }
 }
 
-abstract class _GetAuthorizedAction implements GetAuthorizedAction {
+abstract class _GetAuthorizedAction extends GetAuthorizedAction {
   factory _GetAuthorizedAction({required ProvidersEnum provider}) =
       _$_GetAuthorizedAction;
+  _GetAuthorizedAction._() : super._();
 
   factory _GetAuthorizedAction.fromJson(Map<String, dynamic> json) =
       _$_GetAuthorizedAction.fromJson;

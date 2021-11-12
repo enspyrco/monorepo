@@ -6,8 +6,12 @@ part 'get_id_token_action.g.dart';
 
 @freezed
 class GetIdTokenAction with _$GetIdTokenAction, ReduxAction {
+  GetIdTokenAction._();
   factory GetIdTokenAction() = _GetIdTokenAction;
 
   factory GetIdTokenAction.fromJson(JsonMap json) =>
       _$GetIdTokenActionFromJson(json);
+
+  @override
+  String get typeName => 'GetIdTokenAction';
 }

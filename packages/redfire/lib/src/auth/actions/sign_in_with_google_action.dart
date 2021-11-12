@@ -7,8 +7,12 @@ part 'sign_in_with_google_action.g.dart';
 
 @freezed
 class SignInWithGoogleAction with _$SignInWithGoogleAction, ReduxAction {
+  SignInWithGoogleAction._();
   factory SignInWithGoogleAction() = _SignInWithGoogleAction;
 
   factory SignInWithGoogleAction.fromJson(JsonMap json) =>
       _$SignInWithGoogleActionFromJson(json);
+
+  @override
+  String get typeName => 'SignInWithGoogleAction';
 }

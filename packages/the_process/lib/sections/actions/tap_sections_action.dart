@@ -6,9 +6,13 @@ part 'tap_sections_action.g.dart';
 
 @freezed
 class TapSectionsAction with _$TapSectionsAction, ReduxAction {
+  TapSectionsAction._();
   factory TapSectionsAction({@Default(false) bool turnOff}) =
       _TapSectionsAction;
 
   factory TapSectionsAction.fromJson(JsonMap json) =>
       _$TapSectionsActionFromJson(json);
+
+  @override
+  String get typeName => 'TapSectionsAction';
 }

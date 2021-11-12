@@ -76,8 +76,8 @@ class __$GetIdTokenActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GetIdTokenAction implements _GetIdTokenAction {
-  _$_GetIdTokenAction();
+class _$_GetIdTokenAction extends _GetIdTokenAction {
+  _$_GetIdTokenAction() : super._();
 
   factory _$_GetIdTokenAction.fromJson(Map<String, dynamic> json) =>
       _$$_GetIdTokenActionFromJson(json);
@@ -102,8 +102,9 @@ class _$_GetIdTokenAction implements _GetIdTokenAction {
   }
 }
 
-abstract class _GetIdTokenAction implements GetIdTokenAction {
+abstract class _GetIdTokenAction extends GetIdTokenAction {
   factory _GetIdTokenAction() = _$_GetIdTokenAction;
+  _GetIdTokenAction._() : super._();
 
   factory _GetIdTokenAction.fromJson(Map<String, dynamic> json) =
       _$_GetIdTokenAction.fromJson;

@@ -76,8 +76,8 @@ class __$DetectPlatformActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DetectPlatformAction implements _DetectPlatformAction {
-  _$_DetectPlatformAction();
+class _$_DetectPlatformAction extends _DetectPlatformAction {
+  _$_DetectPlatformAction() : super._();
 
   factory _$_DetectPlatformAction.fromJson(Map<String, dynamic> json) =>
       _$$_DetectPlatformActionFromJson(json);
@@ -102,8 +102,9 @@ class _$_DetectPlatformAction implements _DetectPlatformAction {
   }
 }
 
-abstract class _DetectPlatformAction implements DetectPlatformAction {
+abstract class _DetectPlatformAction extends DetectPlatformAction {
   factory _DetectPlatformAction() = _$_DetectPlatformAction;
+  _DetectPlatformAction._() : super._();
 
   factory _DetectPlatformAction.fromJson(Map<String, dynamic> json) =
       _$_DetectPlatformAction.fromJson;

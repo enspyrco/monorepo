@@ -111,8 +111,8 @@ class __$LaunchUrlActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LaunchUrlAction implements _LaunchUrlAction {
-  _$_LaunchUrlAction({required this.url});
+class _$_LaunchUrlAction extends _LaunchUrlAction {
+  _$_LaunchUrlAction({required this.url}) : super._();
 
   factory _$_LaunchUrlAction.fromJson(Map<String, dynamic> json) =>
       _$$_LaunchUrlActionFromJson(json);
@@ -147,8 +147,9 @@ class _$_LaunchUrlAction implements _LaunchUrlAction {
   }
 }
 
-abstract class _LaunchUrlAction implements LaunchUrlAction {
+abstract class _LaunchUrlAction extends LaunchUrlAction {
   factory _LaunchUrlAction({required String url}) = _$_LaunchUrlAction;
+  _LaunchUrlAction._() : super._();
 
   factory _LaunchUrlAction.fromJson(Map<String, dynamic> json) =
       _$_LaunchUrlAction.fromJson;

@@ -76,8 +76,8 @@ class __$ResetAuthPageActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ResetAuthPageAction implements _ResetAuthPageAction {
-  _$_ResetAuthPageAction();
+class _$_ResetAuthPageAction extends _ResetAuthPageAction {
+  _$_ResetAuthPageAction() : super._();
 
   factory _$_ResetAuthPageAction.fromJson(Map<String, dynamic> json) =>
       _$$_ResetAuthPageActionFromJson(json);
@@ -102,8 +102,9 @@ class _$_ResetAuthPageAction implements _ResetAuthPageAction {
   }
 }
 
-abstract class _ResetAuthPageAction implements ResetAuthPageAction {
+abstract class _ResetAuthPageAction extends ResetAuthPageAction {
   factory _ResetAuthPageAction() = _$_ResetAuthPageAction;
+  _ResetAuthPageAction._() : super._();
 
   factory _ResetAuthPageAction.fromJson(Map<String, dynamic> json) =
       _$_ResetAuthPageAction.fromJson;

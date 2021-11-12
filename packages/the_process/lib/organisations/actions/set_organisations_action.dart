@@ -8,9 +8,13 @@ part 'set_organisations_action.g.dart';
 
 @freezed
 class SetOrganisationsAction with _$SetOrganisationsAction, ReduxAction {
+  SetOrganisationsAction._();
   factory SetOrganisationsAction(ISet<OrganisationModel> organisations) =
       _SetOrganisationsAction;
 
   factory SetOrganisationsAction.fromJson(JsonMap json) =>
       _$SetOrganisationsActionFromJson(json);
+
+  @override
+  String get typeName => 'SetOrganisationsAction';
 }

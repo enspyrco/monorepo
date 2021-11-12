@@ -114,8 +114,8 @@ class __$SetProvidersForEmailActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SetProvidersForEmailAction implements _SetProvidersForEmailAction {
-  _$_SetProvidersForEmailAction(this.providers);
+class _$_SetProvidersForEmailAction extends _SetProvidersForEmailAction {
+  _$_SetProvidersForEmailAction(this.providers) : super._();
 
   factory _$_SetProvidersForEmailAction.fromJson(Map<String, dynamic> json) =>
       _$$_SetProvidersForEmailActionFromJson(json);
@@ -152,10 +152,10 @@ class _$_SetProvidersForEmailAction implements _SetProvidersForEmailAction {
   }
 }
 
-abstract class _SetProvidersForEmailAction
-    implements SetProvidersForEmailAction {
+abstract class _SetProvidersForEmailAction extends SetProvidersForEmailAction {
   factory _SetProvidersForEmailAction(ISet<ProvidersEnum> providers) =
       _$_SetProvidersForEmailAction;
+  _SetProvidersForEmailAction._() : super._();
 
   factory _SetProvidersForEmailAction.fromJson(Map<String, dynamic> json) =
       _$_SetProvidersForEmailAction.fromJson;

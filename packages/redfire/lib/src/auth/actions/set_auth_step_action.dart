@@ -8,6 +8,7 @@ part 'set_auth_step_action.g.dart';
 
 @freezed
 class SetAuthStepAction with _$SetAuthStepAction, ReduxAction {
+  SetAuthStepAction._();
   factory SetAuthStepAction(AuthStepEnum step) = _SetAuthStepAction;
 
   factory SetAuthStepAction.contactingApple() =>
@@ -21,4 +22,7 @@ class SetAuthStepAction with _$SetAuthStepAction, ReduxAction {
 
   factory SetAuthStepAction.fromJson(JsonMap json) =>
       _$SetAuthStepActionFromJson(json);
+
+  @override
+  String get typeName => 'SetAuthStepAction';
 }

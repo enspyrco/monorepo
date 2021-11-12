@@ -7,8 +7,12 @@ part 'observe_auth_state_action.g.dart';
 
 @freezed
 class ObserveAuthStateAction with _$ObserveAuthStateAction, ReduxAction {
+  ObserveAuthStateAction._();
   factory ObserveAuthStateAction() = _ObserveAuthStateAction;
 
   factory ObserveAuthStateAction.fromJson(JsonMap json) =>
       _$ObserveAuthStateActionFromJson(json);
+
+  @override
+  String get typeName => 'ObserveAuthStateAction';
 }

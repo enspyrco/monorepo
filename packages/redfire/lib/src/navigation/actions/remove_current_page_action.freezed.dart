@@ -78,8 +78,8 @@ class __$RemoveCurrentPageActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_RemoveCurrentPageAction implements _RemoveCurrentPageAction {
-  _$_RemoveCurrentPageAction();
+class _$_RemoveCurrentPageAction extends _RemoveCurrentPageAction {
+  _$_RemoveCurrentPageAction() : super._();
 
   factory _$_RemoveCurrentPageAction.fromJson(Map<String, dynamic> json) =>
       _$$_RemoveCurrentPageActionFromJson(json);
@@ -104,8 +104,9 @@ class _$_RemoveCurrentPageAction implements _RemoveCurrentPageAction {
   }
 }
 
-abstract class _RemoveCurrentPageAction implements RemoveCurrentPageAction {
+abstract class _RemoveCurrentPageAction extends RemoveCurrentPageAction {
   factory _RemoveCurrentPageAction() = _$_RemoveCurrentPageAction;
+  _RemoveCurrentPageAction._() : super._();
 
   factory _RemoveCurrentPageAction.fromJson(Map<String, dynamic> json) =
       _$_RemoveCurrentPageAction.fromJson;

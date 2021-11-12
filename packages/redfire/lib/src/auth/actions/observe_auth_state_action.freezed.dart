@@ -77,8 +77,8 @@ class __$ObserveAuthStateActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ObserveAuthStateAction implements _ObserveAuthStateAction {
-  _$_ObserveAuthStateAction();
+class _$_ObserveAuthStateAction extends _ObserveAuthStateAction {
+  _$_ObserveAuthStateAction() : super._();
 
   factory _$_ObserveAuthStateAction.fromJson(Map<String, dynamic> json) =>
       _$$_ObserveAuthStateActionFromJson(json);
@@ -103,8 +103,9 @@ class _$_ObserveAuthStateAction implements _ObserveAuthStateAction {
   }
 }
 
-abstract class _ObserveAuthStateAction implements ObserveAuthStateAction {
+abstract class _ObserveAuthStateAction extends ObserveAuthStateAction {
   factory _ObserveAuthStateAction() = _$_ObserveAuthStateAction;
+  _ObserveAuthStateAction._() : super._();
 
   factory _ObserveAuthStateAction.fromJson(Map<String, dynamic> json) =
       _$_ObserveAuthStateAction.fromJson;

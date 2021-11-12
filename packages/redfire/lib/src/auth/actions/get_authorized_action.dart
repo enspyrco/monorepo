@@ -8,9 +8,13 @@ part 'get_authorized_action.g.dart';
 
 @freezed
 class GetAuthorizedAction with _$GetAuthorizedAction, ReduxAction {
+  GetAuthorizedAction._();
   factory GetAuthorizedAction({required ProvidersEnum provider}) =
       _GetAuthorizedAction;
 
   factory GetAuthorizedAction.fromJson(JsonMap json) =>
       _$GetAuthorizedActionFromJson(json);
+
+  @override
+  String get typeName => 'GetAuthorizedAction';
 }
