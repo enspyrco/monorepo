@@ -11,7 +11,7 @@ class Barriers with _$Barriers, ReduxModel {
   Barriers._();
   factory Barriers() = _Barriers;
 
-  final IList<Double2> positions = [
+  final IList<Double2> positions = const [
     Double2(5, 2),
     Double2(5, 3),
     Double2(5, 4),

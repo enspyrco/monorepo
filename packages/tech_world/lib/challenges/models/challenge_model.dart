@@ -1,16 +1,32 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
-import 'package:tech_world/challenges/models/challenge_task_model.dart';
+import 'package:ws_game_server_types/ws_game_server_types.dart';
 
-part 'challenge_model.freezed.dart';
-part 'challenge_model.g.dart';
+typedef ChallengeModelFromJson = ChallengeModel Function(JsonMap json);
 
-@freezed
-class ChallengeModel with _$ChallengeModel, ReduxModel {
-  const factory ChallengeModel(
-      {required String repoUrl,
-      required List<ChallengeTaskModel> tasks}) = _ChallengeModel;
+mixin ChallengeModel {
+  JsonMap toJson();
+  String get typeName;
+}
 
-  factory ChallengeModel.fromJson(JsonMap json) =>
-      _$ChallengeModelFromJson(json);
+final _fromJsonMap = <String, ChallengeModelFromJson>{};
+
+class ChallengeModelConverter
+    implements JsonConverter<ChallengeModel?, JsonMap> {
+  const ChallengeModelConverter();
+
+  @override
+  ChallengeModel fromJson(JsonMap json) {
+    final fromJson = _fromJsonMap[json['type']];
+    if (fromJson == null) {
+      throw Exception('No entry for \'type\' ${json['type']}');
+    }
+    return fromJson(json);
+  }
+
+  @override
+  JsonMap toJson(ChallengeModel? data) {
+    final json = data?.toJson();
+    json?['type'] = data?.typeName;
+    return json ?? {};
+  }
 }
