@@ -7,9 +7,9 @@ part 'update_organisations_page_action.g.dart';
 @freezed
 class UpdateOrganisationsPageAction
     with _$UpdateOrganisationsPageAction, ReduxAction {
-  UpdateOrganisationsPageAction._();
-  factory UpdateOrganisationsPageAction({bool? creating, bool? deleting}) =
-      _UpdateOrganisationsPageAction;
+  const UpdateOrganisationsPageAction._();
+  const factory UpdateOrganisationsPageAction(
+      {bool? creating, bool? deleting}) = _UpdateOrganisationsPageAction;
 
   factory UpdateOrganisationsPageAction.fromJson(JsonMap json) =>
       _$UpdateOrganisationsPageActionFromJson(json);

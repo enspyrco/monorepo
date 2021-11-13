@@ -8,8 +8,8 @@ part 'problem_page_data.g.dart';
 class ProblemPageData extends PageData with _$ProblemPageData, ReduxModel {
   static const String staticTypeName = 'ProblemPageData';
 
-  ProblemPageData._();
-  factory ProblemPageData(ProblemInfo problem) = _ProblemPageData;
+  const ProblemPageData._();
+  const factory ProblemPageData(ProblemInfo problem) = _ProblemPageData;
 
   factory ProblemPageData.fromJson(JsonMap json) =>
       _$ProblemPageDataFromJson(json);

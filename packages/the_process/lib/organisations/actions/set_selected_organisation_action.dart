@@ -8,7 +8,7 @@ part 'set_selected_organisation_action.g.dart';
 @freezed
 class SetSelectedOrganisationAction
     with _$SetSelectedOrganisationAction, ReduxAction {
-  SetSelectedOrganisationAction._();
+  const SetSelectedOrganisationAction._();
   const factory SetSelectedOrganisationAction(OrganisationModel? organisation) =
       _SetSelectedOrganisationAction;
 

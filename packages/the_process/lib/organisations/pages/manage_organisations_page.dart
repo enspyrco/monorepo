@@ -11,8 +11,8 @@ class ManageOrganisationsPageData extends PageData
     with _$ManageOrganisationsPageData, ReduxModel {
   static const String staticTypeName = 'ManageOrganisationsPageData';
 
-  ManageOrganisationsPageData._();
-  factory ManageOrganisationsPageData() = _ManageOrganisationsPageData;
+  const ManageOrganisationsPageData._();
+  const factory ManageOrganisationsPageData() = _ManageOrganisationsPageData;
 
   factory ManageOrganisationsPageData.fromJson(JsonMap json) =>
       _$ManageOrganisationsPageDataFromJson(json);

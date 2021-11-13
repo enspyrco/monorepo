@@ -9,8 +9,8 @@ part 'auth_user_data.g.dart';
 /// [createdOn] and [lastSignedInOn] are in UTC as required for serialization
 @freezed
 class AuthUserData with _$AuthUserData {
-  AuthUserData._();
-  factory AuthUserData({
+  const AuthUserData._();
+  const factory AuthUserData({
     required String uid,
     String? tenantId,
     String? displayName,

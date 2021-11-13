@@ -22,7 +22,7 @@ class _$ResetAuthPageActionTearOff {
   const _$ResetAuthPageActionTearOff();
 
   _ResetAuthPageAction call() {
-    return _ResetAuthPageAction();
+    return const _ResetAuthPageAction();
   }
 
   ResetAuthPageAction fromJson(Map<String, Object?> json) {
@@ -77,7 +77,7 @@ class __$ResetAuthPageActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ResetAuthPageAction extends _ResetAuthPageAction {
-  _$_ResetAuthPageAction() : super._();
+  const _$_ResetAuthPageAction() : super._();
 
   factory _$_ResetAuthPageAction.fromJson(Map<String, dynamic> json) =>
       _$$_ResetAuthPageActionFromJson(json);
@@ -103,8 +103,8 @@ class _$_ResetAuthPageAction extends _ResetAuthPageAction {
 }
 
 abstract class _ResetAuthPageAction extends ResetAuthPageAction {
-  factory _ResetAuthPageAction() = _$_ResetAuthPageAction;
-  _ResetAuthPageAction._() : super._();
+  const factory _ResetAuthPageAction() = _$_ResetAuthPageAction;
+  const _ResetAuthPageAction._() : super._();
 
   factory _ResetAuthPageAction.fromJson(Map<String, dynamic> json) =
       _$_ResetAuthPageAction.fromJson;

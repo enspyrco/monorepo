@@ -112,7 +112,7 @@ class __$TapProfileActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_TapProfileAction extends _TapProfileAction {
-  _$_TapProfileAction({this.turnOff = false}) : super._();
+  const _$_TapProfileAction({this.turnOff = false}) : super._();
 
   factory _$_TapProfileAction.fromJson(Map<String, dynamic> json) =>
       _$$_TapProfileActionFromJson(json);
@@ -149,8 +149,8 @@ class _$_TapProfileAction extends _TapProfileAction {
 }
 
 abstract class _TapProfileAction extends TapProfileAction {
-  factory _TapProfileAction({bool turnOff}) = _$_TapProfileAction;
-  _TapProfileAction._() : super._();
+  const factory _TapProfileAction({bool turnOff}) = _$_TapProfileAction;
+  const _TapProfileAction._() : super._();
 
   factory _TapProfileAction.fromJson(Map<String, dynamic> json) =
       _$_TapProfileAction.fromJson;

@@ -124,7 +124,7 @@ class __$SetProfileDataActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SetProfileDataAction extends _SetProfileDataAction {
-  _$_SetProfileDataAction({required this.data}) : super._();
+  const _$_SetProfileDataAction({required this.data}) : super._();
 
   factory _$_SetProfileDataAction.fromJson(Map<String, dynamic> json) =>
       _$$_SetProfileDataActionFromJson(json);
@@ -161,9 +161,9 @@ class _$_SetProfileDataAction extends _SetProfileDataAction {
 }
 
 abstract class _SetProfileDataAction extends SetProfileDataAction {
-  factory _SetProfileDataAction({required ProfileData data}) =
+  const factory _SetProfileDataAction({required ProfileData data}) =
       _$_SetProfileDataAction;
-  _SetProfileDataAction._() : super._();
+  const _SetProfileDataAction._() : super._();
 
   factory _SetProfileDataAction.fromJson(Map<String, dynamic> json) =
       _$_SetProfileDataAction.fromJson;

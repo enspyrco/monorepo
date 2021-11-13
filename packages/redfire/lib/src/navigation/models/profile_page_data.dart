@@ -8,8 +8,8 @@ part 'profile_page_data.g.dart';
 class ProfilePageData extends PageData with _$ProfilePageData, ReduxModel {
   static const String staticTypeName = 'ProfilePageData';
 
-  ProfilePageData._();
-  factory ProfilePageData() = _ProfilePageData;
+  const ProfilePageData._();
+  const factory ProfilePageData() = _ProfilePageData;
 
   factory ProfilePageData.fromJson(JsonMap json) =>
       _$ProfilePageDataFromJson(json);

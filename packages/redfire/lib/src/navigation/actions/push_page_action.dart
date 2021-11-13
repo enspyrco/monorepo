@@ -8,7 +8,7 @@ part 'push_page_action.g.dart';
 
 @freezed
 class PushPageAction with _$PushPageAction, ReduxAction {
-  PushPageAction._();
+  const PushPageAction._();
   const factory PushPageAction(@PageDataConverter() PageData page) =
       _PushPageAction;
 

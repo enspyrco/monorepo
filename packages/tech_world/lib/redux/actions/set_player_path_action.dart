@@ -7,8 +7,9 @@ part 'set_player_path_action.g.dart';
 
 @freezed
 class SetPlayerPathAction with _$SetPlayerPathAction, ReduxAction {
-  SetPlayerPathAction._();
-  factory SetPlayerPathAction(PlayerPathMessage message) = _SetPlayerPathAction;
+  const SetPlayerPathAction._();
+  const factory SetPlayerPathAction(PlayerPathMessage message) =
+      _SetPlayerPathAction;
 
   factory SetPlayerPathAction.fromJson(Map<String, Object?> json) =>
       _$SetPlayerPathActionFromJson(json);

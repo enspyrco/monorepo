@@ -6,8 +6,8 @@ part 'update_sections_v_m_action.g.dart';
 
 @freezed
 class UpdateSectionsVMAction with _$UpdateSectionsVMAction, ReduxAction {
-  UpdateSectionsVMAction._();
-  factory UpdateSectionsVMAction({required bool creatingNewSection}) =
+  const UpdateSectionsVMAction._();
+  const factory UpdateSectionsVMAction({required bool creatingNewSection}) =
       _UpdateSectionsVMAction;
 
   factory UpdateSectionsVMAction.fromJson(JsonMap json) =>

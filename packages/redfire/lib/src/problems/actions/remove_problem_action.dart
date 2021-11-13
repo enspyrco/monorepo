@@ -8,8 +8,8 @@ part 'remove_problem_action.g.dart';
 
 @freezed
 class RemoveProblemAction with _$RemoveProblemAction, ReduxAction {
-  RemoveProblemAction._();
-  factory RemoveProblemAction(ProblemInfo info) = _RemoveProblemAction;
+  const RemoveProblemAction._();
+  const factory RemoveProblemAction(ProblemInfo info) = _RemoveProblemAction;
 
   factory RemoveProblemAction.fromJson(JsonMap json) =>
       _$RemoveProblemActionFromJson(json);

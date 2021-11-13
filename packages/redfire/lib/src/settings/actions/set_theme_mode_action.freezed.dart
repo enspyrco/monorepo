@@ -112,7 +112,7 @@ class __$SetThemeModeActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SetThemeModeAction extends _SetThemeModeAction {
-  _$_SetThemeModeAction(this.themeMode) : super._();
+  const _$_SetThemeModeAction(this.themeMode) : super._();
 
   factory _$_SetThemeModeAction.fromJson(Map<String, dynamic> json) =>
       _$$_SetThemeModeActionFromJson(json);
@@ -149,8 +149,8 @@ class _$_SetThemeModeAction extends _SetThemeModeAction {
 }
 
 abstract class _SetThemeModeAction extends SetThemeModeAction {
-  factory _SetThemeModeAction(int themeMode) = _$_SetThemeModeAction;
-  _SetThemeModeAction._() : super._();
+  const factory _SetThemeModeAction(int themeMode) = _$_SetThemeModeAction;
+  const _SetThemeModeAction._() : super._();
 
   factory _SetThemeModeAction.fromJson(Map<String, dynamic> json) =
       _$_SetThemeModeAction.fromJson;

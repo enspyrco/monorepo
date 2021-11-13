@@ -22,7 +22,7 @@ class _$ProfilePageDataTearOff {
   const _$ProfilePageDataTearOff();
 
   _ProfilePageData call() {
-    return _ProfilePageData();
+    return const _ProfilePageData();
   }
 
   ProfilePageData fromJson(Map<String, Object?> json) {
@@ -77,7 +77,7 @@ class __$ProfilePageDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ProfilePageData extends _ProfilePageData {
-  _$_ProfilePageData() : super._();
+  const _$_ProfilePageData() : super._();
 
   factory _$_ProfilePageData.fromJson(Map<String, dynamic> json) =>
       _$$_ProfilePageDataFromJson(json);
@@ -103,8 +103,8 @@ class _$_ProfilePageData extends _ProfilePageData {
 }
 
 abstract class _ProfilePageData extends ProfilePageData {
-  factory _ProfilePageData() = _$_ProfilePageData;
-  _ProfilePageData._() : super._();
+  const factory _ProfilePageData() = _$_ProfilePageData;
+  const _ProfilePageData._() : super._();
 
   factory _ProfilePageData.fromJson(Map<String, dynamic> json) =
       _$_ProfilePageData.fromJson;

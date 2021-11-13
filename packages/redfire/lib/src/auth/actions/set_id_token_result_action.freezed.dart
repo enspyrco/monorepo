@@ -125,7 +125,7 @@ class __$SetIdTokenResultActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SetIdTokenResultAction extends _SetIdTokenResultAction {
-  _$_SetIdTokenResultAction(this.result) : super._();
+  const _$_SetIdTokenResultAction(this.result) : super._();
 
   factory _$_SetIdTokenResultAction.fromJson(Map<String, dynamic> json) =>
       _$$_SetIdTokenResultActionFromJson(json);
@@ -162,9 +162,9 @@ class _$_SetIdTokenResultAction extends _SetIdTokenResultAction {
 }
 
 abstract class _SetIdTokenResultAction extends SetIdTokenResultAction {
-  factory _SetIdTokenResultAction(IdTokenResult result) =
+  const factory _SetIdTokenResultAction(IdTokenResult result) =
       _$_SetIdTokenResultAction;
-  _SetIdTokenResultAction._() : super._();
+  const _SetIdTokenResultAction._() : super._();
 
   factory _SetIdTokenResultAction.fromJson(Map<String, dynamic> json) =
       _$_SetIdTokenResultAction.fromJson;

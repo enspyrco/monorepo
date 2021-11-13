@@ -6,7 +6,7 @@ part 'update_projects_view_action.g.dart';
 
 @freezed
 class UpdateProjectsViewAction with _$UpdateProjectsViewAction, ReduxAction {
-  UpdateProjectsViewAction._();
+  const UpdateProjectsViewAction._();
   const factory UpdateProjectsViewAction({bool? creating}) =
       _UpdateProjectsViewAction;
 

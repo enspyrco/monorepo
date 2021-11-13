@@ -22,7 +22,7 @@ class _$SignOutActionTearOff {
   const _$SignOutActionTearOff();
 
   _SignOutAction call() {
-    return _SignOutAction();
+    return const _SignOutAction();
   }
 
   SignOutAction fromJson(Map<String, Object?> json) {
@@ -77,7 +77,7 @@ class __$SignOutActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SignOutAction extends _SignOutAction {
-  _$_SignOutAction() : super._();
+  const _$_SignOutAction() : super._();
 
   factory _$_SignOutAction.fromJson(Map<String, dynamic> json) =>
       _$$_SignOutActionFromJson(json);
@@ -103,8 +103,8 @@ class _$_SignOutAction extends _SignOutAction {
 }
 
 abstract class _SignOutAction extends SignOutAction {
-  factory _SignOutAction() = _$_SignOutAction;
-  _SignOutAction._() : super._();
+  const factory _SignOutAction() = _$_SignOutAction;
+  const _SignOutAction._() : super._();
 
   factory _SignOutAction.fromJson(Map<String, dynamic> json) =
       _$_SignOutAction.fromJson;

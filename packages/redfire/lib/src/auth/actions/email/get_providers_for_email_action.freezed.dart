@@ -115,7 +115,7 @@ class __$GetProvidersForEmailActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_GetProvidersForEmailAction extends _GetProvidersForEmailAction {
-  _$_GetProvidersForEmailAction(this.email) : super._();
+  const _$_GetProvidersForEmailAction(this.email) : super._();
 
   factory _$_GetProvidersForEmailAction.fromJson(Map<String, dynamic> json) =>
       _$$_GetProvidersForEmailActionFromJson(json);
@@ -152,9 +152,9 @@ class _$_GetProvidersForEmailAction extends _GetProvidersForEmailAction {
 }
 
 abstract class _GetProvidersForEmailAction extends GetProvidersForEmailAction {
-  factory _GetProvidersForEmailAction(String email) =
+  const factory _GetProvidersForEmailAction(String email) =
       _$_GetProvidersForEmailAction;
-  _GetProvidersForEmailAction._() : super._();
+  const _GetProvidersForEmailAction._() : super._();
 
   factory _GetProvidersForEmailAction.fromJson(Map<String, dynamic> json) =
       _$_GetProvidersForEmailAction.fromJson;

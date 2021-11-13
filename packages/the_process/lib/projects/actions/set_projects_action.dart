@@ -8,7 +8,7 @@ part 'set_projects_action.g.dart';
 
 @freezed
 class SetProjectsAction with _$SetProjectsAction, ReduxAction {
-  SetProjectsAction._();
+  const SetProjectsAction._();
   const factory SetProjectsAction(ISet<ProjectModel> projects) =
       _SetProjectsAction;
 

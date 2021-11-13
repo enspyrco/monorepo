@@ -6,7 +6,7 @@ part 'link_account_action.g.dart';
 
 @freezed
 class LinkAccountAction with _$LinkAccountAction, ReduxAction {
-  LinkAccountAction._();
+  const LinkAccountAction._();
   const factory LinkAccountAction(ProvidersEnum provider) = _LinkAccountAction;
 
   factory LinkAccountAction.fromJson(JsonMap json) =>

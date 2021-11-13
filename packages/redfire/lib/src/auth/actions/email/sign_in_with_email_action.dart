@@ -6,8 +6,8 @@ part 'sign_in_with_email_action.g.dart';
 
 @freezed
 class SignInWithEmailAction with _$SignInWithEmailAction, ReduxAction {
-  SignInWithEmailAction._();
-  factory SignInWithEmailAction(String password) = _SignInWithEmailAction;
+  const SignInWithEmailAction._();
+  const factory SignInWithEmailAction(String password) = _SignInWithEmailAction;
 
   factory SignInWithEmailAction.fromJson(JsonMap json) =>
       _$SignInWithEmailActionFromJson(json);

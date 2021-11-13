@@ -7,8 +7,8 @@ part 'set_profile_data_action.g.dart';
 
 @freezed
 class SetProfileDataAction with _$SetProfileDataAction, ReduxAction {
-  SetProfileDataAction._();
-  factory SetProfileDataAction({required ProfileData data}) =
+  const SetProfileDataAction._();
+  const factory SetProfileDataAction({required ProfileData data}) =
       _SetProfileDataAction;
 
   factory SetProfileDataAction.fromJson(JsonMap json) =>

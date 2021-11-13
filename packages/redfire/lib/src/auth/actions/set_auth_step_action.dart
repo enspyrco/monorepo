@@ -8,17 +8,17 @@ part 'set_auth_step_action.g.dart';
 
 @freezed
 class SetAuthStepAction with _$SetAuthStepAction, ReduxAction {
-  SetAuthStepAction._();
-  factory SetAuthStepAction(AuthStepEnum step) = _SetAuthStepAction;
+  const SetAuthStepAction._();
+  const factory SetAuthStepAction(AuthStepEnum step) = _SetAuthStepAction;
 
   factory SetAuthStepAction.contactingApple() =>
-      SetAuthStepAction(AuthStepEnum.contactingApple);
+      const SetAuthStepAction(AuthStepEnum.contactingApple);
   factory SetAuthStepAction.contactingGoogle() =>
-      SetAuthStepAction(AuthStepEnum.contactingGoogle);
+      const SetAuthStepAction(AuthStepEnum.contactingGoogle);
   factory SetAuthStepAction.signingInWithFirebase() =>
-      SetAuthStepAction(AuthStepEnum.signingInWithFirebase);
+      const SetAuthStepAction(AuthStepEnum.signingInWithFirebase);
   factory SetAuthStepAction.waitingForInput() =>
-      SetAuthStepAction(AuthStepEnum.waitingForInput);
+      const SetAuthStepAction(AuthStepEnum.waitingForInput);
 
   factory SetAuthStepAction.fromJson(JsonMap json) =>
       _$SetAuthStepActionFromJson(json);

@@ -23,7 +23,7 @@ class _$ObserveAuthStateActionTearOff {
   const _$ObserveAuthStateActionTearOff();
 
   _ObserveAuthStateAction call() {
-    return _ObserveAuthStateAction();
+    return const _ObserveAuthStateAction();
   }
 
   ObserveAuthStateAction fromJson(Map<String, Object?> json) {
@@ -78,7 +78,7 @@ class __$ObserveAuthStateActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ObserveAuthStateAction extends _ObserveAuthStateAction {
-  _$_ObserveAuthStateAction() : super._();
+  const _$_ObserveAuthStateAction() : super._();
 
   factory _$_ObserveAuthStateAction.fromJson(Map<String, dynamic> json) =>
       _$$_ObserveAuthStateActionFromJson(json);
@@ -104,8 +104,8 @@ class _$_ObserveAuthStateAction extends _ObserveAuthStateAction {
 }
 
 abstract class _ObserveAuthStateAction extends ObserveAuthStateAction {
-  factory _ObserveAuthStateAction() = _$_ObserveAuthStateAction;
-  _ObserveAuthStateAction._() : super._();
+  const factory _ObserveAuthStateAction() = _$_ObserveAuthStateAction;
+  const _ObserveAuthStateAction._() : super._();
 
   factory _ObserveAuthStateAction.fromJson(Map<String, dynamic> json) =
       _$_ObserveAuthStateAction.fromJson;

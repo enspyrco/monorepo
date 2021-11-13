@@ -113,7 +113,7 @@ class __$SignUpWithEmailActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SignUpWithEmailAction extends _SignUpWithEmailAction {
-  _$_SignUpWithEmailAction(this.password) : super._();
+  const _$_SignUpWithEmailAction(this.password) : super._();
 
   factory _$_SignUpWithEmailAction.fromJson(Map<String, dynamic> json) =>
       _$$_SignUpWithEmailActionFromJson(json);
@@ -151,8 +151,9 @@ class _$_SignUpWithEmailAction extends _SignUpWithEmailAction {
 }
 
 abstract class _SignUpWithEmailAction extends SignUpWithEmailAction {
-  factory _SignUpWithEmailAction(String password) = _$_SignUpWithEmailAction;
-  _SignUpWithEmailAction._() : super._();
+  const factory _SignUpWithEmailAction(String password) =
+      _$_SignUpWithEmailAction;
+  const _SignUpWithEmailAction._() : super._();
 
   factory _SignUpWithEmailAction.fromJson(Map<String, dynamic> json) =
       _$_SignUpWithEmailAction.fromJson;

@@ -23,7 +23,7 @@ class _$SignInWithGoogleActionTearOff {
   const _$SignInWithGoogleActionTearOff();
 
   _SignInWithGoogleAction call() {
-    return _SignInWithGoogleAction();
+    return const _SignInWithGoogleAction();
   }
 
   SignInWithGoogleAction fromJson(Map<String, Object?> json) {
@@ -78,7 +78,7 @@ class __$SignInWithGoogleActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SignInWithGoogleAction extends _SignInWithGoogleAction {
-  _$_SignInWithGoogleAction() : super._();
+  const _$_SignInWithGoogleAction() : super._();
 
   factory _$_SignInWithGoogleAction.fromJson(Map<String, dynamic> json) =>
       _$$_SignInWithGoogleActionFromJson(json);
@@ -104,8 +104,8 @@ class _$_SignInWithGoogleAction extends _SignInWithGoogleAction {
 }
 
 abstract class _SignInWithGoogleAction extends SignInWithGoogleAction {
-  factory _SignInWithGoogleAction() = _$_SignInWithGoogleAction;
-  _SignInWithGoogleAction._() : super._();
+  const factory _SignInWithGoogleAction() = _$_SignInWithGoogleAction;
+  const _SignInWithGoogleAction._() : super._();
 
   factory _SignInWithGoogleAction.fromJson(Map<String, dynamic> json) =
       _$_SignInWithGoogleAction.fromJson;

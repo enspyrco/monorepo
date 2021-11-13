@@ -8,8 +8,8 @@ part 'set_auth_user_data_action.g.dart';
 
 @freezed
 class SetAuthUserDataAction with _$SetAuthUserDataAction, ReduxAction {
-  SetAuthUserDataAction._();
-  factory SetAuthUserDataAction(AuthUserData? authUserData) =
+  const SetAuthUserDataAction._();
+  const factory SetAuthUserDataAction(AuthUserData? authUserData) =
       _SetAuthUserDataAction;
 
   factory SetAuthUserDataAction.fromJson(JsonMap json) =>

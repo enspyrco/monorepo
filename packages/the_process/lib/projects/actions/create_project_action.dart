@@ -7,7 +7,7 @@ part 'create_project_action.g.dart';
 
 @freezed
 class CreateProjectAction with _$CreateProjectAction, ReduxAction {
-  CreateProjectAction._();
+  const CreateProjectAction._();
   const factory CreateProjectAction(ProjectModel project) =
       _CreateProjectAction;
 

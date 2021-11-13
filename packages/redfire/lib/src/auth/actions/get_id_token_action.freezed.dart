@@ -22,7 +22,7 @@ class _$GetIdTokenActionTearOff {
   const _$GetIdTokenActionTearOff();
 
   _GetIdTokenAction call() {
-    return _GetIdTokenAction();
+    return const _GetIdTokenAction();
   }
 
   GetIdTokenAction fromJson(Map<String, Object?> json) {
@@ -77,7 +77,7 @@ class __$GetIdTokenActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_GetIdTokenAction extends _GetIdTokenAction {
-  _$_GetIdTokenAction() : super._();
+  const _$_GetIdTokenAction() : super._();
 
   factory _$_GetIdTokenAction.fromJson(Map<String, dynamic> json) =>
       _$$_GetIdTokenActionFromJson(json);
@@ -103,8 +103,8 @@ class _$_GetIdTokenAction extends _GetIdTokenAction {
 }
 
 abstract class _GetIdTokenAction extends GetIdTokenAction {
-  factory _GetIdTokenAction() = _$_GetIdTokenAction;
-  _GetIdTokenAction._() : super._();
+  const factory _GetIdTokenAction() = _$_GetIdTokenAction;
+  const _GetIdTokenAction._() : super._();
 
   factory _GetIdTokenAction.fromJson(Map<String, dynamic> json) =
       _$_GetIdTokenAction.fromJson;

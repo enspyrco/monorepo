@@ -7,8 +7,8 @@ part 'get_providers_for_email_action.g.dart';
 @freezed
 class GetProvidersForEmailAction
     with _$GetProvidersForEmailAction, ReduxAction {
-  GetProvidersForEmailAction._();
-  factory GetProvidersForEmailAction(String email) =
+  const GetProvidersForEmailAction._();
+  const factory GetProvidersForEmailAction(String email) =
       _GetProvidersForEmailAction;
 
   factory GetProvidersForEmailAction.fromJson(JsonMap json) =>

@@ -6,8 +6,8 @@ part 'create_section_action.g.dart';
 
 @freezed
 class CreateSectionAction with _$CreateSectionAction, ReduxAction {
-  CreateSectionAction._();
-  factory CreateSectionAction() = _CreateSectionAction;
+  const CreateSectionAction._();
+  const factory CreateSectionAction() = _CreateSectionAction;
 
   factory CreateSectionAction.fromJson(JsonMap json) =>
       _$CreateSectionActionFromJson(json);

@@ -23,7 +23,7 @@ class _$SignInWithAppleActionTearOff {
   const _$SignInWithAppleActionTearOff();
 
   _SignInWithAppleAction call() {
-    return _SignInWithAppleAction();
+    return const _SignInWithAppleAction();
   }
 
   SignInWithAppleAction fromJson(Map<String, Object?> json) {
@@ -78,7 +78,7 @@ class __$SignInWithAppleActionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SignInWithAppleAction extends _SignInWithAppleAction {
-  _$_SignInWithAppleAction() : super._();
+  const _$_SignInWithAppleAction() : super._();
 
   factory _$_SignInWithAppleAction.fromJson(Map<String, dynamic> json) =>
       _$$_SignInWithAppleActionFromJson(json);
@@ -104,8 +104,8 @@ class _$_SignInWithAppleAction extends _SignInWithAppleAction {
 }
 
 abstract class _SignInWithAppleAction extends SignInWithAppleAction {
-  factory _SignInWithAppleAction() = _$_SignInWithAppleAction;
-  _SignInWithAppleAction._() : super._();
+  const factory _SignInWithAppleAction() = _$_SignInWithAppleAction;
+  const _SignInWithAppleAction._() : super._();
 
   factory _SignInWithAppleAction.fromJson(Map<String, dynamic> json) =
       _$_SignInWithAppleAction.fromJson;

@@ -8,8 +8,8 @@ part 'add_problem_action.g.dart';
 
 @freezed
 class AddProblemAction with _$AddProblemAction, ReduxAction {
-  AddProblemAction._();
-  factory AddProblemAction(ProblemInfo info) = _AddProblemAction;
+  const AddProblemAction._();
+  const factory AddProblemAction(ProblemInfo info) = _AddProblemAction;
 
   factory AddProblemAction.fromJson(JsonMap json) =>
       _$AddProblemActionFromJson(json);

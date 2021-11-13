@@ -11,8 +11,8 @@ class ProjectDetailPageData extends PageData
     with _$ProjectDetailPageData, ReduxModel {
   static const String staticTypeName = 'ProjectDetailPageData';
 
-  ProjectDetailPageData._();
-  factory ProjectDetailPageData() = _ProjectDetailPageData;
+  const ProjectDetailPageData._();
+  const factory ProjectDetailPageData() = _ProjectDetailPageData;
 
   factory ProjectDetailPageData.fromJson(JsonMap json) =>
       _$ProjectDetailPageDataFromJson(json);
