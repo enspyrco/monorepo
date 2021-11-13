@@ -16,7 +16,7 @@ class ExampleAppState with _$ExampleAppState, RedFireState {
   }) = _ExampleAppState;
 
   factory ExampleAppState.init() => ExampleAppState(
-        pages: <PageData>[InitialPageData()].lock,
+        pages: <PageData>[const InitialPageData()].lock,
         problems: IList(),
         settings: Settings.init(),
         auth: AuthState(

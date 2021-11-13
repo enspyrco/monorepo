@@ -57,7 +57,7 @@ class AppState with _$AppState, RedFireState {
 
   factory AppState.init() => AppState(
         auth: AuthState.init(),
-        pages: <PageData>[InitialPageData()].lock,
+        pages: <PageData>[const InitialPageData()].lock,
         problems: IList(),
         settings: Settings.init(),
 
@@ -76,7 +76,7 @@ class AppState with _$AppState, RedFireState {
 
 void main() => runApp(AppWidget<AppState>(
       initialState: AppState.init(),
-      initialActions: [TapOrganisationsAction()],
+      initialActions: const [TapOrganisationsAction()],
       middlewares: [
         /// Sections
         CreateSectionMiddleware(),

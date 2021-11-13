@@ -17,7 +17,7 @@ void main() {
 
       // Create the middleware dependencies.
       final fakeStore = FakeStore(ExampleAppState.init());
-      final action = ObserveAuthStateAction();
+      const action = ObserveAuthStateAction();
 
       // Create the error to catch.
       when(authServiceMock.streamOfSetAuthUserData).thenThrow('error');
@@ -43,7 +43,7 @@ void main() {
 
       // Create then invoke the middleware under test.
       await ObserveAuthStateMiddleware()(
-          mockStore, ObserveAuthStateAction(), emptyAppReducer);
+          mockStore, const ObserveAuthStateAction(), emptyAppReducer);
 
       final data = AuthUserDataExample.normal;
       final action = SetAuthUserDataAction(data);
@@ -65,7 +65,7 @@ void main() {
       final fakeStore = FakeStore(ExampleAppState.init());
 
       await ObserveAuthStateMiddleware()(
-          fakeStore, ObserveAuthStateAction(), emptyAppReducer);
+          fakeStore, const ObserveAuthStateAction(), emptyAppReducer);
 
       // Setup the FakeStore to throw when asked to dispatch action.
       final action = SetAuthUserDataAction(AuthUserDataExample.normal);

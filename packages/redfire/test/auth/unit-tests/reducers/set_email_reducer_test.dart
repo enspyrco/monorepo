@@ -12,7 +12,8 @@ void main() {
       expect(initialState.auth.emailVM.email, null);
 
       final reducer = SetEmailReducer();
-      final newState = reducer.reducer(initialState, SetEmailAction(testEmail));
+      final newState =
+          reducer.reducer(initialState, const SetEmailAction(testEmail));
 
       expect(newState.auth.emailVM.email, equals(testEmail));
     });

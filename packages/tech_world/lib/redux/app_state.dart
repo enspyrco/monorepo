@@ -26,7 +26,7 @@ class AppState with _$AppState, RedFireState {
 
       /// RedFire init code
       auth: AuthState.init(),
-      pages: <PageData>[InitialPageData()].lock,
+      pages: <PageData>[const InitialPageData()].lock,
       problems: IList(),
       settings: Settings.init(),
 

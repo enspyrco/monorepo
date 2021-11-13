@@ -16,7 +16,7 @@ void main() {
 
       final reducer = SetProvidersForEmailReducer();
       final newState = reducer.reducer(
-          initialState, SetProvidersForEmailAction(testProviders));
+          initialState, const SetProvidersForEmailAction(testProviders));
 
       expect(newState.auth.emailVM.providers, equals(testProviders));
     });

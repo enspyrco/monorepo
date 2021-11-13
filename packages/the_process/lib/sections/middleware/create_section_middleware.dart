@@ -14,7 +14,8 @@ class CreateSectionMiddleware
           try {
             final service = RedFireLocator.getHttpService();
 
-            store.dispatch(UpdateSectionsVMAction(creatingNewSection: true));
+            store.dispatch(
+                const UpdateSectionsVMAction(creatingNewSection: true));
 
             await service.createSection(name: store.state.sections.newName);
           } catch (error, trace) {

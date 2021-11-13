@@ -14,7 +14,7 @@ void main() {
 
       // Invoke the reducer to update the app state.
       final newState = reducerUnderTest.reducer(
-          initialState, UpdateSectionsVMAction(creatingNewSection: true));
+          initialState, const UpdateSectionsVMAction(creatingNewSection: true));
 
       expect(newState.sections.creatingNewSection, true);
     });

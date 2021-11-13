@@ -15,7 +15,7 @@ void main() {
 
       // Create the middleware dependencies.
       final fakeStore = FakeStore(ExampleAppState.init());
-      final action = LaunchUrlAction(url: 'url');
+      const action = LaunchUrlAction(url: 'url');
 
       // Create the error to catch.
       when(platformServiceMock.launchUrl(action.url)).thenThrow('error');

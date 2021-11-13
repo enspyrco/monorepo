@@ -22,7 +22,7 @@ class ProjectsGridItemView extends StatelessWidget {
         child: InkWell(
           splashColor: Colors.blue.withAlpha(30),
           onTap: () =>
-              context.dispatch(PushPageAction(ProjectDetailPageData())),
+              context.dispatch(const PushPageAction(ProjectDetailPageData())),
           child: Center(
               child: Text(project.name,
                   style: Theme.of(context).textTheme.headline5)),

@@ -22,10 +22,11 @@ void main() {
 
       // Create then invoke the middleware under test.
       final middleware = CreateSectionMiddleware();
-      await middleware(fakeStore, CreateSectionAction(), (dynamic _) => null);
+      await middleware(
+          fakeStore, const CreateSectionAction(), (dynamic _) => null);
 
       expect(fakeStore.dispatched,
-          contains(UpdateSectionsVMAction(creatingNewSection: true)));
+          contains(const UpdateSectionsVMAction(creatingNewSection: true)));
 
       verify(mockHttpService.createSection(name: 'testy'));
     });

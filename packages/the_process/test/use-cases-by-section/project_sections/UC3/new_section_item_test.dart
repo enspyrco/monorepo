@@ -25,8 +25,8 @@ void main() {
 
     await tester.enterText(textField, 'a');
 
-    expect(
-        harness.receivedActions, contains(UpdateNewSectionVMAction(name: 'a')));
+    expect(harness.receivedActions,
+        contains(const UpdateNewSectionVMAction(name: 'a')));
   });
 
   testWidgets('NewSectionItem dispatches CreateSection on submit',
@@ -47,6 +47,6 @@ void main() {
 
     await tester.tap(button);
 
-    expect(harness.receivedActions, contains(CreateSectionAction()));
+    expect(harness.receivedActions, contains(const CreateSectionAction()));
   });
 }

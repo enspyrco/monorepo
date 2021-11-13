@@ -29,7 +29,7 @@ class GetProvidersForEmailMiddleware<T extends RedFireState>
           } catch (error, trace) {
             if (error is FirebaseAuthException &&
                 error.code == 'invalid-email') {
-              store.dispatch(SetEmailAction(null));
+              store.dispatch(const SetEmailAction(null));
               RedFireLocator.getEmailTextFieldController()?.text = '';
             }
             store.dispatchProblem(error, trace);

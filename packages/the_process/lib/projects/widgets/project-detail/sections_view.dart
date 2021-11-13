@@ -12,7 +12,7 @@ class SectionsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, SectionsVM?>(
-      onInit: (store) => store.dispatch(TapSectionsAction()),
+      onInit: (store) => store.dispatch(const TapSectionsAction()),
       distinct: true,
       converter: (store) => store.state.sections,
       builder: (context, vm) {

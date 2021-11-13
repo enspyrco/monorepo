@@ -14,7 +14,7 @@ void main() {
 
       final reducer = SetOtherPlayerIdsReducer();
       final newState =
-          reducer.reducer(initialState, SetOtherPlayerIdsAction(testIds));
+          reducer.reducer(initialState, const SetOtherPlayerIdsAction(testIds));
 
       expect(newState.game.otherPlayerIds, testIds);
     });

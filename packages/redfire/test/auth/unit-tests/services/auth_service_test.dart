@@ -77,9 +77,9 @@ void main() {
       expect(
           service.streamOfSetAuthUserData,
           emitsInOrder(<ReduxAction>[
-            SetAuthStepAction(AuthStepEnum.contactingGoogle),
-            SetAuthStepAction(AuthStepEnum.signingInWithFirebase),
-            SetAuthStepAction(AuthStepEnum.waitingForInput),
+            const SetAuthStepAction(AuthStepEnum.contactingGoogle),
+            const SetAuthStepAction(AuthStepEnum.signingInWithFirebase),
+            const SetAuthStepAction(AuthStepEnum.waitingForInput),
             // NavigatorPopAll()
           ]));
     },
@@ -102,8 +102,8 @@ void main() {
       expect(
           service.streamOfSetAuthUserData,
           emitsInOrder(<dynamic>[
-            SetAuthStepAction(AuthStepEnum.contactingGoogle),
-            SetAuthStepAction(AuthStepEnum.waitingForInput),
+            const SetAuthStepAction(AuthStepEnum.contactingGoogle),
+            const SetAuthStepAction(AuthStepEnum.waitingForInput),
             const TypeMatcher<AddProblemAction>()
               ..having((p) => p.info.message, 'message',
                   equals('Exception: GoogleSignIn.signIn')),

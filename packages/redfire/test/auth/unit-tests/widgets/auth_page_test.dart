@@ -59,7 +59,8 @@ void main() {
       await tester.testTextInput.receiveAction(TextInputAction.done);
       await tester.pump();
 
-      expect(fakeStore.dispatched, contains(GetProvidersForEmailAction('hi')));
+      expect(fakeStore.dispatched,
+          contains(const GetProvidersForEmailAction('hi')));
     });
 
     testWidgets('dispatches SigninWithGoogle on tap',

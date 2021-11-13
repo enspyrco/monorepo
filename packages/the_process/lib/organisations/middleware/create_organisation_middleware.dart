@@ -13,7 +13,7 @@ class CreateOrganisationMiddleware
           next(action);
 
           try {
-            store.dispatch(UpdateOrganisationsPageAction(creating: true));
+            store.dispatch(const UpdateOrganisationsPageAction(creating: true));
 
             var organisation = action.organisation
                 .copyWith(ownerIds: ISet([store.state.auth.userData!.uid]));
@@ -24,7 +24,8 @@ class CreateOrganisationMiddleware
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           } finally {
-            store.dispatch(UpdateOrganisationsPageAction(creating: false));
+            store
+                .dispatch(const UpdateOrganisationsPageAction(creating: false));
           }
         });
 }

@@ -56,31 +56,32 @@ class MapComponent extends Component {
   }
 
   @override
-  void render(Canvas c) {
-    super.render(c);
+  void render(Canvas canvas) {
+    super.render(canvas);
 
     // draw the path squares
     for (final pathLocation in _pathLocations) {
-      c.drawRect(pathLocation.toRect64(), Paint()..color = Colors.blue);
+      canvas.drawRect(pathLocation.toRect64(), Paint()..color = Colors.blue);
     }
 
     //Draw the selected square.
     if (_pathLocations.isNotEmpty) {
-      c.drawRect(
+      canvas.drawRect(
           _pathLocations.last.toRect64(), Paint()..color = Colors.lightGreen);
     }
 
     // draw the grid
     for (double i = 0; i <= constants.gridHeight; i += constants.squareSize) {
-      c.drawLine(Offset(0, i), Offset(constants.gridWidth, i), _linePaint);
+      canvas.drawLine(Offset(0, i), Offset(constants.gridWidth, i), _linePaint);
     }
     for (double i = 0; i <= constants.gridWidth; i += constants.squareSize) {
-      c.drawLine(Offset(i, 0), Offset(i, constants.gridHeight), _linePaint);
+      canvas.drawLine(
+          Offset(i, 0), Offset(i, constants.gridHeight), _linePaint);
     }
 
     // draw the barrier squares
     for (final barrierRect in _barrierRects) {
-      c.drawRect(barrierRect, Paint()..color = Colors.red);
+      canvas.drawRect(barrierRect, Paint()..color = Colors.red);
     }
   }
 }

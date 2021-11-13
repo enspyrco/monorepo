@@ -20,7 +20,7 @@ class NewSectionItem extends StatelessWidget {
             padding: const EdgeInsets.only(right: 8.0),
             child: FloatingActionButton(
               onPressed: () =>
-                  context.dispatch<AppState>(CreateSectionAction()),
+                  context.dispatch<AppState>(const CreateSectionAction()),
               backgroundColor: Colors.blue,
               foregroundColor: Colors.white,
               mini: true,

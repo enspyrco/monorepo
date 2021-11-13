@@ -25,7 +25,7 @@ class ObserveAuthStateMiddleware<T extends RedFireState>
                 // The logic is here in order to cover both signing in explicitly
                 // and when returning to the app already signed in.
                 if (setAuthUserDataAction.authUserData != null) {
-                  store.dispatch(GetIdTokenAction());
+                  store.dispatch(const GetIdTokenAction());
                   store.dispatch(const PopAllPagesAction());
                 }
               } catch (error, trace) {

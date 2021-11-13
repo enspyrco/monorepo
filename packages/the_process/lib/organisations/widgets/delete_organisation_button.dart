@@ -22,7 +22,7 @@ class DeleteOrganisationButton extends StatelessWidget {
               )
             : IconButton(
                 onPressed: () {
-                  context.dispatch(DeleteOrganisationAction());
+                  context.dispatch(const DeleteOrganisationAction());
                 },
                 icon: const Icon(Icons.delete_forever_rounded)));
   }

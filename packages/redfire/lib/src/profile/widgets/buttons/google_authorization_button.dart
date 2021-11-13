@@ -14,8 +14,8 @@ class GoogleAuthorizationButton extends StatelessWidget {
     return FloatingActionButton(
       elevation: (step == AuthorizationEnum.waitingForInput) ? 1 : 0,
       onPressed: (step == AuthorizationEnum.waitingForInput)
-          ? () => context
-              .dispatch(GetAuthorizedAction(provider: ProvidersEnum.google))
+          ? () => context.dispatch(
+              const GetAuthorizedAction(provider: ProvidersEnum.google))
           : null,
       child: ImageIcon(const AssetImage('assets/google.png'),
           color: (step == AuthorizationEnum.waitingForInput)

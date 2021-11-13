@@ -17,7 +17,7 @@ void main() {
 
       // Create the middleware dependencies.
       final fakeStore = FakeStore(ExampleAppState.init());
-      final action = SignInWithGoogleAction();
+      const action = SignInWithGoogleAction();
 
       // Create the error to catch.
       when(authServiceMock.getGoogleCredential()).thenThrow('error');
