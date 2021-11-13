@@ -5,6 +5,7 @@ import 'package:redfire/extensions.dart';
 import 'package:redfire/redfire.dart';
 import 'package:redfire/widgets.dart';
 import 'package:redux/redux.dart';
+import 'package:tech_world/challenges/reducers/start_challenge_reducer.dart';
 import 'package:tech_world/redux/app_state.dart';
 import 'package:tech_world/redux/reducers/set_other_player_ids_reducer.dart';
 import 'package:tech_world/redux/reducers/set_player_path_reducer.dart';
@@ -20,7 +21,11 @@ void main() {
   // the TechWorldGame object.
   final store = Store<AppState>(
     (redfireReducers<AppState>() +
-            [SetOtherPlayerIdsReducer(), SetPlayerPathReducer()])
+            [
+              SetOtherPlayerIdsReducer(),
+              SetPlayerPathReducer(),
+              StartChallengeReducer(),
+            ])
         .combine(),
     initialState: AppState.init(),
     middleware: [

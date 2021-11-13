@@ -31,7 +31,7 @@ class _ChallengeStepperState extends State<ChallengeStepper> {
               Step(title: Text('c'), content: SizedBox())
             ],
             onStepTapped: (index) {
-              var task = widget._challenge.tasks.elementAt(index);
+              print(widget._challenge.tasks[index]);
               // if(task.)
             }));
   }

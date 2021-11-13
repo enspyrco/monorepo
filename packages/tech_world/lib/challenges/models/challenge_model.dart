@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:tech_world/challenges/models/challenge_task_model.dart';
 import 'package:ws_game_server_types/ws_game_server_types.dart';
 
 typedef ChallengeModelFromJson = ChallengeModel Function(JsonMap json);
@@ -6,6 +7,7 @@ typedef ChallengeModelFromJson = ChallengeModel Function(JsonMap json);
 mixin ChallengeModel {
   JsonMap toJson();
   String get typeName;
+  List<ChallengeTaskModel> get tasks;
 }
 
 final _fromJsonMap = <String, ChallengeModelFromJson>{};
