@@ -5,6 +5,7 @@ import 'package:redfire/extensions.dart';
 import 'package:redfire/redfire.dart';
 import 'package:redfire/widgets.dart';
 import 'package:redux/redux.dart';
+import 'package:tech_world/challenges/reducers/dismiss_challenge.dart';
 import 'package:tech_world/challenges/reducers/start_challenge_reducer.dart';
 import 'package:tech_world/redux/app_state.dart';
 import 'package:tech_world/redux/reducers/set_other_player_ids_reducer.dart';
@@ -25,6 +26,7 @@ void main() {
               SetOtherPlayerIdsReducer(),
               SetPlayerPathReducer(),
               StartChallengeReducer(),
+              DismissChallengeReducer()
             ])
         .combine(),
     initialState: AppState.init(),
