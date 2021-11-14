@@ -1,4 +1,4 @@
-import 'package:adventures/pages/main_page.dart';
+import 'package:adventure_maker/pages/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

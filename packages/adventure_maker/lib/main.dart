@@ -1,4 +1,4 @@
-import 'package:adventures/pages/main_page.dart';
+import 'package:adventure_maker/pages/main_page.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -40,6 +40,6 @@ void main() => runApp(AppWidget<AppState>(
       middlewares: const [],
       reducers: const [],
       pageTransforms: const [],
-      title: 'Adventures', // optional, defaults to 'Title Note Set'
+      title: 'adventure_maker', // optional, defaults to 'Title Note Set'
       mainPage: const MainPage(),
     ));

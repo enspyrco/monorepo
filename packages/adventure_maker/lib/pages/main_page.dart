@@ -1,4 +1,4 @@
-import 'package:adventures/main.dart';
+import 'package:adventure_maker/main.dart';
 import 'package:flutter/material.dart';
 import 'package:redfire/actions.dart';
 import 'package:redfire/extensions.dart';

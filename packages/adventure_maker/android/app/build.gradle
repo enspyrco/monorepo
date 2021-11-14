@@ -43,7 +43,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "co.enspyr.adventures"
+        applicationId "co.enspyr.adventure_maker"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()

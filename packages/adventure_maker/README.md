@@ -1,4 +1,4 @@
-# adventures
+# adventure_maker
 
 [< monorepo](../../README.md)
 

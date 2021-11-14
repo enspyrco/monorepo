@@ -1,6 +1,6 @@
 {
-    "name": "adventures",
-    "short_name": "adventures",
+    "name": "adventure_maker",
+    "short_name": "adventure_maker",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

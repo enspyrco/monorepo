@@ -1,10 +1,10 @@
-name: adventures
+name: adventure_maker
 description: Create, organise & discover adventures taking place in tech-world.
 publish_to: 'none'
 version: 0.0.1
 
 environment:
-  sdk: ">=2.13.0 <3.0.0"
+  sdk: ">=2.14.4 <3.0.0"
   flutter: ">=2.6.0-0.0.pre"
 
 dependencies:
