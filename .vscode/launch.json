@@ -2,46 +2,43 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "adventures (macos)",
-      "request": "launch",
+      "name": "adventure_maker",
       "type": "dart",
-      "deviceId": "macos"
+      "request": "launch",
+      "cwd": "packages/adventure_maker",
+      "program": "lib/main.dart"
     },
     {
-      "name": "adventures (web)",
-      "request": "launch",
+      "name": "adventure_maker (web)",
       "type": "dart",
+      "request": "launch",
       "deviceId": "chrome",
+      "cwd": "packages/adventure_maker",
+      "program": "lib/main.dart",
       "args": ["--web-hostname", "localhost", "--web-port", "5000"]
-    },
-    {
-      "name": "adventures (profile mode)",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "profile"
     },
     {
       "name": "flireator (mac)",
       "type": "dart",
-      "deviceId": "macos",
       "request": "launch",
-      "cwd": "packages/flireator",
       "program": "lib/main.dart",
+      "deviceId": "macos",
+      "cwd": "packages/flireator"
     },
     {
       "name": "tech_world",
       "type": "dart",
+      "request": "launch",
       "program": "lib/main.dart",
-      "cwd": "packages/tech_world",
-      "request": "launch"
+      "cwd": "packages/tech_world"
     },
     {
       "name": "tech_world (web)",
-      "request": "launch",
       "type": "dart",
+      "request": "launch",
       "program": "lib/main.dart",
-      "cwd": "packages/tech_world",
       "deviceId": "chrome",
+      "cwd": "packages/tech_world",
       "args": [
         "--web-hostname",
         "localhost",
@@ -51,15 +48,15 @@
     },
     {
       "name": "the_process (mac)",
-      "cwd": "packages/the_process",
-      "request": "launch",
       "type": "dart",
+      "request": "launch",
       "deviceId": "macos",
+      "cwd": "packages/the_process"
     },
     {
       "name": "the_process (web)",
-      "request": "launch",
       "type": "dart",
+      "request": "launch",
       "deviceId": "chrome",
       "args": [
         "--web-hostname",
