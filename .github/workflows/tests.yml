@@ -33,12 +33,12 @@ jobs:
     ############################################
     # Run tests
     ############################################
-    - name: Tests for adventures
+    - name: Tests for adventure_maker
       run: |
         flutter pub get
         flutter pub run build_runner build
         flutter test
-      working-directory: ./packages/adventures
+      working-directory: ./packages/adventure_maker
     - name: Tests for flireator
       run: |
         flutter pub get
