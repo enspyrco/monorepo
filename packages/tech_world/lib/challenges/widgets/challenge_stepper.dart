@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tech_world/challenges/models/challenge_model.dart';
+import 'package:tech_world/challenges/widgets/task_descritpion_view.dart';
 
 class ChallengeStepper extends StatefulWidget {
   const ChallengeStepper(@ChallengeModelConverter() ChallengeModel challenge,
@@ -22,7 +23,8 @@ class _ChallengeStepperState extends State<ChallengeStepper> {
         child: Stepper(
             currentStep: _index,
             controlsBuilder: (BuildContext context, ControlsDetails details) =>
-                const SizedBox(),
+                const SizedBox(
+                    height: 300, child: TaskDescriptionView(lines: <String>[])),
             type: StepperType.horizontal,
             steps: const [
               Step(title: CircularProgressIndicator(), content: SizedBox()),
