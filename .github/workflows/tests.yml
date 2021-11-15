@@ -30,7 +30,7 @@ jobs:
             package_name: "ws_game_server_types"
     steps:
       - uses: actions/checkout@v2
-      - uses: enspyrco/run-tests-action@v0.1
+      - uses: enspyrco/run-tests-action@v0
         with:
           packages_path: packages/
           package_name: ${{ matrix.package_name }}
