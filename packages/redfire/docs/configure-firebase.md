@@ -18,7 +18,7 @@
    - open macos target and 
     - "Add files to Runner", select "Copy files" and select `GoogleServices.info`
     - add the `com.apple.security.network.client` [Entitlement](https://flutter.dev/desktop#setting-up-entitlements) to `macos/Runner/DebugProfile.entitlements`
-    - ? update the deployment target to 10.12 (testing if we need this)
+    - update the deployment target to 10.12 (will get warnings in the build output without this)
 
 - Create "Android" app for Android target, then:
   - follow [Android Installation | FlutterFire](https://firebase.flutter.dev/docs/installation/android) and 
