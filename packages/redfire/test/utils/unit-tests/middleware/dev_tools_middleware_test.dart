@@ -12,7 +12,7 @@ void main() {
       // Create then invoke the middleware under test.
       final middleware = DevToolsMiddleware();
       await middleware(
-          fakeStore, ObserveAuthStateAction(), (dynamic _) => null);
+          fakeStore, const ObserveAuthStateAction(), (dynamic _) => null);
 
       // TODO: The rest of the test is waiting for when we have a wrapper around
       // postEvent so we can mock, inject it and verify calls.

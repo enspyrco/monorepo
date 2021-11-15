@@ -7,8 +7,12 @@ part 'remove_current_page_action.g.dart';
 
 @freezed
 class RemoveCurrentPageAction with _$RemoveCurrentPageAction, ReduxAction {
-  factory RemoveCurrentPageAction() = _RemoveCurrentPageAction;
+  const RemoveCurrentPageAction._();
+  const factory RemoveCurrentPageAction() = _RemoveCurrentPageAction;
 
   factory RemoveCurrentPageAction.fromJson(JsonMap json) =>
       _$RemoveCurrentPageActionFromJson(json);
+
+  @override
+  String get typeName => 'RemoveCurrentPageAction';
 }

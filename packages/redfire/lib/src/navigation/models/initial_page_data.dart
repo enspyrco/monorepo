@@ -9,8 +9,8 @@ part 'initial_page_data.g.dart';
 class InitialPageData extends PageData with _$InitialPageData {
   static const String staticTypeName = 'InitialPageData';
 
-  InitialPageData._();
-  factory InitialPageData() = _InitialPageData;
+  const InitialPageData._();
+  const factory InitialPageData() = _InitialPageData;
 
   factory InitialPageData.fromJson(JsonMap json) =>
       _$InitialPageDataFromJson(json);

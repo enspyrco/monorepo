@@ -8,9 +8,13 @@ part 'set_sections_action.g.dart';
 
 @freezed
 class SetSectionsAction with _$SetSectionsAction, ReduxAction {
-  factory SetSectionsAction({required IList<SectionModel> list}) =
+  const SetSectionsAction._();
+  const factory SetSectionsAction({required IList<SectionModel> list}) =
       _SetSectionsAction;
 
   factory SetSectionsAction.fromJson(JsonMap json) =>
       _$SetSectionsActionFromJson(json);
+
+  @override
+  String get typeName => 'SetSectionsAction';
 }

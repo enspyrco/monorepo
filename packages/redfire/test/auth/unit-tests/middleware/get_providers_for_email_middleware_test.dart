@@ -20,7 +20,7 @@ void main() {
       RedFireLocator.provide(authService: serviceMock);
 
       final fakeStore = FakeStore(ExampleAppState.init());
-      final action = GetProvidersForEmailAction(testEmail);
+      const action = GetProvidersForEmailAction(testEmail);
 
       GetProvidersForEmailMiddleware()
           .call(fakeStore, action, (dynamic _) => null);
@@ -43,7 +43,7 @@ void main() {
       RedFireLocator.provide(authService: serviceMock);
 
       final fakeStore = FakeStore(ExampleAppState.init());
-      final action = GetProvidersForEmailAction(testEmail);
+      const action = GetProvidersForEmailAction(testEmail);
 
       GetProvidersForEmailMiddleware()
           .call(fakeStore, action, (dynamic _) => null);
@@ -51,8 +51,8 @@ void main() {
       expect(
           Stream.fromIterable(fakeStore.dispatched),
           emitsInOrder(<dynamic>[
-            SetEmailAction(testEmail),
-            SetEmailAction(null),
+            const SetEmailAction(testEmail),
+            const SetEmailAction(null),
             isA<AddProblemAction>().having((action) => action.info.message,
                 'message', startsWith('[firebase_auth/invalid-email]')),
             emitsDone

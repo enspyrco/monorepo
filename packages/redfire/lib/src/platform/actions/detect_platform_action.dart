@@ -7,8 +7,12 @@ part 'detect_platform_action.g.dart';
 
 @freezed
 class DetectPlatformAction with _$DetectPlatformAction, ReduxAction {
-  factory DetectPlatformAction() = _DetectPlatformAction;
+  const DetectPlatformAction._();
+  const factory DetectPlatformAction() = _DetectPlatformAction;
 
   factory DetectPlatformAction.fromJson(JsonMap json) =>
       _$DetectPlatformActionFromJson(json);
+
+  @override
+  String get typeName => 'DetectPlatformAction';
 }

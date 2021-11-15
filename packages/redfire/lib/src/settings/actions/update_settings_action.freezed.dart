@@ -111,8 +111,8 @@ class __$UpdateSettingsActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UpdateSettingsAction implements _UpdateSettingsAction {
-  _$_UpdateSettingsAction({required this.platform});
+class _$_UpdateSettingsAction extends _UpdateSettingsAction {
+  const _$_UpdateSettingsAction({required this.platform}) : super._();
 
   factory _$_UpdateSettingsAction.fromJson(Map<String, dynamic> json) =>
       _$$_UpdateSettingsActionFromJson(json);
@@ -149,9 +149,10 @@ class _$_UpdateSettingsAction implements _UpdateSettingsAction {
   }
 }
 
-abstract class _UpdateSettingsAction implements UpdateSettingsAction {
-  factory _UpdateSettingsAction({required PlatformsEnum platform}) =
+abstract class _UpdateSettingsAction extends UpdateSettingsAction {
+  const factory _UpdateSettingsAction({required PlatformsEnum platform}) =
       _$_UpdateSettingsAction;
+  const _UpdateSettingsAction._() : super._();
 
   factory _UpdateSettingsAction.fromJson(Map<String, dynamic> json) =
       _$_UpdateSettingsAction.fromJson;

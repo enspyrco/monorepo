@@ -1,6 +1,7 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
+import 'package:tech_world/challenges/models/challenge_model.dart';
 import 'package:tech_world/game/game_state.dart';
 
 part 'app_state.freezed.dart';
@@ -18,13 +19,14 @@ class AppState with _$AppState, RedFireState {
 
     /// Additional AppState members
     required GameState game,
+    @ChallengeModelConverter() ChallengeModel? challenge,
   }) = _AppState;
 
   factory AppState.init() => AppState(
 
       /// RedFire init code
       auth: AuthState.init(),
-      pages: <PageData>[InitialPageData()].lock,
+      pages: <PageData>[const InitialPageData()].lock,
       problems: IList(),
       settings: Settings.init(),
 

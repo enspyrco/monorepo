@@ -18,8 +18,8 @@ void main() {
       /// of [PageData].
       final appState = ExampleAppState.init().copyWith(
           pages: [
-        InitialPageData(),
-        ProfilePageData(),
+        const InitialPageData(),
+        const ProfilePageData(),
         ProblemPageData(ProblemInfo('message'))
       ].lock);
 

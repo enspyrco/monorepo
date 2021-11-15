@@ -19,11 +19,11 @@ class SignInWithEmailMiddleware<T extends RedFireState>
             var email = store.state.auth.emailVM.email!;
 
             store.dispatch(
-                SetAuthStepAction(AuthStepEnum.signingInWithFirebase));
+                const SetAuthStepAction(AuthStepEnum.signingInWithFirebase));
 
             await service.signInWithEmailAndPassword(email, action.password);
 
-            store.dispatch(ResetAuthPageAction());
+            store.dispatch(const ResetAuthPageAction());
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           }

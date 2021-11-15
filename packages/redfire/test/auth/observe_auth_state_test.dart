@@ -31,7 +31,7 @@ void main() {
             ObserveAuthStateMiddleware<ExampleAppState>()
           ]);
 
-      store.dispatch(ObserveAuthStateAction());
+      store.dispatch(const ObserveAuthStateAction());
       verify(mockAuthService.streamOfSetAuthUserData);
 
       // wait for the stream to complete so we can check the middleware did it's thing

@@ -129,7 +129,7 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
                       }
 
                       if (route.isCurrent) {
-                        widget._store.dispatch(RemoveCurrentPageAction());
+                        widget._store.dispatch(const RemoveCurrentPageAction());
                       }
 
                       return true;

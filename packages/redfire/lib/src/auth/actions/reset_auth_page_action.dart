@@ -6,8 +6,12 @@ part 'reset_auth_page_action.g.dart';
 
 @freezed
 class ResetAuthPageAction with _$ResetAuthPageAction, ReduxAction {
-  factory ResetAuthPageAction() = _ResetAuthPageAction;
+  const ResetAuthPageAction._();
+  const factory ResetAuthPageAction() = _ResetAuthPageAction;
 
   factory ResetAuthPageAction.fromJson(JsonMap json) =>
       _$ResetAuthPageActionFromJson(json);
+
+  @override
+  String get typeName => 'ResetAuthPageAction';
 }

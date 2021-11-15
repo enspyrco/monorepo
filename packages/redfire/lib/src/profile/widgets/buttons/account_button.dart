@@ -66,10 +66,12 @@ class HiddenPopupMenuButton<T extends RedFireState> extends StatelessWidget {
       {Key? key})
       : super(key: key) {
     _options = options.addAll([
-      AccountButtonOption('Account Details',
-          (context) => context.dispatch<T>(PushPageAction(ProfilePageData()))),
+      AccountButtonOption(
+          'Account Details',
+          (context) =>
+              context.dispatch<T>(const PushPageAction(ProfilePageData()))),
       AccountButtonOption('Sign Out',
-          (BuildContext context) => context.dispatch<T>(SignOutAction()))
+          (BuildContext context) => context.dispatch<T>(const SignOutAction()))
     ]);
   }
 

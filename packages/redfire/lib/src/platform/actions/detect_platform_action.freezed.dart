@@ -22,7 +22,7 @@ class _$DetectPlatformActionTearOff {
   const _$DetectPlatformActionTearOff();
 
   _DetectPlatformAction call() {
-    return _DetectPlatformAction();
+    return const _DetectPlatformAction();
   }
 
   DetectPlatformAction fromJson(Map<String, Object?> json) {
@@ -76,8 +76,8 @@ class __$DetectPlatformActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DetectPlatformAction implements _DetectPlatformAction {
-  _$_DetectPlatformAction();
+class _$_DetectPlatformAction extends _DetectPlatformAction {
+  const _$_DetectPlatformAction() : super._();
 
   factory _$_DetectPlatformAction.fromJson(Map<String, dynamic> json) =>
       _$$_DetectPlatformActionFromJson(json);
@@ -102,8 +102,9 @@ class _$_DetectPlatformAction implements _DetectPlatformAction {
   }
 }
 
-abstract class _DetectPlatformAction implements DetectPlatformAction {
-  factory _DetectPlatformAction() = _$_DetectPlatformAction;
+abstract class _DetectPlatformAction extends DetectPlatformAction {
+  const factory _DetectPlatformAction() = _$_DetectPlatformAction;
+  const _DetectPlatformAction._() : super._();
 
   factory _DetectPlatformAction.fromJson(Map<String, dynamic> json) =
       _$_DetectPlatformAction.fromJson;

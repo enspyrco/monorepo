@@ -7,9 +7,13 @@ part 'create_project_action.g.dart';
 
 @freezed
 class CreateProjectAction with _$CreateProjectAction, ReduxAction {
+  const CreateProjectAction._();
   const factory CreateProjectAction(ProjectModel project) =
       _CreateProjectAction;
 
   factory CreateProjectAction.fromJson(JsonMap json) =>
       _$CreateProjectActionFromJson(json);
+
+  @override
+  String get typeName => 'CreateProjectAction';
 }

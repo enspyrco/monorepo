@@ -8,9 +8,13 @@ part 'set_projects_action.g.dart';
 
 @freezed
 class SetProjectsAction with _$SetProjectsAction, ReduxAction {
+  const SetProjectsAction._();
   const factory SetProjectsAction(ISet<ProjectModel> projects) =
       _SetProjectsAction;
 
   factory SetProjectsAction.fromJson(JsonMap json) =>
       _$SetProjectsActionFromJson(json);
+
+  @override
+  String get typeName => 'SetProjectsAction';
 }

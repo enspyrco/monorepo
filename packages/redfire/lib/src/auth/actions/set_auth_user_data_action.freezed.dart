@@ -128,8 +128,8 @@ class __$SetAuthUserDataActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SetAuthUserDataAction implements _SetAuthUserDataAction {
-  _$_SetAuthUserDataAction(this.authUserData);
+class _$_SetAuthUserDataAction extends _SetAuthUserDataAction {
+  const _$_SetAuthUserDataAction(this.authUserData) : super._();
 
   factory _$_SetAuthUserDataAction.fromJson(Map<String, dynamic> json) =>
       _$$_SetAuthUserDataActionFromJson(json);
@@ -166,9 +166,10 @@ class _$_SetAuthUserDataAction implements _SetAuthUserDataAction {
   }
 }
 
-abstract class _SetAuthUserDataAction implements SetAuthUserDataAction {
-  factory _SetAuthUserDataAction(AuthUserData? authUserData) =
+abstract class _SetAuthUserDataAction extends SetAuthUserDataAction {
+  const factory _SetAuthUserDataAction(AuthUserData? authUserData) =
       _$_SetAuthUserDataAction;
+  const _SetAuthUserDataAction._() : super._();
 
   factory _SetAuthUserDataAction.fromJson(Map<String, dynamic> json) =
       _$_SetAuthUserDataAction.fromJson;

@@ -76,8 +76,8 @@ class __$PopAllPagesActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PopAllPagesAction implements _PopAllPagesAction {
-  const _$_PopAllPagesAction();
+class _$_PopAllPagesAction extends _PopAllPagesAction {
+  const _$_PopAllPagesAction() : super._();
 
   factory _$_PopAllPagesAction.fromJson(Map<String, dynamic> json) =>
       _$$_PopAllPagesActionFromJson(json);
@@ -102,8 +102,9 @@ class _$_PopAllPagesAction implements _PopAllPagesAction {
   }
 }
 
-abstract class _PopAllPagesAction implements PopAllPagesAction {
+abstract class _PopAllPagesAction extends PopAllPagesAction {
   const factory _PopAllPagesAction() = _$_PopAllPagesAction;
+  const _PopAllPagesAction._() : super._();
 
   factory _PopAllPagesAction.fromJson(Map<String, dynamic> json) =
       _$_PopAllPagesAction.fromJson;

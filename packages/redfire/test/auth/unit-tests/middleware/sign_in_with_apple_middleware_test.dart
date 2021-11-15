@@ -17,7 +17,7 @@ void main() {
 
       // Create the middleware dependencies.
       final fakeStore = FakeStore(ExampleAppState.init());
-      final action = SignInWithAppleAction();
+      const action = SignInWithAppleAction();
 
       // Create the error to catch.
       when(authServiceMock.getAppleCredential()).thenThrow('error');
@@ -34,14 +34,15 @@ void main() {
 
       // Create then invoke the middleware under test.
       final middleware = SignInWithAppleMiddleware();
-      await middleware(mockStore, SignInWithAppleAction(), (dynamic _) => null);
+      await middleware(
+          mockStore, const SignInWithAppleAction(), (dynamic _) => null);
       expect(true, false);
     }, skip: true); // haven't finished the test
 
     /// If the user cancels sign in, the service will... and the middleware
     /// should ...
     test('appleSignInStream resets auth steps on cancel', () {
-      final service = AuthService(
+      final _ = AuthService(
           firebase: FirebaseAuthExample.signedInMock,
           apple: SignInWithAppleWrapperExample.cancellingMock);
 
@@ -54,7 +55,7 @@ void main() {
     });
 
     test('dispatches expected actions at each stage', () {
-      final service = AuthService(
+      final _ = AuthService(
           firebase: FirebaseAuthExample.signedInMock,
           apple: SignInWithAppleWrapperExample.cancellingMock);
 
@@ -86,7 +87,7 @@ void main() {
 
     // test that errors are handled by being passed to the store
     test('dispatches StoreProblemAction when AuthService throws', () async {
-      final service = AuthService(
+      final _ = AuthService(
           firebase: FirebaseAuthExample.signedInMock,
           apple: SignInWithAppleWrapperExample.throwingFake);
 

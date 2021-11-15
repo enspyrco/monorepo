@@ -17,7 +17,7 @@ void main() {
 
       // Create the middleware dependencies.
       final fakeStore = FakeStore(ExampleAppState.init());
-      final action = DetectPlatformAction();
+      const action = DetectPlatformAction();
 
       // Create the error to catch.
       when(platformServiceMock.detectPlatform()).thenThrow('error');

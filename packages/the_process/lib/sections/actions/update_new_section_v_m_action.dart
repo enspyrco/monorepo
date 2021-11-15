@@ -6,8 +6,13 @@ part 'update_new_section_v_m_action.g.dart';
 
 @freezed
 class UpdateNewSectionVMAction with _$UpdateNewSectionVMAction, ReduxAction {
-  factory UpdateNewSectionVMAction({String? name}) = _UpdateNewSectionVMAction;
+  const UpdateNewSectionVMAction._();
+  const factory UpdateNewSectionVMAction({String? name}) =
+      _UpdateNewSectionVMAction;
 
   factory UpdateNewSectionVMAction.fromJson(JsonMap json) =>
       _$UpdateNewSectionVMActionFromJson(json);
+
+  @override
+  String get typeName => 'UpdateNewSectionVMAction';
 }

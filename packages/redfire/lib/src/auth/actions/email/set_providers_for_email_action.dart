@@ -8,9 +8,13 @@ part 'set_providers_for_email_action.g.dart';
 @freezed
 class SetProvidersForEmailAction
     with _$SetProvidersForEmailAction, ReduxAction {
-  factory SetProvidersForEmailAction(ISet<ProvidersEnum> providers) =
+  const SetProvidersForEmailAction._();
+  const factory SetProvidersForEmailAction(ISet<ProvidersEnum> providers) =
       _SetProvidersForEmailAction;
 
   factory SetProvidersForEmailAction.fromJson(JsonMap json) =>
       _$SetProvidersForEmailActionFromJson(json);
+
+  @override
+  String get typeName => 'SetProvidersForEmailAction';
 }

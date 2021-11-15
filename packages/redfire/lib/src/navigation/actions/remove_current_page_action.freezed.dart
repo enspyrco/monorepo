@@ -23,7 +23,7 @@ class _$RemoveCurrentPageActionTearOff {
   const _$RemoveCurrentPageActionTearOff();
 
   _RemoveCurrentPageAction call() {
-    return _RemoveCurrentPageAction();
+    return const _RemoveCurrentPageAction();
   }
 
   RemoveCurrentPageAction fromJson(Map<String, Object?> json) {
@@ -78,8 +78,8 @@ class __$RemoveCurrentPageActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_RemoveCurrentPageAction implements _RemoveCurrentPageAction {
-  _$_RemoveCurrentPageAction();
+class _$_RemoveCurrentPageAction extends _RemoveCurrentPageAction {
+  const _$_RemoveCurrentPageAction() : super._();
 
   factory _$_RemoveCurrentPageAction.fromJson(Map<String, dynamic> json) =>
       _$$_RemoveCurrentPageActionFromJson(json);
@@ -104,8 +104,9 @@ class _$_RemoveCurrentPageAction implements _RemoveCurrentPageAction {
   }
 }
 
-abstract class _RemoveCurrentPageAction implements RemoveCurrentPageAction {
-  factory _RemoveCurrentPageAction() = _$_RemoveCurrentPageAction;
+abstract class _RemoveCurrentPageAction extends RemoveCurrentPageAction {
+  const factory _RemoveCurrentPageAction() = _$_RemoveCurrentPageAction;
+  const _RemoveCurrentPageAction._() : super._();
 
   factory _RemoveCurrentPageAction.fromJson(Map<String, dynamic> json) =
       _$_RemoveCurrentPageAction.fromJson;

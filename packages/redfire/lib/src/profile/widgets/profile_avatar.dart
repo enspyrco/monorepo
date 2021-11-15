@@ -17,7 +17,7 @@ class ProfileAvatar<T extends RedFireState> extends StatelessWidget {
     final localPhotoURL = photoURL; // gimme that flow analysis
     return RawMaterialButton(
       onPressed: onPressed ??
-          () => context.dispatch<T>(PushPageAction(ProfilePageData())),
+          () => context.dispatch<T>(const PushPageAction(ProfilePageData())),
       elevation: 0.0,
       fillColor: Colors.white,
       padding: const EdgeInsets.all(5.0),

@@ -124,7 +124,7 @@ class __$ProblemPageDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ProblemPageData extends _ProblemPageData {
-  _$_ProblemPageData(this.problem) : super._();
+  const _$_ProblemPageData(this.problem) : super._();
 
   factory _$_ProblemPageData.fromJson(Map<String, dynamic> json) =>
       _$$_ProblemPageDataFromJson(json);
@@ -160,8 +160,8 @@ class _$_ProblemPageData extends _ProblemPageData {
 }
 
 abstract class _ProblemPageData extends ProblemPageData {
-  factory _ProblemPageData(ProblemInfo problem) = _$_ProblemPageData;
-  _ProblemPageData._() : super._();
+  const factory _ProblemPageData(ProblemInfo problem) = _$_ProblemPageData;
+  const _ProblemPageData._() : super._();
 
   factory _ProblemPageData.fromJson(Map<String, dynamic> json) =
       _$_ProblemPageData.fromJson;

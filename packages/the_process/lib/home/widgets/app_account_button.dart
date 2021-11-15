@@ -17,7 +17,7 @@ class AppAccountButton extends StatelessWidget {
           AccountButtonOption(
             'Edit Organisations',
             (context) => context.dispatch<AppState>(
-              PushPageAction(ManageOrganisationsPageData()),
+              const PushPageAction(ManageOrganisationsPageData()),
             ),
           ),
         ],

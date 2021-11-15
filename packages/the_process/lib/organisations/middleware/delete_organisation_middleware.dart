@@ -12,7 +12,7 @@ class DeleteOrganisationMiddleware
           next(action);
 
           try {
-            store.dispatch(UpdateOrganisationsPageAction(deleting: true));
+            store.dispatch(const UpdateOrganisationsPageAction(deleting: true));
 
             var selected = store.state.organisations.selector.selected;
             if (selected == null) return;
@@ -22,7 +22,8 @@ class DeleteOrganisationMiddleware
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           } finally {
-            store.dispatch(UpdateOrganisationsPageAction(deleting: false));
+            store
+                .dispatch(const UpdateOrganisationsPageAction(deleting: false));
           }
         });
 }

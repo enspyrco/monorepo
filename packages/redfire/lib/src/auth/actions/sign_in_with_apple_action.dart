@@ -7,8 +7,12 @@ part 'sign_in_with_apple_action.g.dart';
 
 @freezed
 class SignInWithAppleAction with _$SignInWithAppleAction, ReduxAction {
-  factory SignInWithAppleAction() = _SignInWithAppleAction;
+  const SignInWithAppleAction._();
+  const factory SignInWithAppleAction() = _SignInWithAppleAction;
 
   factory SignInWithAppleAction.fromJson(JsonMap json) =>
       _$SignInWithAppleActionFromJson(json);
+
+  @override
+  String get typeName => 'SignInWithAppleAction';
 }

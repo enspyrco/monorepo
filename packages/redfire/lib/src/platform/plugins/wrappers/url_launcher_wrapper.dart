@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
+
 class UrlLauncherWrapper {
   Future<bool> launch(
     String urlString, {
@@ -12,7 +14,7 @@ class UrlLauncherWrapper {
     Brightness? statusBarBrightness,
     String? webOnlyWindowName,
   }) =>
-      launch(
+      url_launcher.launch(
         urlString,
         forceSafariVC: forceSafariVC,
         forceWebView: forceWebView,
@@ -24,5 +26,5 @@ class UrlLauncherWrapper {
         webOnlyWindowName: webOnlyWindowName,
       );
 
-  Future<bool> canLaunch(String urlString) => canLaunch(urlString);
+  Future<bool> canLaunch(String urlString) => url_launcher.canLaunch(urlString);
 }

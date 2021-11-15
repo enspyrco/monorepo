@@ -7,9 +7,13 @@ part 'set_id_token_result_action.g.dart';
 
 @freezed
 class SetIdTokenResultAction with _$SetIdTokenResultAction, ReduxAction {
-  factory SetIdTokenResultAction(IdTokenResult result) =
+  const SetIdTokenResultAction._();
+  const factory SetIdTokenResultAction(IdTokenResult result) =
       _SetIdTokenResultAction;
 
   factory SetIdTokenResultAction.fromJson(JsonMap json) =>
       _$SetIdTokenResultActionFromJson(json);
+
+  @override
+  String get typeName => 'SetIdTokenResultAction';
 }

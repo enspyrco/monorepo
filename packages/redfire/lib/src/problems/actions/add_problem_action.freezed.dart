@@ -123,8 +123,8 @@ class __$AddProblemActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_AddProblemAction implements _AddProblemAction {
-  _$_AddProblemAction(this.info);
+class _$_AddProblemAction extends _AddProblemAction {
+  const _$_AddProblemAction(this.info) : super._();
 
   factory _$_AddProblemAction.fromJson(Map<String, dynamic> json) =>
       _$$_AddProblemActionFromJson(json);
@@ -159,8 +159,9 @@ class _$_AddProblemAction implements _AddProblemAction {
   }
 }
 
-abstract class _AddProblemAction implements AddProblemAction {
-  factory _AddProblemAction(ProblemInfo info) = _$_AddProblemAction;
+abstract class _AddProblemAction extends AddProblemAction {
+  const factory _AddProblemAction(ProblemInfo info) = _$_AddProblemAction;
+  const _AddProblemAction._() : super._();
 
   factory _AddProblemAction.fromJson(Map<String, dynamic> json) =
       _$_AddProblemAction.fromJson;

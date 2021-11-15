@@ -10,7 +10,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: ElevatedButton(
-      onPressed: () => context.dispatch<AppState>(SignOutAction()),
+      onPressed: () => context.dispatch<AppState>(const SignOutAction()),
       child: const Text('Sign Out'),
     ));
   }

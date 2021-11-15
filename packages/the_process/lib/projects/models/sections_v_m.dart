@@ -8,8 +8,8 @@ part 'sections_v_m.g.dart';
 
 @freezed
 class SectionsVM with _$SectionsVM {
-  SectionsVM._();
-  factory SectionsVM({
+  const SectionsVM._();
+  const factory SectionsVM({
     required String newName,
     required IList<SectionModel> list,
     required bool creatingNewSection,

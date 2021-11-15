@@ -7,9 +7,13 @@ part 'create_organisation_action.g.dart';
 
 @freezed
 class CreateOrganisationAction with _$CreateOrganisationAction, ReduxAction {
-  factory CreateOrganisationAction(OrganisationModel organisation) =
+  const CreateOrganisationAction._();
+  const factory CreateOrganisationAction(OrganisationModel organisation) =
       _CreateOrganisationAction;
 
   factory CreateOrganisationAction.fromJson(JsonMap json) =>
       _$CreateOrganisationActionFromJson(json);
+
+  @override
+  String get typeName => 'CreateOrganisationAction';
 }

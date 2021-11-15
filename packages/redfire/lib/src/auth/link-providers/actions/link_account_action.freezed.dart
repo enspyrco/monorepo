@@ -111,8 +111,8 @@ class __$LinkAccountActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LinkAccountAction implements _LinkAccountAction {
-  const _$_LinkAccountAction(this.provider);
+class _$_LinkAccountAction extends _LinkAccountAction {
+  const _$_LinkAccountAction(this.provider) : super._();
 
   factory _$_LinkAccountAction.fromJson(Map<String, dynamic> json) =>
       _$$_LinkAccountActionFromJson(json);
@@ -148,9 +148,10 @@ class _$_LinkAccountAction implements _LinkAccountAction {
   }
 }
 
-abstract class _LinkAccountAction implements LinkAccountAction {
+abstract class _LinkAccountAction extends LinkAccountAction {
   const factory _LinkAccountAction(ProvidersEnum provider) =
       _$_LinkAccountAction;
+  const _LinkAccountAction._() : super._();
 
   factory _LinkAccountAction.fromJson(Map<String, dynamic> json) =
       _$_LinkAccountAction.fromJson;

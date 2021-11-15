@@ -19,8 +19,9 @@ class PlatformDefaultSignInButton<T extends RedFireState>
     return (platform == PlatformsEnum.macOS || platform == PlatformsEnum.iOS)
         ? AppleSignInButton(
             style: AppleButtonStyle.black,
-            onPressed: () => context.dispatch<T>(SignInWithAppleAction()))
+            onPressed: () => context.dispatch<T>(const SignInWithAppleAction()))
         : GoogleSignInButton(
-            onPressed: () => context.dispatch<T>(SignInWithGoogleAction()));
+            onPressed: () =>
+                context.dispatch<T>(const SignInWithGoogleAction()));
   }
 }

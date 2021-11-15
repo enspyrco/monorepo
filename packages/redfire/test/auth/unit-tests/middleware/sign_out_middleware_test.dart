@@ -16,7 +16,7 @@ void main() {
 
       // Create the middleware dependencies.
       final fakeStore = FakeStore(ExampleAppState.init());
-      final action = SignOutAction();
+      const action = SignOutAction();
 
       // Create the error to catch.
       when(authServiceMock.signOut(any)).thenThrow('error');
@@ -33,7 +33,7 @@ void main() {
 
       // Create then invoke the middleware under test.
       final middleware = SignOutMiddleware();
-      await middleware(mockStore, SignOutAction(), (dynamic _) => null);
+      await middleware(mockStore, const SignOutAction(), (dynamic _) => null);
       expect(true, false);
     }, skip: true); // haven't finished the test
   });

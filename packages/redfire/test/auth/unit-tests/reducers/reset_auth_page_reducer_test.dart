@@ -21,7 +21,7 @@ void main() {
       // initialState.auth.step
 
       final reducer = ResetAuthPageReducer();
-      final newState = reducer.reducer(appState, ResetAuthPageAction());
+      final newState = reducer.reducer(appState, const ResetAuthPageAction());
 
       expect(newState.auth.step, AuthStepEnum.waitingForInput);
       expect(newState.auth.emailVM.email, null);

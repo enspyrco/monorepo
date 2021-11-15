@@ -11,8 +11,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - package: adventures
-            package_name: "adventures"
+          - package: adventure_maker
+            package_name: "adventure_maker"
           - package: flireator
             package_name: "flireator"
           - package: redfire

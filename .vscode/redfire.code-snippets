@@ -10,9 +10,13 @@
       "",
       "@freezed",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxAction {",
+      "\tconst ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._();",
       "\tconst factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({${1}}) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
       "",
       "factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
+      "",
+      "\t@override",
+      "\tString get typeName => '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}';",
       "}"
     ],
     "description": "redfire action with freezed"
@@ -28,9 +32,13 @@
       "",
       "@freezed",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxAction {",
+      "\tconst ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._();",
       "\tconst factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({@Default(false) bool turnOff}) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
       "",
       "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
+      "",
+      "\t@override",
+      "\tString get typeName => '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}';",
       "}"
     ],
     "description": "redfire action for tapping the db, with freezed"
@@ -175,8 +183,6 @@
   "redfire reducer": {
     "prefix": "rf_reducer",
     "body": [
-      "import 'package:${WORKSPACE_NAME}/actions/${TM_FILENAME_BASE}_action.dart';",
-      "import 'package:${WORKSPACE_NAME}/models/app_state.dart';",
       "import 'package:redux/redux.dart';",
       "",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Reducer extends TypedReducer<AppState, ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Action> {",

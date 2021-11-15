@@ -16,10 +16,11 @@ class SignOutMiddleware<T extends RedFireState>
             final authService = RedFireLocator.getAuthService();
 
             // set the auth step and use the service to sign out
-            store.dispatch(SetAuthStepAction(AuthStepEnum.signingOut));
+            store.dispatch(const SetAuthStepAction(AuthStepEnum.signingOut));
             await authService
                 .signOut(store.state.auth.idTokenResult?.signInProvider);
-            store.dispatch(SetAuthStepAction(AuthStepEnum.waitingForInput));
+            store.dispatch(
+                const SetAuthStepAction(AuthStepEnum.waitingForInput));
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           }

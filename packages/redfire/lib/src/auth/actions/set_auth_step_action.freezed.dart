@@ -111,8 +111,8 @@ class __$SetAuthStepActionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SetAuthStepAction implements _SetAuthStepAction {
-  _$_SetAuthStepAction(this.step);
+class _$_SetAuthStepAction extends _SetAuthStepAction {
+  const _$_SetAuthStepAction(this.step) : super._();
 
   factory _$_SetAuthStepAction.fromJson(Map<String, dynamic> json) =>
       _$$_SetAuthStepActionFromJson(json);
@@ -147,8 +147,9 @@ class _$_SetAuthStepAction implements _SetAuthStepAction {
   }
 }
 
-abstract class _SetAuthStepAction implements SetAuthStepAction {
-  factory _SetAuthStepAction(AuthStepEnum step) = _$_SetAuthStepAction;
+abstract class _SetAuthStepAction extends SetAuthStepAction {
+  const factory _SetAuthStepAction(AuthStepEnum step) = _$_SetAuthStepAction;
+  const _SetAuthStepAction._() : super._();
 
   factory _SetAuthStepAction.fromJson(Map<String, dynamic> json) =
       _$_SetAuthStepAction.fromJson;

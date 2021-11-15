@@ -5,9 +5,9 @@ include: package:flutter_lints/flutter.yaml
 
 analyzer:
   exclude: 
-    # - build/**
-    # - lib/**/*.g.dart
-    # - lib/**/*.freezed.dart
+    - build/**
+    - lib/**/*.g.dart
+    - lib/**/*.freezed.dart
     - lib/**/*.mocks.dart
   strong-mode:
     implicit-casts: false
