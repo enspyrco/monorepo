@@ -28,8 +28,11 @@ jobs:
           - package: ws_game_server_types
             package_name: "ws_game_server_types"
     steps:
-      - uses: actions/checkout@v2
-      - uses: enspyrco/run-tests-action@v0
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+        - uses: actions/checkout@v2
+        - uses: enspyrco/test-coverage-action@v0.2
+          with:
+            site_id: enspyrco
+            service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+            packages_path: packages/
+            package_name: ${{ matrix.package_name }}
           
