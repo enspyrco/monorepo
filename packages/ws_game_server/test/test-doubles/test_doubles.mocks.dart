@@ -38,4 +38,6 @@ class MockClientConnectionsService extends _i1.Mock
   void defaultMessageHandler(_i3.WebSocketChannel? webSocket) =>
       super.noSuchMethod(Invocation.method(#defaultMessageHandler, [webSocket]),
           returnValueForMissingStub: null);
+  @override
+  String toString() => super.toString();
 }
