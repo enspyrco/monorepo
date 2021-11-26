@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:coding_challenge_verifier/extensions/json_map_extensions.dart';
 import 'package:coding_challenge_verifier/services/auth_service.dart';
 import 'package:coding_challenge_verifier/services/firestore_service.dart';
 import 'package:coding_challenge_verifier/utils/type_utils.dart';
@@ -17,20 +18,39 @@ Future<Response> handler(Request request) async {
   var signature = request.headers['X-Hub-Signature-256'];
   await authService.verifySender(signature, body, key);
 
-  // we want: userId, repoName, challengeNumber, prNumber, repoToken
-
-  // Create a client that will authenticate as the default service account.
+  // Use a client that authenticates as the default service account to make
+  // a service that accesses the Firestore.
   final client = await clientViaApplicationDefaultCredentials(scopes: []);
-
   final firestoreService =
-      FirestoreService(client, projectId: 'tech-world-project');
+      FirestoreService(client: client, projectId: 'tech-world-project');
 
   var json = jsonDecode(body) as JsonMap;
-  firestoreService.setDocument(at: 'github-events', to: json);
+
+  try {
+    // document id is used to reference the event in other docs
+    var doc = await firestoreService.setDocument(at: 'github-events', to: json);
+
+    if (json.isFromACompletedJobEvent) {
+      var sender = json['sender'] as JsonMap;
+      var job = json['workflow_job'] as JsonMap;
+      var repo = json['repository'] as JsonMap;
+
+      firestoreService.setDocument(at: 'challenge-results', to: {
+        'eventId': doc.name,
+        'challengeId': repo['full_name'],
+        'userId': sender['login'],
+        'result': job['conclusion'],
+        'time': DateTime.now().millisecondsSinceEpoch
+      });
+    }
+  } catch (e) {
+    firestoreService.setDocument(at: 'github-events', to: json..['error'] = e);
+  } finally {
+    client.close();
+  }
+
   // final httpService = HttpService();
   // final sourceContents = await httpService.retrieveContents();
-
-  client.close();
 
   return Response.ok('Diddley dunarooni.');
 }

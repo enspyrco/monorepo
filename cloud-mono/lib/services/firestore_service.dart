@@ -2,17 +2,15 @@ import 'package:coding_challenge_verifier/utils/type_utils.dart';
 import 'package:googleapis/firestore/v1.dart';
 import 'package:googleapis_auth/auth_io.dart';
 
+/// If [api] is omitted, [client] is used to create one, so [client] must be present.
+/// If [api] is present, [client] can be ommited.
 class FirestoreService {
-  FirestoreService(AutoRefreshingAuthClient client,
-      {required String projectId, FirestoreApi? api})
+  FirestoreService(
+      {required String projectId,
+      AutoRefreshingAuthClient? client,
+      FirestoreApi? api})
       : _databaseName = 'projects/' + projectId + '/databases/(default)' {
-    const backendDefine = String.fromEnvironment('BACKEND');
-    // store the passed api or create one
-    _api = api ??
-        // connect to the local emulator if relevant dart define is present
-        ((backendDefine == 'EMULATOR')
-            ? FirestoreApi(client, rootUrl: 'http://localhost:8081/')
-            : FirestoreApi(client));
+    _api = api ?? FirestoreApi(client!);
     _docs = _api.projects.databases.documents;
   }
 
