@@ -1,3 +1,7 @@
+import 'package:adventure_maker/models/adventure_model.dart';
+import 'package:adventure_maker/models/challenge_model.dart';
+import 'package:adventure_maker/models/step_model.dart';
+import 'package:adventure_maker/models/task_model.dart';
 import 'package:adventure_maker/pages/main_page.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/widgets.dart';
@@ -19,6 +23,10 @@ class AppState with _$AppState, RedFireState {
     ProfileData? profile,
 
     /// Additional AppState members
+    AdventureModel? selectedAdventure,
+    ChallengeModel? selectedChallenge,
+    TaskModel? selectedTask,
+    StepModel? selectedStep,
   }) = _AppState;
 
   factory AppState.init() => AppState(
