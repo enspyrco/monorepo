@@ -12,17 +12,23 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  bool keyUp = true;
+  bool showingDialog = false;
 
+  /// Add a handler to [HardwareKeyboard] to handle Cmd-N.
+  /// The handler shows a dialog for making a new item.
   @override
   void initState() {
     super.initState();
     HardwareKeyboard.instance.addHandler((event) {
-      var down = HardwareKeyboard.instance.logicalKeysPressed;
-      if (down.contains(LogicalKeyboardKey.keyN) &&
-          (down.contains(LogicalKeyboardKey.metaLeft) ||
-              down.contains(LogicalKeyboardKey.metaRight))) {
-        _showMyDialog(context);
+      // If both Cmd and N are down, show a dialog, but we make sure a dialog
+      // is not already showing.
+      var pressed = HardwareKeyboard.instance.logicalKeysPressed;
+      if (!showingDialog &&
+          pressed.contains(LogicalKeyboardKey.keyN) &&
+          (pressed.contains(LogicalKeyboardKey.metaLeft) ||
+              pressed.contains(LogicalKeyboardKey.metaRight))) {
+        showingDialog = true;
+        _showNewItemDialog(context).then<void>((_) => showingDialog = false);
         return true;
       }
       return false;
@@ -39,25 +45,31 @@ class _MainPageState extends State<MainPage> {
           child: ItemsDropdown(),
         ),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(30.0),
-        child: NewItemDialogContent(),
-      ),
+      // body: const Padding(
+      //   padding: EdgeInsets.all(30.0),
+      //   child: NewItemDialogContent(),
+      // ),
     );
   }
 }
 
-Future<void> _showMyDialog(BuildContext context) async {
+Future<void> _showNewItemDialog(BuildContext context) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Text('New Item'),
+        title: const Text('Make a New Item?'),
         content: const NewItemDialogContent(),
         actions: <Widget>[
           TextButton(
-            child: const Text('Approve'),
+            child: const Text('Cancel'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            child: const Text('OK'),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -77,16 +89,29 @@ class NewItemDialogContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: ListBody(
-        children: const <Widget>[
-          TextField(
+        children: <Widget>[
+          const TextField(
             decoration: InputDecoration(
               helperText: 'name',
               border: OutlineInputBorder(),
             ),
             autofocus: true,
           ),
-          SizedBox(height: 20),
-          Text('Would you like to approve of this message?'),
+          const SizedBox(height: 20),
+          Center(
+              child: Text('Located In...',
+                  style: TextStyle(color: Colors.grey.shade600, fontSize: 12))),
+          const SizedBox(height: 20),
+          Container(
+            color: Colors.blue[100],
+            child: Stack(children: [
+              Text(
+                'Adventure',
+                style: TextStyle(color: Colors.blue.shade900, fontSize: 12),
+              ),
+              const Center(child: ItemsDropdown())
+            ]),
+          ),
         ],
       ),
     );
