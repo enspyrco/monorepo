@@ -1,6 +1,8 @@
+import 'package:adventure_maker/actions/create_adventure_action.dart';
 import 'package:adventure_maker/app_state.dart';
 import 'package:adventure_maker/models/selections.dart';
-import 'package:adventure_maker/widgets/items_dropdown.dart';
+import 'package:adventure_maker/utils/extensions/build_context_extension.dart';
+import 'package:adventure_maker/widgets/adventures_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
@@ -9,9 +11,10 @@ Future<void> showNewItemDialog(BuildContext context) async {
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
+        var controller = TextEditingController();
         return AlertDialog(
           title: const Text('Make a New Item?'),
-          content: const NewItemDialogContent(),
+          content: NewItemDialogContent(controller),
           actions: <Widget>[
             TextButton(
               child: const Text('Cancel'),
@@ -22,6 +25,7 @@ Future<void> showNewItemDialog(BuildContext context) async {
             TextButton(
               child: const Text('OK'),
               onPressed: () {
+                context.dispatch(CreateAdventureAction(controller.text));
                 Navigator.of(context).pop();
               },
             ),
@@ -31,9 +35,12 @@ Future<void> showNewItemDialog(BuildContext context) async {
 }
 
 class NewItemDialogContent extends StatelessWidget {
-  const NewItemDialogContent({
+  const NewItemDialogContent(
+    this.controller, {
     Key? key,
   }) : super(key: key);
+
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +56,7 @@ class NewItemDialogContent extends StatelessWidget {
               child: ListBody(
             children: <Widget>[
               TextField(
+                  controller: controller,
                   decoration: InputDecoration(
                       helperText: 'name of ${selections.leafName}',
                       border: const OutlineInputBorder()),
@@ -65,7 +73,7 @@ class NewItemDialogContent extends StatelessWidget {
                       style:
                           TextStyle(color: Colors.blue.shade900, fontSize: 12),
                     ),
-                    const Center(child: ItemsDropdown())
+                    const Center(child: AdventuresDropdown())
                   ]),
                 ),
               ]

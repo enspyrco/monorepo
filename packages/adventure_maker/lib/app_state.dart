@@ -21,9 +21,13 @@ class AppState with _$AppState, RedFireState {
 
     /// Additional AppState members
     AdventureModel? selectedAdventure,
+    required IList<AdventureModel> adventures,
     ChallengeModel? selectedChallenge,
+    required IList<ChallengeModel> challenges,
     TaskModel? selectedTask,
+    required IList<TaskModel> tasks,
     StepModel? selectedStep,
+    required IList<StepModel> steps,
   }) = _AppState;
 
   factory AppState.init() => AppState(
@@ -34,6 +38,10 @@ class AppState with _$AppState, RedFireState {
         settings: Settings.init(),
 
         /// Additional init code
+        adventures: IList(),
+        challenges: IList(),
+        tasks: IList(),
+        steps: IList(),
       );
 
   factory AppState.fromJson(JsonMap json) => _$AppStateFromJson(json);

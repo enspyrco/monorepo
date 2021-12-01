@@ -1,6 +1,6 @@
 import 'package:adventure_maker/app_state.dart';
 import 'package:adventure_maker/pages/new_item_dialog.dart';
-import 'package:adventure_maker/widgets/items_dropdown.dart';
+import 'package:adventure_maker/widgets/adventures_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:redfire/widgets.dart';
@@ -43,7 +43,7 @@ class _MainPageState extends State<MainPage> {
         actions: const [AccountButton<AppState>()],
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(50),
-          child: ItemsDropdown(),
+          child: AdventuresDropdown(),
         ),
       ),
       // body: const Padding(
