@@ -15,6 +15,7 @@ import 'package:redfire/src/settings/extensions/theme_set_extensions.dart';
 import 'package:redfire/src/settings/models/settings.dart';
 import 'package:redfire/src/types/red_fire_state.dart';
 import 'package:redfire/src/types/redux_action.dart';
+import 'package:redfire/src/utils/red_fire_locator.dart';
 import 'package:redux/redux.dart';
 
 import '../redux/redfire_initial_actions.dart';
@@ -47,6 +48,7 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
       required T initialState,
       required Widget mainPage,
       List<ReduxAction>? initialActions,
+      List<ReduxAction>? onSignInActions,
       List<Reducer<T>>? reducers,
       List<Middleware<T>>? middlewares,
       List<PageDataTransforms>? pageTransforms,
@@ -61,6 +63,8 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
     _store = Store<T>((redfireReducers<T>() + (reducers ?? [])).combine(),
         initialState: initialState,
         middleware: [...redfireMiddlewares(), ...(middlewares ?? [])]);
+
+    RedFireLocator.provideOnSignInActions(onSignInActions);
   }
 
   @override
@@ -88,7 +92,7 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
     // Dispatch any actions that were passed in.
     for (final action in [
       ...(widget._initialActions),
-      ...redfireInitialActions
+      ...redfireInitialActions,
     ]) {
       widget._store.dispatch(action);
     }

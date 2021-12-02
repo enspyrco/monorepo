@@ -27,6 +27,7 @@ class ObserveAuthStateMiddleware<T extends RedFireState>
                 if (setAuthUserDataAction.authUserData != null) {
                   store.dispatch(const GetIdTokenAction());
                   store.dispatch(const PopAllPagesAction());
+                  RedFireLocator.getOnSignInActions.forEach(store.dispatch);
                 }
               } catch (error, trace) {
                 store.dispatchProblem(error, trace);

@@ -9,6 +9,7 @@ import 'package:redfire/src/database/services/database_service.dart';
 import 'package:redfire/src/networking/services/http_service.dart';
 import 'package:redfire/src/platform/plugins/wrappers/apple_signin_wrapper.dart';
 import 'package:redfire/src/platform/services/platform_service.dart';
+import 'package:redfire/src/types/redux_action.dart';
 
 class RedFireLocator {
   ////////////////////////////////////////////////////
@@ -30,6 +31,7 @@ class RedFireLocator {
   static PlatformService getPlatformService() =>
       _platformService ?? PlatformService();
   static HttpService getHttpService() => _httpService ?? HttpService();
+  static List<ReduxAction> get getOnSignInActions => _onSignInActions ?? [];
 
   // Provide one or more
   static void provide(
@@ -54,10 +56,14 @@ class RedFireLocator {
     _httpService = httpService;
   }
 
+  static void provideOnSignInActions(List<ReduxAction>? onSignInActions) =>
+      _onSignInActions = onSignInActions;
+
   static AuthService? _authService;
   static DatabaseService? _databaseService;
   static PlatformService? _platformService;
   static HttpService? _httpService;
+  static List<ReduxAction>? _onSignInActions;
 
   ////////////////////////////////////////////////////
   /// Controllers
