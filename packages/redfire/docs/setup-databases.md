@@ -12,12 +12,17 @@ In the Podfile
 
 ```
 # Override Firebase SDK Version
-$FirebaseSDKVersion = '8.5.0'
+$FirebaseSDKVersion = '8.9.0'
 ```
 
 Also, if desired follow [Improve iOS Buld times](https://firebase.flutter.dev/docs/overview#improve-ios-build-times)
 
-- and add `pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '8.5.0'`
+- and add `pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '8.9.0'`
+
+Increase deployment target to 10.0
+
+<img width="920" alt="Screen Shot 2021-12-02 at 3 52 16 pm" src="https://user-images.githubusercontent.com/1059276/144367276-6b2a678f-fbb4-400d-b78b-419c469cfacc.png">
+
 
 ### macOS
 
