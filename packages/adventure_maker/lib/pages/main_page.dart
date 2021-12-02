@@ -1,17 +1,55 @@
-import 'package:adventure_maker/main.dart';
+import 'package:adventure_maker/app_state.dart';
+import 'package:adventure_maker/pages/new_item_dialog.dart';
+import 'package:adventure_maker/widgets/adventures_dropdown.dart';
 import 'package:flutter/material.dart';
-import 'package:redfire/actions.dart';
-import 'package:redfire/extensions.dart';
+import 'package:flutter/services.dart';
+import 'package:redfire/widgets.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
   @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  bool showingDialog = false;
+
+  /// Add a handler to [HardwareKeyboard] to handle Cmd-N.
+  /// The handler shows a dialog for making a new item.
+  @override
+  void initState() {
+    super.initState();
+    HardwareKeyboard.instance.addHandler((event) {
+      // If both Cmd and N are down, show a dialog, but we make sure a dialog
+      // is not already showing.
+      var pressed = HardwareKeyboard.instance.logicalKeysPressed;
+      if (!showingDialog &&
+          pressed.contains(LogicalKeyboardKey.keyN) &&
+          (pressed.contains(LogicalKeyboardKey.metaLeft) ||
+              pressed.contains(LogicalKeyboardKey.metaRight))) {
+        showingDialog = true;
+        showNewItemDialog(context).then<void>((_) => showingDialog = false);
+        return true;
+      }
+      return false;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Center(
-        child: ElevatedButton(
-      onPressed: () => context.dispatch<AppState>(const SignOutAction()),
-      child: const Text('Sign Out'),
-    ));
+    return Scaffold(
+      appBar: AppBar(
+        actions: const [AccountButton<AppState>()],
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(50),
+          child: AdventuresDropdown(),
+        ),
+      ),
+      // body: const Padding(
+      //   padding: EdgeInsets.all(30.0),
+      //   child: NewItemDialogContent(),
+      // ),
+    );
   }
 }
