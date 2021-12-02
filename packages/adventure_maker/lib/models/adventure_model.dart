@@ -6,7 +6,8 @@ part 'adventure_model.g.dart';
 
 @freezed
 class AdventureModel with _$AdventureModel, ReduxModel {
-  const factory AdventureModel({required String name}) = _AdventureModel;
+  const factory AdventureModel({String? id, required String name}) =
+      _AdventureModel;
 
   factory AdventureModel.fromJson(JsonMap json) =>
       _$AdventureModelFromJson(json);

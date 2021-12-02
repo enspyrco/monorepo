@@ -2,6 +2,7 @@ import 'package:adventure_maker/models/adventure_model.dart';
 import 'package:adventure_maker/models/challenge_model.dart';
 import 'package:adventure_maker/models/step_model.dart';
 import 'package:adventure_maker/models/task_model.dart';
+import 'package:adventure_maker/state/adventures_state.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
@@ -20,14 +21,13 @@ class AppState with _$AppState, RedFireState {
     ProfileData? profile,
 
     /// Additional AppState members
-    AdventureModel? selectedAdventure,
-    required IList<AdventureModel> adventures,
+    required AdventuresState adventures,
     ChallengeModel? selectedChallenge,
-    required IList<ChallengeModel> challenges,
+    required ISet<ChallengeModel> challenges,
     TaskModel? selectedTask,
-    required IList<TaskModel> tasks,
+    required ISet<TaskModel> tasks,
     StepModel? selectedStep,
-    required IList<StepModel> steps,
+    required ISet<StepModel> steps,
   }) = _AppState;
 
   factory AppState.init() => AppState(
@@ -38,10 +38,10 @@ class AppState with _$AppState, RedFireState {
         settings: Settings.init(),
 
         /// Additional init code
-        adventures: IList(),
-        challenges: IList(),
-        tasks: IList(),
-        steps: IList(),
+        adventures: AdventuresState.init(),
+        challenges: ISet(),
+        tasks: ISet(),
+        steps: ISet(),
       );
 
   factory AppState.fromJson(JsonMap json) => _$AppStateFromJson(json);

@@ -2,7 +2,7 @@ import 'package:adventure_maker/actions/create_adventure_action.dart';
 import 'package:adventure_maker/app_state.dart';
 import 'package:adventure_maker/models/selections.dart';
 import 'package:adventure_maker/utils/extensions/build_context_extension.dart';
-import 'package:adventure_maker/widgets/adventures_dropdown.dart';
+import 'package:adventure_maker/widgets/adventures_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -47,7 +47,7 @@ class NewItemDialogContent extends StatelessWidget {
     return StoreConnector<AppState, Selections>(
         distinct: true,
         converter: (store) => Selections(
-            store.state.selectedAdventure,
+            store.state.adventures.selected,
             store.state.selectedChallenge,
             store.state.selectedTask,
             store.state.selectedStep),
@@ -87,7 +87,7 @@ class NewItemDialogContent extends StatelessWidget {
                       style:
                           TextStyle(color: Colors.blue.shade900, fontSize: 12),
                     ),
-                    const Center(child: AdventuresDropdown())
+                    const Center(child: AdventuresDropDown())
                   ]),
                 ),
               ]
