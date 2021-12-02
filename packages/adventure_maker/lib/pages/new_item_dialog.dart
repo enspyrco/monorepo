@@ -4,12 +4,12 @@ import 'package:adventure_maker/models/selections.dart';
 import 'package:adventure_maker/utils/extensions/build_context_extension.dart';
 import 'package:adventure_maker/widgets/adventures_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 Future<void> showNewItemDialog(BuildContext context) async {
   return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         var controller = TextEditingController();
         return AlertDialog(
@@ -52,15 +52,29 @@ class NewItemDialogContent extends StatelessWidget {
             store.state.selectedTask,
             store.state.selectedStep),
         builder: (context, selections) {
+          var seenEnter = false;
           return SingleChildScrollView(
               child: ListBody(
             children: <Widget>[
-              TextField(
+              Focus(
+                onKeyEvent: (node, event) {
+                  if (!seenEnter &&
+                      event.physicalKey == PhysicalKeyboardKey.enter) {
+                    seenEnter = true;
+                    context.dispatch(CreateAdventureAction(controller.text));
+                    Navigator.of(context).pop();
+                    return KeyEventResult.handled;
+                  }
+                  return KeyEventResult.ignored;
+                },
+                child: TextField(
                   controller: controller,
                   decoration: InputDecoration(
                       helperText: 'name of ${selections.leafName}',
                       border: const OutlineInputBorder()),
-                  autofocus: true),
+                  autofocus: true,
+                ),
+              ),
               const SizedBox(height: 20),
               if (selections.adventure != null) ...[
                 const NewItemDialogText('Located In...'),
