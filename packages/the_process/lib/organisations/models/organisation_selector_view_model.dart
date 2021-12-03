@@ -9,6 +9,9 @@ part 'organisation_selector_view_model.g.dart';
 @freezed
 class OrganisationSelectorViewModel
     with _$OrganisationSelectorViewModel, ReduxModel {
+  static const String className = 'OrganisationSelectorViewModel';
+
+  const OrganisationSelectorViewModel._();
   factory OrganisationSelectorViewModel({
     OrganisationModel? selected,
     required ISet<OrganisationModel> all,
@@ -19,4 +22,7 @@ class OrganisationSelectorViewModel
 
   factory OrganisationSelectorViewModel.fromJson(JsonMap json) =>
       _$OrganisationSelectorViewModelFromJson(json);
+
+  @override
+  String get typeName => className;
 }

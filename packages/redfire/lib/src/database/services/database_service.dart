@@ -10,6 +10,14 @@ class DatabaseService {
   DatabaseService({FirebaseFirestore? database})
       : _firestore = database ?? FirebaseFirestore.instance;
 
+  /// Get the documents in the collection at [path],
+  /// converting each document in the returned [QuerySnapshot] into a [JsonMap]
+  /// The document id is added to the json.
+  Future<JsonList> getDocuments({required String at}) async {
+    var snapshot = await _firestore.collection(at).get();
+    return snapshot.docs.map((doc) => doc.data()..['id'] = doc.id).toList();
+  }
+
   // Add a document with the given data at the given path and return the
   // document id.
   Future<String> createDocument(

@@ -8,6 +8,9 @@ part 'organisations_section_model.g.dart';
 
 @freezed
 class OrganisationsSectionModel with _$OrganisationsSectionModel, ReduxModel {
+  static const String className = 'OrganisationsSectionModel';
+
+  const OrganisationsSectionModel._();
   factory OrganisationsSectionModel({
     required OrganisationCreatorViewModel creator,
     required OrganisationSelectorViewModel selector,
@@ -21,4 +24,7 @@ class OrganisationsSectionModel with _$OrganisationsSectionModel, ReduxModel {
 
   factory OrganisationsSectionModel.fromJson(JsonMap json) =>
       _$OrganisationsSectionModelFromJson(json);
+
+  @override
+  String get typeName => className;
 }

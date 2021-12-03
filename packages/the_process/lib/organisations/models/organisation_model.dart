@@ -7,6 +7,9 @@ part 'organisation_model.g.dart';
 
 @freezed
 class OrganisationModel with _$OrganisationModel, ReduxModel {
+  static const String className = 'OrganisationModel';
+
+  const OrganisationModel._();
   factory OrganisationModel({
     // A unique id, current implementation is the firestore document id
     required String id,
@@ -26,4 +29,7 @@ class OrganisationModel with _$OrganisationModel, ReduxModel {
         adminIds: ISet(),
         memberIds: ISet(),
       );
+
+  @override
+  String get typeName => className;
 }

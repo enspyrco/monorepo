@@ -125,8 +125,8 @@ class __$OtherAuthOptionsPageModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_OtherAuthOptionsPageModel implements _OtherAuthOptionsPageModel {
-  const _$_OtherAuthOptionsPageModel(this.auth);
+class _$_OtherAuthOptionsPageModel extends _OtherAuthOptionsPageModel {
+  const _$_OtherAuthOptionsPageModel(this.auth) : super._();
 
   factory _$_OtherAuthOptionsPageModel.fromJson(Map<String, dynamic> json) =>
       _$$_OtherAuthOptionsPageModelFromJson(json);
@@ -163,9 +163,10 @@ class _$_OtherAuthOptionsPageModel implements _OtherAuthOptionsPageModel {
   }
 }
 
-abstract class _OtherAuthOptionsPageModel implements OtherAuthOptionsPageModel {
+abstract class _OtherAuthOptionsPageModel extends OtherAuthOptionsPageModel {
   const factory _OtherAuthOptionsPageModel(AuthState auth) =
       _$_OtherAuthOptionsPageModel;
+  const _OtherAuthOptionsPageModel._() : super._();
 
   factory _OtherAuthOptionsPageModel.fromJson(Map<String, dynamic> json) =
       _$_OtherAuthOptionsPageModel.fromJson;

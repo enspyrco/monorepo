@@ -9,6 +9,9 @@ part 'game_state.g.dart';
 
 @freezed
 class GameState with _$GameState, ReduxModel {
+  static const String className = 'GameState';
+
+  const GameState._();
   factory GameState(
       {required Barriers barriers,
       required ISet<String> otherPlayerIds,
@@ -22,4 +25,7 @@ class GameState with _$GameState, ReduxModel {
 
   factory GameState.fromJson(Map<String, Object?> json) =>
       _$GameStateFromJson(json);
+
+  @override
+  String get typeName => className;
 }
