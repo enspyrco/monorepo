@@ -1,4 +1,4 @@
-import 'package:adventure_maker/models/adventure_model.dart';
+import 'package:adventure_maker/adventures/models/adventure_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
 

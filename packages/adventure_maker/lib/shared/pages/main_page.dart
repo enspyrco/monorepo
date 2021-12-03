@@ -1,6 +1,6 @@
+import 'package:adventure_maker/adventures/widgets/adventures_drop_down.dart';
 import 'package:adventure_maker/app_state.dart';
-import 'package:adventure_maker/pages/new_item_dialog.dart';
-import 'package:adventure_maker/widgets/adventures_drop_down.dart';
+import 'package:adventure_maker/shared/pages/new_item_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:redfire/widgets.dart';

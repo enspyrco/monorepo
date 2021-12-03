@@ -1,10 +1,10 @@
-import 'package:adventure_maker/actions/tap_adventures_action.dart';
+import 'package:adventure_maker/adventures/actions/tap_adventures_action.dart';
+import 'package:adventure_maker/adventures/middleware/create_adventure_middleware.dart';
+import 'package:adventure_maker/adventures/middleware/tap_adventures.dart';
+import 'package:adventure_maker/adventures/reducers/set_adventures_reducer.dart';
+import 'package:adventure_maker/adventures/reducers/set_selected_adventure_reducer.dart';
 import 'package:adventure_maker/app_state.dart';
-import 'package:adventure_maker/middleware/create_adventure_middleware.dart';
-import 'package:adventure_maker/middleware/tap_adventures.dart';
-import 'package:adventure_maker/pages/main_page.dart';
-import 'package:adventure_maker/reducers/set_adventures_reducer.dart';
-import 'package:adventure_maker/reducers/set_selected_adventure_reducer.dart';
+import 'package:adventure_maker/shared/pages/main_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:redfire/widgets.dart';
 

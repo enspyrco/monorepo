@@ -1,8 +1,8 @@
-import 'package:adventure_maker/actions/create_adventure_action.dart';
+import 'package:adventure_maker/adventures/actions/create_adventure_action.dart';
+import 'package:adventure_maker/adventures/widgets/adventures_drop_down.dart';
 import 'package:adventure_maker/app_state.dart';
-import 'package:adventure_maker/models/selections.dart';
-import 'package:adventure_maker/utils/extensions/build_context_extension.dart';
-import 'package:adventure_maker/widgets/adventures_drop_down.dart';
+import 'package:adventure_maker/shared/extensions/build_context_extension.dart';
+import 'package:adventure_maker/shared/models/selections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';

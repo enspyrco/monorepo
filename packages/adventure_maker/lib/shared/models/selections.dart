@@ -1,5 +1,5 @@
-import 'package:adventure_maker/models/adventure_model.dart';
-import 'package:adventure_maker/models/challenge_model.dart';
+import 'package:adventure_maker/adventures/models/adventure_model.dart';
+import 'package:adventure_maker/challenges/models/challenge_model.dart';
 import 'package:adventure_maker/models/step_model.dart';
 import 'package:adventure_maker/models/task_model.dart';
 

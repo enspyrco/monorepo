@@ -1,4 +1,4 @@
-import 'package:adventure_maker/actions/set_selected_adventure_action.dart';
+import 'package:adventure_maker/adventures/actions/set_selected_adventure_action.dart';
 import 'package:adventure_maker/app_state.dart';
 import 'package:redux/redux.dart';
 

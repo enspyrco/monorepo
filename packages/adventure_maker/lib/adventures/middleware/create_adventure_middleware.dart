@@ -1,4 +1,4 @@
-import 'package:adventure_maker/actions/create_adventure_action.dart';
+import 'package:adventure_maker/adventures/actions/create_adventure_action.dart';
 import 'package:adventure_maker/app_state.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';

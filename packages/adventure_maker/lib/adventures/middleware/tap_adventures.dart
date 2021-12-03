@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:adventure_maker/actions/set_adventures_action.dart';
-import 'package:adventure_maker/actions/tap_adventures_action.dart';
+import 'package:adventure_maker/adventures/actions/set_adventures_action.dart';
+import 'package:adventure_maker/adventures/actions/tap_adventures_action.dart';
+import 'package:adventure_maker/adventures/models/adventure_model.dart';
 import 'package:adventure_maker/app_state.dart';
-import 'package:adventure_maker/models/adventure_model.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
