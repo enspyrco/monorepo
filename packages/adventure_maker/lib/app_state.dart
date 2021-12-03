@@ -1,5 +1,5 @@
 import 'package:adventure_maker/adventures/state/adventures_state.dart';
-import 'package:adventure_maker/challenges/models/challenge_model.dart';
+import 'package:adventure_maker/challenges/state/challenges_state.dart';
 import 'package:adventure_maker/models/step_model.dart';
 import 'package:adventure_maker/models/task_model.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
@@ -21,8 +21,7 @@ class AppState with _$AppState, RedFireState {
 
     /// Additional AppState members
     required AdventuresState adventures,
-    ChallengeModel? selectedChallenge,
-    required ISet<ChallengeModel> challenges,
+    required ChallengesState challenges,
     TaskModel? selectedTask,
     required ISet<TaskModel> tasks,
     StepModel? selectedStep,
@@ -38,7 +37,7 @@ class AppState with _$AppState, RedFireState {
 
         /// Additional init code
         adventures: AdventuresState.init(),
-        challenges: ISet(),
+        challenges: ChallengesState.init(),
         tasks: ISet(),
         steps: ISet(),
       );

@@ -1,6 +1,6 @@
-import 'package:adventure_maker/adventures/actions/create_adventure_action.dart';
 import 'package:adventure_maker/adventures/widgets/adventures_drop_down.dart';
 import 'package:adventure_maker/app_state.dart';
+import 'package:adventure_maker/shared/actions/create_adventure_part_action.dart';
 import 'package:adventure_maker/shared/extensions/build_context_extension.dart';
 import 'package:adventure_maker/shared/models/selections.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ Future<void> showNewItemDialog(BuildContext context) async {
             TextButton(
               child: const Text('OK'),
               onPressed: () {
-                context.dispatch(CreateAdventureAction(controller.text));
+                context.dispatch(CreateAdventurePartAction(controller.text));
                 Navigator.of(context).pop();
               },
             ),
@@ -48,7 +48,7 @@ class NewItemDialogContent extends StatelessWidget {
         distinct: true,
         converter: (store) => Selections(
             store.state.adventures.selected,
-            store.state.selectedChallenge,
+            store.state.challenges.selected,
             store.state.selectedTask,
             store.state.selectedStep),
         builder: (context, selections) {
@@ -61,7 +61,8 @@ class NewItemDialogContent extends StatelessWidget {
                   if (!seenEnter &&
                       event.physicalKey == PhysicalKeyboardKey.enter) {
                     seenEnter = true;
-                    context.dispatch(CreateAdventureAction(controller.text));
+                    context
+                        .dispatch(CreateAdventurePartAction(controller.text));
                     Navigator.of(context).pop();
                     return KeyEventResult.handled;
                   }
