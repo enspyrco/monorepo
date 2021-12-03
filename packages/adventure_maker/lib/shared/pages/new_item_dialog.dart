@@ -52,7 +52,7 @@ class NewItemDialogContent extends StatelessWidget {
             store.state.selectedTask,
             store.state.selectedStep),
         builder: (context, selections) {
-          var seenEnter = false;
+          var seenEnter = false; // only perform dispatch on Enter once
           return SingleChildScrollView(
               child: ListBody(
             children: <Widget>[
@@ -82,11 +82,9 @@ class NewItemDialogContent extends StatelessWidget {
                 Container(
                   color: Colors.blue[100],
                   child: Stack(children: [
-                    Text(
-                      'Adventure',
-                      style:
-                          TextStyle(color: Colors.blue.shade900, fontSize: 12),
-                    ),
+                    Text('Adventure',
+                        style: TextStyle(
+                            color: Colors.blue.shade900, fontSize: 12)),
                     const Center(child: AdventuresDropDown())
                   ]),
                 ),
