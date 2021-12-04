@@ -8,6 +8,9 @@ part 'projects_section.g.dart';
 
 @freezed
 class ProjectsSection with _$ProjectsSection, ReduxModel {
+  static const String className = 'ProjectsSection';
+
+  const ProjectsSection._();
   const factory ProjectsSection({
     required ISet<ProjectModel> all,
     required bool creating,
@@ -18,4 +21,7 @@ class ProjectsSection with _$ProjectsSection, ReduxModel {
 
   factory ProjectsSection.init() =>
       ProjectsSection(all: ISet(const {}), creating: false);
+
+  @override
+  String get typeName => className;
 }

@@ -8,6 +8,9 @@ part 'id_token_result.g.dart';
 // https://github.com/FirebaseExtended/flutterfire/blob/master/packages/firebase_auth/firebase_auth_platform_interface/lib/src/id_token_result.dart
 @freezed
 class IdTokenResult with _$IdTokenResult, ReduxModel {
+  static const String className = 'IdTokenResult';
+
+  const IdTokenResult._();
   factory IdTokenResult({
     /// The authentication time formatted as UTC string. This is the time the user
     /// authenticated (signed in) and not the time the token was refreshed.
@@ -32,4 +35,7 @@ class IdTokenResult with _$IdTokenResult, ReduxModel {
   }) = _IdTokenResult;
 
   factory IdTokenResult.fromJson(JsonMap json) => _$IdTokenResultFromJson(json);
+
+  @override
+  String get typeName => className;
 }

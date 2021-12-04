@@ -22,7 +22,6 @@
     "**/LICENSE": true,
     "**/macos": true,
     "**/pubspec.lock": true,
-    "**/README.md": true,
     "**/web": true
   }
 }

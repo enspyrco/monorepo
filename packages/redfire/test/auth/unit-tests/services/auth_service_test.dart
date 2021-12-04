@@ -8,7 +8,7 @@ import 'package:redfire/src/auth/services/auth_service.dart';
 import 'package:redfire/src/types/redux_action.dart';
 import 'package:redfire/types.dart';
 import 'package:redfire_test/redfire_test.dart';
-import 'package:redfire_test/src/test-doubles/auth/examples/user_example.dart';
+import 'package:redfire_test/src/test-doubles/auth/data/user_example.dart';
 import 'package:test/test.dart';
 
 void main() {

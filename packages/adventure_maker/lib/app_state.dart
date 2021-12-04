@@ -1,8 +1,7 @@
-import 'package:adventure_maker/models/adventure_model.dart';
-import 'package:adventure_maker/models/challenge_model.dart';
-import 'package:adventure_maker/models/step_model.dart';
-import 'package:adventure_maker/models/task_model.dart';
-import 'package:adventure_maker/state/adventures_state.dart';
+import 'package:adventure_maker/adventures/models/adventures_state.dart';
+import 'package:adventure_maker/challenges/models/challenges_state.dart';
+import 'package:adventure_maker/steps/models/steps_state.dart';
+import 'package:adventure_maker/tasks/models/tasks_state.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
@@ -22,12 +21,9 @@ class AppState with _$AppState, RedFireState {
 
     /// Additional AppState members
     required AdventuresState adventures,
-    ChallengeModel? selectedChallenge,
-    required ISet<ChallengeModel> challenges,
-    TaskModel? selectedTask,
-    required ISet<TaskModel> tasks,
-    StepModel? selectedStep,
-    required ISet<StepModel> steps,
+    required ChallengesState challenges,
+    required TasksState tasks,
+    required StepsState steps,
   }) = _AppState;
 
   factory AppState.init() => AppState(
@@ -39,9 +35,9 @@ class AppState with _$AppState, RedFireState {
 
         /// Additional init code
         adventures: AdventuresState.init(),
-        challenges: ISet(),
-        tasks: ISet(),
-        steps: ISet(),
+        challenges: ChallengesState.init(),
+        tasks: TasksState.init(),
+        steps: StepsState.init(),
       );
 
   factory AppState.fromJson(JsonMap json) => _$AppStateFromJson(json);

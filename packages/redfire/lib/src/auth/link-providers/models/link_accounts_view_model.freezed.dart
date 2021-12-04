@@ -113,8 +113,8 @@ class __$LinkAccountsViewModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LinkAccountsViewModel implements _LinkAccountsViewModel {
-  const _$_LinkAccountsViewModel(this.stateOf);
+class _$_LinkAccountsViewModel extends _LinkAccountsViewModel {
+  const _$_LinkAccountsViewModel(this.stateOf) : super._();
 
   factory _$_LinkAccountsViewModel.fromJson(Map<String, dynamic> json) =>
       _$$_LinkAccountsViewModelFromJson(json);
@@ -150,9 +150,10 @@ class _$_LinkAccountsViewModel implements _LinkAccountsViewModel {
   }
 }
 
-abstract class _LinkAccountsViewModel implements LinkAccountsViewModel {
+abstract class _LinkAccountsViewModel extends LinkAccountsViewModel {
   const factory _LinkAccountsViewModel(
       IMap<ProvidersEnum, LinkingStateEnum> stateOf) = _$_LinkAccountsViewModel;
+  const _LinkAccountsViewModel._() : super._();
 
   factory _LinkAccountsViewModel.fromJson(Map<String, dynamic> json) =
       _$_LinkAccountsViewModel.fromJson;

@@ -1,12 +1,12 @@
 library redfire_test;
 
-export 'src/test-doubles/auth/examples/apple_id_credential_example.dart';
-export 'src/test-doubles/auth/examples/auth_user_data_example.dart';
-export 'src/test-doubles/auth/examples/firebase_auth_example.dart';
-export 'src/test-doubles/auth/examples/google_sign_in_example.dart';
-export 'src/test-doubles/auth/examples/sign_in_with_apple_example.dart';
+export 'src/test-doubles/auth/data/apple_id_credential_example.dart';
+export 'src/test-doubles/auth/data/auth_user_data_example.dart';
+export 'src/test-doubles/auth/data/firebase_auth_example.dart';
+export 'src/test-doubles/auth/data/google_sign_in_example.dart';
+export 'src/test-doubles/auth/data/sign_in_with_apple_example.dart';
 export 'src/test-doubles/auth/mocks/auth_test_doubles.mocks.dart';
-export 'src/test-doubles/firebase/examples/fake_firebase_auth.dart';
+export 'src/test-doubles/firebase/fakes/fake_firebase_auth.dart';
 export 'src/test-doubles/firebase/mocks/firebase_test_doubles.mocks.dart';
 export 'src/test-doubles/http/mocks/http_test_doubles.mocks.dart';
 export 'src/test-doubles/platform/mocks/platform_test_doubles.mocks.dart';
@@ -14,8 +14,8 @@ export 'src/test-doubles/redux/empty_reducer.dart';
 export 'src/test-doubles/redux/example_app_state.dart';
 export 'src/test-doubles/redux/fake_store.dart';
 export 'src/test-doubles/redux/redux_test_doubles.mocks.dart';
-export 'src/test-doubles/services/examples/services_with_mocked_plugins.dart';
 export 'src/test-doubles/services/mocks/service_test_doubles.mocks.dart';
+export 'src/test-doubles/services/stubs/services_with_mocked_plugins.dart';
 export 'src/test-doubles/stubbed.dart';
 export 'src/test-doubles/test_exception.dart';
 export 'src/test-doubles/widgets/examples/empty_main_page.dart';

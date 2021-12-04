@@ -6,6 +6,9 @@ part 'challenge_task_model.g.dart';
 
 @freezed
 class ChallengeTaskModel with _$ChallengeTaskModel, ReduxModel {
+  static const String className = 'ChallengeTaskModel';
+
+  const ChallengeTaskModel._();
   const factory ChallengeTaskModel({
     required String title,
     required String description,
@@ -18,4 +21,7 @@ class ChallengeTaskModel with _$ChallengeTaskModel, ReduxModel {
 
   factory ChallengeTaskModel.fromJson(JsonMap json) =>
       _$ChallengeTaskModelFromJson(json);
+
+  @override
+  String get typeName => className;
 }

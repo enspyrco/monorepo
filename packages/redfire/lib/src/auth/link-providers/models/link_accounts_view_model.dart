@@ -8,6 +8,9 @@ part 'link_accounts_view_model.g.dart';
 
 @freezed
 class LinkAccountsViewModel with _$LinkAccountsViewModel, ReduxModel {
+  static const String className = 'LinkAccountsViewModel';
+
+  const LinkAccountsViewModel._();
   const factory LinkAccountsViewModel(
       IMap<ProvidersEnum, LinkingStateEnum> stateOf) = _LinkAccountsViewModel;
 
@@ -16,4 +19,7 @@ class LinkAccountsViewModel with _$LinkAccountsViewModel, ReduxModel {
 
   factory LinkAccountsViewModel.init() =>
       LinkAccountsViewModel(IMap<ProvidersEnum, LinkingStateEnum>());
+
+  @override
+  String get typeName => className;
 }

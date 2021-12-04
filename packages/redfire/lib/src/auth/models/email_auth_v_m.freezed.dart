@@ -121,8 +121,8 @@ class __$EmailAuthVMCopyWithImpl<$Res> extends _$EmailAuthVMCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_EmailAuthVM implements _EmailAuthVM {
-  _$_EmailAuthVM({this.email, this.providers});
+class _$_EmailAuthVM extends _EmailAuthVM {
+  _$_EmailAuthVM({this.email, this.providers}) : super._();
 
   factory _$_EmailAuthVM.fromJson(Map<String, dynamic> json) =>
       _$$_EmailAuthVMFromJson(json);
@@ -161,9 +161,10 @@ class _$_EmailAuthVM implements _EmailAuthVM {
   }
 }
 
-abstract class _EmailAuthVM implements EmailAuthVM {
+abstract class _EmailAuthVM extends EmailAuthVM {
   factory _EmailAuthVM({String? email, ISet<ProvidersEnum>? providers}) =
       _$_EmailAuthVM;
+  _EmailAuthVM._() : super._();
 
   factory _EmailAuthVM.fromJson(Map<String, dynamic> json) =
       _$_EmailAuthVM.fromJson;

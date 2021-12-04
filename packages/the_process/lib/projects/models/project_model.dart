@@ -7,6 +7,9 @@ part 'project_model.g.dart';
 
 @freezed
 class ProjectModel with _$ProjectModel, ReduxModel {
+  static const String className = 'ProjectModel';
+
+  const ProjectModel._();
   const factory ProjectModel({
     required String id,
     required String name,
@@ -28,4 +31,7 @@ class ProjectModel with _$ProjectModel, ReduxModel {
         organisationIds: ISet(),
         sectionIds: ISet(),
       );
+
+  @override
+  String get typeName => className;
 }

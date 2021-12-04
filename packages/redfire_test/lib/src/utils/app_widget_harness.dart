@@ -5,6 +5,7 @@ import 'package:redfire/services.dart';
 import 'package:redfire/types.dart';
 import 'package:redfire/widgets.dart';
 import 'package:redfire_test/src/test-doubles/redux/fake_store.dart';
+import 'package:redfire_test/src/test-doubles/services/stubs/services_with_mocked_plugins.dart';
 import 'package:redux/redux.dart';
 
 import '../../redfire_test.dart';

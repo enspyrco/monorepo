@@ -203,14 +203,15 @@ class __$IdTokenResultCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_IdTokenResult implements _IdTokenResult {
+class _$_IdTokenResult extends _IdTokenResult {
   _$_IdTokenResult(
       {this.authTime,
       this.claims,
       this.expirationTime,
       this.issuedAtTime,
       this.signInProvider,
-      this.token});
+      this.token})
+      : super._();
 
   factory _$_IdTokenResult.fromJson(Map<String, dynamic> json) =>
       _$$_IdTokenResultFromJson(json);
@@ -286,7 +287,7 @@ class _$_IdTokenResult implements _IdTokenResult {
   }
 }
 
-abstract class _IdTokenResult implements IdTokenResult {
+abstract class _IdTokenResult extends IdTokenResult {
   factory _IdTokenResult(
       {DateTime? authTime,
       Map<String, dynamic>? claims,
@@ -294,6 +295,7 @@ abstract class _IdTokenResult implements IdTokenResult {
       DateTime? issuedAtTime,
       ProvidersEnum? signInProvider,
       String? token}) = _$_IdTokenResult;
+  _IdTokenResult._() : super._();
 
   factory _IdTokenResult.fromJson(Map<String, dynamic> json) =
       _$_IdTokenResult.fromJson;

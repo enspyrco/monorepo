@@ -7,10 +7,16 @@ part 'email_auth_v_m.g.dart';
 
 @freezed
 class EmailAuthVM with _$EmailAuthVM, ReduxModel {
+  static const String className = 'EmailAuthVM';
+
+  const EmailAuthVM._();
   factory EmailAuthVM({
     String? email,
     ISet<ProvidersEnum>? providers,
   }) = _EmailAuthVM;
 
   factory EmailAuthVM.fromJson(JsonMap json) => _$EmailAuthVMFromJson(json);
+
+  @override
+  String get typeName => className;
 }

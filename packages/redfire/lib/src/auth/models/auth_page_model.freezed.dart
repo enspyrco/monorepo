@@ -134,8 +134,8 @@ class __$AuthPageVMCopyWithImpl<$Res> extends _$AuthPageModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_AuthPageVM implements _AuthPageVM {
-  _$_AuthPageVM(this.platform, this.auth);
+class _$_AuthPageVM extends _AuthPageVM {
+  _$_AuthPageVM(this.platform, this.auth) : super._();
 
   factory _$_AuthPageVM.fromJson(Map<String, dynamic> json) =>
       _$$_AuthPageVMFromJson(json);
@@ -174,8 +174,9 @@ class _$_AuthPageVM implements _AuthPageVM {
   }
 }
 
-abstract class _AuthPageVM implements AuthPageModel {
+abstract class _AuthPageVM extends AuthPageModel {
   factory _AuthPageVM(PlatformsEnum platform, AuthState auth) = _$_AuthPageVM;
+  _AuthPageVM._() : super._();
 
   factory _AuthPageVM.fromJson(Map<String, dynamic> json) =
       _$_AuthPageVM.fromJson;

@@ -8,6 +8,8 @@ part 'barriers.g.dart';
 
 @freezed
 class Barriers with _$Barriers, ReduxModel {
+  static const String className = 'Barriers';
+
   Barriers._();
   factory Barriers() = _Barriers;
 
@@ -36,4 +38,7 @@ class Barriers with _$Barriers, ReduxModel {
 
   factory Barriers.fromJson(Map<String, Object?> json) =>
       _$BarriersFromJson(json);
+
+  @override
+  String get typeName => className;
 }
