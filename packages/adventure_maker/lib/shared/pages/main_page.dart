@@ -1,8 +1,8 @@
 import 'package:adventure_maker/adventures/models/adventure_model.dart';
 import 'package:adventure_maker/app_state.dart';
 import 'package:adventure_maker/challenges/models/challenge_model.dart';
+import 'package:adventure_maker/shared/models/drop_down_model.dart';
 import 'package:adventure_maker/shared/pages/new_item_dialog.dart';
-import 'package:adventure_maker/shared/state/adventure_subtree.dart';
 import 'package:adventure_maker/shared/widgets/adventure_nodes_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -49,13 +49,15 @@ class _MainPageState extends State<MainPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                AdventureNodesDropDown<AdventureSubtree<AdventureModel>,
-                    AdventureModel>(
-                  converter: (store) => store.state.adventures,
+                AdventureNodesDropDown<AdventureModel>(
+                  converter: (store) => DropDownModel<AdventureModel>(
+                      store.state.adventures.selected,
+                      store.state.adventures.all),
                 ),
-                AdventureNodesDropDown<AdventureSubtree<ChallengeModel>,
-                    ChallengeModel>(
-                  converter: (store) => store.state.challenges,
+                AdventureNodesDropDown<ChallengeModel>(
+                  converter: (store) => DropDownModel<ChallengeModel>(
+                      store.state.challenges.selected,
+                      store.state.challenges.all),
                 ),
               ],
             )),

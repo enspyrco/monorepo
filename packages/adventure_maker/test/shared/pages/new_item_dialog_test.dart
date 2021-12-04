@@ -1,7 +1,7 @@
 import 'package:adventure_maker/adventures/models/adventure_model.dart';
-import 'package:adventure_maker/adventures/widgets/adventures_drop_down.dart';
 import 'package:adventure_maker/app_state.dart';
 import 'package:adventure_maker/shared/pages/new_item_dialog.dart';
+import 'package:adventure_maker/shared/widgets/adventure_nodes_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:redfire_test/redfire_test.dart';
@@ -17,7 +17,7 @@ void main() {
 
       await tester.pumpWidget(harness.widget);
 
-      expect(find.byType(AdventuresDropDown), findsNothing);
+      expect(find.byType(AdventureNodesDropDown), findsNothing);
     });
 
     testWidgets('shows adventures dropdown when adventure selected',
@@ -33,7 +33,8 @@ void main() {
 
       await tester.pumpWidget(harness.widget);
 
-      expect(find.byType(AdventuresDropDown), findsOneWidget);
+      expect(find.byType(typeOf<AdventureNodesDropDown<AdventureModel>>()),
+          findsOneWidget);
     });
   });
 }

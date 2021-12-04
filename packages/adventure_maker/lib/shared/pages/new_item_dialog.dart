@@ -2,8 +2,8 @@ import 'package:adventure_maker/adventures/models/adventure_model.dart';
 import 'package:adventure_maker/app_state.dart';
 import 'package:adventure_maker/shared/actions/create_adventure_node_action.dart';
 import 'package:adventure_maker/shared/extensions/build_context_extension.dart';
+import 'package:adventure_maker/shared/models/drop_down_model.dart';
 import 'package:adventure_maker/shared/models/selections.dart';
-import 'package:adventure_maker/shared/state/adventure_subtree.dart';
 import 'package:adventure_maker/shared/widgets/adventure_nodes_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -51,8 +51,8 @@ class NewItemDialogContent extends StatelessWidget {
         converter: (store) => Selections(
             store.state.adventures.selected,
             store.state.challenges.selected,
-            store.state.selectedTask,
-            store.state.selectedStep),
+            store.state.tasks.selected,
+            store.state.steps.selected),
         builder: (context, selections) {
           var seenEnter = false; // only perform dispatch on Enter once
           return SingleChildScrollView(
@@ -89,9 +89,10 @@ class NewItemDialogContent extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.blue.shade900, fontSize: 12)),
                     Center(
-                      child: AdventureNodesDropDown<
-                          AdventureSubtree<AdventureModel>, AdventureModel>(
-                        converter: (store) => store.state.adventures,
+                      child: AdventureNodesDropDown<AdventureModel>(
+                        converter: (store) => DropDownModel<AdventureModel>(
+                            store.state.adventures.selected,
+                            store.state.adventures.all),
                       ),
                     )
                   ]),

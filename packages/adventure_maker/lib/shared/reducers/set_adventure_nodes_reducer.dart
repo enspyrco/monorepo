@@ -9,6 +9,6 @@ class SetAdventureNodesReducer
   SetAdventureNodesReducer()
       : super(
           (state, action) => state.copyWith
-              .adventures(list: action.list as ISet<AdventureModel>),
+              .adventures(all: action.list as ISet<AdventureModel>),
         );
 }

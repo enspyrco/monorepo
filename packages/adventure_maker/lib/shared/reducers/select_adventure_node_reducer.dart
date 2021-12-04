@@ -15,7 +15,7 @@ class SelectAdventureNodeReducer
           }
           if (model.typeName == ChallengeModel.className) {
             return state.copyWith
-                .challenges(selected: (action.selection as ChallengeModel));
+                .challenges(selected: action.selection as ChallengeModel);
           }
           return state;
         });
