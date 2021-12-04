@@ -6,7 +6,13 @@ part 'step_model.g.dart';
 
 @freezed
 class StepModel with _$StepModel, ReduxModel {
+  static const String className = 'StepModel';
+
+  const StepModel._();
   const factory StepModel({required String name}) = _StepModel;
 
   factory StepModel.fromJson(JsonMap json) => _$StepModelFromJson(json);
+
+  @override
+  String get typeName => className;
 }

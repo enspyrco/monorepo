@@ -1,6 +1,9 @@
-import 'package:adventure_maker/adventures/widgets/adventures_drop_down.dart';
+import 'package:adventure_maker/adventures/models/adventure_model.dart';
 import 'package:adventure_maker/app_state.dart';
+import 'package:adventure_maker/challenges/models/challenge_model.dart';
 import 'package:adventure_maker/shared/pages/new_item_dialog.dart';
+import 'package:adventure_maker/shared/state/adventure_subtree.dart';
+import 'package:adventure_maker/shared/widgets/adventure_nodes_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:redfire/widgets.dart';
@@ -41,15 +44,22 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
         actions: const [AccountButton<AppState>()],
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(50),
-          child: AdventuresDropDown(),
-        ),
+        bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(50),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                AdventureNodesDropDown<AdventureSubtree<AdventureModel>,
+                    AdventureModel>(
+                  converter: (store) => store.state.adventures,
+                ),
+                AdventureNodesDropDown<AdventureSubtree<ChallengeModel>,
+                    ChallengeModel>(
+                  converter: (store) => store.state.challenges,
+                ),
+              ],
+            )),
       ),
-      // body: const Padding(
-      //   padding: EdgeInsets.all(30.0),
-      //   child: NewItemDialogContent(),
-      // ),
     );
   }
 }

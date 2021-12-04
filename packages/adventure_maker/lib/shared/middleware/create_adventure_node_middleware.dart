@@ -1,12 +1,12 @@
 import 'package:adventure_maker/app_state.dart';
-import 'package:adventure_maker/shared/actions/create_adventure_part_action.dart';
+import 'package:adventure_maker/shared/actions/create_adventure_node_action.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redux/redux.dart';
 
-class CreateAdventurePartMiddleware
-    extends TypedMiddleware<AppState, CreateAdventurePartAction> {
-  CreateAdventurePartMiddleware()
+class CreateAdventureNodeMiddleware
+    extends TypedMiddleware<AppState, CreateAdventureNodeAction> {
+  CreateAdventureNodeMiddleware()
       : super((store, action, next) async {
           next(action);
 

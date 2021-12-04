@@ -1,8 +1,10 @@
-import 'package:adventure_maker/adventures/widgets/adventures_drop_down.dart';
+import 'package:adventure_maker/adventures/models/adventure_model.dart';
 import 'package:adventure_maker/app_state.dart';
-import 'package:adventure_maker/shared/actions/create_adventure_part_action.dart';
+import 'package:adventure_maker/shared/actions/create_adventure_node_action.dart';
 import 'package:adventure_maker/shared/extensions/build_context_extension.dart';
 import 'package:adventure_maker/shared/models/selections.dart';
+import 'package:adventure_maker/shared/state/adventure_subtree.dart';
+import 'package:adventure_maker/shared/widgets/adventure_nodes_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -25,7 +27,7 @@ Future<void> showNewItemDialog(BuildContext context) async {
             TextButton(
               child: const Text('OK'),
               onPressed: () {
-                context.dispatch(CreateAdventurePartAction(controller.text));
+                context.dispatch(CreateAdventureNodeAction(controller.text));
                 Navigator.of(context).pop();
               },
             ),
@@ -62,7 +64,7 @@ class NewItemDialogContent extends StatelessWidget {
                       event.physicalKey == PhysicalKeyboardKey.enter) {
                     seenEnter = true;
                     context
-                        .dispatch(CreateAdventurePartAction(controller.text));
+                        .dispatch(CreateAdventureNodeAction(controller.text));
                     Navigator.of(context).pop();
                     return KeyEventResult.handled;
                   }
@@ -86,7 +88,12 @@ class NewItemDialogContent extends StatelessWidget {
                     Text('Adventure',
                         style: TextStyle(
                             color: Colors.blue.shade900, fontSize: 12)),
-                    const Center(child: AdventuresDropDown())
+                    Center(
+                      child: AdventureNodesDropDown<
+                          AdventureSubtree<AdventureModel>, AdventureModel>(
+                        converter: (store) => store.state.adventures,
+                      ),
+                    )
                   ]),
                 ),
               ]

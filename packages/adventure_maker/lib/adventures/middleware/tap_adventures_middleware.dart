@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:adventure_maker/adventures/actions/set_adventures_action.dart';
 import 'package:adventure_maker/adventures/actions/tap_adventures_action.dart';
 import 'package:adventure_maker/adventures/models/adventure_model.dart';
 import 'package:adventure_maker/app_state.dart';
+import 'package:adventure_maker/shared/actions/set_adventure_nodes_action.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
@@ -39,7 +39,7 @@ class TapAdventuresMiddleware
                   .map<AdventureModel>((jsonItem) =>
                       AdventureModel.fromJson(jsonItem as JsonMap))
                   .toISet();
-              store.dispatch(SetAdventuresAction(adventures));
+              store.dispatch(SetAdventureNodesAction(adventures));
             }, onError: store.dispatchProblem);
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
