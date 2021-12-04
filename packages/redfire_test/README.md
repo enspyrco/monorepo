@@ -66,3 +66,21 @@ testWidgets('Widget under test shows expected UI', (WidgetTester tester) async {
   expect(find.byType(AParticularUIWidget), findsOneWidget);
 });
 ```
+
+## Special Goodies
+
+### Helper function for find.byType
+
+There is a problem with using generic types in `find.ByType`, see [flutter_test find.byType doesn't find generic types · Issue #58876](https://github.com/flutter/flutter/issues/58876).
+
+A solution is to wrap the generic type in a simple function, such as: `Type typeOf<T>() => T;`
+
+This function is defined in `redfire_test` and can be used like this:
+
+```Dart
+import 'package:redfire_test/redfire_test.dart';
+
+...
+
+expect(find.byType(typeOf<ABigType<AnotherType>>()), findsOneWidget);
+```
