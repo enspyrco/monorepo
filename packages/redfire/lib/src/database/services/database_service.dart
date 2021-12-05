@@ -13,9 +13,44 @@ class DatabaseService {
   /// Get the documents in the collection at [path],
   /// converting each document in the returned [QuerySnapshot] into a [JsonMap]
   /// The document id is added to the json.
-  Future<JsonList> getDocuments({required String at}) async {
-    var snapshot = await _firestore.collection(at).get();
-    return snapshot.docs.map((doc) => doc.data()..['id'] = doc.id).toList();
+  Future<JsonList> getDocuments({
+    required String at,
+    Object? where,
+    Object? isEqualTo,
+    Object? isNotEqualTo,
+    Object? isLessThan,
+    Object? isLessThanOrEqualTo,
+    Object? isGreaterThan,
+    Object? isGreaterThanOrEqualTo,
+    Object? arrayContains,
+    List<Object?>? arrayContainsAny,
+    List<Object?>? whereIn,
+    List<Object?>? whereNotIn,
+    bool? isNull,
+  }) async {
+    if (where == null) {
+      var snapshot = await _firestore.collection(at).get();
+      return snapshot.docs.map((doc) => doc.data()..['id'] = doc.id).toList();
+    } else {
+      var snapshot = await _firestore
+          .collection(at)
+          .where(
+            where,
+            isEqualTo: isEqualTo,
+            isNotEqualTo: isNotEqualTo,
+            isLessThan: isLessThan,
+            isLessThanOrEqualTo: isLessThanOrEqualTo,
+            isGreaterThan: isGreaterThan,
+            isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+            arrayContains: arrayContains,
+            arrayContainsAny: arrayContainsAny,
+            whereIn: whereIn,
+            whereNotIn: whereNotIn,
+            isNull: isNull,
+          )
+          .get();
+      return snapshot.docs.map((doc) => doc.data()..['id'] = doc.id).toList();
+    }
   }
 
   // Add a document with the given data at the given path and return the
