@@ -25,7 +25,7 @@ class CreateAdventureNodeMiddleware
               await service.createDocument(at: 'challenges', from: {
                 'ownerIds': [uid],
                 'name': action.name,
-                'parentId': store.state.adventures.selected!.id
+                'parentIds': [store.state.adventures.selected!.id]
               });
             }
           } catch (error, trace) {
