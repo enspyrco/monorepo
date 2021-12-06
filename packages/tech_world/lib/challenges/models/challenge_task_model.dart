@@ -5,7 +5,7 @@ part 'challenge_task_model.freezed.dart';
 part 'challenge_task_model.g.dart';
 
 @freezed
-class ChallengeTaskModel with _$ChallengeTaskModel, ReduxModel {
+class ChallengeTaskModel with _$ChallengeTaskModel, ReduxState {
   static const String className = 'ChallengeTaskModel';
 
   const ChallengeTaskModel._();

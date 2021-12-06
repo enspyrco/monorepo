@@ -8,7 +8,7 @@ part 'game_state.freezed.dart';
 part 'game_state.g.dart';
 
 @freezed
-class GameState with _$GameState, ReduxModel {
+class GameState with _$GameState, ReduxState {
   static const String className = 'GameState';
 
   const GameState._();

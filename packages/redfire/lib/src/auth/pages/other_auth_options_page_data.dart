@@ -8,7 +8,7 @@ part 'other_auth_options_page_data.g.dart';
 
 @freezed
 class OtherAuthOptionsPageData extends PageData
-    with _$OtherAuthOptionsPageData, ReduxModel {
+    with _$OtherAuthOptionsPageData, ReduxState {
   static const String staticTypeName = 'OtherAuthOptionsPage';
 
   const OtherAuthOptionsPageData._();

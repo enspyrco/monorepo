@@ -7,7 +7,7 @@ part 'barriers.freezed.dart';
 part 'barriers.g.dart';
 
 @freezed
-class Barriers with _$Barriers, ReduxModel {
+class Barriers with _$Barriers, ReduxState {
   static const String className = 'Barriers';
 
   Barriers._();

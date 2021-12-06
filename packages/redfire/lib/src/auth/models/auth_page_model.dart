@@ -6,7 +6,7 @@ part 'auth_page_model.freezed.dart';
 part 'auth_page_model.g.dart';
 
 @freezed
-class AuthPageModel with _$AuthPageModel, ReduxModel {
+class AuthPageModel with _$AuthPageModel, ReduxState {
   static const String className = 'AuthPageModel';
 
   const AuthPageModel._();

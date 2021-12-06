@@ -8,7 +8,7 @@ part 'organisation_selector_view_model.g.dart';
 
 @freezed
 class OrganisationSelectorViewModel
-    with _$OrganisationSelectorViewModel, ReduxModel {
+    with _$OrganisationSelectorViewModel, ReduxState {
   static const String className = 'OrganisationSelectorViewModel';
 
   const OrganisationSelectorViewModel._();

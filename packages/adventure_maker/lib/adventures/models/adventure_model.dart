@@ -6,7 +6,7 @@ part 'adventure_model.freezed.dart';
 part 'adventure_model.g.dart';
 
 @freezed
-class AdventureModel with _$AdventureModel, ReduxModel, AdventureNode {
+class AdventureModel with _$AdventureModel, ReduxState, AdventureNode {
   static const String className = 'AdventureModel';
 
   const AdventureModel._();

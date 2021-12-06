@@ -5,7 +5,7 @@ part 'profile_page_data.freezed.dart';
 part 'profile_page_data.g.dart';
 
 @freezed
-class ProfilePageData extends PageData with _$ProfilePageData, ReduxModel {
+class ProfilePageData extends PageData with _$ProfilePageData, ReduxState {
   static const String staticTypeName = 'ProfilePageData';
 
   const ProfilePageData._();

@@ -6,7 +6,7 @@ part 'organisation_model.freezed.dart';
 part 'organisation_model.g.dart';
 
 @freezed
-class OrganisationModel with _$OrganisationModel, ReduxModel {
+class OrganisationModel with _$OrganisationModel, ReduxState {
   static const String className = 'OrganisationModel';
 
   const OrganisationModel._();

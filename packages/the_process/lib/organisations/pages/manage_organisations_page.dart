@@ -8,7 +8,7 @@ part 'manage_organisations_page.g.dart';
 
 @freezed
 class ManageOrganisationsPageData extends PageData
-    with _$ManageOrganisationsPageData, ReduxModel {
+    with _$ManageOrganisationsPageData, ReduxState {
   static const String staticTypeName = 'ManageOrganisationsPageData';
 
   const ManageOrganisationsPageData._();

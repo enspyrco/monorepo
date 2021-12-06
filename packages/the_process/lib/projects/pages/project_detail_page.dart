@@ -8,7 +8,7 @@ part 'project_detail_page.g.dart';
 
 @freezed
 class ProjectDetailPageData extends PageData
-    with _$ProjectDetailPageData, ReduxModel {
+    with _$ProjectDetailPageData, ReduxState {
   static const String staticTypeName = 'ProjectDetailPageData';
 
   const ProjectDetailPageData._();
