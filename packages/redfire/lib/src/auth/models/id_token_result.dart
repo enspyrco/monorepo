@@ -7,7 +7,7 @@ part 'id_token_result.g.dart';
 // A model of FlutterFire's IdTokenResult:
 // https://github.com/FirebaseExtended/flutterfire/blob/master/packages/firebase_auth/firebase_auth_platform_interface/lib/src/id_token_result.dart
 @freezed
-class IdTokenResult with _$IdTokenResult, ReduxModel {
+class IdTokenResult with _$IdTokenResult, ReduxState {
   static const String className = 'IdTokenResult';
 
   const IdTokenResult._();

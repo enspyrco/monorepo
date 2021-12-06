@@ -5,7 +5,7 @@ part 'problem_page_data.freezed.dart';
 part 'problem_page_data.g.dart';
 
 @freezed
-class ProblemPageData extends PageData with _$ProblemPageData, ReduxModel {
+class ProblemPageData extends PageData with _$ProblemPageData, ReduxState {
   static const String staticTypeName = 'ProblemPageData';
 
   const ProblemPageData._();

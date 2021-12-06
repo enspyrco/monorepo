@@ -8,7 +8,7 @@ part 'fix_repo_challenge_model.g.dart';
 
 @freezed
 class FixRepoChallengeModel
-    with _$FixRepoChallengeModel, ChallengeModel, ReduxModel {
+    with _$FixRepoChallengeModel, ChallengeModel, ReduxState {
   const FixRepoChallengeModel._();
   const factory FixRepoChallengeModel(
       {required String repoUrl,

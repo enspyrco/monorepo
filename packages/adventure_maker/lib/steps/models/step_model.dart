@@ -7,7 +7,7 @@ part 'step_model.freezed.dart';
 part 'step_model.g.dart';
 
 @freezed
-class StepModel with _$StepModel, ReduxModel, AdventureNode {
+class StepModel with _$StepModel, ReduxState, AdventureNode {
   static const String className = 'StepModel';
 
   const StepModel._();

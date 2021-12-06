@@ -6,7 +6,7 @@ part 'project_model.freezed.dart';
 part 'project_model.g.dart';
 
 @freezed
-class ProjectModel with _$ProjectModel, ReduxModel {
+class ProjectModel with _$ProjectModel, ReduxState {
   static const String className = 'ProjectModel';
 
   const ProjectModel._();

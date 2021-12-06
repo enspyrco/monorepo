@@ -7,7 +7,7 @@ part 'link_accounts_view_model.freezed.dart';
 part 'link_accounts_view_model.g.dart';
 
 @freezed
-class LinkAccountsViewModel with _$LinkAccountsViewModel, ReduxModel {
+class LinkAccountsViewModel with _$LinkAccountsViewModel, ReduxState {
   static const String className = 'LinkAccountsViewModel';
 
   const LinkAccountsViewModel._();

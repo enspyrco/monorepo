@@ -1,6 +1,6 @@
 import 'typedefs.dart';
 
-abstract class ReduxModel {
+abstract class ReduxState {
   JsonMap toJson();
   String get typeName;
 }

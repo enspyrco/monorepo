@@ -6,7 +6,7 @@ part 'task_model.freezed.dart';
 part 'task_model.g.dart';
 
 @freezed
-class TaskModel with _$TaskModel, ReduxModel, AdventureNode {
+class TaskModel with _$TaskModel, ReduxState, AdventureNode {
   static const String className = 'TaskModel';
 
   const TaskModel._();

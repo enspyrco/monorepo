@@ -5,7 +5,7 @@ part 'other_auth_options_page_model.freezed.dart';
 part 'other_auth_options_page_model.g.dart';
 
 @freezed
-class OtherAuthOptionsPageModel with _$OtherAuthOptionsPageModel, ReduxModel {
+class OtherAuthOptionsPageModel with _$OtherAuthOptionsPageModel, ReduxState {
   static const String className = 'OtherAuthOptionsPageModel';
 
   const OtherAuthOptionsPageModel._();

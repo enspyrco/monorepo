@@ -32,6 +32,6 @@ export 'src/settings/models/settings.dart';
 // types
 export 'src/types/red_fire_state.dart';
 export 'src/types/redux_action.dart';
-export 'src/types/redux_model.dart';
 export 'src/types/redux_service.dart';
+export 'src/types/redux_state.dart';
 export 'src/types/typedefs.dart';

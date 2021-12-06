@@ -6,7 +6,7 @@ part 'email_auth_v_m.freezed.dart';
 part 'email_auth_v_m.g.dart';
 
 @freezed
-class EmailAuthVM with _$EmailAuthVM, ReduxModel {
+class EmailAuthVM with _$EmailAuthVM, ReduxState {
   static const String className = 'EmailAuthVM';
 
   const EmailAuthVM._();
