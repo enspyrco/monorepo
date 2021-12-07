@@ -75,7 +75,7 @@ class NewItemDialogContent extends StatelessWidget {
                   controller: controller,
                   decoration: InputDecoration(
                       helperText:
-                          'name of ${lastSelection?.typeName ?? 'Adventure'}',
+                          'name of ${AdventureNode.nextName(lastSelection)}',
                       border: const OutlineInputBorder()),
                   autofocus: true,
                 ),

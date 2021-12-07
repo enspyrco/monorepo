@@ -21,12 +21,27 @@ class CreateAdventureNodeMiddleware
                 'ownerIds': [uid],
                 'name': action.name
               });
-            } else if (store.state.challenges.selected == null) {
+              return;
+            }
+
+            if (store.state.challenges.selected == null) {
               await service.createDocument(at: 'challenges', from: {
                 'ownerIds': [uid],
                 'name': action.name,
                 'parentIds': [store.state.adventures.selected!.id]
               });
+
+              return;
+            }
+
+            if (store.state.tasks.selected == null) {
+              await service.createDocument(at: 'tasks', from: {
+                'ownerIds': [uid],
+                'name': action.name,
+                'parentIds': [store.state.challenges.selected!.id]
+              });
+
+              return;
             }
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
