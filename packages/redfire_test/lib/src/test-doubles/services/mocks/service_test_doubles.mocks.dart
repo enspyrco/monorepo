@@ -2,19 +2,21 @@
 // in redfire_test/src/test-doubles/services/mocks/service_test_doubles.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i6;
+import 'dart:async' as _i7;
 
 import 'package:fast_immutable_collections/fast_immutable_collections.dart'
     as _i3;
 import 'package:firebase_auth/firebase_auth.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:redfire/src/auth/actions/set_auth_user_data_action.dart' as _i7;
-import 'package:redfire/src/auth/services/auth_service.dart' as _i5;
-import 'package:redfire/src/database/services/database_service.dart' as _i8;
-import 'package:redfire/src/networking/services/http_service.dart' as _i11;
-import 'package:redfire/src/platform/services/platform_service.dart' as _i9;
-import 'package:redfire/src/settings/enums/platform_enum.dart' as _i10;
-import 'package:redfire/types.dart' as _i2;
+import 'package:redfire/src/auth/actions/set_auth_user_data_action.dart' as _i8;
+import 'package:redfire/src/auth/models/apple_id_credential.dart' as _i5;
+import 'package:redfire/src/auth/models/auth_user_data.dart' as _i2;
+import 'package:redfire/src/auth/services/auth_service.dart' as _i6;
+import 'package:redfire/src/database/services/database_service.dart' as _i10;
+import 'package:redfire/src/networking/services/http_service.dart' as _i13;
+import 'package:redfire/src/platform/services/platform_service.dart' as _i11;
+import 'package:redfire/src/settings/enums/platform_enum.dart' as _i12;
+import 'package:redfire/types.dart' as _i9;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -35,117 +37,117 @@ class _FakeISet_1<T> extends _i1.Fake implements _i3.ISet<T> {
 class _FakeUserCredential_2 extends _i1.Fake implements _i4.UserCredential {}
 
 class _FakeAppleIdCredential_3 extends _i1.Fake
-    implements _i2.AppleIdCredential {}
+    implements _i5.AppleIdCredential {}
 
 /// A class which mocks [AuthService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthService extends _i1.Mock implements _i5.AuthService {
+class MockAuthService extends _i1.Mock implements _i6.AuthService {
   MockAuthService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Stream<_i7.SetAuthUserDataAction> get streamOfSetAuthUserData =>
+  _i7.Stream<_i8.SetAuthUserDataAction> get streamOfSetAuthUserData =>
       (super.noSuchMethod(Invocation.getter(#streamOfSetAuthUserData),
-              returnValue: Stream<_i7.SetAuthUserDataAction>.empty())
-          as _i6.Stream<_i7.SetAuthUserDataAction>);
+              returnValue: Stream<_i8.SetAuthUserDataAction>.empty())
+          as _i7.Stream<_i8.SetAuthUserDataAction>);
   @override
-  _i6.Future<String> getCurrentIdToken() =>
+  _i7.Future<String> getCurrentIdToken() =>
       (super.noSuchMethod(Invocation.method(#getCurrentIdToken, []),
-          returnValue: Future<String>.value('')) as _i6.Future<String>);
+          returnValue: Future<String>.value('')) as _i7.Future<String>);
   @override
   String getCurrentUserId() =>
       (super.noSuchMethod(Invocation.method(#getCurrentUserId, []),
           returnValue: '') as String);
   @override
-  _i6.Future<_i2.AuthUserData> signInAnonymously() => (super.noSuchMethod(
+  _i7.Future<_i2.AuthUserData> signInAnonymously() => (super.noSuchMethod(
           Invocation.method(#signInAnonymously, []),
           returnValue: Future<_i2.AuthUserData>.value(_FakeAuthUserData_0()))
-      as _i6.Future<_i2.AuthUserData>);
+      as _i7.Future<_i2.AuthUserData>);
   @override
-  _i6.Future<_i3.ISet<_i2.ProvidersEnum>> retrieveProvidersFor(String? email) =>
+  _i7.Future<_i3.ISet<_i9.ProvidersEnum>> retrieveProvidersFor(String? email) =>
       (super.noSuchMethod(Invocation.method(#retrieveProvidersFor, [email]),
-              returnValue: Future<_i3.ISet<_i2.ProvidersEnum>>.value(
-                  _FakeISet_1<_i2.ProvidersEnum>()))
-          as _i6.Future<_i3.ISet<_i2.ProvidersEnum>>);
+              returnValue: Future<_i3.ISet<_i9.ProvidersEnum>>.value(
+                  _FakeISet_1<_i9.ProvidersEnum>()))
+          as _i7.Future<_i3.ISet<_i9.ProvidersEnum>>);
   @override
-  _i6.Future<_i4.UserCredential> signUpWithEmailAndPassword(
+  _i7.Future<_i4.UserCredential> signUpWithEmailAndPassword(
           String? email, String? password) =>
       (super.noSuchMethod(
               Invocation.method(#signUpWithEmailAndPassword, [email, password]),
               returnValue:
                   Future<_i4.UserCredential>.value(_FakeUserCredential_2()))
-          as _i6.Future<_i4.UserCredential>);
+          as _i7.Future<_i4.UserCredential>);
   @override
-  _i6.Future<_i4.UserCredential> signInWithEmailAndPassword(
+  _i7.Future<_i4.UserCredential> signInWithEmailAndPassword(
           String? email, String? password) =>
       (super.noSuchMethod(
               Invocation.method(#signInWithEmailAndPassword, [email, password]),
               returnValue:
                   Future<_i4.UserCredential>.value(_FakeUserCredential_2()))
-          as _i6.Future<_i4.UserCredential>);
+          as _i7.Future<_i4.UserCredential>);
   @override
-  _i6.Future<_i2.GoogleSignInCredential?> getGoogleCredential() =>
+  _i7.Future<_i9.GoogleSignInCredential?> getGoogleCredential() =>
       (super.noSuchMethod(Invocation.method(#getGoogleCredential, []),
-              returnValue: Future<_i2.GoogleSignInCredential?>.value())
-          as _i6.Future<_i2.GoogleSignInCredential?>);
+              returnValue: Future<_i9.GoogleSignInCredential?>.value())
+          as _i7.Future<_i9.GoogleSignInCredential?>);
   @override
-  _i6.Future<_i2.AuthUserData> signInWithGoogle(
-          {_i2.GoogleSignInCredential? credential}) =>
+  _i7.Future<_i2.AuthUserData> signInWithGoogle(
+          {_i9.GoogleSignInCredential? credential}) =>
       (super.noSuchMethod(
           Invocation.method(#signInWithGoogle, [], {#credential: credential}),
           returnValue:
-              Future<_i2.AuthUserData>.value(_FakeAuthUserData_0())) as _i6
+              Future<_i2.AuthUserData>.value(_FakeAuthUserData_0())) as _i7
           .Future<_i2.AuthUserData>);
   @override
-  _i6.Future<_i2.AuthUserData> linkGoogle(
-          {_i2.GoogleSignInCredential? credential}) =>
+  _i7.Future<_i2.AuthUserData> linkGoogle(
+          {_i9.GoogleSignInCredential? credential}) =>
       (super.noSuchMethod(
               Invocation.method(#linkGoogle, [], {#credential: credential}),
               returnValue:
                   Future<_i2.AuthUserData>.value(_FakeAuthUserData_0()))
-          as _i6.Future<_i2.AuthUserData>);
+          as _i7.Future<_i2.AuthUserData>);
   @override
-  _i6.Future<String> getTokenForGoogle(List<String>? scopes) =>
+  _i7.Future<String> getTokenForGoogle(List<String>? scopes) =>
       (super.noSuchMethod(Invocation.method(#getTokenForGoogle, [scopes]),
-          returnValue: Future<String>.value('')) as _i6.Future<String>);
+          returnValue: Future<String>.value('')) as _i7.Future<String>);
   @override
-  _i6.Future<_i2.AppleIdCredential> getAppleCredential() => (super.noSuchMethod(
+  _i7.Future<_i5.AppleIdCredential> getAppleCredential() => (super.noSuchMethod(
           Invocation.method(#getAppleCredential, []),
           returnValue:
-              Future<_i2.AppleIdCredential>.value(_FakeAppleIdCredential_3()))
-      as _i6.Future<_i2.AppleIdCredential>);
+              Future<_i5.AppleIdCredential>.value(_FakeAppleIdCredential_3()))
+      as _i7.Future<_i5.AppleIdCredential>);
   @override
-  _i6.Future<_i2.AuthUserData> signInWithApple(
-          {_i2.AppleIdCredential? credential}) =>
+  _i7.Future<_i2.AuthUserData> signInWithApple(
+          {_i5.AppleIdCredential? credential}) =>
       (super.noSuchMethod(
           Invocation.method(#signInWithApple, [], {#credential: credential}),
           returnValue:
-              Future<_i2.AuthUserData>.value(_FakeAuthUserData_0())) as _i6
+              Future<_i2.AuthUserData>.value(_FakeAuthUserData_0())) as _i7
           .Future<_i2.AuthUserData>);
   @override
-  _i6.Future<_i4.UserCredential> signInWithGithubOnWeb() =>
+  _i7.Future<_i4.UserCredential> signInWithGithubOnWeb() =>
       (super.noSuchMethod(Invocation.method(#signInWithGithubOnWeb, []),
               returnValue:
                   Future<_i4.UserCredential>.value(_FakeUserCredential_2()))
-          as _i6.Future<_i4.UserCredential>);
+          as _i7.Future<_i4.UserCredential>);
   @override
-  _i6.Future<_i2.AuthUserData> signInWithGithub(String? token) =>
+  _i7.Future<_i2.AuthUserData> signInWithGithub(String? token) =>
       (super.noSuchMethod(Invocation.method(#signInWithGithub, [token]),
               returnValue:
                   Future<_i2.AuthUserData>.value(_FakeAuthUserData_0()))
-          as _i6.Future<_i2.AuthUserData>);
+          as _i7.Future<_i2.AuthUserData>);
   @override
-  _i6.Future<_i2.AuthUserData> linkGithub(String? token) => (super.noSuchMethod(
+  _i7.Future<_i2.AuthUserData> linkGithub(String? token) => (super.noSuchMethod(
           Invocation.method(#linkGithub, [token]),
           returnValue: Future<_i2.AuthUserData>.value(_FakeAuthUserData_0()))
-      as _i6.Future<_i2.AuthUserData>);
+      as _i7.Future<_i2.AuthUserData>);
   @override
-  _i6.Future<void> signOut(_i2.ProvidersEnum? signInProvider) =>
+  _i7.Future<void> signOut(_i9.ProvidersEnum? signInProvider) =>
       (super.noSuchMethod(Invocation.method(#signOut, [signInProvider]),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
   @override
   String toString() => super.toString();
 }
@@ -153,42 +155,75 @@ class MockAuthService extends _i1.Mock implements _i5.AuthService {
 /// A class which mocks [DatabaseService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDatabaseService extends _i1.Mock implements _i8.DatabaseService {
+class MockDatabaseService extends _i1.Mock implements _i10.DatabaseService {
   MockDatabaseService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<String> createDocument({String? at, Map<String, Object?>? from}) =>
+  _i7.Future<List<Object?>> getDocuments(
+          {String? at,
+          Object? where,
+          Object? isEqualTo,
+          Object? isNotEqualTo,
+          Object? isLessThan,
+          Object? isLessThanOrEqualTo,
+          Object? isGreaterThan,
+          Object? isGreaterThanOrEqualTo,
+          Object? arrayContains,
+          List<Object?>? arrayContainsAny,
+          List<Object?>? whereIn,
+          List<Object?>? whereNotIn,
+          bool? isNull}) =>
+      (super.noSuchMethod(
+              Invocation.method(#getDocuments, [], {
+                #at: at,
+                #where: where,
+                #isEqualTo: isEqualTo,
+                #isNotEqualTo: isNotEqualTo,
+                #isLessThan: isLessThan,
+                #isLessThanOrEqualTo: isLessThanOrEqualTo,
+                #isGreaterThan: isGreaterThan,
+                #isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+                #arrayContains: arrayContains,
+                #arrayContainsAny: arrayContainsAny,
+                #whereIn: whereIn,
+                #whereNotIn: whereNotIn,
+                #isNull: isNull
+              }),
+              returnValue: Future<List<Object?>>.value(<Object?>[]))
+          as _i7.Future<List<Object?>>);
+  @override
+  _i7.Future<String> createDocument({String? at, Map<String, Object?>? from}) =>
       (super.noSuchMethod(
           Invocation.method(#createDocument, [], {#at: at, #from: from}),
-          returnValue: Future<String>.value('')) as _i6.Future<String>);
+          returnValue: Future<String>.value('')) as _i7.Future<String>);
   @override
-  _i6.Future<void> setDocument(
+  _i7.Future<void> setDocument(
           {String? at, Map<String, Object?>? to, bool? merge = false}) =>
       (super.noSuchMethod(
           Invocation.method(
               #setDocument, [], {#at: at, #to: to, #merge: merge}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
   @override
-  _i6.Future<void> updateDocument({String? at, Map<String, Object?>? to}) =>
+  _i7.Future<void> updateDocument({String? at, Map<String, Object?>? to}) =>
       (super.noSuchMethod(
           Invocation.method(#updateDocument, [], {#at: at, #to: to}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
   @override
-  _i6.Future<void> deleteDocument({String? at}) =>
+  _i7.Future<void> deleteDocument({String? at}) =>
       (super.noSuchMethod(Invocation.method(#deleteDocument, [], {#at: at}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
   @override
-  _i6.Stream<Map<String, Object?>> tapDocument({String? at}) =>
+  _i7.Stream<Map<String, Object?>> tapDocument({String? at}) =>
       (super.noSuchMethod(Invocation.method(#tapDocument, [], {#at: at}),
               returnValue: Stream<Map<String, Object?>>.empty())
-          as _i6.Stream<Map<String, Object?>>);
+          as _i7.Stream<Map<String, Object?>>);
   @override
-  _i6.Stream<List<Object?>> tapCollection(
+  _i7.Stream<List<Object?>> tapCollection(
           {String? at,
           Object? where,
           Object? isEqualTo,
@@ -219,7 +254,7 @@ class MockDatabaseService extends _i1.Mock implements _i8.DatabaseService {
                 #isNull: isNull
               }),
               returnValue: Stream<List<Object?>>.empty())
-          as _i6.Stream<List<Object?>>);
+          as _i7.Stream<List<Object?>>);
   @override
   String toString() => super.toString();
 }
@@ -227,28 +262,28 @@ class MockDatabaseService extends _i1.Mock implements _i8.DatabaseService {
 /// A class which mocks [PlatformService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPlatformService extends _i1.Mock implements _i9.PlatformService {
+class MockPlatformService extends _i1.Mock implements _i11.PlatformService {
   MockPlatformService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i10.PlatformsEnum detectPlatform() =>
+  _i12.PlatformsEnum detectPlatform() =>
       (super.noSuchMethod(Invocation.method(#detectPlatform, []),
-          returnValue: _i10.PlatformsEnum.web) as _i10.PlatformsEnum);
+          returnValue: _i12.PlatformsEnum.web) as _i12.PlatformsEnum);
   @override
-  _i6.Future<void> getAuthorized(
-          {_i2.ProvidersEnum? provider, String? state}) =>
+  _i7.Future<void> getAuthorized(
+          {_i9.ProvidersEnum? provider, String? state}) =>
       (super.noSuchMethod(
           Invocation.method(
               #getAuthorized, [], {#provider: provider, #state: state}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
   @override
-  _i6.Future<void> launchUrl(String? url) =>
+  _i7.Future<void> launchUrl(String? url) =>
       (super.noSuchMethod(Invocation.method(#launchUrl, [url]),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
   @override
   String toString() => super.toString();
 }
@@ -256,16 +291,16 @@ class MockPlatformService extends _i1.Mock implements _i9.PlatformService {
 /// A class which mocks [HttpService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHttpService extends _i1.Mock implements _i11.HttpService {
+class MockHttpService extends _i1.Mock implements _i13.HttpService {
   MockHttpService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<void> createSection({String? name}) =>
+  _i7.Future<void> createSection({String? name}) =>
       (super.noSuchMethod(Invocation.method(#createSection, [], {#name: name}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
   @override
   String toString() => super.toString();
 }
