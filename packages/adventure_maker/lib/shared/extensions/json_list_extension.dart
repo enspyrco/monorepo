@@ -1,5 +1,7 @@
 import 'package:adventure_maker/adventures/models/adventure_model.dart';
 import 'package:adventure_maker/challenges/models/challenge_model.dart';
+import 'package:adventure_maker/steps/models/step_model.dart';
+import 'package:adventure_maker/tasks/models/task_model.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:redfire/types.dart';
 
@@ -11,4 +13,10 @@ extension JsonListExtension on JsonList {
   ISet<ChallengeModel> toChallenges() =>
       map<ChallengeModel>((json) => ChallengeModel.fromJson(json as JsonMap))
           .toISet();
+
+  ISet<TaskModel> toTasks() =>
+      map<TaskModel>((json) => TaskModel.fromJson(json as JsonMap)).toISet();
+
+  ISet<StepModel> toSteps() =>
+      map<StepModel>((json) => StepModel.fromJson(json as JsonMap)).toISet();
 }
