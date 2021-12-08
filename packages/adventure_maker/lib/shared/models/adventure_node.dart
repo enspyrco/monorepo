@@ -1,14 +1,29 @@
 import 'package:adventure_maker/adventures/models/adventure_model.dart';
 import 'package:adventure_maker/challenges/models/challenge_model.dart';
+import 'package:adventure_maker/steps/models/step_model.dart';
+import 'package:adventure_maker/tasks/models/task_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
 
 abstract class AdventureNode {
+  static String nextName(AdventureNode? node) => (node == null)
+      ? 'adventure'
+      : (node.isAdventure())
+          ? 'challenge'
+          : (node.isChallenge())
+              ? 'task'
+              : (node.isTask())
+                  ? 'step'
+                  : '?';
+
   String get name;
   String get typeName;
   JsonMap toJson();
+
   bool isAdventure() => typeName == AdventureModel.className;
   bool isChallenge() => typeName == ChallengeModel.className;
+  bool isTask() => typeName == TaskModel.className;
+  bool isStep() => typeName == StepModel.className;
 }
 
 class AdventureNodeConverter implements JsonConverter<AdventureNode, JsonMap> {

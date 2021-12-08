@@ -9,8 +9,10 @@ import 'package:google_sign_in_platform_interface/google_sign_in_platform_interf
     as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:redfire/src/platform/plugins/wrappers/apple_signin_wrapper.dart'
-    as _i6;
-import 'package:sign_in_with_apple/sign_in_with_apple.dart' as _i3;
+    as _i7;
+import 'package:sign_in_with_apple/sign_in_with_apple.dart' as _i6;
+import 'package:sign_in_with_apple_platform_interface/sign_in_with_apple_platform_interface.dart'
+    as _i3;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -124,7 +126,7 @@ class MockGoogleSignInAccount extends _i1.Mock
 /// A class which mocks [SignInWithApple].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSignInWithApple extends _i1.Mock implements _i3.SignInWithApple {
+class MockSignInWithApple extends _i1.Mock implements _i6.SignInWithApple {
   MockSignInWithApple() {
     _i1.throwOnMissingStub(this);
   }
@@ -137,7 +139,7 @@ class MockSignInWithApple extends _i1.Mock implements _i3.SignInWithApple {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSignInWithAppleWrapper extends _i1.Mock
-    implements _i6.SignInWithAppleWrapper {
+    implements _i7.SignInWithAppleWrapper {
   MockSignInWithAppleWrapper() {
     _i1.throwOnMissingStub(this);
   }

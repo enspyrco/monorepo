@@ -1,9 +1,10 @@
 import 'package:adventure_maker/adventures/models/adventure_model.dart';
 import 'package:adventure_maker/app_state.dart';
+import 'package:adventure_maker/challenges/models/challenge_model.dart';
 import 'package:adventure_maker/shared/actions/create_adventure_node_action.dart';
 import 'package:adventure_maker/shared/extensions/build_context_extension.dart';
+import 'package:adventure_maker/shared/models/adventure_node.dart';
 import 'package:adventure_maker/shared/models/drop_down_model.dart';
-import 'package:adventure_maker/shared/models/selections.dart';
 import 'package:adventure_maker/shared/widgets/adventure_nodes_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -46,14 +47,14 @@ class NewItemDialogContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, Selections>(
+    return StoreConnector<AppState, AdventureNode?>(
         distinct: true,
-        converter: (store) => Selections(
-            store.state.adventures.selected,
-            store.state.challenges.selected,
-            store.state.tasks.selected,
-            store.state.steps.selected),
-        builder: (context, selections) {
+        // Get the 'last' selection, ie. furtherst from the root of the tree.
+        converter: (store) => (store.state.steps.selected ??
+            store.state.tasks.selected ??
+            store.state.challenges.selected ??
+            store.state.adventures.selected) as AdventureNode?,
+        builder: (context, lastSelection) {
           var seenEnter = false; // only perform dispatch on Enter once
           return SingleChildScrollView(
               child: ListBody(
@@ -73,13 +74,14 @@ class NewItemDialogContent extends StatelessWidget {
                 child: TextField(
                   controller: controller,
                   decoration: InputDecoration(
-                      helperText: 'name of ${selections.leafName}',
+                      helperText:
+                          'name of ${AdventureNode.nextName(lastSelection)}',
                       border: const OutlineInputBorder()),
                   autofocus: true,
                 ),
               ),
               const SizedBox(height: 20),
-              if (selections.adventure != null) ...[
+              if (lastSelection != null) ...[
                 const NewItemDialogText('Located In...'),
                 const SizedBox(height: 20),
                 Container(
@@ -97,6 +99,24 @@ class NewItemDialogContent extends StatelessWidget {
                     )
                   ]),
                 ),
+                if (lastSelection.isChallenge()) ...[
+                  const SizedBox(height: 20),
+                  Container(
+                    color: Colors.green[100],
+                    child: Stack(children: [
+                      Text('Challenge',
+                          style: TextStyle(
+                              color: Colors.green.shade900, fontSize: 12)),
+                      Center(
+                        child: AdventureNodesDropDown<ChallengeModel>(
+                          converter: (store) => DropDownModel<ChallengeModel>(
+                              store.state.challenges.selected,
+                              store.state.challenges.all),
+                        ),
+                      )
+                    ]),
+                  ),
+                ]
               ]
             ],
           ));

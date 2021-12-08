@@ -4,6 +4,8 @@ import 'package:adventure_maker/challenges/models/challenge_model.dart';
 import 'package:adventure_maker/shared/models/drop_down_model.dart';
 import 'package:adventure_maker/shared/pages/new_item_dialog.dart';
 import 'package:adventure_maker/shared/widgets/adventure_nodes_drop_down.dart';
+import 'package:adventure_maker/steps/models/step_model.dart';
+import 'package:adventure_maker/tasks/models/task_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:redfire/widgets.dart';
@@ -58,6 +60,14 @@ class _MainPageState extends State<MainPage> {
                   converter: (store) => DropDownModel<ChallengeModel>(
                       store.state.challenges.selected,
                       store.state.challenges.all),
+                ),
+                AdventureNodesDropDown<TaskModel>(
+                  converter: (store) => DropDownModel<TaskModel>(
+                      store.state.tasks.selected, store.state.tasks.all),
+                ),
+                AdventureNodesDropDown<StepModel>(
+                  converter: (store) => DropDownModel<StepModel>(
+                      store.state.steps.selected, store.state.steps.all),
                 ),
               ],
             )),

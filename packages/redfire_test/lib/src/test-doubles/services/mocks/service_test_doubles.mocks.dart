@@ -159,6 +159,39 @@ class MockDatabaseService extends _i1.Mock implements _i8.DatabaseService {
   }
 
   @override
+  _i6.Future<List<Object?>> getDocuments(
+          {String? at,
+          Object? where,
+          Object? isEqualTo,
+          Object? isNotEqualTo,
+          Object? isLessThan,
+          Object? isLessThanOrEqualTo,
+          Object? isGreaterThan,
+          Object? isGreaterThanOrEqualTo,
+          Object? arrayContains,
+          List<Object?>? arrayContainsAny,
+          List<Object?>? whereIn,
+          List<Object?>? whereNotIn,
+          bool? isNull}) =>
+      (super.noSuchMethod(
+              Invocation.method(#getDocuments, [], {
+                #at: at,
+                #where: where,
+                #isEqualTo: isEqualTo,
+                #isNotEqualTo: isNotEqualTo,
+                #isLessThan: isLessThan,
+                #isLessThanOrEqualTo: isLessThanOrEqualTo,
+                #isGreaterThan: isGreaterThan,
+                #isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+                #arrayContains: arrayContains,
+                #arrayContainsAny: arrayContainsAny,
+                #whereIn: whereIn,
+                #whereNotIn: whereNotIn,
+                #isNull: isNull
+              }),
+              returnValue: Future<List<Object?>>.value(<Object?>[]))
+          as _i6.Future<List<Object?>>);
+  @override
   _i6.Future<String> createDocument({String? at, Map<String, Object?>? from}) =>
       (super.noSuchMethod(
           Invocation.method(#createDocument, [], {#at: at, #from: from}),
