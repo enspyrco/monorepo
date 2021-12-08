@@ -40,4 +40,7 @@ jobs:
         with:
           packages_path: packages/
           package_name: ${{ matrix.package_name }}
+          run_code_gen: ${{ matrix.run_code_gen }}
+          project_type: ${{ matrix.project_type }}
+
     
