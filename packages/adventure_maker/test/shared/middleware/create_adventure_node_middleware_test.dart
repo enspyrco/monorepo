@@ -3,6 +3,7 @@ import 'package:adventure_maker/app_state.dart';
 import 'package:adventure_maker/challenges/models/challenge_model.dart';
 import 'package:adventure_maker/shared/actions/create_adventure_node_action.dart';
 import 'package:adventure_maker/shared/middleware/create_adventure_node_middleware.dart';
+import 'package:adventure_maker/tasks/models/task_model.dart';
 import 'package:mockito/mockito.dart';
 import 'package:redfire/actions.dart';
 import 'package:redfire/services.dart';
@@ -42,9 +43,8 @@ void main() {
       // Create test-doubles.
       var action = const CreateAdventureNodeAction('a node name');
       var exampleAuthUser = AuthUserDataExample.minimal;
-      var signedInAppState =
-          AppState.init().copyWith.auth(userData: exampleAuthUser);
-      var store = FakeStore(signedInAppState);
+      var state = AppState.init().copyWith.auth(userData: exampleAuthUser);
+      var store = FakeStore(state);
       var mockService = MockDatabaseService();
 
       // Stub test-doubles.
@@ -67,9 +67,8 @@ void main() {
 
       // Update state to having a selected Adventure.
       var adventure = const AdventureModel(id: 'id', name: 'adventure!');
-      var selectedAdventureState =
-          signedInAppState.copyWith.adventures(selected: adventure);
-      store.updateState(selectedAdventureState);
+      state = state.copyWith.adventures(selected: adventure);
+      store.updateState(state);
 
       middleware.call(store, action, (dynamic _) => null);
 
@@ -82,13 +81,27 @@ void main() {
 
       // Update state to having a selected Challenge.
       var challenge = const ChallengeModel(id: 'id', name: 'challenge!');
-      var selectedChallengeState = store.updateState(
-          selectedAdventureState.copyWith.challenges(selected: challenge));
+      state = state.copyWith.challenges(selected: challenge);
+      store.updateState(state);
 
       middleware.call(store, action, (dynamic _) => null);
 
-      // Verify Challenge was created.
+      // Verify Task was created.
       verify(mockService.createDocument(at: 'tasks', from: {
+        'ownerIds': [exampleAuthUser.uid],
+        'name': action.name,
+        'parentIds': [challenge.id]
+      }));
+
+      // Update state to having a selected Task.
+      var task = const TaskModel(id: 'id', name: 'task!');
+      state = state.copyWith.tasks(selected: task);
+      store.updateState(state);
+
+      middleware.call(store, action, (dynamic _) => null);
+
+      // Verify Step was created.
+      verify(mockService.createDocument(at: 'steps', from: {
         'ownerIds': [exampleAuthUser.uid],
         'name': action.name,
         'parentIds': [challenge.id]

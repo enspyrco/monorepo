@@ -43,6 +43,16 @@ class CreateAdventureNodeMiddleware
 
               return;
             }
+
+            if (store.state.steps.selected == null) {
+              await service.createDocument(at: 'steps', from: {
+                'ownerIds': [uid],
+                'name': action.name,
+                'parentIds': [store.state.tasks.selected!.id]
+              });
+
+              return;
+            }
           } catch (error, trace) {
             store.dispatchProblem(error, trace);
           }
