@@ -244,18 +244,21 @@ class _$_ExampleAppState implements _ExampleAppState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ExampleAppState &&
-            (identical(other.pages, pages) || other.pages == pages) &&
-            (identical(other.problems, problems) ||
-                other.problems == problems) &&
-            (identical(other.settings, settings) ||
-                other.settings == settings) &&
-            (identical(other.auth, auth) || other.auth == auth) &&
-            (identical(other.profile, profile) || other.profile == profile));
+            const DeepCollectionEquality().equals(other.pages, pages) &&
+            const DeepCollectionEquality().equals(other.problems, problems) &&
+            const DeepCollectionEquality().equals(other.settings, settings) &&
+            const DeepCollectionEquality().equals(other.auth, auth) &&
+            const DeepCollectionEquality().equals(other.profile, profile));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, pages, problems, settings, auth, profile);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(pages),
+      const DeepCollectionEquality().hash(problems),
+      const DeepCollectionEquality().hash(settings),
+      const DeepCollectionEquality().hash(auth),
+      const DeepCollectionEquality().hash(profile));
 
   @JsonKey(ignore: true)
   @override

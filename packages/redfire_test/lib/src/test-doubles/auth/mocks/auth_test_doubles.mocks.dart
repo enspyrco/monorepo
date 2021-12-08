@@ -11,7 +11,8 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:redfire/src/platform/plugins/wrappers/apple_signin_wrapper.dart'
     as _i7;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as _i6;
-import 'package:sign_in_with_apple/src/authorization_credential.dart' as _i3;
+import 'package:sign_in_with_apple_platform_interface/sign_in_with_apple_platform_interface.dart'
+    as _i3;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -145,7 +146,7 @@ class MockSignInWithAppleWrapper extends _i1.Mock
 
   @override
   _i5.Future<_i3.AuthorizationCredentialAppleID> getCredential(
-          {List<_i6.AppleIDAuthorizationScopes>? scopes}) =>
+          {List<_i3.AppleIDAuthorizationScopes>? scopes}) =>
       (super.noSuchMethod(
               Invocation.method(#getCredential, [], {#scopes: scopes}),
               returnValue: Future<_i3.AuthorizationCredentialAppleID>.value(
