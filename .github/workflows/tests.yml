@@ -13,21 +13,27 @@ jobs:
       matrix:
         include:
           - package: adventure_maker
-            package_name: "adventure_maker"
+            package_name: adventure_maker
+            run_code_gen: yes
           - package: flireator
-            package_name: "flireator"
+            package_name: flireator
+            run_code_gen: yes
           - package: redfire
             package_name: "redfire"
           - package: redfire_test
             package_name: "redfire_test"
           - package: tech_world
             package_name: "tech_world"
+            run_code_gen: yes
           - package: the_process
             package_name: "the_process"
+            run_code_gen: yes
           - package: ws_game_server
             package_name: "ws_game_server"
+            project_type: dart
           - package: ws_game_server_types
             package_name: "ws_game_server_types"
+            project_type: dart
     steps:
       - uses: actions/checkout@v2
       - uses: enspyrco/run-tests-action@v0
