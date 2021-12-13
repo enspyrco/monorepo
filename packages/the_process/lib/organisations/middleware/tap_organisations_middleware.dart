@@ -5,7 +5,7 @@ import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
-import 'package:the_process/main.dart';
+import 'package:the_process/app_state.dart';
 import 'package:the_process/organisations/actions/set_organisations_action.dart';
 import 'package:the_process/organisations/actions/set_selected_organisation_action.dart';
 import 'package:the_process/organisations/actions/tap_organisations_action.dart';

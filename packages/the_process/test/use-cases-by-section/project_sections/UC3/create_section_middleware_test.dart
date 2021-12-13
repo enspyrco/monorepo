@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire_test/redfire_test.dart';
-import 'package:the_process/main.dart';
+import 'package:the_process/app_state.dart';
 import 'package:the_process/sections/actions/create_section_action.dart';
 import 'package:the_process/sections/actions/update_sections_v_m_action.dart';
 import 'package:the_process/sections/middleware/create_section_middleware.dart';
