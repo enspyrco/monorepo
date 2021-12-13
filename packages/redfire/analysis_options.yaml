@@ -1,13 +1,1 @@
 include: lib/lints.yaml
-
-analyzer:
-  exclude: 
-    - build/**
-    - lib/**/*.g.dart
-    - lib/**/*.freezed.dart
-    - test/**/*.g.dart
-    - test/**/*.freezed.dart
-    - test/**/*.mocks.dart
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false

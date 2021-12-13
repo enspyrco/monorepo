@@ -1,16 +1,1 @@
 include: package:redfire/lints.yaml
-
-analyzer:
-  exclude: 
-    - build/**
-    - lib/*.g.dart
-    - lib/*.freezed.dart
-    - lib/**/*.g.dart
-    - lib/**/*.freezed.dart
-    - test/**/*.mocks.dart
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
-
-linter:
-  rules:

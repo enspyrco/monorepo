@@ -2,6 +2,21 @@
 
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  exclude:
+    - build/**
+    - lib/*.g.dart
+    - lib/*.freezed.dart
+    - lib/**/*.g.dart
+    - lib/**/*.freezed.dart
+    - lib/**/*.mocks.dart
+    - test/**/*.g.dart
+    - test/**/*.freezed.dart
+    - test/**/*.mocks.dart
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+
 linter:
   rules:
     - prefer_relative_imports
