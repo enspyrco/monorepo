@@ -1,7 +1,8 @@
-import 'package:adventure_maker/tasks/models/task_model.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
+
+import 'task_model.dart';
 
 part 'tasks_state.freezed.dart';
 part 'tasks_state.g.dart';

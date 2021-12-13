@@ -1,6 +1,7 @@
-import 'package:adventure_maker/shared/models/adventure_node.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
+
+import '../../shared/models/adventure_node.dart';
 
 part 'adventure_model.freezed.dart';
 part 'adventure_model.g.dart';

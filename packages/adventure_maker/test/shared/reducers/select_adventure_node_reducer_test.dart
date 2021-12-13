@@ -1,3 +1,5 @@
+import 'package:test/test.dart';
+
 import 'package:adventure_maker/adventures/models/adventure_model.dart';
 import 'package:adventure_maker/app_state.dart';
 import 'package:adventure_maker/challenges/models/challenge_model.dart';
@@ -5,7 +7,6 @@ import 'package:adventure_maker/shared/actions/select_adventure_node_action.dart
 import 'package:adventure_maker/shared/reducers/select_adventure_node_reducer.dart';
 import 'package:adventure_maker/steps/models/step_model.dart';
 import 'package:adventure_maker/tasks/models/task_model.dart';
-import 'package:test/test.dart';
 
 void main() {
   group('SelectAdventureNodeReducer', () {

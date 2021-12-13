@@ -1,12 +1,13 @@
-import 'package:adventure_maker/adventures/models/adventure_model.dart';
-import 'package:adventure_maker/app_state.dart';
-import 'package:adventure_maker/shared/actions/select_adventure_node_action.dart';
-import 'package:adventure_maker/shared/middleware/select_adventure_node_middleware.dart';
 import 'package:mockito/mockito.dart';
 import 'package:redfire/actions.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire_test/redfire_test.dart';
 import 'package:test/test.dart';
+
+import 'package:adventure_maker/adventures/models/adventure_model.dart';
+import 'package:adventure_maker/app_state.dart';
+import 'package:adventure_maker/shared/actions/select_adventure_node_action.dart';
+import 'package:adventure_maker/shared/middleware/select_adventure_node_middleware.dart';
 
 void main() {
   group('SelectAdventureNodeMiddleware', () {
