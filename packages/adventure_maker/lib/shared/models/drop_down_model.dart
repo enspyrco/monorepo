@@ -1,5 +1,6 @@
-import 'package:adventure_maker/shared/models/adventure_node.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+
+import 'adventure_node.dart';
 
 class DropDownModel<N extends AdventureNode> {
   final N? selected;

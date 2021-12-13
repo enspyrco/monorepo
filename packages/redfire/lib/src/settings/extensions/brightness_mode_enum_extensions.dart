@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:redfire/src/settings/enums/brightness_mode_enum.dart';
+
+import '../enums/brightness_mode_enum.dart';
 
 extension BrightnessModeEnumExtension on BrightnessModeEnum {
   ThemeMode get theme => (this == BrightnessModeEnum.light)

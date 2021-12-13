@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:redfire/src/auth/actions/sign_in_with_apple_action.dart';
-import 'package:redfire/src/auth/actions/sign_in_with_google_action.dart';
-import 'package:redfire/src/auth/widgets/auth_page_buttons/apple_sign_in_button.dart';
-import 'package:redfire/src/auth/widgets/auth_page_buttons/google_sign_in_button.dart';
-import 'package:redfire/src/redux/extensions/build_context_extensions.dart';
-import 'package:redfire/src/settings/enums/platform_enum.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
+
+import '../../../redux/extensions/build_context_extensions.dart';
+import '../../../settings/enums/platform_enum.dart';
+import '../../../types/red_fire_state.dart';
+import '../../actions/sign_in_with_apple_action.dart';
+import '../../actions/sign_in_with_google_action.dart';
+import 'apple_sign_in_button.dart';
+import 'google_sign_in_button.dart';
 
 class PlatformDefaultSignInButton<T extends RedFireState>
     extends StatelessWidget {

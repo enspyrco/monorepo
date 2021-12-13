@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:redfire/src/auth/enums/providers_enum.dart';
-import 'package:redfire/src/platform/plugins/wrappers/platform_wrapper.dart';
-import 'package:redfire/src/platform/plugins/wrappers/url_launcher_wrapper.dart';
-import 'package:redfire/src/settings/enums/platform_enum.dart';
+
+import '../../auth/enums/providers_enum.dart';
+import '../../settings/enums/platform_enum.dart';
+import '../plugins/wrappers/platform_wrapper.dart';
+import '../plugins/wrappers/url_launcher_wrapper.dart';
 
 class PlatformService {
   PlatformService(

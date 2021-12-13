@@ -1,11 +1,13 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redfire/src/auth/actions/sign_out_action.dart';
-import 'package:redfire/src/navigation/actions/push_page_action.dart';
-import 'package:redfire/src/profile/widgets/profile_avatar.dart';
-import 'package:redfire/src/redux/extensions/build_context_extensions.dart';
-import 'package:redfire/types.dart';
+
+import '../../../../types.dart';
+import '../../../auth/actions/sign_out_action.dart';
+import '../../../navigation/actions/push_page_action.dart';
+import '../../../redux/extensions/build_context_extensions.dart';
+import '../profile_avatar.dart';
 
 /// Class extends [StatefulWidget] so we can keep a global key as state.
 ///

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mockito/mockito.dart';
-import 'package:redfire_test/redfire_test.dart';
+
+import '../../../../redfire_test.dart';
 
 class UserExample {
   static User stubBasicMock() {

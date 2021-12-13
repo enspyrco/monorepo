@@ -1,15 +1,17 @@
 import 'dart:io';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:redfire/src/auth/services/auth_service.dart';
-import 'package:redfire/src/database/services/database_service.dart';
-import 'package:redfire/src/networking/services/http_service.dart';
-import 'package:redfire/src/platform/plugins/wrappers/apple_signin_wrapper.dart';
-import 'package:redfire/src/platform/services/platform_service.dart';
-import 'package:redfire/src/types/redux_action.dart';
+
+import '../auth/services/auth_service.dart';
+import '../database/services/database_service.dart';
+import '../networking/services/http_service.dart';
+import '../platform/plugins/wrappers/apple_signin_wrapper.dart';
+import '../platform/services/platform_service.dart';
+import '../types/redux_action.dart';
 
 class RedFireLocator {
   ////////////////////////////////////////////////////

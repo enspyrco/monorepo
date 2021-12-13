@@ -1,7 +1,8 @@
-import 'package:adventure_maker/steps/models/step_model.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
+
+import 'step_model.dart';
 
 part 'steps_state.freezed.dart';
 part 'steps_state.g.dart';

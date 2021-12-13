@@ -1,14 +1,16 @@
-import 'package:adventure_maker/adventures/models/adventure_model.dart';
-import 'package:adventure_maker/app_state.dart';
-import 'package:adventure_maker/challenges/models/challenge_model.dart';
-import 'package:adventure_maker/shared/models/drop_down_model.dart';
-import 'package:adventure_maker/shared/pages/new_item_dialog.dart';
-import 'package:adventure_maker/shared/widgets/adventure_nodes_drop_down.dart';
-import 'package:adventure_maker/steps/models/step_model.dart';
-import 'package:adventure_maker/tasks/models/task_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:redfire/widgets.dart';
+
+import '../../adventures/models/adventure_model.dart';
+import '../../app_state.dart';
+import '../../challenges/models/challenge_model.dart';
+import '../../steps/models/step_model.dart';
+import '../../tasks/models/task_model.dart';
+import '../models/drop_down_model.dart';
+import '../widgets/adventure_nodes_drop_down.dart';
+import 'new_item_dialog.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);

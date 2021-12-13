@@ -1,9 +1,10 @@
-import 'package:redfire/extensions.dart';
-import 'package:redfire/services.dart';
-import 'package:redfire/src/auth/actions/sign_in_with_git_hub_action.dart';
-import 'package:redfire/src/settings/enums/platform_enum.dart';
-import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
+
+import '../../../extensions.dart';
+import '../../../services.dart';
+import '../../../types.dart';
+import '../../settings/enums/platform_enum.dart';
+import '../actions/sign_in_with_git_hub_action.dart';
 
 class SignInWithGitHubMiddleware<T extends RedFireState>
     extends TypedMiddleware<T, SignInWithGitHubAction> {

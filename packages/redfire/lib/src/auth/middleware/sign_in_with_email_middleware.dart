@@ -1,11 +1,11 @@
-import 'package:redfire/src/auth/actions/email/sign_in_with_email_action.dart';
-import 'package:redfire/src/auth/actions/reset_auth_page_action.dart';
-import 'package:redfire/src/auth/actions/set_auth_step_action.dart';
-import 'package:redfire/src/utils/red_fire_locator.dart';
 import 'package:redux/redux.dart';
 
 import '../../../types.dart';
 import '../../redux/extensions/store_extensions.dart';
+import '../../utils/red_fire_locator.dart';
+import '../actions/email/sign_in_with_email_action.dart';
+import '../actions/reset_auth_page_action.dart';
+import '../actions/set_auth_step_action.dart';
 
 class SignInWithEmailMiddleware<T extends RedFireState>
     extends TypedMiddleware<T, SignInWithEmailAction> {

@@ -5,12 +5,13 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tech_world/game/components/map_component.dart';
-import 'package:tech_world/game/components/player_component.dart';
-import 'package:tech_world/redux/app_state.dart';
-import 'package:tech_world/utils/extensions/i_list_of_double2s_extension.dart';
-import 'package:tech_world/utils/extensions/i_list_of_vector2s_extension.dart';
 import 'package:ws_game_server_types/ws_game_server_types.dart';
+
+import 'game/components/map_component.dart';
+import 'game/components/player_component.dart';
+import 'redux/app_state.dart';
+import 'utils/extensions/i_list_of_double2s_extension.dart';
+import 'utils/extensions/i_list_of_vector2s_extension.dart';
 
 bool _paused = false;
 int departureTime = 0;

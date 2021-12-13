@@ -1,13 +1,14 @@
-import 'package:adventure_maker/adventures/models/adventure_model.dart';
-import 'package:adventure_maker/app_state.dart';
-import 'package:adventure_maker/challenges/models/challenge_model.dart';
-import 'package:adventure_maker/challenges/models/challenges_state.dart';
-import 'package:adventure_maker/shared/actions/select_adventure_node_action.dart';
-import 'package:adventure_maker/steps/models/step_model.dart';
-import 'package:adventure_maker/steps/models/steps_state.dart';
-import 'package:adventure_maker/tasks/models/task_model.dart';
-import 'package:adventure_maker/tasks/models/tasks_state.dart';
 import 'package:redux/redux.dart';
+
+import '../../adventures/models/adventure_model.dart';
+import '../../app_state.dart';
+import '../../challenges/models/challenge_model.dart';
+import '../../challenges/models/challenges_state.dart';
+import '../../steps/models/step_model.dart';
+import '../../steps/models/steps_state.dart';
+import '../../tasks/models/task_model.dart';
+import '../../tasks/models/tasks_state.dart';
+import '../actions/select_adventure_node_action.dart';
 
 class SelectAdventureNodeReducer
     extends TypedReducer<AppState, SelectAdventureNodeAction> {

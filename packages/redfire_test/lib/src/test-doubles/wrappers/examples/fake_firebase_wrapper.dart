@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:redfire/types.dart';
-import 'package:redfire_test/src/test-doubles/firebase/mocks/firebase_test_doubles.mocks.dart';
+
+import '../../firebase/mocks/firebase_test_doubles.mocks.dart';
 
 /// A fake wrapper that by default returns a [Future<FirebaseAppMock>] when
 /// [FirebaseWrapperFake.init] is called or, if a completer was passed in,

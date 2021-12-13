@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/types/redux_action.dart';
-import 'package:redfire/src/types/typedefs.dart';
+
+import '../../types/redux_action.dart';
+import '../../types/typedefs.dart';
 
 part 'tap_profile_action.freezed.dart';
 part 'tap_profile_action.g.dart';

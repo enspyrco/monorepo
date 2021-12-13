@@ -1,7 +1,8 @@
-import 'package:adventure_maker/adventures/models/adventure_model.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
+
+import 'adventure_model.dart';
 
 part 'adventures_state.freezed.dart';
 part 'adventures_state.g.dart';

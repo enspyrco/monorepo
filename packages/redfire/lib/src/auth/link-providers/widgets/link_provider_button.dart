@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:redfire/src/auth/constants/auth_provider_names.dart';
-import 'package:redfire/src/auth/enums/providers_enum.dart';
-import 'package:redfire/src/auth/link-providers/actions/link_account_action.dart';
-import 'package:redfire/src/auth/link-providers/enums/linking_account_enum.dart';
-import 'package:redfire/src/redux/extensions/build_context_extensions.dart';
-import 'package:redfire/types.dart';
+
+import '../../../../types.dart';
+import '../../../redux/extensions/build_context_extensions.dart';
+import '../../constants/auth_provider_names.dart';
+import '../../enums/providers_enum.dart';
+import '../actions/link_account_action.dart';
+import '../enums/linking_account_enum.dart';
 
 class LinkProviderButton<T extends RedFireState> extends StatelessWidget {
   const LinkProviderButton(

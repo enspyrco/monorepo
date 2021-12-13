@@ -2,11 +2,12 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redux/redux.dart';
-import 'package:the_process/app_state.dart';
-import 'package:the_process/organisations/models/organisation_model.dart';
-import 'package:the_process/projects/actions/create_project_action.dart';
-import 'package:the_process/projects/actions/update_projects_view_action.dart';
-import 'package:the_process/projects/models/project_model.dart';
+
+import '../../app_state.dart';
+import '../../organisations/models/organisation_model.dart';
+import '../actions/create_project_action.dart';
+import '../actions/update_projects_view_action.dart';
+import '../models/project_model.dart';
 
 class CreateProjectMiddleware
     extends TypedMiddleware<AppState, CreateProjectAction> {

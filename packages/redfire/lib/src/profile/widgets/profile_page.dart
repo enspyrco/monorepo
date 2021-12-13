@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:redfire/src/auth/link-providers/widgets/link_providers_view.dart';
-import 'package:redfire/types.dart';
-import 'package:redfire/widgets.dart';
+
+import '../../../types.dart';
+import '../../../widgets.dart';
+import '../../auth/link-providers/widgets/link_providers_view.dart';
 
 class ProfilePage<T extends RedFireState> extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);

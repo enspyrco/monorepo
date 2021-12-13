@@ -1,6 +1,7 @@
-import 'package:redfire/src/auth/actions/set_auth_step_action.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
 import 'package:redux/redux.dart';
+
+import '../../types/red_fire_state.dart';
+import '../actions/set_auth_step_action.dart';
 
 class SetAuthStepReducer<T extends RedFireState>
     extends TypedReducer<T, SetAuthStepAction> {

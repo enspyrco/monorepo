@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:redfire/src/auth/actions/get_authorized_action.dart';
-import 'package:redfire/src/redux/extensions/build_context_extensions.dart';
-import 'package:redfire/types.dart';
+
+import '../../../../types.dart';
+import '../../../auth/actions/get_authorized_action.dart';
+import '../../../redux/extensions/build_context_extensions.dart';
 
 class GoogleAuthorizationButton extends StatelessWidget {
   final AuthorizationEnum step;

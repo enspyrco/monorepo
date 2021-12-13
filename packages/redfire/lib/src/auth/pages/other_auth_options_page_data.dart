@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/auth/pages/other_auth_options_page.dart';
-import 'package:redfire/types.dart';
+
+import '../../../types.dart';
+import 'other_auth_options_page.dart';
 
 part 'other_auth_options_page_data.freezed.dart';
 part 'other_auth_options_page_data.g.dart';

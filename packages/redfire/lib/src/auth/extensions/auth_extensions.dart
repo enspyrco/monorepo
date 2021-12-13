@@ -1,11 +1,12 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:redfire/src/auth/models/apple_id_credential.dart';
-import 'package:redfire/src/auth/models/auth_provider_data.dart';
-import 'package:redfire/src/auth/models/auth_user_data.dart';
-import 'package:redfire/src/auth/models/google_sign_in_credential.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+
+import '../models/apple_id_credential.dart';
+import '../models/auth_provider_data.dart';
+import '../models/auth_user_data.dart';
+import '../models/google_sign_in_credential.dart';
 
 extension FirebaseUserExtension on User {
   AuthUserData toModel() => AuthUserData(

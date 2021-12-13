@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/settings/enums/theme_brightness_enum.dart';
-import 'package:redfire/src/settings/models/theme_colors.dart';
-import 'package:redfire/src/types/typedefs.dart';
+
+import '../../types/typedefs.dart';
+import '../enums/theme_brightness_enum.dart';
+import 'theme_colors.dart';
 
 part 'theme_set.freezed.dart';
 part 'theme_set.g.dart';

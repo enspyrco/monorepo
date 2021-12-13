@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:redfire/src/settings/enums/theme_brightness_enum.dart';
-import 'package:redfire/src/settings/models/theme_set.dart';
+
+import '../enums/theme_brightness_enum.dart';
+import '../models/theme_set.dart';
 
 extension ThemeSetExtension on ThemeSet {
   ThemeData get data {

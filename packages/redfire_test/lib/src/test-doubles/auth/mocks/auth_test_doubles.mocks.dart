@@ -5,12 +5,13 @@
 import 'dart:async' as _i5;
 
 import 'package:google_sign_in/google_sign_in.dart' as _i2;
+import 'package:mockito/mockito.dart' as _i1;
+import 'package:sign_in_with_apple/sign_in_with_apple.dart' as _i6;
+
 import 'package:google_sign_in_platform_interface/google_sign_in_platform_interface.dart'
     as _i4;
-import 'package:mockito/mockito.dart' as _i1;
 import 'package:redfire/src/platform/plugins/wrappers/apple_signin_wrapper.dart'
     as _i7;
-import 'package:sign_in_with_apple/sign_in_with_apple.dart' as _i6;
 import 'package:sign_in_with_apple_platform_interface/sign_in_with_apple_platform_interface.dart'
     as _i3;
 

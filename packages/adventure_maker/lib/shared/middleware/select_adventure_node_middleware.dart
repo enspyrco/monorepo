@@ -1,13 +1,14 @@
-import 'package:adventure_maker/adventures/models/adventure_model.dart';
-import 'package:adventure_maker/app_state.dart';
-import 'package:adventure_maker/challenges/models/challenge_model.dart';
-import 'package:adventure_maker/shared/actions/select_adventure_node_action.dart';
-import 'package:adventure_maker/shared/actions/set_adventure_nodes_action.dart';
-import 'package:adventure_maker/shared/extensions/json_list_extension.dart';
-import 'package:adventure_maker/tasks/models/task_model.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redux/redux.dart';
+
+import '../../adventures/models/adventure_model.dart';
+import '../../app_state.dart';
+import '../../challenges/models/challenge_model.dart';
+import '../../tasks/models/task_model.dart';
+import '../actions/select_adventure_node_action.dart';
+import '../actions/set_adventure_nodes_action.dart';
+import '../extensions/json_list_extension.dart';
 
 class SelectAdventureNodeMiddleware
     extends TypedMiddleware<AppState, SelectAdventureNodeAction> {

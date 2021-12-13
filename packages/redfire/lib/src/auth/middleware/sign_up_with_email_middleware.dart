@@ -1,10 +1,10 @@
-import 'package:redfire/actions.dart';
-import 'package:redfire/src/auth/actions/email/sign_up_with_email_action.dart';
-import 'package:redfire/src/utils/red_fire_locator.dart';
 import 'package:redux/redux.dart';
 
+import '../../../actions.dart';
 import '../../../types.dart';
 import '../../redux/extensions/store_extensions.dart';
+import '../../utils/red_fire_locator.dart';
+import '../actions/email/sign_up_with_email_action.dart';
 
 class SignUpWithEmailMiddleware<T extends RedFireState>
     extends TypedMiddleware<T, SignUpWithEmailAction> {

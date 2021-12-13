@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mockito/mockito.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire/types.dart';
-import 'package:redfire_test/src/test-doubles/auth/data/user_example.dart';
 
+import '../../auth/data/user_example.dart';
 import '../../auth/mocks/auth_test_doubles.mocks.dart';
 import '../../firebase/mocks/firebase_test_doubles.mocks.dart';
 import '../../platform/mocks/platform_test_doubles.mocks.dart';

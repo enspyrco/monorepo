@@ -4,8 +4,9 @@ import 'package:redfire/actions.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
-import 'package:tech_world/redux/app_state.dart';
-import 'package:tech_world/redux/services/locator.dart';
+
+import '../app_state.dart';
+import '../services/locator.dart';
 
 class SetAuthUserDataMiddleware
     extends TypedMiddleware<AppState, SetAuthUserDataAction> {

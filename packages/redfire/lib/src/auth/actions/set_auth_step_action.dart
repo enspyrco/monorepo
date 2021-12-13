@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/auth/enums/auth_step_enum.dart';
-import 'package:redfire/src/types/redux_action.dart';
-import 'package:redfire/src/types/typedefs.dart';
+
+import '../../types/redux_action.dart';
+import '../../types/typedefs.dart';
+import '../enums/auth_step_enum.dart';
 
 part 'set_auth_step_action.freezed.dart';
 part 'set_auth_step_action.g.dart';

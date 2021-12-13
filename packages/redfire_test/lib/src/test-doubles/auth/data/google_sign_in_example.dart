@@ -1,6 +1,7 @@
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/mockito.dart';
-import 'package:redfire_test/redfire_test.dart';
+
+import '../../../../redfire_test.dart';
 
 class GoogleSignInExample {
   // When the user cancels during the signin process, the Future returned

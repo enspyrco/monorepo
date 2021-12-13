@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
-import 'package:tech_world/challenges/enums/challenge_enum.dart';
+
+import '../enums/challenge_enum.dart';
 
 part 'start_challenge_action.freezed.dart';
 part 'start_challenge_action.g.dart';

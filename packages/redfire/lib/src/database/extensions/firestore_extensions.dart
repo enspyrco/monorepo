@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:redfire/src/profile/models/profile_data.dart';
-import 'package:redfire/types.dart';
+
+import '../../../types.dart';
+import '../../profile/models/profile_data.dart';
 
 extension ConvertDocumentSnapshot on DocumentSnapshot {
   ProfileData toProfileData() {

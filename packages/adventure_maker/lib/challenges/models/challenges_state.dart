@@ -1,7 +1,8 @@
-import 'package:adventure_maker/challenges/models/challenge_model.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
+
+import 'challenge_model.dart';
 
 part 'challenges_state.freezed.dart';
 part 'challenges_state.g.dart';

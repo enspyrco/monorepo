@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+
+import '../../../types.dart';
 
 part 'other_auth_options_page_model.freezed.dart';
 part 'other_auth_options_page_model.g.dart';

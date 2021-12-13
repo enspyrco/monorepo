@@ -1,12 +1,14 @@
+import 'package:flutter/services.dart';
+
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/extensions.dart';
-import 'package:flutter/services.dart';
-import 'package:tech_world/shared/direction_enum.dart';
-import 'package:tech_world/utils/effects/move_character_effect.dart';
-import 'package:tech_world/utils/extensions/direction_enum_extension.dart';
-import 'package:tech_world/utils/input.dart';
+
+import '../../shared/direction_enum.dart';
+import '../../utils/effects/move_character_effect.dart';
+import '../../utils/extensions/direction_enum_extension.dart';
+import '../../utils/input.dart';
 
 typedef Position = Vector2;
 

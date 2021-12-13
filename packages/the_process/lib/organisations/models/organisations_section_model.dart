@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
-import 'package:the_process/organisations/models/organisation_creator_view_model.dart';
-import 'package:the_process/organisations/models/organisation_selector_view_model.dart';
+
+import 'organisation_creator_view_model.dart';
+import 'organisation_selector_view_model.dart';
 
 part 'organisations_section_model.freezed.dart';
 part 'organisations_section_model.g.dart';

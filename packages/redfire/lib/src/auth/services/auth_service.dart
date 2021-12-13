@@ -1,15 +1,16 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:redfire/src/auth/actions/set_auth_user_data_action.dart';
-import 'package:redfire/src/auth/constants/auth_provider_names.dart';
-import 'package:redfire/src/auth/extensions/auth_extensions.dart';
-import 'package:redfire/src/auth/models/apple_id_credential.dart';
-import 'package:redfire/src/auth/models/auth_user_data.dart';
-import 'package:redfire/src/auth/models/google_sign_in_credential.dart';
-import 'package:redfire/src/platform/plugins/wrappers/apple_signin_wrapper.dart';
-import 'package:redfire/src/types/redux_service.dart';
-import 'package:redfire/types.dart';
+
+import '../../../types.dart';
+import '../../platform/plugins/wrappers/apple_signin_wrapper.dart';
+import '../../types/redux_service.dart';
+import '../actions/set_auth_user_data_action.dart';
+import '../constants/auth_provider_names.dart';
+import '../extensions/auth_extensions.dart';
+import '../models/apple_id_credential.dart';
+import '../models/auth_user_data.dart';
+import '../models/google_sign_in_credential.dart';
 
 class AuthService extends ReduxService {
   AuthService(

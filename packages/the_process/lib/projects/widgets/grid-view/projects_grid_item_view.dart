@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:redfire/actions.dart';
-import 'package:the_process/projects/models/project_model.dart';
-import 'package:the_process/projects/pages/project_detail_page.dart';
-import 'package:the_process/utils/build_context_extensions.dart';
+
+import '../../../utils/build_context_extensions.dart';
+import '../../models/project_model.dart';
+import '../../pages/project_detail_page.dart';
 
 class ProjectsGridItemView extends StatelessWidget {
   const ProjectsGridItemView(this.project, {Key? key}) : super(key: key);

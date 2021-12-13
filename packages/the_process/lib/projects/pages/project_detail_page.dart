@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
-import 'package:the_process/projects/pages/project_detail_page_view.dart';
+
+import 'project_detail_page_view.dart';
 
 part 'project_detail_page.freezed.dart';
 part 'project_detail_page.g.dart';

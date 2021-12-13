@@ -1,9 +1,10 @@
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redux/redux.dart';
-import 'package:the_process/app_state.dart';
-import 'package:the_process/sections/actions/create_section_action.dart';
-import 'package:the_process/sections/actions/update_sections_v_m_action.dart';
+
+import '../../app_state.dart';
+import '../actions/create_section_action.dart';
+import '../actions/update_sections_v_m_action.dart';
 
 class CreateSectionMiddleware
     extends TypedMiddleware<AppState, CreateSectionAction> {

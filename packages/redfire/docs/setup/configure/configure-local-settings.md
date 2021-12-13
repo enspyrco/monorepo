@@ -14,6 +14,14 @@ Add
 /web/index.html
 ```
 
+## lints
+
+Optionally: use the redfire lints by updating your `analysis_options.yaml` to
+
+```yaml
+include: package:redfire/lints.yaml
+```
+
 ## snippets
 
 Using code snippets will save you *lots* of time & hassle

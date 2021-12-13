@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:redfire/src/auth/actions/email/get_providers_for_email_action.dart';
-import 'package:redfire/src/auth/actions/email/set_email_action.dart';
-import 'package:redfire/src/auth/actions/email/set_providers_for_email_action.dart';
-import 'package:redfire/src/utils/red_fire_locator.dart';
 import 'package:redux/redux.dart';
 
 import '../../../types.dart';
 import '../../redux/extensions/store_extensions.dart';
+import '../../utils/red_fire_locator.dart';
+import '../actions/email/get_providers_for_email_action.dart';
+import '../actions/email/set_email_action.dart';
+import '../actions/email/set_providers_for_email_action.dart';
 
 ///
 /// - set the email & EmailSignInStep(checking email)

@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/auth/models/id_token_result.dart';
-import 'package:redfire/types.dart';
+
+import '../../../types.dart';
+import '../models/id_token_result.dart';
 
 part 'set_id_token_result_action.freezed.dart';
 part 'set_id_token_result_action.g.dart';

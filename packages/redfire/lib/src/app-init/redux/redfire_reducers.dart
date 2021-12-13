@@ -1,12 +1,12 @@
-import 'package:redfire/src/auth/reducers/pop_all_pages_reducer.dart';
-import 'package:redfire/src/auth/reducers/reset_auth_page_reducer.dart';
-import 'package:redfire/src/auth/reducers/set_email_reducer.dart';
-import 'package:redfire/src/auth/reducers/set_id_token_result_reducer.dart';
-import 'package:redfire/src/auth/reducers/set_providers_for_email_reducer.dart';
 import 'package:redux/redux.dart';
 
+import '../../auth/reducers/pop_all_pages_reducer.dart';
+import '../../auth/reducers/reset_auth_page_reducer.dart';
 import '../../auth/reducers/set_auth_step_reducer.dart';
 import '../../auth/reducers/set_auth_user_data_reducer.dart';
+import '../../auth/reducers/set_email_reducer.dart';
+import '../../auth/reducers/set_id_token_result_reducer.dart';
+import '../../auth/reducers/set_providers_for_email_reducer.dart';
 import '../../auth/reducers/sign_out_reducer.dart';
 import '../../navigation/reducers/push_page_reducer.dart';
 import '../../navigation/reducers/remove_current_page_reducer.dart';

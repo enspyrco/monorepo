@@ -1,8 +1,9 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
-import 'package:tech_world/game/background/barriers.dart';
 import 'package:ws_game_server_types/ws_game_server_types.dart';
+
+import 'background/barriers.dart';
 
 part 'game_state.freezed.dart';
 part 'game_state.g.dart';

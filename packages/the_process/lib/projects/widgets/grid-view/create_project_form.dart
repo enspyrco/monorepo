@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:the_process/projects/actions/create_project_action.dart';
-import 'package:the_process/projects/actions/update_projects_view_action.dart';
-import 'package:the_process/projects/models/project_model.dart';
-import 'package:the_process/utils/build_context_extensions.dart';
+
+import '../../../utils/build_context_extensions.dart';
+import '../../actions/create_project_action.dart';
+import '../../actions/update_projects_view_action.dart';
+import '../../models/project_model.dart';
 
 class CreateProjectForm extends StatefulWidget {
   const CreateProjectForm({Key? key}) : super(key: key);

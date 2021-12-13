@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
-import 'package:tech_world/shared/direction_enum.dart';
+
+import '../shared/direction_enum.dart';
 
 class Input {
   static DirectionEnum? directionFrom(RawKeyEvent event) =>

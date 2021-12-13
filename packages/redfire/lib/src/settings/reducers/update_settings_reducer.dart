@@ -1,6 +1,7 @@
-import 'package:redfire/src/settings/actions/update_settings_action.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
 import 'package:redux/redux.dart';
+
+import '../../types/red_fire_state.dart';
+import '../actions/update_settings_action.dart';
 
 class UpdateSettingsReducer<T extends RedFireState>
     extends TypedReducer<T, UpdateSettingsAction> {

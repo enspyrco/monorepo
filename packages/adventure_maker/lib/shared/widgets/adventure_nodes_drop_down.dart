@@ -1,11 +1,13 @@
-import 'package:adventure_maker/app_state.dart';
-import 'package:adventure_maker/shared/actions/select_adventure_node_action.dart';
-import 'package:adventure_maker/shared/extensions/build_context_extension.dart';
-import 'package:adventure_maker/shared/models/adventure_node.dart';
-import 'package:adventure_maker/shared/models/drop_down_model.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+
+import '../../app_state.dart';
+import '../actions/select_adventure_node_action.dart';
+import '../extensions/build_context_extension.dart';
+import '../models/adventure_node.dart';
+import '../models/drop_down_model.dart';
 
 class AdventureNodesDropDown<N extends AdventureNode> extends StatelessWidget {
   const AdventureNodesDropDown({

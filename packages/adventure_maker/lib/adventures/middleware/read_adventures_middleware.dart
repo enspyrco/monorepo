@@ -1,12 +1,13 @@
-import 'package:adventure_maker/adventures/actions/read_adventures_action.dart';
-import 'package:adventure_maker/adventures/models/adventure_model.dart';
-import 'package:adventure_maker/app_state.dart';
-import 'package:adventure_maker/shared/actions/set_adventure_nodes_action.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
+
+import '../../app_state.dart';
+import '../../shared/actions/set_adventure_nodes_action.dart';
+import '../actions/read_adventures_action.dart';
+import '../models/adventure_model.dart';
 
 class ReadAdventuresMiddleware
     extends TypedMiddleware<AppState, ReadAdventuresAction> {

@@ -25,6 +25,7 @@
 ///         License:   MIT (http://opensource.org/licenses/mit-license.php)
 ///         Homepage:  https://primer.style/octicons/
 ///
+
 import 'package:flutter/widgets.dart';
 
 class RedFireIcons {

@@ -1,9 +1,10 @@
-import 'package:adventure_maker/adventures/models/adventure_model.dart';
-import 'package:adventure_maker/challenges/models/challenge_model.dart';
-import 'package:adventure_maker/steps/models/step_model.dart';
-import 'package:adventure_maker/tasks/models/task_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
+
+import '../../adventures/models/adventure_model.dart';
+import '../../challenges/models/challenge_model.dart';
+import '../../steps/models/step_model.dart';
+import '../../tasks/models/task_model.dart';
 
 abstract class AdventureNode {
   static String nextName(AdventureNode? node) => (node == null)

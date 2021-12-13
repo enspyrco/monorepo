@@ -1,6 +1,7 @@
 import 'package:redux/redux.dart';
-import 'package:the_process/app_state.dart';
-import 'package:the_process/organisations/actions/update_organisations_page_action.dart';
+
+import '../../app_state.dart';
+import '../actions/update_organisations_page_action.dart';
 
 class UpdateOrganisationsPageReducer
     extends TypedReducer<AppState, UpdateOrganisationsPageAction> {
