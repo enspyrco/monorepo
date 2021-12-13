@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:redfire/src/problems/actions/remove_problem_action.dart';
-import 'package:redfire/src/redux/extensions/build_context_extensions.dart';
-import 'package:redfire/types.dart';
+
+import '../../../types.dart';
+import '../../redux/extensions/build_context_extensions.dart';
+import '../actions/remove_problem_action.dart';
 
 class ProblemPageView<T extends RedFireState> extends StatelessWidget {
   const ProblemPageView(this.info, {Key? key}) : super(key: key);

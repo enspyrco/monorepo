@@ -1,8 +1,8 @@
-import 'package:redfire/src/navigation/models/problem_page_data.dart';
 import 'package:redux/redux.dart';
 
 import '../../../actions.dart';
 import '../../../types.dart';
+import '../../navigation/models/problem_page_data.dart';
 
 class RemoveProblemReducer<T extends RedFireState>
     extends TypedReducer<T, RemoveProblemAction> {

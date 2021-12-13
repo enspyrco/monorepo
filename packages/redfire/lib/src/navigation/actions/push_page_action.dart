@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/navigation/models/page_data.dart';
-import 'package:redfire/src/types/redux_action.dart';
-import 'package:redfire/src/types/typedefs.dart';
+
+import '../../types/redux_action.dart';
+import '../../types/typedefs.dart';
+import '../models/page_data.dart';
 
 part 'push_page_action.freezed.dart';
 part 'push_page_action.g.dart';

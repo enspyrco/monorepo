@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/navigation/models/page_data.dart';
-import 'package:redfire/src/types/typedefs.dart';
+
+import '../../types/typedefs.dart';
+import 'page_data.dart';
 
 part 'initial_page_data.freezed.dart';
 part 'initial_page_data.g.dart';

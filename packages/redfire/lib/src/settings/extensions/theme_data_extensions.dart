@@ -1,9 +1,11 @@
 // Static functions must be called on the extension name, ie. NewThemeData
 // The naming choice here (ie. MakeThemeData) results in MakeThemeData.from(...)
 // which is not bad in this context but may not work in others
+
 import 'package:flutter/material.dart';
-import 'package:redfire/src/settings/enums/theme_brightness_enum.dart';
-import 'package:redfire/src/settings/models/theme_set.dart';
+
+import '../enums/theme_brightness_enum.dart';
+import '../models/theme_set.dart';
 
 extension MakeThemeData on ThemeData {
   static ThemeData from(ThemeSet themeSet) {

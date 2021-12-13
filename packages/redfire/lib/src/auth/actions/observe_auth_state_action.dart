@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/types/redux_action.dart';
-import 'package:redfire/src/types/typedefs.dart';
+
+import '../../types/redux_action.dart';
+import '../../types/typedefs.dart';
 
 part 'observe_auth_state_action.freezed.dart';
 part 'observe_auth_state_action.g.dart';

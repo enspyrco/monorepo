@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:redfire/services.dart';
-import 'package:redfire/src/auth/actions/email/get_providers_for_email_action.dart';
-import 'package:redfire/src/redux/extensions/build_context_extensions.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
+
+import '../../../../services.dart';
+import '../../../redux/extensions/build_context_extensions.dart';
+import '../../../types/red_fire_state.dart';
+import '../../actions/email/get_providers_for_email_action.dart';
 
 class EmailTextField<T extends RedFireState> extends StatefulWidget {
   const EmailTextField({

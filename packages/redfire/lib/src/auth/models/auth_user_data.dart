@@ -1,7 +1,8 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/auth/models/auth_provider_data.dart';
-import 'package:redfire/src/types/typedefs.dart';
+
+import '../../types/typedefs.dart';
+import 'auth_provider_data.dart';
 
 part 'auth_user_data.freezed.dart';
 part 'auth_user_data.g.dart';

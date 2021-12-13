@@ -1,6 +1,7 @@
-import 'package:redfire/src/auth/actions/email/set_email_action.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
 import 'package:redux/redux.dart';
+
+import '../../types/red_fire_state.dart';
+import '../actions/email/set_email_action.dart';
 
 class SetEmailReducer<T extends RedFireState>
     extends TypedReducer<T, SetEmailAction> {

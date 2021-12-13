@@ -1,5 +1,5 @@
-import 'package:redfire/src/auth/enums/providers_enum.dart';
-import 'package:redfire/src/shared/icons/red_fire_icons_icons.dart';
+import '../../shared/icons/red_fire_icons_icons.dart';
+import '../enums/providers_enum.dart';
 
 const authProviderIdOf = {
   ProvidersEnum.email: 'password',

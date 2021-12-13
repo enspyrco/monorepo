@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/types/typedefs.dart';
+
+import '../../types/typedefs.dart';
 
 part 'problem_info.freezed.dart';
 part 'problem_info.g.dart';

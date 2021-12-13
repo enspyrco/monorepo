@@ -1,10 +1,10 @@
-import 'package:redfire/src/auth/actions/set_auth_step_action.dart';
-import 'package:redfire/src/auth/actions/sign_out_action.dart';
-import 'package:redfire/src/utils/red_fire_locator.dart';
-import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
 
+import '../../../types.dart';
 import '../../redux/extensions/store_extensions.dart';
+import '../../utils/red_fire_locator.dart';
+import '../actions/set_auth_step_action.dart';
+import '../actions/sign_out_action.dart';
 
 class SignOutMiddleware<T extends RedFireState>
     extends TypedMiddleware<T, SignOutAction> {

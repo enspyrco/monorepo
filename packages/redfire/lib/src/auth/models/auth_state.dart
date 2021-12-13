@@ -1,12 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/auth/link-providers/models/link_accounts_view_model.dart';
-import 'package:redfire/src/auth/models/email_auth_v_m.dart';
-import 'package:redfire/src/auth/models/id_token_result.dart';
-import 'package:redfire/src/types/typedefs.dart';
-import 'package:redfire/types.dart';
 
+import '../../../types.dart';
+import '../../types/typedefs.dart';
 import '../enums/auth_step_enum.dart';
+import '../link-providers/models/link_accounts_view_model.dart';
 import 'auth_user_data.dart';
+import 'email_auth_v_m.dart';
+import 'id_token_result.dart';
 
 part 'auth_state.freezed.dart';
 part 'auth_state.g.dart';

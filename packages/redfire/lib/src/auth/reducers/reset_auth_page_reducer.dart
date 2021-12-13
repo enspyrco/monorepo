@@ -1,7 +1,8 @@
-import 'package:redfire/src/auth/actions/reset_auth_page_action.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
-import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
+
+import '../../../types.dart';
+import '../../types/red_fire_state.dart';
+import '../actions/reset_auth_page_action.dart';
 
 class ResetAuthPageReducer<T extends RedFireState>
     extends TypedReducer<T, ResetAuthPageAction> {

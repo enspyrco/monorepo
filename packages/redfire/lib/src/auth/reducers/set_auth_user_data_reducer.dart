@@ -1,11 +1,12 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:redfire/src/auth/actions/set_auth_user_data_action.dart';
-import 'package:redfire/src/auth/constants/auth_provider_names.dart';
-import 'package:redfire/src/auth/enums/providers_enum.dart';
-import 'package:redfire/src/auth/link-providers/enums/linking_account_enum.dart';
-import 'package:redfire/src/auth/link-providers/models/link_accounts_view_model.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
 import 'package:redux/redux.dart';
+
+import '../../types/red_fire_state.dart';
+import '../actions/set_auth_user_data_action.dart';
+import '../constants/auth_provider_names.dart';
+import '../enums/providers_enum.dart';
+import '../link-providers/enums/linking_account_enum.dart';
+import '../link-providers/models/link_accounts_view_model.dart';
 
 class SetAuthUserDataReducer<T extends RedFireState>
     extends TypedReducer<T, SetAuthUserDataAction> {

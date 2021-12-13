@@ -1,7 +1,9 @@
 import 'package:flutter/widgets.dart';
+
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
-import 'package:redfire/src/types/redux_action.dart';
+
+import '../../types/red_fire_state.dart';
+import '../../types/redux_action.dart';
 
 extension BuildContextExtension on BuildContext {
   dynamic dispatch<T extends RedFireState>(ReduxAction action) {

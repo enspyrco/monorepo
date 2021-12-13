@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/types/typedefs.dart';
+
+import '../../types/typedefs.dart';
 
 part 'apple_id_credential.freezed.dart';
 part 'apple_id_credential.g.dart';

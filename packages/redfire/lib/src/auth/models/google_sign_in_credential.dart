@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/types/typedefs.dart';
+
+import '../../types/typedefs.dart';
 
 part 'google_sign_in_credential.freezed.dart';
 part 'google_sign_in_credential.g.dart';

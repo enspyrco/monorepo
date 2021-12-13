@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/profile/models/profile_data.dart';
-import 'package:redfire/types.dart';
+
+import '../../../types.dart';
+import '../models/profile_data.dart';
 
 part 'set_profile_data_action.freezed.dart';
 part 'set_profile_data_action.g.dart';

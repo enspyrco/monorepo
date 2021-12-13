@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/app-init/widgets/initial_page.dart';
-import 'package:redfire/src/auth/pages/other_auth_options_page.dart';
-import 'package:redfire/src/auth/pages/other_auth_options_page_data.dart';
-import 'package:redfire/src/auth/widgets/auth_page.dart';
-import 'package:redfire/src/navigation/models/initial_page_data.dart';
-import 'package:redfire/src/problems/pages/problem_page.dart';
-import 'package:redfire/src/profile/widgets/profile_page.dart';
-import 'package:redfire/types.dart';
 
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../types.dart';
+import '../../app-init/widgets/initial_page.dart';
+import '../../auth/pages/other_auth_options_page.dart';
+import '../../auth/pages/other_auth_options_page_data.dart';
+import '../../auth/widgets/auth_page.dart';
+import '../../problems/pages/problem_page.dart';
+import '../../profile/widgets/profile_page.dart';
 import '../../types/typedefs.dart';
+import 'initial_page_data.dart';
 
 typedef PageDataFromJson = PageData Function(JsonMap json);
 typedef PageFromPageData = Page Function(PageData pageData);

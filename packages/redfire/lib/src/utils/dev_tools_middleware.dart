@@ -1,8 +1,9 @@
 import 'dart:developer';
 
-import 'package:redfire/src/types/red_fire_state.dart';
-import 'package:redfire/src/types/redux_action.dart';
 import 'package:redux/redux.dart';
+
+import '../types/red_fire_state.dart';
+import '../types/redux_action.dart';
 
 class DevToolsMiddleware<T extends RedFireState>
     extends TypedMiddleware<T, ReduxAction> {

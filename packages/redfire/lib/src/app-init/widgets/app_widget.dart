@@ -1,24 +1,25 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redfire/src/app-init/redux/redfire_middlewares.dart';
-import 'package:redfire/src/app-init/redux/redfire_reducers.dart';
-import 'package:redfire/src/app-init/widgets/initializing_error_page.dart';
-import 'package:redfire/src/app-init/widgets/initializing_indicator.dart';
-import 'package:redfire/src/navigation/actions/remove_current_page_action.dart';
-import 'package:redfire/src/navigation/extensions/page_data_list_extension.dart';
-import 'package:redfire/src/navigation/models/page_data.dart';
-import 'package:redfire/src/platform/plugins/wrappers/firebase_wrapper.dart';
-import 'package:redfire/src/redux/extensions/reducers_list_extension.dart';
-import 'package:redfire/src/settings/extensions/brightness_mode_enum_extensions.dart';
-import 'package:redfire/src/settings/extensions/theme_set_extensions.dart';
-import 'package:redfire/src/settings/models/settings.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
-import 'package:redfire/src/types/redux_action.dart';
-import 'package:redfire/src/utils/red_fire_locator.dart';
 import 'package:redux/redux.dart';
 
+import '../../navigation/actions/remove_current_page_action.dart';
+import '../../navigation/extensions/page_data_list_extension.dart';
+import '../../navigation/models/page_data.dart';
+import '../../platform/plugins/wrappers/firebase_wrapper.dart';
+import '../../redux/extensions/reducers_list_extension.dart';
+import '../../settings/extensions/brightness_mode_enum_extensions.dart';
+import '../../settings/extensions/theme_set_extensions.dart';
+import '../../settings/models/settings.dart';
+import '../../types/red_fire_state.dart';
+import '../../types/redux_action.dart';
+import '../../utils/red_fire_locator.dart';
 import '../redux/redfire_initial_actions.dart';
+import '../redux/redfire_middlewares.dart';
+import '../redux/redfire_reducers.dart';
+import 'initializing_error_page.dart';
+import 'initializing_indicator.dart';
 
 class AppWidget<T extends RedFireState> extends StatefulWidget {
   late final Store<T> _store;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:redfire/actions.dart';
-import 'package:redfire/src/navigation/models/profile_page_data.dart';
-import 'package:redfire/src/redux/extensions/build_context_extensions.dart';
-import 'package:redfire/types.dart';
 
+import '../../../actions.dart';
+import '../../../types.dart';
+import '../../navigation/models/profile_page_data.dart';
+import '../../redux/extensions/build_context_extensions.dart';
 import 'checked_circle_avatar.dart';
 
 class ProfileAvatar<T extends RedFireState> extends StatelessWidget {

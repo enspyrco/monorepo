@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+
+import '../../../../types.dart';
 
 part 'sign_in_with_email_action.freezed.dart';
 part 'sign_in_with_email_action.g.dart';

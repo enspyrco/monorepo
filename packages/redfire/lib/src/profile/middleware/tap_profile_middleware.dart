@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import 'package:redfire/src/profile/actions/set_profile_data_action.dart';
-import 'package:redfire/src/profile/actions/tap_profile_action.dart';
-import 'package:redfire/src/profile/models/profile_data.dart';
-import 'package:redfire/src/redux/extensions/store_extensions.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
-import 'package:redfire/src/utils/red_fire_locator.dart';
 import 'package:redux/redux.dart';
 
+import '../../redux/extensions/store_extensions.dart';
+import '../../types/red_fire_state.dart';
 import '../../types/typedefs.dart';
+import '../../utils/red_fire_locator.dart';
+import '../actions/set_profile_data_action.dart';
+import '../actions/tap_profile_action.dart';
+import '../models/profile_data.dart';
 
 class TapProfileMiddleware<T extends RedFireState>
     extends TypedMiddleware<T, TapProfileAction> {

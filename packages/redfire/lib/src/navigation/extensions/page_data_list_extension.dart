@@ -1,7 +1,9 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
-import 'package:redfire/src/navigation/models/page_data.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
+
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+
+import '../../types/red_fire_state.dart';
+import '../models/page_data.dart';
 
 /// We are using extensions in order to keep models as PODOs and avoid other
 /// dependencies in the app state.

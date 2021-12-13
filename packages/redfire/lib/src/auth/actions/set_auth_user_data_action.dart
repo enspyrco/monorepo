@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/src/auth/models/auth_user_data.dart';
-import 'package:redfire/src/types/redux_action.dart';
-import 'package:redfire/src/types/typedefs.dart';
+
+import '../../types/redux_action.dart';
+import '../../types/typedefs.dart';
+import '../models/auth_user_data.dart';
 
 part 'set_auth_user_data_action.freezed.dart';
 part 'set_auth_user_data_action.g.dart';

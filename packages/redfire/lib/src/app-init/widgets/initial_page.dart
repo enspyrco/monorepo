@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redfire/src/auth/enums/auth_step_enum.dart';
-import 'package:redfire/src/auth/models/auth_user_data.dart';
-import 'package:redfire/src/shared/widgets/waiting_indicator.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
+
+import '../../auth/enums/auth_step_enum.dart';
+import '../../auth/models/auth_user_data.dart';
+import '../../shared/widgets/waiting_indicator.dart';
+import '../../types/red_fire_state.dart';
 
 class InitialPage<T extends RedFireState> extends StatelessWidget {
   const InitialPage(this._authPage, this._mainPage, {Key? key})

@@ -1,10 +1,11 @@
-import 'package:redfire/actions.dart';
-import 'package:redfire/src/auth/actions/get_id_token_action.dart';
-import 'package:redfire/src/navigation/actions/pop_all_pages_action.dart';
-import 'package:redfire/src/redux/extensions/store_extensions.dart';
-import 'package:redfire/src/types/red_fire_state.dart';
-import 'package:redfire/src/utils/red_fire_locator.dart';
 import 'package:redux/redux.dart';
+
+import '../../../actions.dart';
+import '../../navigation/actions/pop_all_pages_action.dart';
+import '../../redux/extensions/store_extensions.dart';
+import '../../types/red_fire_state.dart';
+import '../../utils/red_fire_locator.dart';
+import '../actions/get_id_token_action.dart';
 
 class ObserveAuthStateMiddleware<T extends RedFireState>
     extends TypedMiddleware<T, ObserveAuthStateAction> {

@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+
+import '../../../../types.dart';
 
 part 'link_account_action.freezed.dart';
 part 'link_account_action.g.dart';
