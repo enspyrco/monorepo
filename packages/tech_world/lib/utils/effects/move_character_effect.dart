@@ -1,8 +1,9 @@
 import 'dart:ui';
 
 import 'package:flame/effects.dart';
-import 'package:tech_world/shared/direction_enum.dart';
-import 'package:tech_world/utils/extensions/vector2_extension.dart';
+
+import '../../shared/direction_enum.dart';
+import '../extensions/vector2_extension.dart';
 
 /// Adapted from https://github.com/flame-engine/flame/blob/main/packages/flame/lib/src/effects/move_effect.dart
 /// TODO: Make a proper pass at removing unneeded code due to knowing what the

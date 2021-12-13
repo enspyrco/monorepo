@@ -2,14 +2,15 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redfire/widgets.dart';
-import 'package:tech_world/challenges/actions/dismiss_challenge_action.dart';
-import 'package:tech_world/challenges/actions/start_challenge_action.dart';
-import 'package:tech_world/challenges/enums/challenge_enum.dart';
-import 'package:tech_world/challenges/models/challenge_model.dart';
-import 'package:tech_world/challenges/widgets/challenge_stepper.dart';
-import 'package:tech_world/redux/app_state.dart';
-import 'package:tech_world/tech_world_game.dart';
-import 'package:tech_world/utils/extensions/build_context_extensions.dart';
+
+import 'challenges/actions/dismiss_challenge_action.dart';
+import 'challenges/actions/start_challenge_action.dart';
+import 'challenges/enums/challenge_enum.dart';
+import 'challenges/models/challenge_model.dart';
+import 'challenges/widgets/challenge_stepper.dart';
+import 'redux/app_state.dart';
+import 'tech_world_game.dart';
+import 'utils/extensions/build_context_extensions.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({required TechWorldGame game, Key? key})

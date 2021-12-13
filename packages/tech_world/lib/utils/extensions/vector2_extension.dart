@@ -1,5 +1,6 @@
 import 'package:flame/extensions.dart';
-import 'package:tech_world/shared/direction_enum.dart';
+
+import '../../shared/direction_enum.dart';
 
 extension Vector2Extension on Vector2 {
   Vector2 get inUnits => (this / 64)..floor();

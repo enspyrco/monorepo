@@ -1,9 +1,10 @@
 import 'package:redux/redux.dart';
-import 'package:tech_world/challenges/actions/start_challenge_action.dart';
-import 'package:tech_world/challenges/enums/challenge_enum.dart';
-import 'package:tech_world/challenges/models/challenge_model.dart';
-import 'package:tech_world/challenges/models/fix_repo_challenge_model.dart';
-import 'package:tech_world/redux/app_state.dart';
+
+import '../../redux/app_state.dart';
+import '../actions/start_challenge_action.dart';
+import '../enums/challenge_enum.dart';
+import '../models/challenge_model.dart';
+import '../models/fix_repo_challenge_model.dart';
 
 class StartChallengeReducer
     extends TypedReducer<AppState, StartChallengeAction> {

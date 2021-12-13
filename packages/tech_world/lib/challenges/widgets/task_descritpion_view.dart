@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:redfire/actions.dart';
-import 'package:tech_world/utils/extensions/build_context_extensions.dart';
+
+import '../../utils/extensions/build_context_extensions.dart';
 
 class TaskDescriptionView extends StatelessWidget {
   const TaskDescriptionView({required this.markdown, Key? key})

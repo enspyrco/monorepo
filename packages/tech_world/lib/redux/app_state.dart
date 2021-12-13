@@ -1,8 +1,9 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
-import 'package:tech_world/challenges/models/challenge_model.dart';
-import 'package:tech_world/game/game_state.dart';
+
+import '../challenges/models/challenge_model.dart';
+import '../game/game_state.dart';
 
 part 'app_state.freezed.dart';
 part 'app_state.g.dart';

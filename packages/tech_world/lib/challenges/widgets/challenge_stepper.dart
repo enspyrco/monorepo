@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tech_world/challenges/models/challenge_model.dart';
-import 'package:tech_world/challenges/widgets/task_descritpion_view.dart';
+
+import '../models/challenge_model.dart';
+import 'task_descritpion_view.dart';
 
 class ChallengeStepper extends StatefulWidget {
   const ChallengeStepper(@ChallengeModelConverter() ChallengeModel challenge,

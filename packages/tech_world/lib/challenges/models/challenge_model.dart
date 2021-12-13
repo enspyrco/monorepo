@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tech_world/challenges/models/challenge_task_model.dart';
 import 'package:ws_game_server_types/ws_game_server_types.dart';
+
+import 'challenge_task_model.dart';
 
 typedef ChallengeModelFromJson = ChallengeModel Function(JsonMap json);
 

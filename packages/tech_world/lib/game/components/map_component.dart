@@ -4,11 +4,12 @@ import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:tech_world/game/background/barriers.dart';
-import 'package:tech_world/shared/constants.dart' as constants;
-import 'package:tech_world/utils/extensions/barriers_extension.dart';
-import 'package:tech_world/utils/extensions/offset_extension.dart';
-import 'package:tech_world/utils/extensions/vector2_extension.dart';
+
+import '../../shared/constants.dart' as constants;
+import '../../utils/extensions/barriers_extension.dart';
+import '../../utils/extensions/offset_extension.dart';
+import '../../utils/extensions/vector2_extension.dart';
+import '../background/barriers.dart';
 
 class MapComponent extends Component {
   MapComponent({Barriers? barriers}) : _barriers = barriers ?? Barriers() {

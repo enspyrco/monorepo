@@ -1,6 +1,7 @@
 import 'package:flame/extensions.dart';
-import 'package:tech_world/shared/constants.dart' as constants;
-import 'package:tech_world/shared/direction_enum.dart';
+
+import '../shared/constants.dart' as constants;
+import '../shared/direction_enum.dart';
 
 const _sqSize = constants.squareSize;
 
