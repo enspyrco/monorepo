@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mockito/mockito.dart';
-import 'package:redfire_test/src/test-doubles/auth/data/user_example.dart';
 
 import '../../firebase/mocks/firebase_test_doubles.mocks.dart';
+import 'user_example.dart';
 
 class FirebaseAuthExample {
   /// Emits a User with null members then a FirebaseUser with random

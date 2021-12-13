@@ -2,7 +2,6 @@ name: redfire_test
 description: Testing utilities for redfire.
 publish_to: 'none'
 version: 0.0.1
-homepage:
 
 environment:
   sdk: ">=2.14.0 <3.0.0"

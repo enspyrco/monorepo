@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redfire/types.dart';
-import 'package:redfire_test/src/test-doubles/redux/fake_store.dart';
 import 'package:redux/redux.dart';
+
+import '../test-doubles/redux/fake_store.dart';
 
 /// A test harness to wrap a widget under test and provide all the functionality
 /// that a test may want in order to interact with the widget or check for
