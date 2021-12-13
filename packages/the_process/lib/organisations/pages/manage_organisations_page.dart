@@ -9,7 +9,7 @@ part 'manage_organisations_page.g.dart';
 @freezed
 class ManageOrganisationsPageData extends PageData
     with _$ManageOrganisationsPageData, ReduxState {
-  static const String staticTypeName = 'ManageOrganisationsPageData';
+  static const String className = 'ManageOrganisationsPageData';
 
   const ManageOrganisationsPageData._();
   const factory ManageOrganisationsPageData() = _ManageOrganisationsPageData;
@@ -18,13 +18,13 @@ class ManageOrganisationsPageData extends PageData
       _$ManageOrganisationsPageDataFromJson(json);
 
   @override
-  String get typeName => staticTypeName;
+  String get typeName => className;
 }
 
 class ManageOrganisationsPageTransforms extends PageDataTransforms {
   ManageOrganisationsPageTransforms()
       : super(
-          typeName: ManageOrganisationsPageData.staticTypeName,
+          typeName: ManageOrganisationsPageData.className,
           toMaterialPage: (pageData) => const MaterialPage<dynamic>(
               key: ValueKey(ManageOrganisationsPageData),
               child: ManageOrganisationsPageView()),

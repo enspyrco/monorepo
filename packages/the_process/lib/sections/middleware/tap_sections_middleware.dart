@@ -5,7 +5,7 @@ import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
-import 'package:the_process/main.dart';
+import 'package:the_process/app_state.dart';
 import 'package:the_process/projects/models/section_model.dart';
 import 'package:the_process/sections/actions/set_sections_action.dart';
 import 'package:the_process/sections/actions/tap_sections_action.dart';

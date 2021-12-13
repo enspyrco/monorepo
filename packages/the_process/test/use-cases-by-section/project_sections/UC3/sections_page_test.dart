@@ -2,7 +2,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:redfire/widgets.dart';
 import 'package:redfire_test/redfire_test.dart';
-import 'package:the_process/main.dart';
+import 'package:the_process/app_state.dart';
 import 'package:the_process/projects/models/section_model.dart';
 import 'package:the_process/projects/widgets/project-detail/new_section_item.dart';
 import 'package:the_process/projects/widgets/project-detail/sections_view.dart';

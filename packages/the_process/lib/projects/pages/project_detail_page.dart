@@ -9,7 +9,7 @@ part 'project_detail_page.g.dart';
 @freezed
 class ProjectDetailPageData extends PageData
     with _$ProjectDetailPageData, ReduxState {
-  static const String staticTypeName = 'ProjectDetailPageData';
+  static const String className = 'ProjectDetailPageData';
 
   const ProjectDetailPageData._();
   const factory ProjectDetailPageData() = _ProjectDetailPageData;
@@ -18,13 +18,13 @@ class ProjectDetailPageData extends PageData
       _$ProjectDetailPageDataFromJson(json);
 
   @override
-  String get typeName => staticTypeName;
+  String get typeName => className;
 }
 
 class ProjectDetailPageTransforms extends PageDataTransforms {
   ProjectDetailPageTransforms()
       : super(
-          typeName: ProjectDetailPageData.staticTypeName,
+          typeName: ProjectDetailPageData.className,
           toMaterialPage: (pageData) => const MaterialPage<dynamic>(
               key: ValueKey(ProjectDetailPageData),
               child: ProjectDetailPageView()),

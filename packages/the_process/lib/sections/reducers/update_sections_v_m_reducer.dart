@@ -1,5 +1,5 @@
 import 'package:redux/redux.dart';
-import 'package:the_process/main.dart';
+import 'package:the_process/app_state.dart';
 import 'package:the_process/sections/actions/update_sections_v_m_action.dart';
 
 class UpdateSectionsVMReducer
