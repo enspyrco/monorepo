@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:redfire/widgets.dart';
-import 'package:the_process/projects/widgets/project-detail/sections_view.dart';
-import 'package:the_process/sections/widgets/section-detail/section_detail_page.dart';
+
+import '../../sections/widgets/section-detail/section_detail_page.dart';
+import '../widgets/project-detail/sections_view.dart';
 
 class ProjectDetailPageView extends StatelessWidget {
   const ProjectDetailPageView({Key? key}) : super(key: key);

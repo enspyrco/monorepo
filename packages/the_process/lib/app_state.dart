@@ -1,10 +1,11 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
-import 'package:the_process/organisations/models/organisations_section_model.dart';
-import 'package:the_process/projects/models/projects_section.dart';
-import 'package:the_process/projects/models/sections_v_m.dart';
-import 'package:the_process/teams/models/team_member.dart';
+
+import 'organisations/models/organisations_section_model.dart';
+import 'projects/models/projects_section.dart';
+import 'projects/models/sections_v_m.dart';
+import 'teams/models/team_member.dart';
 
 part 'app_state.freezed.dart';
 part 'app_state.g.dart';

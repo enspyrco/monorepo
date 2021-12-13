@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
-import 'package:the_process/organisations/pages/manage_organisations_page_view.dart';
+
+import 'manage_organisations_page_view.dart';
 
 part 'manage_organisations_page.freezed.dart';
 part 'manage_organisations_page.g.dart';

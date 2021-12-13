@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:redfire/widgets.dart';
-import 'package:the_process/organisations/widgets/delete_organisation_button.dart';
-import 'package:the_process/organisations/widgets/organisation_creator_view.dart';
-import 'package:the_process/organisations/widgets/organisation_selector_view.dart';
+
+import '../widgets/delete_organisation_button.dart';
+import '../widgets/organisation_creator_view.dart';
+import '../widgets/organisation_selector_view.dart';
 
 class ManageOrganisationsPageView extends StatelessWidget {
   const ManageOrganisationsPageView({Key? key}) : super(key: key);

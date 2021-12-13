@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:the_process/app_state.dart';
-import 'package:the_process/organisations/actions/delete_organisation_action.dart';
-import 'package:the_process/utils/build_context_extensions.dart';
+
+import '../../app_state.dart';
+import '../../utils/build_context_extensions.dart';
+import '../actions/delete_organisation_action.dart';
 
 class DeleteOrganisationButton extends StatelessWidget {
   const DeleteOrganisationButton({Key? key}) : super(key: key);

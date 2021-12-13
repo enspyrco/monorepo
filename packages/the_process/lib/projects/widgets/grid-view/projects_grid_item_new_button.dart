@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:the_process/app_state.dart';
-import 'package:the_process/projects/actions/update_projects_view_action.dart';
-import 'package:the_process/projects/widgets/grid-view/create_project_form.dart';
-import 'package:the_process/utils/build_context_extensions.dart';
+
+import '../../../app_state.dart';
+import '../../../utils/build_context_extensions.dart';
+import '../../actions/update_projects_view_action.dart';
+import 'create_project_form.dart';
 
 class ProjectsGridItemNewButton extends StatelessWidget {
   const ProjectsGridItemNewButton({Key? key}) : super(key: key);

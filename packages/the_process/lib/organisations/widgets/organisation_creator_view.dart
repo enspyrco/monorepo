@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redfire/extensions.dart';
-import 'package:the_process/app_state.dart';
-import 'package:the_process/organisations/actions/create_organisation_action.dart';
-import 'package:the_process/organisations/models/organisation_model.dart';
+
+import '../../app_state.dart';
+import '../actions/create_organisation_action.dart';
+import '../models/organisation_model.dart';
 
 class OrganisationCreatorView extends StatefulWidget {
   const OrganisationCreatorView({Key? key}) : super(key: key);

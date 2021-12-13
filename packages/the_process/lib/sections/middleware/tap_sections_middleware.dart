@@ -5,10 +5,11 @@ import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
-import 'package:the_process/app_state.dart';
-import 'package:the_process/projects/models/section_model.dart';
-import 'package:the_process/sections/actions/set_sections_action.dart';
-import 'package:the_process/sections/actions/tap_sections_action.dart';
+
+import '../../app_state.dart';
+import '../../projects/models/section_model.dart';
+import '../actions/set_sections_action.dart';
+import '../actions/tap_sections_action.dart';
 
 class TapSectionsMiddleware
     extends TypedMiddleware<AppState, TapSectionsAction> {

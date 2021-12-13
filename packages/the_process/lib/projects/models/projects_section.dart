@@ -1,7 +1,8 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
-import 'package:the_process/projects/models/project_model.dart';
+
+import 'project_model.dart';
 
 part 'projects_section.freezed.dart';
 part 'projects_section.g.dart';

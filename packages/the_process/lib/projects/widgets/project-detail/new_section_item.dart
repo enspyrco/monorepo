@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:redfire/extensions.dart';
-import 'package:the_process/app_state.dart';
-import 'package:the_process/sections/actions/create_section_action.dart';
-import 'package:the_process/sections/actions/update_new_section_v_m_action.dart';
+
+import '../../../app_state.dart';
+import '../../../sections/actions/create_section_action.dart';
+import '../../../sections/actions/update_new_section_v_m_action.dart';
 
 class NewSectionItem extends StatelessWidget {
   const NewSectionItem({Key? key}) : super(key: key);

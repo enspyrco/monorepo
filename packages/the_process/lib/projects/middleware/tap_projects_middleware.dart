@@ -5,10 +5,11 @@ import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
-import 'package:the_process/app_state.dart';
-import 'package:the_process/projects/actions/set_projects_action.dart';
-import 'package:the_process/projects/actions/tap_projects_action.dart';
-import 'package:the_process/projects/models/project_model.dart';
+
+import '../../app_state.dart';
+import '../actions/set_projects_action.dart';
+import '../actions/tap_projects_action.dart';
+import '../models/project_model.dart';
 
 class TapProjectsMiddleware
     extends TypedMiddleware<AppState, TapProjectsAction> {
