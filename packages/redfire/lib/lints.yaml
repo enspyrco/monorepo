@@ -1,0 +1,8 @@
+# Recommended lints for Flutter apps, packages, and plugins.
+
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    - prefer_relative_imports
+    - avoid_relative_lib_imports
