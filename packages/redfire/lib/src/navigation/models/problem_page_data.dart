@@ -6,7 +6,7 @@ part 'problem_page_data.g.dart';
 
 @freezed
 class ProblemPageData extends PageData with _$ProblemPageData, ReduxState {
-  static const String staticTypeName = 'ProblemPageData';
+  static const String className = 'ProblemPageData';
 
   const ProblemPageData._();
   const factory ProblemPageData(ProblemInfo problem) = _ProblemPageData;
@@ -15,5 +15,5 @@ class ProblemPageData extends PageData with _$ProblemPageData, ReduxState {
       _$ProblemPageDataFromJson(json);
 
   @override
-  String get typeName => staticTypeName;
+  String get typeName => className;
 }

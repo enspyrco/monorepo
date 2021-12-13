@@ -50,6 +50,7 @@
   "redfire middleware": {
     "prefix": "rf_middleware",
     "body": [
+      "import 'package:${WORKSPACE_NAME}/app_state.dart';",
       "import 'package:redfire/extensions.dart';",
       "import 'package:redfire/services.dart';",
       "import 'package:redux/redux.dart';",
@@ -75,6 +76,7 @@
     "body": [
       "import 'dart:async';",
       "",
+      "import 'package:${WORKSPACE_NAME}/app_state.dart';",
       "import 'package:fast_immutable_collections/fast_immutable_collections.dart';",
       "import 'package:redfire/extensions.dart';",
       "import 'package:redfire/services.dart';",
@@ -134,30 +136,6 @@
     ],
     "description": "redfire middleware with freezed, for use in redfire"
   },
-  "redfire model": {
-    "prefix": "rf_model",
-    "body": [
-      "import 'package:freezed_annotation/freezed_annotation.dart';",
-      "import 'package:redfire/types.dart';",
-      "",
-      "part '${TM_FILENAME_BASE}.freezed.dart';",
-      "part '${TM_FILENAME_BASE}.g.dart';",
-      "",
-      "@freezed",
-      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxModel  {",
-      "\tstatic const String className = '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}';",
-      "", 
-      "\tconst ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._();",
-      "\tconst factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({ ${1} }) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
-      "",
-      "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
-      "",
-      "\t@override",
-      "\tString get typeName => className;",
-      "}"
-    ],
-    "description": "redfire model with freezed"
-  },
   "redfire page": {
     "prefix": "rf_page",
     "body": [
@@ -169,8 +147,8 @@
       "part '${TM_FILENAME_BASE}.g.dart';",
       "",
       "@freezed",
-      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data extends PageData with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data, ReduxModel  {",
-      "\tstatic const String staticTypeName = '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}';",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data extends PageData with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data, ReduxState  {",
+      "\tstatic const String className = '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data';",
       "",
       "\tconst ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data._();",
       "\tconst factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data({ ${1} }) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data;",
@@ -178,14 +156,22 @@
       "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}DataFromJson(json);",
       "",
       "\t@override",
-      "\tString get typeName => staticTypeName;",
+      "\tString get typeName => className;",
       "}",
       "",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Transforms extends PageDataTransforms {",
-      "${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Transforms() : super(typeName: ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data.staticTypeName,",
-      "\t\ttoMaterialPage: (pageData) => const MaterialPage<dynamic>(key: ValueKey(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data), child: ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}(pageData)),",
+      "${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Transforms() : super(typeName: ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data.className,",
+      "\t\ttoMaterialPage: (pageData) => MaterialPage<dynamic>(key: const ValueKey(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data), child: ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}(pageData as ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data)),",
       "\t\tfromJson: (json) => ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data.fromJson(json),);",
+      "}",
       "",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} extends StatelessWidget {",
+      "\tconst ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}(${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Data data, { Key? key }) : super(key: key);",
+      "",
+      "\t@override",
+      "\tWidget build(BuildContext context) {",
+      "\t\treturn Container();",
+      "\t}",
       "}"
     ],
     "description": "redfire page - freezed class for state, classes for transforms and a view"
@@ -193,6 +179,7 @@
   "redfire reducer": {
     "prefix": "rf_reducer",
     "body": [
+      "import 'package:${WORKSPACE_NAME}/app_state.dart';",
       "import 'package:redux/redux.dart';",
       "",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Reducer extends TypedReducer<AppState, ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Action> {",
@@ -204,7 +191,7 @@
   "redfire reducer for redfire": {
     "prefix": "rf_reducer_redfire",
     "body": [
-      "import 'package:${WORKSPACE_NAME}/models/app_state.dart';",
+      "import 'package:${WORKSPACE_NAME}/app_state.dart';",
       "import 'package:redfire/src/types/red_fire_state.dart';",
       "import 'package:redux/redux.dart';",
       "",
@@ -213,5 +200,29 @@
       "}",
     ],
     "description": "redfire reducer with freezed, for use in redfire"
+  },
+  "redfire state": {
+    "prefix": "rf_state",
+    "body": [
+      "import 'package:freezed_annotation/freezed_annotation.dart';",
+      "import 'package:redfire/types.dart';",
+      "",
+      "part '${TM_FILENAME_BASE}.freezed.dart';",
+      "part '${TM_FILENAME_BASE}.g.dart';",
+      "",
+      "@freezed",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} with _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}, ReduxState  {",
+      "\tstatic const String className = '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}';",
+      "", 
+      "\tconst ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}._();",
+      "\tconst factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}({ ${1} }) = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g};",
+      "",
+      "\tfactory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.fromJson(JsonMap json) => _$${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}FromJson(json);",
+      "",
+      "\t@override",
+      "\tString get typeName => className;",
+      "}"
+    ],
+    "description": "redfire state with freezed"
   }
 }

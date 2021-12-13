@@ -6,7 +6,7 @@ part 'profile_page_data.g.dart';
 
 @freezed
 class ProfilePageData extends PageData with _$ProfilePageData, ReduxState {
-  static const String staticTypeName = 'ProfilePageData';
+  static const String className = 'ProfilePageData';
 
   const ProfilePageData._();
   const factory ProfilePageData() = _ProfilePageData;
@@ -15,5 +15,5 @@ class ProfilePageData extends PageData with _$ProfilePageData, ReduxState {
       _$ProfilePageDataFromJson(json);
 
   @override
-  String get typeName => staticTypeName;
+  String get typeName => className;
 }

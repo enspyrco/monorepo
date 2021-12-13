@@ -1,20 +1,21 @@
-# Setup RedFire
+# Add required code
 
-[< README](../README.md)
+[< README]
 
-### Add to pubspec.yaml...
+## Add to pubspec.yaml
 
-We need the `redfire` package and... 
+We need the `redfire` package and...
 
-#### required 
-- `fast_immutable_collections` because we need an AppState that ‘extends’ RedFireState which uses an IList (could we use Iterable instead?) 
-- `freezed` & `json_serializable` because that’s how we implement AppState 
+### required
 
-#### optional 
+- `fast_immutable_collections` because we need an AppState that ‘extends’ RedFireState which uses an IList (could we use Iterable instead?)
+- `freezed` & `json_serializable` because that’s how we implement AppState
 
-- `flutter_redux` if you want to add your own StoreConnector widgets 
-- `redux` if you want to add your own Middleware/Reducers 
-EDIT: some of these are optional 
+#### optional
+
+- `flutter_redux` if you want to add your own StoreConnector widgets
+- `redux` if you want to add your own Middleware/Reducers
+EDIT: some of these are optional
 
 ```yml
 dependencies:
@@ -28,7 +29,7 @@ dependencies:
   fast_immutable_collections:
  
 dev_dependencies:
-... 
+...
   redfire_test:
     git: https://github.com/enspyrco/redfire_test.git
   build_runner:
@@ -37,6 +38,24 @@ dev_dependencies:
 ```
 
 ### Update main.dart
+
+```Dart
+import 'package:flutter/material.dart';
+import 'package:redfire/widgets.dart';
+import 'package:the_process/app_state.dart';
+
+void main() => runApp(AppWidget<AppState>(
+  initialState: AppState.init(),
+  initialActions: const [],
+  middlewares: const [],
+  reducers: const [],
+  pageTransforms: const [],
+  title: <Your App Title>, // optional, defaults to 'Title Note Set'
+  mainPage: <Main Page Widget>, // shown on successful authentication
+));
+```
+
+### Add lib/app_state.dart
 
 ```Dart
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
@@ -74,16 +93,6 @@ class AppState with _$AppState, RedFireState {
   factory AppState.fromJson(JsonMap json) =>
     _$AppStateFromJson(json);
 }
- 
-void main() => runApp(AppWidget<AppState>(
-  initialState: AppState.init(),
-  initialActions: const [],
-  middlewares: const [],
-  reducers: const [],
-  pageTransforms: const [],
-  title: <Your App Title>, // optional, defaults to 'Title Note Set'
-  mainPage: const MainPage(),
-));
 ```
 
 ### Add pages/main_page.dart
@@ -134,7 +143,7 @@ You may not want all of the above, see [Customizing static analysis](https://dar
 
 ### (optionally) Hide generated & irrelevant files
 
-#### VS Code 
+#### VS Code
 
 Add `settings.json` with the following to the `.vscode` folder:
 
@@ -158,7 +167,8 @@ Add `settings.json` with the following to the `.vscode` folder:
 ### (possibly) Add a `build.yaml` with `explicit_to_json: true`
 
 If you are using `fast_immutable_collections` and get errors serializing classes with list members, create a `build.yaml` file and add the following (the defaults + explicit_to_json: true)
-  - For more info see: https://pub.dev/packages/json_serializable#build-configuration
+
+- For more info see: <https://pub.dev/packages/json_serializable#build-configuration>
 
 ```yaml
 targets:
@@ -187,7 +197,7 @@ This is needed because `freezed` generates the toJson. In the [FIC example](http
 
 We can look into better ways around this if it is problematic.
 
-### (possibly) Add a launch configuration for web that uses port 5000:
+### (possibly) Add a launch configuration for web that uses port 5000
 
 ```json
 {
@@ -198,3 +208,5 @@ We can look into better ways around this if it is problematic.
   "args": ["--web-hostname", "localhost", "--web-port", "5000"]
 },
 ```
+
+[< README]: ../../README.md

@@ -1,8 +1,8 @@
 # Setup GitHub
 
-[< README](../README.md)
+[< README]
 
-- Settings... Options 
+- Settings... Options
   - (optionally) remove anything not wanted (Wikis, Projects, Allow merge commits, etc.)
   - select "Allow auto merge" if desired
   - select "Automatically delete head branches"
@@ -16,3 +16,5 @@
   - "Require conversation resolution before merging"
   - "Require linear history"
   - "Include administrators"
+
+[< README]: ../../README.md
