@@ -47,28 +47,28 @@ void addPageTransforms<T extends RedFireState>(
   }
 
   // add the redfire toMaterialPage transforms
-  toMaterialPageMap[InitialPageData.staticTypeName] = (_) =>
+  toMaterialPageMap[InitialPageData.className] = (_) =>
       MaterialPage<InitialPage>(
           key: const ValueKey(InitialPage),
           child: InitialPage<T>(AuthPage<T>(), mainPage));
-  toMaterialPageMap[ProfilePageData.staticTypeName] = (_) =>
+  toMaterialPageMap[ProfilePageData.className] = (_) =>
       MaterialPage<ProfilePage>(
           key: const ValueKey(ProfilePage), child: ProfilePage<T>());
-  toMaterialPageMap[ProblemPageData.staticTypeName] =
+  toMaterialPageMap[ProblemPageData.className] =
       (pageData) => ProblemPage<T>(info: (pageData as ProblemPageData).problem);
-  toMaterialPageMap[OtherAuthOptionsPageData.staticTypeName] = (pageData) =>
+  toMaterialPageMap[OtherAuthOptionsPageData.className] = (pageData) =>
       MaterialPage<OtherAuthOptionsPage>(
           key: const ValueKey(OtherAuthOptionsPage),
           child: OtherAuthOptionsPage<T>());
 
   // add the redfire fromJson transforms
-  _fromJsonMap[InitialPageData.staticTypeName] =
+  _fromJsonMap[InitialPageData.className] =
       (JsonMap json) => InitialPageData.fromJson(json);
-  _fromJsonMap[ProfilePageData.staticTypeName] =
+  _fromJsonMap[ProfilePageData.className] =
       (JsonMap json) => ProfilePageData.fromJson(json);
-  _fromJsonMap[ProblemPageData.staticTypeName] =
+  _fromJsonMap[ProblemPageData.className] =
       (JsonMap json) => ProblemPageData.fromJson(json);
-  _fromJsonMap[OtherAuthOptionsPageData.staticTypeName] =
+  _fromJsonMap[OtherAuthOptionsPageData.className] =
       (JsonMap json) => OtherAuthOptionsPageData.fromJson(json);
 }
 

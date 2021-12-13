@@ -1,11 +1,11 @@
 # Setup CI/CD
 
-[< README](../README.md)
+[< README]
 
-#### CD for Firebase hosting
+## CD for Firebase hosting
 
-- setup hosting -> Firebase console -> Hosting -> Get Started 
-- follow the prompts, including adding CI 
+- setup hosting -> Firebase console -> Hosting -> Get Started
+- follow the prompts, including adding CI
   - use "build/web" for the public directory
   - enter 'y' for "rewrite all urls to /index.html"
   - enter 'y' for "Set up automatic builds and deploys with GitHub?"
@@ -35,3 +35,5 @@
 ```
 
 > Note: currently the url for each deploy must be added to the "Authorized JavaScript origins" for the relevant OAuth2 Client Id at the [credentials page](https://console.cloud.google.com/apis/credentials)... we're searching for a better way
+
+[< README]: ../../README.md

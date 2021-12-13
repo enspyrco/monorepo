@@ -1,84 +1,79 @@
 # redfire
 
-[< monorepo](../../README.md)
+[< monorepo]
 
 *A Redux based architecture connected to Firebase streams.*
 
-[Project Notes](https://enspyrco.notion.site/RedFire-406c10fbadfb44e3a6f2806a1b6023bf)
+[📒]
 
-## Setup
+## Intro
 
-- [Setup RedFire](docs/setup-redfire.md)
-- [Setup GitHub](docs/setup-github.md)
-- [Configure Firebase](docs/configure-firebase.md)
-- [Setup Auth](docs/setup-auth.md)
-- [Setup CI/CD](docs/setup-cicd.md)
-- [Setup Databases](docs/setup-databases.md)
+<details>
+<summary>One time setup for new projects</summary>
+<br>
 
-### Project Structure
+Firstly, we promise this tedious nonsense will be automated away ASAP, but for now:
 
-#### Suggestions
+- [Setup your Firebase project]
+- [Configure local settings]
+- [Configure platform targets]
+- [Add required code]
+- [Setup Auth providers]
+- [Add helper methods]
+- Optionally also:
+  - [Setup GitHub project]
+  - [Setup CI/CD with GitHub Actions]
+  - [Install Redux DevTools]
 
--  the only things in `main.dart` are `AppState` and `runApp(AppWidget(...));`
+</details>
 
-#### Assumed (by snippets)
+## Playing with redfire
 
-- `AppState` lives in `main.dart`
-- `main_page.dart` lives in `lib/pages/`
+How to use redfire to your life easier:
 
-### Optional setup
+- [Creating pages & navigating]
+- **Using the built-in services - auth/database/platform/etc.**
+- **Creating a new action/middleware/service/reducer sequence**
+- Check out the [redfire_test README] for help writing lots of beautiful tests
+- ... what else?
+- [Manually deploying to firebase hosting]
 
-Use code snippets to save you *lots* of time & hassle
+## Tell me more
 
-- *VS Code*: 
-  - copy the `.vscode/project.code-snippets` file from the redfire package into your project
-  - some snippets need to be changed slightly as they are designed for use by redfire... TODO: update here (longer term this will be handled by flireator)
+Here are some of the [gory details] if that's your thing.
 
-[Install Redux DevTools](docs/redux-devtools.md) if you want to visualise how state change flows through the app 
+## Having problems?
 
-## Widgets 
+Have a look in [troubleshooting] - if that doesn't help, you could [file an issue] (if the problem is reproducible without too much effort) or discuss on the Discord.
 
-The AppState for each package using `redfire` is required to use RedFireState as a mixin.
+## Want to contribute?
 
-When using widgets from `redfire`, a type parameter of the store's state must be used, ie. `Widget<AppState>`.  This is so that the `AppState` type parameter is used in any of the widget's child `StoreConnector<AppState, Output>` widgets, and they can in turn find the `StoreProvider<AppState>`.
+**Awesome!**
 
-## In Progress
+See if anything inspires you in:
 
-See [In Progress](docs/in-progress.md) for discussion of current work and future plans.
+- Current [GitHub issues]
+- Planned [future work]
 
-## Using in your app
+Or if you have an improvement in mind, open an issue to discuss a feature request.
 
-### Naming
-
-#### Page
-
-A `Page` is something that has corresponding objects of type `PageData` (stored in the AppState) and `MaterialPage` (passed to the Navigator to create the navigation stack).
-
-### Navigation
-
-#### Make a PageData class
-
-- make a file called just `blah_page_data.dart`
-- use the `page_data` snippet
-
-`PageData` subtypes are assumed to have a static `staticTypeName` member
-and an instance member `typeName` that refers to the static member.  Using the snippets will create this automatically.
-- this allows us to easily get the type of a `PageData` in the `AppState`'s `pages` at runtime so we can find the appropriate toMaterialPage function
-
-#### Make a PageDataTransforms class
-
-Still very much a work in progress and very clunky, but...
-
-- make a file called just `blah.dart` in the case where you have `BlahPage` and `BlahPageData`
-- use the `page_data_transforms` snippet
-- auto add missing imports 
-- if needed, cast `pageData` to `BlahPageData` and use it to create the `Page`
-- rename `blah.dart` to `blah_page_data_transforms.dart`
-- add `BlahPageDataTransforms()` to `AppWidget(..., pageTransforms: _)`
-- use 
-  - `dispatch<AppState>(PushPageAction(BlahPageData()))` to push the Page onto the stack
-  - `dispatch<AppState>(RemoveCurrentPageAction())` to pop a Page
-
-### Testing 
-
-See [Testing](docs/testing.md)
+[< monorepo]: ../../README.md
+[📒]: https://enspyrco.notion.site/RedFire-406c10fbadfb44e3a6f2806a1b6023bf
+[Setup your Firebase project]: docs/setup/setup-firebase-project/setup-firebase-project.md
+[Configure local settings]: docs/setup/configure/configure-local-settings.md
+[Configure platform targets]: docs/setup/configure/configure-platform-targets.md
+[Add required code]: docs/setup/add-required-code.md
+[Setup Auth providers]: docs/setup/setup-auth.md
+[Add helper methods]: docs/setup/add_helper_methods.md
+[Setup Firebase Databases]: docs/setup/setup-databases.md
+[Setup GitHub project]: docs/setup/setup-github.md
+[Setup CI/CD with GitHub Actions]: docs/setup/setup-cicd.md
+[Creating pages & navigating]: docs/use/create_pages_navigate.md
+[Manually deploying to firebase hosting]: docs/use/manually_deploy.md
+[gory details]: docs/gory-details.md
+[Install Redux DevTools]: docs/setup/setup-redux-devtools.md
+[redfire_test README]: ../redfire_test/README.md
+[troubleshooting]: docs/trouble-shooting.md
+[file an issue]: https://github.com/enspyrco/monorepo/issues
+[GitHub issues]: https://github.com/enspyrco/monorepo/issues
+[Future work]: docs/future-work.md

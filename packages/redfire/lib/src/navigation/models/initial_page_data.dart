@@ -7,7 +7,7 @@ part 'initial_page_data.g.dart';
 
 @freezed
 class InitialPageData extends PageData with _$InitialPageData {
-  static const String staticTypeName = 'InitialPageData';
+  static const String className = 'InitialPageData';
 
   const InitialPageData._();
   const factory InitialPageData() = _InitialPageData;
@@ -16,5 +16,5 @@ class InitialPageData extends PageData with _$InitialPageData {
       _$InitialPageDataFromJson(json);
 
   @override
-  String get typeName => staticTypeName;
+  String get typeName => className;
 }

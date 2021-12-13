@@ -1,6 +1,6 @@
 # Update to Blaze plan
 
-[< Configure Firebase](./configure-firebase.md)
+[< Configure Firebase]
 
 Click "Spark Plan":
 
@@ -17,3 +17,5 @@ Check the Billing account, if needed - select or create a different account, the
 Set a Budget Alert if desired
 
 <img width="488" alt="Screen Shot 2021-08-30 at 11 33 38 pm" src="https://user-images.githubusercontent.com/1059276/131348683-3e4a6f9f-9c33-4c70-97b9-1e66633e8a74.png">
+
+[< Configure Firebase]: ./setup-firebase-project.md

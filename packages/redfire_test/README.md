@@ -8,6 +8,10 @@
 
 We aim to follow the test-doubles nomenclature described in [Martin Fowler's 2006 TestDouble article](https://martinfowler.com/bliki/TestDouble.html).
 
+*Test doubles* have the following types:
+
+- commonly used test doubles that are available pre-configured are referred to as *examples* and take the form `ClassNameExample.configuration` eg. `UserExample.nullMembers`
+
 ### Creating example objects
 
 There are two approaches:

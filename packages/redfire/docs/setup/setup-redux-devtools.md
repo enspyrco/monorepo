@@ -1,6 +1,6 @@
-# Install Redux DevTools
+# Setup Redux DevTools
 
-[< README](../README.md)
+[< README]
 
 We added a custom plugin to Flutter DevTools for visualising how state change flows through a Redux app. You can clone and install it with:
 
@@ -63,3 +63,5 @@ alias devtools_rebuild="cd /.../devtools && ./tool/update_flutter_sdk.sh && ./re
 ```
 
 > ** Note: You may need to restart VS Code to see the updated version of DevTools
+
+[< README]: ../../README.md

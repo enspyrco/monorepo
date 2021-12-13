@@ -9,7 +9,7 @@ part 'other_auth_options_page_data.g.dart';
 @freezed
 class OtherAuthOptionsPageData extends PageData
     with _$OtherAuthOptionsPageData, ReduxState {
-  static const String staticTypeName = 'OtherAuthOptionsPage';
+  static const String className = 'OtherAuthOptionsPage';
 
   const OtherAuthOptionsPageData._();
   const factory OtherAuthOptionsPageData() = _OtherAuthOptionsPageData;
@@ -18,13 +18,13 @@ class OtherAuthOptionsPageData extends PageData
       _$OtherAuthOptionsPageDataFromJson(json);
 
   @override
-  String get typeName => staticTypeName;
+  String get typeName => className;
 }
 
 class OtherAuthOptionsPageTransforms extends PageDataTransforms {
   OtherAuthOptionsPageTransforms()
       : super(
-          typeName: OtherAuthOptionsPageData.staticTypeName,
+          typeName: OtherAuthOptionsPageData.className,
           toMaterialPage: (pageData) => const MaterialPage<dynamic>(
               key: ValueKey(OtherAuthOptionsPageData),
               child: OtherAuthOptionsPage()),
