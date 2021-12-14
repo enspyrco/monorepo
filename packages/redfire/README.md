@@ -1,12 +1,24 @@
 # redfire
 
-[< monorepo]
+[< monorepo] [📒]
 
-*A Redux based architecture connected to Firebase streams.*
-
-[📒]
+*A redux based state management & navigation solution, with prebuilt modules for Firebase features.*
 
 ## Intro
+
+Combining [Redux] and the [Pages API] gives us navigation via a simple action dispatch. The flow of data through your app can be visualised with the (WIP) [Redux plugin for DevTools].
+
+We use snippets & code gen to take many of the sharp edges off using redux, and use an architecture that provides a hijackable data flow for contexts where performance is more important than being able to visualise the flow of data.
+
+Prebuilt feature modules can be dropped in and swapped out as your needs change:
+
+- ✅ Authentication
+- ✅ Firestore
+- RTDB
+- Messaging
+- ...
+
+For the latest progress, see [RedFire feature modules].
 
 <details>
 <summary>One time setup for new projects</summary>
@@ -59,6 +71,10 @@ Or if you have an improvement in mind, open an issue to discuss a feature reques
 
 [< monorepo]: ../../README.md
 [📒]: https://enspyrco.notion.site/RedFire-406c10fbadfb44e3a6f2806a1b6023bf
+[Redux]: https://github.com/fluttercommunity/redux.dart
+[Redux plugin for DevTools]: https://github.com/nickmeinhold/devtools
+[RedFire feature modules]: https://github.com/enspyrco/monorepo/projects/1
+[Pages API]: https://api.flutter.dev/flutter/widgets/Navigator-class.html
 [Setup your Firebase project]: docs/setup/setup-firebase-project/setup-firebase-project.md
 [Configure local settings]: docs/setup/configure/configure-local-settings.md
 [Configure platform targets]: docs/setup/configure/configure-platform-targets.md

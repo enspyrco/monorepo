@@ -1,5 +1,5 @@
 name: redfire
-description: A Redux based architecture connected to Firebase streams.
+description: A redux based state management & navigation solution, with prebuilt modules for Firebase features.
 version: 0.0.1
 
 environment:

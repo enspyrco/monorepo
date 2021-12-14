@@ -11,7 +11,7 @@
 *A project creation tool for Flutter projects with a Firebase backend, stored on GitHub.*
 
 #### [redfire](packages/redfire/README.md)
-*A modular Redux based architecture connected to Firebase streams.*
+*A redux based state management & navigation solution, with prebuilt modules for Firebase features.*
 
 #### [redfire_test](packages/redfire_test/README.md)
 *Test utilities to simplify testing in apps that use redfire.*
