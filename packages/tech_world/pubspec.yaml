@@ -22,7 +22,7 @@ dependencies:
   # redfire dependencies
   #######################
   freezed_annotation:
-  json_annotation: ^4.3.0
+  json_annotation: ^4.4.0
   redfire:
     path: ../redfire
   redux:

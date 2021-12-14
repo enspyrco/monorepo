@@ -1,6 +1,6 @@
 import 'package:redux/redux.dart';
 
-import '../../redux/app_state.dart';
+import '../../app_state.dart';
 import '../actions/start_challenge_action.dart';
 import '../enums/challenge_enum.dart';
 import '../models/challenge_model.dart';

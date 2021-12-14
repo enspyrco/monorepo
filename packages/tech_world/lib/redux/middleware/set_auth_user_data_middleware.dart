@@ -5,7 +5,7 @@ import 'package:redfire/extensions.dart';
 import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
 
-import '../app_state.dart';
+import '../../app_state.dart';
 import '../services/locator.dart';
 
 class SetAuthUserDataMiddleware
