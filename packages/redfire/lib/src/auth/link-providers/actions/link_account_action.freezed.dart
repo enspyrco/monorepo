@@ -130,12 +130,12 @@ class _$_LinkAccountAction extends _LinkAccountAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LinkAccountAction &&
-            (identical(other.provider, provider) ||
-                other.provider == provider));
+            const DeepCollectionEquality().equals(other.provider, provider));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, provider);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(provider));
 
   @JsonKey(ignore: true)
   @override

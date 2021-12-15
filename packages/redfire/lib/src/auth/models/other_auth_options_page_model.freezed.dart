@@ -144,11 +144,12 @@ class _$_OtherAuthOptionsPageModel extends _OtherAuthOptionsPageModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OtherAuthOptionsPageModel &&
-            (identical(other.auth, auth) || other.auth == auth));
+            const DeepCollectionEquality().equals(other.auth, auth));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, auth);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(auth));
 
   @JsonKey(ignore: true)
   @override

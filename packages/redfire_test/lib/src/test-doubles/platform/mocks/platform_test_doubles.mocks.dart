@@ -6,7 +6,6 @@ import 'dart:async' as _i4;
 import 'dart:ui' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
-
 import 'package:redfire/src/platform/plugins/wrappers/platform_wrapper.dart'
     as _i2;
 import 'package:redfire/src/platform/plugins/wrappers/url_launcher_wrapper.dart'

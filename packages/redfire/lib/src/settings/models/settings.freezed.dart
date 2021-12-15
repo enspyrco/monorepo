@@ -204,19 +204,21 @@ class _$_Settings implements _Settings {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Settings &&
-            (identical(other.darkTheme, darkTheme) ||
-                other.darkTheme == darkTheme) &&
-            (identical(other.lightTheme, lightTheme) ||
-                other.lightTheme == lightTheme) &&
-            (identical(other.brightnessMode, brightnessMode) ||
-                other.brightnessMode == brightnessMode) &&
-            (identical(other.platform, platform) ||
-                other.platform == platform));
+            const DeepCollectionEquality().equals(other.darkTheme, darkTheme) &&
+            const DeepCollectionEquality()
+                .equals(other.lightTheme, lightTheme) &&
+            const DeepCollectionEquality()
+                .equals(other.brightnessMode, brightnessMode) &&
+            const DeepCollectionEquality().equals(other.platform, platform));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, darkTheme, lightTheme, brightnessMode, platform);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(darkTheme),
+      const DeepCollectionEquality().hash(lightTheme),
+      const DeepCollectionEquality().hash(brightnessMode),
+      const DeepCollectionEquality().hash(platform));
 
   @JsonKey(ignore: true)
   @override

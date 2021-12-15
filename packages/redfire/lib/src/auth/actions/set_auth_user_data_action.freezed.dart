@@ -147,12 +147,13 @@ class _$_SetAuthUserDataAction extends _SetAuthUserDataAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SetAuthUserDataAction &&
-            (identical(other.authUserData, authUserData) ||
-                other.authUserData == authUserData));
+            const DeepCollectionEquality()
+                .equals(other.authUserData, authUserData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, authUserData);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(authUserData));
 
   @JsonKey(ignore: true)
   @override

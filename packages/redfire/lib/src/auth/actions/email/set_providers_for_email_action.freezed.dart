@@ -133,12 +133,12 @@ class _$_SetProvidersForEmailAction extends _SetProvidersForEmailAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SetProvidersForEmailAction &&
-            (identical(other.providers, providers) ||
-                other.providers == providers));
+            const DeepCollectionEquality().equals(other.providers, providers));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, providers);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(providers));
 
   @JsonKey(ignore: true)
   @override

@@ -207,17 +207,21 @@ class _$_AccessCredentials implements _AccessCredentials {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AccessCredentials &&
-            (identical(other.accessToken, accessToken) ||
-                other.accessToken == accessToken) &&
-            (identical(other.refreshToken, refreshToken) ||
-                other.refreshToken == refreshToken) &&
-            (identical(other.idToken, idToken) || other.idToken == idToken) &&
-            (identical(other.scopes, scopes) || other.scopes == scopes));
+            const DeepCollectionEquality()
+                .equals(other.accessToken, accessToken) &&
+            const DeepCollectionEquality()
+                .equals(other.refreshToken, refreshToken) &&
+            const DeepCollectionEquality().equals(other.idToken, idToken) &&
+            const DeepCollectionEquality().equals(other.scopes, scopes));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, accessToken, refreshToken, idToken, scopes);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(accessToken),
+      const DeepCollectionEquality().hash(refreshToken),
+      const DeepCollectionEquality().hash(idToken),
+      const DeepCollectionEquality().hash(scopes));
 
   @JsonKey(ignore: true)
   @override

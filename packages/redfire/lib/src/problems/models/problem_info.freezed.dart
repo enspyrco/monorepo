@@ -142,12 +142,15 @@ class _$_ProblemInfo implements _ProblemInfo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ProblemInfo &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.trace, trace) || other.trace == trace));
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality().equals(other.trace, trace));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, trace);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(trace));
 
   @JsonKey(ignore: true)
   @override

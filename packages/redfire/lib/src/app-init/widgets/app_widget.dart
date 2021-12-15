@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
@@ -14,6 +14,7 @@ import '../../settings/extensions/theme_set_extensions.dart';
 import '../../settings/models/settings.dart';
 import '../../types/red_fire_state.dart';
 import '../../types/redux_action.dart';
+import '../../utils/red_fire_config.dart';
 import '../../utils/red_fire_locator.dart';
 import '../redux/redfire_initial_actions.dart';
 import '../redux/redfire_middlewares.dart';
@@ -24,6 +25,7 @@ import 'initializing_indicator.dart';
 class AppWidget<T extends RedFireState> extends StatefulWidget {
   late final Store<T> _store;
   final FirebaseWrapper _firebase;
+  final RedFireConfig? _config;
   final String _title;
   final List<ReduxAction> _initialActions;
 
@@ -38,6 +40,7 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
       String? title})
       : _store = initializedStore,
         _firebase = firebaseWrapper ?? FirebaseWrapper(),
+        _config = null,
         _title = title ?? 'Title Not Set',
         _initialActions = [],
         super(key: key) {
@@ -54,8 +57,10 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
       List<Middleware<T>>? middlewares,
       List<PageDataTransforms>? pageTransforms,
       FirebaseWrapper? firebaseWrapper,
+      RedFireConfig? config,
       String? title})
       : _firebase = firebaseWrapper ?? FirebaseWrapper(),
+        _config = config,
         _title = title ?? 'Title Not Set',
         _initialActions = initialActions ?? [],
         super(key: key) {
@@ -80,15 +85,16 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
   void initState() {
     super.initState();
     try {
-      _initializeFlutterFire();
+      RedFireLocator.provideConfig(widget._config);
+      _initializeFlutterFire(options: widget._config?.firebase);
     } catch (e) {
       setState(() => _error = e);
     }
   }
 
-  void _initializeFlutterFire() async {
+  void _initializeFlutterFire({FirebaseOptions? options}) async {
     // firebase must be initialised first so createStore() can run
-    await widget._firebase.init();
+    await widget._firebase.init(options);
 
     // Dispatch any actions that were passed in.
     for (final action in [

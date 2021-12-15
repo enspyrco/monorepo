@@ -143,11 +143,12 @@ class _$_SetIdTokenResultAction extends _SetIdTokenResultAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SetIdTokenResultAction &&
-            (identical(other.result, result) || other.result == result));
+            const DeepCollectionEquality().equals(other.result, result));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, result);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(result));
 
   @JsonKey(ignore: true)
   @override

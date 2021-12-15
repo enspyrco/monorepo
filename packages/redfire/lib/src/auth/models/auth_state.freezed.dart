@@ -251,18 +251,22 @@ class _$_AuthState implements _AuthState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AuthState &&
-            (identical(other.emailVM, emailVM) || other.emailVM == emailVM) &&
-            (identical(other.userData, userData) ||
-                other.userData == userData) &&
-            (identical(other.idTokenResult, idTokenResult) ||
-                other.idTokenResult == idTokenResult) &&
-            (identical(other.linking, linking) || other.linking == linking) &&
-            (identical(other.step, step) || other.step == step));
+            const DeepCollectionEquality().equals(other.emailVM, emailVM) &&
+            const DeepCollectionEquality().equals(other.userData, userData) &&
+            const DeepCollectionEquality()
+                .equals(other.idTokenResult, idTokenResult) &&
+            const DeepCollectionEquality().equals(other.linking, linking) &&
+            const DeepCollectionEquality().equals(other.step, step));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, emailVM, userData, idTokenResult, linking, step);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(emailVM),
+      const DeepCollectionEquality().hash(userData),
+      const DeepCollectionEquality().hash(idTokenResult),
+      const DeepCollectionEquality().hash(linking),
+      const DeepCollectionEquality().hash(step));
 
   @JsonKey(ignore: true)
   @override

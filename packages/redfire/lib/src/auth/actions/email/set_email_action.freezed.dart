@@ -130,11 +130,12 @@ class _$_SetEmailAction extends _SetEmailAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SetEmailAction &&
-            (identical(other.text, text) || other.text == text));
+            const DeepCollectionEquality().equals(other.text, text));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, text);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
 
   @JsonKey(ignore: true)
   @override

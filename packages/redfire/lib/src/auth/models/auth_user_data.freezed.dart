@@ -313,42 +313,38 @@ class _$_AuthUserData extends _AuthUserData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AuthUserData &&
-            (identical(other.uid, uid) || other.uid == uid) &&
-            (identical(other.tenantId, tenantId) ||
-                other.tenantId == tenantId) &&
-            (identical(other.displayName, displayName) ||
-                other.displayName == displayName) &&
-            (identical(other.photoURL, photoURL) ||
-                other.photoURL == photoURL) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
-            (identical(other.createdOn, createdOn) ||
-                other.createdOn == createdOn) &&
-            (identical(other.lastSignedInOn, lastSignedInOn) ||
-                other.lastSignedInOn == lastSignedInOn) &&
-            (identical(other.isAnonymous, isAnonymous) ||
-                other.isAnonymous == isAnonymous) &&
-            (identical(other.emailVerified, emailVerified) ||
-                other.emailVerified == emailVerified) &&
-            (identical(other.providers, providers) ||
-                other.providers == providers));
+            const DeepCollectionEquality().equals(other.uid, uid) &&
+            const DeepCollectionEquality().equals(other.tenantId, tenantId) &&
+            const DeepCollectionEquality()
+                .equals(other.displayName, displayName) &&
+            const DeepCollectionEquality().equals(other.photoURL, photoURL) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality()
+                .equals(other.phoneNumber, phoneNumber) &&
+            const DeepCollectionEquality().equals(other.createdOn, createdOn) &&
+            const DeepCollectionEquality()
+                .equals(other.lastSignedInOn, lastSignedInOn) &&
+            const DeepCollectionEquality()
+                .equals(other.isAnonymous, isAnonymous) &&
+            const DeepCollectionEquality()
+                .equals(other.emailVerified, emailVerified) &&
+            const DeepCollectionEquality().equals(other.providers, providers));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      uid,
-      tenantId,
-      displayName,
-      photoURL,
-      email,
-      phoneNumber,
-      createdOn,
-      lastSignedInOn,
-      isAnonymous,
-      emailVerified,
-      providers);
+      const DeepCollectionEquality().hash(uid),
+      const DeepCollectionEquality().hash(tenantId),
+      const DeepCollectionEquality().hash(displayName),
+      const DeepCollectionEquality().hash(photoURL),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(phoneNumber),
+      const DeepCollectionEquality().hash(createdOn),
+      const DeepCollectionEquality().hash(lastSignedInOn),
+      const DeepCollectionEquality().hash(isAnonymous),
+      const DeepCollectionEquality().hash(emailVerified),
+      const DeepCollectionEquality().hash(providers));
 
   @JsonKey(ignore: true)
   @override

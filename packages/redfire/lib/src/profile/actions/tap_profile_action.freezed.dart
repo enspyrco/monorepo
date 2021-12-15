@@ -117,7 +117,7 @@ class _$_TapProfileAction extends _TapProfileAction {
   factory _$_TapProfileAction.fromJson(Map<String, dynamic> json) =>
       _$$_TapProfileActionFromJson(json);
 
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool turnOff;
 
@@ -131,11 +131,12 @@ class _$_TapProfileAction extends _TapProfileAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _TapProfileAction &&
-            (identical(other.turnOff, turnOff) || other.turnOff == turnOff));
+            const DeepCollectionEquality().equals(other.turnOff, turnOff));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, turnOff);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(turnOff));
 
   @JsonKey(ignore: true)
   @override

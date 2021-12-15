@@ -142,13 +142,15 @@ class _$_EmailAuthVM extends _EmailAuthVM {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _EmailAuthVM &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.providers, providers) ||
-                other.providers == providers));
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.providers, providers));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, providers);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(providers));
 
   @JsonKey(ignore: true)
   @override

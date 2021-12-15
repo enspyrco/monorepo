@@ -130,11 +130,12 @@ class _$_LaunchUrlAction extends _LaunchUrlAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LaunchUrlAction &&
-            (identical(other.url, url) || other.url == url));
+            const DeepCollectionEquality().equals(other.url, url));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, url);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(url));
 
   @JsonKey(ignore: true)
   @override

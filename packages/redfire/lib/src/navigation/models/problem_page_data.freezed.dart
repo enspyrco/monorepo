@@ -142,11 +142,12 @@ class _$_ProblemPageData extends _ProblemPageData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ProblemPageData &&
-            (identical(other.problem, problem) || other.problem == problem));
+            const DeepCollectionEquality().equals(other.problem, problem));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, problem);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(problem));
 
   @JsonKey(ignore: true)
   @override

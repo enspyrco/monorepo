@@ -130,12 +130,12 @@ class _$_SetThemeModeAction extends _SetThemeModeAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SetThemeModeAction &&
-            (identical(other.themeMode, themeMode) ||
-                other.themeMode == themeMode));
+            const DeepCollectionEquality().equals(other.themeMode, themeMode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, themeMode);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(themeMode));
 
   @JsonKey(ignore: true)
   @override
