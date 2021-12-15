@@ -50,11 +50,9 @@ app.*.map.json
 *.freezed.dart
 *.mocks.dart
 
-# Firebase config files
-ios/Runner/GoogleService-Info.plist
-macos/Runner/Configs/GoogleService-Info.plist
-android/app/google-services.json
-web/index.html
+# Firebase config file
+lib/firebase_options.dart
+lib/redfire_options.dart
 
 # Firebase hosting
 .firebase/hosting.*.cache
