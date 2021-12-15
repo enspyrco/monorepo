@@ -37,10 +37,11 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
       required Widget mainPage,
       List<PageDataTransforms>? pageTransforms,
       FirebaseWrapper? firebaseWrapper,
+      RedFireConfig? config,
       String? title})
       : _store = initializedStore,
         _firebase = firebaseWrapper ?? FirebaseWrapper(),
-        _config = null,
+        _config = config,
         _title = title ?? 'Title Not Set',
         _initialActions = [],
         super(key: key) {
