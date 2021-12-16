@@ -4,8 +4,8 @@ publish_to: 'none'
 version: 0.0.1
 
 environment:
-  sdk: ">=2.14.0 <3.0.0"
-  flutter: ">=2.6.0-0.0.pre"
+  sdk: ">=2.15.0 <3.0.0"
+  flutter: ">=2.8.0"
 
 dependencies:
   flutter:
@@ -18,7 +18,7 @@ dependencies:
   redux:
   mockito:
   freezed_annotation:
-  json_annotation: ^4.3.0
+  json_annotation: ^4.4.0
 
   redfire:
     path: ../redfire
@@ -29,4 +29,4 @@ dev_dependencies:
   flutter_lints:
   build_runner:
   freezed:
-  json_serializable: ^6.0.1
+  json_serializable:

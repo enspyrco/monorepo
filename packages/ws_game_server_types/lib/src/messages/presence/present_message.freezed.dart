@@ -131,7 +131,7 @@ class _$_PresentMessage implements _PresentMessage {
 
   @override
   final String userId;
-  @JsonKey(defaultValue: PresentMessage.jsonType)
+  @JsonKey()
   @override
   final String type;
 
@@ -145,12 +145,15 @@ class _$_PresentMessage implements _PresentMessage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PresentMessage &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.type, type) || other.type == type));
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.type, type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId, type);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(type));
 
   @JsonKey(ignore: true)
   @override

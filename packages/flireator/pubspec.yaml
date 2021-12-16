@@ -1,11 +1,10 @@
 name: flireator
 description: A new flutter plugin project.
 version: 0.0.1
-homepage:
 
 environment:
-  sdk: ">=2.15.0-116.0.dev <3.0.0"
-  flutter: ">=2.5.0"
+  sdk: ">=2.15.0 <3.0.0"
+  flutter: ">=2.8.0"
 
 dependencies:
   flutter:

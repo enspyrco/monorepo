@@ -9,7 +9,7 @@ part of 'other_player_ids_message.dart';
 _$_OtherPlayerIdsMessage _$$_OtherPlayerIdsMessageFromJson(
         Map<String, dynamic> json) =>
     _$_OtherPlayerIdsMessage(
-      type: json['type'] as String? ?? 'other_player_ids',
+      type: json['type'] as String? ?? OtherPlayerIdsMessage.jsonType,
       ids: ISet<String>.fromJson(json['ids'], (value) => value as String),
     );
 

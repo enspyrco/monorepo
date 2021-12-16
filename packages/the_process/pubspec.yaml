@@ -4,7 +4,8 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.13.0 <3.0.0"
+  sdk: ">=2.15.0 <3.0.0"
+  flutter: ">=2.8.0"
 
 dependencies:
   flutter:
@@ -14,7 +15,7 @@ dependencies:
   redfire:
     path: ../redfire
   freezed_annotation: any
-  json_annotation: ^4.3.0
+  json_annotation: ^4.4.0
   redux: any
   flutter_redux: any
   fast_immutable_collections: any
@@ -38,7 +39,7 @@ dev_dependencies:
   
   build_runner: any
   freezed: any
-  json_serializable: ^6.0.1
+  json_serializable: any
 
 flutter:
   uses-material-design: true

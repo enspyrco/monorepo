@@ -133,7 +133,7 @@ class _$_OtherPlayerIdsMessage implements _OtherPlayerIdsMessage {
   factory _$_OtherPlayerIdsMessage.fromJson(Map<String, dynamic> json) =>
       _$$_OtherPlayerIdsMessageFromJson(json);
 
-  @JsonKey(defaultValue: OtherPlayerIdsMessage.jsonType)
+  @JsonKey()
   @override
   final String type;
   @override
@@ -149,12 +149,15 @@ class _$_OtherPlayerIdsMessage implements _OtherPlayerIdsMessage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OtherPlayerIdsMessage &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.ids, ids) || other.ids == ids));
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.ids, ids));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, type, ids);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(ids));
 
   @JsonKey(ignore: true)
   @override
