@@ -3,7 +3,6 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 import '../../shared/constants.dart' as constants;
 import '../../utils/extensions/barriers_extension.dart';

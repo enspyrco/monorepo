@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../types.dart';
@@ -9,8 +8,6 @@ import '../../auth/pages/other_auth_options_page_data.dart';
 import '../../auth/widgets/auth_page.dart';
 import '../../problems/pages/problem_page.dart';
 import '../../profile/widgets/profile_page.dart';
-import '../../types/typedefs.dart';
-import 'initial_page_data.dart';
 
 typedef PageDataFromJson = PageData Function(JsonMap json);
 typedef PageFromPageData = Page Function(PageData pageData);

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../types.dart';
-import '../models/problem_info.dart';
 import '../widgets/problem_page_view.dart';
 
 /// Creates a widget to show an error from a type of [ProblemInfo].

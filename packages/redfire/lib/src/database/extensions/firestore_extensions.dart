@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../types.dart';
-import '../../profile/models/profile_data.dart';
 
 extension ConvertDocumentSnapshot on DocumentSnapshot {
   ProfileData toProfileData() {

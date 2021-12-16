@@ -3,9 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mockito/mockito.dart';
 import 'package:redfire/actions.dart';
-import 'package:redfire/src/auth/enums/auth_step_enum.dart';
 import 'package:redfire/src/auth/services/auth_service.dart';
-import 'package:redfire/src/types/redux_action.dart';
 import 'package:redfire/types.dart';
 import 'package:redfire_test/redfire_test.dart';
 import 'package:redfire_test/src/test-doubles/auth/data/user_example.dart';
@@ -28,7 +26,6 @@ void main() {
       // Check that the streamOfStoreAuthState returned by the auth service
       // eventually emits a SetAuthUserDataAction with expected state.
       authService.streamOfSetAuthUserData.listen(expectAsync1((action) {
-        expect(action is SetAuthUserDataAction, true);
         expect(action.authUserData!.uid, stubbedUser.uid);
         expect(action.authUserData!.displayName, stubbedUser.displayName);
         expect(action.authUserData!.photoURL, stubbedUser.photoURL);

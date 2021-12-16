@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../ws_game_server_types.dart';
-import '../../types/typedefs.dart';
 
 part 'present_message.freezed.dart';
 part 'present_message.g.dart';

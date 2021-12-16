@@ -1,11 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../types.dart';
-import '../../types/typedefs.dart';
-import '../enums/auth_step_enum.dart';
-import '../link-providers/models/link_accounts_view_model.dart';
-import 'auth_user_data.dart';
-import 'email_auth_v_m.dart';
 import 'id_token_result.dart';
 
 part 'auth_state.freezed.dart';
