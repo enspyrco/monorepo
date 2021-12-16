@@ -16,6 +16,7 @@ import 'projects/middleware/tap_projects_middleware.dart';
 import 'projects/pages/project_detail_page.dart';
 import 'projects/reducers/set_projects_reducer.dart';
 import 'projects/reducers/update_projects_view.dart';
+import 'redfire_options.dart';
 import 'sections/middleware/create_section_middleware.dart';
 import 'sections/middleware/tap_sections_middleware.dart';
 import 'sections/reducers/set_sections_reducer.dart';
@@ -23,6 +24,7 @@ import 'sections/reducers/update_new_section_v_m_reducer.dart';
 import 'sections/reducers/update_sections_v_m_reducer.dart';
 
 void main() => runApp(AppWidget<AppState>(
+      config: RedFireOptions.currentPlatform,
       initialState: AppState.init(),
       initialActions: const [TapOrganisationsAction()],
       middlewares: [

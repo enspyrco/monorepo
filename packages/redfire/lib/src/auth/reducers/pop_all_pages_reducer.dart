@@ -3,7 +3,6 @@ import 'package:redux/redux.dart';
 
 import '../../../types.dart';
 import '../../navigation/actions/pop_all_pages_action.dart';
-import '../../types/red_fire_state.dart';
 
 class PopAllPagesReducer<T extends RedFireState>
     extends TypedReducer<T, PopAllPagesAction> {

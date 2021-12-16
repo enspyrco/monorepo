@@ -152,13 +152,15 @@ class _$_UpdateLinkAccountsViewAction extends _UpdateLinkAccountsViewAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _UpdateLinkAccountsViewAction &&
-            (identical(other.provider, provider) ||
-                other.provider == provider) &&
-            (identical(other.state, state) || other.state == state));
+            const DeepCollectionEquality().equals(other.provider, provider) &&
+            const DeepCollectionEquality().equals(other.state, state));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, provider, state);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(provider),
+      const DeepCollectionEquality().hash(state));
 
   @JsonKey(ignore: true)
   @override

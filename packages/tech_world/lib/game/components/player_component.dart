@@ -1,9 +1,7 @@
-import 'package:flutter/services.dart';
-
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flame/components.dart';
-import 'package:flame/effects.dart';
 import 'package:flame/extensions.dart';
+import 'package:flutter/services.dart';
 
 import '../../shared/direction_enum.dart';
 import '../../utils/effects/move_character_effect.dart';

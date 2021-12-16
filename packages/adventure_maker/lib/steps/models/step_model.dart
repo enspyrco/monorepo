@@ -1,4 +1,3 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
 
@@ -18,7 +17,4 @@ class StepModel with _$StepModel, ReduxState, AdventureNode {
 
   @override
   String get typeName => className;
-
-  @override
-  ISet<AdventureNode> get children => ISet();
 }

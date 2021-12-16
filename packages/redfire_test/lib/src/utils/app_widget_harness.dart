@@ -7,8 +7,6 @@ import 'package:redfire/widgets.dart';
 import 'package:redux/redux.dart';
 
 import '../../redfire_test.dart';
-import '../test-doubles/redux/fake_store.dart';
-import '../test-doubles/services/stubs/services_with_mocked_plugins.dart';
 
 /// A test harness to wrap the widget under test, (in this case the
 /// AppWidget), and provide all the functionality

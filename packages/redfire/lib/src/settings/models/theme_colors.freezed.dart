@@ -158,14 +158,17 @@ class _$_ThemeColors implements _ThemeColors {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ThemeColors &&
-            (identical(other.primary, primary) || other.primary == primary) &&
-            (identical(other.secondary, secondary) ||
-                other.secondary == secondary) &&
-            (identical(other.error, error) || other.error == error));
+            const DeepCollectionEquality().equals(other.primary, primary) &&
+            const DeepCollectionEquality().equals(other.secondary, secondary) &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, primary, secondary, error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(primary),
+      const DeepCollectionEquality().hash(secondary),
+      const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override

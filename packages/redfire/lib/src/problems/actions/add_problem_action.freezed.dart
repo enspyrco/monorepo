@@ -142,11 +142,12 @@ class _$_AddProblemAction extends _AddProblemAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AddProblemAction &&
-            (identical(other.info, info) || other.info == info));
+            const DeepCollectionEquality().equals(other.info, info));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, info);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(info));
 
   @JsonKey(ignore: true)
   @override

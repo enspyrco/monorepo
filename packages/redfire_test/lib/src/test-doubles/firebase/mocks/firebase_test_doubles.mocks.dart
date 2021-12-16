@@ -6,16 +6,15 @@ import 'dart:async' as _i8;
 import 'dart:typed_data' as _i9;
 
 import 'package:cloud_firestore/cloud_firestore.dart' as _i5;
-import 'package:firebase_auth/firebase_auth.dart' as _i7;
-import 'package:firebase_core/firebase_core.dart' as _i3;
-import 'package:mockito/mockito.dart' as _i1;
-
 import 'package:cloud_firestore_platform_interface/cloud_firestore_platform_interface.dart'
     as _i4;
+import 'package:firebase_auth/firebase_auth.dart' as _i7;
 import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart'
     as _i6;
+import 'package:firebase_core/firebase_core.dart' as _i3;
 import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart'
     as _i2;
+import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters

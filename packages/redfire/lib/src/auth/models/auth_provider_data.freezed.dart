@@ -247,21 +247,26 @@ class _$_AuthProviderData implements _AuthProviderData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AuthProviderData &&
-            (identical(other.providerId, providerId) ||
-                other.providerId == providerId) &&
-            (identical(other.uid, uid) || other.uid == uid) &&
-            (identical(other.displayName, displayName) ||
-                other.displayName == displayName) &&
-            (identical(other.photoURL, photoURL) ||
-                other.photoURL == photoURL) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber));
+            const DeepCollectionEquality()
+                .equals(other.providerId, providerId) &&
+            const DeepCollectionEquality().equals(other.uid, uid) &&
+            const DeepCollectionEquality()
+                .equals(other.displayName, displayName) &&
+            const DeepCollectionEquality().equals(other.photoURL, photoURL) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality()
+                .equals(other.phoneNumber, phoneNumber));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, providerId, uid, displayName, photoURL, email, phoneNumber);
+      runtimeType,
+      const DeepCollectionEquality().hash(providerId),
+      const DeepCollectionEquality().hash(uid),
+      const DeepCollectionEquality().hash(displayName),
+      const DeepCollectionEquality().hash(photoURL),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(phoneNumber));
 
   @JsonKey(ignore: true)
   @override

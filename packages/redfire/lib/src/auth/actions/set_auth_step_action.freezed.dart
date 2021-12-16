@@ -130,11 +130,12 @@ class _$_SetAuthStepAction extends _SetAuthStepAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SetAuthStepAction &&
-            (identical(other.step, step) || other.step == step));
+            const DeepCollectionEquality().equals(other.step, step));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, step);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(step));
 
   @JsonKey(ignore: true)
   @override

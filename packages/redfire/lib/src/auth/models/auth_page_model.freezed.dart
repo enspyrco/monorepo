@@ -155,13 +155,15 @@ class _$_AuthPageVM extends _AuthPageVM {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AuthPageVM &&
-            (identical(other.platform, platform) ||
-                other.platform == platform) &&
-            (identical(other.auth, auth) || other.auth == auth));
+            const DeepCollectionEquality().equals(other.platform, platform) &&
+            const DeepCollectionEquality().equals(other.auth, auth));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, platform, auth);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(platform),
+      const DeepCollectionEquality().hash(auth));
 
   @JsonKey(ignore: true)
   @override

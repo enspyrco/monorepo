@@ -132,11 +132,12 @@ class _$_PushPageAction extends _PushPageAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PushPageAction &&
-            (identical(other.page, page) || other.page == page));
+            const DeepCollectionEquality().equals(other.page, page));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, page);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(page));
 
   @JsonKey(ignore: true)
   @override

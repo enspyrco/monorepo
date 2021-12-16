@@ -132,11 +132,12 @@ class _$_LinkAccountsViewModel extends _LinkAccountsViewModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LinkAccountsViewModel &&
-            (identical(other.stateOf, stateOf) || other.stateOf == stateOf));
+            const DeepCollectionEquality().equals(other.stateOf, stateOf));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stateOf);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(stateOf));
 
   @JsonKey(ignore: true)
   @override

@@ -29,7 +29,7 @@ jobs:
             package_name: "ws_game_server_types"
     steps:
         - uses: actions/checkout@v2
-        - uses: enspyrco/test-coverage-action@v0.2
+        - uses: enspyrco/test-coverage-action@v0
           with:
             site_id: enspyrco
             service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}

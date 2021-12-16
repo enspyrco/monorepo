@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../actions.dart';
 import '../../../types.dart';
-import '../../navigation/models/profile_page_data.dart';
 import '../../redux/extensions/build_context_extensions.dart';
 import 'checked_circle_avatar.dart';
 

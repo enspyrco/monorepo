@@ -2,7 +2,6 @@ import 'package:redux/redux.dart';
 
 import '../../../actions.dart';
 import '../../../types.dart';
-import '../../navigation/models/problem_page_data.dart';
 
 class AddProblemReducer<T extends RedFireState>
     extends TypedReducer<T, AddProblemAction> {

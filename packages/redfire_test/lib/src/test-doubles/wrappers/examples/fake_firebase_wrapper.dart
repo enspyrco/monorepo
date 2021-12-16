@@ -15,7 +15,7 @@ class FakeFirebaseWrapper implements FirebaseWrapper {
       : _completer = completer;
 
   @override
-  Future<FirebaseApp> init() {
+  Future<FirebaseApp> init(FirebaseOptions? options) {
     return (_completer != null)
         ? _completer!.future
         : Future.value(MockFirebaseApp());

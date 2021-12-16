@@ -1,7 +1,7 @@
 import 'package:redux/redux.dart';
 
+import '../../app_state.dart';
 import '../actions/set_player_path_action.dart';
-import '../app_state.dart';
 
 class SetPlayerPathReducer extends TypedReducer<AppState, SetPlayerPathAction> {
   SetPlayerPathReducer()

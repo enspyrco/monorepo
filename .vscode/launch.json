@@ -47,10 +47,10 @@
       ]
     },
     {
-      "name": "the_process (mac)",
+      "name": "the_process",
       "type": "dart",
       "request": "launch",
-      "deviceId": "macos",
+      "program": "lib/main.dart",
       "cwd": "packages/the_process"
     },
     {

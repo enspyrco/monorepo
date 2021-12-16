@@ -130,12 +130,12 @@ class _$_UpdateSettingsAction extends _UpdateSettingsAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _UpdateSettingsAction &&
-            (identical(other.platform, platform) ||
-                other.platform == platform));
+            const DeepCollectionEquality().equals(other.platform, platform));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, platform);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(platform));
 
   @JsonKey(ignore: true)
   @override

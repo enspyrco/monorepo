@@ -131,12 +131,12 @@ class _$_SignUpWithEmailAction extends _SignUpWithEmailAction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SignUpWithEmailAction &&
-            (identical(other.password, password) ||
-                other.password == password));
+            const DeepCollectionEquality().equals(other.password, password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, password);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(password));
 
   @JsonKey(ignore: true)
   @override

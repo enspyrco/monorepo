@@ -2,9 +2,7 @@ import 'package:redux/redux.dart';
 
 import '../../../actions.dart';
 import '../../../types.dart';
-import '../../auth/actions/sign_in_with_google_action.dart';
 import '../../redux/extensions/store_extensions.dart';
-import '../../types/red_fire_state.dart';
 import '../../utils/red_fire_locator.dart';
 
 class SignInWithGoogleMiddleware<T extends RedFireState>

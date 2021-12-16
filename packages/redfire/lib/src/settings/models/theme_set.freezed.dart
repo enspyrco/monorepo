@@ -151,13 +151,16 @@ class _$_ThemeSet implements _ThemeSet {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ThemeSet &&
-            (identical(other.colors, colors) || other.colors == colors) &&
-            (identical(other.brightness, brightness) ||
-                other.brightness == brightness));
+            const DeepCollectionEquality().equals(other.colors, colors) &&
+            const DeepCollectionEquality()
+                .equals(other.brightness, brightness));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, colors, brightness);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(colors),
+      const DeepCollectionEquality().hash(brightness));
 
   @JsonKey(ignore: true)
   @override

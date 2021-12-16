@@ -147,7 +147,7 @@ class _$_PlayerPathMessage implements _PlayerPathMessage {
   factory _$_PlayerPathMessage.fromJson(Map<String, dynamic> json) =>
       _$$_PlayerPathMessageFromJson(json);
 
-  @JsonKey(defaultValue: PlayerPathMessage.jsonType)
+  @JsonKey()
   @override
   final String type;
   @override
@@ -165,13 +165,17 @@ class _$_PlayerPathMessage implements _PlayerPathMessage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PlayerPathMessage &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.points, points) || other.points == points));
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.points, points));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, type, userId, points);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(points));
 
   @JsonKey(ignore: true)
   @override

@@ -1,7 +1,6 @@
 import 'package:redux/redux.dart';
 
 import '../../../types.dart';
-import '../../types/red_fire_state.dart';
 import '../actions/reset_auth_page_action.dart';
 
 class ResetAuthPageReducer<T extends RedFireState>

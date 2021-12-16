@@ -172,16 +172,19 @@ class _$_GoogleSignInCredential implements _GoogleSignInCredential {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _GoogleSignInCredential &&
-            (identical(other.idToken, idToken) || other.idToken == idToken) &&
-            (identical(other.accessToken, accessToken) ||
-                other.accessToken == accessToken) &&
-            (identical(other.serverAuthCode, serverAuthCode) ||
-                other.serverAuthCode == serverAuthCode));
+            const DeepCollectionEquality().equals(other.idToken, idToken) &&
+            const DeepCollectionEquality()
+                .equals(other.accessToken, accessToken) &&
+            const DeepCollectionEquality()
+                .equals(other.serverAuthCode, serverAuthCode));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, idToken, accessToken, serverAuthCode);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(idToken),
+      const DeepCollectionEquality().hash(accessToken),
+      const DeepCollectionEquality().hash(serverAuthCode));
 
   @JsonKey(ignore: true)
   @override

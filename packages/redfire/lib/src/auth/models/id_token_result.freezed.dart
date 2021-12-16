@@ -254,27 +254,26 @@ class _$_IdTokenResult extends _IdTokenResult {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _IdTokenResult &&
-            (identical(other.authTime, authTime) ||
-                other.authTime == authTime) &&
+            const DeepCollectionEquality().equals(other.authTime, authTime) &&
             const DeepCollectionEquality().equals(other.claims, claims) &&
-            (identical(other.expirationTime, expirationTime) ||
-                other.expirationTime == expirationTime) &&
-            (identical(other.issuedAtTime, issuedAtTime) ||
-                other.issuedAtTime == issuedAtTime) &&
-            (identical(other.signInProvider, signInProvider) ||
-                other.signInProvider == signInProvider) &&
-            (identical(other.token, token) || other.token == token));
+            const DeepCollectionEquality()
+                .equals(other.expirationTime, expirationTime) &&
+            const DeepCollectionEquality()
+                .equals(other.issuedAtTime, issuedAtTime) &&
+            const DeepCollectionEquality()
+                .equals(other.signInProvider, signInProvider) &&
+            const DeepCollectionEquality().equals(other.token, token));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      authTime,
+      const DeepCollectionEquality().hash(authTime),
       const DeepCollectionEquality().hash(claims),
-      expirationTime,
-      issuedAtTime,
-      signInProvider,
-      token);
+      const DeepCollectionEquality().hash(expirationTime),
+      const DeepCollectionEquality().hash(issuedAtTime),
+      const DeepCollectionEquality().hash(signInProvider),
+      const DeepCollectionEquality().hash(token));
 
   @JsonKey(ignore: true)
   @override

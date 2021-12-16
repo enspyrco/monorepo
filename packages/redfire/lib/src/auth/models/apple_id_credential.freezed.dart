@@ -319,23 +319,29 @@ class _$_AppleIdCredential implements _AppleIdCredential {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AppleIdCredential &&
-            (identical(other.userIdentifier, userIdentifier) ||
-                other.userIdentifier == userIdentifier) &&
-            (identical(other.givenName, givenName) ||
-                other.givenName == givenName) &&
-            (identical(other.familyName, familyName) ||
-                other.familyName == familyName) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.authorizationCode, authorizationCode) ||
-                other.authorizationCode == authorizationCode) &&
-            (identical(other.identityToken, identityToken) ||
-                other.identityToken == identityToken) &&
-            (identical(other.state, state) || other.state == state));
+            const DeepCollectionEquality()
+                .equals(other.userIdentifier, userIdentifier) &&
+            const DeepCollectionEquality().equals(other.givenName, givenName) &&
+            const DeepCollectionEquality()
+                .equals(other.familyName, familyName) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality()
+                .equals(other.authorizationCode, authorizationCode) &&
+            const DeepCollectionEquality()
+                .equals(other.identityToken, identityToken) &&
+            const DeepCollectionEquality().equals(other.state, state));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userIdentifier, givenName,
-      familyName, email, authorizationCode, identityToken, state);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(userIdentifier),
+      const DeepCollectionEquality().hash(givenName),
+      const DeepCollectionEquality().hash(familyName),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(authorizationCode),
+      const DeepCollectionEquality().hash(identityToken),
+      const DeepCollectionEquality().hash(state));
 
   @JsonKey(ignore: true)
   @override

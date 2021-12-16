@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../types.dart';
 import '../../../redux/extensions/build_context_extensions.dart';
 import '../../constants/auth_provider_names.dart';
-import '../../enums/providers_enum.dart';
 import '../actions/link_account_action.dart';
 import '../enums/linking_account_enum.dart';
 

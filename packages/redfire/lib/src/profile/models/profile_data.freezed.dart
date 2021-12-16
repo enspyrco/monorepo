@@ -223,15 +223,12 @@ class _$_ProfileData implements _ProfileData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ProfileData &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.displayName, displayName) ||
-                other.displayName == displayName) &&
-            (identical(other.photoURL, photoURL) ||
-                other.photoURL == photoURL) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.displayName, displayName) &&
+            const DeepCollectionEquality().equals(other.photoURL, photoURL) &&
+            const DeepCollectionEquality().equals(other.firstName, firstName) &&
+            const DeepCollectionEquality().equals(other.lastName, lastName) &&
             const DeepCollectionEquality()
                 .equals(other.authorizationStatus, authorizationStatus));
   }
@@ -239,11 +236,11 @@ class _$_ProfileData implements _ProfileData {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      displayName,
-      photoURL,
-      firstName,
-      lastName,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(displayName),
+      const DeepCollectionEquality().hash(photoURL),
+      const DeepCollectionEquality().hash(firstName),
+      const DeepCollectionEquality().hash(lastName),
       const DeepCollectionEquality().hash(authorizationStatus));
 
   @JsonKey(ignore: true)
