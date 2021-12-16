@@ -51,24 +51,10 @@ app.*.map.json
 *.g.dart
 *.freezed.dart
 *.mocks.dart
-# Ignored because the file updates whenever we hide/show files 
-.vscode/settings.json
-# Ignored as we use different files locally and in CI 
-web/index.html
-web/index_cdn.html
-web/index_auto.html
-# Ignored so credentials are kept private (not strictly neccessary but good practice)
-macos/Runner/GoogleService-Info.plist
-ios/Runner/GoogleService-Info.plist
-android/app/google-services.json
-# Ignored as the credentials include a secret 
-functions/src/project_credentials.json
+
 # The cache file speeds up deploys but can be different between machines
 .firebase/hosting.*.cache
-# The lib folder is generated from the src folder
-functions/lib/
-# These folders are generated as part of getting coverage data
-functions/.nyc_output/
-functions/coverage/
-# A folder that holds files for deployment of firebase functions
-functions/deploy/
+
+# Firebase config file
+lib/firebase_options.dart
+lib/redfire_options.dart
