@@ -14,7 +14,7 @@
 *A redux based state management & navigation solution, with prebuilt modules for Firebase features.*
 
 #### [redfire_test](packages/redfire_test/README.md)
-*Test utilities to simplify testing in apps that use redfire.*
+*Utilities to simplify testing in apps that use redfire.*
 
 #### [tech_world](packages/tech_world/README.md)
 *Adventures In Tech World, for fun and profit.*

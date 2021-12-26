@@ -2,7 +2,15 @@
 
 [< README](../../README.md)
 
-## Introduction
+## Navigating
+
+We use the Pages API, introduced as part of Navigator2, so navigation is as simple as dispatching a `PushPageAction`, passing the new page's state.
+
+```Dart
+context.dispatch(PushPageAction(NewPageState(param: entry)));
+```
+
+## Snippets
 
 The `rf_page` snippet creates 3 classes, with the name coming from the file, eg:
 

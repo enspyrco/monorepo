@@ -48,9 +48,9 @@ app.*.map.json
 ###### Added ignores 
 
 # generated files 
-*.g.dart
-*.freezed.dart
-*.mocks.dart
+**/*.g.dart
+**/*.freezed.dart
+**/*.mocks.dart
 
 # The cache file speeds up deploys but can be different between machines
 .firebase/hosting.*.cache

@@ -4,22 +4,6 @@
 
 *A redux based state management & navigation solution, with prebuilt modules for Firebase features.*
 
-## Intro
-
-Combining [Redux] and the [Pages API] gives us navigation via a simple action dispatch. The flow of data through your app can be visualised with the (WIP) [Redux plugin for DevTools].
-
-We use snippets & code gen to take many of the sharp edges off using redux, and use an architecture that provides a hijackable data flow for contexts where performance is more important than being able to visualise the flow of data.
-
-Prebuilt feature modules can be dropped in and swapped out as your needs change:
-
-- ✅ Authentication
-- ✅ Firestore
-- RTDB
-- Messaging
-- ...
-
-For the latest progress, see [RedFire feature modules].
-
 <details>
 <summary>One time setup for new projects</summary>
 <br>
@@ -39,18 +23,42 @@ Firstly, we promise this tedious nonsense will be automated away ASAP, but for n
 
 </details>
 
-## Playing with redfire
+## Why redfire?
 
-How to use redfire to your life easier:
+By combining [Redux] and the [Pages API], redfire provides navigation via a simple action dispatch.
 
+With our (WIP) [Redux plugin for DevTools], you can visualise the flow of data through your app.
+
+We use snippets & code gen to take the sharp edges off using redux, and an architecture that provides a hijackable data flow for contexts where performance is more important than being able to visualise the flow of data.
+
+Prebuilt feature modules can be dropped in and swapped out as your needs change:
+
+| ✅ Complete | 📈 In Progress   | 🔳 Not Started |
+| ------------| --------------- | -------------- |
+|             | Authentication  | RTDB           |
+|             | Firestore       | Messaging      |
+
+For latest progress see [RedFire feature modules GitHub project].
+
+## How to use redfire
+
+- [Using built-in services & pre-made UI]
 - [Creating pages & navigating]
-- **Using the built-in services - auth/database/platform/etc.**
-- **Creating a new action/middleware/service/reducer sequence**
-- Check out the [redfire_test README] for help writing lots of beautiful tests
-- ... what else?
-- [Manually deploying to firebase hosting]
+- [Managing local, global & remote state]
+- [Visualising data flow & state change in your app]
+- [Writing lots of beautiful tests with redfire_test]
 
-## Tell me more
+<details>
+<summary>Optional extras</summary>
+<br>
+
+- [Manually deploying to firebase hosting]
+- [Optional Style Guide]
+
+</details>
+
+
+## Need more info?
 
 Here are some of the [gory details] if that's your thing.
 
@@ -73,7 +81,7 @@ Or if you have an improvement in mind, open an issue to discuss a feature reques
 [📒]: https://enspyrco.notion.site/RedFire-406c10fbadfb44e3a6f2806a1b6023bf
 [Redux]: https://github.com/fluttercommunity/redux.dart
 [Redux plugin for DevTools]: https://github.com/nickmeinhold/devtools
-[RedFire feature modules]: https://github.com/enspyrco/monorepo/projects/1
+[RedFire feature modules GitHub project]: https://github.com/enspyrco/monorepo/projects/1
 [Pages API]: https://api.flutter.dev/flutter/widgets/Navigator-class.html
 [Setup your Firebase project]: docs/setup/setup-firebase-project/setup-firebase-project.md
 [Configure local settings]: docs/setup/configure/configure-local-settings.md
@@ -84,11 +92,15 @@ Or if you have an improvement in mind, open an issue to discuss a feature reques
 [Setup Firebase Databases]: docs/setup/setup-databases.md
 [Setup GitHub project]: docs/setup/setup-github.md
 [Setup CI/CD with GitHub Actions]: docs/setup/setup-cicd.md
+[Using built-in services & pre-made UI]: docs/use/built-in-and-pre-made.md
 [Creating pages & navigating]: docs/use/create_pages_navigate.md
-[Manually deploying to firebase hosting]: docs/use/manually_deploy.md
+[Managing local, global & remote state]: docs/use/manage-local-global-remote-state.md
+[Manually deploying to firebase hosting]: docs/use/manually-deploy.md
+[Optional Style Guide]: docs/use/optional-style-guide.md
 [gory details]: docs/gory-details.md
 [Install Redux DevTools]: docs/setup/setup-redux-devtools.md
-[redfire_test README]: ../redfire_test/README.md
+[Visualising data flow & state change in your app]: docs/use/visualise-data-flow.md
+[Writing lots of beautiful tests with redfire_test]: ../redfire_test/README.md
 [troubleshooting]: docs/trouble-shooting.md
 [file an issue]: https://github.com/enspyrco/monorepo/issues
 [GitHub issues]: https://github.com/enspyrco/monorepo/issues

@@ -19,6 +19,12 @@ When using widgets from `redfire`, a type parameter of the store's state must be
 
 ## Architecture
 
+### Data flow
+
+A common flow of data is:
+
+- Widget dispatches Actions→(redfire)→AppState→Widget via a flutter_redux StoreConnector
+
 ### Polymorphism
 
 The `ReduxState`, `Action` & `PageData` subtypes created with the snippets have a static `className` member, and an instance member `typeName` that refers to the static member.  
