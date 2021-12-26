@@ -2,6 +2,58 @@
 
 [< README]
 
+## Add redfire_options.dart
+
+```Dart
+/// Mirrors the structure of [firebase_options.dart] and includes the
+/// [FirebaseOptions] object for the current platform, using composition
+/// to provide an extra layer of config options to the [FirebaseOptions].
+import 'package:flutter/foundation.dart'
+    show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:redfire/utils.dart';
+
+import 'firebase_options.dart';
+
+class RedFireOptions {
+  static RedFireConfig get currentPlatform {
+    if (kIsWeb) {
+      return web;
+    }
+    // ignore: missing_enum_constant_in_switch
+    switch (defaultTargetPlatform) {
+      case TargetPlatform.android:
+        return android;
+      case TargetPlatform.iOS:
+        return ios;
+      case TargetPlatform.macOS:
+        return macos;
+    }
+
+    throw UnsupportedError(
+      'RedFireOptions are not supported for this platform.',
+    );
+  }
+
+  static RedFireConfig web = RedFireConfig(
+      firebase: DefaultFirebaseOptions.currentPlatform,
+      auth: const AuthOptions(
+          clientId: 'key goes here'));
+
+  static RedFireConfig android = RedFireConfig(
+      firebase: DefaultFirebaseOptions.currentPlatform,
+      // clientId not needed for Android
+      auth: const AuthOptions());
+
+  static RedFireConfig ios = RedFireConfig(
+      firebase: DefaultFirebaseOptions.currentPlatform,
+      auth: const AuthOptions());
+
+  static RedFireConfig macos = RedFireConfig(
+      firebase: DefaultFirebaseOptions.currentPlatform,
+      auth: const AuthOptions());
+}
+```
+
 ## Add to pubspec.yaml
 
 We need the `redfire` package and...
@@ -45,6 +97,7 @@ import 'package:redfire/widgets.dart';
 import 'package:the_process/app_state.dart';
 
 void main() => runApp(AppWidget<AppState>(
+  config: RedFireOptions.currentPlatform,
   initialState: AppState.init(),
   initialActions: const [],
   middlewares: const [],
@@ -110,103 +163,94 @@ class MainPage extends StatelessWidget {
 }
 ```
 
-### Ignore generated files
+### Add a loading spinner for web
 
-Add to `.gitignore` (delete any commited generated files & commit first):
+<details>
+<summary>Make a file "spinner.css" in web/ with contents:</summary>
+<br>
 
-```sh
-# Generated files
-*.g.dart
-*.freezed.dart
-*.mocks.dart
-```
-
-### Configure static analysis
-
-Add to `analysis_options.yaml`:
-
-```yaml
-analyzer:
-  exclude: 
-    - build/**
-    - lib/*.g.dart
-    - lib/*.freezed.dart
-    - lib/**/*.g.dart
-    - lib/**/*.freezed.dart
-    - test/**/*.mocks.dart
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
-```
-
-You may not want all of the above, see [Customizing static analysis](https://dart.dev/guides/language/analysis-options) for more info.
-
-### (optionally) Hide generated & irrelevant files
-
-#### VS Code
-
-Add `settings.json` with the following to the `.vscode` folder:
-
-```json
-{
-  "files.exclude": {
-    "**/*.g.dart": true,
-    "**/*.freezed.dart": true,
-    // "build": true,
-    // ".flutter-plugins": true,
-    // ".flutter-plugins-dependencies": true,
-    // ".metadata": true,
-    // ".packages": true,
-    // "CHANGELOG.md": true,
-    // "LICENSE": true,
-    // "lib/generated_plugin_registrant.dart": true,
+```css
+#centerOfScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #999;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
   }
 }
 ```
 
-### (possibly) Add a `build.yaml` with `explicit_to_json: true`
+</details>
 
-If you are using `fast_immutable_collections` and get errors serializing classes with list members, create a `build.yaml` file and add the following (the defaults + explicit_to_json: true)
+<details>
+<summary>Add the spinner to "index.html":</summary>
+<br>
 
-- For more info see: <https://pub.dev/packages/json_serializable#build-configuration>
+In `<head>` add:
 
-```yaml
-targets:
-  $default:
-    builders:
-      json_serializable:
-        options:
-          # Options configure how source code is generated for every
-          # `@JsonSerializable`-annotated class in the package.
-          #
-          # The default value for each is listed, but with 
-          # explicit_to_json: true so FIC collections will serialize
-          any_map: false
-          checked: false
-          create_factory: true
-          create_to_json: true
-          disallow_unrecognized_keys: false
-          explicit_to_json: true
-          field_rename: none
-          generic_argument_factories: false
-          ignore_unannotated: false
-          include_if_null: true
+```html
+<link rel="stylesheet" href="spinner.css">
 ```
 
-This is needed because `freezed` generates the toJson. In the [FIC example](https://github.com/marcglasberg/fast_immutable_collections#11-json-support) they have an explicit toJson added manually.
+In `<body>` add:
 
-We can look into better ways around this if it is problematic.
-
-### (possibly) Add a launch configuration for web that uses port 5000
-
-```json
-{
-  "name": "web",
-  "request": "launch",
-  "type": "dart",
-  "deviceId": "chrome",
-  "args": ["--web-hostname", "localhost", "--web-port", "5000"]
-},
+```html
+<!-- Add a loading spinner in the center of the screen -->
+<div id="centerOfScreen" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 ```
+
+</details>
 
 [< README]: ../../README.md

@@ -1,5 +1,5 @@
 name: redfire
-description: A Redux based architecture connected to Firebase streams.
+description: A redux based state management & navigation solution, with prebuilt modules for Firebase features.
 version: 0.0.1
 
 environment:
@@ -13,7 +13,7 @@ dependencies:
   firebase_core:
   firebase_auth:
   google_sign_in:
-  sign_in_with_apple:
+  sign_in_with_apple: ^3.3.0 # 3.2.0 → 3.3.0 was a breaking change due to federation
   cloud_firestore:
   url_launcher:
   redux:
