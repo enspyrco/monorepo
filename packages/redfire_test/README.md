@@ -4,15 +4,32 @@
 
 *Utilities to simplify testing in apps that use redfire.*
 
-## test-doubles
+## Setup
 
-We aim to follow the test-doubles nomenclature described in [Martin Fowler's 2006 TestDouble article](https://martinfowler.com/bliki/TestDouble.html).
+Add to `pubspec.yaml`
+
+```yaml
+dev_dependencies:
+  redfire_test:
+    git: https://github.com/enspyrco/redfire_test.git
+```
+
+## Using redfire_test
+
+### test-doubles
 
 *Test doubles* have the following types:
 
-- commonly used test doubles that are available pre-configured are referred to as *examples* and take the form `ClassNameExample.configuration` eg. `UserExample.nullMembers`
+**Examples**: commonly used test doubles that are available pre-configured are referred to as *examples* and take the form `ClassNameExample.configuration` eg. `UserExample.nullMembers`
 
-### Creating example objects
+**Mocks**:
+
+**Fakes**:
+
+We aim to follow the test-doubles nomenclature described in [Martin Fowler's 2006 TestDouble article](https://martinfowler.com/bliki/TestDouble.html).
+
+
+#### Creating example objects
 
 There are two approaches:
 
@@ -22,16 +39,16 @@ There are two approaches:
 1. Create an object directly, eg.
     1. AuthUserDataExample
 
-### Where do test-doubles live?
+#### Where do test-doubles live?
 
 We have
 
 - a general class that creates different objects: eg. Stubbed in src/test-doubles/stubbed.dart
 - examples in a specific file under the area, eg. src/test-doubles/auth/auth_user_data_examples.dart
 
-## tests
+### tests
 
-### Where do tests live?
+#### Where do tests live?
 
 unit-tests
 
@@ -43,9 +60,9 @@ use-case-tests
 - follow the flow of a use case, eg. action → dispatch → middleware → reducer
 - folder with both unit and integration tests (ie. instrumented/not)
 
-## test-harness
+### test-harness
 
-### WidgetTestHarness
+#### WidgetTestHarness
 
 A test harness to wrap a widget under test and provide all the functionality
 that a test may want in order to interact with the widget or check for expected
@@ -71,9 +88,9 @@ testWidgets('Widget under test shows expected UI', (WidgetTester tester) async {
 });
 ```
 
-## Special Goodies
+### Special Goodies
 
-### Helper function for find.byType
+#### Helper function for find.byType
 
 There is a problem with using generic types in `find.ByType`, see [flutter_test find.byType doesn't find generic types · Issue #58876](https://github.com/flutter/flutter/issues/58876).
 
