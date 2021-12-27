@@ -34,3 +34,6 @@ flutter drive --dart-define=RDT=true --target=test_driver/app.dart
 firebase emulators:start --project flireator --import=test/data
 http://localhost:4000
 ```
+
+## Scripts
+
