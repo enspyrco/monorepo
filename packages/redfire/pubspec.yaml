@@ -33,6 +33,8 @@ dev_dependencies:
   mockito:
   redfire_test:
     path: ../redfire_test
+  redfire_lints:
+    path: ../redfire_lints
 
 flutter:  
   fonts:

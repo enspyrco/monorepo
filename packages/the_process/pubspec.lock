@@ -277,6 +277,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_lints:
+    dependency: transitive
+    description:
+      name: flutter_lints
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   flutter_redux:
     dependency: "direct main"
     description:
@@ -416,6 +423,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.1"
+  lints:
+    dependency: transitive
+    description:
+      name: lints
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   logging:
     dependency: transitive
     description:
@@ -535,6 +549,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  redfire_lints:
+    dependency: "direct dev"
+    description:
+      path: "../redfire_lints"
+      relative: true
+    source: path
+    version: "1.0.0"
   redfire_test:
     dependency: "direct dev"
     description:

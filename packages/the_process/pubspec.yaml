@@ -33,6 +33,8 @@ dev_dependencies:
     sdk: flutter
   test: any
   mockito: any
+  redfire_lints:
+    path: ../redfire_lints
   redfire_test:
     path: ../redfire_test
   

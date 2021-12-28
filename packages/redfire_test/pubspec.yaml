@@ -22,6 +22,8 @@ dependencies:
 
   redfire:
     path: ../redfire
+  redfire_lints:
+    path: ../redfire_lints
 
 dev_dependencies:
   flutter_test:
