@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:redfire/actions.dart';
 
 import '../../../utils/build_context_extensions.dart';

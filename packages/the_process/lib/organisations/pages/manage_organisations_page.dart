@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
+import 'package:redfire/widgets.dart';
 
-import 'manage_organisations_page_view.dart';
+import '../widgets/delete_organisation_button.dart';
+import '../widgets/organisation_creator_view.dart';
+import '../widgets/organisation_selector_view.dart';
 
 part 'manage_organisations_page.freezed.dart';
 part 'manage_organisations_page.g.dart';
@@ -27,9 +29,34 @@ class ManageOrganisationsPageTransforms extends PageDataTransforms {
   ManageOrganisationsPageTransforms()
       : super(
           typeName: ManageOrganisationsPageData.className,
-          toMaterialPage: (pageData) => const MaterialPage<dynamic>(
-              key: ValueKey(ManageOrganisationsPageData),
-              child: ManageOrganisationsPageView()),
+          toMaterialPage: (pageData) => MaterialPage<dynamic>(
+              key: const ValueKey(ManageOrganisationsPageData),
+              child: ManageOrganisationsPage(
+                  pageData as ManageOrganisationsPageData)),
           fromJson: (json) => ManageOrganisationsPageData.fromJson(json),
         );
+}
+
+class ManageOrganisationsPage extends StatelessWidget {
+  const ManageOrganisationsPage(ManageOrganisationsPageData data, {Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: EmptyAppBar(),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              OrganisationSelectorView(),
+              DeleteOrganisationButton(),
+              OrganisationCreatorView()
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }
