@@ -1,1 +1,1 @@
-include: lib/lints.yaml
+include: package:redfire_lints/flutter.yaml

@@ -35,6 +35,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   test:
+  redfire_lints:
+    path: ../redfire_lints
   redfire_test:
     path: ../redfire_test
   build_runner:
