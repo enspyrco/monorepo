@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_redux/flutter_redux.dart';
 
 import '../../auth/enums/auth_step_enum.dart';
@@ -8,10 +7,10 @@ import '../../shared/widgets/waiting_indicator.dart';
 import '../../types/red_fire_state.dart';
 
 class InitialPage<T extends RedFireState> extends StatelessWidget {
-  const InitialPage(this._authPage, this._mainPage, {Key? key})
+  const InitialPage(this._authPage, this._homePage, {Key? key})
       : super(key: key);
   final Widget _authPage;
-  final Widget _mainPage;
+  final Widget _homePage;
   @override
   Widget build(BuildContext context) {
     return StoreConnector<T, AuthStepEnum>(
@@ -32,7 +31,7 @@ class InitialPage<T extends RedFireState> extends StatelessWidget {
                   distinct: true,
                   converter: (store) => store.state.auth.userData,
                   builder: (context, userData) =>
-                      (userData == null) ? _authPage : _mainPage);
+                      (userData == null) ? _authPage : _homePage);
             case AuthStepEnum.signingOut:
               return const WaitingIndicator('Signing Out...');
           }

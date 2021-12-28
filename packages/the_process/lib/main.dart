@@ -60,5 +60,5 @@ void main() => runApp(AppWidget<AppState>(
         ManageOrganisationsPageTransforms(),
         ProjectDetailPageTransforms(),
       ],
-      mainPage: const HomePage(),
+      homePage: const HomePage(),
     ));

@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:redfire/widgets.dart';
 
 import '../../adventures/models/adventure_model.dart';
 import '../../app_state.dart';
 import '../../challenges/models/challenge_model.dart';
+import '../../shared/models/drop_down_model.dart';
+import '../../shared/pages/new_item_dialog.dart';
+import '../../shared/widgets/adventure_nodes_drop_down.dart';
 import '../../steps/models/step_model.dart';
 import '../../tasks/models/task_model.dart';
-import '../models/drop_down_model.dart';
-import '../widgets/adventure_nodes_drop_down.dart';
-import 'new_item_dialog.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _HomePageState extends State<HomePage> {
   bool showingDialog = false;
 
   /// Add a handler to [HardwareKeyboard] to handle Cmd-N.

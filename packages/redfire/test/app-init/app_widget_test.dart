@@ -22,7 +22,7 @@ void main() {
       expect(find.byType(GoogleSignInButton), findsOneWidget);
     });
 
-    testWidgets('shows MainPage if authenticated', (WidgetTester tester) async {
+    testWidgets('shows HomePage if authenticated', (WidgetTester tester) async {
       // Create an AppState representing an authenticated state.
       final authenticatedState = ExampleAppState.init().copyWith.auth(
           userData: AuthUserDataExample.minimal,
@@ -40,13 +40,13 @@ void main() {
       expect(find.byType(InitializingIndicator), findsNothing);
       expect(find.byType(InitializingErrorPage), findsNothing);
       expect(find.byType(GoogleSignInButton), findsNothing);
-      expect(find.byType(EmptyMainPage), findsOneWidget);
+      expect(find.byType(EmptyHomePage), findsOneWidget);
     });
 
     // This is a test with a real store & real services (wrapping faked
     // plugins).
     testWidgets(
-      '(with real services) shows MainPage after authentication',
+      '(with real services) shows HomePage after authentication',
       (WidgetTester tester) async {
         // Create real services with mocked plugins for the service locator.
         final services = ServicesHarnessForAuth();
@@ -69,7 +69,7 @@ void main() {
 
         await tester.pump();
 
-        expect(find.byType(EmptyMainPage), findsOneWidget);
+        expect(find.byType(EmptyHomePage), findsOneWidget);
       },
       skip:
           true, // TODO: determine why the stream from ServicesHarnessForAuth is already listened to

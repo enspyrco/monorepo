@@ -5,10 +5,10 @@ import 'adventures/actions/read_adventures_action.dart';
 import 'adventures/middleware/read_adventures_middleware.dart';
 import 'app_state.dart';
 import 'challenges/middleware/read_challenges_middleware.dart';
+import 'home/pages/home_page.dart';
 import 'redfire_options.dart';
 import 'shared/middleware/create_adventure_node_middleware.dart';
 import 'shared/middleware/select_adventure_node_middleware.dart';
-import 'shared/pages/main_page.dart';
 import 'shared/reducers/select_adventure_node_reducer.dart';
 import 'shared/reducers/set_adventure_nodes_reducer.dart';
 
@@ -31,5 +31,5 @@ void main() => runApp(AppWidget<AppState>(
       ],
       pageTransforms: const [],
       title: 'adventure_maker', // optional, defaults to 'Title Note Set'
-      mainPage: const MainPage(),
+      homePage: const HomePage(),
     ));

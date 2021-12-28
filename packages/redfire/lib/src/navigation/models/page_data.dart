@@ -36,7 +36,7 @@ final _fromJsonMap = <String, PageDataFromJson>{};
 // eg. when creating _fromJsonMap start with a map literal populated with the redfire
 // fromJson functions (needs testing in place)
 void addPageTransforms<T extends RedFireState>(
-    Widget mainPage, List<PageDataTransforms> transforms) {
+    Widget homePage, List<PageDataTransforms> transforms) {
   // add the transforms from the child package
   // pageTransformMaps.addAll(transforms);
   for (var transform in transforms) {
@@ -48,7 +48,7 @@ void addPageTransforms<T extends RedFireState>(
   toMaterialPageMap[InitialPageData.className] = (_) =>
       MaterialPage<InitialPage>(
           key: const ValueKey(InitialPage),
-          child: InitialPage<T>(AuthPage<T>(), mainPage));
+          child: InitialPage<T>(AuthPage<T>(), homePage));
   toMaterialPageMap[ProfilePageData.className] = (_) =>
       MaterialPage<ProfilePage>(
           key: const ValueKey(ProfilePage), child: ProfilePage<T>());

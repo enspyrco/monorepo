@@ -23,7 +23,7 @@ class AppWidgetHarness<T extends RedFireState> {
       : _store = FakeStore(initialState),
         _firebase = FakeFirebaseWrapper() {
     _appWidget = AppWidget.fromStore(
-      mainPage: const EmptyMainPage(),
+      homePage: const EmptyhomePage(),
       initializedStore: _store,
       firebaseWrapper: FakeFirebaseWrapper(),
       pageTransforms: const [],
@@ -39,7 +39,7 @@ class AppWidgetHarness<T extends RedFireState> {
   })  : _store = initializedStore,
         _firebase = firebaseWrapper ?? FakeFirebaseWrapper() {
     _appWidget = AppWidget.fromStore(
-      mainPage: const EmptyMainPage(),
+      homePage: const EmptyhomePage(),
       initializedStore: _store,
       firebaseWrapper: _firebase,
       pageTransforms: const [],
@@ -58,7 +58,7 @@ class AppWidgetHarness<T extends RedFireState> {
         databaseService: services.database,
         platformService: services.platform);
     _appWidget = AppWidget.fromStore(
-      mainPage: const EmptyMainPage(),
+      homePage: const EmptyHomePage(),
       initializedStore: _store,
       firebaseWrapper: _firebase,
       pageTransforms: const [],
