@@ -37,3 +37,10 @@ http://localhost:4000
 
 ## Scripts
 
+Shell scripts for managing the monorepo were not being used so moved from top-level of the monorepo into flireator:
+
+- run_clean.sh
+- run_code_gen.sh
+- run_upgrade.sh
+
+The scripts will be used when starting processes from flireator.

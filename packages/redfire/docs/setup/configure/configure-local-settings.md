@@ -42,6 +42,8 @@ Optionally: use the redfire lints by updating your `analysis_options.yaml` to
 include: package:redfire/lints.yaml
 ```
 
+You can then (if desired) remove the import of `flutter_lints` in your `pubspec.yaml` because `redfire/lints.yaml` imports it.
+
 ## snippets
 
 Using code snippets will save you *lots* of time & hassle

@@ -12,8 +12,8 @@ import '../../challenges/widgets/challenge_stepper.dart';
 import '../../game/tech_world_game.dart';
 import '../../utils/extensions/build_context_extensions.dart';
 
-class MainPage extends StatelessWidget {
-  const MainPage({required TechWorldGame game, Key? key})
+class HomePage extends StatelessWidget {
+  const HomePage({required TechWorldGame game, Key? key})
       : _game = game,
         super(key: key);
 

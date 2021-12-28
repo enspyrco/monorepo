@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../organisations/widgets/organisation_selector_view.dart';
 import '../../projects/widgets/grid-view/projects_grid_view.dart';
-import 'app_account_button.dart';
+import '../widgets/app_account_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
