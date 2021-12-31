@@ -18,7 +18,7 @@ export 'src/test-doubles/services/mocks/service_test_doubles.mocks.dart';
 export 'src/test-doubles/services/stubs/services_with_mocked_plugins.dart';
 export 'src/test-doubles/stubbed.dart';
 export 'src/test-doubles/test_exception.dart';
-export 'src/test-doubles/widgets/examples/empty_main_page.dart';
+export 'src/test-doubles/widgets/examples/empty_home_page.dart';
 export 'src/test-doubles/wrappers/examples/fake_firebase_wrapper.dart';
 export 'src/utils/app_widget_harness.dart';
 export 'src/utils/locator_utils.dart';

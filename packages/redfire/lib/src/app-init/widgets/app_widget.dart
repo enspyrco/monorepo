@@ -34,7 +34,7 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
   AppWidget.fromStore(
       {Key? key,
       required Store<T> initializedStore,
-      required Widget mainPage,
+      required Widget homePage,
       List<PageDataTransforms>? pageTransforms,
       FirebaseWrapper? firebaseWrapper,
       RedFireConfig? config,
@@ -45,13 +45,13 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
         _title = title ?? 'Title Not Set',
         _initialActions = [],
         super(key: key) {
-    addPageTransforms<T>(mainPage, pageTransforms ?? []);
+    addPageTransforms<T>(homePage, pageTransforms ?? []);
   }
 
   AppWidget(
       {Key? key,
       required T initialState,
-      required Widget mainPage,
+      required Widget homePage,
       List<ReduxAction>? initialActions,
       List<ReduxAction>? onSignInActions,
       List<Reducer<T>>? reducers,
@@ -65,7 +65,7 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
         _title = title ?? 'Title Not Set',
         _initialActions = initialActions ?? [],
         super(key: key) {
-    addPageTransforms<T>(mainPage, pageTransforms ?? []);
+    addPageTransforms<T>(homePage, pageTransforms ?? []);
     // create the redux store, combining any provided reducers and middleware
     _store = Store<T>((redfireReducers<T>() + (reducers ?? [])).combine(),
         initialState: initialState,

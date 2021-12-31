@@ -104,7 +104,7 @@ void main() => runApp(AppWidget<AppState>(
   reducers: const [],
   pageTransforms: const [],
   title: <Your App Title>, // optional, defaults to 'Title Note Set'
-  mainPage: <Main Page Widget>, // shown on successful authentication
+  homePage: <Home Page>, // shown on successful authentication
 ));
 ```
 
@@ -153,12 +153,12 @@ class AppState with _$AppState, RedFireState {
 ```Dart
 import 'package:flutter/material.dart';
 
-class MainPage extends StatelessWidget {
-  const MainPage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('MainPage'));
+    return const Center(child: Text('HomePage'));
   }
 }
 ```

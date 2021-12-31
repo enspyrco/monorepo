@@ -52,5 +52,5 @@ void main() {
       config: RedFireOptions.currentPlatform,
       initializedStore: store,
       title: 'Tech World',
-      mainPage: HomePage(game: game)));
+      homePage: HomePage(game: game)));
 }
