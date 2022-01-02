@@ -52,7 +52,7 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-
-      - run: flutter pub run build_runner build
-        if ${{ matrix.run_code_gen }}
+      - name: Run code gen if required
+        if: ${{ matrix.run_code_gen }}
+        run: flutter pub run build_runner build
       - run: flutter test
