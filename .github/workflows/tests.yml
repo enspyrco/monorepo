@@ -48,10 +48,12 @@ jobs:
     container: cirrusci/flutter:2.8.1
     defaults:
       run:
-        working-directory: packages/${{ matrix.package_name }}
+        working-directory: ./packages/${{ matrix.package_name }}
     
     steps:
       - uses: actions/checkout@v2
+      - run: pwd
+      - run: ls
       - run: flutter pub get
       - name: Run build_runner if required
         if: ${{ matrix.run_code_gen }}
