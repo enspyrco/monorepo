@@ -31,33 +31,6 @@ jobs:
             project_type: dart
           - package_name: ws_game_server_types
             project_type: dart
-          # - package: adventure_maker
-          #   package_name: adventure_maker
-          #   run_code_gen: yes
-          #   project_type: flutter
-          # - package: flireator
-          #   package_name: flireator
-          #   project_type: flutter
-          # - package: redfire
-          #   package_name: redfire
-          #   project_type: flutter
-          # - package: redfire_test
-          #   package_name: redfire_test
-          #   project_type: flutter
-          # - package: tech_world
-          #   package_name: tech_world
-          #   run_code_gen: yes
-          #   project_type: flutter
-          # - package: the_process
-          #   package_name: the_process
-          #   run_code_gen: yes
-          #   project_type: flutter
-          # - package: ws_game_server
-          #   package_name: ws_game_server
-          #   project_type: dart
-          # - package: ws_game_server_types
-          #   package_name: ws_game_server_types
-          #   project_type: dart
     
     container: cirrusci/flutter:2.8.1
     defaults:
@@ -66,8 +39,6 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-      - run: pwd
-      - run: ls
       - run: flutter pub get
       - name: Run build_runner if required
         if: ${{ matrix.run_code_gen }}
