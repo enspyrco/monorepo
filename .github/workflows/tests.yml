@@ -18,7 +18,7 @@ jobs:
             project_type: flutter
           - package: flireator
             package_name: flireator
-            run_code_gen: yes
+            # run_code_gen: yes
             project_type: flutter
           - package: redfire
             package_name: redfire
