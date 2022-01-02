@@ -10,26 +10,6 @@
 
 [Solutions to Common Problems](docs/common_problems.md)
 
-## Test Cloud Functions Locally
-
-Open the `functions/` folder with VS Code and run the Typescript compiler in watch mode:
-
-> Shift-Cmd-P then "Tasks: Run Build Tasks"
-
-Or
-
-> cd functions && tsc --watch
-
-### Run e2e tests with vscode-jest-runner
-
-> Install [firsttris.vscode-jest-runner](https://github.com/firsttris/vscode-jest-runner).
-
-### Interact with functions via Firebase shell
-
-Run a Cloud Functions shell:
-
-> firebase functions:shell
-
 ## Build & Depoy Web
 
 - make sure index.html is the auto version, not the cdn version
