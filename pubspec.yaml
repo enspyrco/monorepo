@@ -1,0 +1,19 @@
+name: deploy_coverage
+description: Deploy coverage to Firebase hosting.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=2.14.4 <3.0.0'
+
+dependencies: 
+  crypto: ^3.0.1
+  googleapis_auth: ^1.2.0
+  http: ^0.13.4
+  firebase_hosting_api_client:
+    git: https://github.com/enspyrco/firebase_hosting_api_client.git
+    # path: ../../api_clients/firebase_hosting_api_client
+
+dev_dependencies:
+  lints: ^1.0.0
+  test: ^1.20.1
