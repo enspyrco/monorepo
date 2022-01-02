@@ -6,7 +6,7 @@ A container image with flutter and various CI tools.
 
 There are tools available to:
 
-- deploy coverage data to Firebase Hosting.
+- deploy coverage data to Firebase Hosting
 
 Future Work
 
