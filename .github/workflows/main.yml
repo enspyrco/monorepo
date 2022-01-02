@@ -24,4 +24,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: flutter_container_image/2.8.1
+          tags: enspyrco/flutter_container_image:2.8.1
