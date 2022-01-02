@@ -51,6 +51,7 @@ jobs:
           path: coverage/
 
   upload:
+    runs-on: ubuntu-latest
     needs: coverage
     container: enspyrco/flutter_container_image:2.8.1
 
