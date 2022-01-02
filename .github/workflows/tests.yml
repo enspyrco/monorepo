@@ -14,43 +14,45 @@ jobs:
         include:
           - package: adventure_maker
             package_name: adventure_maker
-            run_code_gen: 'yes'
+            run_code_gen: yes
             project_type: flutter
           - package: flireator
             package_name: flireator
-            run_code_gen: 'yes'
+            run_code_gen: yes
             project_type: flutter
           - package: redfire
             package_name: redfire
-            run_code_gen: 'no'
+            # run_code_gen: no
             project_type: flutter
           - package: redfire_test
             package_name: redfire_test
-            run_code_gen: 'no'
+            # run_code_gen: no
             project_type: flutter
           - package: tech_world
             package_name: tech_world
-            run_code_gen: 'yes'
+            run_code_gen: yes
             project_type: flutter
           - package: the_process
             package_name: the_process
-            run_code_gen: 'yes'
+            run_code_gen: yes
             project_type: flutter
           - package: ws_game_server
             package_name: ws_game_server
-            run_code_gen: 'no'
+            # run_code_gen: no
             project_type: dart
           - package: ws_game_server_types
             package_name: ws_game_server_types
-            run_code_gen: 'no'
+            # run_code_gen: no
             project_type: dart
+    
+    container: cirrusci/flutter:2.8.1
+    defaults:
+      run:
+        working-directory: packages/${{ matrix.package_name }}
+    
     steps:
       - uses: actions/checkout@v2
-      - uses: enspyrco/run-tests-action@v0
-        with:
-          packages_path: packages/
-          package_name: ${{ matrix.package_name }}
-          run_code_gen: ${{ matrix.run_code_gen }}
-          project_type: ${{ matrix.project_type }}
 
-    
+      - run: flutter pub run build_runner build
+        if ${{ matrix.run_code_gen }}
+      - run: flutter test
