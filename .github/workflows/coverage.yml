@@ -11,28 +11,57 @@ jobs:
     strategy:
       matrix:
         include:
-          - package: adventure_maker
-            package_name: "adventure_maker"
-          - package: flireator
-            package_name: "flireator"
-          - package: redfire
-            package_name: "redfire"
-          - package: redfire_test
-            package_name: "redfire_test"
-          - package: tech_world
-            package_name: "tech_world"
-          - package: the_process
-            package_name: "the_process"
-          - package: ws_game_server
-            package_name: "ws_game_server"
-          - package: ws_game_server_types
-            package_name: "ws_game_server_types"
+          - package_name: adventure_maker
+            run_code_gen: yes
+            project_type: flutter
+          - package_name: flireator
+            project_type: flutter
+          - package_name: redfire
+            project_type: flutter
+          - package_name: redfire_test
+            project_type: flutter
+          - package_name: tech_world
+            run_code_gen: yes
+            project_type: flutter
+          - package_name: the_process
+            run_code_gen: yes
+            project_type: flutter
+          - package_name: ws_game_server
+            project_type: dart
+          - package_name: ws_game_server_types
+            project_type: dart
+  
+    container: cirrusci/flutter:2.8.1
+    defaults:
+      run:
+        working-directory: ./packages/${{ matrix.package_name }}
+    
     steps:
-        - uses: actions/checkout@v2
-        - uses: enspyrco/test-coverage-action@v0
-          with:
-            site_id: enspyrco
-            service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-            packages_path: packages/
-            package_name: ${{ matrix.package_name }}
-          
+      - uses: actions/checkout@v2
+
+      - run: flutter pub get
+      - name: Run build_runner if required
+        if: ${{ matrix.run_code_gen }}
+        run: flutter pub run build_runner build
+      - run: flutter test --coverage && genhtml coverage/lcov.info -o coverage
+      
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.package_name }}
+          path: coverage/
+
+  upload:
+    needs: coverage
+    container: enspyrco/flutter_container_image:2.8.1
+
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          path: ./artifacts
+    
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: ./artifacts
+
+# service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+# site_id: enspyrco      
