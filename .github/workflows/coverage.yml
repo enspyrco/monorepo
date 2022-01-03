@@ -60,4 +60,4 @@ jobs:
         with:
           path: ./coverage
     
-      - run: deploy_coverage -k ${{ secrets.FIREBASE_SERVICE_ACCOUNT }} -p enspyrco
+      - run: /deploy_coverage -k ${{ secrets.FIREBASE_SERVICE_ACCOUNT }} -p enspyrco
