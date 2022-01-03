@@ -24,4 +24,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: enspyrco/dart_ci_tools:2.15.1
+          tags: enspyrco/dart-ci-tools:2.15.1

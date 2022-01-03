@@ -1,8 +1,8 @@
-# ci-tools
+# dart-ci-tools
 
-Container images from Flutter or Dart images, various CI tools.
+Container built from the official Dart image, with various CI tools written in Dart.
 
-> [Project Notes](https://enspyrco.notion.site/ci-tools-2685a4251b11427faebb5d311ae66ad8)
+> [Project Notes](https://enspyrco.notion.site/dart-ci-tools-2685a4251b11427faebb5d311ae66ad8)
 
 There are tools available to:
 
