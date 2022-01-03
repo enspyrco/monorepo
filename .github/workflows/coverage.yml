@@ -48,21 +48,21 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.package_name }}
-          path: coverage/
+          path: ./packages/${{ matrix.package_name }}/coverage/
 
   upload:
     runs-on: ubuntu-latest
     needs: coverage
-    container: enspyrco/flutter_container_image:2.8.1
+    container: enspyrco/dart-ci-tools:2.15.1
 
     steps:
       - uses: actions/download-artifact@v2
         with:
-          path: ./artifacts
+          path: ./coverage
     
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: ./artifacts
+        working-directory: ./coverage
 
 # service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
 # site_id: enspyrco      
