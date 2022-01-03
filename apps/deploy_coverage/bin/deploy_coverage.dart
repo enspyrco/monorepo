@@ -1,28 +1,56 @@
-import 'package:deploy_coverage/models/repo_config.dart';
-import 'package:deploy_coverage/utils/locator.dart';
+import 'dart:io';
+
+import 'package:args/args.dart';
 import 'package:firebase_hosting_api_client/client.dart';
 
-/// The CWD of the app is assumed to be $GITHUB_WORKSPACE
-/// This is true when run with the current entrypoint.sh
-void main(List<String> arguments) async {
-  final workspaceDir = Locator.getEnvVar('GITHUB_WORKSPACE');
-  final key = Locator.getEnvVar('INPUT_SERVICE_ACCOUNT_KEY');
-  if (key.isEmpty) throw 'key not found, check service_account_key input';
+/// A ServiceAccountKey is required to upload to Firebase Hosting.
+/// See README for setup info.
+///
+/// The CWD of the app is set to the first found of the following:
+///   - the --workdir flag
+///   - the $GITHUB_WORKSPACE envvar
+///   - otherwise the directory of the app is used
+///
 
-  var repo = RepoConfig.detect();
-  final uploadData = await UploadData.createFrom(
-      path: workspaceDir + '/' + repo.dirPath + 'coverage');
+/// cli options
+const keyArg = 'key';
+const projectIdArg = 'projectId';
+const localPathArg = 'localPath';
+const remotePathArg = 'remotePath';
+
+void main(List<String> arguments) async {
+  exitCode = 0; // presume success
+  final parser = ArgParser()
+    ..addOption(keyArg,
+        abbr: 'k',
+        mandatory: true,
+        help: 'A ServiceAccountKey used for uploading to Firebase Hosting')
+    ..addOption(projectIdArg,
+        abbr: 'p',
+        mandatory: true,
+        help: 'The ID of the Firebase project that will be uploaded to')
+    ..addOption(localPathArg,
+        abbr: 'l',
+        defaultsTo: 'coverage',
+        help:
+            'Everything in the directory aat this path will be uploaded, defaults to ./coverage')
+    ..addOption(remotePathArg,
+        abbr: 'r',
+        help: 'The uploaded files will be accessible at this path',
+        defaultsTo: '');
+
+  var results = parser.parse(arguments);
+
+  await upload(results[keyArg], results[projectIdArg], results[localPathArg],
+      results[remotePathArg]);
+}
+
+Future<void> upload(String serviceAccountKey, String projectId,
+    String localPath, String remotePath) async {
+  final uploadData = await UploadData.createFrom(path: localPath);
 
   var client = await FirebaseHostingApiClient.create(
-      serviceAccountKey: key, projectId: repo.projectId);
-
-  // Allow coverage data to be uploaded without overwriting by first downloading
-  // info for current files & adding to UploadData
-  if (repo.isMultiPackage) {
-    var currentVersion = await client.getCurrentVersion();
-    var currentFiles = await client.listFiles(versionName: currentVersion);
-    uploadData.add(currentFiles);
-  }
+      serviceAccountKey: serviceAccountKey, projectId: projectId);
 
   var newVersion = await client.createNewVersion();
 

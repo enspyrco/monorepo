@@ -1,0 +1,16 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "deploy_coverage",
+      "cwd": "apps/deploy_coverage",
+      "program": "bin/deploy_coverage.dart",
+      "request": "launch",
+      "args": ["-p", "enspyrco"],
+      "type": "dart"
+    }
+  ]
+}

@@ -20,12 +20,12 @@ Example: deploying coverage data to Firebase Hosting:
 upload:
     runs-on: ubuntu-latest
     needs: coverage
-    container: enspyrco/ci_tools_dart:2.15.1
+    container: enspyrco/dart-ci-tools:2.15.1
 
     steps:
       - uses: actions/download-artifact@v2
         with:
           path: ./coverage
 
-      - run: dart run apps/deploy_coverage.dart ...
+      - run: deploy_coverage ...
 ```

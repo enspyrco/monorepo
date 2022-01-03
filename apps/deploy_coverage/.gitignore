@@ -11,4 +11,10 @@ key.json
 
 
 .DS_Store
+
+# when it's ready, use dependabot https://github.com/dependabot/dependabot-core/pull/3438
+# and check in the lock file
 pubspec.lock
+
+# test data
+coverage/deploy_coverage/
