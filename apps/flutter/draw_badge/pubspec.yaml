@@ -1,0 +1,22 @@
+name: draw_badge
+description: Draw a badge for the given coverage percent and save as a png file.
+version: 0.0.1
+
+environment:
+  sdk: ">=2.15.1 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  path_drawing: ^1.0.0
+  xml_parser: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+  test: ^1.19.5
+
+flutter:
+  assets:
+    - assets/fonts/
