@@ -11,7 +11,7 @@ import 'utils/save_child_widget.dart';
 void main() {
   testWidgets('Save BadgeWidget to /tmp/out.png', (tester) async {
     await tester.runAsync(() async {
-      const fontFamily = 'Roboto-Regular';
+      const fontFamily = 'OpenSans-Regular';
       final fontFile = rootBundle.load('assets/fonts/$fontFamily.ttf');
       var loader = FontLoader(fontFamily)..addFont(fontFile);
       await loader.load();
@@ -19,7 +19,7 @@ void main() {
       final completer = Completer<Uint8List>();
       var widget = SaveChildWidget(
         font: fontFamily,
-        child: const BadgeWidget(),
+        child: BadgeWidget(33, 'dart'),
         completer: completer,
       );
 

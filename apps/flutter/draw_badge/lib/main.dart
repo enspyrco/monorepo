@@ -10,9 +10,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(fontFamily: 'OpenSans'),
       home: Scaffold(
-        body: BadgeWidget(),
+        body: BadgeWidget(55, 'flutter'),
       ),
     );
   }

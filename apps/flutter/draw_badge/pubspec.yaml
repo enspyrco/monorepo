@@ -20,3 +20,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/fonts/
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf

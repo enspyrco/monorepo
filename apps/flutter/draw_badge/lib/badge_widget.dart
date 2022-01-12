@@ -3,61 +3,68 @@ import 'package:flutter/material.dart';
 import 'dart_logo_painter.dart';
 
 class BadgeWidget extends StatelessWidget {
-  const BadgeWidget({Key? key}) : super(key: key);
+  BadgeWidget(this.percentNum, this.projectType, {Key? key}) : super(key: key) {
+    percentColor = percentNum < 50
+        ? Colors.red[400]!
+        : percentNum < 80
+            ? Colors.amber[700]!
+            : Colors.green[500]!;
+    projectColor =
+        projectType == 'dart' ? Colors.blue[200]! : Colors.blue[600]!;
+  }
+
+  final int percentNum;
+  final String projectType;
+  late final Color percentColor;
+  late final Color projectColor;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        BadgeBackground(percentColor),
         ClipRect(
-          clipper: LeftClipper(),
-          child: BadgeBackground(Colors.red[400]!),
+          clipper: RightClipper(percentNum),
+          child: BadgeBackground(projectColor),
         ),
-        ClipRect(
-          clipper: RightClipper(),
-          child: BadgeBackground(Colors.blue[200]!),
-        ),
-        const PositionedFlutterLogo(),
-        // const PositionedDartLogo(),
-        const PositionedText(),
+        if (projectType == 'flutter') const PositionedFlutterLogo(),
+        if (projectType == 'dart') const PositionedDartLogo(),
+        PositionedText(percentNum),
       ],
     );
   }
 }
 
 class RightClipper extends CustomClipper<Rect> {
-  @override
-  Rect getClip(Size size) =>
-      Rect.fromPoints(const Offset(0, 0), Offset(240, size.height));
+  RightClipper(this.percentNum);
+
+  final int percentNum;
 
   @override
-  bool shouldReclip(covariant CustomClipper<Rect> oldClipper) => true;
-}
-
-class LeftClipper extends CustomClipper<Rect> {
-  @override
-  Rect getClip(Size size) =>
-      Rect.fromPoints(const Offset(240, 0), Offset(size.width, size.height));
+  Rect getClip(Size size) => Rect.fromPoints(
+      const Offset(0, 0), Offset(size.width * percentNum / 100, size.height));
 
   @override
   bool shouldReclip(covariant CustomClipper<Rect> oldClipper) => true;
 }
 
 class PositionedText extends StatelessWidget {
-  const PositionedText({Key? key}) : super(key: key);
+  const PositionedText(this.percentNum, {Key? key}) : super(key: key);
+
+  final int percentNum;
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 30,
-      left: 80,
+      top: 25,
+      left: 85,
       child: SizedBox(
         width: 260,
         height: 60,
         child: Text(
-          'coverage  20%',
+          'coverage  $percentNum%',
           style: TextStyle(
-              color: Colors.grey[800]!,
+              color: Colors.grey[100]!,
               fontSize: 35,
               backgroundColor: Colors.transparent),
         ),
