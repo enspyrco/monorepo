@@ -1,8 +1,8 @@
-# enspyr-ci-tools
+# ci-tools
 
 A Docker container with the flutter tool & various CI tools installed in a minimal ubuntu image.
 
-> [Project Notes](https://enspyrco.notion.site/enspyr-ci-tools-2685a4251b11427faebb5d311ae66ad8)
+> [Project Notes](https://enspyrco.notion.site/ci-tools-2685a4251b11427faebb5d311ae66ad8)
 
 With the available tools you can:
 
@@ -35,7 +35,7 @@ jobs:
           - package_name: package2
           ...
   
-    container: enspyrco/enspyr-ci-tools:beta
+    container: enspyrco/ci-tools:beta
     defaults:
       run:
         working-directory: ./packages/${{ matrix.package_name }}
@@ -52,7 +52,7 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     needs: coverage
-    container: enspyrco/enspyr-ci-tools:beta
+    container: enspyrco/ci-tools:beta
 
     steps:
       - uses: actions/download-artifact@v2
