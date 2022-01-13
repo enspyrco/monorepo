@@ -31,9 +31,9 @@ void main(List<String> arguments) async {
         help: 'The ID of the Firebase project that will be uploaded to')
     ..addOption(localPathArg,
         abbr: 'l',
-        defaultsTo: 'coverage',
+        defaultsTo: '/coverage',
         help:
-            'Everything in the directory aat this path will be uploaded, defaults to ./coverage')
+            'Everything in the directory aat this path will be uploaded, defaults to /coverage')
     ..addOption(remotePathArg,
         abbr: 'r',
         help: 'The uploaded files will be accessible at this path',
