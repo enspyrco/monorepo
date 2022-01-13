@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  coverage:
+  generate_coverage:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -31,7 +31,7 @@ jobs:
           - package_name: ws_game_server_types
             project_type: dart
   
-    container: cirrusci/flutter:2.8.1
+    container: enspyrco/ci-tools:beta
     defaults:
       run:
         working-directory: ./packages/${{ matrix.package_name }}
@@ -50,14 +50,15 @@ jobs:
           name: ${{ matrix.package_name }}
           path: ./packages/${{ matrix.package_name }}/coverage/
 
-  upload:
+  upload_coverage:
     runs-on: ubuntu-latest
-    needs: coverage
-    container: enspyrco/dart-ci-tools:2.15.1
+    needs: generate_coverage
+    container: enspyrco/ci-tools:beta
 
     steps:
       - uses: actions/download-artifact@v2
         with:
-          path: ./coverage
+          path: /coverage
     
-      - run: /deploy_coverage -k '${{secrets.FIREBASE_SERVICE_ACCOUNT}}' -p enspyrco
+      - run: cd /apps/flutter/draw_badge && flutter test test/badge_widget_test.dart
+      - run: /deploy_coverage -k '${{secrets.FIREBASE_SERVICE_ACCOUNT}}' -p enspyrco-monorepo
