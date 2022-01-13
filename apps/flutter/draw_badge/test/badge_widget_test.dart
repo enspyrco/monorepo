@@ -17,8 +17,8 @@ void main() {
       var loader = FontLoader(fontFamily)..addFont(fontFile);
       await loader.load();
 
-      // The CWD is assumed to be / and the coverage dir is assumed to be /coverage
-      final coverageDir = Directory('coverage');
+      // The coverage files are assumed to be in /coverage
+      final coverageDir = Directory('/coverage');
       for (final entity in coverageDir.listSync()) {
         if (entity is Directory) {
           final records = await Parser.parse('${entity.path}/lcov.info');
