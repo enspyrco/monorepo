@@ -10,15 +10,17 @@ import 'package:lcov_parser/lcov_parser.dart';
 import 'utils/save_child_widget.dart';
 
 void main() {
-  testWidgets('Save BadgeWidget to /tmp/out.png', (tester) async {
+  testWidgets('Create a BadgeWidget for each package & save to a png file',
+      (tester) async {
     await tester.runAsync(() async {
       const fontFamily = 'OpenSans-Regular';
       final fontFile = rootBundle.load('assets/fonts/$fontFamily.ttf');
       var loader = FontLoader(fontFamily)..addFont(fontFile);
       await loader.load();
 
-      // The coverage files are assumed to be in /coverage
-      final coverageDir = Directory('/coverage');
+      var coveragePath = '/coverage';
+      // var coveragePath = 'test/data/coverage';
+      final coverageDir = Directory(coveragePath);
       for (final entity in coverageDir.listSync()) {
         if (entity is Directory) {
           final records = await Parser.parse('${entity.path}/lcov.info');

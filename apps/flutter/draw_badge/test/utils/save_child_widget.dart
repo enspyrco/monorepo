@@ -41,13 +41,8 @@ class _SaveChildWidgetState extends State<SaveChildWidget> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) => _capturePng());
-  }
-
-  @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) => _capturePng());
     return MaterialApp(
         theme: ThemeData(fontFamily: widget._font),
         home: Scaffold(
