@@ -2,7 +2,7 @@
 
 A Docker container with the flutter tool & various CI tools installed in a minimal ubuntu image.
 
-> [Project Notes](https://enspyrco.notion.site/ci-tools-2685a4251b11427faebb5d311ae66ad8)
+> [Project Notes]
 
 With the available tools you can:
 
@@ -12,6 +12,10 @@ With the available tools you can:
 Future Work
 
 - Add a comment to the PR with the coverage and whether it is a passing number.
+
+## Setup
+
+[Setup deploying to Firebase]
 
 ## Usage
 
@@ -68,12 +72,15 @@ jobs:
 
 **Deploy coverage info to Firebase hosting.**
 
-### calculate_percentage
+### save_badge_info
 
-**Calculate percentage of lines covered from coverage info.**
+**Save project type and coverage percentage to a text file, to be consumed by draw_badge.**
 
 ## Flutter App
 
 ### draw_badge
 
 **Draw a badge for the given coverage percent and save as a png file.**
+
+[Project Notes]: https://enspyrco.notion.site/ci-tools-2685a4251b11427faebb5d311ae66ad8
+[Setup deploying to Firebase]: docs/firebase_config.md

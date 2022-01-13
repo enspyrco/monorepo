@@ -10,6 +10,7 @@ dependencies:
     sdk: flutter
   path_drawing: ^1.0.0
   xml_parser: ^1.0.0
+  lcov_parser: ^0.1.2
 
 dev_dependencies:
   flutter_test:

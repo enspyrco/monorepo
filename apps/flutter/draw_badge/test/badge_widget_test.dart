@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:draw_badge/badge_widget.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lcov_parser/lcov_parser.dart';
 
 import 'utils/save_child_widget.dart';
 
@@ -16,18 +17,33 @@ void main() {
       var loader = FontLoader(fontFamily)..addFont(fontFile);
       await loader.load();
 
-      final completer = Completer<Uint8List>();
-      var widget = SaveChildWidget(
-        font: fontFamily,
-        child: BadgeWidget(33, 'dart'),
-        completer: completer,
-      );
+      // The CWD is assumed to be / and the coverage dir is assumed to be /coverage
+      final coverageDir = Directory('coverage');
+      for (final entity in coverageDir.listSync()) {
+        if (entity is Directory) {
+          final records = await Parser.parse('${entity.path}/lcov.info');
+          var totalHits = 0, totalFinds = 0;
+          for (var rec in records) {
+            totalFinds += rec.lines?.found ?? 0;
+            totalHits += rec.lines?.hit ?? 0;
+          }
+          final percentCovered = ((totalHits / totalFinds) * 100).round();
+          final packageName = entity.path.split('/').last;
 
-      await tester.pumpWidget(widget);
+          final completer = Completer<Uint8List>();
+          var widget = SaveChildWidget(
+            font: fontFamily,
+            child: BadgeWidget(percentCovered, 'dart'),
+            completer: completer,
+          );
 
-      final imageData = await completer.future;
+          await tester.pumpWidget(widget);
 
-      File('/tmp/out.png').writeAsBytesSync(imageData);
+          final imageData = await completer.future;
+
+          File('${entity.path}/badge.png').writeAsBytesSync(imageData);
+        }
+      }
     });
   });
 }
