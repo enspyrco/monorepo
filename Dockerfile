@@ -18,3 +18,6 @@ COPY apps/dart/deploy_coverage/ /apps/dart/deploy_coverage/
 WORKDIR /apps/dart/deploy_coverage/
 RUN dart pub get
 RUN dart compile exe /apps/dart/deploy_coverage/bin/deploy_coverage.dart -o /deploy_coverage
+
+# Start at the root
+WORKDIR /
