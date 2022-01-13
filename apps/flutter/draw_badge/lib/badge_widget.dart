@@ -56,16 +56,16 @@ class PositionedText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 25,
-      left: 85,
+      top: 3,
+      left: 18,
       child: SizedBox(
-        width: 260,
-        height: 60,
+        width: 100,
+        height: 25,
         child: Text(
-          'coverage  $percentNum%',
+          'coverage $percentNum%',
           style: TextStyle(
               color: Colors.grey[100]!,
-              fontSize: 35,
+              fontSize: 12,
               backgroundColor: Colors.transparent),
         ),
       ),
@@ -79,11 +79,11 @@ class PositionedFlutterLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 20,
-      left: 15,
+      top: 5,
+      left: 2,
       child: Container(
-        width: 60,
-        height: 60,
+        width: 15,
+        height: 15,
         decoration: const FlutterLogoDecoration(),
       ),
     );
@@ -96,10 +96,10 @@ class PositionedDartLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 20,
-      left: 15,
+      top: 5,
+      left: 2,
       child: CustomPaint(
-        size: const Size(60, 60),
+        size: const Size(15, 15),
         painter: DartLogoPainter(),
       ),
     );
@@ -114,14 +114,14 @@ class BadgeBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 340,
-      height: 100,
+      width: 100,
+      height: 25,
       decoration: BoxDecoration(
           color: fillColor,
           border: Border.all(
             color: Colors.grey[500]!,
           ),
-          borderRadius: const BorderRadius.all(Radius.circular(20))),
+          borderRadius: const BorderRadius.all(Radius.circular(5))),
     );
   }
 }
