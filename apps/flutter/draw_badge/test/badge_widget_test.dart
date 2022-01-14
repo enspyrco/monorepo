@@ -26,7 +26,7 @@ void main() {
           print('package: ${entity.path.split('/').last}');
 
           final projectType =
-              File('${entity.path}/project_type.txt').readAsStringSync();
+              File('${entity.path}/project_type.txt').readAsStringSync().trim();
           final records = await Parser.parse('${entity.path}/lcov.info');
           var totalHits = 0, totalFinds = 0;
           for (var rec in records) {
