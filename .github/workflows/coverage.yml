@@ -34,21 +34,23 @@ jobs:
     container: enspyrco/ci-tools:beta
     defaults:
       run:
-        working-directory: ./packages/${{ matrix.package_name }}
+        working-directory: ./packages/${{matrix.package_name}}
     
     steps:
       - uses: actions/checkout@v2
 
       - run: flutter pub get
       - name: Run build_runner if required
-        if: ${{ matrix.run_code_gen }}
+        if: ${{matrix.run_code_gen}}
         run: flutter pub run build_runner build
       - run: flutter test --coverage && genhtml coverage/lcov.info -o coverage
+
+      - run: echo "${{matrix.project_type}}" > coverage/project_type.txt
       
       - uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.package_name }}
-          path: ./packages/${{ matrix.package_name }}/coverage/
+          name: ${{matrix.package_name}}
+          path: ./packages/${{matrix.package_name}}/coverage/
 
   upload_coverage:
     runs-on: ubuntu-latest
