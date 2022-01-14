@@ -23,6 +23,10 @@ void main() {
       final coverageDir = Directory(coveragePath);
       for (final entity in coverageDir.listSync()) {
         if (entity is Directory) {
+          print('package: ${entity.path.split('/').last}');
+
+          final projectType =
+              File('${entity.path}/project_type.txt').readAsStringSync();
           final records = await Parser.parse('${entity.path}/lcov.info');
           var totalHits = 0, totalFinds = 0;
           for (var rec in records) {
@@ -30,12 +34,11 @@ void main() {
             totalHits += rec.lines?.hit ?? 0;
           }
           final percentCovered = ((totalHits / totalFinds) * 100).round();
-          final packageName = entity.path.split('/').last;
 
           final completer = Completer<Uint8List>();
           var widget = SaveChildWidget(
             font: fontFamily,
-            child: BadgeWidget(percentCovered, 'dart'),
+            child: BadgeWidget(percentCovered, projectType),
             completer: completer,
           );
 
