@@ -45,3 +45,6 @@ dev_dependencies:
   build_runner: ^2.1.7
   freezed: ^1.1.0
   json_serializable: ^6.1.4
+
+flutter:
+  uses-material-design: true # we use material icons for dropdowns etc.
