@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 import '../../../app_state.dart';
@@ -8,8 +7,8 @@ import '../../models/project_model.dart';
 import 'projects_grid_item_new_button.dart';
 import 'projects_grid_item_view.dart';
 
-class ProjectsGridView extends StatelessWidget {
-  const ProjectsGridView({Key? key}) : super(key: key);
+class ProjectsGrid extends StatelessWidget {
+  const ProjectsGrid({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

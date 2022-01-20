@@ -7,8 +7,8 @@ import 'package:redfire/widgets.dart';
 import '../../app_state.dart';
 import '../../organisations/pages/manage_organisations_page.dart';
 
-class AppAccountButton extends StatelessWidget {
-  const AppAccountButton({Key? key}) : super(key: key);
+class AccountAvatar extends StatelessWidget {
+  const AccountAvatar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:redfire/widgets.dart';
 
 import 'app_state.dart';
-import 'home/pages/home_page.dart';
+import 'home/home_screen.dart';
 import 'organisations/actions/tap_organisations_action.dart';
 import 'organisations/middleware/create_organisation_middleware.dart';
 import 'organisations/middleware/delete_organisation_middleware.dart';
@@ -60,5 +60,5 @@ void main() => runApp(AppWidget<AppState>(
         ManageOrganisationsPageTransforms(),
         ProjectDetailPageTransforms(),
       ],
-      homePage: const HomePage(),
+      homePage: const HomeScreen(),
     ));

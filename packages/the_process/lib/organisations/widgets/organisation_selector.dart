@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redfire/extensions.dart';
 
@@ -9,8 +8,8 @@ import '../actions/set_selected_organisation_action.dart';
 import '../models/organisation_model.dart';
 import '../models/organisation_selector_view_model.dart';
 
-class OrganisationSelectorView extends StatelessWidget {
-  const OrganisationSelectorView({Key? key}) : super(key: key);
+class OrganisationSelector extends StatelessWidget {
+  const OrganisationSelector({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
