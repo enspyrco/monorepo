@@ -5,7 +5,7 @@ import 'package:redfire/widgets.dart';
 
 import '../widgets/delete_organisation_button.dart';
 import '../widgets/organisation_creator_view.dart';
-import '../widgets/organisation_selector_view.dart';
+import '../widgets/organisation_selector.dart';
 
 part 'manage_organisations_page.freezed.dart';
 part 'manage_organisations_page.g.dart';
@@ -50,7 +50,7 @@ class ManageOrganisationsPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [
-              OrganisationSelectorView(),
+              OrganisationSelector(),
               DeleteOrganisationButton(),
               OrganisationCreatorView()
             ],

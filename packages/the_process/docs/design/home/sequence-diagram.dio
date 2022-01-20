@@ -1,0 +1,62 @@
+<mxfile host="65bd71144e">
+    <diagram id="xAclrPg51hx2_NuKB_me" name="Page-1">
+        <mxGraphModel dx="414" dy="644" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="3" value="User" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+                    <mxGeometry x="30" y="50" width="20" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Auth" style="shape=umlLifeline;participant=umlControl;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+                    <mxGeometry x="120" y="50" width="40" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="4">
+                    <mxGeometry x="15" y="80" width="10" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Enter Details" style="html=1;verticalAlign=bottom;endArrow=block;" edge="1" parent="1" source="3" target="5">
+                    <mxGeometry width="80" relative="1" as="geometry">
+                        <mxPoint x="40" y="150" as="sourcePoint"/>
+                        <mxPoint x="120" y="150" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="120" y="130"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="8" value="Navigator" style="shape=umlLifeline;participant=umlBoundary;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="50" width="50" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="8">
+                    <mxGeometry x="20" y="170" width="10" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Push Home Screen" style="html=1;verticalAlign=bottom;endArrow=block;" edge="1" parent="1">
+                    <mxGeometry width="80" relative="1" as="geometry">
+                        <mxPoint x="140" y="220" as="sourcePoint"/>
+                        <mxPoint x="270" y="220" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="220.5" y="220"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="12" value="Login" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="145" y="140" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="175" y="140"/>
+                        </Array>
+                        <mxPoint x="150" y="160" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="13" value="Set App State" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="145" y="170" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="175" y="170"/>
+                            <mxPoint x="175" y="190"/>
+                        </Array>
+                        <mxPoint x="150" y="190" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
