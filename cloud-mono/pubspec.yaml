@@ -1,0 +1,17 @@
+name: curator
+description: A Dart microservice that curates articles in emails.
+version: 0.0.1
+
+environment:
+  sdk: '>=2.16.0-134.1.beta <3.0.0'
+
+dependencies:
+  args: ^2.0.0
+  shelf: ^1.1.0
+  shelf_router: ^1.0.0
+
+dev_dependencies:
+  http: ^0.13.0
+  lints: ^1.0.0
+  test_process: ^2.0.0
+  test: ^1.15.0
