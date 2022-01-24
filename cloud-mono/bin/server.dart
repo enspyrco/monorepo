@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
+import 'package:notion_pages_to_web_tutorial/notion_auth_token.dart';
 import 'package:shelf/shelf.dart' show Request, Response;
 import 'package:shelf/shelf_io.dart' as shelf_io;
 
@@ -8,18 +7,21 @@ const authority = 'api.notion.com';
 const path = 'v1/pages/';
 
 Future<Response> handler(Request request) async {
-  final body = await request.readAsString();
-  print(body);
-  var bodyJson = jsonDecode(body) as Map<String, Object?>;
-  var pageId = bodyJson['pageId'] as String;
+  // final body = await request.readAsString();
+  // print(body);
+  // var bodyJson = jsonDecode(body) as Map<String, Object?>;
+  // var pageId = bodyJson['pageId'] as String;
+
+  var pageId = request.requestedUri.queryParameters['pageId']!;
 
   var client = http.Client();
   try {
-    var response = await client.get(Uri.https(authority, path + pageId));
-    // var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
-    // var uri = Uri.parse(decodedResponse['uri'] as String);
-    // print(await client.get(uri));
-    print(response);
+    var response = await client.get(Uri.https(authority, path + pageId),
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Notion-Version': '2021-08-16'
+        });
+    print(response.body);
   } finally {
     client.close();
   }

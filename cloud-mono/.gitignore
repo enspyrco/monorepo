@@ -4,3 +4,6 @@
 
 # Conventional directory for build output.
 build/
+
+# Auth token from Notion integration
+lib/notion_auth_token.dart
