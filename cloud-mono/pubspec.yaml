@@ -1,5 +1,5 @@
-name: curator
-description: A Dart microservice that curates articles in emails.
+name: process_articles_in_emails
+description: A Dart microservice that processes & saves articles in emails.
 version: 0.0.1
 
 environment:
