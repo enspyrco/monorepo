@@ -1,7 +1,7 @@
 import '../../utils.dart';
 import 'notion_block.dart';
 import 'notion_child_page.dart';
-import 'notion_paragrah.dart';
+import 'notion_paragraph.dart';
 
 /// Possible types can be found at https://developers.notion.com/reference/block#block-object-keys
 /// TODO: add these:

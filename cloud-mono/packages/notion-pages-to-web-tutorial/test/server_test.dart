@@ -2,11 +2,8 @@ import 'package:http/http.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final port = '8080';
-  final host = 'http://0.0.0.0:$port';
-
   test('make a POST request', () async {
-    final response = await post(Uri.parse(host + '/'),
+    final response = await post(Uri.parse('http://0.0.0.0:8080/'),
         body: '{"pageId" : "8da7e92d9c4947db9d0ba0e39437b33e"}');
     expect(response.statusCode, 200);
   });
