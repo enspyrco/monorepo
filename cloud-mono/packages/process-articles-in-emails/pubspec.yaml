@@ -1,13 +1,14 @@
 name: process_articles_in_emails
 description: A Dart microservice that processes & saves articles in emails.
+publish_to: none
 version: 0.0.1
 
 environment:
   sdk: '>=2.15.1 <3.0.0'
 
 dependencies:
-  # args: ^2.0.0
-  gcloud: ^0.8.5
+  eventfire:
+    path: ../eventfire
   shelf: ^1.1.0
 
 dev_dependencies:

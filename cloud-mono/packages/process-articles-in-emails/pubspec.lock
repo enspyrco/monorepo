@@ -85,6 +85,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  eventfire:
+    dependency: "direct main"
+    description:
+      path: "../eventfire"
+      relative: true
+    source: path
+    version: "0.0.1"
   file:
     dependency: transitive
     description:
@@ -99,13 +106,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
-  gcloud:
-    dependency: "direct main"
-    description:
-      name: gcloud
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.8.5"
   glob:
     dependency: transitive
     description:
@@ -120,6 +120,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.0.0"
+  googleapis_auth:
+    dependency: transitive
+    description:
+      name: googleapis_auth
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.0"
   http:
     dependency: "direct dev"
     description:

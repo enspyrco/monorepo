@@ -3,6 +3,5 @@
 /// More dartdocs go here.
 library eventfire;
 
-export 'src/eventfire_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/firestore_service.dart';
+export 'src/utils/typedefs.dart';
