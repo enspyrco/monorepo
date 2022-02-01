@@ -69,11 +69,15 @@ We need the `redfire` package and...
 - `redux` if you want to add your own Middleware/Reducers
 EDIT: some of these are optional
 
+### Current location of redfire & redfire_test packages
+
+At the time of writing the packages are in a monorepo and are not published and we cannot use a git dependency that in turns contains a path dependency, so the only option is to clone https://github.com/enspyrco/monorepo so you have a local copy and using a path dependency like this:
+
 ```yml
 dependencies:
 ...
   redfire:
-    git: https://github.com/enspyrco/redfire.git
+    path: ../monorepo/packages/redfire
   freezed_annotation:
   json_annotation: ^4.4.0
   redux:
@@ -83,7 +87,7 @@ dependencies:
 dev_dependencies:
 ...
   redfire_test:
-    git: https://github.com/enspyrco/redfire_test.git
+    path: ../monorepo/packages/redfire_test
   build_runner:
   freezed:
   json_serializable: ^6.0.1
