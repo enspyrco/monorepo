@@ -98,7 +98,8 @@ dev_dependencies:
 ```Dart
 import 'package:flutter/material.dart';
 import 'package:redfire/widgets.dart';
-import 'package:the_process/app_state.dart';
+
+import 'app_state.dart';
 
 void main() => runApp(AppWidget<AppState>(
   config: RedFireOptions.currentPlatform,
