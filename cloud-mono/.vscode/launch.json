@@ -1,9 +1,12 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+    {
+      "name": "dart_runner",
+      "request": "launch",
+      "type": "dart",
+      "program": "packages/dart_runner/bin/server.dart"
+    },
     {
       "name": "notion-pages-to-web-tutorial",
       "request": "launch",
