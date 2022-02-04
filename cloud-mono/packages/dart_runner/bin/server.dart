@@ -31,7 +31,7 @@ Future<Response> handler(Request request) async {
       // Server should ACK any valid PING
       var json = jsonDecode(body) as JsonMap;
       if (json['type'] == 1) return Response.ok('{"type": 1}');
-      return Response.notFound('"type" key not found in body');
+      return Response.ok('');
     } else {
       return Response(401);
     }
