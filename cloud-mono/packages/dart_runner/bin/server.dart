@@ -7,11 +7,17 @@ typedef JsonMap = Map<String, Object?>;
 typedef JsonList = List<Object?>;
 
 Future<Response> handler(Request request) async {
-  String body = await request.readAsString();
-
   try {
+    String body = await request.readAsString();
     var json = jsonDecode(body) as JsonMap;
     if (json['type'] == 1) return Response.ok('{"type": 1}');
+
+    String signature = request.headers['X-Signature-Ed25519'] ?? '';
+    String timestamp = request.headers['X-Signature-Timestamp'] ?? '';
+
+    print('body:\n$body');
+    print('signature:\n$signature');
+    print('timestamp:\n$timestamp');
   } catch (e) {
     return Response.internalServerError(body: e.toString());
   }

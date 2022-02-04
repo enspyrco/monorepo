@@ -1,0 +1,5 @@
+// Test that the server ACKs a PING
+POST https://dart-runner-womydx3jxq-uc.a.run.app HTTP/1.1
+Content-Type: application/json
+
+{"type": 1}
