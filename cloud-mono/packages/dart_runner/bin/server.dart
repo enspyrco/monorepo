@@ -30,8 +30,18 @@ Future<Response> handler(Request request) async {
     if (verified) {
       // Server should ACK any valid PING
       var json = jsonDecode(body) as JsonMap;
-      if (json['type'] == 1) return Response.ok('{"type": 1}');
-      return Response.ok('');
+      if (json['type'] == 1) return Response.ok(jsonEncode({'type': 1}));
+      return Response.ok(
+          jsonEncode({
+            'type': 4,
+            'data': {
+              'tts': false,
+              'content': 'Congrats on sending your command!',
+              'embeds': [],
+              'allowed_mentions': {'parse': []}
+            }
+          }),
+          headers: {'Content-type': 'application/json'});
     } else {
       return Response(401);
     }
