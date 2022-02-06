@@ -2,13 +2,17 @@ import 'package:discord_api_client/src/typedefs.dart';
 
 import 'channels.dart';
 
-// https://discord.com/developers/docs/interactions/application-commands#application-command-object
+/// See https://discord.com/developers/docs/interactions/application-commands#application-command-object
+///
+/// [applicationId] and [guildId] are listed in the docs as part of ApplicationCommand but
+/// don't seem to be needed here and are kept by the api object.
+///
+/// [id] is required with a default value of the empty string so that we can create commands
+/// without needing to supply an id but we can create from json and have a non-nullable id
 class ApplicationCommand {
   ApplicationCommand(
       {required this.id,
       this.type = ApplicationCommandType.chatInput,
-      required this.applicationId,
-      this.guildId,
       required this.name,
       required this.description,
       this.options = const [],
@@ -21,14 +25,6 @@ class ApplicationCommand {
   // the type of command, defaults 1 if not set
   // VALID TYPES: all
   ApplicationCommandType type;
-
-  // unique id of the parent application (snowflake)
-  // VALID TYPES: all
-  String applicationId;
-
-  // guild id of the command, if not global (snowflake)
-  // VALID TYPES: all
-  String? guildId;
 
   // 1-32 character name
   // VALID TYPES: all
@@ -52,16 +48,16 @@ class ApplicationCommand {
 
   JsonMap toJson() {
     var json = {
-      'id': id,
       'type': type.index,
-      'applicationId': applicationId,
       'name': name,
       'description': description,
-      'options': options,
+      'options': options.map((e) => e.toJson()).toList(),
       'defaultPermission': defaultPermission,
       'version': version,
     };
-    if (guildId != null) json['guildId'] = guildId!;
+
+    if (id.isNotEmpty) json['id'] = id;
+
     return json;
   }
 }
@@ -127,6 +123,24 @@ class ApplicationCommandOption {
   // if autocomplete interactions are enabled for this STRING, INTEGER, or NUMBER type option
   // assert: autocomplete may not be set to true if choices are present.
   bool? autocomplete;
+
+  JsonMap toJson() {
+    var json = {
+      'type': type.index,
+      'name': name,
+      'description': description,
+      'required': required,
+      'choices': choices.map((e) => e.toJson()).toList(),
+      'options': options.map((e) => e.toJson()).toList(),
+      'channelTypes': channelTypes.map((e) => e.index).toList(),
+    };
+
+    if (minValue != null) json['minValue'] = minValue!;
+    if (maxValue != null) json['maxValue'] = maxValue!;
+    if (autocomplete != null) json['autocomplete'] = autocomplete!;
+
+    return json;
+  }
 }
 
 enum ApplicationCommandOptionType {
@@ -168,5 +182,7 @@ class ApplicationCommandOptionChoice {
   // string, integer, or double
   // TODO: Figure out how to represent string, integer, or double
   // - maybe a union? what is the state of Dart unions?
-  final String value;
+  final Object value;
+
+  JsonMap toJson() => {'name': name, 'value': value};
 }

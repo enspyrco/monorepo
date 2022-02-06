@@ -1,5 +1,6 @@
 enum ChannelType {
   // a text channel within a server
+  // has id 0, no zeroItem needed
   guildText,
 
   // a direct message between users

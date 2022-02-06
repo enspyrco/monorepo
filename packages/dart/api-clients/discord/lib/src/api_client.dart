@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
+import '../discord_api_client.dart';
+
 enum ApplicationScope { global, guild }
 
 class DiscordApi {
@@ -12,12 +14,14 @@ class DiscordApi {
     required this.version,
     ApplicationScope scope = ApplicationScope.guild,
   }) {
-    _url = scope == ApplicationScope.global
-        ? 'https://discord.com/api/v$version/applications/$applicationId/commands'
-        : 'https://discord.com/api/v$version/applications/$applicationId/guilds/$guildId/commands';
+    _uri = scope == ApplicationScope.global
+        ? Uri.parse(
+            'https://discord.com/api/v$version/applications/$applicationId/commands')
+        : Uri.parse(
+            'https://discord.com/api/v$version/applications/$applicationId/guilds/$guildId/commands');
   }
 
-  late final String _url;
+  late final Uri _uri;
   final String applicationId;
   final String? guildId;
   final String botToken;
@@ -28,28 +32,36 @@ class DiscordApi {
     'Content-type': 'application/json'
   };
 
+  Future<Response> create({ApplicationCommand? command}) async {
+    final response = await post(_uri,
+        headers: headersJson, body: jsonEncode(command?.toJson()));
+
+    return response;
+  }
+
   Future<Response> getCommands() async {
-    final response = await get(Uri.parse(_url), headers: headers);
+    final response = await get(_uri, headers: headers);
 
     return response;
   }
 
   Future<Response> createCommand(Map<String, Object?> json) async {
-    final response = await post(Uri.parse(_url),
-        headers: headersJson, body: jsonEncode(json));
+    final response =
+        await post(_uri, headers: headersJson, body: jsonEncode(json));
 
     return response;
   }
 
   Future<Response> deletCommand(String id) async {
-    final response = await delete(Uri.parse(_url + '/$id'), headers: headers);
+    final response =
+        await delete(_uri.replace(path: _uri.path + '/$id'), headers: headers);
 
     return response;
   }
 
   Future<Response> updateCommand(
       {required String id, required Map<String, Object?> json}) async {
-    final response = await patch(Uri.parse(_url + '/$id'),
+    final response = await patch(_uri.replace(path: _uri.path + '/$id'),
         headers: headers, body: jsonEncode(json));
 
     return response;
