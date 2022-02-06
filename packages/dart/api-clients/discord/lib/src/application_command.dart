@@ -1,50 +1,97 @@
-import 'package:discord_api_client/src/typedefs.dart';
-
 import 'channels.dart';
+import 'typedefs.dart';
 
 /// See https://discord.com/developers/docs/interactions/application-commands#application-command-object
 ///
-/// [applicationId] and [guildId] are listed in the docs as part of ApplicationCommand but
-/// don't seem to be needed here and are kept by the api object.
+/// [applicationId], [guildId] & [version] are listed in the docs as part of
+/// [ApplicationCommand] but don't seem to be needed here and are kept by the api object.
 ///
 /// [id] is required with a default value of the empty string so that we can create commands
 /// without needing to supply an id but we can create from json and have a non-nullable id
 class ApplicationCommand {
-  ApplicationCommand(
-      {required this.id,
-      this.type = ApplicationCommandType.chatInput,
-      required this.name,
-      required this.description,
-      this.options = const [],
-      this.defaultPermission,
-      required this.version});
+  ApplicationCommand({
+    this.id = '',
+    this.type = ApplicationCommandType.chatInput,
+    required this.name,
+    required this.description,
+    List<ApplicationCommandOption>? options,
+    this.defaultPermission = true,
+  }) {
+    _options = options ?? [];
+  }
+
   // unique id of the command	(snowflake)
   // VALID TYPES: all
-  String id;
+  final String id;
 
   // the type of command, defaults 1 if not set
   // VALID TYPES: all
-  ApplicationCommandType type;
+  final ApplicationCommandType type;
 
   // 1-32 character name
   // VALID TYPES: all
-  String name;
+  final String name;
 
   // 1-100 character description for CHAT_INPUT commands, empty string for USER and MESSAGE commands
   // VALID TYPES: all
-  String description;
+  final String description;
 
   // the parameters for the command, max 25
   // VALID TYPES: CHAT_INPUT
-  List<ApplicationCommandOption> options;
+  late final List<ApplicationCommandOption> _options;
+  List<ApplicationCommandOption> get options => _options;
 
   // (default true)	whether the command is enabled by default when the app is added to a guild
   // VALID TYPES: CHAT_INPUT
-  bool? defaultPermission = true;
+  final bool defaultPermission;
 
-  // autoincrementing version identifier updated during substantial record changes (snowflake)
-  // VALID TYPES: CHAT_INPUT
-  int version;
+  void addStringOption({
+    required String name,
+    required String description,
+    bool required = false,
+    List<JsonMap>? choices,
+    List<ApplicationCommandOption>? options,
+    List<ChannelType>? channelTypes,
+    num? minValue,
+    num? maxValue,
+    bool? autocomplete,
+  }) {
+    _options.add(ApplicationCommandOption(
+        type: ApplicationCommandOptionType.string,
+        name: name,
+        description: description,
+        required: required,
+        choices: choices,
+        options: options,
+        channelTypes: channelTypes,
+        minValue: minValue,
+        maxValue: maxValue,
+        autocomplete: autocomplete));
+  }
+
+  void addBooleanOption({
+    required String name,
+    required String description,
+    bool required = false,
+    List<JsonMap>? choices,
+    List<ApplicationCommandOption>? options,
+    List<ChannelType>? channelTypes,
+    num? minValue,
+    num? maxValue,
+    bool? autocomplete,
+  }) {
+    _options.add(ApplicationCommandOption(
+        type: ApplicationCommandOptionType.boolean,
+        name: name,
+        description: description,
+        required: required,
+        choices: choices,
+        options: options,
+        channelTypes: channelTypes,
+        minValue: minValue,
+        maxValue: maxValue,
+        autocomplete: autocomplete));
+  }
 
   JsonMap toJson() {
     var json = {
@@ -53,13 +100,22 @@ class ApplicationCommand {
       'description': description,
       'options': options.map((e) => e.toJson()).toList(),
       'defaultPermission': defaultPermission,
-      'version': version,
     };
 
     if (id.isNotEmpty) json['id'] = id;
 
     return json;
   }
+}
+
+class ChatCommand extends ApplicationCommand {
+  ChatCommand({
+    required String name,
+    required String description,
+  }) : super(
+            type: ApplicationCommandType.chatInput,
+            name: name,
+            description: description);
 }
 
 // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
@@ -84,45 +140,53 @@ class ApplicationCommandOption {
     required this.name,
     required this.description,
     this.required = false,
-    this.choices = const [],
-    this.options = const [],
-    this.channelTypes = const [],
+    List<JsonMap>? choices,
+    List<ApplicationCommandOption>? options,
+    List<ChannelType>? channelTypes,
     this.minValue,
     this.maxValue,
     this.autocomplete,
-  });
+  }) {
+    _choices = choices ?? [];
+    _options = options ?? [];
+    _channelTypes = channelTypes ?? [];
+  }
+
   // the type of option
-  ApplicationCommandOptionType type;
+  final ApplicationCommandOptionType type;
 
   // 1-32 character name
-  String name;
+  final String name;
 
   // 1-100 character description
-  String description;
+  final String description;
 
   // if the parameter is required or optional--default false
-  bool required;
+  final bool required;
 
   // choices for STRING, INTEGER, and NUMBER types for the user to pick from, max 25
-  List<ApplicationCommandOptionChoice> choices;
+  late final List<JsonMap> _choices;
+  List<JsonMap> get choices => _choices;
 
   // if the option is a subcommand or subcommand group type, these nested options will be the parameters
-  List<ApplicationCommandOption> options;
+  late final List<ApplicationCommandOption> _options;
+  List<ApplicationCommandOption> get options => _options;
 
   // if the option is a channel type, the channels shown will be restricted to these types
-  List<ChannelType> channelTypes;
+  late final List<ChannelType> _channelTypes;
+  List<ChannelType> get channelTypes => _channelTypes;
 
   // if the option is an INTEGER or NUMBER type, the minimum value permitted
   // integer for INTEGER options, double for NUMBER options
-  num? minValue;
+  final num? minValue;
 
   // if the option is an INTEGER or NUMBER type, the maximum value permitted
   // integer for INTEGER options, double for NUMBER options
-  num? maxValue;
+  final num? maxValue;
 
   // if autocomplete interactions are enabled for this STRING, INTEGER, or NUMBER type option
   // assert: autocomplete may not be set to true if choices are present.
-  bool? autocomplete;
+  final bool? autocomplete;
 
   JsonMap toJson() {
     var json = {
@@ -130,7 +194,9 @@ class ApplicationCommandOption {
       'name': name,
       'description': description,
       'required': required,
-      'choices': choices.map((e) => e.toJson()).toList(),
+      'choices': choices
+          .map((e) => {'name': e.keys.first, 'value': e.keys.last})
+          .toList(),
       'options': options.map((e) => e.toJson()).toList(),
       'channelTypes': channelTypes.map((e) => e.index).toList(),
     };
@@ -173,16 +239,16 @@ enum ApplicationCommandOptionType {
 }
 
 // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-choice-structure
-class ApplicationCommandOptionChoice {
-  ApplicationCommandOptionChoice({required this.name, required this.value});
-  // 1-100 character choice name
-  final String name;
+// class ApplicationCommandOptionChoice {
+//   ApplicationCommandOptionChoice({required this.name, required this.value});
+//   // 1-100 character choice name
+//   final String name;
 
-  // value of the choice, up to 100 characters if string
-  // string, integer, or double
-  // TODO: Figure out how to represent string, integer, or double
-  // - maybe a union? what is the state of Dart unions?
-  final Object value;
+//   // value of the choice, up to 100 characters if string
+//   // string, integer, or double
+//   // TODO: Figure out how to represent string, integer, or double
+//   // - maybe a union? what is the state of Dart unions?
+//   final Object value;
 
-  JsonMap toJson() => {'name': name, 'value': value};
-}
+//   JsonMap toJson() => {'name': name, 'value': value};
+// }

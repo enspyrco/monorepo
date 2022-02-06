@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 import 'credentials.dart';
 
 void main() {
-  test('hello', () async {
+  test('Create DartRunner command', () async {
     final api = DiscordApi(
         applicationId: applicationId,
         guildId: guildId,
@@ -13,11 +13,25 @@ void main() {
         version: 8);
 
     var command = ApplicationCommand(
-        id: '',
+      type: ApplicationCommandType.chatInput,
+      name: 'dartcode',
+      description: 'Dart code to be run',
+    );
+
+    var response = await api.createCommand(command);
+    print(response.body);
+  });
+  test('Create objects and combine into a command', () async {
+    final api = DiscordApi(
+        applicationId: applicationId,
+        guildId: guildId,
+        botToken: botToken,
+        version: 8);
+
+    var command = ApplicationCommand(
         type: ApplicationCommandType.chatInput,
         name: 'blep',
         description: 'Send a random adorable animal photo',
-        version: 8,
         options: [
           ApplicationCommandOption(
               type: ApplicationCommandOptionType.string,
@@ -25,32 +39,47 @@ void main() {
               description: 'The type of animal',
               required: true,
               choices: [
-                ApplicationCommandOptionChoice(
-                  name: 'Dog',
-                  value: 'animal_dog',
-                ),
-                ApplicationCommandOptionChoice(
-                  name: 'Cat',
-                  value: 'animal_cat',
-                ),
-                ApplicationCommandOptionChoice(
-                  name: 'Penguin',
-                  value: 'animal_penguin',
-                ),
+                {'Dog': 'animal_dog'},
+                {'Cat': 'animal_cat'},
+                {'Penguin': 'animal_penguin'},
               ]),
           ApplicationCommandOption(
             type: ApplicationCommandOptionType.boolean,
             name: 'only_smol',
             description: 'Whether to show only baby animals',
-            required: false,
           )
         ]);
 
-    var response = await api.create(command: command);
+    var response = await api.createCommand(command);
     print(response.body);
   });
 
-  test('description', () async {
+  test('Build a command with functions', () async {
+    final api = DiscordApi(
+        applicationId: applicationId,
+        guildId: guildId,
+        botToken: botToken,
+        version: 8);
+
+    var command = ChatCommand(
+        name: 'blep', description: 'Send a random adorable animal photo')
+      ..addStringOption(
+          name: 'animal',
+          description: 'The type of animal',
+          required: true,
+          choices: [
+            {'Dog': 'animal_dog'},
+            {'Cat': 'animal_cat'},
+            {'Penguin': 'animal_penguin'},
+          ])
+      ..addBooleanOption(
+          name: 'only_smol', description: 'Whether to show only baby animals');
+
+    var response = await api.createCommand(command);
+    print(response.body);
+  });
+
+  test('Get commands', () async {
     var api = DiscordApi(
         applicationId: applicationId,
         guildId: guildId,
@@ -61,14 +90,14 @@ void main() {
     print(response.body);
   });
 
-  test('description', () async {
+  test('Delete a command', () async {
     var api = DiscordApi(
         applicationId: applicationId,
         guildId: guildId,
         botToken: botToken,
         version: 8);
 
-    var response = await api.deletCommand('...');
+    var response = await api.deletCommand('939887590138601522');
     print(response.body);
   });
 }

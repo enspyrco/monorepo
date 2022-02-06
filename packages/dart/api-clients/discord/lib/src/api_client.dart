@@ -32,22 +32,22 @@ class DiscordApi {
     'Content-type': 'application/json'
   };
 
-  Future<Response> create({ApplicationCommand? command}) async {
+  Future<Response> createCommand(ApplicationCommand command) async {
     final response = await post(_uri,
-        headers: headersJson, body: jsonEncode(command?.toJson()));
+        headers: headersJson, body: jsonEncode(command.toJson()));
+
+    return response;
+  }
+
+  Future<Response> createCommandFrom(Map<String, Object?> json) async {
+    final response =
+        await post(_uri, headers: headersJson, body: jsonEncode(json));
 
     return response;
   }
 
   Future<Response> getCommands() async {
     final response = await get(_uri, headers: headers);
-
-    return response;
-  }
-
-  Future<Response> createCommand(Map<String, Object?> json) async {
-    final response =
-        await post(_uri, headers: headersJson, body: jsonEncode(json));
 
     return response;
   }

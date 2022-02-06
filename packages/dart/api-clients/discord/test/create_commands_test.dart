@@ -6,56 +6,22 @@ import 'credentials.dart';
 
 void main() {
   test('hello', () async {
-    final api = DiscordApi(
-        applicationId: applicationId,
-        guildId: guildId,
-        botToken: botToken,
-        version: 8);
+    var command = ChatCommand(
+        name: 'blep', description: 'Send a random adorable animal photo')
+      ..addStringOption(
+          name: 'animal',
+          description: 'The type of animal',
+          required: true,
+          choices: [
+            {'Dog': 'animal_dog'},
+            {'Cat': 'animal_cat'},
+            {'Penguin': 'animal_penguin'},
+          ])
+      ..addBooleanOption(
+          name: 'only_smol', description: 'Whether to show only baby animals');
 
-    // final response = await manager.getCommands();
-    // print(response.body);
-
-    // final response = await manager.deletCommand('938767156089323530');
-    // print(response.body);
-
-    var command = ApplicationCommand(
-        id: '',
-        type: ApplicationCommandType.chatInput,
-        name: 'blep',
-        description: 'Send a random adorable animal photo',
-        version: 8,
-        options: [
-          ApplicationCommandOption(
-              type: ApplicationCommandOptionType.string,
-              name: 'animal',
-              description: 'The type of animal',
-              required: true,
-              choices: [
-                ApplicationCommandOptionChoice(
-                  name: 'Dog',
-                  value: 'animal_dog',
-                ),
-                ApplicationCommandOptionChoice(
-                  name: 'Cat',
-                  value: 'animal_cat',
-                ),
-                ApplicationCommandOptionChoice(
-                  name: 'Penguin',
-                  value: 'animal_penguin',
-                ),
-              ]),
-          ApplicationCommandOption(
-            type: ApplicationCommandOptionType.boolean,
-            name: 'only_smol',
-            description: 'Whether to show only baby animals',
-            required: false,
-          )
-        ]);
-
-    // print(command.toJson());
     var dartJson = command.toJson();
-
-    final json = {
+    var json = {
       "name": "blep",
       "type": 1,
       "description": "Send a random adorable animal photo",
@@ -103,7 +69,8 @@ void main() {
         version: 8);
 
     // create a right-click USER command
-    final response = await api.createCommand({'name': 'High Five', 'type': 2});
+    final response =
+        await api.createCommandFrom({'name': 'High Five', 'type': 2});
     print(response.body);
   });
 }
