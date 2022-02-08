@@ -4,8 +4,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../types.dart';
 import '../actions/set_auth_user_data_action.dart';
-import '../constants/auth_provider_names.dart';
 import '../extensions/auth_extensions.dart';
+import '../utils/constants/auth_provider_names.dart';
 
 class AuthService extends ReduxService {
   AuthService(

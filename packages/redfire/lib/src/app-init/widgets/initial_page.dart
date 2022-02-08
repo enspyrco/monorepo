@@ -1,40 +1,35 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutterfire_ui/auth.dart';
 
-import '../../auth/enums/auth_step_enum.dart';
-import '../../auth/models/auth_user_data.dart';
-import '../../shared/widgets/waiting_indicator.dart';
-import '../../types/red_fire_state.dart';
+import '../../../types.dart';
+import '../../auth/utils/login_configs.dart';
 
 class InitialPage<T extends RedFireState> extends StatelessWidget {
-  const InitialPage(this._authPage, this._homePage, {Key? key})
-      : super(key: key);
-  final Widget _authPage;
+  const InitialPage(Widget homePage, ISet<LoginConfig> logins, {Key? key})
+      : _homePage = homePage,
+        _logins = logins,
+        super(key: key);
   final Widget _homePage;
+  final ISet<LoginConfig> _logins;
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<T, AuthStepEnum>(
-        distinct: true,
-        converter: (store) => store.state.auth.step,
-        builder: (context, authStep) {
-          switch (authStep) {
-            case AuthStepEnum.checking:
-              return const WaitingIndicator('Checking where we\'re at...');
-            case AuthStepEnum.contactingApple:
-              return const WaitingIndicator('Contacting Apple...');
-            case AuthStepEnum.contactingGoogle:
-              return const WaitingIndicator('Contacting Google...');
-            case AuthStepEnum.signingInWithFirebase:
-              return const WaitingIndicator('Preparing your Adventure...');
-            case AuthStepEnum.waitingForInput:
-              return StoreConnector<T, AuthUserData?>(
-                  distinct: true,
-                  converter: (store) => store.state.auth.userData,
-                  builder: (context, userData) =>
-                      (userData == null) ? _authPage : _homePage);
-            case AuthStepEnum.signingOut:
-              return const WaitingIndicator('Signing Out...');
-          }
-        });
+    return StoreConnector<T, AuthUserData?>(
+      distinct: true,
+      converter: (store) => store.state.auth.userData,
+      builder: (context, userData) {
+        // User is not signed in
+        if (userData == null) {
+          return SignInScreen(
+              providerConfigs: _logins
+                  .map((element) => element.toFlutterFireConfig())
+                  .toList());
+        }
+
+        // Render the application if authenticated
+        return _homePage;
+      },
+    );
   }
 }

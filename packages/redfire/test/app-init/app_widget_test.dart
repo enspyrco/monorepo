@@ -1,11 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutterfire_ui/auth.dart';
 import 'package:redfire/types.dart';
 import 'package:redfire/widgets.dart';
 import 'package:redfire_test/redfire_test.dart';
 
 void main() {
   group('AppWidget', () {
-    testWidgets('shows AuthPage if not authenticated',
+    testWidgets('shows SignInScreen if not authenticated',
         (WidgetTester tester) async {
       // Create the default app widget test harness, with a FakeStore provided
       // to the AppWidget
@@ -19,7 +20,7 @@ void main() {
       // check we got past app initialization to the auth page.
       expect(find.byType(InitializingIndicator), findsNothing);
       expect(find.byType(InitializingErrorPage), findsNothing);
-      expect(find.byType(GoogleSignInButton), findsOneWidget);
+      expect(find.byType(SignInScreen), findsOneWidget);
     });
 
     testWidgets('shows HomePage if authenticated', (WidgetTester tester) async {
@@ -39,7 +40,7 @@ void main() {
       // check we got past app initialization & auth page to the main page.
       expect(find.byType(InitializingIndicator), findsNothing);
       expect(find.byType(InitializingErrorPage), findsNothing);
-      expect(find.byType(GoogleSignInButton), findsNothing);
+      expect(find.byType(SignInScreen), findsNothing);
       expect(find.byType(EmptyHomePage), findsOneWidget);
     });
 
@@ -62,7 +63,7 @@ void main() {
         expect(find.byType(InitializingIndicator), findsNothing);
         expect(find.byType(InitializingErrorPage), findsNothing);
         expect(find.byType(WaitingIndicator), findsNothing);
-        expect(find.byType(AppleSignInButton), findsOneWidget);
+        expect(find.byType(SignInScreen), findsOneWidget);
 
         // Simulate an auth state change with an authenticated user being emitted.
         services.emitStubbedUser();

@@ -1,5 +1,5 @@
-import '../../shared/icons/red_fire_icons_icons.dart';
-import '../enums/providers_enum.dart';
+import '../../../../types.dart';
+import '../../../shared/icons/red_fire_icons_icons.dart';
 
 const authProviderIdOf = {
   ProvidersEnum.email: 'password',

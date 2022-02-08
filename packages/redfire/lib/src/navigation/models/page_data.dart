@@ -1,11 +1,10 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../types.dart';
 import '../../app-init/widgets/initial_page.dart';
-import '../../auth/pages/other_auth_options_page.dart';
-import '../../auth/pages/other_auth_options_page_data.dart';
-import '../../auth/widgets/auth_page.dart';
+import '../../auth/utils/login_configs.dart';
 import '../../problems/pages/problem_page.dart';
 import '../../profile/widgets/profile_page.dart';
 
@@ -35,8 +34,8 @@ final _fromJsonMap = <String, PageDataFromJson>{};
 // aren't separate steps that need to be discovered (eg. in tests)
 // eg. when creating _fromJsonMap start with a map literal populated with the redfire
 // fromJson functions (needs testing in place)
-void addPageTransforms<T extends RedFireState>(
-    Widget homePage, List<PageDataTransforms> transforms) {
+void addPageTransforms<T extends RedFireState>(Widget homePage,
+    ISet<LoginConfig> logins, ISet<PageDataTransforms> transforms) {
   // add the transforms from the child package
   // pageTransformMaps.addAll(transforms);
   for (var transform in transforms) {
@@ -48,16 +47,12 @@ void addPageTransforms<T extends RedFireState>(
   toMaterialPageMap[InitialPageData.className] = (_) =>
       MaterialPage<InitialPage>(
           key: const ValueKey(InitialPage),
-          child: InitialPage<T>(AuthPage<T>(), homePage));
+          child: InitialPage<T>(homePage, logins));
   toMaterialPageMap[ProfilePageData.className] = (_) =>
       MaterialPage<ProfilePage>(
           key: const ValueKey(ProfilePage), child: ProfilePage<T>());
   toMaterialPageMap[ProblemPageData.className] =
       (pageData) => ProblemPage<T>(info: (pageData as ProblemPageData).problem);
-  toMaterialPageMap[OtherAuthOptionsPageData.className] = (pageData) =>
-      MaterialPage<OtherAuthOptionsPage>(
-          key: const ValueKey(OtherAuthOptionsPage),
-          child: OtherAuthOptionsPage<T>());
 
   // add the redfire fromJson transforms
   _fromJsonMap[InitialPageData.className] =
@@ -66,8 +61,6 @@ void addPageTransforms<T extends RedFireState>(
       (JsonMap json) => ProfilePageData.fromJson(json);
   _fromJsonMap[ProblemPageData.className] =
       (JsonMap json) => ProblemPageData.fromJson(json);
-  _fromJsonMap[OtherAuthOptionsPageData.className] =
-      (JsonMap json) => OtherAuthOptionsPageData.fromJson(json);
 }
 
 class PageDataTransforms {

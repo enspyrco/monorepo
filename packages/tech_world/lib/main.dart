@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/widgets.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/redfire.dart';
+import 'package:redfire/utils.dart';
 import 'package:redfire/widgets.dart';
 import 'package:redux/redux.dart';
 import 'package:ws_game_server_types/ws_game_server_types.dart';
@@ -50,6 +52,10 @@ void main() {
 
   runApp(AppWidget<AppState>.fromStore(
       config: RedFireOptions.currentPlatform,
+      logins: {
+        EmailLoginConfig(),
+        PlatformDefaultLoginConfig(clientId: RedFireOptions.web.auth.clientId!),
+      }.lock,
       initializedStore: store,
       title: 'Tech World',
       homePage: HomePage(game: game)));
