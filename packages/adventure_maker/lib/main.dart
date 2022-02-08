@@ -1,4 +1,6 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/widgets.dart';
+import 'package:redfire/utils.dart';
 import 'package:redfire/widgets.dart';
 
 import 'adventures/actions/read_adventures_action.dart';
@@ -14,6 +16,10 @@ import 'shared/reducers/set_adventure_nodes_reducer.dart';
 
 void main() => runApp(AppWidget<AppState>(
       config: RedFireOptions.currentPlatform,
+      logins: {
+        EmailLoginConfig(),
+        PlatformDefaultLoginConfig(clientId: RedFireOptions.web.auth.clientId!),
+      }.lock,
       initialState: AppState.init(),
       initialActions: const [],
       onSignInActions: const [
@@ -29,7 +35,7 @@ void main() => runApp(AppWidget<AppState>(
         SetAdventureNodesReducer(),
         SelectAdventureNodeReducer(),
       ],
-      pageTransforms: const [],
+      pageTransforms: ISet(),
       title: 'adventure_maker', // optional, defaults to 'Title Note Set'
       homePage: const HomePage(),
     ));

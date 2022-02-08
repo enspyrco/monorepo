@@ -1,41 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:redfire/src/navigation/models/problem_page_data.dart';
-import 'package:redfire/src/problems/models/problem_info.dart';
 import 'package:redfire/src/problems/pages/problem_page.dart';
-import 'package:redfire/src/problems/widgets/problem_page_view.dart';
 import 'package:redfire_test/redfire_test.dart';
 
 void main() {
   group('ProblemPage', () {
-    final problem = ProblemInfo('Problem error message');
-
-    testWidgets(
-        'is removed from widget tree when ProblemPageData is removed from Store',
-        (WidgetTester tester) async {
-      final problemPageData = ProblemPageData(problem);
-      final state = ExampleAppState.init();
-      final updatedState =
-          state.copyWith(pages: state.pages.add(problemPageData));
-      final store = FakeStore(updatedState);
-      final appWidget =
-          AppWidgetHarness.withStore(initializedStore: store).widget;
-
-      await tester.pumpWidget(appWidget);
-      await tester.pump();
-
-      expect(find.byType(ProblemPageView), findsOneWidget);
-
-      store.updateState(store.state
-          .copyWith(pages: store.state.pages.remove(problemPageData)));
-      store.updateState(store.state);
-
-      await tester.pumpAndSettle();
-
-      expect(find.byType(ProblemPage), findsNothing);
-    });
-
     testWidgets(
       'is removed on button tap',
       (WidgetTester tester) async {

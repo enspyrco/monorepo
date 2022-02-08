@@ -4,14 +4,14 @@ import 'auth_options.dart';
 
 class RedFireConfig {
   const RedFireConfig({
-    FirebaseOptions? firebase,
-    AuthOptions? auth,
+    required FirebaseOptions firebase,
+    required AuthOptions auth,
   })  : _firebase = firebase,
         _auth = auth;
 
-  final FirebaseOptions? _firebase;
-  final AuthOptions? _auth;
+  final FirebaseOptions _firebase;
+  final AuthOptions _auth;
 
-  FirebaseOptions? get firebase => _firebase;
-  AuthOptions? get auth => _auth;
+  FirebaseOptions get firebase => _firebase;
+  AuthOptions get auth => _auth;
 }

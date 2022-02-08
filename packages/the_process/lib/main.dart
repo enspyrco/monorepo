@@ -1,4 +1,6 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
+import 'package:redfire/utils.dart';
 import 'package:redfire/widgets.dart';
 
 import 'app_state.dart';
@@ -25,6 +27,10 @@ import 'sections/reducers/update_sections_v_m_reducer.dart';
 
 void main() => runApp(AppWidget<AppState>(
       config: RedFireOptions.currentPlatform,
+      logins: {
+        EmailLoginConfig(),
+        PlatformDefaultLoginConfig(clientId: RedFireOptions.web.auth.clientId!),
+      }.lock,
       initialState: AppState.init(),
       initialActions: const [TapOrganisationsAction()],
       middlewares: [
@@ -56,9 +62,9 @@ void main() => runApp(AppWidget<AppState>(
         UpdateProjectsViewReducer(),
         SetProjectsReducer(),
       ],
-      pageTransforms: [
+      pageTransforms: {
         ManageOrganisationsPageTransforms(),
         ProjectDetailPageTransforms(),
-      ],
+      }.lock,
       homePage: const HomeScreen(),
     ));

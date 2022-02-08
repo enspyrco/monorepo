@@ -24,19 +24,5 @@ void main() {
 
       expect(finder, findsOneWidget);
     });
-
-    testWidgets('problem page appears after error caught',
-        (WidgetTester tester) async {
-      // The default services harness has mocked out plugins.
-      // One of the initial actions attempts to listen to auth state changes
-      // which throws in this context as the MockFirebaseAuth has no stub set.
-      final harness = AppWidgetHarness.withMockedPlugins(
-          ExampleAppState.init(), ServicesHarness());
-
-      await tester.pumpWidget(harness.widget);
-      await tester.pump();
-
-      expect(find.byType(ProblemPageView), findsOneWidget);
-    });
   });
 }

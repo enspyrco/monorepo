@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
+import '../../auth/utils/login_configs.dart';
 import '../../navigation/actions/remove_current_page_action.dart';
 import '../../navigation/extensions/page_data_list_extension.dart';
 import '../../navigation/models/page_data.dart';
@@ -25,7 +26,7 @@ import 'initializing_indicator.dart';
 class AppWidget<T extends RedFireState> extends StatefulWidget {
   late final Store<T> _store;
   final FirebaseWrapper _firebase;
-  final RedFireConfig? _config;
+  final RedFireConfig _config;
   final String _title;
   final List<ReduxAction> _initialActions;
 
@@ -35,9 +36,10 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
       {Key? key,
       required Store<T> initializedStore,
       required Widget homePage,
-      List<PageDataTransforms>? pageTransforms,
+      ISet<PageDataTransforms>? pageTransforms,
       FirebaseWrapper? firebaseWrapper,
-      RedFireConfig? config,
+      required RedFireConfig config,
+      required ISet<LoginConfig> logins,
       String? title})
       : _store = initializedStore,
         _firebase = firebaseWrapper ?? FirebaseWrapper(),
@@ -45,7 +47,7 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
         _title = title ?? 'Title Not Set',
         _initialActions = [],
         super(key: key) {
-    addPageTransforms<T>(homePage, pageTransforms ?? []);
+    addPageTransforms<T>(homePage, logins, pageTransforms ?? ISet());
   }
 
   AppWidget(
@@ -56,16 +58,17 @@ class AppWidget<T extends RedFireState> extends StatefulWidget {
       List<ReduxAction>? onSignInActions,
       List<Reducer<T>>? reducers,
       List<Middleware<T>>? middlewares,
-      List<PageDataTransforms>? pageTransforms,
+      ISet<PageDataTransforms>? pageTransforms,
       FirebaseWrapper? firebaseWrapper,
-      RedFireConfig? config,
+      required RedFireConfig config,
+      required ISet<LoginConfig> logins,
       String? title})
       : _firebase = firebaseWrapper ?? FirebaseWrapper(),
         _config = config,
         _title = title ?? 'Title Not Set',
         _initialActions = initialActions ?? [],
         super(key: key) {
-    addPageTransforms<T>(homePage, pageTransforms ?? []);
+    addPageTransforms<T>(homePage, logins, pageTransforms ?? ISet());
     // create the redux store, combining any provided reducers and middleware
     _store = Store<T>((redfireReducers<T>() + (reducers ?? [])).combine(),
         initialState: initialState,
@@ -87,7 +90,7 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
     super.initState();
     try {
       RedFireLocator.provideConfig(widget._config);
-      _initializeFlutterFire(options: widget._config?.firebase);
+      _initializeFlutterFire(options: widget._config.firebase);
     } catch (e) {
       setState(() => _error = e);
     }

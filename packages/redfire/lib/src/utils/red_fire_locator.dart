@@ -15,9 +15,15 @@ import '../types/redux_action.dart';
 
 class RedFireLocator {
   ////////////////////////////////////////////////////
+  /// Config
+  ////////////////////////////////////////////////////
+
+  static RedFireConfig getConfig() => _config!;
+  static void provideConfig(RedFireConfig config) => _config = config;
+
+  ////////////////////////////////////////////////////
   /// Services
   ////////////////////////////////////////////////////
-  static RedFireConfig getConfig() => _config ??= const RedFireConfig();
   // TODO: fix this - we only need to create a service once, not every time get... is called
   // --> Change ?? to ??= and write a test
   static AuthService getAuthService() =>
@@ -27,7 +33,7 @@ class RedFireLocator {
           firebase: FirebaseAuth.instance,
           google: (kIsWeb || Platform.isAndroid)
               ? GoogleSignIn(
-                  scopes: <String>['email'], clientId: _config?.auth?.clientId)
+                  scopes: <String>['email'], clientId: _config?.auth.clientId)
               : null,
           apple:
               (kIsWeb || Platform.isAndroid) ? null : SignInWithAppleWrapper());
@@ -60,8 +66,6 @@ class RedFireLocator {
     _platformService = platformService;
     _httpService = httpService;
   }
-
-  static void provideConfig(RedFireConfig? config) => _config = config;
 
   static void provideOnSignInActions(List<ReduxAction>? onSignInActions) =>
       _onSignInActions = onSignInActions;

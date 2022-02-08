@@ -25,7 +25,7 @@ void main() {
 
       // setup the page transforms map
       // TODO: get rid of this when we change to creating at app start (see TODO at [addPageTransforms])
-      addPageTransforms<ExampleAppState>(Container(), []);
+      addPageTransforms<ExampleAppState>(Container(), ISet(), ISet());
 
       var json = jsonEncode(appState.toJson());
 

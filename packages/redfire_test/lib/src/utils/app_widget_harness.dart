@@ -1,3 +1,4 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/redfire.dart';
@@ -7,6 +8,8 @@ import 'package:redfire/widgets.dart';
 import 'package:redux/redux.dart';
 
 import '../../redfire_test.dart';
+import '../test-doubles/config/redfire_config.dart';
+import '../test-doubles/config/redfire_config.mocks.dart';
 
 /// A test harness to wrap the widget under test, (in this case the
 /// AppWidget), and provide all the functionality
@@ -23,10 +26,12 @@ class AppWidgetHarness<T extends RedFireState> {
       : _store = FakeStore(initialState),
         _firebase = FakeFirebaseWrapper() {
     _appWidget = AppWidget.fromStore(
+      config: RedFireConfigTestDouble.basic,
+      logins: ISet(),
       homePage: const EmptyHomePage(),
       initializedStore: _store,
       firebaseWrapper: FakeFirebaseWrapper(),
-      pageTransforms: const [],
+      pageTransforms: ISet(),
     );
   }
 
@@ -39,10 +44,12 @@ class AppWidgetHarness<T extends RedFireState> {
   })  : _store = initializedStore,
         _firebase = firebaseWrapper ?? FakeFirebaseWrapper() {
     _appWidget = AppWidget.fromStore(
+      config: MockRedFireConfig(),
+      logins: ISet(),
       homePage: const EmptyHomePage(),
       initializedStore: _store,
       firebaseWrapper: _firebase,
-      pageTransforms: const [],
+      pageTransforms: ISet(),
     );
   }
 
@@ -58,10 +65,12 @@ class AppWidgetHarness<T extends RedFireState> {
         databaseService: services.database,
         platformService: services.platform);
     _appWidget = AppWidget.fromStore(
+      config: MockRedFireConfig(),
+      logins: ISet(),
       homePage: const EmptyHomePage(),
       initializedStore: _store,
       firebaseWrapper: _firebase,
-      pageTransforms: const [],
+      pageTransforms: ISet(),
     );
     for (var action in redfireInitialActions) {
       _store.dispatch(action);
