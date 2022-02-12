@@ -1,51 +1,38 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
-import 'package:convert/convert.dart';
-import 'package:ed25519_edwards/ed25519_edwards.dart';
+import 'package:dart_runner/evaluate.dart';
+import 'package:dart_runner/typedefs.dart';
+import 'package:dart_runner/utils/json_utils.dart';
+import 'package:dart_runner/utils/logging_utils.dart';
+import 'package:dart_runner/utils/response_utils.dart';
+import 'package:dart_runner/verify_signature.dart';
 import 'package:shelf/shelf.dart' show Request, Response;
 import 'package:shelf/shelf_io.dart' as shelf_io;
 
-typedef JsonMap = Map<String, Object?>;
-typedef JsonList = List<Object?>;
-
-const pckString =
-    '0d1eec8d297df3dd1da292791d1f6cc71c7cf98e05e733217f7dac754dfceb93';
-
 Future<Response> handler(Request request) async {
   try {
-    String signature = request.headers['X-Signature-Ed25519']!;
-    String timestamp = request.headers['X-Signature-Timestamp']!;
     String body = await request.readAsString();
 
-    print('body:\n$body');
-    print('signature:\n$signature');
-    print('timestamp:\n$timestamp');
+    printRequestInfo(request, body);
 
-    var pck = PublicKey(hex.decode(pckString));
-    var msg = utf8.encode(timestamp + body);
-    var sig = hex.decode(signature);
-
-    bool verified = verify(pck, msg as Uint8List, sig as Uint8List);
-    if (verified) {
-      // Server should ACK any valid PING
+    if (validSignature(body, request.headers)) {
       var json = jsonDecode(body) as JsonMap;
-      if (json['type'] == 1) return Response.ok(jsonEncode({'type': 1}));
-      return Response.ok(
-          jsonEncode({
-            'type': 4,
-            'data': {
-              'tts': false,
-              'content': 'Congrats on sending your command!',
-              'embeds': [],
-              'allowed_mentions': {'parse': []}
-            }
-          }),
-          headers: {'Content-type': 'application/json'});
+      print('decoded json:\n$json');
+
+      // Server should ACK any valid PING
+      if (json['type'] == 1) return ackResponse();
+
+      var expression = extractValue(json);
+      String result = await evaluate(expression);
+
+      print('Result:\n$result');
+
+      return respondWait();
     } else {
       return Response(401);
     }
-  } catch (e) {
+  } catch (e, s) {
+    print('Exception:\n$e\n\nTrace:\n$s');
     return Response.internalServerError();
   }
 }

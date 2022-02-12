@@ -4,3 +4,5 @@
 
 # Conventional directory for build output.
 build/
+
+test/utils/signature_test_data.dart

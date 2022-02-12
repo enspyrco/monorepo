@@ -2,12 +2,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "dart_runner",
-      "request": "launch",
-      "type": "dart",
-      "program": "packages/dart_runner/bin/server.dart"
-    },
-    {
       "name": "notion-pages-to-web-tutorial",
       "request": "launch",
       "type": "dart",
