@@ -1,0 +1,11 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "discord_interaction_to_pubsub_message",
+      "request": "launch",
+      "type": "dart",
+      "program": "bin/server.dart"
+    }
+  ]
+}

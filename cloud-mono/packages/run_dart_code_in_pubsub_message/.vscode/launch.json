@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "dart_runner",
+      "name": "run_dart_code_in_pubsub_message",
       "request": "launch",
       "type": "dart",
       "program": "bin/server.dart"

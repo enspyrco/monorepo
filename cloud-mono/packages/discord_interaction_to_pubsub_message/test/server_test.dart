@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:test/test.dart';
 
-import 'utils/signature_test_data.dart';
+import 'data/signature_test_data.dart';
 
 const liverServer = 'https://dart-runner-womydx3jxq-uc.a.run.app/';
 const localServer = 'http://0.0.0.0:8080/';
