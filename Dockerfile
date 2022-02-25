@@ -4,7 +4,7 @@ RUN apt-get update && apt-get upgrade --yes
 RUN apt-get install git curl unzip lcov --yes
 
 # Install flutter tool (and the built-in Dart SDK)
-RUN git clone https://github.com/flutter/flutter.git --depth 1 -b beta /_flutter/
+RUN git clone https://github.com/flutter/flutter.git --depth 1 -b stable /_flutter/
 ENV PATH="/_flutter/bin:${PATH}"
 RUN flutter precache --linux
 
