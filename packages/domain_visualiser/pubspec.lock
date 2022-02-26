@@ -336,9 +336,9 @@ packages:
   flutter_redux:
     dependency: "direct main"
     description:
-      name: flutter_redux
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "/Users/nick/git/contributing/flutter/flutter_redux"
+      relative: false
+    source: path
     version: "0.8.2"
   flutter_svg:
     dependency: transitive

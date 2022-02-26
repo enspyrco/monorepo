@@ -1,6 +1,7 @@
 library redfire_test;
 
 export 'src/test-doubles/auth/data/apple_id_credential_example.dart';
+export 'src/test-doubles/auth/data/auth_state_example.dart';
 export 'src/test-doubles/auth/data/auth_user_data_example.dart';
 export 'src/test-doubles/auth/data/firebase_auth_example.dart';
 export 'src/test-doubles/auth/data/google_sign_in_example.dart';

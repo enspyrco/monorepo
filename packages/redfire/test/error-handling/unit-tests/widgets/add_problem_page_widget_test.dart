@@ -11,8 +11,10 @@ void main() {
       final problemPageData = ProblemPageData(problem);
 
       final state = ExampleAppState.init();
-      final updatedState =
-          state.copyWith(pages: state.pages.add(problemPageData));
+      final updatedState = state.copyWith(
+        pages: state.pages.add(problemPageData),
+        auth: AuthStateExample.authenticated,
+      );
 
       final appWidget =
           AppWidgetHarness.withFakeStore(initialState: updatedState).widget;
