@@ -29,10 +29,9 @@ class DrawingPage extends StatelessWidget {
         ),
         Expanded(
           child: StoreConnector<AppState, ISet<ClassBox>>(
-              onInit: (store) =>
-                  context.dispatch(const TapDomainObjectsAction()),
+              onInit: (store) => store.dispatch(const TapDomainObjectsAction()),
               onDispose: (store) =>
-                  context.dispatch(const TapDomainObjectsAction(turnOff: true)),
+                  store.dispatch(const TapDomainObjectsAction(turnOff: true)),
               distinct: true,
               converter: (store) => store.state.classBoxes,
               builder: (context, boxes) => DrawingCanvas(boxes.unlockView)),
