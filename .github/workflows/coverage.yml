@@ -31,7 +31,7 @@ jobs:
           - package_name: ws_game_server_types
             project_type: dart
   
-    container: enspyrco/ci-tools:beta
+    container: enspyrco/ci-tools:stable
     defaults:
       run:
         working-directory: ./packages/${{matrix.package_name}}
@@ -55,7 +55,7 @@ jobs:
   upload_coverage:
     runs-on: ubuntu-latest
     needs: generate_coverage
-    container: enspyrco/ci-tools:beta
+    container: enspyrco/ci-tools:stable
 
     steps:
       - uses: actions/download-artifact@v2

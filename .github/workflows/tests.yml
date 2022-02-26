@@ -32,7 +32,7 @@ jobs:
           - package_name: ws_game_server_types
             project_type: dart
     
-    container: enspyrco/ci-tools:beta
+    container: enspyrco/ci-tools:stable
     defaults:
       run:
         working-directory: ./packages/${{ matrix.package_name }}
