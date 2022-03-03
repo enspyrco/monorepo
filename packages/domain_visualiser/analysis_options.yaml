@@ -1,4 +1,0 @@
-include: package:redfire_lints/flutter.yaml
-
-linter:
-  rules:
