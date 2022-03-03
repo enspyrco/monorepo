@@ -1,0 +1,76 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "adventure_maker",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "packages/adventure_maker",
+      "program": "lib/main.dart"
+    },
+    {
+      "name": "adventure_maker (web)",
+      "type": "dart",
+      "request": "launch",
+      "deviceId": "chrome",
+      "cwd": "packages/adventure_maker",
+      "program": "lib/main.dart",
+      "args": ["--web-hostname", "localhost", "--web-port", "5000"]
+    },
+    {
+      "name": "flireator (mac)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "deviceId": "macos",
+      "cwd": "packages/flireator"
+    },
+    {
+      "name": "tech_world",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "cwd": "packages/tech_world"
+    },
+    {
+      "name": "tech_world (web)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "deviceId": "chrome",
+      "cwd": "packages/tech_world",
+      "args": [
+        "--web-hostname",
+        "localhost",
+        "--web-port",
+        "5000"
+      ]
+    },
+    {
+      "name": "the_process",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "cwd": "packages/the_process"
+    },
+    {
+      "name": "the_process (web)",
+      "type": "dart",
+      "request": "launch",
+      "deviceId": "chrome",
+      "args": [
+        "--web-hostname",
+        "localhost",
+        "--web-port",
+        "5000"
+      ]
+    },
+    {
+      "name": "ws_game_server",
+      "cwd": "packages/ws_game_server",
+      "request": "launch",
+      "type": "dart",
+      "program": "bin/server.dart"
+    }
+  ]
+}

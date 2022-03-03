@@ -1,0 +1,21 @@
+name: ws_game_server
+description: Using shelf_web_socket with functions_framework for a serverless websocket game server.
+# version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+
+dependencies:
+  shelf:
+  shelf_web_socket:
+  web_socket_channel:
+  fast_immutable_collections:
+  ws_game_server_types:
+    path: ../ws_game_server_types
+
+dev_dependencies:
+  lints:
+  test:
+  mockito: 
+  build_runner: 
