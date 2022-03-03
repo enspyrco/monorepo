@@ -2,6 +2,10 @@ name: Publish Docker image
 
 on:
   push:
+    paths: # only run if PR changes are in the relevant folders
+      - 'containers/ci-tools/**'
+      - 'packages/flutter-apps/ci-tools/draw_badge/**'
+      - 'packages/cli-apps/ci-tools/deploy_coverage/**'
     branches:
       - main
 
@@ -23,5 +27,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          file: containers/ci-tools/Dockerfile
           push: true
           tags: enspyrco/ci-tools:stable

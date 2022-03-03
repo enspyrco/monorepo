@@ -56,7 +56,7 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     needs: coverage
-    container: enspyrco/ci-tools:beta
+    container: enspyrco/ci-tools:stable
 
     steps:
       - uses: actions/download-artifact@v2
@@ -66,19 +66,46 @@ jobs:
       - run: /deploy_coverage -k '${{secrets.FIREBASE_SERVICE_ACCOUNT}}' -p firebase_project_id
 ```
 
-## Dart Apps
+## Local Dev
 
-### deploy_coverage
+### Building
+
+From the monorepo dir:
+
+```sh
+docker build -t citools -f containers/ci-tools/Dockerfile .
+```
+
+## Deploying via GitHub Actions workflow
+
+`ci-tools.yml` runs whenever there are changes to files in the relevant folders:
+
+- 'containers/ci-tools/'
+- 'packages/flutter-apps/ci-tools/draw_badge/'
+- 'packages/cli-apps/ci-tools/deploy_coverage/'
+
+The workflow builds and deploys the image using `docker/build-push-action` with
+
+- context = the monorepo
+- file = containers/ci-tools/Dockerfile
+
+> Because the ci-tools container is used in the workflow that deploys the ci-tools container, changes to the container or it's dependencies may require the new version already be deployed. In this situation just deploy the container lcoally before merging the relevant PR.
+
+## Packages
+
+### Dart Apps
+
+#### deploy_coverage
 
 **Deploy coverage info to Firebase hosting.**
 
-### save_badge_info
+#### save_badge_info
 
 **Save project type and coverage percentage to a text file, to be consumed by draw_badge.**
 
-## Flutter App
+### Flutter App
 
-### draw_badge
+#### draw_badge
 
 **Draw a badge for the given coverage percent and save as a png file.**
 
