@@ -15,7 +15,7 @@ dependencies:
   flame: 1.0.0-releasecandidate.16
   vector_math: 
   ws_game_server_types:
-    path: ../ws_game_server_types
+    path: ../../../servers/ws_game_server_types
   web_socket_channel:
   
   #######################
@@ -24,7 +24,7 @@ dependencies:
   freezed_annotation:
   json_annotation: ^4.4.0
   redfire:
-    path: ../redfire
+    path: ../../../flutter-apps/utils/redfire
   redux:
   flutter_redux:
   fast_immutable_collections:
@@ -36,9 +36,9 @@ dev_dependencies:
     sdk: flutter
   test:
   redfire_lints:
-    path: ../redfire_lints
+    path: ../../../flutter-apps/utils/redfire_lints
   redfire_test:
-    path: ../redfire_test
+    path: ../../../flutter-apps/utils/redfire_test
   build_runner:
   freezed:
   json_serializable: any
