@@ -13,7 +13,7 @@ dependencies:
 
   # redfire 
   redfire:
-    path: ../redfire
+    path: ../../../flutter-apps/utils/redfire
 
   # redux
   redux: ^5.0.0
@@ -37,9 +37,9 @@ dev_dependencies:
   
   # redfire
   redfire_lints:
-    path: ../redfire_lints
+    path: ../../../flutter-apps/utils/redfire_lints
   redfire_test:
-    path: ../redfire_test
+    path: ../../../flutter-apps/utils/redfire_test
   
   # code gen
   build_runner: ^2.1.7

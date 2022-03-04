@@ -9,7 +9,7 @@ ENV PATH="/_flutter/bin:${PATH}"
 RUN flutter precache --linux
 
 # Copy draw_badge Flutter app source code & get dependencies.
-COPY ../../packages/flutter-apps/ci-tools/draw_badge/ /apps/flutter/draw_badge/
+COPY ../../packages/flutter-apps/utils/ci-tools/draw_badge/ /apps/flutter/draw_badge/
 WORKDIR /apps/flutter/draw_badge/
 RUN flutter packages get
 

@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
   
   redfire:
-    path: ../redfire
+    path: ../../../flutter-apps/utils/redfire
   firebase_core: ^1.12.0
   firebase_auth: ^3.3.6
   freezed_annotation:
@@ -26,13 +26,13 @@ dependencies:
   
 dev_dependencies:
   redfire_test:
-    path: ../redfire_test
+    path: ../../../flutter-apps/utils/redfire_test
   build_runner:
   freezed:
   json_serializable: ^6.0.1
 
   redfire_lints:
-    path: ../redfire_lints
+    path: ../../../flutter-apps/utils/redfire_lints
 
 flutter:
   uses-material-design: true

@@ -12,24 +12,22 @@ jobs:
     strategy:
       matrix:
         include:
-          - package_name: adventure_maker
+          - package_name: flutter-apps/adventuring/adventure_maker
             run_code_gen: yes
             project_type: flutter
-          - package_name: flireator
+          - package_name: flutter-apps/utils/redfire
             project_type: flutter
-          - package_name: redfire
+          - package_name: flutter-apps/utils/redfire_test
             project_type: flutter
-          - package_name: redfire_test
-            project_type: flutter
-          - package_name: tech_world
+          - package_name: flutter-apps/adventuring/tech_world
             run_code_gen: yes
             project_type: flutter
-          - package_name: the_process
+          - package_name: flutter-apps/adventuring/the_process
             run_code_gen: yes
             project_type: flutter
-          - package_name: ws_game_server
+          - package_name: servers/ws_game_server
             project_type: dart
-          - package_name: ws_game_server_types
+          - package_name: servers/ws_game_server_types
             project_type: dart
     
     container: enspyrco/ci-tools:stable
