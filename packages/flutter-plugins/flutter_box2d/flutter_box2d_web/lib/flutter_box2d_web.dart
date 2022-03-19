@@ -31,7 +31,8 @@ class FlutterBox2dWeb {
       default:
         throw PlatformException(
           code: 'Unimplemented',
-          details: 'flutter_box2d for web doesn\'t implement \'${call.method}\'',
+          details:
+              'flutter_box2d for web doesn\'t implement \'${call.method}\'',
         );
     }
   }
