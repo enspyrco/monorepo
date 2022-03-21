@@ -2,6 +2,15 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "flutter_box2d_example (web)",
+      "type": "dart",
+      "request": "launch",
+      "deviceId": "chrome",
+      "cwd": "packages/flutter-plugins/flutter_box2d/flutter_box2d/example",
+      "program": "lib/main.dart",
+      "args": ["--web-hostname", "localhost", "--web-port", "5000"]
+    },
+    {
       "name": "adventure_maker",
       "type": "dart",
       "request": "launch",

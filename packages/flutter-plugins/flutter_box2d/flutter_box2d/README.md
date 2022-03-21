@@ -1,15 +1,10 @@
 # flutter_box2d
 
-A new flutter plugin project.
+A flutter plugin for Box2D - a 2D Physics Engine for Games.
 
-## Getting Started
+## Web
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+### Setup
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
+- copy `Box2D.js`, `Box2D.wasm` & `expose-box2d.js` from `example/web` to your `web` directory
+- add the line `<script type="module" src="expose-box2d.js"></script>` to `index.html` as the first line under `<body>`

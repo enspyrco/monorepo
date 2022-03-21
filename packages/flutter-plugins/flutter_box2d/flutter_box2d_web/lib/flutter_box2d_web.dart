@@ -1,45 +1,35 @@
-import 'dart:async';
-// In order to *not* need this ignore, consider extracting the "web" version
-// of your plugin as a separate package, instead of inlining it in the same
-// package as the core of your plugin.
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html show window;
-
-import 'package:flutter/services.dart';
+import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
+import 'package:flutter_box2d_web/src/box2d_js_impl.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 /// A web implementation of the FlutterBox2d plugin.
-class FlutterBox2dWeb {
+class FlutterBox2DWeb extends FlutterBox2DPlatform {
   static void registerWith(Registrar registrar) {
-    final MethodChannel channel = MethodChannel(
-      'flutter_box2d',
-      const StandardMethodCodec(),
-      registrar,
-    );
-
-    final pluginInstance = FlutterBox2dWeb();
-    channel.setMethodCallHandler(pluginInstance.handleMethodCall);
+    FlutterBox2DPlatform.instance = FlutterBox2DWeb();
   }
 
-  /// Handles method calls over the MethodChannel of this plugin.
-  /// Note: Check the "federated" architecture for a new way of doing this:
-  /// https://flutter.dev/go/federated-plugins
-  Future<dynamic> handleMethodCall(MethodCall call) async {
-    switch (call.method) {
-      case 'getPlatformVersion':
-        return getPlatformVersion();
-      default:
-        throw PlatformException(
-          code: 'Unimplemented',
-          details:
-              'flutter_box2d for web doesn\'t implement \'${call.method}\'',
-        );
-    }
-  }
+  @override
+  num get b2DynamicBody => b2_dynamicBody;
 
-  /// Returns a [String] containing the version of the platform.
-  Future<String> getPlatformVersion() {
-    final version = html.window.navigator.userAgent;
-    return Future.value(version);
-  }
+  @override
+  B2Vec2Delegate b2Vec2Delegate(double x, double y) => B2Vec2JSImpl(x, y);
+
+  @override
+  B2WorldDelegate b2WorldDelegate(double x, double y) =>
+      B2WorldJSImpl(B2Vec2JSImpl(x, y));
+
+  @override
+  B2BodyDefDelegate b2BodyDefDelegate() => B2BodyDefJSImpl();
+
+  @override
+  B2BodyDelegate b2BodyDelegate() => B2BodyJSImpl();
+
+  @override
+  B2FixtureDelegate b2FixtureDelegate() => B2FixtureJSImpl();
+
+  @override
+  B2PolygonShapeDelegate b2PolygonShapeDelegate() => B2PolygonShapeJSImpl();
+
+  @override
+  B2ShapeDelegate b2ShapeDelegate() => B2ShapeJSImpl();
 }
