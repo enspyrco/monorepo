@@ -21,6 +21,9 @@ A new flutter plugin project.
   s.swift_version = '5.0'
 
   # box2d static lib & headers
-  s.source_files = 'box2d/include/box2d/*.h'
-  s.vendored_libraries = 'box2d/box2d.a'
+  s.public_header_files = 'Classes/**/*.h'
+  s.source_files        = [
+    'Classes/**/*',
+  ]
+  # s.vendored_libraries = 'box2d/box2d.a'
 end
