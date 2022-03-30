@@ -14,6 +14,8 @@ dependencies:
     path: ../flutter_box2d_platform_interface
   flutter_box2d_web:
     path: ../flutter_box2d_web
+  flutter_box2d_macos:
+    path: ../flutter_box2d_macos
 
 dev_dependencies:
   flutter_test:
@@ -25,3 +27,5 @@ flutter:
     platforms:
       web:
         default_package: flutter_box2d_web
+      macos:
+        default_package: flutter_box2d_macos
