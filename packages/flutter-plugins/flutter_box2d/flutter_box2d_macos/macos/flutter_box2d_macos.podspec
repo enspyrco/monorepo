@@ -22,8 +22,6 @@ A new flutter plugin project.
 
   # box2d static lib & headers
   s.public_header_files = 'Classes/**/*.h'
-  s.source_files        = [
-    'Classes/**/*',
-  ]
-  # s.vendored_libraries = 'box2d/box2d.a'
+  s.source_files        = 'Classes/**/*.*'
+  s.vendored_libraries  = 'Classes/**/*.a'
 end
