@@ -4,6 +4,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 /// A web implementation of the FlutterBox2d plugin.
 class FlutterBox2DWeb extends FlutterBox2DPlatform {
+  // Called by code generated at build-time to get the appropriate implementation
   static void registerWith(Registrar registrar) {
     FlutterBox2DPlatform.instance = FlutterBox2DWeb();
   }
