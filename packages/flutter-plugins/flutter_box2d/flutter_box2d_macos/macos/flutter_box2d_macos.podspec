@@ -22,6 +22,19 @@ A new flutter plugin project.
 
   # box2d static lib & headers
   s.public_header_files = 'Classes/**/*.h'
-  s.source_files        = 'Classes/**/*.*'
-  s.vendored_libraries  = 'Classes/**/*.a'
+  s.source_files        = 'Classes/**/*.{cpp,h}'
+  s.pod_target_xcconfig = {
+    # Allow relative "#include"s from the project base directory:
+    'HEADER_SEARCH_PATHS' => [
+      '$(PODS_TARGET_SRCROOT)/Classes/include',
+      '$(PODS_TARGET_SRCROOT)/Classes/src',
+    ],
+
+    # # Ensure some particular C++ standard, e.g:
+    # 'CLANG_CXX_LANGUAGE_STANDARD' => 'c++11',
+    # 'DEFINES_MODULE' => 'YES',
+    # # Flutter.framework does not contain a i386 slice.
+    # 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386',
+  }
+
 end

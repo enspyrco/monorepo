@@ -1,3 +1,6 @@
+
+Currently, the wasm file `Box2D.wasm` & glue code, `Box2D.js` must be added to `web/` in the project depending on `flutter_box2d`. One more file, `expose-box2d.js` must also be added, which is needed to load Box2D & expose the Box2D classes.
+
 <!-- 
 This README describes the package. If you publish this package to pub.dev,
 this README's contents appear on the landing page for your package.
