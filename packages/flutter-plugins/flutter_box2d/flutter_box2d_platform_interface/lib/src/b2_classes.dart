@@ -12,22 +12,6 @@ import '../flutter_box2d_platform_interface.dart';
 
 abstract class B2DynamicBody {}
 
-class B2Fixture {
-  B2Fixture._(B2FixtureDelegate delegate) : _delegate = delegate;
-
-  final B2FixtureDelegate _delegate;
-}
-
-class B2BodyDef {
-  B2BodyDef() : _delegate = FlutterBox2DPlatform.instance.b2BodyDef();
-
-  final B2BodyDefDelegate _delegate;
-
-  void setType(int arg) => _delegate.setType(arg);
-  void setPosition(B2Vec2 position) =>
-      _delegate.setPosition(position._delegate);
-}
-
 class B2Body {
   B2Body._(B2BodyDelegate delegate) : _delegate = delegate;
 
@@ -42,6 +26,22 @@ class B2Body {
   void setEnabled(bool flag) => _delegate.setEnabled(flag);
   B2Vec2 getPosition() => B2Vec2._(_delegate.getPosition());
   B2Vec2 getLinearVelocity() => B2Vec2._(_delegate.getLinearVelocity());
+}
+
+class B2BodyDef {
+  B2BodyDef() : _delegate = FlutterBox2DPlatform.instance.b2BodyDef();
+
+  final B2BodyDefDelegate _delegate;
+
+  void setType(int arg) => _delegate.setType(arg);
+  void setPosition(B2Vec2 position) =>
+      _delegate.setPosition(position._delegate);
+}
+
+class B2Fixture {
+  B2Fixture._(B2FixtureDelegate delegate) : _delegate = delegate;
+
+  final B2FixtureDelegate _delegate;
 }
 
 class B2PolygonShape implements B2Shape {

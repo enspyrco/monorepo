@@ -4,29 +4,6 @@ library box2d;
 import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
 import 'package:js/js.dart';
 
-@JS('b2World')
-class B2WorldJSImpl implements B2WorldDelegate {
-  external B2WorldJSImpl(B2Vec2JSImpl gravity);
-  @JS('CreateBody')
-  @override
-  external B2BodyJSImpl createBody(B2BodyDefJSImpl def);
-  @JS('Step')
-  @override
-  external void step(
-      num timeStep, num velocityIterations, num positionIterations);
-}
-
-@JS('b2Vec2')
-class B2Vec2JSImpl implements B2Vec2Delegate {
-  external B2Vec2JSImpl(num x, num y);
-  @override
-  external num length;
-  @override
-  external num x;
-  @override
-  external num y;
-}
-
 @JS('b2Body')
 class B2BodyJSImpl implements B2BodyDelegate {
   external B2BodyJSImpl();
@@ -53,9 +30,17 @@ class B2BodyJSImpl implements B2BodyDelegate {
   external B2Vec2JSImpl getLinearVelocity();
 }
 
-@JS('b2Shape')
-class B2ShapeJSImpl implements B2ShapeDelegate {
-  external B2ShapeJSImpl();
+@JS('b2BodyDef')
+class B2BodyDefJSImpl implements B2BodyDefDelegate {
+  external B2BodyDefJSImpl();
+
+  @JS('set_type')
+  @override
+  external void setType(num type);
+
+  @JS('set_position')
+  @override
+  external void setPosition(B2Vec2JSImpl position);
 }
 
 @JS('b2Fixture')
@@ -76,15 +61,30 @@ class B2PolygonShapeJSImpl implements B2PolygonShapeDelegate {
   external int getType();
 }
 
-@JS('b2BodyDef')
-class B2BodyDefJSImpl implements B2BodyDefDelegate {
-  external B2BodyDefJSImpl();
+@JS('b2Shape')
+class B2ShapeJSImpl implements B2ShapeDelegate {
+  external B2ShapeJSImpl();
+}
 
-  @JS('set_type')
+@JS('b2Vec2')
+class B2Vec2JSImpl implements B2Vec2Delegate {
+  external B2Vec2JSImpl(num x, num y);
   @override
-  external void setType(num type);
+  external num length;
+  @override
+  external num x;
+  @override
+  external num y;
+}
 
-  @JS('set_position')
+@JS('b2World')
+class B2WorldJSImpl implements B2WorldDelegate {
+  external B2WorldJSImpl(B2Vec2JSImpl gravity);
+  @JS('CreateBody')
   @override
-  external void setPosition(B2Vec2JSImpl position);
+  external B2BodyJSImpl createBody(B2BodyDefJSImpl def);
+  @JS('Step')
+  @override
+  external void step(
+      num timeStep, num velocityIterations, num positionIterations);
 }
