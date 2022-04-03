@@ -1,1 +1,1 @@
-export 'src/box2d_classes.dart';
+export 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';

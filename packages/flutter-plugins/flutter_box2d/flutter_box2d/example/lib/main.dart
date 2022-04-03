@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_box2d/flutter_box2d.dart';
 
 void main() {
-  var gravity = B2Vec2(0, 10);
+  WidgetsFlutterBinding.ensureInitialized();
+  var gravity = B2Vec2(0, -10);
+  print(gravity.length);
   var world = B2World(gravity);
 
   var sideLengthMetres = 1;
   var square = B2PolygonShape();
   square.setAsBox(sideLengthMetres / 2, sideLengthMetres / 2);
+  print(square.getType());
 
   var zero = B2Vec2(0, 0);
 
   var bd = B2BodyDef();
-  bd.setType(B2DynamicBody);
+  bd.setType(b2BodyType.b2_dynamicBody);
   bd.setPosition(zero);
 
   var body = world.createBody(bd);

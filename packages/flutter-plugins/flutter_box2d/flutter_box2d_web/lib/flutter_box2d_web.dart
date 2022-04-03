@@ -10,27 +10,18 @@ class FlutterBox2DWeb extends FlutterBox2DPlatform {
   }
 
   @override
-  num get b2DynamicBody => b2_dynamicBody;
+  B2Vec2Delegate b2Vec2(double x, double y) => B2Vec2JSImpl(x, y);
 
   @override
-  B2Vec2Delegate b2Vec2Delegate(double x, double y) => B2Vec2JSImpl(x, y);
+  B2WorldDelegate b2World(B2Vec2Delegate vec) =>
+      B2WorldJSImpl(B2Vec2JSImpl(vec.x, vec.y));
 
   @override
-  B2WorldDelegate b2WorldDelegate(double x, double y) =>
-      B2WorldJSImpl(B2Vec2JSImpl(x, y));
+  B2BodyDefDelegate b2BodyDef() => B2BodyDefJSImpl();
 
   @override
-  B2BodyDefDelegate b2BodyDefDelegate() => B2BodyDefJSImpl();
+  B2PolygonShapeDelegate b2PolygonShape() => B2PolygonShapeJSImpl();
 
   @override
-  B2BodyDelegate b2BodyDelegate() => B2BodyJSImpl();
-
-  @override
-  B2FixtureDelegate b2FixtureDelegate() => B2FixtureJSImpl();
-
-  @override
-  B2PolygonShapeDelegate b2PolygonShapeDelegate() => B2PolygonShapeJSImpl();
-
-  @override
-  B2ShapeDelegate b2ShapeDelegate() => B2ShapeJSImpl();
+  B2ShapeDelegate b2Shape() => B2ShapeJSImpl();
 }

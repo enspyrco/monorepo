@@ -5,10 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "example",
+      "name": "example [macos]",
       "cwd": "flutter_box2d/example",
       "request": "launch",
-      "type": "dart"
+      "type": "dart",
+      "deviceId": "macos"
+    },
+    {
+      "name": "example [web]",
+      "cwd": "flutter_box2d/example",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome"
     },
     {
       "name": "example (profile mode)",
