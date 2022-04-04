@@ -1,4 +1,4 @@
-import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
+import '../flutter_box2d_platform_interface.dart';
 
 abstract class B2BodyDefDelegate {
   B2BodyDefDelegate();
@@ -36,9 +36,9 @@ abstract class B2ShapeDelegate {
 
 abstract class B2Vec2Delegate {
   B2Vec2Delegate(this.x, this.y);
-  final num x;
-  final num y;
-  num get length;
+  final double x;
+  final double y;
+  double get length;
 }
 
 abstract class B2WorldDelegate {
