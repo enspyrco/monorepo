@@ -1,17 +1,5 @@
 import '../flutter_box2d_platform_interface.dart';
 
-/// All classes are in the one file so they can access each other's private
-/// members (specifically the _delegates)
-///
-/// Could use `part_of` but this is apparently discouraged now (although afaict
-/// it's effectively the same as putting everything in one file)
-/// - EDIT: did some more research and it's more appropriate to say "avoiding
-/// putting everything into a single library makes your code easier to reason
-/// about" which clearly isn't the same as "don't ever use it"
-/// - This is almost certainly a reasonable use case
-
-abstract class B2DynamicBody {}
-
 class B2Body {
   B2Body._(B2BodyDelegate delegate) : _delegate = delegate;
 
@@ -66,9 +54,9 @@ class B2Vec2 {
 
   final B2Vec2Delegate _delegate;
 
-  double get x => _delegate.x.toDouble();
-  double get y => _delegate.y.toDouble();
-  double get length => _delegate.length as double;
+  double get x => _delegate.x;
+  double get y => _delegate.y;
+  double get length => _delegate.length;
 }
 
 class B2World {
