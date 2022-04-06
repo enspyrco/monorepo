@@ -42,33 +42,7 @@
 
 b2World::b2World(const b2Vec2& gravity)
 {
-	m_destructionListener = nullptr;
-	m_debugDraw = nullptr;
-
-	m_bodyList = nullptr;
-	m_jointList = nullptr;
-
-	m_bodyCount = 0;
-	m_jointCount = 0;
-
-	m_warmStarting = true;
-	m_continuousPhysics = true;
-	m_subStepping = false;
-
-	m_stepComplete = true;
-
-	m_allowSleep = true;
-	m_gravity = gravity;
-
-	m_newContacts = false;
-	m_locked = false;
-	m_clearForces = true;
-
-	m_inv_dt0 = 0.0f;
-
-	m_contactManager.m_allocator = &m_blockAllocator;
-
-	memset(&m_profile, 0, sizeof(b2Profile));
+  Init(gravity);
 }
 
 b2World::~b2World()
@@ -90,6 +64,15 @@ b2World::~b2World()
 
 		b = bNext;
 	}
+
+	while (m_particleSystemList)
+	{
+		DestroyParticleSystem(m_particleSystemList);
+	}
+
+	// Even though the block allocator frees them for us, for safety,
+	// we should ensure that all buffers have been freed.
+	b2Assert(m_blockAllocator.GetNumGiantAllocations() == 0);
 }
 
 void b2World::SetDestructionListener(b2DestructionListener* listener)
@@ -372,6 +355,58 @@ void b2World::DestroyJoint(b2Joint* j)
 	}
 }
 
+b2ParticleSystem* b2World::CreateParticleSystem(const b2ParticleSystemDef* def)
+{
+	b2Assert(IsLocked() == false);
+	if (IsLocked())
+	{
+		return NULL;
+	}
+
+	void* mem = m_blockAllocator.Allocate(sizeof(b2ParticleSystem));
+	b2ParticleSystem* p = new (mem) b2ParticleSystem(def, this);
+
+	// Add to world doubly linked list.
+	p->m_prev = NULL;
+	p->m_next = m_particleSystemList;
+	if (m_particleSystemList)
+	{
+		m_particleSystemList->m_prev = p;
+	}
+	m_particleSystemList = p;
+
+	return p;
+}
+
+void b2World::DestroyParticleSystem(b2ParticleSystem* p)
+{
+	b2Assert(m_particleSystemList != NULL);
+	b2Assert(IsLocked() == false);
+	if (IsLocked())
+	{
+		return;
+	}
+
+	// Remove world particleSystem list.
+	if (p->m_prev)
+	{
+		p->m_prev->m_next = p->m_next;
+	}
+
+	if (p->m_next)
+	{
+		p->m_next->m_prev = p->m_prev;
+	}
+
+	if (p == m_particleSystemList)
+	{
+		m_particleSystemList = p->m_next;
+	}
+
+	p->~b2ParticleSystem();
+	m_blockAllocator.Free(p, sizeof(b2ParticleSystem));
+}
+
 //
 void b2World::SetAllowSleeping(bool flag)
 {
@@ -390,9 +425,51 @@ void b2World::SetAllowSleeping(bool flag)
 	}
 }
 
+// Initialize the world with a specified gravity.
+void b2World::Init(const b2Vec2& gravity)
+{
+	m_destructionListener = nullptr;
+	m_debugDraw = nullptr;
+
+	m_bodyList = nullptr;
+	m_jointList = nullptr;
+	m_particleSystemList = nullptr;
+
+	m_bodyCount = 0;
+	m_jointCount = 0;
+
+	m_warmStarting = true;
+	m_continuousPhysics = true;
+	m_subStepping = false;
+
+	m_stepComplete = true;
+
+	m_allowSleep = true;
+	m_gravity = gravity;
+
+	m_newContacts = false;
+	m_locked = false;
+	m_clearForces = true;
+
+	m_inv_dt0 = 0.0f;
+
+	m_contactManager.m_allocator = &m_blockAllocator;
+
+	m_liquidFunVersion = &b2_liquidFunVersion;
+	m_liquidFunVersionString = b2_liquidFunVersionString;
+
+	memset(&m_profile, 0, sizeof(b2Profile));
+}
+
 // Find islands, integrate and solve constraints, solve position constraints
 void b2World::Solve(const b2TimeStep& step)
 {
+	// update previous transforms
+	for (b2Body* b = m_bodyList; b; b = b->m_next)
+	{
+		b->m_xf0 = b->m_xf;
+	}
+
 	m_profile.solveInit = 0.0f;
 	m_profile.solveVelocity = 0.0f;
 	m_profile.solvePosition = 0.0f;
@@ -867,6 +944,7 @@ void b2World::SolveTOI(const b2TimeStep& step)
 		subStep.dtRatio = 1.0f;
 		subStep.positionIterations = 20;
 		subStep.velocityIterations = step.velocityIterations;
+		subStep.particleIterations = step.particleIterations;
 		subStep.warmStarting = false;
 		island.SolveTOI(subStep, bA->m_islandIndex, bB->m_islandIndex);
 
@@ -902,7 +980,11 @@ void b2World::SolveTOI(const b2TimeStep& step)
 	}
 }
 
-void b2World::Step(float dt, int32 velocityIterations, int32 positionIterations)
+void b2World::Step(
+	float dt,
+	int32 velocityIterations,
+	int32 positionIterations,
+	int32 particleIterations)
 {
 	b2Timer stepTimer;
 
@@ -919,6 +1001,7 @@ void b2World::Step(float dt, int32 velocityIterations, int32 positionIterations)
 	step.dt = dt;
 	step.velocityIterations	= velocityIterations;
 	step.positionIterations = positionIterations;
+	step.particleIterations = particleIterations;
 	if (dt > 0.0f)
 	{
 		step.inv_dt = 1.0f / dt;
@@ -935,6 +1018,10 @@ void b2World::Step(float dt, int32 velocityIterations, int32 positionIterations)
 	// Update contacts. This is where some contacts are destroyed.
 	{
 		b2Timer timer;
+		for (b2ParticleSystem* p = m_particleSystemList; p; p = p->GetNext())
+		{
+			p->Solve(step); // Particle Simulation
+		}
 		m_contactManager.Collide();
 		m_profile.collide = timer.GetMilliseconds();
 	}
@@ -997,6 +1084,21 @@ void b2World::QueryAABB(b2QueryCallback* callback, const b2AABB& aabb) const
 	wrapper.broadPhase = &m_contactManager.m_broadPhase;
 	wrapper.callback = callback;
 	m_contactManager.m_broadPhase.Query(&wrapper, aabb);
+  for (b2ParticleSystem* p = m_particleSystemList; p; p = p->GetNext())
+	{
+		if (callback->ShouldQueryParticleSystem(p))
+		{
+			p->QueryAABB(callback, aabb);
+		}
+	}
+}
+
+void b2World::QueryShapeAABB(b2QueryCallback* callback, const b2Shape& shape,
+                             const b2Transform& xf) const
+{
+	b2AABB aabb;
+	shape.ComputeAABB(&aabb, xf, 0);
+	QueryAABB(callback, aabb);
 }
 
 struct b2WorldRayCastWrapper
@@ -1034,6 +1136,13 @@ void b2World::RayCast(b2RayCastCallback* callback, const b2Vec2& point1, const b
 	input.p1 = point1;
 	input.p2 = point2;
 	m_contactManager.m_broadPhase.RayCast(&wrapper, input);
+  for (b2ParticleSystem* p = m_particleSystemList; p; p = p->GetNext())
+	{
+		if (callback->ShouldQueryParticleSystem(p))
+		{
+			p->RayCast(callback, point1, point2);
+		}
+	}
 }
 
 void b2World::DrawShape(b2Fixture* fixture, const b2Transform& xf, const b2Color& color)
@@ -1104,6 +1213,25 @@ void b2World::DrawShape(b2Fixture* fixture, const b2Transform& xf, const b2Color
 	}
 }
 
+void b2World::DrawParticleSystem(const b2ParticleSystem& system)
+{
+	int32 particleCount = system.GetParticleCount();
+	if (particleCount)
+	{
+		float radius = system.GetRadius();
+		const b2Vec2* positionBuffer = system.GetPositionBuffer();
+		if (system.m_colorBuffer.data)
+		{
+			const b2ParticleColor* colorBuffer = system.GetColorBuffer();
+			m_debugDraw->DrawParticles(positionBuffer, radius, colorBuffer, particleCount);
+		}
+		else
+		{
+			m_debugDraw->DrawParticles(positionBuffer, radius, nullptr, particleCount);
+		}
+	}
+}
+
 void b2World::DebugDraw()
 {
 	if (m_debugDraw == nullptr)
@@ -1146,6 +1274,14 @@ void b2World::DebugDraw()
 					DrawShape(f, xf, b2Color(0.9f, 0.7f, 0.7f));
 				}
 			}
+		}
+	}
+
+	if (flags & b2Draw::e_particleBit)
+	{
+		for (b2ParticleSystem* p = m_particleSystemList; p; p = p->GetNext())
+		{
+			DrawParticleSystem(*p);
 		}
 	}
 
@@ -1212,6 +1348,29 @@ void b2World::DebugDraw()
 			m_debugDraw->DrawTransform(xf);
 		}
 	}
+}
+
+static float GetSmallestRadius(const b2World* world)
+{
+	float smallestRadius = b2_maxFloat;
+	for (const b2ParticleSystem* system = world->GetParticleSystemList();
+		 system != nullptr;
+		 system = system->GetNext())
+	{
+		smallestRadius = b2Min(smallestRadius, system->GetRadius());
+	}
+	return smallestRadius;
+}
+
+int b2World::CalculateReasonableParticleIterations(float timeStep) const
+{
+	if (m_particleSystemList == nullptr)
+		return 1;
+
+	// Use the smallest radius, since that represents the worst-case.
+	return b2CalculateParticleIterations(m_gravity.Length(),
+										 GetSmallestRadius(this),
+										 timeStep);
 }
 
 int32 b2World::GetProxyCount() const

@@ -1,6 +1,7 @@
 // MIT License
 
 // Copyright (c) 2019 Erin Catto
+// Copyright (c) 2013 Google, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -52,6 +53,9 @@ public:
 	/// @see b2Shape::TestPoint
 	bool TestPoint(const b2Transform& transform, const b2Vec2& p) const override;
 
+	// @see b2Shape::ComputeDistance
+	void ComputeDistance(const b2Transform& xf, const b2Vec2& p, float* distance, b2Vec2* normal, int32 childIndex) const override;
+
 	/// Implement b2Shape.
 	bool RayCast(b2RayCastOutput* output, const b2RayCastInput& input,
 				const b2Transform& transform, int32 childIndex) const override;
@@ -61,6 +65,11 @@ public:
 
 	/// @see b2Shape::ComputeMass
 	void ComputeMass(b2MassData* massData, float density) const override;
+
+#if LIQUIDFUN_EXTERNAL_LANGUAGE_API
+	/// Set this as an isolated edge, with direct floats.
+	void Set(float vx1, float vy1, float vx2, float vy2);
+#endif // LIQUIDFUN_EXTERNAL_LANGUAGE_API
 
 	/// These are the edge vertices
 	b2Vec2 m_vertex1, m_vertex2;
@@ -82,5 +91,15 @@ inline b2EdgeShape::b2EdgeShape()
 	m_vertex3.y = 0.0f;
 	m_oneSided = false;
 }
+
+#if LIQUIDFUN_EXTERNAL_LANGUAGE_API
+inline void b2EdgeShape::Set(float vx1,
+														 float vy1,
+														 float vx2,
+														 float vy2) {
+	Set(b2Vec2(vx1, vy1), b2Vec2(vx2, vy2));
+}
+#endif // LIQUIDFUN_EXTERNAL_LANGUAGE_API
+
 
 #endif

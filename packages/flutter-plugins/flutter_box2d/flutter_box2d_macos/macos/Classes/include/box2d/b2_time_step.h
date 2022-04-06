@@ -1,6 +1,7 @@
 // MIT License
 
 // Copyright (c) 2019 Erin Catto
+// Copyright (c) 2014 Google, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -46,6 +47,7 @@ struct B2_API b2TimeStep
 	float dtRatio;	// dt * inv_dt0
 	int32 velocityIterations;
 	int32 positionIterations;
+	int32 particleIterations;
 	bool warmStarting;
 };
 

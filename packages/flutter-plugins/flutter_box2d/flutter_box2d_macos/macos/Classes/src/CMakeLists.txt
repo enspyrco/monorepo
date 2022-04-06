@@ -13,10 +13,13 @@ set(BOX2D_SOURCE_FILES
 	collision/b2_time_of_impact.cpp
 	common/b2_block_allocator.cpp
 	common/b2_draw.cpp
+	common/b2_free_list.cpp
 	common/b2_math.cpp
 	common/b2_settings.cpp
 	common/b2_stack_allocator.cpp
+	common/b2_stat.cpp
 	common/b2_timer.cpp
+	common/b2_tracked_block.cpp
 	dynamics/b2_body.cpp
 	dynamics/b2_chain_circle_contact.cpp
 	dynamics/b2_chain_circle_contact.h
@@ -52,6 +55,11 @@ set(BOX2D_SOURCE_FILES
 	dynamics/b2_wheel_joint.cpp
 	dynamics/b2_world.cpp
 	dynamics/b2_world_callbacks.cpp
+	particle/b2_particle_assembly.cpp
+	particle/b2_particle_group.cpp
+	particle/b2_particle_system.cpp
+	particle/b2_particle.cpp
+	particle/b2_voronoi_diagram.cpp
 	rope/b2_rope.cpp)
 
 set(BOX2D_HEADER_FILES
@@ -71,13 +79,20 @@ set(BOX2D_HEADER_FILES
 	../include/box2d/b2_dynamic_tree.h
 	../include/box2d/b2_edge_shape.h
 	../include/box2d/b2_fixture.h
+	../include/box2d/b2_free_list.h
 	../include/box2d/b2_friction_joint.h
 	../include/box2d/b2_gear_joint.h
 	../include/box2d/b2_growable_stack.h
+	../include/box2d/b2_growable_buffer.h
+	../include/box2d/b2_intrusive_list.h
 	../include/box2d/b2_joint.h
 	../include/box2d/b2_math.h
 	../include/box2d/b2_motor_joint.h
 	../include/box2d/b2_mouse_joint.h
+	../include/box2d/b2_particle_assembly.h
+	../include/box2d/b2_particle_group.h
+	../include/box2d/b2_particle_system.h
+	../include/box2d/b2_particle.h
 	../include/box2d/b2_polygon_shape.h
 	../include/box2d/b2_prismatic_joint.h
 	../include/box2d/b2_pulley_joint.h
@@ -85,11 +100,16 @@ set(BOX2D_HEADER_FILES
 	../include/box2d/b2_rope.h
 	../include/box2d/b2_settings.h
 	../include/box2d/b2_shape.h
+	../include/box2d/b2_slab_allocator.h
 	../include/box2d/b2_stack_allocator.h
+	../include/box2d/b2_stack_queue.h
+	../include/box2d/b2_stat.h
 	../include/box2d/b2_time_of_impact.h
 	../include/box2d/b2_timer.h
 	../include/box2d/b2_time_step.h
+	../include/box2d/b2_tracked_block.h
 	../include/box2d/b2_types.h
+  ../include/box2d/b2_voronoi_diagram.h
 	../include/box2d/b2_weld_joint.h
 	../include/box2d/b2_wheel_joint.h
 	../include/box2d/b2_world.h

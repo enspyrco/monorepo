@@ -42,10 +42,14 @@ struct B2_API b2StackEntry
 class B2_API b2StackAllocator
 {
 public:
+  enum { MIN_ALIGNMENT = sizeof(void*) }; // Must be a power of 2
+	enum { ALIGN_MASK = MIN_ALIGNMENT - 1 };
+
 	b2StackAllocator();
 	~b2StackAllocator();
 
 	void* Allocate(int32 size);
+  void* Reallocate(void* p, int32 size);
 	void Free(void* p);
 
 	int32 GetMaxAllocation() const;
