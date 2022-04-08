@@ -2,6 +2,12 @@
 
 *A [monorepo](https://en.wikipedia.org/wiki/Monorepo) of [Dart](https://dart.dev/) &amp; [Flutter](https://flutter.dev/) projects from [Enspyr](https://github.com/enspyrco), constituting a set of tools to facilitate & improve [adventuring](https://github.com/adventures-in/projects_summary).*
 
+## Contributing
+
+If you are working on a particular package you can open the relevant sub-folder and work like you would outside of a monorepo context.
+
+If you plan to work on several packages at once you will need to open the `monorepo` folder and (for VS Code) add the `"dart.projectSearchDepth": 5` setting, so that VS Code knows to treat the monorepo like a Flutter project.
+
 ## Packages
 
 ### [adventure_maker](packages/adventures/README.md) [![badge](https://enspyrco-monorepo.web.app/coverage/adventure_maker/badge.png)](https://enspyrco-monorepo.web.app/coverage/adventure_maker/)
