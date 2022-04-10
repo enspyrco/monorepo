@@ -1,15 +1,16 @@
 # flutter_box2d_macos
 
-A new flutter plugin project.
+## ffigen
 
-## Getting Started
+> Currently (Apr '22), being on an M1 Mac, I have to jump on the master branch of flutter to get ARM64 Dart
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+```sh
+dart run ffigen
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### ffigen setup
 
+- Add ffigen under dev_dependencies in your pubspec.yaml (run dart pub add -d ffigen).
+- Install LLVM (see Installing LLVM).
+- Configurations must be provided in pubspec.yaml or in a custom YAML file (see configurations).
+- Run the tool with `dart run ffigen`.

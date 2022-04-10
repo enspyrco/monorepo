@@ -20,7 +20,7 @@ A new flutter plugin project.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
 
-  # box2d static lib & headers
+  # Box2D source & headers
   s.public_header_files = 'Classes/**/*.h'
   s.source_files        = 'Classes/**/*.{cpp,h}'
   s.pod_target_xcconfig = {

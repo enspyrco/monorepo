@@ -34,6 +34,23 @@ inline bool b2IsValid(float x)
 	return isfinite(x);
 }
 
+/// This is a approximate yet fast inverse square-root.
+inline float b2InvSqrt(float x)
+{
+	union
+	{
+		float x;
+		int32 i;
+	} convert;
+
+	convert.x = x;
+	float xhalf = 0.5f * x;
+	convert.i = 0x5f3759df - (convert.i >> 1);
+	x = convert.x;
+	x = x * (1.5f - xhalf * x * x);
+	return x;
+}
+
 #define	b2Sqrt(x)	sqrtf(x)
 #define	b2Atan2(y, x)	atan2f(y, x)
 
@@ -41,7 +58,7 @@ inline bool b2IsValid(float x)
 struct B2_API b2Vec2
 {
 	/// Default constructor does nothing (for performance).
-	b2Vec2() = default;
+	b2Vec2() {}
 
 	/// Construct using coordinates.
 	b2Vec2(float xIn, float yIn) : x(xIn), y(yIn) {}
@@ -128,11 +145,35 @@ struct B2_API b2Vec2
 	float x, y;
 };
 
+/// Add a float to a vector.
+inline b2Vec2 operator + (const b2Vec2& v, float f)
+{
+	return b2Vec2(v.x + f, v.y + f);
+}
+
+/// Substract a float from a vector.
+inline b2Vec2 operator - (const b2Vec2& v, float f)
+{
+	return b2Vec2(v.x - f, v.y - f);
+}
+
+/// Multiply a float with a vector.
+inline b2Vec2 operator * (const b2Vec2& v, float f)
+{
+	return b2Vec2(v.x * f, v.y * f);
+}
+
+/// Divide a vector by a float.
+inline b2Vec2 operator / (const b2Vec2& v, float f)
+{
+	return b2Vec2(v.x / f, v.y / f);
+}
+
 /// A 2D column vector with 3 elements.
 struct B2_API b2Vec3
 {
 	/// Default constructor does nothing (for performance).
-	b2Vec3() = default;
+	b2Vec3() {}
 
 	/// Construct using coordinates.
 	b2Vec3(float xIn, float yIn, float zIn) : x(xIn), y(yIn), z(zIn) {}
@@ -164,14 +205,48 @@ struct B2_API b2Vec3
 		x *= s; y *= s; z *= s;
 	}
 
+  /// Get the length of this vector (the norm).
+	float Length() const
+	{
+		return b2Sqrt(x * x + y * y + z * z);
+	}
+
+	/// Convert this vector into a unit vector. Returns the length.
+	float Normalize()
+	{
+		float length = Length();
+		if (length < b2_epsilon)
+		{
+			return 0.0f;
+		}
+		float invLength = 1.0f / length;
+		x *= invLength;
+		y *= invLength;
+		z *= invLength;
+
+		return length;
+	}
+
 	float x, y, z;
+};
+
+/// A 4D column vector with 4 elements.
+struct B2_API b2Vec4
+{
+	/// Default constructor does nothing (for performance).
+	b2Vec4() {}
+
+	/// Construct using coordinates.
+	b2Vec4(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
+
+	float x, y, z, w;
 };
 
 /// A 2-by-2 matrix. Stored in column-major order.
 struct B2_API b2Mat22
 {
 	/// The default constructor does nothing (for performance).
-	b2Mat22() = default;
+	b2Mat22() {}
 
 	/// Construct this matrix using columns.
 	b2Mat22(const b2Vec2& c1, const b2Vec2& c2)
@@ -245,7 +320,7 @@ struct B2_API b2Mat22
 struct B2_API b2Mat33
 {
 	/// The default constructor does nothing (for performance).
-	b2Mat33() = default;
+	b2Mat33() {}
 
 	/// Construct this matrix using columns.
 	b2Mat33(const b2Vec3& c1, const b2Vec3& c2, const b2Vec3& c3)
@@ -286,7 +361,7 @@ struct B2_API b2Mat33
 /// Rotation
 struct B2_API b2Rot
 {
-	b2Rot() = default;
+	b2Rot() {}
 
 	/// Initialize from an angle in radians
 	explicit b2Rot(float angle)
@@ -338,7 +413,7 @@ struct B2_API b2Rot
 struct B2_API b2Transform
 {
 	/// The default constructor does nothing.
-	b2Transform() = default;
+	b2Transform() {}
 
 	/// Initialize using a position vector and a rotation.
 	b2Transform(const b2Vec2& position, const b2Rot& rotation) : p(position), q(rotation) {}
@@ -357,6 +432,20 @@ struct B2_API b2Transform
 		q.Set(angle);
 	}
 
+#if LIQUIDFUN_EXTERNAL_LANGUAGE_API
+	/// Get x-coordinate of p.
+	float GetPositionX() const { return p.x; }
+
+	/// Get y-coordinate of p.
+	float GetPositionY() const { return p.y; }
+
+	/// Get sine-component of q.
+	float GetRotationSin() const { return q.s; }
+
+	/// Get cosine-component of q.
+	float GetRotationCos() const { return q.c; }
+#endif // LIQUIDFUN_EXTERNAL_LANGUAGE_API
+
 	b2Vec2 p;
 	b2Rot q;
 };
@@ -367,8 +456,6 @@ struct B2_API b2Transform
 /// we must interpolate the center of mass position.
 struct B2_API b2Sweep
 {
-	b2Sweep() = default;
-
 	/// Get the interpolated transform at a specific time.
 	/// @param transform the output transform
 	/// @param beta is a factor in [0,1], where 0 indicates alpha0.

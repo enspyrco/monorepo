@@ -1,6 +1,7 @@
 // MIT License
 
 // Copyright (c) 2019 Erin Catto
+// Copyright (c) 2014 Google, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,6 +20,8 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
+#include <string.h>
+#include <memory.h>
 
 #include "box2d/b2_circle_shape.h"
 #include "box2d/b2_distance.h"
@@ -475,6 +478,14 @@ void b2Distance(b2DistanceOutput* output,
 	// can check for duplicates and prevent cycling.
 	int32 saveA[3], saveB[3];
 	int32 saveCount = 0;
+
+  // Work around spurious gcc-4.8.2 warnings when -Wmaybe-uninitialized is
+	// enabled by initializing saveA / saveB arrays when they're referenced
+	// at the end of the main iteration loop below even though saveCount
+	// entries of each array are initialized at the start of the main
+	// iteration loop.
+	memset(saveA, 0, sizeof(saveA));
+	memset(saveB, 0, sizeof(saveB));
 
 	// Main iteration loop.
 	int32 iter = 0;

@@ -1,6 +1,7 @@
 // MIT License
 
 // Copyright (c) 2019 Erin Catto
+// Copyright (c) 2019 Google, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +28,7 @@
 
 #include "b2_settings.h"
 #include "b2_draw.h"
+#include "b2_stat.h"
 #include "b2_timer.h"
 
 #include "b2_chain_shape.h"
@@ -54,5 +56,8 @@
 #include "b2_revolute_joint.h"
 #include "b2_weld_joint.h"
 #include "b2_wheel_joint.h"
+
+#include "b2_particle.h"
+#include "b2_particle_group.h"
 
 #endif

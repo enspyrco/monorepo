@@ -1,6 +1,7 @@
 // MIT License
 
 // Copyright (c) 2019 Erin Catto
+// Copyright (c) 2013 Google, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -68,6 +69,11 @@ struct B2_API b2BodyDef
 		enabled = true;
 		gravityScale = 1.0f;
 	}
+
+#if LIQUIDFUN_EXTERNAL_LANGUAGE_API
+	/// Set position with direct floats.
+	void SetPosition(float positionX, float positionY);
+#endif // LIQUIDFUN_EXTERNAL_LANGUAGE_API
 
 	/// The body type: static, kinematic, or dynamic.
 	/// Note: if a dynamic body would have zero mass, the mass is set to one.
@@ -243,7 +249,7 @@ public:
 
 	/// Get the mass data of the body.
 	/// @return a struct containing the mass, inertia and center of the body.
-	b2MassData GetMassData() const;
+	void GetMassData(b2MassData* data) const;
 
 	/// Set the mass properties to override the mass properties of the fixtures.
 	/// Note that this changes the center of mass position.
@@ -377,7 +383,9 @@ public:
 
 	/// Get the user data pointer that was provided in the body definition.
 	b2BodyUserData& GetUserData();
-	const b2BodyUserData& GetUserData() const;
+
+	/// Set the user data. Use this to store your application specific data.
+	void SetUserData(void* data);
 
 	/// Get the parent world of this body.
 	b2World* GetWorld();
@@ -385,6 +393,17 @@ public:
 
 	/// Dump this body to a file
 	void Dump();
+
+#if LIQUIDFUN_EXTERNAL_LANGUAGE_API
+	/// Get x-coordinate of position.
+	float GetPositionX() const { return GetPosition().x; }
+
+	/// Get y-coordinate of position.
+	float GetPositionY() const { return GetPosition().y; }
+
+	/// Set b2Transform using direct floats.
+	void SetTransform(float positionX, float positionY, float angle);
+#endif // LIQUIDFUN_EXTERNAL_LANGUAGE_API
 
 private:
 
@@ -402,8 +421,12 @@ private:
 	friend class b2PrismaticJoint;
 	friend class b2PulleyJoint;
 	friend class b2RevoluteJoint;
+	friend class b2RopeJoint;
 	friend class b2WeldJoint;
 	friend class b2WheelJoint;
+
+	friend class b2ParticleSystem;
+	friend class b2ParticleGroup;
 
 	// m_flags
 	enum
@@ -436,6 +459,7 @@ private:
 	int32 m_islandIndex;
 
 	b2Transform m_xf;		// the body origin transform
+	b2Transform m_xf0;		// the previous transform for particle simulation
 	b2Sweep m_sweep;		// the swept motion for CCD
 
 	b2Vec2 m_linearVelocity;
@@ -548,13 +572,11 @@ inline float b2Body::GetInertia() const
 	return m_I + m_mass * b2Dot(m_sweep.localCenter, m_sweep.localCenter);
 }
 
-inline b2MassData b2Body::GetMassData() const
+inline void b2Body::GetMassData(b2MassData* data) const
 {
-	b2MassData data;
-	data.mass = m_mass;
-	data.I = m_I + m_mass * b2Dot(m_sweep.localCenter, m_sweep.localCenter);
-	data.center = m_sweep.localCenter;
-	return data;
+	data->mass = m_mass;
+	data->I = m_I + m_mass * b2Dot(m_sweep.localCenter, m_sweep.localCenter);
+	data->center = m_sweep.localCenter;
 }
 
 inline b2Vec2 b2Body::GetWorldPoint(const b2Vec2& localPoint) const
@@ -735,11 +757,6 @@ inline b2BodyUserData& b2Body::GetUserData()
 	return m_userData;
 }
 
-inline const b2BodyUserData& b2Body::GetUserData() const
-{
-	return m_userData;
-}
-
 inline void b2Body::ApplyForce(const b2Vec2& force, const b2Vec2& point, bool wake)
 {
 	if (m_type != b2_dynamicBody)
@@ -881,5 +898,17 @@ inline const b2World* b2Body::GetWorld() const
 {
 	return m_world;
 }
+
+#if LIQUIDFUN_EXTERNAL_LANGUAGE_API
+inline void b2BodyDef::SetPosition(float positionX, float positionY)
+{
+	position.Set(positionX, positionY);
+}
+
+inline void b2Body::SetTransform(float positionX, float positionY, float angle)
+{
+	SetTransform(b2Vec2(positionX, positionY), angle);
+}
+#endif // LIQUIDFUN_EXTERNAL_LANGUAGE_API
 
 #endif

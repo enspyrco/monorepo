@@ -24,6 +24,7 @@
 #include <limits.h>
 #include <string.h>
 #include <stddef.h>
+#include <new> // For placement new
 
 static const int32 b2_chunkSize = 16 * 1024;
 static const int32 b2_maxBlockSize = 640;
@@ -88,7 +89,7 @@ struct b2Block
 
 b2BlockAllocator::b2BlockAllocator()
 {
-	b2Assert(b2_blockSizeCount < UCHAR_MAX);
+	b2Assert((uint32)b2_blockSizeCount < UCHAR_MAX);
 
 	m_chunkSpace = b2_chunkArrayIncrement;
 	m_chunkCount = 0;
@@ -108,6 +109,11 @@ b2BlockAllocator::~b2BlockAllocator()
 	b2Free(m_chunks);
 }
 
+uint32 b2BlockAllocator::GetNumGiantAllocations() const
+{
+	return m_giants.GetList().GetLength();
+}
+
 void* b2BlockAllocator::Allocate(int32 size)
 {
 	if (size == 0)
@@ -119,7 +125,7 @@ void* b2BlockAllocator::Allocate(int32 size)
 
 	if (size > b2_maxBlockSize)
 	{
-		return b2Alloc(size);
+		return m_giants.Allocate(size);
 	}
 
 	int32 index = b2_sizeMap.values[size];
@@ -145,7 +151,7 @@ void* b2BlockAllocator::Allocate(int32 size)
 
 		b2Chunk* chunk = m_chunks + m_chunkCount;
 		chunk->blocks = (b2Block*)b2Alloc(b2_chunkSize);
-#if defined(_DEBUG)
+#if DEBUG
 		memset(chunk->blocks, 0xcd, b2_chunkSize);
 #endif
 		int32 blockSize = b2_blockSizes[index];
@@ -179,14 +185,14 @@ void b2BlockAllocator::Free(void* p, int32 size)
 
 	if (size > b2_maxBlockSize)
 	{
-		b2Free(p);
+		m_giants.Free(p);
 		return;
 	}
 
 	int32 index = b2_sizeMap.values[size];
 	b2Assert(0 <= index && index < b2_blockSizeCount);
 
-#if defined(_DEBUG)
+#if B2_ASSERT_ENABLED
 	// Verify the memory address and size is valid.
 	int32 blockSize = b2_blockSizes[index];
 	bool found = false;
@@ -208,8 +214,10 @@ void b2BlockAllocator::Free(void* p, int32 size)
 	}
 
 	b2Assert(found);
+#endif // B2_ASSERT_ENABLED
 
-	memset(p, 0xfd, blockSize);
+#if DEBUG
+  memset(p, 0xfd, b2_blockSizes[index]);
 #endif
 
 	b2Block* block = (b2Block*)p;
