@@ -11,9 +11,22 @@ The app consists of several parts:
   - Builder View
 - Profile Screen
 
-## Presentation
+## Session
 
 Information grouped into slides, potentially with interactive elements.
+
+### Sessions List
+
+A list view of Session Summaries, which can be filtered using the Session List Filters.
+
+### Session Summary
+
+### Session List Filters
+
+Filters are available above the Sessions List that will allow the user to see:
+
+- your own sessions
+- recent sessions
 
 ## Role
 
@@ -40,3 +53,19 @@ A slide is a group of information that is viewed together on screen at once. A P
 ## Transitions
 
 Transitions are animations that move from one slide to the next.
+
+## Notion
+
+A notes app with database superpowers <https://www.notion.so/>
+
+### Notion Integration
+
+A session can be linked with a Notion page and synced (one way for now) with a Sync Notion Page Button on the Session Details page.
+
+### Sync Notion Page Button
+
+This button has three states:
+
+- Unlinked
+- Linked
+- Syncing
