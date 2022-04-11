@@ -1,5 +1,6 @@
 import WebIDL
-import json
+import jsonpickle
+from json import JSONEncoder
 
 def read_file(file_path):
   """Read from a file opened in text mode"""
@@ -25,13 +26,16 @@ for thing in data:
   elif isinstance(thing, WebIDL.IDLEnum):
     enums[thing.identifier.name] = thing
 
-
-for key in interfaces:
-  interface = interfaces[key]
-  ivars = vars(interface)
-  for keyi in ivars:
-    print(keyi, ivars[keyi]) # json.dumps(
-
 # print(interfaces)
 # print(implements)
 # print(enums)
+
+interfacesJson = jsonpickle.encode(interfaces)
+with open("interfaces.json", "w") as text_file:
+    print(interfacesJson, file=text_file)
+implementsJson = jsonpickle.encode(implements)
+with open("implements.json", "w") as text_file:
+    print(implementsJson, file=text_file)
+enumsJson = jsonpickle.encode(enums)
+with open("enums.json", "w") as text_file:
+    print(enumsJson, file=text_file)

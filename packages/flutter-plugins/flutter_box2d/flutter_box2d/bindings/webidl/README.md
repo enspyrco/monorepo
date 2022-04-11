@@ -2,7 +2,11 @@
 
 *Use emscripten's `WebIDL.py` parser to create Dart/C & Dart/JS bindings.*
 
-Run with: `python3 parse.py Box2D.idl`
+Run with:
+
+```sh
+python3 parse.py Box2D.idl
+```
 
 > Emscripten requires python > 3.? (need ref) but I don't know if the small subset we are using has the same requirement.
 
