@@ -4,8 +4,12 @@ import 'src/b2_ffi_delegates.dart';
 
 /// A macos implementation of the FlutterBox2d plugin.
 class FlutterBox2DMacos extends FlutterBox2DPlatform {
-  // The parent app will generate code at build-time, which the plugin will call
-  // at run time, to get the appropriate implementation of FlutterBox2DPlatform
+  // The app using our plugin will generate code at build-time, which the tool/engine
+  // calls at run time (eg. flutter_box2d/.dart_tool/flutter_build/generated_main.dart),
+  // to get the appropriate implementation of FlutterBox2DPlatform. Eg, if the
+  // parent app is macos app, the generated code will call this function.
+  //
+  // The generated code is marked @pragma('vm:entry-point'), so presumably non-Dart, maybe the engine?
   static void registerWith() {
     FlutterBox2DPlatform.instance = FlutterBox2DMacos();
   }

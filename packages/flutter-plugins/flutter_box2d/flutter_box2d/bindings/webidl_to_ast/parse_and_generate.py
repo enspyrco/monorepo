@@ -38,7 +38,7 @@ names = sorted(interfaces.keys(), key=lambda x: nodeHeights.get(x, 0), reverse=T
 for name in names:
   interface = interfaces[name]
 
-  mid_c += ['\n// ' + name + '\n']
+  mid_c += ['\nclass ' + name + ' {\n']
 
   # Methods
 
@@ -124,6 +124,8 @@ for name in names:
                     False,
                     func_scope=interface,
                     call_content='delete self')
+  
+  mid_c += ['\n}\n']
 
 # enums 
 
