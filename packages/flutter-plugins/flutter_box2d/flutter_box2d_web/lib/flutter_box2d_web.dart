@@ -11,14 +11,14 @@ class FlutterBox2DWeb extends FlutterBox2DPlatform {
   }
 
   @override
-  B2BodyDefDelegate b2BodyDef() => B2BodyDefJSAdapter();
+  B2BodyDefPlatform b2BodyDef() => B2BodyDefJSAdapter();
 
   @override
-  B2PolygonShapeDelegate b2PolygonShape() => B2PolygonShapeJSAdapter();
+  B2PolygonShapePlatform b2PolygonShape() => B2PolygonShapeJSAdapter();
 
   @override
-  B2Vec2Delegate b2Vec2(double x, double y) => B2Vec2JSAdapter.from(x, y);
+  B2Vec2Platform b2Vec2(double x, double y) => B2Vec2JSAdapter.from(x, y);
 
   @override
-  B2WorldDelegate b2World(B2Vec2JSAdapter vec) => B2WorldJSAdapter(vec);
+  B2WorldPlatform b2World(B2Vec2JSAdapter vec) => B2WorldJSAdapter(vec);
 }

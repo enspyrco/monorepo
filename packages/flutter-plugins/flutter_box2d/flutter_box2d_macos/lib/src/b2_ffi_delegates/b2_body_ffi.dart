@@ -21,7 +21,7 @@ typedef GetPosition = Pointer<Void> Function(Pointer<Void>);
 
 typedef GetLinearVelocity = Pointer<Void> Function(Pointer<Void>);
 
-class B2BodyFfi implements B2BodyDelegate {
+class B2BodyFfi implements B2BodyPlatform {
   final Pointer<Void> _self;
 
   B2BodyFfi._(Pointer<Void> ptr) : _self = ptr;
@@ -41,14 +41,14 @@ class B2BodyFfi implements B2BodyDelegate {
           'dart_bind_b2Body_GetLinearVelocity_0');
 
   @override
-  B2Vec2Delegate getLinearVelocity() => B2Vec2Ffi._(_getLinearVelocity(_self));
+  B2Vec2Platform getLinearVelocity() => B2Vec2Ffi._(_getLinearVelocity(_self));
 
   // b2Vec2* dart_bind_b2Body_GetPosition_0(b2Body* self)
   static final _getPosition = _symbols.lookupFunction<GetPosition, GetPosition>(
       'dart_bind_b2Body_GetPosition_0');
 
   @override
-  B2Vec2Delegate getPosition() => B2Vec2Ffi._(_getPosition(_self));
+  B2Vec2Platform getPosition() => B2Vec2Ffi._(_getPosition(_self));
 
   // C: void fn(b2Body* self, bool flag)
   static final _setAwake = _symbols

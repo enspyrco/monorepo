@@ -31,24 +31,24 @@ abstract class FlutterBox2DPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  B2BodyDefDelegate b2BodyDef() {
+  B2BodyDefPlatform b2BodyDef() {
     throw UnimplementedError('b2BodyDef() has not been implemented.');
   }
 
-  B2PolygonShapeDelegate b2PolygonShape() {
+  B2PolygonShapePlatform b2PolygonShape() {
     throw UnimplementedError('b2PolygonShape() has not been implemented.');
   }
 
-  B2ShapeDelegate b2Shape() {
+  B2ShapePlatform b2Shape() {
     throw UnimplementedError('b2Shape() has not been implemented.');
   }
 
-  B2Vec2Delegate b2Vec2(double x, double y) {
+  B2Vec2Platform b2Vec2(double x, double y) {
     throw UnimplementedError(
         'b2Vec2(double x, double y) has not been implemented.');
   }
 
-  B2WorldDelegate b2World(covariant B2Vec2Delegate vec) {
+  B2WorldPlatform b2World(covariant B2Vec2Platform vec) {
     throw UnimplementedError(
         'b2World(double x, double y) has not been implemented.');
   }

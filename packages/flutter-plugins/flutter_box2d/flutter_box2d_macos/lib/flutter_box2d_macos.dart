@@ -20,14 +20,14 @@ class FlutterBox2DMacos extends FlutterBox2DPlatform {
   num get b2DynamicBody => b2BodyType.b2_dynamicBody;
 
   @override
-  B2BodyDefDelegate b2BodyDef() => B2BodyDefFfi();
+  B2BodyDefPlatform b2BodyDef() => B2BodyDefFfi();
 
   @override
-  B2PolygonShapeDelegate b2PolygonShape() => B2PolygonShapeFfi();
+  B2PolygonShapePlatform b2PolygonShape() => B2PolygonShapeFfi();
 
   @override
-  B2Vec2Delegate b2Vec2(double x, double y) => B2Vec2Ffi(x, y);
+  B2Vec2Platform b2Vec2(double x, double y) => B2Vec2Ffi(x, y);
 
   @override
-  B2WorldDelegate b2World(B2Vec2Ffi vec) => B2WorldFfi(vec);
+  B2WorldPlatform b2World(B2Vec2Ffi vec) => B2WorldFfi(vec);
 }

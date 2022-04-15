@@ -1,7 +1,7 @@
 import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
 import 'package:flutter_box2d_web/src/box2d_js_impl.dart';
 
-class B2BodyJSAdapter implements B2BodyDelegate {
+class B2BodyJSAdapter implements B2BodyPlatform {
   // B2BodyJSAdapter() : _impl = B2BodyJSImpl();
   B2BodyJSAdapter(B2BodyJSImpl impl) : _impl = impl;
 
@@ -33,7 +33,7 @@ class B2BodyJSAdapter implements B2BodyDelegate {
       _impl.SetTransform(position._impl, angle);
 }
 
-class B2BodyDefJSAdapter implements B2BodyDefDelegate {
+class B2BodyDefJSAdapter implements B2BodyDefPlatform {
   B2BodyDefJSAdapter() : _impl = B2BodyDefJSImpl();
 
   final B2BodyDefJSImpl _impl;
@@ -46,14 +46,14 @@ class B2BodyDefJSAdapter implements B2BodyDefDelegate {
   void setType(int type) => _impl.set_type(type);
 }
 
-class B2FixtureJSAdapter implements B2FixtureDelegate {
+class B2FixtureJSAdapter implements B2FixturePlatform {
   B2FixtureJSAdapter(B2FixtureJSImpl impl) : _impl = impl;
 
   final B2FixtureJSImpl _impl;
 }
 
 class B2PolygonShapeJSAdapter
-    implements B2PolygonShapeDelegate, B2ShapeJSAdapter {
+    implements B2PolygonShapePlatform, B2ShapeJSAdapter {
   B2PolygonShapeJSAdapter() : _impl = B2PolygonShapeJSImpl();
 
   @override
@@ -66,11 +66,11 @@ class B2PolygonShapeJSAdapter
   void setAsBox(double hx, double hy) => _impl.SetAsBox(hx, hy);
 }
 
-abstract class B2ShapeJSAdapter implements B2ShapeDelegate {
+abstract class B2ShapeJSAdapter implements B2ShapePlatform {
   B2ShapeJSImpl get _impl;
 }
 
-class B2Vec2JSAdapter implements B2Vec2Delegate {
+class B2Vec2JSAdapter implements B2Vec2Platform {
   B2Vec2JSAdapter(B2Vec2JSImpl impl) : _impl = impl;
   B2Vec2JSAdapter.from(double x, double y) : _impl = B2Vec2JSImpl(x, y);
 
@@ -86,7 +86,7 @@ class B2Vec2JSAdapter implements B2Vec2Delegate {
   double get y => _impl.get_y().toDouble();
 }
 
-class B2WorldJSAdapter implements B2WorldDelegate {
+class B2WorldJSAdapter implements B2WorldPlatform {
   B2WorldJSAdapter(B2Vec2JSAdapter vec) : _impl = B2WorldJSImpl(vec._impl);
 
   final B2WorldJSImpl _impl;

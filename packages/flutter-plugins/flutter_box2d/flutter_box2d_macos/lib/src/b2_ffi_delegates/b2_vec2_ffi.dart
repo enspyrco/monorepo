@@ -9,7 +9,7 @@ typedef LengthFn = double Function(Pointer<Void>);
 typedef XFnN = Float Function(Pointer<Void>);
 typedef XFn = double Function(Pointer<Void>);
 
-class B2Vec2Ffi implements B2Vec2Delegate {
+class B2Vec2Ffi implements B2Vec2Platform {
   final Pointer<Void> _self;
 
   static final _ctr = _symbols
