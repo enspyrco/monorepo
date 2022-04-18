@@ -1,6 +1,7 @@
 import emscripten.WebIDL as WebIDL
-from utils.find_node_heights import find_node_heights
-from utils.render_function import Dummy, render_function
+from utils.utils import Output, Dummy, find_node_heights
+from utils.render_function import render_function
+from utils.utils_dart import pre_dart_itf, pre_dart_decs, pre_dart_dels
 
 def read_file(file_path):
   """Read from a file opened in text mode"""
@@ -26,19 +27,23 @@ for thing in data:
   elif isinstance(thing, WebIDL.IDLEnum):
     enums[thing.identifier.name] = thing
 
-dart_code = []
-
 # interfaces
 
+output = Output()
 
-mid_c = []
 nodeHeights = find_node_heights(implements)
 names = sorted(interfaces.keys(), key=lambda x: nodeHeights.get(x, 0), reverse=True)
 
 for name in names:
+  if name != 'b2Vec2':
+    continue
+
   interface = interfaces[name]
 
-  mid_c += ['\nclass ' + name + ' {\n']
+  dart_name = name[0].upper() + name[1:]
+  output.mid_c += ['\n// ' + name + '\n']
+  output.mid_dart_decs += ['class ' + dart_name + ' {\n\n\tfinal ' + dart_name + 'Platform _delegate;\n']
+  output.mid_dart_dels += ['\nabstract class ' + dart_name + 'Platform extends PlatformInterface {\n\n\tstatic final Object _token = Object();\n\tstatic ' + dart_name + 'Platform? _instance;\n']
 
   # Methods
 
@@ -66,7 +71,7 @@ for name in names:
         if i == len(args) or args[i].optional:
           assert i not in sigs, 'overloading must differentiate by # of arguments (cannot have two signatures that differ by types but not by length)'
           sigs[i] = args[:i]
-    render_function(interfaces, mid_c, name,
+    render_function(interfaces, output, name,
                     m.identifier.name, sigs, return_type,
                     m.getExtendedAttribute('Ref'),
                     m.getExtendedAttribute('Value'),
@@ -104,7 +109,7 @@ for name in names:
 
     if not m.readonly:
       set_name = 'set_' + attr
-      render_function(interfaces, mid_c, name,
+      render_function(interfaces, output, name,
                       set_name, set_sigs, 'Void',
                       None,
                       None,
@@ -116,7 +121,7 @@ for name in names:
                       array_attribute=m.type.isArray())
 
   if not interface.getExtendedAttribute('NoDelete'):
-    render_function(interfaces, mid_c, name,
+    render_function(interfaces, output, name,
                     '__destroy__', {0: []}, 'Void',
                     None,
                     None,
@@ -125,18 +130,33 @@ for name in names:
                     func_scope=interface,
                     call_content='delete self')
   
-  mid_c += ['\n}\n']
+  output.mid_c += ['\n']
+  output.mid_dart_dels += ['\n}\n']
+  output.mid_dart_decs += ['\n}\n']
 
 # enums 
 
-for name, enum in enums.items():
-  dart_code += ['enum ' + name[0].upper() + name[1:] + ' {\n']
-  for value in enum.values():
-    dart_code += ['  '+value.split('::')[-1].split('_')[-1]+',\n']
-  dart_code += ['}\n\n']
+# for name, enum in enums.items():
+#   dart_code += ['enum ' + name[0].upper() + name[1:] + ' {\n']
+#   for value in enum.values():
+#     dart_code += ['  '+value.split('::')[-1].split('_')[-1]+',\n']
+#   dart_code += ['}\n\n']
 
-with open('out.dart', 'w') as c:
-  for x in dart_code:
+# write output
+
+with open('out.c', 'w') as c:
+  for x in output.mid_c:
     c.write(x)
-  for x in mid_c:
-    c.write(x)
+with open('interface.dart', 'w') as dart:
+  dart.write(pre_dart_itf)
+  for x in output.mid_dart_itf:
+    dart.write(x)
+  dart.write('}')
+with open('delegates.dart', 'w') as dart:
+  dart.write(pre_dart_dels)
+  for x in output.mid_dart_dels:
+    dart.write(x)
+with open('decorators.dart', 'w') as dart:
+  dart.write(pre_dart_decs)
+  for x in output.mid_dart_decs:
+    dart.write(x)
