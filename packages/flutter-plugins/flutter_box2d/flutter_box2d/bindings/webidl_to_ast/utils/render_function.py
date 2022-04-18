@@ -1,6 +1,6 @@
 import emscripten.WebIDL as WebIDL
 from utils.utils import Dummy, lower_first, upper_first, type_to_c, type_to_cdec, full_typename, deref_if_nonpointer, take_addr_if_nonpointer
-from utils.utils_dart import type_to_dart
+from utils.utils_dart import Context, type_to_dart
 
 CHECKS='FAST'
 DEBUG=0
@@ -49,7 +49,7 @@ def render_function(interfaces, output, class_name, func_name, sigs, return_type
       sig = [x.replace('[]', '') for x in sig] # for arrays, ignore that this is an array - our get/set methods operate on the elements
 
     c_arg_types = list(map(type_to_c, interfaces, sig))
-    dart_arg_types = list(map(type_to_dart, interfaces, sig))
+    dart_arg_types = list(map(lambda s: type_to_dart(interfaces, s, False, Context.DELS), sig))
 
     normal_args = ', '.join(['%s %s' % (c_arg_types[j], args[j]) for j in range(i)])
     dart_args = ', '.join(['%s %s' % (dart_arg_types[j], args[j]) for j in range(i)])
@@ -93,6 +93,7 @@ def render_function(interfaces, output, class_name, func_name, sigs, return_type
       return_postfix += ', &temp)'
 
     c_return_type = type_to_c(interfaces, return_type)
+    dart_return_type = type_to_dart(interfaces, return_type, False, Context.DELS)
     maybe_const = 'const ' if const else ''
     output.mid_c.append(r'''
 %s%s %s(%s) {
@@ -106,7 +107,7 @@ def render_function(interfaces, output, class_name, func_name, sigs, return_type
   %s%s %s(%s) {
     throw UnimplementedError('%s(%s) has not been implemented.');
   }
-''' % (maybe_const, type_to_dart(interfaces, class_name), dart_itf_names[i], dart_args, dart_itf_names[i], full_args))
+''' % (maybe_const, type_to_dart(interfaces, class_name, False, Context.ITF), dart_itf_names[i], dart_args, dart_itf_names[i], full_args))
       
       maybe_from = ('.from%s' % i) if i != 0 else ''
       # Decorators
@@ -117,7 +118,7 @@ def render_function(interfaces, output, class_name, func_name, sigs, return_type
 
     else:
       # Delegates functions
-      output.mid_dart_dels.append('\n\t%s %s(%s);\n' % (type_to_dart(interfaces, return_type), dart_func_name, dart_args))
+      output.mid_dart_dels.append('\n\t%s %s(%s);\n' % (type_to_dart(interfaces, dart_return_type), dart_func_name, dart_args))
 
     if not constructor:
       if i == max_args:

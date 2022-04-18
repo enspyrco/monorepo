@@ -1,6 +1,13 @@
 from utils.utils import upper_first
+from enum import Enum
 
-def type_to_dart(interfaces, t, non_pointing=False):
+class Context(Enum):
+  DEFAULT = 0 # default context, ie no context has been supplied
+  ITF = 1 # creating interface class
+  DELS = 2 # creating delegate classes
+  DECS = 3 # creating decorator classes
+
+def type_to_dart(interfaces, t, non_pointing=False, context=Context.DEFAULT):
   # print 'to c ', t
   def base_type_to_c(t):
     if t == 'Long':
@@ -32,7 +39,7 @@ def type_to_dart(interfaces, t, non_pointing=False):
     elif t == 'Any' or t == 'VoidPtr':
       ret = 'void*'
     elif t in interfaces:
-      ret = (interfaces[t].getExtendedAttribute('Prefix') or [''])[0] + t[0].upper() + t[1:] + 'Platform'
+      ret = (interfaces[t].getExtendedAttribute('Prefix') or [''])[0] + t[0].upper() + t[1:] + ('Platform' if(context == Context.ITF or context == Context.DELS) else '')
     else:
       ret = t
     return ret
