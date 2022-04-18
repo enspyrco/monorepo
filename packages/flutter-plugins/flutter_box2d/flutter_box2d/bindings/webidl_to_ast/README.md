@@ -20,6 +20,10 @@ python3 parse.py Box2D.idl
   - and replicated what was done there, taking the `read_file` function from `$EMSCRIPTEN_DIR/tools/utils.py`.
 - The result is in `flutter_box2d/bindings/webidl/parse_and_generate.py`
 
+## Debugging
+
+See: <https://code.visualstudio.com/docs/python/debugging>
+
 ## References
 
 [Notion > Python]

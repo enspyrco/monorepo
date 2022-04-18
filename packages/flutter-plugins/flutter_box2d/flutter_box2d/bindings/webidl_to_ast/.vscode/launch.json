@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Parse & Generate",
+      "type": "python",
+      "request": "launch",
+      "args": ["Box2D.idl"],
+      "program": "parse_and_generate.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}

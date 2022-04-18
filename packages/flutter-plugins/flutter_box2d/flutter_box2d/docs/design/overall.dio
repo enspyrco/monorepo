@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="gPbql2_nkBdIirH8SVZ8" name="Federated Plugin">
-        <mxGraphModel dx="626" dy="680" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="632" dy="387" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -64,8 +64,8 @@
                 <mxCell id="25" value="&lt;span style=&quot;font-size: 11px&quot;&gt;provides a&amp;nbsp;&lt;/span&gt;&lt;br style=&quot;font-size: 11px&quot;&gt;&lt;span style=&quot;font-size: 11px&quot;&gt;common&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 11px&quot;&gt;interface&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="300" y="130" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="26" value="In fact the app-facing&lt;br&gt;package both depends on&lt;br&gt;&amp;nbsp;and exposes the &lt;br&gt;Platform Interface&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="450" y="130" width="150" height="60" as="geometry"/>
+                <mxCell id="26" value="In fact the app-facing&lt;br&gt;package depends on&lt;br&gt;&amp;nbsp;and then exposes the whole&lt;br&gt;Platform Interface...&lt;br&gt;Let's not do that :(" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="120" width="170" height="80" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
