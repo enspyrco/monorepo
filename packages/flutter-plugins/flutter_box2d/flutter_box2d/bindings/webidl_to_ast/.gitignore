@@ -2,4 +2,5 @@ addback.py
 decorators.dart
 delegates.dart
 interface.dart
+ffi.dart
 out.c

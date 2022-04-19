@@ -1,7 +1,7 @@
 import emscripten.WebIDL as WebIDL
 from utils.utils import Output, Dummy, find_node_heights
 from utils.render_function import render_function
-from utils.utils_dart import pre_dart_itf, pre_dart_decs, pre_dart_dels
+from utils.utils_dart import pre_dart_itf, pre_dart_decs, pre_dart_dels, pre_dart_ffi
 
 def read_file(file_path):
   """Read from a file opened in text mode"""
@@ -44,6 +44,7 @@ for name in names:
   output.mid_c += ['\n// ' + name + '\n']
   output.mid_dart_decs += ['class ' + dart_name + ' {\n\n\tfinal ' + dart_name + 'Platform _delegate;\n']
   output.mid_dart_dels += ['\nabstract class ' + dart_name + 'Platform extends PlatformInterface {\n\n\tstatic final Object _token = Object();\n\tstatic ' + dart_name + 'Platform? _instance;\n']
+  output.mid_dart_ffi += ['\nclass ' + dart_name + 'Ffi implements ' + dart_name + 'Platform {\n\n\tfinal Pointer<Void> _self;\n']
 
   # Methods
 
@@ -133,6 +134,7 @@ for name in names:
   output.mid_c += ['\n']
   output.mid_dart_dels += ['\n}\n']
   output.mid_dart_decs += ['\n}\n']
+  output.mid_dart_ffi += ['\n}\n']
 
 # enums 
 
@@ -144,19 +146,23 @@ for name in names:
 
 # write output
 
-with open('out.c', 'w') as c:
+with open('out/out.c', 'w') as c:
   for x in output.mid_c:
     c.write(x)
-with open('interface.dart', 'w') as dart:
+with open('out/interface.dart', 'w') as dart:
   dart.write(pre_dart_itf)
   for x in output.mid_dart_itf:
     dart.write(x)
   dart.write('}')
-with open('delegates.dart', 'w') as dart:
+with open('out/delegates.dart', 'w') as dart:
   dart.write(pre_dart_dels)
   for x in output.mid_dart_dels:
     dart.write(x)
-with open('decorators.dart', 'w') as dart:
+with open('out/decorators.dart', 'w') as dart:
   dart.write(pre_dart_decs)
   for x in output.mid_dart_decs:
+    dart.write(x)
+with open('out/ffi.dart', 'w') as dart:
+  dart.write(pre_dart_ffi)
+  for x in output.mid_dart_ffi:
     dart.write(x)

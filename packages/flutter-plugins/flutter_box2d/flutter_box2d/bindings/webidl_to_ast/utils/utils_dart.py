@@ -4,8 +4,10 @@ from enum import Enum
 class Context(Enum):
   DEFAULT = 0 # default context, ie no context has been supplied
   ITF = 1 # creating interface class
-  DELS = 2 # creating delegate classes
-  DECS = 3 # creating decorator classes
+  DEL_RET = 2 # delegate return type
+  DEL_ARG = 3 # delegate function arg types
+  DECS = 4 # creating decorator classes
+  FFI = 5 # creating Ffi classes
 
 def type_to_dart(interfaces, t, non_pointing=False, context=Context.DEFAULT):
   # print 'to c ', t
@@ -39,7 +41,11 @@ def type_to_dart(interfaces, t, non_pointing=False, context=Context.DEFAULT):
     elif t == 'Any' or t == 'VoidPtr':
       ret = 'void*'
     elif t in interfaces:
-      ret = (interfaces[t].getExtendedAttribute('Prefix') or [''])[0] + t[0].upper() + t[1:] + ('Platform' if(context == Context.ITF or context == Context.DELS) else '')
+      ret = (interfaces[t].getExtendedAttribute('Prefix') or [''])[0] + t[0].upper() + t[1:] 
+      if(context == Context.ITF): ret += 'Platform'
+      elif(context == Context.DEL_RET): ret = '%sPlatform' % ret
+      elif(context == Context.DEL_ARG): ret = 'covariant %sPlatform' % ret # add covariant to delegates.dart function args - to avoid type errors for args in ffi.dart
+      elif(context == Context.FFI): ret += 'Ffi'
     else:
       ret = t
     return ret
@@ -55,8 +61,7 @@ def type_to_dart(interfaces, t, non_pointing=False, context=Context.DEFAULT):
     t = t.replace('const ', '')
   return prefix + base_type_to_c(t) + suffix
 
-pre_dart_itf = r'''
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+pre_dart_itf = r'''import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'delegates.dart';
 
@@ -90,13 +95,22 @@ abstract class FlutterBox2DPlatform extends PlatformInterface {
   }
 '''
 
-pre_dart_decs = '''
-import 'interface.dart';
+pre_dart_decs = '''import 'interface.dart';
 import 'delegates.dart';
 
 '''
 
-pre_dart_dels = '''
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+pre_dart_dels = '''import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+
+'''
+
+pre_dart_ffi = '''import 'dart:ffi';
+
+// import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
+import 'delegates.dart';
+
+final DynamicLibrary _symbols = DynamicLibrary.process();
+
+typedef EmptyConstructor = Pointer<Void> Function();
 
 '''
