@@ -58,7 +58,7 @@ def type_to_ffi(interfaces, t, non_pointing=False, context=Context.DEFAULT):
       ret = 'void*'
     elif t in interfaces:
       ret = (interfaces[t].getExtendedAttribute('Prefix') or [''])[0] + t[0].upper() + t[1:] 
-      if(context == Context.DEFAULT): ret += 'Ffi'
+      if(context == Context.DEFAULT): ret += 'FfiAdapter'
       else: ret = 'Pointer<Void>'
     else:
       ret = t

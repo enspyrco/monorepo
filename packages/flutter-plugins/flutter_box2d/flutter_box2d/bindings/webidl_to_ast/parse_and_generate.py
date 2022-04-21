@@ -1,7 +1,7 @@
 import emscripten.WebIDL as WebIDL
 from utils.utils import Output, Dummy, find_node_heights
 from utils.render_function import render_function
-from utils.utils_dart import pre_dart_itf, pre_dart_decs, pre_dart_dels, pre_dart_ffi
+from utils.utils_dart import pre_dart_itf, pre_dart_decs, pre_dart_dels, pre_dart_ffi, pre_dart_js
 
 def read_file(file_path):
   """Read from a file opened in text mode"""
@@ -43,11 +43,17 @@ for name in names:
   dart_name = name[0].upper() + name[1:]
   output.mid_c += ['\n// ' + name + '\n']
   output.mid_dart_decs += ['class ' + dart_name + ' {\n\n\tfinal ' + dart_name + 'Platform _delegate;\n']
-  output.mid_dart_dels += ['\nabstract class ' + dart_name + 'Platform extends PlatformInterface {\n\n\tstatic final Object _token = Object();\n\tstatic ' + dart_name + 'Platform? _instance;\n']
-  output.mid_dart_ffi += ['\nclass ' + dart_name + 'Ffi implements ' + dart_name + 'Platform {\n\n\tfinal Pointer<Void> _self;\n']
+  output.mid_dart_dels += ['abstract class ' + dart_name + 'Platform extends PlatformInterface {\n\n\tstatic final Object _token = Object();\n']
+  output.mid_dart_ffi += ['class ' + dart_name + 'FfiAdapter implements ' + dart_name + 'Platform {\n\n\tfinal Pointer<Void> _self;\n\t' + dart_name + 'FfiAdapter._(Pointer<Void> self) : _self = self;\n']
+  output.mid_dart_jsadapter  += ['class ' + dart_name + 'JSAdapter implements ' + dart_name + 'Platform {\n']
+  output.mid_dart_jsadapter  += ['\n\t'+dart_name+'JSAdapter._('+ dart_name + 'JSImpl impl) : _impl = impl;\n']
+  output.mid_dart_jsadapter  += ['\n\tfinal '+ dart_name + 'JSImpl _impl;\n']
+  output.mid_dart_jsimpl  += ['@JS(\'' + name + '\')\nclass ' + dart_name + 'JSImpl {\n']
+
+  # Interface members
+  ###################
 
   # Methods
-
   for m in interface.members:
     if not m.isMethod():
       continue
@@ -81,6 +87,7 @@ for name in names:
                     func_scope=m.parentScope.identifier.name,
                     const=m.getExtendedAttribute('Const'))
 
+  # Attributes
   for m in interface.members:
     if not m.isAttr():
       continue
@@ -135,6 +142,8 @@ for name in names:
   output.mid_dart_dels += ['\n}\n']
   output.mid_dart_decs += ['\n}\n']
   output.mid_dart_ffi += ['\n}\n']
+  output.mid_dart_jsadapter += ['\n}\n']
+  output.mid_dart_jsimpl += ['\n}\n']
 
 # enums 
 
@@ -162,7 +171,14 @@ with open('out/decorators.dart', 'w') as dart:
   dart.write(pre_dart_decs)
   for x in output.mid_dart_decs:
     dart.write(x)
-with open('out/ffi.dart', 'w') as dart:
+with open('out/ffi_adapters.dart', 'w') as dart:
   dart.write(pre_dart_ffi)
   for x in output.mid_dart_ffi:
     dart.write(x)
+with open('out/js_adapters.dart', 'w') as dart:
+  dart.write(pre_dart_js)
+  for x in output.mid_dart_jsadapter:
+    dart.write(x)
+  for x in output.mid_dart_jsimpl:
+    dart.write(x)
+# with open('out/js_impl.dart', 'w') as dart:

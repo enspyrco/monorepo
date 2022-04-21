@@ -45,7 +45,7 @@ def type_to_dart(interfaces, t, non_pointing=False, context=Context.DEFAULT):
       if(context == Context.ITF): ret += 'Platform'
       elif(context == Context.DEL_RET): ret = '%sPlatform' % ret
       elif(context == Context.DEL_ARG): ret = 'covariant %sPlatform' % ret # add covariant to delegates.dart function args - to avoid type errors for args in ffi.dart
-      elif(context == Context.FFI): ret += 'Ffi'
+      elif(context == Context.FFI): ret += 'FfiAdapter'
     else:
       ret = t
     return ret
@@ -112,5 +112,14 @@ import 'delegates.dart';
 final DynamicLibrary _symbols = DynamicLibrary.process();
 
 typedef EmptyConstructor = Pointer<Void> Function();
+
+'''
+
+pre_dart_js = '''@JS()
+library box2d;
+
+import 'package:js/js.dart';
+
+import 'delegates.dart';
 
 '''

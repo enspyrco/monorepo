@@ -1,7 +1,8 @@
 import emscripten.WebIDL as WebIDL
-from utils.utils import Dummy, lower_first, upper_first, type_to_c, type_to_cdec, full_typename, deref_if_nonpointer, take_addr_if_nonpointer
+from utils.utils import dartify_call, lower_first, upper_first, type_to_c, type_to_cdec, full_typename, deref_if_nonpointer, take_addr_if_nonpointer
 from utils.utils_dart import Context, type_to_dart
 from utils.utils_ffi import FFI
+from utils.utils_jsio import JSIO
 
 CHECKS='FAST'
 DEBUG=0
@@ -52,6 +53,7 @@ def render_function(interfaces, output, class_name, func_name, sigs, return_type
     c_arg_types = list(map(type_to_c, interfaces, sig))
     dart_arg_types = list(map(lambda s: type_to_dart(interfaces, s, False, Context.DEL_ARG), sig))
     ffi = FFI(return_type, interfaces, sig, i)
+    jsio = JSIO(return_type, interfaces, args, sig, i)
 
     normal_args = ', '.join(['%s %s' % (c_arg_types[j], args[j]) for j in range(i)])
     dart_args = ', '.join(['%s %s' % (dart_arg_types[j], args[j]) for j in range(i)])
@@ -65,6 +67,8 @@ def render_function(interfaces, output, class_name, func_name, sigs, return_type
       full_args = type_to_c(interfaces, class_name, non_pointing=True) + '* self' + ('' if not normal_args else ', ' + normal_args)
     call_args = ', '.join(['%s%s' % ('*' if raw[j].getExtendedAttribute('Ref') else '', args[j]) for j in range(i)])
     call_args_ffi = ', '.join(['%s%s' % (args[j], '._self' if raw[j].getExtendedAttribute('Ref') else '') for j in range(i)])
+    call_args_jsio = ', '.join(['%s%s' % (args[j], '._impl' if raw[j].getExtendedAttribute('Ref') else '') for j in range(i)])
+
     if constructor:
       call = 'new ' + type_to_c(interfaces, class_name, non_pointing=True)
       call += '(' + call_args + ')'
@@ -128,18 +132,38 @@ def render_function(interfaces, output, class_name, func_name, sigs, return_type
       ctr_type_dart = 'Pointer<Void> Function(%s)' % ffi.joined_arg_types_dart
       output.mid_dart_ffi.append('\n\tstatic final _ctr%s = _symbols.lookup<NativeFunction<%s>>(\'%s\').asFunction<%s>();\n' % (i, ctr_type_native, c_names[i], ctr_type_dart))
       # FFI constructors - use lookup
-      output.mid_dart_ffi.append('\n\t%s%s(%s) : _self = _ctr%s(%s);\n' % (dart_class_name+'Ffi', maybe_from, dart_args, i, call_args))
+      output.mid_dart_ffi.append('\n\t%s%s(%s) : _self = _ctr%s(%s);\n' % (dart_class_name+'FfiAdapter', maybe_from, dart_args, i, call_args))
+      # JS constructors
+      output.mid_dart_jsadapter.append('\n\t%s%s(%s) : _impl = %s%s(%s);\n' % (dart_class_name+'JSAdapter', maybe_from, dart_args, dart_class_name+'JSImpl', maybe_from, call_args))
+      output.mid_dart_jsimpl.append('\texternal %s%s(%s);\n' % (dart_class_name+'JSImpl', maybe_from, dart_args))
+
 
     else:
       # Delegates functions
-      output.mid_dart_dels.append('\n\t%s %s(%s);\n' % (type_to_dart(interfaces, dart_return_type), dart_func_name, dart_args))
+      output.mid_dart_dels.append('\n\t%s %s(%s);\n' % (type_to_dart(interfaces, dart_return_type), dartify_call(dart_func_name), dart_args))
       # FFI functions - create lookup
       maybe_comma = ', ' if i > 0 else ''
       func_sig_native = '%s Function(Pointer<Void>%s%s)' % (ffi.return_type_native, maybe_comma, ffi.joined_arg_types_native)
       func_sig_dart = '%s Function(Pointer<Void>%s%s)' % (ffi.return_type_dart, maybe_comma, ffi.joined_arg_types_dart)
       output.mid_dart_ffi.append('\n\tstatic final _%s = _symbols.lookup<NativeFunction<%s>>(\'%s\').asFunction<%s>();\n' % (dart_func_name, func_sig_native, c_names[i], func_sig_dart))
       # FFI functions - use lookup
-      output.mid_dart_ffi.append('\n\t@override\n\t%s %s(%s) => _%s(_self%s%s);\n' % (ffi.return_type, dart_func_name, ffi_in_args, dart_func_name, maybe_comma, call_args_ffi))
+      func_str = '\n\t@override\n\t%s %s(%s) => ' % (ffi.return_type, dartify_call(dart_func_name), ffi_in_args)
+      # If the function returns an object of the same type as the class we assume it is returning a Pointer<Void> and we wrap it (This is quite hacky but seeing if we can get away with it)
+      if ffi.return_type == dart_class_name+'FfiAdapter':
+        func_str += '%sFfiAdapter._(_%s(_self%s%s));\n' % (dart_class_name, dart_func_name, maybe_comma, call_args_ffi)
+      else:
+        func_str += '_%s(_self%s%s);\n' % (dart_func_name, maybe_comma, call_args_ffi)
+      output.mid_dart_ffi.append(func_str)
+      # JS functions - adapter
+      maybe_convert = '.toDouble()' if return_type == 'Float' else ''
+      func_str = ''
+      if jsio.return_type_jsa == dart_class_name+'JSAdapter':
+        func_str += '%sJSAdapter._(_impl.%s(%s)%s);\n' % (dart_class_name, dart_func_name, call_args_jsio, maybe_convert)
+      else:
+        func_str += '_impl.%s(%s)%s;\n' % (dart_func_name, call_args_jsio, maybe_convert)
+      output.mid_dart_jsadapter.append('\n\t%s %s(%s) => %s' % (jsio.return_type_jsa, dartify_call(dart_func_name), jsio.jsa_in_args, func_str))
+      # JS functions - impl
+      output.mid_dart_jsimpl.append('\n\texternal %s %s(%s);\n' % (jsio.return_type_jsi, dart_func_name, jsio.jsi_in_args))
 
     if not constructor:
       if i == max_args:
