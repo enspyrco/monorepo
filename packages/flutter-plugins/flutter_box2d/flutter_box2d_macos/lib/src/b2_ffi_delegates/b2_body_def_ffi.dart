@@ -6,7 +6,7 @@ typedef DtSetPosition = void Function(Pointer<Void>, Pointer<Void>);
 typedef NtSetType = Void Function(Pointer<Void>, Int32);
 typedef DtSetType = void Function(Pointer<Void>, int);
 
-class B2BodyDefFfi implements B2BodyDefDelegate {
+class B2BodyDefFfi implements B2BodyDefPlatform {
   final Pointer<Void> _self;
 
   B2BodyDefFfi()

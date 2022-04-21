@@ -7,7 +7,7 @@ typedef DtStep = void Function(Pointer<Void>, double, int, int);
 
 typedef CeateBodyFn = Pointer<Void> Function(Pointer<Void>, Pointer<Void>);
 
-class B2WorldFfi implements B2WorldDelegate {
+class B2WorldFfi implements B2WorldPlatform {
   final Pointer<Void> _self;
 
   // C: b2World* fn(const b2Vec2* gravity)
@@ -22,7 +22,7 @@ class B2WorldFfi implements B2WorldDelegate {
       'dart_bind_b2World_CreateBody_1');
 
   @override
-  B2BodyDelegate createBody(B2BodyDefFfi def) =>
+  B2BodyPlatform createBody(B2BodyDefFfi def) =>
       B2BodyFfi._(_createBody(_self, def._self));
 
   /// C: void fn(b2World* self, float timeStep, int velocityIterations, int positionIterations)

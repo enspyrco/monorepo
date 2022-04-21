@@ -6,7 +6,7 @@ typedef DtSetAsBox = void Function(Pointer<Void>, double, double);
 typedef NtGetType = Int32 Function(Pointer<Void>);
 typedef DtGetType = int Function(Pointer<Void>);
 
-class B2PolygonShapeFfi implements B2PolygonShapeDelegate, B2ShapeFfi {
+class B2PolygonShapeFfi implements B2PolygonShapePlatform, B2ShapeFfi {
   @override
   final Pointer<Void> _self;
 

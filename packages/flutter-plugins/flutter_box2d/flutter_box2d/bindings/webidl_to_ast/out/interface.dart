@@ -1,10 +1,10 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'flutter_box2d_platform_interface.dart';
+import 'delegates.dart';
 
-export 'src/b2_classes.dart';
-export 'src/b2_constants.dart';
-export 'src/b2_delegates.dart';
+// export 'src/b2_classes.dart';
+// export 'src/b2_constants.dart';
+// export 'src/b2_delegates.dart';
 
 /// The interface that implementations of flutter_box2d must implement.
 ///
@@ -20,7 +20,7 @@ abstract class FlutterBox2DPlatform extends PlatformInterface {
   FlutterBox2DPlatform() : super(token: _token);
 
   static final Object _token = Object();
-  static FlutterBox2DPlatform _instance = FlutterBox2DDefault();
+  static late FlutterBox2DPlatform _instance;
 
   static FlutterBox2DPlatform get instance => _instance;
 
@@ -31,27 +31,11 @@ abstract class FlutterBox2DPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  B2BodyDefPlatform b2BodyDef() {
-    throw UnimplementedError('b2BodyDef() has not been implemented.');
+  B2Vec2Platform b2Vec2_0() {
+    throw UnimplementedError('b2Vec2_0() has not been implemented.');
   }
 
-  B2PolygonShapePlatform b2PolygonShape() {
-    throw UnimplementedError('b2PolygonShape() has not been implemented.');
-  }
-
-  B2ShapePlatform b2Shape() {
-    throw UnimplementedError('b2Shape() has not been implemented.');
-  }
-
-  B2Vec2Platform b2Vec2(double x, double y) {
-    throw UnimplementedError(
-        'b2Vec2(double x, double y) has not been implemented.');
-  }
-
-  B2WorldPlatform b2World(covariant B2Vec2Platform vec) {
-    throw UnimplementedError(
-        'b2World(double x, double y) has not been implemented.');
+  B2Vec2Platform b2Vec2_2(double x, double y) {
+    throw UnimplementedError('b2Vec2_2(float x, float y) has not been implemented.');
   }
 }
-
-class FlutterBox2DDefault extends FlutterBox2DPlatform {}
