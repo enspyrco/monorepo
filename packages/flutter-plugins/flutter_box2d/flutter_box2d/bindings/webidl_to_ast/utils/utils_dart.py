@@ -1,6 +1,78 @@
 from utils.utils import upper_first
 from enum import Enum
 
+# ClassSet holds a list of strings for each of the classes we are constructing for output.
+class ClassSet:
+  def __init__(self, name):
+    class_name = name[0].upper() + name[1:]
+    self.c = ['\n// ' + name + '\n']
+    self.itf = []
+    self.decs = ['class ' + class_name + ' {\n\n\tfinal ' + class_name + 'Platform _delegate;\n']
+    self.dels = ['abstract class ' + class_name + 'Platform extends PlatformInterface {\n\n\tstatic final Object _token = Object();\n']
+    self.ffi = ['class ' + class_name + 'FfiAdapter implements ' + class_name + 'Platform {\n\n\tfinal Pointer<Void> _self;\n\t' + class_name + 'FfiAdapter._(Pointer<Void> self) : _self = self;\n']
+    self.jsadapter = ['class ' + class_name + 'JSAdapter implements ' + class_name + 'Platform {\n']
+    self.jsadapter  += ['\n\t'+class_name+'JSAdapter._('+ class_name + 'JSImpl impl) : _impl = impl;\n']
+    self.jsadapter  += ['\n\tfinal '+ class_name + 'JSImpl _impl;\n']
+    self.jsimpl = ['@JS(\'' + name + '\')\nclass ' + class_name + 'JSImpl {\n']
+  
+  def addEndings(self):
+    self.c += ['\n']
+    self.dels += ['\n}\n']
+    self.decs += ['\n}\n']
+    self.ffi += ['\n}\n']
+    self.jsadapter += ['\n}\n']
+    self.jsimpl += ['\n}\n']
+
+# When we finish contstructing the strings for each of the classes to be output, we add them to a variable of type Output
+# which is used at the end of the process to write everything out to file.
+class Output:
+  def __init__(self):
+    self.c = []
+    self.itf = []
+    self.dels = []
+    self.decs = []
+    self.ffi = []
+    self.jsadapter = []
+    self.jsimpl = []
+    
+  def add(self, class_set):
+    self.c += class_set.c
+    self.itf += class_set.itf
+    self.dels += class_set.dels
+    self.decs += class_set.decs
+    self.ffi += class_set.ffi
+    self.jsadapter += class_set.jsadapter
+    self.jsimpl += class_set.jsimpl
+  
+  def writeToFiles(self):
+    with open('out/out.c', 'w') as c:
+      for x in self.c:
+        c.write(x)
+    with open('out/interface.dart', 'w') as dart:
+      dart.write(pre_itf)
+      for x in self.itf:
+        dart.write(x)
+      dart.write('}')
+    with open('out/delegates.dart', 'w') as dart:
+      dart.write(pre_dels)
+      for x in self.dels:
+        dart.write(x)
+    with open('out/decorators.dart', 'w') as dart:
+      dart.write(pre_decs)
+      for x in self.decs:
+        dart.write(x)
+    with open('out/ffi_adapters.dart', 'w') as dart:
+      dart.write(pre_ffi)
+      for x in self.ffi:
+        dart.write(x)
+    with open('out/js_adapters.dart', 'w') as dart:
+      dart.write(pre_js)
+      for x in self.jsadapter:
+        dart.write(x)
+      for x in self.jsimpl:
+        dart.write(x)
+
+
 class Context(Enum):
   DEFAULT = 0 # default context, ie no context has been supplied
   ITF = 1 # creating interface class
@@ -61,7 +133,7 @@ def type_to_dart(interfaces, t, non_pointing=False, context=Context.DEFAULT):
     t = t.replace('const ', '')
   return prefix + base_type_to_c(t) + suffix
 
-pre_dart_itf = r'''import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+pre_itf = r'''import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'delegates.dart';
 
@@ -95,16 +167,16 @@ abstract class FlutterBox2DPlatform extends PlatformInterface {
   }
 '''
 
-pre_dart_decs = '''import 'interface.dart';
+pre_decs = '''import 'interface.dart';
 import 'delegates.dart';
 
 '''
 
-pre_dart_dels = '''import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+pre_dels = '''import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 '''
 
-pre_dart_ffi = '''import 'dart:ffi';
+pre_ffi = '''import 'dart:ffi';
 
 // import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
 import 'delegates.dart';
@@ -115,7 +187,7 @@ typedef EmptyConstructor = Pointer<Void> Function();
 
 '''
 
-pre_dart_js = '''@JS()
+pre_js = '''@JS()
 library box2d;
 
 import 'package:js/js.dart';

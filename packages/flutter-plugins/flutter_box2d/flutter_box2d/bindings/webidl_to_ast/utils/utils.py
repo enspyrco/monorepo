@@ -1,13 +1,3 @@
-
-class Output:
-  mid_dart_itf = []
-  mid_dart_decs = []
-  mid_dart_dels = []
-  mid_dart_ffi = []
-  mid_dart_jsadapter = []
-  mid_dart_jsimpl = []
-  mid_c = []
-
 class Dummy:
   def __init__(self, init):
     for k, v in init.items():
