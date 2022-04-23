@@ -46,7 +46,7 @@ class Output:
     with open('out/out.c', 'w') as c:
       for x in self.c:
         c.write(x)
-    with open('out/interface.dart', 'w') as dart:
+    with open('out/flutter_box2d_platform_interface.dart', 'w') as dart:
       dart.write(pre_itf)
       for x in self.itf:
         dart.write(x)
@@ -104,7 +104,7 @@ abstract class FlutterBox2DPlatform extends PlatformInterface {
   }
 '''
 
-pre_decs = '''import 'interface.dart';
+pre_decs = '''import 'flutter_box2d_platform_interface.dart';
 import 'b2_delegates.dart';
 
 '''
