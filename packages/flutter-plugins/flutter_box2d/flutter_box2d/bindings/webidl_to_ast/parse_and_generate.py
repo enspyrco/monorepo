@@ -1,7 +1,7 @@
 import emscripten.WebIDL as WebIDL
 from utils.utils import Dummy, find_node_heights
 from utils.render_function import render_function
-from utils.utils_dart import ClassSet, Output
+from utils.output import ClassSet, Output
 
 def read_file(file_path):
   """Read from a file opened in text mode"""
@@ -130,8 +130,7 @@ for name in names:
                     func_scope=interface,
                     call_content='delete self')
   
-  class_set.addEndings()
-  out.add(class_set)
+  out.finishThenAdd(class_set)
 
 # enums 
 
