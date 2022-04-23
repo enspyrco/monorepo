@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 // import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
-import 'delegates.dart';
+import 'b2_delegates.dart';
 
 final DynamicLibrary _symbols = DynamicLibrary.process();
 

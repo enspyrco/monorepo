@@ -3,7 +3,7 @@ library box2d;
 
 import 'package:js/js.dart';
 
-import 'delegates.dart';
+import 'b2_delegates.dart';
 
 class B2Vec2JSAdapter implements B2Vec2Platform {
 

@@ -51,19 +51,19 @@ class Output:
       for x in self.itf:
         dart.write(x)
       dart.write('}')
-    with open('out/delegates.dart', 'w') as dart:
+    with open('out/b2_delegates.dart', 'w') as dart:
       dart.write(pre_dels)
       for x in self.dels:
         dart.write(x)
-    with open('out/decorators.dart', 'w') as dart:
+    with open('out/b2_decorators.dart', 'w') as dart:
       dart.write(pre_decs)
       for x in self.decs:
         dart.write(x)
-    with open('out/ffi_adapters.dart', 'w') as dart:
+    with open('out/b2_adapters_c.dart', 'w') as dart:
       dart.write(pre_ffi)
       for x in self.ffi:
         dart.write(x)
-    with open('out/js_adapters.dart', 'w') as dart:
+    with open('out/b2_adapters_js.dart', 'w') as dart:
       dart.write(pre_js)
       for x in self.jsadapter:
         dart.write(x)
@@ -72,7 +72,7 @@ class Output:
 
 pre_itf = r'''import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'delegates.dart';
+import 'b2_delegates.dart';
 
 // export 'src/b2_classes.dart';
 // export 'src/b2_constants.dart';
@@ -105,7 +105,7 @@ abstract class FlutterBox2DPlatform extends PlatformInterface {
 '''
 
 pre_decs = '''import 'interface.dart';
-import 'delegates.dart';
+import 'b2_delegates.dart';
 
 '''
 
@@ -116,7 +116,7 @@ pre_dels = '''import 'package:plugin_platform_interface/plugin_platform_interfac
 pre_ffi = '''import 'dart:ffi';
 
 // import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
-import 'delegates.dart';
+import 'b2_delegates.dart';
 
 final DynamicLibrary _symbols = DynamicLibrary.process();
 
@@ -129,6 +129,6 @@ library box2d;
 
 import 'package:js/js.dart';
 
-import 'delegates.dart';
+import 'b2_delegates.dart';
 
 '''

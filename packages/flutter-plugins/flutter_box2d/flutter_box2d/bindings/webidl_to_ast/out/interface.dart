@@ -1,6 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'delegates.dart';
+import 'b2_delegates.dart';
 
 // export 'src/b2_classes.dart';
 // export 'src/b2_constants.dart';
