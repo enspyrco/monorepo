@@ -2,6 +2,7 @@ import emscripten.WebIDL as WebIDL
 from utils.utils import Dummy, find_node_heights
 from utils.render_function import render_function
 from utils.output import ClassSet, Output
+from utils.names import Names
 
 def read_file(file_path):
   """Read from a file opened in text mode"""
@@ -70,8 +71,8 @@ for name in names:
         if i == len(args) or args[i].optional:
           assert i not in sigs, 'overloading must differentiate by # of arguments (cannot have two signatures that differ by types but not by length)'
           sigs[i] = args[:i]
-    render_function(interfaces, class_set, name,
-                    m.identifier.name, sigs, return_type,
+
+    render_function(interfaces, class_set, Names(name, m.identifier.name), sigs, return_type,
                     m.getExtendedAttribute('Ref'),
                     m.getExtendedAttribute('Value'),
                     (m.getExtendedAttribute('Operator') or [None])[0],
@@ -108,9 +109,7 @@ for name in names:
     get_name = 'get_' + attr
 
     if not m.readonly:
-      set_name = 'set_' + attr
-      render_function(interfaces, class_set, name,
-                      set_name, set_sigs, 'Void',
+      render_function(interfaces, class_set, Names(name, 'set_' + attr), set_sigs, 'Void',
                       None,
                       None,
                       None,
@@ -121,8 +120,7 @@ for name in names:
                       array_attribute=m.type.isArray())
 
   if not interface.getExtendedAttribute('NoDelete'):
-    render_function(interfaces, class_set, name,
-                    '__destroy__', {0: []}, 'Void',
+    render_function(interfaces, class_set, Names(name, '__destroy__'), {0: []}, 'Void',
                     None,
                     None,
                     None,
