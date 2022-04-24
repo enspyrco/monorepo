@@ -1,4 +1,5 @@
 import emscripten.WebIDL as WebIDL
+from utils.functions.dec_fn import DecFunction
 from utils.functions.itf_fn import ItfFunction
 from utils.utils import dartify_call, type_to_cdec, full_typename, take_addr_if_nonpointer
 from utils.utils_dart import Context, type_to_dart
@@ -42,7 +43,7 @@ def render_function(interfaces, class_set, names, sigs, return_type, non_pointer
     ffi = FFI(return_type, interfaces, sig, i)
     jsio = JSIO(return_type, interfaces, args, sig, i)
 
-    
+
 
     c_fn = CFunction(interfaces, args, i, const, constructor, operator, names, return_type)
     c_fn.setupArgs(sig)
@@ -51,19 +52,23 @@ def render_function(interfaces, class_set, names, sigs, return_type, non_pointer
     c_fn.setupCall(call_content, func_scope, raw_sig)
     class_set.c.append(c_fn.render())
 
+    dec_fn = DecFunction(interfaces, args, i, const, constructor, names)
+    dec_fn.setupArgs(sig)
+    dec_fn.setupCall(raw_sig)
+    class_set.decs.append(dec_fn.render())
 
 #     maybe_const = 'const ' if const else ''
 # maybe_from = ('.from%s' % i) if i != 0 else ''
 
     if(constructor):
       
+      # PlatformInterface only uses constructors
       itf_fn = ItfFunction(interfaces, args, i, const, constructor, names)
       itf_fn.setupArgs(sig)
       itf_fn.setupBody(min_args, max_args)
       class_set.itf.append(itf_fn.render())
       
       # # Decorators
-      # class_set.decs.append('\n\t%s%s(%s) : _delegate = FlutterBox2DPlatform.instance.%s_%s(%s);\n' % (names.dart_class_name, maybe_from, dart_args, names.class_name, i, call_args))
       
     #   # Delegates constructors
     #   class_set.dels.append('\n\t%s%s(%s) : super(token: _token);\n' % (names.del_class_name, maybe_from, call_args))

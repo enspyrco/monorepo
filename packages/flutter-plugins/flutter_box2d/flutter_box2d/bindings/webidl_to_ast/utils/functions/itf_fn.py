@@ -1,4 +1,3 @@
-# PlatformInterface only uses constructors
 class ItfFunction:
   def __init__(self, interfaces, args, i, const, constructor, names):
     self.interfaces = interfaces

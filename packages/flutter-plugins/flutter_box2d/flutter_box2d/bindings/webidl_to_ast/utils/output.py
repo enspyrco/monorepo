@@ -55,10 +55,10 @@ class Output:
     #   dart.write(pre_dels)
     #   for x in self.dels:
     #     dart.write(x)
-    # with open('out/b2_decorators.dart', 'w') as dart:
-    #   dart.write(pre_decs)
-    #   for x in self.decs:
-    #     dart.write(x)
+    with open('out/b2_decorators.dart', 'w') as dart:
+      dart.write(pre_decs)
+      for x in self.decs:
+        dart.write(x)
     # with open('out/b2_adapters_c.dart', 'w') as dart:
     #   dart.write(pre_ffi)
     #   for x in self.ffi:
