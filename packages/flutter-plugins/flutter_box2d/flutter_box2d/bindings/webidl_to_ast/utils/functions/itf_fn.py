@@ -7,6 +7,15 @@ class ItfFunction:
     self.constructor = constructor
     self.names = names
   
+  def render(self, sig, min_args, max_args):
+    self.setupArgs(sig)
+    self.setupBody(min_args, max_args)
+    maybe_const = 'const ' if self.const else ''
+    line1 = '\t%s%s %s(%s) {' % (maybe_const, type_to_itf(self.interfaces, self.names.class_name, False), self.itf_names[self.arg_num], self.itf_args)
+    line2 = '\t\tthrow UnimplementedError(\'%s(%s) has not been implemented.\');' % (self.itf_names[self.arg_num], self.full_args)
+    line3 = '\t}'
+    return '\n'+line1+'\n'+line2+'\n'+line3+'\n'
+  
   def setupArgs(self, sig):
     itf_arg_types = list(map(lambda s: type_to_itf(self.interfaces, s, False), sig))
     self.itf_args = ', '.join(['%s %s' % (itf_arg_types[j], self.args[j]) for j in range(self.arg_num)])
@@ -20,13 +29,6 @@ class ItfFunction:
     for i in range(min_args, max_args):
       self.itf_names[i] = '%s_%d' % (self.names.func_name, i)
     self.itf_names[max_args] = '%s_%d' % (self.names.func_name, max_args)
-
-  def render(self):
-    maybe_const = 'const ' if self.const else ''
-    line1 = '\t%s%s %s(%s) {' % (maybe_const, type_to_itf(self.interfaces, self.names.class_name, False), self.itf_names[self.arg_num], self.itf_args)
-    line2 = '\t\tthrow UnimplementedError(\'%s(%s) has not been implemented.\');' % (self.itf_names[self.arg_num], self.full_args)
-    line3 = '\t}'
-    return '\n'+line1+'\n'+line2+'\n'+line3+'\n'
 
 def type_to_itf(interfaces, t, non_pointing=False):
   # print 'to itf ', t

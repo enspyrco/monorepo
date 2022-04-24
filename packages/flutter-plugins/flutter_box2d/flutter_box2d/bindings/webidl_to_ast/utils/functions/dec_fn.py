@@ -8,6 +8,15 @@ class DecFunction:
     self.constructor = constructor
     self.names = names
     self.return_type = return_type
+
+  def render(self, sig, raw_sig):
+    self.setupArgs(sig)
+    self.setupCall(raw_sig)
+    maybe_from = ('.from%s' % self.arg_num) if self.arg_num != 0 else ''
+    if(self.constructor):
+      return '\n\t%s%s(%s) : _delegate = FlutterBox2DPlatform.instance.%s_%s(%s);\n' % (self.names.dart_class_name, maybe_from, self.dec_args, self.names.class_name, self.arg_num, self.call_args)
+    else:
+      return ''
   
   def setupArgs(self, sig):
     self.dec_arg_types = list(map(lambda s: type_to_dec(self.interfaces, s, False), sig))
@@ -15,13 +24,6 @@ class DecFunction:
   
   def setupCall(self, raw_sig):
     self.call_args = ', '.join(['%s%s' % ('*' if raw_sig[j].getExtendedAttribute('Ref') else '', self.args[j]) for j in range(self.arg_num)])
-
-  def render(self):
-    maybe_from = ('.from%s' % self.arg_num) if self.arg_num != 0 else ''
-    if(self.constructor):
-      return '\n\t%s%s(%s) : _delegate = FlutterBox2DPlatform.instance.%s_%s(%s);\n' % (self.names.dart_class_name, maybe_from, self.dec_args, self.names.class_name, self.arg_num, self.call_args)
-    else:
-      return ''
 
 
 def type_to_dec(interfaces, t, non_pointing=False):

@@ -17,6 +17,31 @@ class FfiFunction:
     self.constructor = constructor
     self.names = names
     self.return_type = return_type
+
+  def render(self, sig, min_args, max_args, raw_sig):
+    self.setupArgs(sig)
+    self.setupBody(min_args, max_args)
+    self.setupCall(raw_sig)
+    maybe_from = ('.from%s' % self.arg_num) if self.arg_num != 0 else ''
+    if(self.constructor):
+      ctr_type_native = 'Pointer<Void> Function(%s)' % self.joined_arg_types_native
+      ctr_type_dart = 'Pointer<Void> Function(%s)' % self.joined_arg_types_dart
+      ffi_lookup = '\n\tstatic final _ctr%s = _symbols.lookup<NativeFunction<%s>>(\'%s\').asFunction<%s>();\n' % (self.arg_num, ctr_type_native, self.c_names[self.arg_num], ctr_type_dart)
+      dart_adapter = '\n\t%s%s(%s) : _self = _ctr%s(%s);\n' % (self.names.dart_class_name+'FfiAdapter', maybe_from, self.ffi_args, self.arg_num, self.call_args_ffi)
+      return ffi_lookup + dart_adapter
+    else:
+      maybe_comma = ', ' if self.arg_num > 0 else ''
+      func_sig_native = '%s Function(Pointer<Void>%s%s)' % (self.return_type_native, maybe_comma, self.joined_arg_types_native)
+      func_sig_dart = '%s Function(Pointer<Void>%s%s)' % (self.return_type_dart, maybe_comma, self.joined_arg_types_dart)
+      lookup = '\n\tstatic final _%s = _symbols.lookup<NativeFunction<%s>>(\'%s\').asFunction<%s>();\n' % (self.names.dart_func_name, func_sig_native, self.c_names[self.arg_num], func_sig_dart)
+
+      func_str = '\n\t@override\n\t%s %s(%s) => ' % (self.return_type, dartify_call(self.names.dart_func_name), self.ffi_in_args)
+      # If the function returns an object of the same type as the class we assume it is returning a Pointer<Void> and we wrap it (This is quite hacky but seeing if we can get away with it)
+      if self.return_type == self.names.dart_class_name+'FfiAdapter':
+        func_str += '%sFfiAdapter._(_%s(_self%s%s));\n' % (self.names.dart_class_name, self.names.dart_func_name, maybe_comma, self.call_args_ffi)
+      else:
+        func_str += '_%s(_self%s%s);\n' % (self.names.dart_func_name, maybe_comma, self.call_args_ffi)
+      return lookup + func_str
   
   def setupArgs(self, sig):
     ffi_in_arg_types = list(map(lambda s: type_to_ffi(self.interfaces, s, False), sig))
@@ -49,28 +74,6 @@ class FfiFunction:
   
   def setupCall(self, raw_sig):
     self.call_args_ffi = ', '.join(['%s%s' % (self.args[j], '._self' if raw_sig[j].getExtendedAttribute('Ref') else '') for j in range(self.arg_num)])
-
-  def render(self):
-    maybe_from = ('.from%s' % self.arg_num) if self.arg_num != 0 else ''
-    if(self.constructor):
-      ctr_type_native = 'Pointer<Void> Function(%s)' % self.joined_arg_types_native
-      ctr_type_dart = 'Pointer<Void> Function(%s)' % self.joined_arg_types_dart
-      ffi_lookup = '\n\tstatic final _ctr%s = _symbols.lookup<NativeFunction<%s>>(\'%s\').asFunction<%s>();\n' % (self.arg_num, ctr_type_native, self.c_names[self.arg_num], ctr_type_dart)
-      dart_adapter = '\n\t%s%s(%s) : _self = _ctr%s(%s);\n' % (self.names.dart_class_name+'FfiAdapter', maybe_from, self.ffi_args, self.arg_num, self.call_args_ffi)
-      return ffi_lookup + dart_adapter
-    else:
-      maybe_comma = ', ' if self.arg_num > 0 else ''
-      func_sig_native = '%s Function(Pointer<Void>%s%s)' % (self.return_type_native, maybe_comma, self.joined_arg_types_native)
-      func_sig_dart = '%s Function(Pointer<Void>%s%s)' % (self.return_type_dart, maybe_comma, self.joined_arg_types_dart)
-      lookup = '\n\tstatic final _%s = _symbols.lookup<NativeFunction<%s>>(\'%s\').asFunction<%s>();\n' % (self.names.dart_func_name, func_sig_native, self.c_names[self.arg_num], func_sig_dart)
-
-      func_str = '\n\t@override\n\t%s %s(%s) => ' % (self.return_type, dartify_call(self.names.dart_func_name), self.ffi_in_args)
-      # If the function returns an object of the same type as the class we assume it is returning a Pointer<Void> and we wrap it (This is quite hacky but seeing if we can get away with it)
-      if self.return_type == self.names.dart_class_name+'FfiAdapter':
-        func_str += '%sFfiAdapter._(_%s(_self%s%s));\n' % (self.names.dart_class_name, self.names.dart_func_name, maybe_comma, self.call_args_ffi)
-      else:
-        func_str += '_%s(_self%s%s);\n' % (self.names.dart_func_name, maybe_comma, self.call_args_ffi)
-      return lookup + func_str
 
 def dartify_call(text):
   if (text == '__destroy__'): return 'dispose'

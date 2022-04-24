@@ -30,37 +30,22 @@ def render_function(interfaces, class_set, names, sigs, return_type, non_pointer
 
 
     c_fn = CFunction(interfaces, args, i, const, constructor, operator, names, return_type)
-    c_fn.setupArgs(sig)
-    c_fn.setupBody(min_args, max_args)
-    c_fn.setupReturn(non_pointer, copy)
-    c_fn.setupCall(call_content, func_scope, raw_sig)
-    class_set.c.append(c_fn.render())
+    class_set.c.append(c_fn.render(sig, min_args, max_args, non_pointer, copy, call_content, func_scope, raw_sig))
 
     if(constructor): # PlatformInterface only uses constructors
       itf_fn = ItfFunction(interfaces, args, i, const, constructor, names)
-      itf_fn.setupArgs(sig)
-      itf_fn.setupBody(min_args, max_args)
-      class_set.itf.append(itf_fn.render())
+      class_set.itf.append(itf_fn.render(sig, min_args, max_args))
 
     dec_fn = DecFunction(interfaces, args, i, const, constructor, names, return_type)
-    dec_fn.setupArgs(sig)
-    dec_fn.setupCall(raw_sig)
-    class_set.decs.append(dec_fn.render())
+    class_set.decs.append(dec_fn.render(sig, raw_sig))
 
     del_fn = DelFunction(interfaces, args, i, const, constructor, names, return_type)
-    del_fn.setupArgs(sig)
-    del_fn.setupCall(raw_sig)
-    class_set.dels.append(del_fn.render())
+    class_set.dels.append(del_fn.render(sig, raw_sig))
 
     ffi_fn = FfiFunction(interfaces, args, i, const, constructor, names, return_type)
-    ffi_fn.setupArgs(sig)
-    ffi_fn.setupBody(min_args, max_args)
-    ffi_fn.setupCall(raw_sig)
-    class_set.ffi.append(ffi_fn.render())
+    class_set.ffi.append(ffi_fn.render(sig, min_args, max_args, raw_sig))
 
     jsio_fn = JsioFunction(interfaces, args, i, const, constructor, names, return_type)
-    jsio_fn.setupArgs(sig)
-    jsio_fn.setupCall(raw_sig)
-    jsio_fn.render()
+    jsio_fn.render(sig, raw_sig)
     class_set.jsadapter.append(jsio_fn.adapter())
     class_set.jsimpl.append(jsio_fn.impl())

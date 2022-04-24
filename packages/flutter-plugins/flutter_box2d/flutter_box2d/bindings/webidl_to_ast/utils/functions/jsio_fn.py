@@ -18,22 +18,9 @@ class JsioFunction:
     self.names = names
     self.return_type = return_type
   
-  def setupArgs(self, sig):
-    self.arg_types_jsi = list(map(lambda s: type_to_jsio(self.interfaces, s, False, Context.JSI_ARG), sig))
-    self.joined_arg_types_jsi = ', '.join(['%s' % (self.arg_types_jsi[j]) for j in range(self.arg_num)])
-    self.arg_types_jsa = list(map(lambda s: type_to_jsio(self.interfaces, s, False, Context.JSA_ARG), sig))
-    self.joined_arg_types_jsa = ', '.join(['%s' % (self.arg_types_jsa[j]) for j in range(self.arg_num)])
-    self.jsa_in_arg_types = list(map(lambda s: type_to_jsio(self.interfaces, s, False, Context.JSA_ARG), sig))
-    self.jsa_in_args = ', '.join(['%s %s' % (self.jsa_in_arg_types[j], self.args[j]) for j in range(self.arg_num)])
-    self.jsi_in_arg_types = list(map(lambda s: type_to_jsio(self.interfaces, s, False, Context.JSI_ARG), sig))
-    self.jsi_in_args = ', '.join(['%s %s' % (self.jsi_in_arg_types[j], self.args[j]) for j in range(self.arg_num)])
-    self.return_type_jsi = type_to_jsio(self.interfaces, self.return_type, False, Context.JSI_RET)
-    self.return_type_jsa = type_to_jsio(self.interfaces, self.return_type, False, Context.JSA_RET)    
-  
-  def setupCall(self, raw_sig):
-    self.call_args = ', '.join(['%s%s' % (self.args[j], '._impl' if raw_sig[j].getExtendedAttribute('Ref') else '') for j in range(self.arg_num)])
-    
-  def render(self):
+  def render(self, sig, raw_sig):
+    self.setupArgs(sig)
+    self.setupCall(raw_sig)
     maybe_from = ('.from%s' % self.arg_num) if self.arg_num != 0 else ''
     if(self.constructor):
       self.jsadapter = '\n\t%s%s(%s) : _impl = %s%s(%s);\n' % (self.names.dart_class_name+'JSAdapter', maybe_from, self.jsa_in_args, self.names.dart_class_name+'JSImpl', maybe_from, self.call_args)
@@ -53,6 +40,21 @@ class JsioFunction:
   
   def impl(self):
     return self.jsimpl
+  
+  def setupArgs(self, sig):
+    self.arg_types_jsi = list(map(lambda s: type_to_jsio(self.interfaces, s, False, Context.JSI_ARG), sig))
+    self.joined_arg_types_jsi = ', '.join(['%s' % (self.arg_types_jsi[j]) for j in range(self.arg_num)])
+    self.arg_types_jsa = list(map(lambda s: type_to_jsio(self.interfaces, s, False, Context.JSA_ARG), sig))
+    self.joined_arg_types_jsa = ', '.join(['%s' % (self.arg_types_jsa[j]) for j in range(self.arg_num)])
+    self.jsa_in_arg_types = list(map(lambda s: type_to_jsio(self.interfaces, s, False, Context.JSA_ARG), sig))
+    self.jsa_in_args = ', '.join(['%s %s' % (self.jsa_in_arg_types[j], self.args[j]) for j in range(self.arg_num)])
+    self.jsi_in_arg_types = list(map(lambda s: type_to_jsio(self.interfaces, s, False, Context.JSI_ARG), sig))
+    self.jsi_in_args = ', '.join(['%s %s' % (self.jsi_in_arg_types[j], self.args[j]) for j in range(self.arg_num)])
+    self.return_type_jsi = type_to_jsio(self.interfaces, self.return_type, False, Context.JSI_RET)
+    self.return_type_jsa = type_to_jsio(self.interfaces, self.return_type, False, Context.JSA_RET)    
+  
+  def setupCall(self, raw_sig):
+    self.call_args = ', '.join(['%s%s' % (self.args[j], '._impl' if raw_sig[j].getExtendedAttribute('Ref') else '') for j in range(self.arg_num)])
 
 def dartify_call(text):
   if (text == '__destroy__'): return 'dispose'

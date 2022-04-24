@@ -11,6 +11,16 @@ class CFunction:
     self.return_type = return_type
     self.maybe_const = 'const ' if const else ''
     self.c_return_type = type_to_c(interfaces, return_type)
+
+  def render(self, sig, min_args, max_args, non_pointer, copy, call_content, func_scope, raw_sig):
+    self.setupArgs(sig)
+    self.setupBody(min_args, max_args)
+    self.setupReturn(non_pointer, copy)
+    self.setupCall(call_content, func_scope, raw_sig)
+    line1 = '%s%s %s(%s) {' % (self.maybe_const, type_to_c(self.interfaces, self.names.class_name) if self.constructor else self.c_return_type, self.c_names[self.arg_num], self.full_args)
+    line2 = '%s  %s%s%s;' % (self.pre, self.return_prefix, self.call, self.return_postfix)
+    line3 = '}'
+    return '\n'+line1+'\n'+line2+'\n'+line3+'\n'
   
   def setupArgs(self, sig):
     c_arg_types = list(map(type_to_c, self.interfaces, sig))
@@ -19,7 +29,6 @@ class CFunction:
       self.full_args = normal_args
     else:
       self.full_args = type_to_c(self.interfaces, self.names.class_name, non_pointing=True) + '* self' + ('' if not normal_args else ', ' + normal_args)
-    
 
   def setupBody(self, min_args, max_args):
     call_prefix = 'return '
@@ -73,12 +82,6 @@ class CFunction:
         self.call = '((*%s)[%s%s])' % (cast_self, maybe_deref, self.args[0])
       else:
         raise Exception('unfamiliar operator ' + self.operator)
-
-  def render(self):
-    line1 = '%s%s %s(%s) {' % (self.maybe_const, type_to_c(self.interfaces, self.names.class_name) if self.constructor else self.c_return_type, self.c_names[self.arg_num], self.full_args)
-    line2 = '%s  %s%s%s;' % (self.pre, self.return_prefix, self.call, self.return_postfix)
-    line3 = '}'
-    return '\n'+line1+'\n'+line2+'\n'+line3+'\n'
   
 
 def type_to_c(interfaces, t, non_pointing=False):
