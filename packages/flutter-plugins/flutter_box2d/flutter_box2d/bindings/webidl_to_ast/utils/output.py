@@ -63,12 +63,12 @@ class Output:
       dart.write(pre_ffi)
       for x in self.ffi:
         dart.write(x)
-    # with open('out/b2_adapters_js.dart', 'w') as dart:
-    #   dart.write(pre_js)
-    #   for x in self.jsadapter:
-    #     dart.write(x)
-    #   for x in self.jsimpl:
-    #     dart.write(x)
+    with open('out/b2_adapters_js.dart', 'w') as dart:
+      dart.write(pre_js)
+      for x in self.jsadapter:
+        dart.write(x)
+      for x in self.jsimpl:
+        dart.write(x)
 
 pre_itf = r'''import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 

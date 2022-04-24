@@ -45,7 +45,7 @@ class B2Vec2JSAdapter implements B2Vec2Platform {
 @JS('b2Vec2')
 class B2Vec2JSImpl {
 	external B2Vec2JSImpl();
-	external B2Vec2JSImpl.from2(double x, double y);
+	external B2Vec2JSImpl.from2(num x, num y);
 
 	external void setZero();
 
