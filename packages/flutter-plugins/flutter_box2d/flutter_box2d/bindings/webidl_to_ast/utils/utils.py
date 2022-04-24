@@ -12,14 +12,6 @@ def upper_first(text):
 def lower_first(text):
   return text[0].lower() + text[1:]
 
-def dartify_call(text):
-  if (text == '__destroy__'): return 'dispose'
-  prefix = ''
-  if text.startswith('set_'):
-    prefix = 'set '
-    text = text.replace('set_', '')
-  return prefix + lower_first(text)
-
 # Compute the height in the inheritance tree of each node. Note that the order of interation
 # of `implements` is irrelevant.
 #

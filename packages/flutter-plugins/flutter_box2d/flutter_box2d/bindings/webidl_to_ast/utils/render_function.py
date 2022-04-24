@@ -1,11 +1,13 @@
 import emscripten.WebIDL as WebIDL
-from utils.functions.dec_fn import DecFunction
-from utils.functions.itf_fn import ItfFunction
-from utils.utils import dartify_call, type_to_cdec, full_typename, take_addr_if_nonpointer
+from utils.utils import type_to_cdec, full_typename, take_addr_if_nonpointer
 from utils.utils_dart import Context, type_to_dart
 from utils.utils_ffi import FFI
 from utils.utils_jsio import JSIO
 from utils.functions.c_fn import CFunction
+from utils.functions.itf_fn import ItfFunction
+from utils.functions.dec_fn import DecFunction
+from utils.functions.del_fn import DelFunction
+
 
 CHECKS='FAST'
 DEBUG=0
@@ -52,10 +54,15 @@ def render_function(interfaces, class_set, names, sigs, return_type, non_pointer
     c_fn.setupCall(call_content, func_scope, raw_sig)
     class_set.c.append(c_fn.render())
 
-    dec_fn = DecFunction(interfaces, args, i, const, constructor, names)
+    dec_fn = DecFunction(interfaces, args, i, const, constructor, names, return_type)
     dec_fn.setupArgs(sig)
     dec_fn.setupCall(raw_sig)
     class_set.decs.append(dec_fn.render())
+
+    del_fn = DelFunction(interfaces, args, i, const, constructor, names, return_type)
+    del_fn.setupArgs(sig)
+    del_fn.setupCall(raw_sig)
+    class_set.dels.append(del_fn.render())
 
 #     maybe_const = 'const ' if const else ''
 # maybe_from = ('.from%s' % i) if i != 0 else ''
@@ -68,10 +75,6 @@ def render_function(interfaces, class_set, names, sigs, return_type, non_pointer
       itf_fn.setupBody(min_args, max_args)
       class_set.itf.append(itf_fn.render())
       
-      # # Decorators
-      
-    #   # Delegates constructors
-    #   class_set.dels.append('\n\t%s%s(%s) : super(token: _token);\n' % (names.del_class_name, maybe_from, call_args))
 
     #   # FFI constructors - create lookup
     #   ctr_type_native = 'Pointer<Void> Function(%s)' % ffi.joined_arg_types_native
@@ -85,8 +88,6 @@ def render_function(interfaces, class_set, names, sigs, return_type, non_pointer
 
 
 #     else:
-#       # Delegates functions
-#       class_set.dels.append('\n\t%s %s(%s);\n' % (type_to_dart(interfaces, dart_return_type), dartify_call(names.dart_func_name), dart_args))
 #       # FFI functions - create lookup
 #       maybe_comma = ', ' if i > 0 else ''
 #       func_sig_native = '%s Function(Pointer<Void>%s%s)' % (ffi.return_type_native, maybe_comma, ffi.joined_arg_types_native)
