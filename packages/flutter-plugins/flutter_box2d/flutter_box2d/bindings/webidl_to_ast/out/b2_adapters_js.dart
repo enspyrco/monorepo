@@ -3,7 +3,7 @@ library box2d;
 
 import 'package:js/js.dart';
 
-import 'delegates.dart';
+import 'b2_delegates.dart';
 
 class B2Vec2JSAdapter implements B2Vec2Platform {
 
@@ -45,7 +45,7 @@ class B2Vec2JSAdapter implements B2Vec2Platform {
 @JS('b2Vec2')
 class B2Vec2JSImpl {
 	external B2Vec2JSImpl();
-	external B2Vec2JSImpl.from2(double x, double y);
+	external B2Vec2JSImpl.from2(num x, num y);
 
 	external void setZero();
 

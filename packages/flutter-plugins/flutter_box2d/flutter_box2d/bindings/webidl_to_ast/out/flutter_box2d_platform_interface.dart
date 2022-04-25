@@ -1,6 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'delegates.dart';
+import 'b2_delegates.dart';
 
 // export 'src/b2_classes.dart';
 // export 'src/b2_constants.dart';
@@ -31,11 +31,11 @@ abstract class FlutterBox2DPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  B2Vec2Platform b2Vec2_0() {
-    throw UnimplementedError('b2Vec2_0() has not been implemented.');
-  }
+	B2Vec2Platform b2Vec2_0() {
+		throw UnimplementedError('b2Vec2_0() has not been implemented.');
+	}
 
-  B2Vec2Platform b2Vec2_2(double x, double y) {
-    throw UnimplementedError('b2Vec2_2(float x, float y) has not been implemented.');
-  }
+	B2Vec2Platform b2Vec2_2(double x, double y) {
+		throw UnimplementedError('b2Vec2_2(double x, double y) has not been implemented.');
+	}
 }

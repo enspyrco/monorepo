@@ -1,13 +1,3 @@
-
-class Output:
-  mid_dart_itf = []
-  mid_dart_decs = []
-  mid_dart_dels = []
-  mid_dart_ffi = []
-  mid_dart_jsadapter = []
-  mid_dart_jsimpl = []
-  mid_c = []
-
 class Dummy:
   def __init__(self, init):
     for k, v in init.items():
@@ -21,14 +11,6 @@ def upper_first(text):
 
 def lower_first(text):
   return text[0].lower() + text[1:]
-
-def dartify_call(text):
-  if (text == '__destroy__'): return 'dispose'
-  prefix = ''
-  if text.startswith('set_'):
-    prefix = 'set '
-    text = text.replace('set_', '')
-  return prefix + lower_first(text)
 
 # Compute the height in the inheritance tree of each node. Note that the order of interation
 # of `implements` is irrelevant.
@@ -56,54 +38,7 @@ def full_typename(arg):
   return ('const ' if arg.getExtendedAttribute('Const') else '') + arg.type.name + ('[]' if arg.type.isArray() else '')
 
 
-def type_to_c(interfaces, t, non_pointing=False):
-  # print 'to c ', t
-  def base_type_to_c(t):
-    if t == 'Long':
-      ret = 'int'
-    elif t == 'UnsignedLong':
-      ret = 'unsigned int'
-    elif t == 'LongLong':
-      ret = 'long long'
-    elif t == 'UnsignedLongLong':
-      ret = 'unsigned long long'
-    elif t == 'Short':
-      ret = 'short'
-    elif t == 'UnsignedShort':
-      ret = 'unsigned short'
-    elif t == 'Byte':
-      ret = 'char'
-    elif t == 'Octet':
-      ret = 'unsigned char'
-    elif t == 'Void':
-      ret = 'void'
-    elif t == 'String':
-      ret = 'char*'
-    elif t == 'Float':
-      ret = 'float'
-    elif t == 'Double':
-      ret = 'double'
-    elif t == 'Boolean':
-      ret = 'bool'
-    elif t == 'Any' or t == 'VoidPtr':
-      ret = 'void*'
-    elif t in interfaces:
-      ret = (interfaces[t].getExtendedAttribute('Prefix') or [''])[0] + t + ('' if non_pointing else '*')
-    else:
-      ret = t
-    return ret
 
-  t = t.replace(' (Wrapper)', '')
-
-  prefix = ''
-  suffix = ''
-  if '[]' in t:
-    t = t.replace('[]', '')
-    suffix = '*'
-  if 'const ' in t:
-    t = t.replace('const ', '')
-    prefix = 'const '
-  return prefix + base_type_to_c(t) + suffix
 
 
 def type_to_cdec(interfaces, raw):
