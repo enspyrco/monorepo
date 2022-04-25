@@ -38,9 +38,6 @@ def full_typename(arg):
   return ('const ' if arg.getExtendedAttribute('Const') else '') + arg.type.name + ('[]' if arg.type.isArray() else '')
 
 
-
-
-
 def type_to_cdec(interfaces, raw):
   ret = type_to_c(interfaces, raw.type.name, non_pointing=True)
   if raw.getExtendedAttribute('Const'):

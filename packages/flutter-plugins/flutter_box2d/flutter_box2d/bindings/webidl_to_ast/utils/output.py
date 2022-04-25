@@ -4,6 +4,8 @@ class ClassSet:
     class_name = name[0].upper() + name[1:]
     self.c = ['\n// ' + name + '\n']
     self.itf = []
+    self.itf_mac = []
+    self.itf_web = []
     self.decs = ['class ' + class_name + ' {\n\n\tfinal ' + class_name + 'Platform _delegate;\n']
     self.dels = ['abstract class ' + class_name + 'Platform extends PlatformInterface {\n\n\tstatic final Object _token = Object();\n']
     self.ffi = ['class ' + class_name + 'FfiAdapter implements ' + class_name + 'Platform {\n\n\tfinal Pointer<Void> _self;\n\t' + class_name + 'FfiAdapter._(Pointer<Void> self) : _self = self;\n']
@@ -14,6 +16,9 @@ class ClassSet:
   
   def addEndings(self):
     self.c += ['\n']
+    self.itf += ['\n}\n']
+    self.itf_mac += ['\n}\n']
+    self.itf_web += ['\n}\n']
     self.dels += ['\n}\n']
     self.decs += ['\n}\n']
     self.ffi += ['\n}\n']
@@ -26,6 +31,8 @@ class Output:
   def __init__(self):
     self.c = []
     self.itf = []
+    self.itf_mac = []
+    self.itf_web = []
     self.dels = []
     self.decs = []
     self.ffi = []
@@ -36,6 +43,8 @@ class Output:
     class_set.addEndings()
     self.c += class_set.c
     self.itf += class_set.itf
+    self.itf_mac += class_set.itf_mac
+    self.itf_web += class_set.itf_web
     self.dels += class_set.dels
     self.decs += class_set.decs
     self.ffi += class_set.ffi
@@ -50,7 +59,14 @@ class Output:
       dart.write(pre_itf)
       for x in self.itf:
         dart.write(x)
-      dart.write('}')
+    with open('out/flutter_box2d_macos.dart', 'w') as dart:
+      dart.write(pre_itf_mac)
+      for x in self.itf_mac:
+        dart.write(x)
+    with open('out/flutter_box2d_web.dart', 'w') as dart:
+      dart.write(pre_itf_web)
+      for x in self.itf_web:
+        dart.write(x)
     with open('out/b2_decorators.dart', 'w') as dart:
       dart.write(pre_decs)
       for x in self.decs:
@@ -103,6 +119,35 @@ abstract class FlutterBox2DPlatform extends PlatformInterface {
     _instance = instance;
   }
 '''
+
+pre_itf_mac = '''//import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
+import 'b2_adapters_c.dart';
+import 'b2_delegates.dart';
+import 'flutter_box2d_platform_interface.dart';
+
+/// The macos implementation of the FlutterBox2d plugin.
+class FlutterBox2DMacos extends FlutterBox2DPlatform {
+  // Called by code generated at build-time to setup the appropriate platform implementation.
+  static void registerWith() {
+    FlutterBox2DPlatform.instance = FlutterBox2DMacos();
+  }
+
+  FlutterBox2DMacos();
+''';
+
+pre_itf_web = '''//import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'b2_adapters_js.dart';
+import 'b2_delegates.dart';
+import 'flutter_box2d_platform_interface.dart';
+
+/// The web implementation of the FlutterBox2d plugin.
+class FlutterBox2DWeb extends FlutterBox2DPlatform {
+  // Called by code generated at build-time to setup the appropriate platform implementation.
+  static void registerWith(Registrar registrar) {
+    FlutterBox2DPlatform.instance = FlutterBox2DWeb();
+  }
+''';
 
 pre_decs = '''import 'flutter_box2d_platform_interface.dart';
 import 'b2_delegates.dart';
