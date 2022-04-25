@@ -7,14 +7,30 @@ class ItfFunction:
     self.constructor = constructor
     self.names = names
   
-  def render(self, sig, min_args, max_args):
+  def render(self, sig, min_args, max_args, raw_sig):
     self.setupArgs(sig)
     self.setupBody(min_args, max_args)
+    self.setupCall(raw_sig)
+  
+  def itf(self):
     maybe_const = 'const ' if self.const else ''
-    line1 = '\t%s%s %s(%s) {' % (maybe_const, type_to_itf(self.interfaces, self.names.class_name, False), self.itf_names[self.arg_num], self.itf_args)
+    line1 = '\t@override\n'
+    line1 = '\t%s%s %s(%s) {' % (maybe_const, type_to_itf(self.interfaces, self.names.class_name, False)+'Platform', self.itf_names[self.arg_num], self.itf_args)
     line2 = '\t\tthrow UnimplementedError(\'%s(%s) has not been implemented.\');' % (self.itf_names[self.arg_num], self.full_args)
     line3 = '\t}'
     return '\n'+line1+'\n'+line2+'\n'+line3+'\n'
+  
+  def mac(self):
+    maybe_const = 'const ' if self.const else ''
+    maybe_from = ('.from%s' % self.arg_num) if self.arg_num != 0 else ''
+    line1 = '\t%s%s %s(%s) => %s%s(%s);' % (maybe_const, type_to_itf(self.interfaces, self.names.class_name, False)+'Platform', self.itf_names[self.arg_num], self.itf_args, type_to_itf(self.interfaces, self.names.class_name, False)+'FfiAdapter', maybe_from, self.call_args)
+    return '\n'+line1+'\n'
+
+  def web(self):
+    maybe_const = 'const ' if self.const else ''
+    maybe_from = ('.from%s' % self.arg_num) if self.arg_num != 0 else ''
+    line1 = '\t%s%s %s(%s) => %s%s(%s);' % (maybe_const, type_to_itf(self.interfaces, self.names.class_name, False)+'Platform', self.itf_names[self.arg_num], self.itf_args, type_to_itf(self.interfaces, self.names.class_name, False)+'JSAdapter', maybe_from, self.call_args)
+    return '\n'+line1+'\n'
   
   def setupArgs(self, sig):
     itf_arg_types = list(map(lambda s: type_to_itf(self.interfaces, s, False), sig))
@@ -29,6 +45,9 @@ class ItfFunction:
     for i in range(min_args, max_args):
       self.itf_names[i] = '%s_%d' % (self.names.func_name, i)
     self.itf_names[max_args] = '%s_%d' % (self.names.func_name, max_args)
+  
+  def setupCall(self, raw_sig):
+    self.call_args = ', '.join(['%s%s' % (self.args[j], '._self' if raw_sig[j].getExtendedAttribute('Ref') else '') for j in range(self.arg_num)])
 
 def type_to_itf(interfaces, t, non_pointing=False):
   # print 'to itf ', t
@@ -62,7 +81,7 @@ def type_to_itf(interfaces, t, non_pointing=False):
     elif t == 'Any' or t == 'VoidPtr':
       ret = 'void*'
     elif t in interfaces:
-      ret = (interfaces[t].getExtendedAttribute('Prefix') or [''])[0] + t[0].upper() + t[1:] + 'Platform'
+      ret = (interfaces[t].getExtendedAttribute('Prefix') or [''])[0] + t[0].upper() + t[1:]
     else:
       ret = t
     return ret

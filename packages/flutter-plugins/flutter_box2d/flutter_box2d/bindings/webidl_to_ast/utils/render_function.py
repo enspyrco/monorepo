@@ -1,6 +1,5 @@
 import emscripten.WebIDL as WebIDL
-from utils.utils import type_to_cdec, full_typename, take_addr_if_nonpointer
-from utils.utils_dart import Context, type_to_dart
+from utils.utils import full_typename
 from utils.functions.c_fn import CFunction
 from utils.functions.itf_fn import ItfFunction
 from utils.functions.dec_fn import DecFunction
@@ -28,13 +27,18 @@ def render_function(interfaces, class_set, names, sigs, return_type, non_pointer
     if array_attribute:
       sig = [x.replace('[]', '') for x in sig] # for arrays, ignore that this is an array - our get/set methods operate on the elements
 
-
     c_fn = CFunction(interfaces, args, i, const, constructor, operator, names, return_type)
     class_set.c.append(c_fn.render(sig, min_args, max_args, non_pointer, copy, call_content, func_scope, raw_sig))
 
     if(constructor): # PlatformInterface only uses constructors
       itf_fn = ItfFunction(interfaces, args, i, const, constructor, names)
-      class_set.itf.append(itf_fn.render(sig, min_args, max_args))
+      itf_fn.render(sig, min_args, max_args, raw_sig)
+      itf = itf_fn.itf()
+      mac = itf_fn.mac()
+      web = itf_fn.web()
+      class_set.itf.append(itf)
+      class_set.itf_mac.append(mac)
+      class_set.itf_web.append(web)
 
     dec_fn = DecFunction(interfaces, args, i, const, constructor, names, return_type)
     class_set.decs.append(dec_fn.render(sig, raw_sig))
