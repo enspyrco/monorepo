@@ -1,5 +1,5 @@
 from enum import Enum
-from utils.utils import lower_first
+from utils.utils import upper_first, lower_first, not_supported_yet
 
 class Context(Enum):
   DEFAULT = 0
@@ -26,14 +26,20 @@ class JsioFunction:
       self.jsadapter = '\n\t%s%s(%s) : _impl = %s%s(%s);\n' % (self.names.dart_class_name+'JSAdapter', maybe_from, self.jsa_in_args, self.names.dart_class_name+'JSImpl', maybe_from, self.call_args)
       self.jsimpl = '\texternal %s%s(%s);\n' % (self.names.dart_class_name+'JSImpl', maybe_from, self.jsi_in_args)
     else:
-      maybe_convert = '.toDouble()' if self.return_type == 'Float' else ''
+      maybe_convert = ''
+      if (self.return_type == 'Float'): maybe_convert = '.toDouble()'
+      if (self.return_type == 'Long'): maybe_convert = '.toInt()'
+      
       func_str = ''
-      if self.return_type_jsa == self.names.dart_class_name+'JSAdapter':
-        func_str += '%sJSAdapter._(_impl.%s(%s)%s);\n' % (self.names.dart_class_name, self.names.dart_func_name, self.call_args, maybe_convert)
+      if self.return_type in self.interfaces:
+        wrapper = (self.interfaces[self.return_type].getExtendedAttribute('Prefix') or [''])[0] + upper_first(self.return_type)
+        func_str += '%sJSAdapter._(_impl.%s(%s)%s);' % (wrapper, self.names.dart_func_name, self.call_args, maybe_convert)
       else:
-        func_str += '_impl.%s(%s)%s;\n' % (self.names.dart_func_name, self.call_args, maybe_convert)
-      self.jsadapter = '\n\t%s %s(%s) => %s' % (self.return_type_jsa, dartify_call(self.names.dart_func_name), self.jsa_in_args, func_str)
-      self.jsimpl = '\n\texternal %s %s(%s);\n' % (self.return_type_jsi, self.names.dart_func_name, self.jsi_in_args)
+        func_str += '_impl.%s(%s)%s;' % (self.names.dart_func_name, self.call_args, maybe_convert)
+      
+      maybe_comment = '//' if not_supported_yet(sig) else ''
+      self.jsadapter = '\n\t%s%s %s(%s) => %s' % (maybe_comment, self.return_type_jsa, dartify_call(self.names.dart_func_name), self.jsa_in_args, func_str)
+      self.jsimpl = '\n\t%sexternal %s %s(%s);' % (maybe_comment, self.return_type_jsi, self.names.dart_func_name, self.jsi_in_args)
   
   def adapter(self):
     return self.jsadapter

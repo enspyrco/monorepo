@@ -1,5 +1,5 @@
 from enum import Enum
-from utils.utils import lower_first
+from utils.utils import upper_first, lower_first, not_supported_yet
 
 class Context(Enum):
   DEFAULT = 0
@@ -27,21 +27,26 @@ class FfiFunction:
       ctr_type_native = 'Pointer<Void> Function(%s)' % self.joined_arg_types_native
       ctr_type_dart = 'Pointer<Void> Function(%s)' % self.joined_arg_types_dart
       ffi_lookup = '\n\tstatic final _ctr%s = _symbols.lookup<NativeFunction<%s>>(\'%s\').asFunction<%s>();\n' % (self.arg_num, ctr_type_native, self.c_names[self.arg_num], ctr_type_dart)
-      dart_adapter = '\n\t%s%s(%s) : _self = _ctr%s(%s);\n' % (self.names.dart_class_name+'FfiAdapter', maybe_from, self.ffi_args, self.arg_num, self.call_args_ffi)
+      dart_adapter = '\n\t%s%s(%s) : _self = _ctr%s(%s);\n' % (self.names.dart_class_name+'FfiAdapter', maybe_from, self.ffi_in_args, self.arg_num, self.call_args_ffi)
       return ffi_lookup + dart_adapter
     else:
       maybe_comma = ', ' if self.arg_num > 0 else ''
       func_sig_native = '%s Function(Pointer<Void>%s%s)' % (self.return_type_native, maybe_comma, self.joined_arg_types_native)
       func_sig_dart = '%s Function(Pointer<Void>%s%s)' % (self.return_type_dart, maybe_comma, self.joined_arg_types_dart)
-      lookup = '\n\tstatic final _%s = _symbols.lookup<NativeFunction<%s>>(\'%s\').asFunction<%s>();\n' % (self.names.dart_func_name, func_sig_native, self.c_names[self.arg_num], func_sig_dart)
+      lookup = '\n\tstatic final _%s = _symbols.lookup<NativeFunction<%s>>(\'%s\').asFunction<%s>();' % (self.names.dart_func_name, func_sig_native, self.c_names[self.arg_num], func_sig_dart)
 
-      func_str = '\n\t@override\n\t%s %s(%s) => ' % (self.return_type, dartify_call(self.names.dart_func_name), self.ffi_in_args)
+      func_str = '\n\t@override\n\t%s %s(%s) => ' % (self.return_type_func, dartify_call(self.names.dart_func_name), self.ffi_in_args)
       # If the function returns an object of the same type as the class we assume it is returning a Pointer<Void> and we wrap it (This is quite hacky but seeing if we can get away with it)
-      if self.return_type == self.names.dart_class_name+'FfiAdapter':
-        func_str += '%sFfiAdapter._(_%s(_self%s%s));\n' % (self.names.dart_class_name, self.names.dart_func_name, maybe_comma, self.call_args_ffi)
+      if self.return_type in self.interfaces:
+        wrapper = (self.interfaces[self.return_type].getExtendedAttribute('Prefix') or [''])[0] + upper_first(self.return_type)
+        func_str += '%sFfiAdapter._(_%s(_self%s%s));\n' % (wrapper, self.names.dart_func_name, maybe_comma, self.call_args_ffi)
       else:
         func_str += '_%s(_self%s%s);\n' % (self.names.dart_func_name, maybe_comma, self.call_args_ffi)
-      return lookup + func_str
+      
+      not_supported = not_supported_yet(sig)
+      maybe_open_comment = '/*' if not_supported else ''
+      maybe_close_comment = '*/\n' if not_supported else ''
+      return maybe_open_comment + lookup + func_str + maybe_close_comment
   
   def setupArgs(self, sig):
     ffi_in_arg_types = list(map(lambda s: type_to_ffi(self.interfaces, s, False), sig))
@@ -54,7 +59,7 @@ class FfiFunction:
     self.joined_arg_types_dart = ', '.join(['%s' % (self.arg_types_dart[j]) for j in range(self.arg_num)])
     self.return_type_native = type_to_ffi(self.interfaces, self.return_type, False, Context.NATIVE_RET)
     self.return_type_dart = type_to_ffi(self.interfaces, self.return_type, False, Context.DART_RET)
-    self.return_type = type_to_ffi(self.interfaces, self.return_type)
+    self.return_type_func = type_to_ffi(self.interfaces, self.return_type)
 
   def setupBody(self, min_args, max_args):
     call_prefix = 'return '
@@ -71,7 +76,7 @@ class FfiFunction:
     body += '  %s%s(%s)%s;\n' % (call_prefix, '_' + self.c_names[max_args], ', '.join(pre_arg + self.args), call_postfix)
     if cache:
       body += '  ' + cache + '\n'
-  
+
   def setupCall(self, raw_sig):
     self.call_args_ffi = ', '.join(['%s%s' % (self.args[j], '._self' if raw_sig[j].getExtendedAttribute('Ref') else '') for j in range(self.arg_num)])
 
@@ -87,7 +92,10 @@ def type_to_ffi(interfaces, t, non_pointing=False, context=Context.DEFAULT):
   # print 'to ffi', t
   def base_type_to_ffi(t):
     if t == 'Long':
-      ret = 'int'
+      if(context==Context.NATIVE_RET or context==Context.NATIVE_ARG):
+        ret = 'Int32'
+      else:
+        ret = 'int'
     elif t == 'UnsignedLong':
       ret = 'unsigned int'
     elif t == 'LongLong':

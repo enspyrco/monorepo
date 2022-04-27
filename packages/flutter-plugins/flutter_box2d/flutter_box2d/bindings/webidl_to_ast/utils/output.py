@@ -16,14 +16,11 @@ class ClassSet:
   
   def addEndings(self):
     self.c += ['\n']
-    self.itf += ['\n}\n']
-    self.itf_mac += ['\n}\n']
-    self.itf_web += ['\n}\n']
-    self.dels += ['\n}\n']
-    self.decs += ['\n}\n']
-    self.ffi += ['\n}\n']
-    self.jsadapter += ['\n}\n']
-    self.jsimpl += ['\n}\n']
+    self.dels += ['\n}\n\n']
+    self.decs += ['\n}\n\n']
+    self.ffi += ['\n}\n\n']
+    self.jsadapter += ['\n}\n\n']
+    self.jsimpl += ['\n}\n\n']
 
 # When we finish contstructing the strings for each of the classes to be output, we add them to a variable of type Output
 # which is used at the end of the process to write everything out to file.
@@ -59,14 +56,17 @@ class Output:
       dart.write(pre_itf)
       for x in self.itf:
         dart.write(x)
+      dart.write('\n}\n')
     with open('out/flutter_box2d_macos.dart', 'w') as dart:
       dart.write(pre_itf_mac)
       for x in self.itf_mac:
         dart.write(x)
+      dart.write('\n}\n')
     with open('out/flutter_box2d_web.dart', 'w') as dart:
       dart.write(pre_itf_web)
       for x in self.itf_web:
         dart.write(x)
+      dart.write('\n}\n')
     with open('out/b2_decorators.dart', 'w') as dart:
       dart.write(pre_decs)
       for x in self.decs:

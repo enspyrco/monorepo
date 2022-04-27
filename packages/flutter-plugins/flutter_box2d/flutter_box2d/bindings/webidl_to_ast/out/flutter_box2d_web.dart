@@ -11,6 +11,8 @@ class FlutterBox2DWeb extends FlutterBox2DPlatform {
     FlutterBox2DPlatform.instance = FlutterBox2DWeb();
   }
 
+	B2WorldPlatform b2World_1(covariant B2Vec2JSAdapter gravity) => B2WorldJSAdapter.from1(gravity);
+
 	B2Vec2Platform b2Vec2_0() => B2Vec2JSAdapter();
 
 	B2Vec2Platform b2Vec2_2(double x, double y) => B2Vec2JSAdapter.from2(x, y);

@@ -31,6 +31,10 @@ abstract class FlutterBox2DPlatform extends PlatformInterface {
     _instance = instance;
   }
 
+	B2WorldPlatform b2World_1(B2Vec2Platform gravity) {
+		throw UnimplementedError('b2World_1(B2Vec2Platform gravity) has not been implemented.');
+	}
+
 	B2Vec2Platform b2Vec2_0() {
 		throw UnimplementedError('b2Vec2_0() has not been implemented.');
 	}

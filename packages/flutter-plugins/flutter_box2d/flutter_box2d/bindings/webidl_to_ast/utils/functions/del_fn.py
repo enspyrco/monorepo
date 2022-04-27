@@ -1,5 +1,5 @@
 from enum import Enum
-from utils.utils import lower_first
+from utils.utils import lower_first, not_supported_yet
 
 class Context(Enum):
   DEFAULT = 0 # default context, ie no context has been supplied
@@ -19,11 +19,12 @@ class DelFunction:
   def render(self, sig, raw_sig):
     self.setupArgs(sig)
     self.setupCall(raw_sig)
-    maybe_from = ('.from%s' % self.arg_num) if self.arg_num != 0 else ''
     if(self.constructor):
+      maybe_from = ('.from%s' % self.arg_num) if self.arg_num != 0 else ''
       return '\n\t%s%s(%s) : super(token: _token);\n' % (self.names.del_class_name, maybe_from, self.call_args)
     else:
-      return '\n\t%s %s(%s);\n' % (type_to_del(self.interfaces, self.return_type), dartify_call(self.names.dart_func_name), self.del_args)
+      maybe_comment = '//' if not_supported_yet(sig) else ''
+      return '\n\t%s%s %s(%s);' % (maybe_comment, type_to_del(self.interfaces, self.return_type), dartify_call(self.names.dart_func_name), self.del_args)
   
   def setupArgs(self, sig):
     self.del_arg_types = list(map(lambda s: type_to_del(self.interfaces, s, False, context=Context.ARG), sig))

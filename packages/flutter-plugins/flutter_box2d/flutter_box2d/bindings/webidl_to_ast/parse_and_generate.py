@@ -36,7 +36,7 @@ names = sorted(interfaces.keys(), key=lambda x: nodeHeights.get(x, 0), reverse=T
 out = Output()
 
 for name in names:
-  if name != 'b2Vec2':
+  if (name != 'b2World' and name != 'b2Vec2'):
     continue
 
   interface = interfaces[name]
