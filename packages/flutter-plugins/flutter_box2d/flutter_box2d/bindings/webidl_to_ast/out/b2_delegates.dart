@@ -4,7 +4,7 @@ abstract class B2WorldPlatform extends PlatformInterface {
 
 	static final Object _token = Object();
 
-	B2WorldPlatform.from1(*gravity) : super(token: _token);
+	B2WorldPlatform.from1(B2Vec2Platform gravity) : super(token: _token);
 
 	//void setDestructionListener(covariant B2DestructionListenerPlatform listener);
 	//void setContactFilter(covariant JSContactFilterPlatform filter);
@@ -53,7 +53,7 @@ abstract class B2Vec2Platform extends PlatformInterface {
 
 	B2Vec2Platform() : super(token: _token);
 
-	B2Vec2Platform.from2(x, y) : super(token: _token);
+	B2Vec2Platform.from2(double x, double y) : super(token: _token);
 
 	void setZero();
 	void set(double x, double y);

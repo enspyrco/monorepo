@@ -4,7 +4,8 @@ from utils.utils import lower_first, not_supported_yet
 class Context(Enum):
   DEFAULT = 0 # default context, ie no context has been supplied
   RET = 2 # return type
-  ARG = 3 # function arg types
+  FN_ARG = 3 # function arg types
+  CTR_ARG = 4 # constructor arg types
 
 class DelFunction:
   def __init__(self, interfaces, args, i, const, constructor, names, return_type):
@@ -21,14 +22,16 @@ class DelFunction:
     self.setupCall(raw_sig)
     if(self.constructor):
       maybe_from = ('.from%s' % self.arg_num) if self.arg_num != 0 else ''
-      return '\n\t%s%s(%s) : super(token: _token);\n' % (self.names.del_class_name, maybe_from, self.call_args)
+      return '\n\t%s%s(%s) : super(token: _token);\n' % (self.names.del_class_name, maybe_from, self.ctr_args)
     else:
       maybe_comment = '//' if not_supported_yet(sig) else ''
-      return '\n\t%s%s %s(%s);' % (maybe_comment, type_to_del(self.interfaces, self.return_type), dartify_call(self.names.dart_func_name), self.del_args)
+      return '\n\t%s%s %s(%s);' % (maybe_comment, type_to_del(self.interfaces, self.return_type), dartify_call(self.names.dart_func_name), self.fn_args)
   
   def setupArgs(self, sig):
-    self.del_arg_types = list(map(lambda s: type_to_del(self.interfaces, s, False, context=Context.ARG), sig))
-    self.del_args = ', '.join(['%s %s' % (self.del_arg_types[j], self.args[j]) for j in range(self.arg_num)])
+    self.fn_arg_types = list(map(lambda s: type_to_del(self.interfaces, s, False, Context.FN_ARG), sig))
+    self.fn_args = ', '.join(['%s %s' % (self.fn_arg_types[j], self.args[j]) for j in range(self.arg_num)])
+    self.ctr_arg_types = list(map(lambda s: type_to_del(self.interfaces, s, False, Context.CTR_ARG), sig))
+    self.ctr_args = ', '.join(['%s %s' % (self.ctr_arg_types[j], self.args[j]) for j in range(self.arg_num)])
   
   def setupCall(self, raw_sig):
     self.call_args = ', '.join(['%s%s' % ('*' if raw_sig[j].getExtendedAttribute('Ref') else '', self.args[j]) for j in range(self.arg_num)])
@@ -74,7 +77,7 @@ def type_to_del(interfaces, t, non_pointing=False, context=Context.DEFAULT):
       ret = 'void*'
     elif t in interfaces:
       ret = (interfaces[t].getExtendedAttribute('Prefix') or [''])[0] + t[0].upper() + t[1:] +'Platform'
-      if(context == Context.ARG): ret = 'covariant %s' % ret # add covariant to delegates.dart function args - to avoid type errors for args in ffi.dart
+      if(context == Context.FN_ARG): ret = 'covariant %s' % ret # add covariant to delegates.dart function args - to avoid type errors for args in ffi.dart
     else:
       ret = t
     return ret
