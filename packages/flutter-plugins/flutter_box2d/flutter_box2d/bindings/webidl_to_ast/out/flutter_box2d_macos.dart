@@ -1,5 +1,5 @@
 //import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
-import 'b2_adapters_c.dart';
+import 'b2_adapters_ffi.dart';
 import 'b2_delegates.dart';
 import 'flutter_box2d_platform_interface.dart';
 

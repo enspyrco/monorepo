@@ -8,7 +8,7 @@ class Context(Enum):
   JSA_RET = 3
   JSA_ARG = 4
 
-class JsioFunction:
+class WebFunction:
   def __init__(self, interfaces, args, i, const, constructor, names, return_type):
     self.interfaces = interfaces
     self.args = args
@@ -48,16 +48,16 @@ class JsioFunction:
     return self.jsimpl
   
   def setupArgs(self, sig):
-    self.arg_types_jsi = list(map(lambda s: type_to_jsio(self.interfaces, s, False, Context.JSI_ARG), sig))
+    self.arg_types_jsi = list(map(lambda s: type_to_web(self.interfaces, s, False, Context.JSI_ARG), sig))
     self.joined_arg_types_jsi = ', '.join(['%s' % (self.arg_types_jsi[j]) for j in range(self.arg_num)])
-    self.arg_types_jsa = list(map(lambda s: type_to_jsio(self.interfaces, s, False, Context.JSA_ARG), sig))
+    self.arg_types_jsa = list(map(lambda s: type_to_web(self.interfaces, s, False, Context.JSA_ARG), sig))
     self.joined_arg_types_jsa = ', '.join(['%s' % (self.arg_types_jsa[j]) for j in range(self.arg_num)])
-    self.jsa_in_arg_types = list(map(lambda s: type_to_jsio(self.interfaces, s, False, Context.JSA_ARG), sig))
+    self.jsa_in_arg_types = list(map(lambda s: type_to_web(self.interfaces, s, False, Context.JSA_ARG), sig))
     self.jsa_in_args = ', '.join(['%s %s' % (self.jsa_in_arg_types[j], self.args[j]) for j in range(self.arg_num)])
-    self.jsi_in_arg_types = list(map(lambda s: type_to_jsio(self.interfaces, s, False, Context.JSI_ARG), sig))
+    self.jsi_in_arg_types = list(map(lambda s: type_to_web(self.interfaces, s, False, Context.JSI_ARG), sig))
     self.jsi_in_args = ', '.join(['%s %s' % (self.jsi_in_arg_types[j], self.args[j]) for j in range(self.arg_num)])
-    self.return_type_jsi = type_to_jsio(self.interfaces, self.return_type, False, Context.JSI_RET)
-    self.return_type_jsa = type_to_jsio(self.interfaces, self.return_type, False, Context.JSA_RET)    
+    self.return_type_jsi = type_to_web(self.interfaces, self.return_type, False, Context.JSI_RET)
+    self.return_type_jsa = type_to_web(self.interfaces, self.return_type, False, Context.JSA_RET)    
   
   def setupCall(self, raw_sig):
     self.call_args = ', '.join(['%s%s' % (self.args[j], '._impl' if raw_sig[j].getExtendedAttribute('Ref') else '') for j in range(self.arg_num)])
@@ -70,9 +70,9 @@ def dartify_call(text):
     text = text.replace('set_', '')
   return prefix + lower_first(text)
 
-def type_to_jsio(interfaces, t, non_pointing=False, context=Context.DEFAULT):
-  # print 'to jsio', t
-  def base_type_to_jsio(t):
+def type_to_web(interfaces, t, non_pointing=False, context=Context.DEFAULT):
+  # print 'to web', t
+  def base_type_to_web(t):
     if t == 'Long':
       if(context==Context.JSI_RET or context==Context.JSI_ARG):
         ret = 'num'
@@ -132,7 +132,7 @@ def type_to_jsio(interfaces, t, non_pointing=False, context=Context.DEFAULT):
     suffix = '*'
   if 'const ' in t:
     t = t.replace('const ', '')
-  return prefix + base_type_to_jsio(t) + suffix
+  return prefix + base_type_to_web(t) + suffix
 
 
 

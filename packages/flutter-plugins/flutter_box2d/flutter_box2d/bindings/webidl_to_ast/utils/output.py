@@ -2,7 +2,7 @@
 class ClassSet:
   def __init__(self, name):
     class_name = name[0].upper() + name[1:]
-    self.c = ['\n// ' + name + '\n']
+    self.glue_c = ['\n// ' + name + '\n']
     self.itf = []
     self.itf_mac = []
     self.itf_web = []
@@ -15,7 +15,7 @@ class ClassSet:
     self.jsimpl = ['@JS(\'' + name + '\')\nclass ' + class_name + 'JSImpl {\n']
   
   def addEndings(self):
-    self.c += ['\n']
+    self.glue_c += ['\n']
     self.dels += ['\n}\n\n']
     self.decs += ['\n}\n\n']
     self.ffi += ['\n}\n\n']
@@ -26,7 +26,7 @@ class ClassSet:
 # which is used at the end of the process to write everything out to file.
 class Output:
   def __init__(self):
-    self.c = []
+    self.glue_c = []
     self.itf = []
     self.itf_mac = []
     self.itf_web = []
@@ -38,7 +38,7 @@ class Output:
     
   def finishThenAdd(self, class_set):
     class_set.addEndings()
-    self.c += class_set.c
+    self.glue_c += class_set.glue_c
     self.itf += class_set.itf
     self.itf_mac += class_set.itf_mac
     self.itf_web += class_set.itf_web
@@ -49,8 +49,8 @@ class Output:
     self.jsimpl += class_set.jsimpl
   
   def writeToFiles(self):
-    with open('out/out.c', 'w') as c:
-      for x in self.c:
+    with open('out/glue.c', 'w') as c:
+      for x in self.glue_c:
         c.write(x)
     with open('out/flutter_box2d_platform_interface.dart', 'w') as dart:
       dart.write(pre_itf)
@@ -75,11 +75,11 @@ class Output:
       dart.write(pre_dels)
       for x in self.dels:
         dart.write(x)    
-    with open('out/b2_adapters_c.dart', 'w') as dart:
+    with open('out/b2_adapters_ffi.dart', 'w') as dart:
       dart.write(pre_ffi)
       for x in self.ffi:
         dart.write(x)
-    with open('out/b2_adapters_js.dart', 'w') as dart:
+    with open('out/b2_adapters_web.dart', 'w') as dart:
       dart.write(pre_js)
       for x in self.jsadapter:
         dart.write(x)
@@ -121,7 +121,7 @@ abstract class FlutterBox2DPlatform extends PlatformInterface {
 '''
 
 pre_itf_mac = '''//import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
-import 'b2_adapters_c.dart';
+import 'b2_adapters_ffi.dart';
 import 'b2_delegates.dart';
 import 'flutter_box2d_platform_interface.dart';
 
@@ -137,7 +137,7 @@ class FlutterBox2DMacos extends FlutterBox2DPlatform {
 
 pre_itf_web = '''//import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'b2_adapters_js.dart';
+import 'b2_adapters_web.dart';
 import 'b2_delegates.dart';
 import 'flutter_box2d_platform_interface.dart';
 
