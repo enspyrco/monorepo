@@ -2,12 +2,12 @@
 class ClassSet:
   def __init__(self, name, hasCtor):
     class_name = name[0].upper() + name[1:]
-    maybe_delegate = ('\n\tfinal ' + class_name + 'Platform _delegate;\n') if hasCtor else ''
+    # maybe_delegate = ('\n\tfinal ' + class_name + 'Platform _delegate;\n') if hasCtor else ''
     self.glue_c = ['\n// ' + name + '\n']
     self.itf = []
     self.itf_mac = []
     self.itf_web = []
-    self.decs = ['class ' + class_name + ' {\n%s' % maybe_delegate]
+    self.decs = ['class ' + class_name + ' {\n\n\tfinal ' + class_name + 'Platform _delegate;\n\n\t'+class_name+'._('+class_name + 'Platform delegate) : _delegate = delegate;\n']
     self.dels = ['abstract class ' + class_name + 'Platform {\n']
     self.ffi = ['class ' + class_name + 'FfiAdapter implements ' + class_name + 'Platform {\n\n\tfinal Pointer<Void> _self;\n\t' + class_name + 'FfiAdapter._(Pointer<Void> self) : _self = self;\n']
     self.jsadapter = ['class ' + class_name + 'JSAdapter implements ' + class_name + 'Platform {\n']
@@ -156,6 +156,7 @@ class FlutterBox2DWeb extends FlutterBox2DPlatform {
 
 pre_decs = '''import 'flutter_box2d_platform_interface.dart';
 import 'b2_delegates.dart';
+import 'b2_enums.dart';
 
 '''
 
