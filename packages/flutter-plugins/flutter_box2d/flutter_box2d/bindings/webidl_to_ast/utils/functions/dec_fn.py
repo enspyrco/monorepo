@@ -21,9 +21,9 @@ class DecFunction:
   def setupArgs(self, sig):
     self.dec_arg_types = list(map(lambda s: type_to_dec(self.interfaces, s, False), sig))
     self.dec_args = ', '.join(['%s %s' % (self.dec_arg_types[j], self.args[j]) for j in range(self.arg_num)])
-  
+
   def setupCall(self, raw_sig):
-    self.call_args = ', '.join(['%s%s' % ('*' if raw_sig[j].getExtendedAttribute('Ref') else '', self.args[j]) for j in range(self.arg_num)])
+    self.call_args = ', '.join(['%s' % (self.args[j]) for j in range(self.arg_num)])
 
 
 def type_to_dec(interfaces, t, non_pointing=False):
@@ -59,7 +59,7 @@ def type_to_dec(interfaces, t, non_pointing=False):
       ret = 'void*'
     elif t in interfaces:
       ret = (interfaces[t].getExtendedAttribute('Prefix') or [''])[0] + t[0].upper() + t[1:]
-      ret = 'covariant %sPlatform' % ret # add covariant to delegates.dart function args - to avoid type errors for args in ffi.dart
+      ret = '%sPlatform' % ret # add covariant to delegates.dart function args - to avoid type errors for args in ffi.dart
     else:
       ret = t
     return ret

@@ -1,16 +1,16 @@
 import emscripten.WebIDL as WebIDL
 from utils.utils import full_typename
-from utils.functions.c_fn import CFunction
+from utils.functions.c_glue_fn import CFunction
 from utils.functions.itf_fn import ItfFunction
 from utils.functions.dec_fn import DecFunction
 from utils.functions.del_fn import DelFunction
-from utils.functions.ffi_fn import FfiFunction
-from utils.functions.jsio_fn import JsioFunction
+from utils.functions.adp_ffi_fn import FfiFunction
+from utils.functions.adp_web_fn import WebFunction
 
 CHECKS='FAST'
 DEBUG=0
 
-def render_function(interfaces, class_set, names, sigs, return_type, non_pointer,
+def render_function(interfaces, enums, class_set, names, sigs, return_type, non_pointer,
                     copy, operator, constructor, func_scope,
                     call_content=None, const=False, array_attribute=False):
 
@@ -26,9 +26,10 @@ def render_function(interfaces, class_set, names, sigs, return_type, non_pointer
     sig = list(map(full_typename, raw_sig))
     if array_attribute:
       sig = [x.replace('[]', '') for x in sig] # for arrays, ignore that this is an array - our get/set methods operate on the elements
+    overload = min_args != max_args
 
     c_fn = CFunction(interfaces, args, i, const, constructor, operator, names, return_type)
-    class_set.c.append(c_fn.render(sig, min_args, max_args, non_pointer, copy, call_content, func_scope, raw_sig))
+    class_set.glue_c.append(c_fn.render(sig, min_args, max_args, non_pointer, copy, call_content, func_scope, raw_sig))
 
     if(constructor): # PlatformInterface only uses constructors
       itf_fn = ItfFunction(interfaces, args, i, const, constructor, names)
@@ -43,13 +44,13 @@ def render_function(interfaces, class_set, names, sigs, return_type, non_pointer
     dec_fn = DecFunction(interfaces, args, i, const, constructor, names, return_type)
     class_set.decs.append(dec_fn.render(sig, raw_sig))
 
-    del_fn = DelFunction(interfaces, args, i, const, constructor, names, return_type)
+    del_fn = DelFunction(interfaces, enums, args, i, const, constructor, overload, names, return_type)
     class_set.dels.append(del_fn.render(sig, raw_sig))
 
-    ffi_fn = FfiFunction(interfaces, args, i, const, constructor, names, return_type)
+    ffi_fn = FfiFunction(interfaces, enums, args, i, const, constructor, overload, names, return_type)
     class_set.ffi.append(ffi_fn.render(sig, min_args, max_args, raw_sig))
 
-    jsio_fn = JsioFunction(interfaces, args, i, const, constructor, names, return_type)
-    jsio_fn.render(sig, raw_sig)
-    class_set.jsadapter.append(jsio_fn.adapter())
-    class_set.jsimpl.append(jsio_fn.impl())
+    web_fn = WebFunction(interfaces, enums, args, i, const, constructor, overload, names, return_type)
+    web_fn.render(sig, raw_sig)
+    class_set.jsadapter.append(web_fn.adapter())
+    class_set.jsimpl.append(web_fn.impl())

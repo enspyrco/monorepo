@@ -6,6 +6,10 @@ class Dummy:
   def getExtendedAttribute(self, name): # noqa: U100
     return None
 
+def not_supported_yet(sig):
+  classes = ['b2Draw', 'b2RayCastCallback', 'b2QueryCallback', 'JSContactListener', 'JSContactFilter', 'b2DestructionListener']
+  return any(x in classes for x in sig)
+
 def upper_first(text):
   return text[0].upper() + text[1:]
 

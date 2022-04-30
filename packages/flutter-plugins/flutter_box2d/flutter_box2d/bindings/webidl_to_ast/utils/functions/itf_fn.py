@@ -1,3 +1,12 @@
+from enum import Enum
+from utils.utils import upper_first
+
+class Context(Enum):
+  DEFAULT = 0
+  CTR_CALL = 1
+  CTR_FFI_DECL = 2
+  CTR_WEB_DECL = 3
+
 class ItfFunction:
   def __init__(self, interfaces, args, i, const, constructor, names):
     self.interfaces = interfaces
@@ -15,30 +24,30 @@ class ItfFunction:
   def itf(self):
     maybe_const = 'const ' if self.const else ''
     line1 = '\t@override\n'
-    line1 = '\t%s%s %s(%s) {' % (maybe_const, type_to_itf(self.interfaces, self.names.class_name, False)+'Platform', self.itf_names[self.arg_num], self.itf_args)
-    line2 = '\t\tthrow UnimplementedError(\'%s(%s) has not been implemented.\');' % (self.itf_names[self.arg_num], self.full_args)
+    line1 = '\t%s%s %s(%s) {' % (maybe_const, type_to_itf(self.interfaces, self.names.class_name, False), self.itf_names[self.arg_num], self.itf_args)
+    line2 = '\t\tthrow UnimplementedError(\'%s(%s) has not been implemented.\');' % (self.itf_names[self.arg_num], self.itf_args)
     line3 = '\t}'
     return '\n'+line1+'\n'+line2+'\n'+line3+'\n'
   
   def mac(self):
     maybe_const = 'const ' if self.const else ''
     maybe_from = ('.from%s' % self.arg_num) if self.arg_num != 0 else ''
-    line1 = '\t%s%s %s(%s) => %s%s(%s);' % (maybe_const, type_to_itf(self.interfaces, self.names.class_name, False)+'Platform', self.itf_names[self.arg_num], self.itf_args, type_to_itf(self.interfaces, self.names.class_name, False)+'FfiAdapter', maybe_from, self.call_args)
+    line1 = '\t%s%s %s(%s) => %s%s(%s);' % (maybe_const, type_to_itf(self.interfaces, self.names.class_name, False), self.itf_names[self.arg_num], self.mac_decl_args, type_to_itf(self.interfaces, self.names.class_name, False, Context.CTR_CALL)+'FfiAdapter', maybe_from, self.call_args)
     return '\n'+line1+'\n'
 
   def web(self):
     maybe_const = 'const ' if self.const else ''
     maybe_from = ('.from%s' % self.arg_num) if self.arg_num != 0 else ''
-    line1 = '\t%s%s %s(%s) => %s%s(%s);' % (maybe_const, type_to_itf(self.interfaces, self.names.class_name, False)+'Platform', self.itf_names[self.arg_num], self.itf_args, type_to_itf(self.interfaces, self.names.class_name, False)+'JSAdapter', maybe_from, self.call_args)
+    line1 = '\t%s%s %s(%s) => %s%s(%s);' % (maybe_const, type_to_itf(self.interfaces, self.names.class_name, False), self.itf_names[self.arg_num], self.web_decl_args, type_to_itf(self.interfaces, self.names.class_name, False, Context.CTR_CALL)+'JSAdapter', maybe_from, self.call_args)
     return '\n'+line1+'\n'
   
   def setupArgs(self, sig):
     itf_arg_types = list(map(lambda s: type_to_itf(self.interfaces, s, False), sig))
     self.itf_args = ', '.join(['%s %s' % (itf_arg_types[j], self.args[j]) for j in range(self.arg_num)])
-    if self.constructor:
-      self.full_args = self.itf_args
-    else:
-      self.full_args = type_to_itf(self.interfaces, self.names.class_name, non_pointing=True) + '* self' + ('' if not self.itf_args else ', ' + self.itf_args)
+    mac_decl_arg_types = list(map(lambda s: type_to_itf(self.interfaces, s, False, Context.CTR_FFI_DECL), sig))
+    self.mac_decl_args = ', '.join(['%s %s' % (mac_decl_arg_types[j], self.args[j]) for j in range(self.arg_num)])
+    web_decl_arg_types = list(map(lambda s: type_to_itf(self.interfaces, s, False, Context.CTR_WEB_DECL), sig))
+    self.web_decl_args = ', '.join(['%s %s' % (web_decl_arg_types[j], self.args[j]) for j in range(self.arg_num)])
 
   def setupBody(self, min_args, max_args):
     self.itf_names = {}
@@ -47,9 +56,9 @@ class ItfFunction:
     self.itf_names[max_args] = '%s_%d' % (self.names.func_name, max_args)
   
   def setupCall(self, raw_sig):
-    self.call_args = ', '.join(['%s%s' % (self.args[j], '._self' if raw_sig[j].getExtendedAttribute('Ref') else '') for j in range(self.arg_num)])
+    self.call_args = ', '.join(['%s' % (self.args[j]) for j in range(self.arg_num)])
 
-def type_to_itf(interfaces, t, non_pointing=False):
+def type_to_itf(interfaces, t, non_pointing=False, context=Context.DEFAULT):
   # print 'to itf ', t
   def base_type_to_itf(t):
     if t == 'Long':
@@ -81,7 +90,10 @@ def type_to_itf(interfaces, t, non_pointing=False):
     elif t == 'Any' or t == 'VoidPtr':
       ret = 'void*'
     elif t in interfaces:
-      ret = (interfaces[t].getExtendedAttribute('Prefix') or [''])[0] + t[0].upper() + t[1:]
+      ret = (interfaces[t].getExtendedAttribute('Prefix') or [''])[0] + upper_first(t)
+      if(context == Context.DEFAULT): ret += 'Platform'
+      elif(context == Context.CTR_FFI_DECL): ret = 'covariant %sFfiAdapter' % (ret)
+      elif(context == Context.CTR_WEB_DECL): ret = 'covariant %sJSAdapter' % (ret)
     else:
       ret = t
     return ret
