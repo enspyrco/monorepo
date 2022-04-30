@@ -2,10 +2,6 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'b2_delegates.dart';
 
-// export 'src/b2_classes.dart';
-// export 'src/b2_constants.dart';
-// export 'src/b2_delegates.dart';
-
 /// The interface that implementations of flutter_box2d must implement.
 ///
 /// Platform implementations should extend this class rather than implement it as `flutter_box2d`

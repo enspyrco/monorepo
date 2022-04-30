@@ -1,8 +1,8 @@
-//import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
+import 'package:flutter_box2d_platform_interface/b2_delegates.dart';
+import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+
 import 'b2_adapters_web.dart';
-import 'b2_delegates.dart';
-import 'flutter_box2d_platform_interface.dart';
 
 /// The web implementation of the FlutterBox2d plugin.
 class FlutterBox2DWeb extends FlutterBox2DPlatform {

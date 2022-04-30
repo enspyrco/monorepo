@@ -1,4 +1,3 @@
-//import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'b2_enums.dart';
 
 abstract class B2ShapePlatform {

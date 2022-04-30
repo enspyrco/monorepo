@@ -95,10 +95,6 @@ pre_itf = r'''import 'package:plugin_platform_interface/plugin_platform_interfac
 
 import 'b2_delegates.dart';
 
-// export 'src/b2_classes.dart';
-// export 'src/b2_constants.dart';
-// export 'src/b2_delegates.dart';
-
 /// The interface that implementations of flutter_box2d must implement.
 ///
 /// Platform implementations should extend this class rather than implement it as `flutter_box2d`
@@ -125,10 +121,10 @@ abstract class FlutterBox2DPlatform extends PlatformInterface {
   }
 '''
 
-pre_itf_mac = '''//import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
+pre_itf_mac = '''import 'package:flutter_box2d_platform_interface/b2_delegates.dart';
+import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
+
 import 'b2_adapters_ffi.dart';
-import 'b2_delegates.dart';
-import 'flutter_box2d_platform_interface.dart';
 
 /// The macos implementation of the FlutterBox2d plugin.
 class FlutterBox2DMacos extends FlutterBox2DPlatform {
@@ -140,11 +136,11 @@ class FlutterBox2DMacos extends FlutterBox2DPlatform {
   FlutterBox2DMacos();
 ''';
 
-pre_itf_web = '''//import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
+pre_itf_web = '''import 'package:flutter_box2d_platform_interface/b2_delegates.dart';
+import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+
 import 'b2_adapters_web.dart';
-import 'b2_delegates.dart';
-import 'flutter_box2d_platform_interface.dart';
 
 /// The web implementation of the FlutterBox2d plugin.
 class FlutterBox2DWeb extends FlutterBox2DPlatform {
@@ -154,22 +150,21 @@ class FlutterBox2DWeb extends FlutterBox2DPlatform {
   }
 ''';
 
-pre_decs = '''import 'flutter_box2d_platform_interface.dart';
+pre_decs = '''import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
+
 import 'b2_delegates.dart';
 import 'b2_enums.dart';
 
 '''
 
-pre_dels = '''//import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'b2_enums.dart';
+pre_dels = '''import 'b2_enums.dart';
 
 '''
 
 pre_ffi = '''import 'dart:ffi';
 
-// import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
-import 'b2_delegates.dart';
-import 'b2_enums.dart';
+import 'package:flutter_box2d_platform_interface/b2_delegates.dart';
+import 'package:flutter_box2d_platform_interface/b2_enums.dart';
 
 final DynamicLibrary _symbols = DynamicLibrary.process();
 
@@ -182,7 +177,7 @@ library box2d;
 
 import 'package:js/js.dart';
 
-import 'b2_delegates.dart';
-import 'b2_enums.dart';
+import 'package:flutter_box2d_platform_interface/b2_delegates.dart';
+import 'package:flutter_box2d_platform_interface/b2_enums.dart';
 
 '''

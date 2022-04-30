@@ -1,7 +1,7 @@
-//import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
+import 'package:flutter_box2d_platform_interface/b2_delegates.dart';
+import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
+
 import 'b2_adapters_ffi.dart';
-import 'b2_delegates.dart';
-import 'flutter_box2d_platform_interface.dart';
 
 /// The macos implementation of the FlutterBox2d plugin.
 class FlutterBox2DMacos extends FlutterBox2DPlatform {

@@ -1,4 +1,5 @@
-import 'flutter_box2d_platform_interface.dart';
+import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
+
 import 'b2_delegates.dart';
 import 'b2_enums.dart';
 
