@@ -41,7 +41,7 @@ def render_function(interfaces, enums, class_set, names, sigs, return_type, non_
       class_set.itf_mac.append(mac)
       class_set.itf_web.append(web)
 
-    dec_fn = DecFunction(interfaces, args, i, const, constructor, names, return_type)
+    dec_fn = DecFunction(interfaces, enums, args, i, const, constructor, overload, names, return_type)
     class_set.decs.append(dec_fn.render(sig, raw_sig))
 
     del_fn = DelFunction(interfaces, enums, args, i, const, constructor, overload, names, return_type)

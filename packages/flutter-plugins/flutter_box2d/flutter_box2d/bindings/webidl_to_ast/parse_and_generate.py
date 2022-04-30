@@ -93,6 +93,7 @@ for name in names:
       continue
     attr = m.identifier.name
 
+    maybe_array = ''
     if m.type.isArray():
       get_sigs = {1: [Dummy({'type': WebIDL.BuiltinTypes[WebIDL.IDLBuiltinType.Types.long]})]}
       set_sigs = {2: [Dummy({'type': WebIDL.BuiltinTypes[WebIDL.IDLBuiltinType.Types.long]}),
@@ -103,13 +104,14 @@ for name in names:
         bounds_check = "array_bounds_check(sizeof(self->%s) / sizeof(self->%s[0]), arg0)" % (attr, attr)
         get_call_content = "(%s, %s)" % (bounds_check, get_call_content)
         set_call_content = "(%s, %s)" % (bounds_check, set_call_content)
+      maybe_array = '_array'
     else:
       get_sigs = {0: []}
       set_sigs = {1: [Dummy({'type': m.type})]}
       get_call_content = take_addr_if_nonpointer(m) + 'self->' + attr
       set_call_content = 'self->' + attr + ' = ' + deref_if_nonpointer(m) + 'arg0'
 
-    render_function(interfaces, enums, class_set, Names(name, 'get_' + attr), get_sigs, m.type.name,
+    render_function(interfaces, enums, class_set, Names(name, 'get_' + attr, attr, 'get'+maybe_array), get_sigs, m.type.name,
                     None,
                     None,
                     None,
@@ -120,7 +122,7 @@ for name in names:
                     array_attribute=m.type.isArray())
 
     if not m.readonly:
-      render_function(interfaces, enums, class_set, Names(name, 'set_' + attr), set_sigs, 'Void',
+      render_function(interfaces, enums, class_set, Names(name, 'set_' + attr, attr, 'set'+maybe_array), set_sigs, 'Void',
                       None,
                       None,
                       None,
