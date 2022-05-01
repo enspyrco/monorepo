@@ -1,8 +1,7 @@
 import 'dart:ffi';
 
-// import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
-import 'b2_delegates.dart';
-import 'b2_enums.dart';
+import 'package:flutter_box2d_platform_interface/b2_delegates.dart';
+import 'package:flutter_box2d_platform_interface/b2_enums.dart';
 
 final DynamicLibrary _symbols = DynamicLibrary.process();
 

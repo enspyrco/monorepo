@@ -12,8 +12,8 @@ void step(double deltaMs) {}
 
 class GameWorld {
   GameWorld() {
-    var gravity = B2Vec2(0, 10);
-    _b2World = B2World(gravity);
+    var gravity = B2Vec2.from2(0, 10);
+    _b2World = B2World.from1(gravity);
 
     _square = SquareObject(_b2World);
   }

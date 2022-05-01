@@ -1,4 +1,5 @@
-import 'flutter_box2d_platform_interface.dart';
+import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
+
 import 'b2_delegates.dart';
 import 'b2_enums.dart';
 
@@ -10,10 +11,10 @@ class B2Shape {
 
 	B2ShapeType getType() => _delegate.getType();
 	int getChildCount() => _delegate.getChildCount();
-	bool testPoint(B2TransformPlatform xf, B2Vec2Platform p) => _delegate.testPoint(xf, p);
-	bool rayCast(B2RayCastOutputPlatform output, B2RayCastInputPlatform input, B2TransformPlatform transform, int childIndex) => _delegate.rayCast(output, input, transform, childIndex);
-	void computeAABB(B2AABBPlatform aabb, B2TransformPlatform xf, int childIndex) => _delegate.computeAABB(aabb, xf, childIndex);
-	void computeMass(B2MassDataPlatform massData, double density) => _delegate.computeMass(massData, density);
+	bool testPoint(B2Transform xf, B2Vec2 p) => _delegate.testPoint(xf._delegate, p._delegate);
+	bool rayCast(B2RayCastOutput output, B2RayCastInput input, B2Transform transform, int childIndex) => _delegate.rayCast(output._delegate, input._delegate, transform._delegate, childIndex);
+	void computeAABB(B2AABB aabb, B2Transform xf, int childIndex) => _delegate.computeAABB(aabb._delegate, xf._delegate, childIndex);
+	void computeMass(B2MassData massData, double density) => _delegate.computeMass(massData._delegate, density);
 	B2ShapeType get m_type => _delegate.get_m_type();
 	set m_type(B2ShapeType arg0) => _delegate.set_m_type(arg0);
 	double get m_radius => _delegate.get_m_radius();
@@ -31,12 +32,12 @@ class B2JointDef {
 
 	B2JointType get type => _delegate.get_type();
 	set type(B2JointType arg0) => _delegate.set_type(arg0);
-	B2JointUserDataPlatform get userData => _delegate.get_userData();
-	set userData(B2JointUserDataPlatform arg0) => _delegate.set_userData(arg0);
-	B2BodyPlatform get bodyA => _delegate.get_bodyA();
-	set bodyA(B2BodyPlatform arg0) => _delegate.set_bodyA(arg0);
-	B2BodyPlatform get bodyB => _delegate.get_bodyB();
-	set bodyB(B2BodyPlatform arg0) => _delegate.set_bodyB(arg0);
+	B2JointUserData get userData => B2JointUserData._(_delegate.get_userData());
+	set userData(B2JointUserData arg0) => _delegate.set_userData(arg0._delegate);
+	B2Body get bodyA => B2Body._(_delegate.get_bodyA());
+	set bodyA(B2Body arg0) => _delegate.set_bodyA(arg0._delegate);
+	B2Body get bodyB => B2Body._(_delegate.get_bodyB());
+	set bodyB(B2Body arg0) => _delegate.set_bodyB(arg0._delegate);
 	bool get collideConnected => _delegate.get_collideConnected();
 	set collideConnected(bool arg0) => _delegate.set_collideConnected(arg0);
 	void dispose() => _delegate.dispose();
@@ -49,14 +50,14 @@ class B2Joint {
 	B2Joint._(B2JointPlatform delegate) : _delegate = delegate;
 
 	B2JointType getType() => _delegate.getType();
-	B2BodyPlatform getBodyA() => _delegate.getBodyA();
-	B2BodyPlatform getBodyB() => _delegate.getBodyB();
-	B2Vec2Platform getAnchorA() => _delegate.getAnchorA();
-	B2Vec2Platform getAnchorB() => _delegate.getAnchorB();
-	B2Vec2Platform getReactionForce(double inv_dt) => _delegate.getReactionForce(inv_dt);
+	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
+	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
+	B2Vec2 getAnchorA() => B2Vec2._(_delegate.getAnchorA());
+	B2Vec2 getAnchorB() => B2Vec2._(_delegate.getAnchorB());
+	B2Vec2 getReactionForce(double inv_dt) => B2Vec2._(_delegate.getReactionForce(inv_dt));
 	double getReactionTorque(double inv_dt) => _delegate.getReactionTorque(inv_dt);
-	B2JointPlatform getNext() => _delegate.getNext();
-	B2JointUserDataPlatform getUserData() => _delegate.getUserData();
+	B2Joint getNext() => B2Joint._(_delegate.getNext());
+	B2JointUserData getUserData() => B2JointUserData._(_delegate.getUserData());
 	bool getCollideConnected() => _delegate.getCollideConnected();
 	void dump() => _delegate.dump();
 }
@@ -76,15 +77,15 @@ class B2Contact {
 
 	B2Contact._(B2ContactPlatform delegate) : _delegate = delegate;
 
-	B2ManifoldPlatform getManifold() => _delegate.getManifold();
-	void getWorldManifold(B2WorldManifoldPlatform manifold) => _delegate.getWorldManifold(manifold);
+	B2Manifold getManifold() => B2Manifold._(_delegate.getManifold());
+	void getWorldManifold(B2WorldManifold manifold) => _delegate.getWorldManifold(manifold._delegate);
 	bool isTouching() => _delegate.isTouching();
 	void setEnabled(bool flag) => _delegate.setEnabled(flag);
 	bool isEnabled() => _delegate.isEnabled();
-	B2ContactPlatform getNext() => _delegate.getNext();
-	B2FixturePlatform getFixtureA() => _delegate.getFixtureA();
+	B2Contact getNext() => B2Contact._(_delegate.getNext());
+	B2Fixture getFixtureA() => B2Fixture._(_delegate.getFixtureA());
 	int getChildIndexA() => _delegate.getChildIndexA();
-	B2FixturePlatform getFixtureB() => _delegate.getFixtureB();
+	B2Fixture getFixtureB() => B2Fixture._(_delegate.getFixtureB());
 	int getChildIndexB() => _delegate.getChildIndexB();
 	void setFriction(double friction) => _delegate.setFriction(friction);
 	double getFriction() => _delegate.getFriction();
@@ -116,10 +117,10 @@ class JSContactListener {
 
 	JSContactListener() : _delegate = FlutterBox2DPlatform.instance.JSContactListener_0();
 
-	void beginContact(B2ContactPlatform contact) => _delegate.beginContact(contact);
-	void endContact(B2ContactPlatform contact) => _delegate.endContact(contact);
-	void preSolve(B2ContactPlatform contact, B2ManifoldPlatform oldManifold) => _delegate.preSolve(contact, oldManifold);
-	void postSolve(B2ContactPlatform contact, B2ContactImpulsePlatform impulse) => _delegate.postSolve(contact, impulse);
+	void beginContact(B2Contact contact) => _delegate.beginContact(contact._delegate);
+	void endContact(B2Contact contact) => _delegate.endContact(contact._delegate);
+	void preSolve(B2Contact contact, B2Manifold oldManifold) => _delegate.preSolve(contact._delegate, oldManifold._delegate);
+	void postSolve(B2Contact contact, B2ContactImpulse impulse) => _delegate.postSolve(contact._delegate, impulse._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -129,24 +130,24 @@ class B2World {
 
 	B2World._(B2WorldPlatform delegate) : _delegate = delegate;
 
-	B2World.from1(B2Vec2Platform gravity) : _delegate = FlutterBox2DPlatform.instance.b2World_1(gravity);
+	B2World.from1(B2Vec2 gravity) : _delegate = FlutterBox2DPlatform.instance.b2World_1(gravity._delegate);
 
-	//void setDestructionListener(B2DestructionListenerPlatform listener) => _delegate.setDestructionListener(listener);
-	//void setContactFilter(JSContactFilterPlatform filter) => _delegate.setContactFilter(filter);
-	//void setContactListener(JSContactListenerPlatform listener) => _delegate.setContactListener(listener);
-	//void setDebugDraw(B2DrawPlatform debugDraw) => _delegate.setDebugDraw(debugDraw);
-	B2BodyPlatform createBody(B2BodyDefPlatform def) => _delegate.createBody(def);
-	void destroyBody(B2BodyPlatform body) => _delegate.destroyBody(body);
-	B2JointPlatform createJoint(B2JointDefPlatform def) => _delegate.createJoint(def);
-	void destroyJoint(B2JointPlatform joint) => _delegate.destroyJoint(joint);
+	//void setDestructionListener(B2DestructionListener listener) => _delegate.setDestructionListener(listener._delegate);
+	//void setContactFilter(JSContactFilter filter) => _delegate.setContactFilter(filter._delegate);
+	//void setContactListener(JSContactListener listener) => _delegate.setContactListener(listener._delegate);
+	//void setDebugDraw(B2Draw debugDraw) => _delegate.setDebugDraw(debugDraw._delegate);
+	B2Body createBody(B2BodyDef def) => B2Body._(_delegate.createBody(def._delegate));
+	void destroyBody(B2Body body) => _delegate.destroyBody(body._delegate);
+	B2Joint createJoint(B2JointDef def) => B2Joint._(_delegate.createJoint(def._delegate));
+	void destroyJoint(B2Joint joint) => _delegate.destroyJoint(joint._delegate);
 	void step(double timeStep, int velocityIterations, int positionIterations) => _delegate.step(timeStep, velocityIterations, positionIterations);
 	void clearForces() => _delegate.clearForces();
 	void debugDraw() => _delegate.debugDraw();
-	//void queryAABB(B2QueryCallbackPlatform callback, B2AABBPlatform aabb) => _delegate.queryAABB(callback, aabb);
-	//void rayCast(B2RayCastCallbackPlatform callback, B2Vec2Platform point1, B2Vec2Platform point2) => _delegate.rayCast(callback, point1, point2);
-	B2BodyPlatform getBodyList() => _delegate.getBodyList();
-	B2JointPlatform getJointList() => _delegate.getJointList();
-	B2ContactPlatform getContactList() => _delegate.getContactList();
+	//void queryAABB(B2QueryCallback callback, B2AABB aabb) => _delegate.queryAABB(callback._delegate, aabb._delegate);
+	//void rayCast(B2RayCastCallback callback, B2Vec2 point1, B2Vec2 point2) => _delegate.rayCast(callback._delegate, point1._delegate, point2._delegate);
+	B2Body getBodyList() => B2Body._(_delegate.getBodyList());
+	B2Joint getJointList() => B2Joint._(_delegate.getJointList());
+	B2Contact getContactList() => B2Contact._(_delegate.getContactList());
 	void setAllowSleeping(bool flag) => _delegate.setAllowSleeping(flag);
 	bool getAllowSleeping() => _delegate.getAllowSleeping();
 	void setWarmStarting(bool flag) => _delegate.setWarmStarting(flag);
@@ -162,12 +163,12 @@ class B2World {
 	int getTreeHeight() => _delegate.getTreeHeight();
 	int getTreeBalance() => _delegate.getTreeBalance();
 	double getTreeQuality() => _delegate.getTreeQuality();
-	void setGravity(B2Vec2Platform gravity) => _delegate.setGravity(gravity);
-	B2Vec2Platform getGravity() => _delegate.getGravity();
+	void setGravity(B2Vec2 gravity) => _delegate.setGravity(gravity._delegate);
+	B2Vec2 getGravity() => B2Vec2._(_delegate.getGravity());
 	bool isLocked() => _delegate.isLocked();
 	void setAutoClearForces(bool flag) => _delegate.setAutoClearForces(flag);
 	bool getAutoClearForces() => _delegate.getAutoClearForces();
-	B2ProfilePlatform getProfile() => _delegate.getProfile();
+	B2Profile getProfile() => B2Profile._(_delegate.getProfile());
 	void dump() => _delegate.dump();
 	void dispose() => _delegate.dispose();
 }
@@ -191,10 +192,10 @@ class B2FixtureDef {
 
 	B2FixtureDef() : _delegate = FlutterBox2DPlatform.instance.b2FixtureDef_0();
 
-	B2ShapePlatform get shape => _delegate.get_shape();
-	set shape(B2ShapePlatform arg0) => _delegate.set_shape(arg0);
-	B2FixtureUserDataPlatform get userData => _delegate.get_userData();
-	set userData(B2FixtureUserDataPlatform arg0) => _delegate.set_userData(arg0);
+	B2Shape get shape => B2Shape._(_delegate.get_shape());
+	set shape(B2Shape arg0) => _delegate.set_shape(arg0._delegate);
+	B2FixtureUserData get userData => B2FixtureUserData._(_delegate.get_userData());
+	set userData(B2FixtureUserData arg0) => _delegate.set_userData(arg0._delegate);
 	double get friction => _delegate.get_friction();
 	set friction(double arg0) => _delegate.set_friction(arg0);
 	double get restitution => _delegate.get_restitution();
@@ -205,8 +206,8 @@ class B2FixtureDef {
 	set density(double arg0) => _delegate.set_density(arg0);
 	bool get isSensor => _delegate.get_isSensor();
 	set isSensor(bool arg0) => _delegate.set_isSensor(arg0);
-	B2FilterPlatform get filter => _delegate.get_filter();
-	set filter(B2FilterPlatform arg0) => _delegate.set_filter(arg0);
+	B2Filter get filter => B2Filter._(_delegate.get_filter());
+	set filter(B2Filter arg0) => _delegate.set_filter(arg0._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -217,18 +218,18 @@ class B2Fixture {
 	B2Fixture._(B2FixturePlatform delegate) : _delegate = delegate;
 
 	B2ShapeType getType() => _delegate.getType();
-	B2ShapePlatform getShape() => _delegate.getShape();
+	B2Shape getShape() => B2Shape._(_delegate.getShape());
 	void setSensor(bool sensor) => _delegate.setSensor(sensor);
 	bool isSensor() => _delegate.isSensor();
-	void setFilterData(B2FilterPlatform filter) => _delegate.setFilterData(filter);
-	B2FilterPlatform getFilterData() => _delegate.getFilterData();
+	void setFilterData(B2Filter filter) => _delegate.setFilterData(filter._delegate);
+	B2Filter getFilterData() => B2Filter._(_delegate.getFilterData());
 	void refilter() => _delegate.refilter();
-	B2BodyPlatform getBody() => _delegate.getBody();
-	B2FixturePlatform getNext() => _delegate.getNext();
-	B2FixtureUserDataPlatform getUserData() => _delegate.getUserData();
-	bool testPoint(B2Vec2Platform p) => _delegate.testPoint(p);
-	bool rayCast(B2RayCastOutputPlatform output, B2RayCastInputPlatform input, int childIndex) => _delegate.rayCast(output, input, childIndex);
-	void getMassData(B2MassDataPlatform massData) => _delegate.getMassData(massData);
+	B2Body getBody() => B2Body._(_delegate.getBody());
+	B2Fixture getNext() => B2Fixture._(_delegate.getNext());
+	B2FixtureUserData getUserData() => B2FixtureUserData._(_delegate.getUserData());
+	bool testPoint(B2Vec2 p) => _delegate.testPoint(p._delegate);
+	bool rayCast(B2RayCastOutput output, B2RayCastInput input, int childIndex) => _delegate.rayCast(output._delegate, input._delegate, childIndex);
+	void getMassData(B2MassData massData) => _delegate.getMassData(massData._delegate);
 	void setDensity(double density) => _delegate.setDensity(density);
 	double getDensity() => _delegate.getDensity();
 	double getFriction() => _delegate.getFriction();
@@ -237,7 +238,7 @@ class B2Fixture {
 	void setRestitution(double restitution) => _delegate.setRestitution(restitution);
 	double getRestitutionThreshold() => _delegate.getRestitutionThreshold();
 	void setRestitutionThreshold(double threshold) => _delegate.setRestitutionThreshold(threshold);
-	B2AABBPlatform getAABB(int childIndex) => _delegate.getAABB(childIndex);
+	B2AABB getAABB(int childIndex) => B2AABB._(_delegate.getAABB(childIndex));
 	void dump(int bodyIndex) => _delegate.dump(bodyIndex);
 	void dispose() => _delegate.dispose();
 }
@@ -250,14 +251,14 @@ class B2Transform {
 
 	B2Transform() : _delegate = FlutterBox2DPlatform.instance.b2Transform_0();
 
-	B2Transform.from2(B2Vec2Platform position, B2RotPlatform rotation) : _delegate = FlutterBox2DPlatform.instance.b2Transform_2(position, rotation);
+	B2Transform.from2(B2Vec2 position, B2Rot rotation) : _delegate = FlutterBox2DPlatform.instance.b2Transform_2(position._delegate, rotation._delegate);
 
 	void setIdentity() => _delegate.setIdentity();
-	void set(B2Vec2Platform position, double angle) => _delegate.set(position, angle);
-	B2Vec2Platform get p => _delegate.get_p();
-	set p(B2Vec2Platform arg0) => _delegate.set_p(arg0);
-	B2RotPlatform get q => _delegate.get_q();
-	set q(B2RotPlatform arg0) => _delegate.set_q(arg0);
+	void set(B2Vec2 position, double angle) => _delegate.set(position._delegate, angle);
+	B2Vec2 get p => B2Vec2._(_delegate.get_p());
+	set p(B2Vec2 arg0) => _delegate.set_p(arg0._delegate);
+	B2Rot get q => B2Rot._(_delegate.get_q());
+	set q(B2Rot arg0) => _delegate.set_q(arg0._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -278,7 +279,7 @@ class JSRayCastCallback {
 
 	JSRayCastCallback() : _delegate = FlutterBox2DPlatform.instance.JSRayCastCallback_0();
 
-	double reportFixture(B2FixturePlatform fixture, B2Vec2Platform point, B2Vec2Platform normal, double fraction) => _delegate.reportFixture(fixture, point, normal, fraction);
+	double reportFixture(B2Fixture fixture, B2Vec2 point, B2Vec2 normal, double fraction) => _delegate.reportFixture(fixture._delegate, point._delegate, normal._delegate, fraction);
 	void dispose() => _delegate.dispose();
 }
 
@@ -299,7 +300,7 @@ class JSQueryCallback {
 
 	JSQueryCallback() : _delegate = FlutterBox2DPlatform.instance.JSQueryCallback_0();
 
-	bool reportFixture(B2FixturePlatform fixture) => _delegate.reportFixture(fixture);
+	bool reportFixture(B2Fixture fixture) => _delegate.reportFixture(fixture._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -313,8 +314,8 @@ class B2MassData {
 
 	double get mass => _delegate.get_mass();
 	set mass(double arg0) => _delegate.set_mass(arg0);
-	B2Vec2Platform get center => _delegate.get_center();
-	set center(B2Vec2Platform arg0) => _delegate.set_center(arg0);
+	B2Vec2 get center => B2Vec2._(_delegate.get_center());
+	set center(B2Vec2 arg0) => _delegate.set_center(arg0._delegate);
 	double get i => _delegate.get_I();
 	set i(double arg0) => _delegate.set_I(arg0);
 	void dispose() => _delegate.dispose();
@@ -332,14 +333,14 @@ class B2Vec2 {
 
 	void setZero() => _delegate.setZero();
 	void set(double x, double y) => _delegate.set(x, y);
-	void op_add(B2Vec2Platform v) => _delegate.op_add(v);
-	void op_sub(B2Vec2Platform v) => _delegate.op_sub(v);
+	void op_add(B2Vec2 v) => _delegate.op_add(v._delegate);
+	void op_sub(B2Vec2 v) => _delegate.op_sub(v._delegate);
 	void op_mul(double s) => _delegate.op_mul(s);
 	double length() => _delegate.length();
 	double lengthSquared() => _delegate.lengthSquared();
 	double normalize() => _delegate.normalize();
 	bool isValid() => _delegate.isValid();
-	B2Vec2Platform skew() => _delegate.skew();
+	B2Vec2 skew() => B2Vec2._(_delegate.skew());
 	double get x => _delegate.get_x();
 	set x(double arg0) => _delegate.set_x(arg0);
 	double get y => _delegate.get_y();
@@ -359,8 +360,8 @@ class B2Vec3 {
 
 	void setZero() => _delegate.setZero();
 	void set(double x, double y, double z) => _delegate.set(x, y, z);
-	void op_add(B2Vec3Platform v) => _delegate.op_add(v);
-	void op_sub(B2Vec3Platform v) => _delegate.op_sub(v);
+	void op_add(B2Vec3 v) => _delegate.op_add(v._delegate);
+	void op_sub(B2Vec3 v) => _delegate.op_sub(v._delegate);
 	void op_mul(double s) => _delegate.op_mul(s);
 	double get x => _delegate.get_x();
 	set x(double arg0) => _delegate.set_x(arg0);
@@ -388,36 +389,36 @@ class B2Body {
 
 	B2Body._(B2BodyPlatform delegate) : _delegate = delegate;
 
-	B2FixturePlatform createFixture1(B2FixtureDefPlatform shape) => _delegate.createFixture1(shape);
-	B2FixturePlatform createFixture2(B2ShapePlatform shape, double density) => _delegate.createFixture2(shape, density);
-	void destroyFixture(B2FixturePlatform fixture) => _delegate.destroyFixture(fixture);
-	void setTransform(B2Vec2Platform position, double angle) => _delegate.setTransform(position, angle);
-	B2TransformPlatform getTransform() => _delegate.getTransform();
-	B2Vec2Platform getPosition() => _delegate.getPosition();
+	B2Fixture createFixture1(B2FixtureDef shape) => B2Fixture._(_delegate.createFixture1(shape._delegate));
+	B2Fixture createFixture2(B2Shape shape, double density) => B2Fixture._(_delegate.createFixture2(shape._delegate, density));
+	void destroyFixture(B2Fixture fixture) => _delegate.destroyFixture(fixture._delegate);
+	void setTransform(B2Vec2 position, double angle) => _delegate.setTransform(position._delegate, angle);
+	B2Transform getTransform() => B2Transform._(_delegate.getTransform());
+	B2Vec2 getPosition() => B2Vec2._(_delegate.getPosition());
 	double getAngle() => _delegate.getAngle();
-	B2Vec2Platform getWorldCenter() => _delegate.getWorldCenter();
-	B2Vec2Platform getLocalCenter() => _delegate.getLocalCenter();
-	void setLinearVelocity(B2Vec2Platform v) => _delegate.setLinearVelocity(v);
-	B2Vec2Platform getLinearVelocity() => _delegate.getLinearVelocity();
+	B2Vec2 getWorldCenter() => B2Vec2._(_delegate.getWorldCenter());
+	B2Vec2 getLocalCenter() => B2Vec2._(_delegate.getLocalCenter());
+	void setLinearVelocity(B2Vec2 v) => _delegate.setLinearVelocity(v._delegate);
+	B2Vec2 getLinearVelocity() => B2Vec2._(_delegate.getLinearVelocity());
 	void setAngularVelocity(double omega) => _delegate.setAngularVelocity(omega);
 	double getAngularVelocity() => _delegate.getAngularVelocity();
-	void applyForce(B2Vec2Platform force, B2Vec2Platform point, bool wake) => _delegate.applyForce(force, point, wake);
-	void applyForceToCenter(B2Vec2Platform force, bool wake) => _delegate.applyForceToCenter(force, wake);
+	void applyForce(B2Vec2 force, B2Vec2 point, bool wake) => _delegate.applyForce(force._delegate, point._delegate, wake);
+	void applyForceToCenter(B2Vec2 force, bool wake) => _delegate.applyForceToCenter(force._delegate, wake);
 	void applyTorque(double torque, bool awake) => _delegate.applyTorque(torque, awake);
-	void applyLinearImpulse(B2Vec2Platform impulse, B2Vec2Platform point, bool wake) => _delegate.applyLinearImpulse(impulse, point, wake);
-	void applyLinearImpulseToCenter(B2Vec2Platform impulse, bool wake) => _delegate.applyLinearImpulseToCenter(impulse, wake);
+	void applyLinearImpulse(B2Vec2 impulse, B2Vec2 point, bool wake) => _delegate.applyLinearImpulse(impulse._delegate, point._delegate, wake);
+	void applyLinearImpulseToCenter(B2Vec2 impulse, bool wake) => _delegate.applyLinearImpulseToCenter(impulse._delegate, wake);
 	void applyAngularImpulse(double impulse, bool wake) => _delegate.applyAngularImpulse(impulse, wake);
 	double getMass() => _delegate.getMass();
 	double getInertia() => _delegate.getInertia();
-	void getMassData(B2MassDataPlatform data) => _delegate.getMassData(data);
-	void setMassData(B2MassDataPlatform data) => _delegate.setMassData(data);
+	void getMassData(B2MassData data) => _delegate.getMassData(data._delegate);
+	void setMassData(B2MassData data) => _delegate.setMassData(data._delegate);
 	void resetMassData() => _delegate.resetMassData();
-	B2Vec2Platform getWorldPoint(B2Vec2Platform localPoint) => _delegate.getWorldPoint(localPoint);
-	B2Vec2Platform getWorldVector(B2Vec2Platform localVector) => _delegate.getWorldVector(localVector);
-	B2Vec2Platform getLocalPoint(B2Vec2Platform worldPoint) => _delegate.getLocalPoint(worldPoint);
-	B2Vec2Platform getLocalVector(B2Vec2Platform worldVector) => _delegate.getLocalVector(worldVector);
-	B2Vec2Platform getLinearVelocityFromWorldPoint(B2Vec2Platform worldPoint) => _delegate.getLinearVelocityFromWorldPoint(worldPoint);
-	B2Vec2Platform getLinearVelocityFromLocalPoint(B2Vec2Platform localPoint) => _delegate.getLinearVelocityFromLocalPoint(localPoint);
+	B2Vec2 getWorldPoint(B2Vec2 localPoint) => B2Vec2._(_delegate.getWorldPoint(localPoint._delegate));
+	B2Vec2 getWorldVector(B2Vec2 localVector) => B2Vec2._(_delegate.getWorldVector(localVector._delegate));
+	B2Vec2 getLocalPoint(B2Vec2 worldPoint) => B2Vec2._(_delegate.getLocalPoint(worldPoint._delegate));
+	B2Vec2 getLocalVector(B2Vec2 worldVector) => B2Vec2._(_delegate.getLocalVector(worldVector._delegate));
+	B2Vec2 getLinearVelocityFromWorldPoint(B2Vec2 worldPoint) => B2Vec2._(_delegate.getLinearVelocityFromWorldPoint(worldPoint._delegate));
+	B2Vec2 getLinearVelocityFromLocalPoint(B2Vec2 localPoint) => B2Vec2._(_delegate.getLinearVelocityFromLocalPoint(localPoint._delegate));
 	double getLinearDamping() => _delegate.getLinearDamping();
 	void setLinearDamping(double linearDamping) => _delegate.setLinearDamping(linearDamping);
 	double getAngularDamping() => _delegate.getAngularDamping();
@@ -436,12 +437,12 @@ class B2Body {
 	bool isEnabled() => _delegate.isEnabled();
 	void setFixedRotation(bool flag) => _delegate.setFixedRotation(flag);
 	bool isFixedRotation() => _delegate.isFixedRotation();
-	B2FixturePlatform getFixtureList() => _delegate.getFixtureList();
-	B2JointEdgePlatform getJointList() => _delegate.getJointList();
-	B2ContactEdgePlatform getContactList() => _delegate.getContactList();
-	B2BodyPlatform getNext() => _delegate.getNext();
-	B2BodyUserDataPlatform getUserData() => _delegate.getUserData();
-	B2WorldPlatform getWorld() => _delegate.getWorld();
+	B2Fixture getFixtureList() => B2Fixture._(_delegate.getFixtureList());
+	B2JointEdge getJointList() => B2JointEdge._(_delegate.getJointList());
+	B2ContactEdge getContactList() => B2ContactEdge._(_delegate.getContactList());
+	B2Body getNext() => B2Body._(_delegate.getNext());
+	B2BodyUserData getUserData() => B2BodyUserData._(_delegate.getUserData());
+	B2World getWorld() => B2World._(_delegate.getWorld());
 	void dump() => _delegate.dump();
 }
 
@@ -455,12 +456,12 @@ class B2BodyDef {
 
 	B2BodyType get type => _delegate.get_type();
 	set type(B2BodyType arg0) => _delegate.set_type(arg0);
-	B2Vec2Platform get position => _delegate.get_position();
-	set position(B2Vec2Platform arg0) => _delegate.set_position(arg0);
+	B2Vec2 get position => B2Vec2._(_delegate.get_position());
+	set position(B2Vec2 arg0) => _delegate.set_position(arg0._delegate);
 	double get angle => _delegate.get_angle();
 	set angle(double arg0) => _delegate.set_angle(arg0);
-	B2Vec2Platform get linearVelocity => _delegate.get_linearVelocity();
-	set linearVelocity(B2Vec2Platform arg0) => _delegate.set_linearVelocity(arg0);
+	B2Vec2 get linearVelocity => B2Vec2._(_delegate.get_linearVelocity());
+	set linearVelocity(B2Vec2 arg0) => _delegate.set_linearVelocity(arg0._delegate);
 	double get angularVelocity => _delegate.get_angularVelocity();
 	set angularVelocity(double arg0) => _delegate.set_angularVelocity(arg0);
 	double get linearDamping => _delegate.get_linearDamping();
@@ -477,8 +478,8 @@ class B2BodyDef {
 	set bullet(bool arg0) => _delegate.set_bullet(arg0);
 	bool get enabled => _delegate.get_enabled();
 	set enabled(bool arg0) => _delegate.set_enabled(arg0);
-	B2BodyUserDataPlatform get userData => _delegate.get_userData();
-	set userData(B2BodyUserDataPlatform arg0) => _delegate.set_userData(arg0);
+	B2BodyUserData get userData => B2BodyUserData._(_delegate.get_userData());
+	set userData(B2BodyUserData arg0) => _delegate.set_userData(arg0._delegate);
 	double get gravityScale => _delegate.get_gravityScale();
 	set gravityScale(double arg0) => _delegate.set_gravityScale(arg0);
 	void dispose() => _delegate.dispose();
@@ -510,17 +511,17 @@ class B2AABB {
 	B2AABB() : _delegate = FlutterBox2DPlatform.instance.b2AABB_0();
 
 	bool isValid() => _delegate.isValid();
-	B2Vec2Platform getCenter() => _delegate.getCenter();
-	B2Vec2Platform getExtents() => _delegate.getExtents();
+	B2Vec2 getCenter() => B2Vec2._(_delegate.getCenter());
+	B2Vec2 getExtents() => B2Vec2._(_delegate.getExtents());
 	double getPerimeter() => _delegate.getPerimeter();
-	void combine1(B2AABBPlatform aabb1) => _delegate.combine1(aabb1);
-	void combine2(B2AABBPlatform aabb1, B2AABBPlatform aabb2) => _delegate.combine2(aabb1, aabb2);
-	bool contains(B2AABBPlatform aabb) => _delegate.contains(aabb);
-	bool rayCast(B2RayCastOutputPlatform output, B2RayCastInputPlatform input) => _delegate.rayCast(output, input);
-	B2Vec2Platform get lowerBound => _delegate.get_lowerBound();
-	set lowerBound(B2Vec2Platform arg0) => _delegate.set_lowerBound(arg0);
-	B2Vec2Platform get upperBound => _delegate.get_upperBound();
-	set upperBound(B2Vec2Platform arg0) => _delegate.set_upperBound(arg0);
+	void combine1(B2AABB aabb1) => _delegate.combine1(aabb1._delegate);
+	void combine2(B2AABB aabb1, B2AABB aabb2) => _delegate.combine2(aabb1._delegate, aabb2._delegate);
+	bool contains(B2AABB aabb) => _delegate.contains(aabb._delegate);
+	bool rayCast(B2RayCastOutput output, B2RayCastInput input) => _delegate.rayCast(output._delegate, input._delegate);
+	B2Vec2 get lowerBound => B2Vec2._(_delegate.get_lowerBound());
+	set lowerBound(B2Vec2 arg0) => _delegate.set_lowerBound(arg0._delegate);
+	B2Vec2 get upperBound => B2Vec2._(_delegate.get_upperBound());
+	set upperBound(B2Vec2 arg0) => _delegate.set_upperBound(arg0._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -534,12 +535,12 @@ class B2CircleShape {
 
 	B2ShapeType getType() => _delegate.getType();
 	int getChildCount() => _delegate.getChildCount();
-	bool testPoint(B2TransformPlatform xf, B2Vec2Platform p) => _delegate.testPoint(xf, p);
-	bool rayCast(B2RayCastOutputPlatform output, B2RayCastInputPlatform input, B2TransformPlatform transform, int childIndex) => _delegate.rayCast(output, input, transform, childIndex);
-	void computeAABB(B2AABBPlatform aabb, B2TransformPlatform xf, int childIndex) => _delegate.computeAABB(aabb, xf, childIndex);
-	void computeMass(B2MassDataPlatform massData, double density) => _delegate.computeMass(massData, density);
-	B2Vec2Platform get m_p => _delegate.get_m_p();
-	set m_p(B2Vec2Platform arg0) => _delegate.set_m_p(arg0);
+	bool testPoint(B2Transform xf, B2Vec2 p) => _delegate.testPoint(xf._delegate, p._delegate);
+	bool rayCast(B2RayCastOutput output, B2RayCastInput input, B2Transform transform, int childIndex) => _delegate.rayCast(output._delegate, input._delegate, transform._delegate, childIndex);
+	void computeAABB(B2AABB aabb, B2Transform xf, int childIndex) => _delegate.computeAABB(aabb._delegate, xf._delegate, childIndex);
+	void computeMass(B2MassData massData, double density) => _delegate.computeMass(massData._delegate, density);
+	B2Vec2 get m_p => B2Vec2._(_delegate.get_m_p());
+	set m_p(B2Vec2 arg0) => _delegate.set_m_p(arg0._delegate);
 	B2ShapeType get m_type => _delegate.get_m_type();
 	set m_type(B2ShapeType arg0) => _delegate.set_m_type(arg0);
 	double get m_radius => _delegate.get_m_radius();
@@ -555,22 +556,22 @@ class B2EdgeShape {
 
 	B2EdgeShape() : _delegate = FlutterBox2DPlatform.instance.b2EdgeShape_0();
 
-	void setOneSided(B2Vec2Platform v0, B2Vec2Platform v1, B2Vec2Platform v2, B2Vec2Platform v3) => _delegate.setOneSided(v0, v1, v2, v3);
-	void setTwoSided(B2Vec2Platform v1, B2Vec2Platform v2) => _delegate.setTwoSided(v1, v2);
+	void setOneSided(B2Vec2 v0, B2Vec2 v1, B2Vec2 v2, B2Vec2 v3) => _delegate.setOneSided(v0._delegate, v1._delegate, v2._delegate, v3._delegate);
+	void setTwoSided(B2Vec2 v1, B2Vec2 v2) => _delegate.setTwoSided(v1._delegate, v2._delegate);
 	B2ShapeType getType() => _delegate.getType();
 	int getChildCount() => _delegate.getChildCount();
-	bool testPoint(B2TransformPlatform xf, B2Vec2Platform p) => _delegate.testPoint(xf, p);
-	bool rayCast(B2RayCastOutputPlatform output, B2RayCastInputPlatform input, B2TransformPlatform transform, int childIndex) => _delegate.rayCast(output, input, transform, childIndex);
-	void computeAABB(B2AABBPlatform aabb, B2TransformPlatform xf, int childIndex) => _delegate.computeAABB(aabb, xf, childIndex);
-	void computeMass(B2MassDataPlatform massData, double density) => _delegate.computeMass(massData, density);
-	B2Vec2Platform get m_vertex1 => _delegate.get_m_vertex1();
-	set m_vertex1(B2Vec2Platform arg0) => _delegate.set_m_vertex1(arg0);
-	B2Vec2Platform get m_vertex2 => _delegate.get_m_vertex2();
-	set m_vertex2(B2Vec2Platform arg0) => _delegate.set_m_vertex2(arg0);
-	B2Vec2Platform get m_vertex0 => _delegate.get_m_vertex0();
-	set m_vertex0(B2Vec2Platform arg0) => _delegate.set_m_vertex0(arg0);
-	B2Vec2Platform get m_vertex3 => _delegate.get_m_vertex3();
-	set m_vertex3(B2Vec2Platform arg0) => _delegate.set_m_vertex3(arg0);
+	bool testPoint(B2Transform xf, B2Vec2 p) => _delegate.testPoint(xf._delegate, p._delegate);
+	bool rayCast(B2RayCastOutput output, B2RayCastInput input, B2Transform transform, int childIndex) => _delegate.rayCast(output._delegate, input._delegate, transform._delegate, childIndex);
+	void computeAABB(B2AABB aabb, B2Transform xf, int childIndex) => _delegate.computeAABB(aabb._delegate, xf._delegate, childIndex);
+	void computeMass(B2MassData massData, double density) => _delegate.computeMass(massData._delegate, density);
+	B2Vec2 get m_vertex1 => B2Vec2._(_delegate.get_m_vertex1());
+	set m_vertex1(B2Vec2 arg0) => _delegate.set_m_vertex1(arg0._delegate);
+	B2Vec2 get m_vertex2 => B2Vec2._(_delegate.get_m_vertex2());
+	set m_vertex2(B2Vec2 arg0) => _delegate.set_m_vertex2(arg0._delegate);
+	B2Vec2 get m_vertex0 => B2Vec2._(_delegate.get_m_vertex0());
+	set m_vertex0(B2Vec2 arg0) => _delegate.set_m_vertex0(arg0._delegate);
+	B2Vec2 get m_vertex3 => B2Vec2._(_delegate.get_m_vertex3());
+	set m_vertex3(B2Vec2 arg0) => _delegate.set_m_vertex3(arg0._delegate);
 	bool get m_oneSided => _delegate.get_m_oneSided();
 	set m_oneSided(bool arg0) => _delegate.set_m_oneSided(arg0);
 	B2ShapeType get m_type => _delegate.get_m_type();
@@ -597,8 +598,8 @@ class B2WeldJoint {
 
 	B2WeldJoint._(B2WeldJointPlatform delegate) : _delegate = delegate;
 
-	B2Vec2Platform getLocalAnchorA() => _delegate.getLocalAnchorA();
-	B2Vec2Platform getLocalAnchorB() => _delegate.getLocalAnchorB();
+	B2Vec2 getLocalAnchorA() => B2Vec2._(_delegate.getLocalAnchorA());
+	B2Vec2 getLocalAnchorB() => B2Vec2._(_delegate.getLocalAnchorB());
 	double getReferenceAngle() => _delegate.getReferenceAngle();
 	void setStiffness(double stiffness) => _delegate.setStiffness(stiffness);
 	double getStiffness() => _delegate.getStiffness();
@@ -606,14 +607,14 @@ class B2WeldJoint {
 	double getDamping() => _delegate.getDamping();
 	void dump() => _delegate.dump();
 	B2JointType getType() => _delegate.getType();
-	B2BodyPlatform getBodyA() => _delegate.getBodyA();
-	B2BodyPlatform getBodyB() => _delegate.getBodyB();
-	B2Vec2Platform getAnchorA() => _delegate.getAnchorA();
-	B2Vec2Platform getAnchorB() => _delegate.getAnchorB();
-	B2Vec2Platform getReactionForce(double inv_dt) => _delegate.getReactionForce(inv_dt);
+	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
+	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
+	B2Vec2 getAnchorA() => B2Vec2._(_delegate.getAnchorA());
+	B2Vec2 getAnchorB() => B2Vec2._(_delegate.getAnchorB());
+	B2Vec2 getReactionForce(double inv_dt) => B2Vec2._(_delegate.getReactionForce(inv_dt));
 	double getReactionTorque(double inv_dt) => _delegate.getReactionTorque(inv_dt);
-	B2JointPlatform getNext() => _delegate.getNext();
-	B2JointUserDataPlatform getUserData() => _delegate.getUserData();
+	B2Joint getNext() => B2Joint._(_delegate.getNext());
+	B2JointUserData getUserData() => B2JointUserData._(_delegate.getUserData());
 	bool getCollideConnected() => _delegate.getCollideConnected();
 	void dispose() => _delegate.dispose();
 }
@@ -626,11 +627,11 @@ class B2WeldJointDef {
 
 	B2WeldJointDef() : _delegate = FlutterBox2DPlatform.instance.b2WeldJointDef_0();
 
-	void initialize(B2BodyPlatform bodyA, B2BodyPlatform bodyB, B2Vec2Platform anchor) => _delegate.initialize(bodyA, bodyB, anchor);
-	B2Vec2Platform get localAnchorA => _delegate.get_localAnchorA();
-	set localAnchorA(B2Vec2Platform arg0) => _delegate.set_localAnchorA(arg0);
-	B2Vec2Platform get localAnchorB => _delegate.get_localAnchorB();
-	set localAnchorB(B2Vec2Platform arg0) => _delegate.set_localAnchorB(arg0);
+	void initialize(B2Body bodyA, B2Body bodyB, B2Vec2 anchor) => _delegate.initialize(bodyA._delegate, bodyB._delegate, anchor._delegate);
+	B2Vec2 get localAnchorA => B2Vec2._(_delegate.get_localAnchorA());
+	set localAnchorA(B2Vec2 arg0) => _delegate.set_localAnchorA(arg0._delegate);
+	B2Vec2 get localAnchorB => B2Vec2._(_delegate.get_localAnchorB());
+	set localAnchorB(B2Vec2 arg0) => _delegate.set_localAnchorB(arg0._delegate);
 	double get referenceAngle => _delegate.get_referenceAngle();
 	set referenceAngle(double arg0) => _delegate.set_referenceAngle(arg0);
 	double get stiffness => _delegate.get_stiffness();
@@ -639,12 +640,12 @@ class B2WeldJointDef {
 	set damping(double arg0) => _delegate.set_damping(arg0);
 	B2JointType get type => _delegate.get_type();
 	set type(B2JointType arg0) => _delegate.set_type(arg0);
-	B2JointUserDataPlatform get userData => _delegate.get_userData();
-	set userData(B2JointUserDataPlatform arg0) => _delegate.set_userData(arg0);
-	B2BodyPlatform get bodyA => _delegate.get_bodyA();
-	set bodyA(B2BodyPlatform arg0) => _delegate.set_bodyA(arg0);
-	B2BodyPlatform get bodyB => _delegate.get_bodyB();
-	set bodyB(B2BodyPlatform arg0) => _delegate.set_bodyB(arg0);
+	B2JointUserData get userData => B2JointUserData._(_delegate.get_userData());
+	set userData(B2JointUserData arg0) => _delegate.set_userData(arg0._delegate);
+	B2Body get bodyA => B2Body._(_delegate.get_bodyA());
+	set bodyA(B2Body arg0) => _delegate.set_bodyA(arg0._delegate);
+	B2Body get bodyB => B2Body._(_delegate.get_bodyB());
+	set bodyB(B2Body arg0) => _delegate.set_bodyB(arg0._delegate);
 	bool get collideConnected => _delegate.get_collideConnected();
 	set collideConnected(bool arg0) => _delegate.set_collideConnected(arg0);
 	void dispose() => _delegate.dispose();
@@ -659,23 +660,23 @@ class B2ChainShape {
 	B2ChainShape() : _delegate = FlutterBox2DPlatform.instance.b2ChainShape_0();
 
 	void clear() => _delegate.clear();
-	void createLoop(B2Vec2Platform vertices, int count) => _delegate.createLoop(vertices, count);
-	void createChain(B2Vec2Platform vertices, int count, B2Vec2Platform prevVertex, B2Vec2Platform nextVertex) => _delegate.createChain(vertices, count, prevVertex, nextVertex);
-	void getChildEdge(B2EdgeShapePlatform edge, int index) => _delegate.getChildEdge(edge, index);
+	void createLoop(B2Vec2 vertices, int count) => _delegate.createLoop(vertices._delegate, count);
+	void createChain(B2Vec2 vertices, int count, B2Vec2 prevVertex, B2Vec2 nextVertex) => _delegate.createChain(vertices._delegate, count, prevVertex._delegate, nextVertex._delegate);
+	void getChildEdge(B2EdgeShape edge, int index) => _delegate.getChildEdge(edge._delegate, index);
 	B2ShapeType getType() => _delegate.getType();
 	int getChildCount() => _delegate.getChildCount();
-	bool testPoint(B2TransformPlatform xf, B2Vec2Platform p) => _delegate.testPoint(xf, p);
-	bool rayCast(B2RayCastOutputPlatform output, B2RayCastInputPlatform input, B2TransformPlatform transform, int childIndex) => _delegate.rayCast(output, input, transform, childIndex);
-	void computeAABB(B2AABBPlatform aabb, B2TransformPlatform xf, int childIndex) => _delegate.computeAABB(aabb, xf, childIndex);
-	void computeMass(B2MassDataPlatform massData, double density) => _delegate.computeMass(massData, density);
-	B2Vec2Platform get m_vertices => _delegate.get_m_vertices();
-	set m_vertices(B2Vec2Platform arg0) => _delegate.set_m_vertices(arg0);
+	bool testPoint(B2Transform xf, B2Vec2 p) => _delegate.testPoint(xf._delegate, p._delegate);
+	bool rayCast(B2RayCastOutput output, B2RayCastInput input, B2Transform transform, int childIndex) => _delegate.rayCast(output._delegate, input._delegate, transform._delegate, childIndex);
+	void computeAABB(B2AABB aabb, B2Transform xf, int childIndex) => _delegate.computeAABB(aabb._delegate, xf._delegate, childIndex);
+	void computeMass(B2MassData massData, double density) => _delegate.computeMass(massData._delegate, density);
+	B2Vec2 get m_vertices => B2Vec2._(_delegate.get_m_vertices());
+	set m_vertices(B2Vec2 arg0) => _delegate.set_m_vertices(arg0._delegate);
 	int get m_count => _delegate.get_m_count();
 	set m_count(int arg0) => _delegate.set_m_count(arg0);
-	B2Vec2Platform get m_prevVertex => _delegate.get_m_prevVertex();
-	set m_prevVertex(B2Vec2Platform arg0) => _delegate.set_m_prevVertex(arg0);
-	B2Vec2Platform get m_nextVertex => _delegate.get_m_nextVertex();
-	set m_nextVertex(B2Vec2Platform arg0) => _delegate.set_m_nextVertex(arg0);
+	B2Vec2 get m_prevVertex => B2Vec2._(_delegate.get_m_prevVertex());
+	set m_prevVertex(B2Vec2 arg0) => _delegate.set_m_prevVertex(arg0._delegate);
+	B2Vec2 get m_nextVertex => B2Vec2._(_delegate.get_m_nextVertex());
+	set m_nextVertex(B2Vec2 arg0) => _delegate.set_m_nextVertex(arg0._delegate);
 	B2ShapeType get m_type => _delegate.get_m_type();
 	set m_type(B2ShapeType arg0) => _delegate.set_m_type(arg0);
 	double get m_radius => _delegate.get_m_radius();
@@ -711,14 +712,14 @@ class B2ContactEdge {
 
 	B2ContactEdge() : _delegate = FlutterBox2DPlatform.instance.b2ContactEdge_0();
 
-	B2BodyPlatform get other => _delegate.get_other();
-	set other(B2BodyPlatform arg0) => _delegate.set_other(arg0);
-	B2ContactPlatform get contact => _delegate.get_contact();
-	set contact(B2ContactPlatform arg0) => _delegate.set_contact(arg0);
-	B2ContactEdgePlatform get prev => _delegate.get_prev();
-	set prev(B2ContactEdgePlatform arg0) => _delegate.set_prev(arg0);
-	B2ContactEdgePlatform get next => _delegate.get_next();
-	set next(B2ContactEdgePlatform arg0) => _delegate.set_next(arg0);
+	B2Body get other => B2Body._(_delegate.get_other());
+	set other(B2Body arg0) => _delegate.set_other(arg0._delegate);
+	B2Contact get contact => B2Contact._(_delegate.get_contact());
+	set contact(B2Contact arg0) => _delegate.set_contact(arg0._delegate);
+	B2ContactEdge get prev => B2ContactEdge._(_delegate.get_prev());
+	set prev(B2ContactEdge arg0) => _delegate.set_prev(arg0._delegate);
+	B2ContactEdge get next => B2ContactEdge._(_delegate.get_next());
+	set next(B2ContactEdge arg0) => _delegate.set_next(arg0._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -756,7 +757,7 @@ class JSContactFilter {
 
 	JSContactFilter() : _delegate = FlutterBox2DPlatform.instance.JSContactFilter_0();
 
-	bool shouldCollide(B2FixturePlatform fixtureA, B2FixturePlatform fixtureB) => _delegate.shouldCollide(fixtureA, fixtureB);
+	bool shouldCollide(B2Fixture fixtureA, B2Fixture fixtureB) => _delegate.shouldCollide(fixtureA._delegate, fixtureB._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -766,8 +767,8 @@ class B2ContactID {
 
 	B2ContactID._(B2ContactIDPlatform delegate) : _delegate = delegate;
 
-	B2ContactFeaturePlatform get cf => _delegate.get_cf();
-	set cf(B2ContactFeaturePlatform arg0) => _delegate.set_cf(arg0);
+	B2ContactFeature get cf => B2ContactFeature._(_delegate.get_cf());
+	set cf(B2ContactFeature arg0) => _delegate.set_cf(arg0._delegate);
 	int get key => _delegate.get_key();
 	set key(int arg0) => _delegate.set_key(arg0);
 	void dispose() => _delegate.dispose();
@@ -814,8 +815,8 @@ class JSDestructionListener {
 
 	JSDestructionListener() : _delegate = FlutterBox2DPlatform.instance.JSDestructionListener_0();
 
-	void sayGoodbyeJoint(B2JointPlatform joint) => _delegate.sayGoodbyeJoint(joint);
-	void sayGoodbyeFixture(B2FixturePlatform joint) => _delegate.sayGoodbyeFixture(joint);
+	void sayGoodbyeJoint(B2Joint joint) => _delegate.sayGoodbyeJoint(joint._delegate);
+	void sayGoodbyeFixture(B2Fixture joint) => _delegate.sayGoodbyeFixture(joint._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -825,8 +826,8 @@ class B2DistanceJoint {
 
 	B2DistanceJoint._(B2DistanceJointPlatform delegate) : _delegate = delegate;
 
-	B2Vec2Platform getLocalAnchorA() => _delegate.getLocalAnchorA();
-	B2Vec2Platform getLocalAnchorB() => _delegate.getLocalAnchorB();
+	B2Vec2 getLocalAnchorA() => B2Vec2._(_delegate.getLocalAnchorA());
+	B2Vec2 getLocalAnchorB() => B2Vec2._(_delegate.getLocalAnchorB());
 	double getLength() => _delegate.getLength();
 	void setLength(double length) => _delegate.setLength(length);
 	double getMinLength() => _delegate.getMinLength();
@@ -839,14 +840,14 @@ class B2DistanceJoint {
 	void setDamping(double damping) => _delegate.setDamping(damping);
 	double getDamping() => _delegate.getDamping();
 	B2JointType getType() => _delegate.getType();
-	B2BodyPlatform getBodyA() => _delegate.getBodyA();
-	B2BodyPlatform getBodyB() => _delegate.getBodyB();
-	B2Vec2Platform getAnchorA() => _delegate.getAnchorA();
-	B2Vec2Platform getAnchorB() => _delegate.getAnchorB();
-	B2Vec2Platform getReactionForce(double inv_dt) => _delegate.getReactionForce(inv_dt);
+	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
+	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
+	B2Vec2 getAnchorA() => B2Vec2._(_delegate.getAnchorA());
+	B2Vec2 getAnchorB() => B2Vec2._(_delegate.getAnchorB());
+	B2Vec2 getReactionForce(double inv_dt) => B2Vec2._(_delegate.getReactionForce(inv_dt));
 	double getReactionTorque(double inv_dt) => _delegate.getReactionTorque(inv_dt);
-	B2JointPlatform getNext() => _delegate.getNext();
-	B2JointUserDataPlatform getUserData() => _delegate.getUserData();
+	B2Joint getNext() => B2Joint._(_delegate.getNext());
+	B2JointUserData getUserData() => B2JointUserData._(_delegate.getUserData());
 	bool getCollideConnected() => _delegate.getCollideConnected();
 	void dispose() => _delegate.dispose();
 }
@@ -859,11 +860,11 @@ class B2DistanceJointDef {
 
 	B2DistanceJointDef() : _delegate = FlutterBox2DPlatform.instance.b2DistanceJointDef_0();
 
-	void initialize(B2BodyPlatform bodyA, B2BodyPlatform bodyB, B2Vec2Platform anchorA, B2Vec2Platform anchorB) => _delegate.initialize(bodyA, bodyB, anchorA, anchorB);
-	B2Vec2Platform get localAnchorA => _delegate.get_localAnchorA();
-	set localAnchorA(B2Vec2Platform arg0) => _delegate.set_localAnchorA(arg0);
-	B2Vec2Platform get localAnchorB => _delegate.get_localAnchorB();
-	set localAnchorB(B2Vec2Platform arg0) => _delegate.set_localAnchorB(arg0);
+	void initialize(B2Body bodyA, B2Body bodyB, B2Vec2 anchorA, B2Vec2 anchorB) => _delegate.initialize(bodyA._delegate, bodyB._delegate, anchorA._delegate, anchorB._delegate);
+	B2Vec2 get localAnchorA => B2Vec2._(_delegate.get_localAnchorA());
+	set localAnchorA(B2Vec2 arg0) => _delegate.set_localAnchorA(arg0._delegate);
+	B2Vec2 get localAnchorB => B2Vec2._(_delegate.get_localAnchorB());
+	set localAnchorB(B2Vec2 arg0) => _delegate.set_localAnchorB(arg0._delegate);
 	double get length => _delegate.get_length();
 	set length(double arg0) => _delegate.set_length(arg0);
 	double get minLength => _delegate.get_minLength();
@@ -876,12 +877,12 @@ class B2DistanceJointDef {
 	set damping(double arg0) => _delegate.set_damping(arg0);
 	B2JointType get type => _delegate.get_type();
 	set type(B2JointType arg0) => _delegate.set_type(arg0);
-	B2JointUserDataPlatform get userData => _delegate.get_userData();
-	set userData(B2JointUserDataPlatform arg0) => _delegate.set_userData(arg0);
-	B2BodyPlatform get bodyA => _delegate.get_bodyA();
-	set bodyA(B2BodyPlatform arg0) => _delegate.set_bodyA(arg0);
-	B2BodyPlatform get bodyB => _delegate.get_bodyB();
-	set bodyB(B2BodyPlatform arg0) => _delegate.set_bodyB(arg0);
+	B2JointUserData get userData => B2JointUserData._(_delegate.get_userData());
+	set userData(B2JointUserData arg0) => _delegate.set_userData(arg0._delegate);
+	B2Body get bodyA => B2Body._(_delegate.get_bodyA());
+	set bodyA(B2Body arg0) => _delegate.set_bodyA(arg0._delegate);
+	B2Body get bodyB => B2Body._(_delegate.get_bodyB());
+	set bodyB(B2Body arg0) => _delegate.set_bodyB(arg0._delegate);
 	bool get collideConnected => _delegate.get_collideConnected();
 	set collideConnected(bool arg0) => _delegate.set_collideConnected(arg0);
 	void dispose() => _delegate.dispose();
@@ -908,13 +909,13 @@ class JSDraw {
 
 	JSDraw() : _delegate = FlutterBox2DPlatform.instance.JSDraw_0();
 
-	void drawPolygon(B2Vec2Platform vertices, int vertexCount, B2ColorPlatform color) => _delegate.drawPolygon(vertices, vertexCount, color);
-	void drawSolidPolygon(B2Vec2Platform vertices, int vertexCount, B2ColorPlatform color) => _delegate.drawSolidPolygon(vertices, vertexCount, color);
-	void drawCircle(B2Vec2Platform center, double radius, B2ColorPlatform color) => _delegate.drawCircle(center, radius, color);
-	void drawSolidCircle(B2Vec2Platform center, double radius, B2Vec2Platform axis, B2ColorPlatform color) => _delegate.drawSolidCircle(center, radius, axis, color);
-	void drawSegment(B2Vec2Platform p1, B2Vec2Platform p2, B2ColorPlatform color) => _delegate.drawSegment(p1, p2, color);
-	void drawTransform(B2TransformPlatform xf) => _delegate.drawTransform(xf);
-	void drawPoint(B2Vec2Platform p, double size, B2ColorPlatform color) => _delegate.drawPoint(p, size, color);
+	void drawPolygon(B2Vec2 vertices, int vertexCount, B2Color color) => _delegate.drawPolygon(vertices._delegate, vertexCount, color._delegate);
+	void drawSolidPolygon(B2Vec2 vertices, int vertexCount, B2Color color) => _delegate.drawSolidPolygon(vertices._delegate, vertexCount, color._delegate);
+	void drawCircle(B2Vec2 center, double radius, B2Color color) => _delegate.drawCircle(center._delegate, radius, color._delegate);
+	void drawSolidCircle(B2Vec2 center, double radius, B2Vec2 axis, B2Color color) => _delegate.drawSolidCircle(center._delegate, radius, axis._delegate, color._delegate);
+	void drawSegment(B2Vec2 p1, B2Vec2 p2, B2Color color) => _delegate.drawSegment(p1._delegate, p2._delegate, color._delegate);
+	void drawTransform(B2Transform xf) => _delegate.drawTransform(xf._delegate);
+	void drawPoint(B2Vec2 p, double size, B2Color color) => _delegate.drawPoint(p._delegate, size, color._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -924,21 +925,21 @@ class B2FrictionJoint {
 
 	B2FrictionJoint._(B2FrictionJointPlatform delegate) : _delegate = delegate;
 
-	B2Vec2Platform getLocalAnchorA() => _delegate.getLocalAnchorA();
-	B2Vec2Platform getLocalAnchorB() => _delegate.getLocalAnchorB();
+	B2Vec2 getLocalAnchorA() => B2Vec2._(_delegate.getLocalAnchorA());
+	B2Vec2 getLocalAnchorB() => B2Vec2._(_delegate.getLocalAnchorB());
 	void setMaxForce(double force) => _delegate.setMaxForce(force);
 	double getMaxForce() => _delegate.getMaxForce();
 	void setMaxTorque(double torque) => _delegate.setMaxTorque(torque);
 	double getMaxTorque() => _delegate.getMaxTorque();
 	B2JointType getType() => _delegate.getType();
-	B2BodyPlatform getBodyA() => _delegate.getBodyA();
-	B2BodyPlatform getBodyB() => _delegate.getBodyB();
-	B2Vec2Platform getAnchorA() => _delegate.getAnchorA();
-	B2Vec2Platform getAnchorB() => _delegate.getAnchorB();
-	B2Vec2Platform getReactionForce(double inv_dt) => _delegate.getReactionForce(inv_dt);
+	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
+	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
+	B2Vec2 getAnchorA() => B2Vec2._(_delegate.getAnchorA());
+	B2Vec2 getAnchorB() => B2Vec2._(_delegate.getAnchorB());
+	B2Vec2 getReactionForce(double inv_dt) => B2Vec2._(_delegate.getReactionForce(inv_dt));
 	double getReactionTorque(double inv_dt) => _delegate.getReactionTorque(inv_dt);
-	B2JointPlatform getNext() => _delegate.getNext();
-	B2JointUserDataPlatform getUserData() => _delegate.getUserData();
+	B2Joint getNext() => B2Joint._(_delegate.getNext());
+	B2JointUserData getUserData() => B2JointUserData._(_delegate.getUserData());
 	bool getCollideConnected() => _delegate.getCollideConnected();
 	void dispose() => _delegate.dispose();
 }
@@ -951,23 +952,23 @@ class B2FrictionJointDef {
 
 	B2FrictionJointDef() : _delegate = FlutterBox2DPlatform.instance.b2FrictionJointDef_0();
 
-	void initialize(B2BodyPlatform bodyA, B2BodyPlatform bodyB, B2Vec2Platform anchor) => _delegate.initialize(bodyA, bodyB, anchor);
-	B2Vec2Platform get localAnchorA => _delegate.get_localAnchorA();
-	set localAnchorA(B2Vec2Platform arg0) => _delegate.set_localAnchorA(arg0);
-	B2Vec2Platform get localAnchorB => _delegate.get_localAnchorB();
-	set localAnchorB(B2Vec2Platform arg0) => _delegate.set_localAnchorB(arg0);
+	void initialize(B2Body bodyA, B2Body bodyB, B2Vec2 anchor) => _delegate.initialize(bodyA._delegate, bodyB._delegate, anchor._delegate);
+	B2Vec2 get localAnchorA => B2Vec2._(_delegate.get_localAnchorA());
+	set localAnchorA(B2Vec2 arg0) => _delegate.set_localAnchorA(arg0._delegate);
+	B2Vec2 get localAnchorB => B2Vec2._(_delegate.get_localAnchorB());
+	set localAnchorB(B2Vec2 arg0) => _delegate.set_localAnchorB(arg0._delegate);
 	double get maxForce => _delegate.get_maxForce();
 	set maxForce(double arg0) => _delegate.set_maxForce(arg0);
 	double get maxTorque => _delegate.get_maxTorque();
 	set maxTorque(double arg0) => _delegate.set_maxTorque(arg0);
 	B2JointType get type => _delegate.get_type();
 	set type(B2JointType arg0) => _delegate.set_type(arg0);
-	B2JointUserDataPlatform get userData => _delegate.get_userData();
-	set userData(B2JointUserDataPlatform arg0) => _delegate.set_userData(arg0);
-	B2BodyPlatform get bodyA => _delegate.get_bodyA();
-	set bodyA(B2BodyPlatform arg0) => _delegate.set_bodyA(arg0);
-	B2BodyPlatform get bodyB => _delegate.get_bodyB();
-	set bodyB(B2BodyPlatform arg0) => _delegate.set_bodyB(arg0);
+	B2JointUserData get userData => B2JointUserData._(_delegate.get_userData());
+	set userData(B2JointUserData arg0) => _delegate.set_userData(arg0._delegate);
+	B2Body get bodyA => B2Body._(_delegate.get_bodyA());
+	set bodyA(B2Body arg0) => _delegate.set_bodyA(arg0._delegate);
+	B2Body get bodyB => B2Body._(_delegate.get_bodyB());
+	set bodyB(B2Body arg0) => _delegate.set_bodyB(arg0._delegate);
 	bool get collideConnected => _delegate.get_collideConnected();
 	set collideConnected(bool arg0) => _delegate.set_collideConnected(arg0);
 	void dispose() => _delegate.dispose();
@@ -979,19 +980,19 @@ class B2GearJoint {
 
 	B2GearJoint._(B2GearJointPlatform delegate) : _delegate = delegate;
 
-	B2JointPlatform getJoint1() => _delegate.getJoint1();
-	B2JointPlatform getJoint2() => _delegate.getJoint2();
+	B2Joint getJoint1() => B2Joint._(_delegate.getJoint1());
+	B2Joint getJoint2() => B2Joint._(_delegate.getJoint2());
 	void setRatio(double ratio) => _delegate.setRatio(ratio);
 	double getRatio() => _delegate.getRatio();
 	B2JointType getType() => _delegate.getType();
-	B2BodyPlatform getBodyA() => _delegate.getBodyA();
-	B2BodyPlatform getBodyB() => _delegate.getBodyB();
-	B2Vec2Platform getAnchorA() => _delegate.getAnchorA();
-	B2Vec2Platform getAnchorB() => _delegate.getAnchorB();
-	B2Vec2Platform getReactionForce(double inv_dt) => _delegate.getReactionForce(inv_dt);
+	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
+	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
+	B2Vec2 getAnchorA() => B2Vec2._(_delegate.getAnchorA());
+	B2Vec2 getAnchorB() => B2Vec2._(_delegate.getAnchorB());
+	B2Vec2 getReactionForce(double inv_dt) => B2Vec2._(_delegate.getReactionForce(inv_dt));
 	double getReactionTorque(double inv_dt) => _delegate.getReactionTorque(inv_dt);
-	B2JointPlatform getNext() => _delegate.getNext();
-	B2JointUserDataPlatform getUserData() => _delegate.getUserData();
+	B2Joint getNext() => B2Joint._(_delegate.getNext());
+	B2JointUserData getUserData() => B2JointUserData._(_delegate.getUserData());
 	bool getCollideConnected() => _delegate.getCollideConnected();
 	void dispose() => _delegate.dispose();
 }
@@ -1004,20 +1005,20 @@ class B2GearJointDef {
 
 	B2GearJointDef() : _delegate = FlutterBox2DPlatform.instance.b2GearJointDef_0();
 
-	B2JointPlatform get joint1 => _delegate.get_joint1();
-	set joint1(B2JointPlatform arg0) => _delegate.set_joint1(arg0);
-	B2JointPlatform get joint2 => _delegate.get_joint2();
-	set joint2(B2JointPlatform arg0) => _delegate.set_joint2(arg0);
+	B2Joint get joint1 => B2Joint._(_delegate.get_joint1());
+	set joint1(B2Joint arg0) => _delegate.set_joint1(arg0._delegate);
+	B2Joint get joint2 => B2Joint._(_delegate.get_joint2());
+	set joint2(B2Joint arg0) => _delegate.set_joint2(arg0._delegate);
 	double get ratio => _delegate.get_ratio();
 	set ratio(double arg0) => _delegate.set_ratio(arg0);
 	B2JointType get type => _delegate.get_type();
 	set type(B2JointType arg0) => _delegate.set_type(arg0);
-	B2JointUserDataPlatform get userData => _delegate.get_userData();
-	set userData(B2JointUserDataPlatform arg0) => _delegate.set_userData(arg0);
-	B2BodyPlatform get bodyA => _delegate.get_bodyA();
-	set bodyA(B2BodyPlatform arg0) => _delegate.set_bodyA(arg0);
-	B2BodyPlatform get bodyB => _delegate.get_bodyB();
-	set bodyB(B2BodyPlatform arg0) => _delegate.set_bodyB(arg0);
+	B2JointUserData get userData => B2JointUserData._(_delegate.get_userData());
+	set userData(B2JointUserData arg0) => _delegate.set_userData(arg0._delegate);
+	B2Body get bodyA => B2Body._(_delegate.get_bodyA());
+	set bodyA(B2Body arg0) => _delegate.set_bodyA(arg0._delegate);
+	B2Body get bodyB => B2Body._(_delegate.get_bodyB());
+	set bodyB(B2Body arg0) => _delegate.set_bodyB(arg0._delegate);
 	bool get collideConnected => _delegate.get_collideConnected();
 	set collideConnected(bool arg0) => _delegate.set_collideConnected(arg0);
 	void dispose() => _delegate.dispose();
@@ -1031,14 +1032,14 @@ class B2JointEdge {
 
 	B2JointEdge() : _delegate = FlutterBox2DPlatform.instance.b2JointEdge_0();
 
-	B2BodyPlatform get other => _delegate.get_other();
-	set other(B2BodyPlatform arg0) => _delegate.set_other(arg0);
-	B2JointPlatform get joint => _delegate.get_joint();
-	set joint(B2JointPlatform arg0) => _delegate.set_joint(arg0);
-	B2JointEdgePlatform get prev => _delegate.get_prev();
-	set prev(B2JointEdgePlatform arg0) => _delegate.set_prev(arg0);
-	B2JointEdgePlatform get next => _delegate.get_next();
-	set next(B2JointEdgePlatform arg0) => _delegate.set_next(arg0);
+	B2Body get other => B2Body._(_delegate.get_other());
+	set other(B2Body arg0) => _delegate.set_other(arg0._delegate);
+	B2Joint get joint => B2Joint._(_delegate.get_joint());
+	set joint(B2Joint arg0) => _delegate.set_joint(arg0._delegate);
+	B2JointEdge get prev => B2JointEdge._(_delegate.get_prev());
+	set prev(B2JointEdge arg0) => _delegate.set_prev(arg0._delegate);
+	B2JointEdge get next => B2JointEdge._(_delegate.get_next());
+	set next(B2JointEdge arg0) => _delegate.set_next(arg0._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -1050,12 +1051,12 @@ class B2Manifold {
 
 	B2Manifold() : _delegate = FlutterBox2DPlatform.instance.b2Manifold_0();
 
-	B2ManifoldPointPlatform pointsElementAt(int arg0) => _delegate.get_points(arg0);
-	void pointsInsert(int arg0, B2ManifoldPointPlatform arg1) => _delegate.set_points(arg0, arg1);
-	B2Vec2Platform get localNormal => _delegate.get_localNormal();
-	set localNormal(B2Vec2Platform arg0) => _delegate.set_localNormal(arg0);
-	B2Vec2Platform get localPoint => _delegate.get_localPoint();
-	set localPoint(B2Vec2Platform arg0) => _delegate.set_localPoint(arg0);
+	B2ManifoldPoint pointsElementAt(int arg0) => B2ManifoldPoint._(_delegate.get_points(arg0));
+	void pointsInsert(int arg0, B2ManifoldPoint arg1) => _delegate.set_points(arg0, arg1._delegate);
+	B2Vec2 get localNormal => B2Vec2._(_delegate.get_localNormal());
+	set localNormal(B2Vec2 arg0) => _delegate.set_localNormal(arg0._delegate);
+	B2Vec2 get localPoint => B2Vec2._(_delegate.get_localPoint());
+	set localPoint(B2Vec2 arg0) => _delegate.set_localPoint(arg0._delegate);
 	B2ManifoldType get type => _delegate.get_type();
 	set type(B2ManifoldType arg0) => _delegate.set_type(arg0);
 	int get pointCount => _delegate.get_pointCount();
@@ -1071,11 +1072,11 @@ class B2WorldManifold {
 
 	B2WorldManifold() : _delegate = FlutterBox2DPlatform.instance.b2WorldManifold_0();
 
-	void initialize(B2ManifoldPlatform manifold, B2TransformPlatform xfA, double radiusA, B2TransformPlatform xfB, double radiusB) => _delegate.initialize(manifold, xfA, radiusA, xfB, radiusB);
-	B2Vec2Platform get normal => _delegate.get_normal();
-	set normal(B2Vec2Platform arg0) => _delegate.set_normal(arg0);
-	B2Vec2Platform pointsElementAt(int arg0) => _delegate.get_points(arg0);
-	void pointsInsert(int arg0, B2Vec2Platform arg1) => _delegate.set_points(arg0, arg1);
+	void initialize(B2Manifold manifold, B2Transform xfA, double radiusA, B2Transform xfB, double radiusB) => _delegate.initialize(manifold._delegate, xfA._delegate, radiusA, xfB._delegate, radiusB);
+	B2Vec2 get normal => B2Vec2._(_delegate.get_normal());
+	set normal(B2Vec2 arg0) => _delegate.set_normal(arg0._delegate);
+	B2Vec2 pointsElementAt(int arg0) => B2Vec2._(_delegate.get_points(arg0));
+	void pointsInsert(int arg0, B2Vec2 arg1) => _delegate.set_points(arg0, arg1._delegate);
 	double separationsElementAt(int arg0) => _delegate.get_separations(arg0);
 	void separationsInsert(int arg0, double arg1) => _delegate.set_separations(arg0, arg1);
 	void dispose() => _delegate.dispose();
@@ -1089,14 +1090,14 @@ class B2ManifoldPoint {
 
 	B2ManifoldPoint() : _delegate = FlutterBox2DPlatform.instance.b2ManifoldPoint_0();
 
-	B2Vec2Platform get localPoint => _delegate.get_localPoint();
-	set localPoint(B2Vec2Platform arg0) => _delegate.set_localPoint(arg0);
+	B2Vec2 get localPoint => B2Vec2._(_delegate.get_localPoint());
+	set localPoint(B2Vec2 arg0) => _delegate.set_localPoint(arg0._delegate);
 	double get normalImpulse => _delegate.get_normalImpulse();
 	set normalImpulse(double arg0) => _delegate.set_normalImpulse(arg0);
 	double get tangentImpulse => _delegate.get_tangentImpulse();
 	set tangentImpulse(double arg0) => _delegate.set_tangentImpulse(arg0);
-	B2ContactIDPlatform get id => _delegate.get_id();
-	set id(B2ContactIDPlatform arg0) => _delegate.set_id(arg0);
+	B2ContactID get id => B2ContactID._(_delegate.get_id());
+	set id(B2ContactID arg0) => _delegate.set_id(arg0._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -1108,19 +1109,19 @@ class B2Mat22 {
 
 	B2Mat22() : _delegate = FlutterBox2DPlatform.instance.b2Mat22_0();
 
-	B2Mat22.from2(B2Vec2Platform a11, B2Vec2Platform a12) : _delegate = FlutterBox2DPlatform.instance.b2Mat22_2(a11, a12);
+	B2Mat22.from2(B2Vec2 a11, B2Vec2 a12) : _delegate = FlutterBox2DPlatform.instance.b2Mat22_2(a11._delegate, a12._delegate);
 
 	B2Mat22.from4(double a11, double a12, double a21, double a22) : _delegate = FlutterBox2DPlatform.instance.b2Mat22_4(a11, a12, a21, a22);
 
-	void set(B2Vec2Platform c1, B2Vec2Platform c2) => _delegate.set(c1, c2);
+	void set(B2Vec2 c1, B2Vec2 c2) => _delegate.set(c1._delegate, c2._delegate);
 	void setIdentity() => _delegate.setIdentity();
 	void setZero() => _delegate.setZero();
-	B2Mat22Platform getInverse() => _delegate.getInverse();
-	B2Vec2Platform solve(B2Vec2Platform b) => _delegate.solve(b);
-	B2Vec2Platform get ex => _delegate.get_ex();
-	set ex(B2Vec2Platform arg0) => _delegate.set_ex(arg0);
-	B2Vec2Platform get ey => _delegate.get_ey();
-	set ey(B2Vec2Platform arg0) => _delegate.set_ey(arg0);
+	B2Mat22 getInverse() => B2Mat22._(_delegate.getInverse());
+	B2Vec2 solve(B2Vec2 b) => B2Vec2._(_delegate.solve(b._delegate));
+	B2Vec2 get ex => B2Vec2._(_delegate.get_ex());
+	set ex(B2Vec2 arg0) => _delegate.set_ex(arg0._delegate);
+	B2Vec2 get ey => B2Vec2._(_delegate.get_ey());
+	set ey(B2Vec2 arg0) => _delegate.set_ey(arg0._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -1132,19 +1133,19 @@ class B2Mat33 {
 
 	B2Mat33() : _delegate = FlutterBox2DPlatform.instance.b2Mat33_0();
 
-	B2Mat33.from3(B2Vec3Platform c1, B2Vec3Platform c2, B2Vec3Platform c3) : _delegate = FlutterBox2DPlatform.instance.b2Mat33_3(c1, c2, c3);
+	B2Mat33.from3(B2Vec3 c1, B2Vec3 c2, B2Vec3 c3) : _delegate = FlutterBox2DPlatform.instance.b2Mat33_3(c1._delegate, c2._delegate, c3._delegate);
 
 	void setZero() => _delegate.setZero();
-	B2Vec3Platform solve33(B2Vec3Platform b) => _delegate.solve33(b);
-	B2Vec2Platform solve22(B2Vec2Platform b) => _delegate.solve22(b);
-	void getInverse22(B2Mat33Platform M) => _delegate.getInverse22(M);
-	void getSymInverse33(B2Mat33Platform M) => _delegate.getSymInverse33(M);
-	B2Vec3Platform get ex => _delegate.get_ex();
-	set ex(B2Vec3Platform arg0) => _delegate.set_ex(arg0);
-	B2Vec3Platform get ey => _delegate.get_ey();
-	set ey(B2Vec3Platform arg0) => _delegate.set_ey(arg0);
-	B2Vec3Platform get ez => _delegate.get_ez();
-	set ez(B2Vec3Platform arg0) => _delegate.set_ez(arg0);
+	B2Vec3 solve33(B2Vec3 b) => B2Vec3._(_delegate.solve33(b._delegate));
+	B2Vec2 solve22(B2Vec2 b) => B2Vec2._(_delegate.solve22(b._delegate));
+	void getInverse22(B2Mat33 M) => _delegate.getInverse22(M._delegate);
+	void getSymInverse33(B2Mat33 M) => _delegate.getSymInverse33(M._delegate);
+	B2Vec3 get ex => B2Vec3._(_delegate.get_ex());
+	set ex(B2Vec3 arg0) => _delegate.set_ex(arg0._delegate);
+	B2Vec3 get ey => B2Vec3._(_delegate.get_ey());
+	set ey(B2Vec3 arg0) => _delegate.set_ey(arg0._delegate);
+	B2Vec3 get ez => B2Vec3._(_delegate.get_ez());
+	set ez(B2Vec3 arg0) => _delegate.set_ez(arg0._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -1154,8 +1155,8 @@ class B2MouseJoint {
 
 	B2MouseJoint._(B2MouseJointPlatform delegate) : _delegate = delegate;
 
-	void setTarget(B2Vec2Platform target) => _delegate.setTarget(target);
-	B2Vec2Platform getTarget() => _delegate.getTarget();
+	void setTarget(B2Vec2 target) => _delegate.setTarget(target._delegate);
+	B2Vec2 getTarget() => B2Vec2._(_delegate.getTarget());
 	void setMaxForce(double force) => _delegate.setMaxForce(force);
 	double getMaxForce() => _delegate.getMaxForce();
 	void setStiffness(double stiffness) => _delegate.setStiffness(stiffness);
@@ -1163,14 +1164,14 @@ class B2MouseJoint {
 	void setDamping(double damping) => _delegate.setDamping(damping);
 	double getDamping() => _delegate.getDamping();
 	B2JointType getType() => _delegate.getType();
-	B2BodyPlatform getBodyA() => _delegate.getBodyA();
-	B2BodyPlatform getBodyB() => _delegate.getBodyB();
-	B2Vec2Platform getAnchorA() => _delegate.getAnchorA();
-	B2Vec2Platform getAnchorB() => _delegate.getAnchorB();
-	B2Vec2Platform getReactionForce(double inv_dt) => _delegate.getReactionForce(inv_dt);
+	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
+	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
+	B2Vec2 getAnchorA() => B2Vec2._(_delegate.getAnchorA());
+	B2Vec2 getAnchorB() => B2Vec2._(_delegate.getAnchorB());
+	B2Vec2 getReactionForce(double inv_dt) => B2Vec2._(_delegate.getReactionForce(inv_dt));
 	double getReactionTorque(double inv_dt) => _delegate.getReactionTorque(inv_dt);
-	B2JointPlatform getNext() => _delegate.getNext();
-	B2JointUserDataPlatform getUserData() => _delegate.getUserData();
+	B2Joint getNext() => B2Joint._(_delegate.getNext());
+	B2JointUserData getUserData() => B2JointUserData._(_delegate.getUserData());
 	bool getCollideConnected() => _delegate.getCollideConnected();
 	void dispose() => _delegate.dispose();
 }
@@ -1183,8 +1184,8 @@ class B2MouseJointDef {
 
 	B2MouseJointDef() : _delegate = FlutterBox2DPlatform.instance.b2MouseJointDef_0();
 
-	B2Vec2Platform get target => _delegate.get_target();
-	set target(B2Vec2Platform arg0) => _delegate.set_target(arg0);
+	B2Vec2 get target => B2Vec2._(_delegate.get_target());
+	set target(B2Vec2 arg0) => _delegate.set_target(arg0._delegate);
 	double get maxForce => _delegate.get_maxForce();
 	set maxForce(double arg0) => _delegate.set_maxForce(arg0);
 	double get stiffness => _delegate.get_stiffness();
@@ -1193,12 +1194,12 @@ class B2MouseJointDef {
 	set damping(double arg0) => _delegate.set_damping(arg0);
 	B2JointType get type => _delegate.get_type();
 	set type(B2JointType arg0) => _delegate.set_type(arg0);
-	B2JointUserDataPlatform get userData => _delegate.get_userData();
-	set userData(B2JointUserDataPlatform arg0) => _delegate.set_userData(arg0);
-	B2BodyPlatform get bodyA => _delegate.get_bodyA();
-	set bodyA(B2BodyPlatform arg0) => _delegate.set_bodyA(arg0);
-	B2BodyPlatform get bodyB => _delegate.get_bodyB();
-	set bodyB(B2BodyPlatform arg0) => _delegate.set_bodyB(arg0);
+	B2JointUserData get userData => B2JointUserData._(_delegate.get_userData());
+	set userData(B2JointUserData arg0) => _delegate.set_userData(arg0._delegate);
+	B2Body get bodyA => B2Body._(_delegate.get_bodyA());
+	set bodyA(B2Body arg0) => _delegate.set_bodyA(arg0._delegate);
+	B2Body get bodyB => B2Body._(_delegate.get_bodyB());
+	set bodyB(B2Body arg0) => _delegate.set_bodyB(arg0._delegate);
 	bool get collideConnected => _delegate.get_collideConnected();
 	set collideConnected(bool arg0) => _delegate.set_collideConnected(arg0);
 	void dispose() => _delegate.dispose();
@@ -1212,21 +1213,21 @@ class B2PolygonShape {
 
 	B2PolygonShape() : _delegate = FlutterBox2DPlatform.instance.b2PolygonShape_0();
 
-	void set(B2Vec2Platform vertices, int vertexCount) => _delegate.set(vertices, vertexCount);
+	void set(B2Vec2 vertices, int vertexCount) => _delegate.set(vertices._delegate, vertexCount);
 	void setAsBox2(double hx, double hy) => _delegate.setAsBox2(hx, hy);
-	void setAsBox4(double hx, double hy, B2Vec2Platform center, double angle) => _delegate.setAsBox4(hx, hy, center, angle);
+	void setAsBox4(double hx, double hy, B2Vec2 center, double angle) => _delegate.setAsBox4(hx, hy, center._delegate, angle);
 	B2ShapeType getType() => _delegate.getType();
 	int getChildCount() => _delegate.getChildCount();
-	bool testPoint(B2TransformPlatform xf, B2Vec2Platform p) => _delegate.testPoint(xf, p);
-	bool rayCast(B2RayCastOutputPlatform output, B2RayCastInputPlatform input, B2TransformPlatform transform, int childIndex) => _delegate.rayCast(output, input, transform, childIndex);
-	void computeAABB(B2AABBPlatform aabb, B2TransformPlatform xf, int childIndex) => _delegate.computeAABB(aabb, xf, childIndex);
-	void computeMass(B2MassDataPlatform massData, double density) => _delegate.computeMass(massData, density);
-	B2Vec2Platform get m_centroid => _delegate.get_m_centroid();
-	set m_centroid(B2Vec2Platform arg0) => _delegate.set_m_centroid(arg0);
-	B2Vec2Platform m_verticesElementAt(int arg0) => _delegate.get_m_vertices(arg0);
-	void m_verticesInsert(int arg0, B2Vec2Platform arg1) => _delegate.set_m_vertices(arg0, arg1);
-	B2Vec2Platform m_normalsElementAt(int arg0) => _delegate.get_m_normals(arg0);
-	void m_normalsInsert(int arg0, B2Vec2Platform arg1) => _delegate.set_m_normals(arg0, arg1);
+	bool testPoint(B2Transform xf, B2Vec2 p) => _delegate.testPoint(xf._delegate, p._delegate);
+	bool rayCast(B2RayCastOutput output, B2RayCastInput input, B2Transform transform, int childIndex) => _delegate.rayCast(output._delegate, input._delegate, transform._delegate, childIndex);
+	void computeAABB(B2AABB aabb, B2Transform xf, int childIndex) => _delegate.computeAABB(aabb._delegate, xf._delegate, childIndex);
+	void computeMass(B2MassData massData, double density) => _delegate.computeMass(massData._delegate, density);
+	B2Vec2 get m_centroid => B2Vec2._(_delegate.get_m_centroid());
+	set m_centroid(B2Vec2 arg0) => _delegate.set_m_centroid(arg0._delegate);
+	B2Vec2 m_verticesElementAt(int arg0) => B2Vec2._(_delegate.get_m_vertices(arg0));
+	void m_verticesInsert(int arg0, B2Vec2 arg1) => _delegate.set_m_vertices(arg0, arg1._delegate);
+	B2Vec2 m_normalsElementAt(int arg0) => B2Vec2._(_delegate.get_m_normals(arg0));
+	void m_normalsInsert(int arg0, B2Vec2 arg1) => _delegate.set_m_normals(arg0, arg1._delegate);
 	int get m_count => _delegate.get_m_count();
 	set m_count(int arg0) => _delegate.set_m_count(arg0);
 	B2ShapeType get m_type => _delegate.get_m_type();
@@ -1242,9 +1243,9 @@ class B2PrismaticJoint {
 
 	B2PrismaticJoint._(B2PrismaticJointPlatform delegate) : _delegate = delegate;
 
-	B2Vec2Platform getLocalAnchorA() => _delegate.getLocalAnchorA();
-	B2Vec2Platform getLocalAnchorB() => _delegate.getLocalAnchorB();
-	B2Vec2Platform getLocalAxisA() => _delegate.getLocalAxisA();
+	B2Vec2 getLocalAnchorA() => B2Vec2._(_delegate.getLocalAnchorA());
+	B2Vec2 getLocalAnchorB() => B2Vec2._(_delegate.getLocalAnchorB());
+	B2Vec2 getLocalAxisA() => B2Vec2._(_delegate.getLocalAxisA());
 	double getReferenceAngle() => _delegate.getReferenceAngle();
 	double getJointTranslation() => _delegate.getJointTranslation();
 	double getJointSpeed() => _delegate.getJointSpeed();
@@ -1261,14 +1262,14 @@ class B2PrismaticJoint {
 	double getMaxMotorForce() => _delegate.getMaxMotorForce();
 	double getMotorForce(double inv_dt) => _delegate.getMotorForce(inv_dt);
 	B2JointType getType() => _delegate.getType();
-	B2BodyPlatform getBodyA() => _delegate.getBodyA();
-	B2BodyPlatform getBodyB() => _delegate.getBodyB();
-	B2Vec2Platform getAnchorA() => _delegate.getAnchorA();
-	B2Vec2Platform getAnchorB() => _delegate.getAnchorB();
-	B2Vec2Platform getReactionForce(double inv_dt) => _delegate.getReactionForce(inv_dt);
+	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
+	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
+	B2Vec2 getAnchorA() => B2Vec2._(_delegate.getAnchorA());
+	B2Vec2 getAnchorB() => B2Vec2._(_delegate.getAnchorB());
+	B2Vec2 getReactionForce(double inv_dt) => B2Vec2._(_delegate.getReactionForce(inv_dt));
 	double getReactionTorque(double inv_dt) => _delegate.getReactionTorque(inv_dt);
-	B2JointPlatform getNext() => _delegate.getNext();
-	B2JointUserDataPlatform getUserData() => _delegate.getUserData();
+	B2Joint getNext() => B2Joint._(_delegate.getNext());
+	B2JointUserData getUserData() => B2JointUserData._(_delegate.getUserData());
 	bool getCollideConnected() => _delegate.getCollideConnected();
 	void dispose() => _delegate.dispose();
 }
@@ -1281,13 +1282,13 @@ class B2PrismaticJointDef {
 
 	B2PrismaticJointDef() : _delegate = FlutterBox2DPlatform.instance.b2PrismaticJointDef_0();
 
-	void initialize(B2BodyPlatform bodyA, B2BodyPlatform bodyB, B2Vec2Platform anchor, B2Vec2Platform axis) => _delegate.initialize(bodyA, bodyB, anchor, axis);
-	B2Vec2Platform get localAnchorA => _delegate.get_localAnchorA();
-	set localAnchorA(B2Vec2Platform arg0) => _delegate.set_localAnchorA(arg0);
-	B2Vec2Platform get localAnchorB => _delegate.get_localAnchorB();
-	set localAnchorB(B2Vec2Platform arg0) => _delegate.set_localAnchorB(arg0);
-	B2Vec2Platform get localAxisA => _delegate.get_localAxisA();
-	set localAxisA(B2Vec2Platform arg0) => _delegate.set_localAxisA(arg0);
+	void initialize(B2Body bodyA, B2Body bodyB, B2Vec2 anchor, B2Vec2 axis) => _delegate.initialize(bodyA._delegate, bodyB._delegate, anchor._delegate, axis._delegate);
+	B2Vec2 get localAnchorA => B2Vec2._(_delegate.get_localAnchorA());
+	set localAnchorA(B2Vec2 arg0) => _delegate.set_localAnchorA(arg0._delegate);
+	B2Vec2 get localAnchorB => B2Vec2._(_delegate.get_localAnchorB());
+	set localAnchorB(B2Vec2 arg0) => _delegate.set_localAnchorB(arg0._delegate);
+	B2Vec2 get localAxisA => B2Vec2._(_delegate.get_localAxisA());
+	set localAxisA(B2Vec2 arg0) => _delegate.set_localAxisA(arg0._delegate);
 	double get referenceAngle => _delegate.get_referenceAngle();
 	set referenceAngle(double arg0) => _delegate.set_referenceAngle(arg0);
 	bool get enableLimit => _delegate.get_enableLimit();
@@ -1304,12 +1305,12 @@ class B2PrismaticJointDef {
 	set motorSpeed(double arg0) => _delegate.set_motorSpeed(arg0);
 	B2JointType get type => _delegate.get_type();
 	set type(B2JointType arg0) => _delegate.set_type(arg0);
-	B2JointUserDataPlatform get userData => _delegate.get_userData();
-	set userData(B2JointUserDataPlatform arg0) => _delegate.set_userData(arg0);
-	B2BodyPlatform get bodyA => _delegate.get_bodyA();
-	set bodyA(B2BodyPlatform arg0) => _delegate.set_bodyA(arg0);
-	B2BodyPlatform get bodyB => _delegate.get_bodyB();
-	set bodyB(B2BodyPlatform arg0) => _delegate.set_bodyB(arg0);
+	B2JointUserData get userData => B2JointUserData._(_delegate.get_userData());
+	set userData(B2JointUserData arg0) => _delegate.set_userData(arg0._delegate);
+	B2Body get bodyA => B2Body._(_delegate.get_bodyA());
+	set bodyA(B2Body arg0) => _delegate.set_bodyA(arg0._delegate);
+	B2Body get bodyB => B2Body._(_delegate.get_bodyB());
+	set bodyB(B2Body arg0) => _delegate.set_bodyB(arg0._delegate);
 	bool get collideConnected => _delegate.get_collideConnected();
 	set collideConnected(bool arg0) => _delegate.set_collideConnected(arg0);
 	void dispose() => _delegate.dispose();
@@ -1346,22 +1347,22 @@ class B2PulleyJoint {
 
 	B2PulleyJoint._(B2PulleyJointPlatform delegate) : _delegate = delegate;
 
-	B2Vec2Platform getGroundAnchorA() => _delegate.getGroundAnchorA();
-	B2Vec2Platform getGroundAnchorB() => _delegate.getGroundAnchorB();
+	B2Vec2 getGroundAnchorA() => B2Vec2._(_delegate.getGroundAnchorA());
+	B2Vec2 getGroundAnchorB() => B2Vec2._(_delegate.getGroundAnchorB());
 	double getLengthA() => _delegate.getLengthA();
 	double getLengthB() => _delegate.getLengthB();
 	double getRatio() => _delegate.getRatio();
 	double getCurrentLengthA() => _delegate.getCurrentLengthA();
 	double getCurrentLengthB() => _delegate.getCurrentLengthB();
 	B2JointType getType() => _delegate.getType();
-	B2BodyPlatform getBodyA() => _delegate.getBodyA();
-	B2BodyPlatform getBodyB() => _delegate.getBodyB();
-	B2Vec2Platform getAnchorA() => _delegate.getAnchorA();
-	B2Vec2Platform getAnchorB() => _delegate.getAnchorB();
-	B2Vec2Platform getReactionForce(double inv_dt) => _delegate.getReactionForce(inv_dt);
+	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
+	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
+	B2Vec2 getAnchorA() => B2Vec2._(_delegate.getAnchorA());
+	B2Vec2 getAnchorB() => B2Vec2._(_delegate.getAnchorB());
+	B2Vec2 getReactionForce(double inv_dt) => B2Vec2._(_delegate.getReactionForce(inv_dt));
 	double getReactionTorque(double inv_dt) => _delegate.getReactionTorque(inv_dt);
-	B2JointPlatform getNext() => _delegate.getNext();
-	B2JointUserDataPlatform getUserData() => _delegate.getUserData();
+	B2Joint getNext() => B2Joint._(_delegate.getNext());
+	B2JointUserData getUserData() => B2JointUserData._(_delegate.getUserData());
 	bool getCollideConnected() => _delegate.getCollideConnected();
 	void dispose() => _delegate.dispose();
 }
@@ -1374,15 +1375,15 @@ class B2PulleyJointDef {
 
 	B2PulleyJointDef() : _delegate = FlutterBox2DPlatform.instance.b2PulleyJointDef_0();
 
-	void initialize(B2BodyPlatform bodyA, B2BodyPlatform bodyB, B2Vec2Platform groundAnchorA, B2Vec2Platform groundAnchorB, B2Vec2Platform anchorA, B2Vec2Platform anchorB, double ratio) => _delegate.initialize(bodyA, bodyB, groundAnchorA, groundAnchorB, anchorA, anchorB, ratio);
-	B2Vec2Platform get groundAnchorA => _delegate.get_groundAnchorA();
-	set groundAnchorA(B2Vec2Platform arg0) => _delegate.set_groundAnchorA(arg0);
-	B2Vec2Platform get groundAnchorB => _delegate.get_groundAnchorB();
-	set groundAnchorB(B2Vec2Platform arg0) => _delegate.set_groundAnchorB(arg0);
-	B2Vec2Platform get localAnchorA => _delegate.get_localAnchorA();
-	set localAnchorA(B2Vec2Platform arg0) => _delegate.set_localAnchorA(arg0);
-	B2Vec2Platform get localAnchorB => _delegate.get_localAnchorB();
-	set localAnchorB(B2Vec2Platform arg0) => _delegate.set_localAnchorB(arg0);
+	void initialize(B2Body bodyA, B2Body bodyB, B2Vec2 groundAnchorA, B2Vec2 groundAnchorB, B2Vec2 anchorA, B2Vec2 anchorB, double ratio) => _delegate.initialize(bodyA._delegate, bodyB._delegate, groundAnchorA._delegate, groundAnchorB._delegate, anchorA._delegate, anchorB._delegate, ratio);
+	B2Vec2 get groundAnchorA => B2Vec2._(_delegate.get_groundAnchorA());
+	set groundAnchorA(B2Vec2 arg0) => _delegate.set_groundAnchorA(arg0._delegate);
+	B2Vec2 get groundAnchorB => B2Vec2._(_delegate.get_groundAnchorB());
+	set groundAnchorB(B2Vec2 arg0) => _delegate.set_groundAnchorB(arg0._delegate);
+	B2Vec2 get localAnchorA => B2Vec2._(_delegate.get_localAnchorA());
+	set localAnchorA(B2Vec2 arg0) => _delegate.set_localAnchorA(arg0._delegate);
+	B2Vec2 get localAnchorB => B2Vec2._(_delegate.get_localAnchorB());
+	set localAnchorB(B2Vec2 arg0) => _delegate.set_localAnchorB(arg0._delegate);
 	double get lengthA => _delegate.get_lengthA();
 	set lengthA(double arg0) => _delegate.set_lengthA(arg0);
 	double get lengthB => _delegate.get_lengthB();
@@ -1391,12 +1392,12 @@ class B2PulleyJointDef {
 	set ratio(double arg0) => _delegate.set_ratio(arg0);
 	B2JointType get type => _delegate.get_type();
 	set type(B2JointType arg0) => _delegate.set_type(arg0);
-	B2JointUserDataPlatform get userData => _delegate.get_userData();
-	set userData(B2JointUserDataPlatform arg0) => _delegate.set_userData(arg0);
-	B2BodyPlatform get bodyA => _delegate.get_bodyA();
-	set bodyA(B2BodyPlatform arg0) => _delegate.set_bodyA(arg0);
-	B2BodyPlatform get bodyB => _delegate.get_bodyB();
-	set bodyB(B2BodyPlatform arg0) => _delegate.set_bodyB(arg0);
+	B2JointUserData get userData => B2JointUserData._(_delegate.get_userData());
+	set userData(B2JointUserData arg0) => _delegate.set_userData(arg0._delegate);
+	B2Body get bodyA => B2Body._(_delegate.get_bodyA());
+	set bodyA(B2Body arg0) => _delegate.set_bodyA(arg0._delegate);
+	B2Body get bodyB => B2Body._(_delegate.get_bodyB());
+	set bodyB(B2Body arg0) => _delegate.set_bodyB(arg0._delegate);
 	bool get collideConnected => _delegate.get_collideConnected();
 	set collideConnected(bool arg0) => _delegate.set_collideConnected(arg0);
 	void dispose() => _delegate.dispose();
@@ -1408,10 +1409,10 @@ class B2RayCastInput {
 
 	B2RayCastInput._(B2RayCastInputPlatform delegate) : _delegate = delegate;
 
-	B2Vec2Platform get p1 => _delegate.get_p1();
-	set p1(B2Vec2Platform arg0) => _delegate.set_p1(arg0);
-	B2Vec2Platform get p2 => _delegate.get_p2();
-	set p2(B2Vec2Platform arg0) => _delegate.set_p2(arg0);
+	B2Vec2 get p1 => B2Vec2._(_delegate.get_p1());
+	set p1(B2Vec2 arg0) => _delegate.set_p1(arg0._delegate);
+	B2Vec2 get p2 => B2Vec2._(_delegate.get_p2());
+	set p2(B2Vec2 arg0) => _delegate.set_p2(arg0._delegate);
 	double get maxFraction => _delegate.get_maxFraction();
 	set maxFraction(double arg0) => _delegate.set_maxFraction(arg0);
 	void dispose() => _delegate.dispose();
@@ -1423,8 +1424,8 @@ class B2RayCastOutput {
 
 	B2RayCastOutput._(B2RayCastOutputPlatform delegate) : _delegate = delegate;
 
-	B2Vec2Platform get normal => _delegate.get_normal();
-	set normal(B2Vec2Platform arg0) => _delegate.set_normal(arg0);
+	B2Vec2 get normal => B2Vec2._(_delegate.get_normal());
+	set normal(B2Vec2 arg0) => _delegate.set_normal(arg0._delegate);
 	double get fraction => _delegate.get_fraction();
 	set fraction(double arg0) => _delegate.set_fraction(arg0);
 	void dispose() => _delegate.dispose();
@@ -1436,8 +1437,8 @@ class B2RevoluteJoint {
 
 	B2RevoluteJoint._(B2RevoluteJointPlatform delegate) : _delegate = delegate;
 
-	B2Vec2Platform getLocalAnchorA() => _delegate.getLocalAnchorA();
-	B2Vec2Platform getLocalAnchorB() => _delegate.getLocalAnchorB();
+	B2Vec2 getLocalAnchorA() => B2Vec2._(_delegate.getLocalAnchorA());
+	B2Vec2 getLocalAnchorB() => B2Vec2._(_delegate.getLocalAnchorB());
 	double getReferenceAngle() => _delegate.getReferenceAngle();
 	double getJointAngle() => _delegate.getJointAngle();
 	double getJointSpeed() => _delegate.getJointSpeed();
@@ -1454,14 +1455,14 @@ class B2RevoluteJoint {
 	double getMaxMotorTorque() => _delegate.getMaxMotorTorque();
 	double getMotorTorque(double inv_dt) => _delegate.getMotorTorque(inv_dt);
 	B2JointType getType() => _delegate.getType();
-	B2BodyPlatform getBodyA() => _delegate.getBodyA();
-	B2BodyPlatform getBodyB() => _delegate.getBodyB();
-	B2Vec2Platform getAnchorA() => _delegate.getAnchorA();
-	B2Vec2Platform getAnchorB() => _delegate.getAnchorB();
-	B2Vec2Platform getReactionForce(double inv_dt) => _delegate.getReactionForce(inv_dt);
+	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
+	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
+	B2Vec2 getAnchorA() => B2Vec2._(_delegate.getAnchorA());
+	B2Vec2 getAnchorB() => B2Vec2._(_delegate.getAnchorB());
+	B2Vec2 getReactionForce(double inv_dt) => B2Vec2._(_delegate.getReactionForce(inv_dt));
 	double getReactionTorque(double inv_dt) => _delegate.getReactionTorque(inv_dt);
-	B2JointPlatform getNext() => _delegate.getNext();
-	B2JointUserDataPlatform getUserData() => _delegate.getUserData();
+	B2Joint getNext() => B2Joint._(_delegate.getNext());
+	B2JointUserData getUserData() => B2JointUserData._(_delegate.getUserData());
 	bool getCollideConnected() => _delegate.getCollideConnected();
 	void dispose() => _delegate.dispose();
 }
@@ -1474,11 +1475,11 @@ class B2RevoluteJointDef {
 
 	B2RevoluteJointDef() : _delegate = FlutterBox2DPlatform.instance.b2RevoluteJointDef_0();
 
-	void initialize(B2BodyPlatform bodyA, B2BodyPlatform bodyB, B2Vec2Platform anchor) => _delegate.initialize(bodyA, bodyB, anchor);
-	B2Vec2Platform get localAnchorA => _delegate.get_localAnchorA();
-	set localAnchorA(B2Vec2Platform arg0) => _delegate.set_localAnchorA(arg0);
-	B2Vec2Platform get localAnchorB => _delegate.get_localAnchorB();
-	set localAnchorB(B2Vec2Platform arg0) => _delegate.set_localAnchorB(arg0);
+	void initialize(B2Body bodyA, B2Body bodyB, B2Vec2 anchor) => _delegate.initialize(bodyA._delegate, bodyB._delegate, anchor._delegate);
+	B2Vec2 get localAnchorA => B2Vec2._(_delegate.get_localAnchorA());
+	set localAnchorA(B2Vec2 arg0) => _delegate.set_localAnchorA(arg0._delegate);
+	B2Vec2 get localAnchorB => B2Vec2._(_delegate.get_localAnchorB());
+	set localAnchorB(B2Vec2 arg0) => _delegate.set_localAnchorB(arg0._delegate);
 	double get referenceAngle => _delegate.get_referenceAngle();
 	set referenceAngle(double arg0) => _delegate.set_referenceAngle(arg0);
 	bool get enableLimit => _delegate.get_enableLimit();
@@ -1495,12 +1496,12 @@ class B2RevoluteJointDef {
 	set maxMotorTorque(double arg0) => _delegate.set_maxMotorTorque(arg0);
 	B2JointType get type => _delegate.get_type();
 	set type(B2JointType arg0) => _delegate.set_type(arg0);
-	B2JointUserDataPlatform get userData => _delegate.get_userData();
-	set userData(B2JointUserDataPlatform arg0) => _delegate.set_userData(arg0);
-	B2BodyPlatform get bodyA => _delegate.get_bodyA();
-	set bodyA(B2BodyPlatform arg0) => _delegate.set_bodyA(arg0);
-	B2BodyPlatform get bodyB => _delegate.get_bodyB();
-	set bodyB(B2BodyPlatform arg0) => _delegate.set_bodyB(arg0);
+	B2JointUserData get userData => B2JointUserData._(_delegate.get_userData());
+	set userData(B2JointUserData arg0) => _delegate.set_userData(arg0._delegate);
+	B2Body get bodyA => B2Body._(_delegate.get_bodyA());
+	set bodyA(B2Body arg0) => _delegate.set_bodyA(arg0._delegate);
+	B2Body get bodyB => B2Body._(_delegate.get_bodyB());
+	set bodyB(B2Body arg0) => _delegate.set_bodyB(arg0._delegate);
 	bool get collideConnected => _delegate.get_collideConnected();
 	set collideConnected(bool arg0) => _delegate.set_collideConnected(arg0);
 	void dispose() => _delegate.dispose();
@@ -1519,8 +1520,8 @@ class B2Rot {
 	void set(double angle) => _delegate.set(angle);
 	void setIdentity() => _delegate.setIdentity();
 	double getAngle() => _delegate.getAngle();
-	B2Vec2Platform getXAxis() => _delegate.getXAxis();
-	B2Vec2Platform getYAxis() => _delegate.getYAxis();
+	B2Vec2 getXAxis() => B2Vec2._(_delegate.getXAxis());
+	B2Vec2 getYAxis() => B2Vec2._(_delegate.getYAxis());
 	double get s => _delegate.get_s();
 	set s(double arg0) => _delegate.set_s(arg0);
 	double get c => _delegate.get_c();
@@ -1534,9 +1535,9 @@ class B2WheelJoint {
 
 	B2WheelJoint._(B2WheelJointPlatform delegate) : _delegate = delegate;
 
-	B2Vec2Platform getLocalAnchorA() => _delegate.getLocalAnchorA();
-	B2Vec2Platform getLocalAnchorB() => _delegate.getLocalAnchorB();
-	B2Vec2Platform getLocalAxisA() => _delegate.getLocalAxisA();
+	B2Vec2 getLocalAnchorA() => B2Vec2._(_delegate.getLocalAnchorA());
+	B2Vec2 getLocalAnchorB() => B2Vec2._(_delegate.getLocalAnchorB());
+	B2Vec2 getLocalAxisA() => B2Vec2._(_delegate.getLocalAxisA());
 	double getJointTranslation() => _delegate.getJointTranslation();
 	double getJointLinearSpeed() => _delegate.getJointLinearSpeed();
 	double getJointAngle() => _delegate.getJointAngle();
@@ -1558,14 +1559,14 @@ class B2WheelJoint {
 	void setDamping(double damping) => _delegate.setDamping(damping);
 	double getDamping() => _delegate.getDamping();
 	B2JointType getType() => _delegate.getType();
-	B2BodyPlatform getBodyA() => _delegate.getBodyA();
-	B2BodyPlatform getBodyB() => _delegate.getBodyB();
-	B2Vec2Platform getAnchorA() => _delegate.getAnchorA();
-	B2Vec2Platform getAnchorB() => _delegate.getAnchorB();
-	B2Vec2Platform getReactionForce(double inv_dt) => _delegate.getReactionForce(inv_dt);
+	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
+	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
+	B2Vec2 getAnchorA() => B2Vec2._(_delegate.getAnchorA());
+	B2Vec2 getAnchorB() => B2Vec2._(_delegate.getAnchorB());
+	B2Vec2 getReactionForce(double inv_dt) => B2Vec2._(_delegate.getReactionForce(inv_dt));
 	double getReactionTorque(double inv_dt) => _delegate.getReactionTorque(inv_dt);
-	B2JointPlatform getNext() => _delegate.getNext();
-	B2JointUserDataPlatform getUserData() => _delegate.getUserData();
+	B2Joint getNext() => B2Joint._(_delegate.getNext());
+	B2JointUserData getUserData() => B2JointUserData._(_delegate.getUserData());
 	bool getCollideConnected() => _delegate.getCollideConnected();
 	void dispose() => _delegate.dispose();
 }
@@ -1578,13 +1579,13 @@ class B2WheelJointDef {
 
 	B2WheelJointDef() : _delegate = FlutterBox2DPlatform.instance.b2WheelJointDef_0();
 
-	void initialize(B2BodyPlatform bodyA, B2BodyPlatform bodyB, B2Vec2Platform anchor, B2Vec2Platform axis) => _delegate.initialize(bodyA, bodyB, anchor, axis);
-	B2Vec2Platform get localAnchorA => _delegate.get_localAnchorA();
-	set localAnchorA(B2Vec2Platform arg0) => _delegate.set_localAnchorA(arg0);
-	B2Vec2Platform get localAnchorB => _delegate.get_localAnchorB();
-	set localAnchorB(B2Vec2Platform arg0) => _delegate.set_localAnchorB(arg0);
-	B2Vec2Platform get localAxisA => _delegate.get_localAxisA();
-	set localAxisA(B2Vec2Platform arg0) => _delegate.set_localAxisA(arg0);
+	void initialize(B2Body bodyA, B2Body bodyB, B2Vec2 anchor, B2Vec2 axis) => _delegate.initialize(bodyA._delegate, bodyB._delegate, anchor._delegate, axis._delegate);
+	B2Vec2 get localAnchorA => B2Vec2._(_delegate.get_localAnchorA());
+	set localAnchorA(B2Vec2 arg0) => _delegate.set_localAnchorA(arg0._delegate);
+	B2Vec2 get localAnchorB => B2Vec2._(_delegate.get_localAnchorB());
+	set localAnchorB(B2Vec2 arg0) => _delegate.set_localAnchorB(arg0._delegate);
+	B2Vec2 get localAxisA => B2Vec2._(_delegate.get_localAxisA());
+	set localAxisA(B2Vec2 arg0) => _delegate.set_localAxisA(arg0._delegate);
 	bool get enableLimit => _delegate.get_enableLimit();
 	set enableLimit(bool arg0) => _delegate.set_enableLimit(arg0);
 	double get lowerTranslation => _delegate.get_lowerTranslation();
@@ -1603,12 +1604,12 @@ class B2WheelJointDef {
 	set damping(double arg0) => _delegate.set_damping(arg0);
 	B2JointType get type => _delegate.get_type();
 	set type(B2JointType arg0) => _delegate.set_type(arg0);
-	B2JointUserDataPlatform get userData => _delegate.get_userData();
-	set userData(B2JointUserDataPlatform arg0) => _delegate.set_userData(arg0);
-	B2BodyPlatform get bodyA => _delegate.get_bodyA();
-	set bodyA(B2BodyPlatform arg0) => _delegate.set_bodyA(arg0);
-	B2BodyPlatform get bodyB => _delegate.get_bodyB();
-	set bodyB(B2BodyPlatform arg0) => _delegate.set_bodyB(arg0);
+	B2JointUserData get userData => B2JointUserData._(_delegate.get_userData());
+	set userData(B2JointUserData arg0) => _delegate.set_userData(arg0._delegate);
+	B2Body get bodyA => B2Body._(_delegate.get_bodyA());
+	set bodyA(B2Body arg0) => _delegate.set_bodyA(arg0._delegate);
+	B2Body get bodyB => B2Body._(_delegate.get_bodyB());
+	set bodyB(B2Body arg0) => _delegate.set_bodyB(arg0._delegate);
 	bool get collideConnected => _delegate.get_collideConnected();
 	set collideConnected(bool arg0) => _delegate.set_collideConnected(arg0);
 	void dispose() => _delegate.dispose();
@@ -1620,8 +1621,8 @@ class B2MotorJoint {
 
 	B2MotorJoint._(B2MotorJointPlatform delegate) : _delegate = delegate;
 
-	void setLinearOffset(B2Vec2Platform linearOffset) => _delegate.setLinearOffset(linearOffset);
-	B2Vec2Platform getLinearOffset() => _delegate.getLinearOffset();
+	void setLinearOffset(B2Vec2 linearOffset) => _delegate.setLinearOffset(linearOffset._delegate);
+	B2Vec2 getLinearOffset() => B2Vec2._(_delegate.getLinearOffset());
 	void setAngularOffset(double angularOffset) => _delegate.setAngularOffset(angularOffset);
 	double getAngularOffset() => _delegate.getAngularOffset();
 	void setMaxForce(double force) => _delegate.setMaxForce(force);
@@ -1631,14 +1632,14 @@ class B2MotorJoint {
 	void setCorrectionFactor(double factor) => _delegate.setCorrectionFactor(factor);
 	double getCorrectionFactor() => _delegate.getCorrectionFactor();
 	B2JointType getType() => _delegate.getType();
-	B2BodyPlatform getBodyA() => _delegate.getBodyA();
-	B2BodyPlatform getBodyB() => _delegate.getBodyB();
-	B2Vec2Platform getAnchorA() => _delegate.getAnchorA();
-	B2Vec2Platform getAnchorB() => _delegate.getAnchorB();
-	B2Vec2Platform getReactionForce(double inv_dt) => _delegate.getReactionForce(inv_dt);
+	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
+	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
+	B2Vec2 getAnchorA() => B2Vec2._(_delegate.getAnchorA());
+	B2Vec2 getAnchorB() => B2Vec2._(_delegate.getAnchorB());
+	B2Vec2 getReactionForce(double inv_dt) => B2Vec2._(_delegate.getReactionForce(inv_dt));
 	double getReactionTorque(double inv_dt) => _delegate.getReactionTorque(inv_dt);
-	B2JointPlatform getNext() => _delegate.getNext();
-	B2JointUserDataPlatform getUserData() => _delegate.getUserData();
+	B2Joint getNext() => B2Joint._(_delegate.getNext());
+	B2JointUserData getUserData() => B2JointUserData._(_delegate.getUserData());
 	bool getCollideConnected() => _delegate.getCollideConnected();
 	void dispose() => _delegate.dispose();
 }
@@ -1651,9 +1652,9 @@ class B2MotorJointDef {
 
 	B2MotorJointDef() : _delegate = FlutterBox2DPlatform.instance.b2MotorJointDef_0();
 
-	void initialize(B2BodyPlatform bodyA, B2BodyPlatform bodyB) => _delegate.initialize(bodyA, bodyB);
-	B2Vec2Platform get linearOffset => _delegate.get_linearOffset();
-	set linearOffset(B2Vec2Platform arg0) => _delegate.set_linearOffset(arg0);
+	void initialize(B2Body bodyA, B2Body bodyB) => _delegate.initialize(bodyA._delegate, bodyB._delegate);
+	B2Vec2 get linearOffset => B2Vec2._(_delegate.get_linearOffset());
+	set linearOffset(B2Vec2 arg0) => _delegate.set_linearOffset(arg0._delegate);
 	double get angularOffset => _delegate.get_angularOffset();
 	set angularOffset(double arg0) => _delegate.set_angularOffset(arg0);
 	double get maxForce => _delegate.get_maxForce();
@@ -1664,12 +1665,12 @@ class B2MotorJointDef {
 	set correctionFactor(double arg0) => _delegate.set_correctionFactor(arg0);
 	B2JointType get type => _delegate.get_type();
 	set type(B2JointType arg0) => _delegate.set_type(arg0);
-	B2JointUserDataPlatform get userData => _delegate.get_userData();
-	set userData(B2JointUserDataPlatform arg0) => _delegate.set_userData(arg0);
-	B2BodyPlatform get bodyA => _delegate.get_bodyA();
-	set bodyA(B2BodyPlatform arg0) => _delegate.set_bodyA(arg0);
-	B2BodyPlatform get bodyB => _delegate.get_bodyB();
-	set bodyB(B2BodyPlatform arg0) => _delegate.set_bodyB(arg0);
+	B2JointUserData get userData => B2JointUserData._(_delegate.get_userData());
+	set userData(B2JointUserData arg0) => _delegate.set_userData(arg0._delegate);
+	B2Body get bodyA => B2Body._(_delegate.get_bodyA());
+	set bodyA(B2Body arg0) => _delegate.set_bodyA(arg0._delegate);
+	B2Body get bodyB => B2Body._(_delegate.get_bodyB());
+	set bodyB(B2Body arg0) => _delegate.set_bodyB(arg0._delegate);
 	bool get collideConnected => _delegate.get_collideConnected();
 	set collideConnected(bool arg0) => _delegate.set_collideConnected(arg0);
 	void dispose() => _delegate.dispose();
@@ -1718,16 +1719,16 @@ class B2RopeDef {
 
 	B2RopeDef() : _delegate = FlutterBox2DPlatform.instance.b2RopeDef_0();
 
-	B2Vec2Platform get position => _delegate.get_position();
-	set position(B2Vec2Platform arg0) => _delegate.set_position(arg0);
-	B2Vec2Platform get vertices => _delegate.get_vertices();
-	set vertices(B2Vec2Platform arg0) => _delegate.set_vertices(arg0);
+	B2Vec2 get position => B2Vec2._(_delegate.get_position());
+	set position(B2Vec2 arg0) => _delegate.set_position(arg0._delegate);
+	B2Vec2 get vertices => B2Vec2._(_delegate.get_vertices());
+	set vertices(B2Vec2 arg0) => _delegate.set_vertices(arg0._delegate);
 	int get count => _delegate.get_count();
 	set count(int arg0) => _delegate.set_count(arg0);
-	B2Vec2Platform get gravity => _delegate.get_gravity();
-	set gravity(B2Vec2Platform arg0) => _delegate.set_gravity(arg0);
-	B2RopeTuningPlatform get tuning => _delegate.get_tuning();
-	set tuning(B2RopeTuningPlatform arg0) => _delegate.set_tuning(arg0);
+	B2Vec2 get gravity => B2Vec2._(_delegate.get_gravity());
+	set gravity(B2Vec2 arg0) => _delegate.set_gravity(arg0._delegate);
+	B2RopeTuning get tuning => B2RopeTuning._(_delegate.get_tuning());
+	set tuning(B2RopeTuning arg0) => _delegate.set_tuning(arg0._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -1739,11 +1740,11 @@ class B2Rope {
 
 	B2Rope() : _delegate = FlutterBox2DPlatform.instance.b2Rope_0();
 
-	void create(B2RopeDefPlatform def) => _delegate.create(def);
-	void setTuning(B2RopeTuningPlatform tuning) => _delegate.setTuning(tuning);
-	void step(double timeStep, int iterations, B2Vec2Platform position) => _delegate.step(timeStep, iterations, position);
-	void reset(B2Vec2Platform position) => _delegate.reset(position);
-	//void draw(B2DrawPlatform draw) => _delegate.draw(draw);
+	void create(B2RopeDef def) => _delegate.create(def._delegate);
+	void setTuning(B2RopeTuning tuning) => _delegate.setTuning(tuning._delegate);
+	void step(double timeStep, int iterations, B2Vec2 position) => _delegate.step(timeStep, iterations, position._delegate);
+	void reset(B2Vec2 position) => _delegate.reset(position._delegate);
+	//void draw(B2Draw draw) => _delegate.draw(draw._delegate);
 	void dispose() => _delegate.dispose();
 }
 
@@ -1755,10 +1756,10 @@ class B2ClipVertex {
 
 	B2ClipVertex() : _delegate = FlutterBox2DPlatform.instance.b2ClipVertex_0();
 
-	B2Vec2Platform get v => _delegate.get_v();
-	set v(B2Vec2Platform arg0) => _delegate.set_v(arg0);
-	B2ContactIDPlatform get id => _delegate.get_id();
-	set id(B2ContactIDPlatform arg0) => _delegate.set_id(arg0);
+	B2Vec2 get v => B2Vec2._(_delegate.get_v());
+	set v(B2Vec2 arg0) => _delegate.set_v(arg0._delegate);
+	B2ContactID get id => B2ContactID._(_delegate.get_id());
+	set id(B2ContactID arg0) => _delegate.set_id(arg0._delegate);
 	void dispose() => _delegate.dispose();
 }
 

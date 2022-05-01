@@ -3,8 +3,8 @@ library box2d;
 
 import 'package:js/js.dart';
 
-import 'b2_delegates.dart';
-import 'b2_enums.dart';
+import 'package:flutter_box2d_platform_interface/b2_delegates.dart';
+import 'package:flutter_box2d_platform_interface/b2_enums.dart';
 
 class B2ShapeJSAdapter implements B2ShapePlatform {
 
