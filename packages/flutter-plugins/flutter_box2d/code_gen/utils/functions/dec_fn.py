@@ -35,8 +35,9 @@ class DecFunction:
       maybe_ret_type = '' if self.names.attr_type == 'set' else type_to_dec(self.interfaces, self.enums, self.return_type)+' '
       maybe_params = '' if self.names.attr_type == 'get' else '(%s)' % self.fn_args
       func_str = '\n\t%s%s%s%s%s => ' % (maybe_comment, maybe_ret_type, dartify_func(self.names, Context.FN_NAME), maybe_arg_count, maybe_params)
-      func_call = '_delegate.%s%s(%s);' % (dartify_func(self.names, Context.CALL_NAME), maybe_arg_count, self.call_args)
-      return func_str + func_call
+      func_call = '_delegate.%s%s(%s)' % (dartify_func(self.names, Context.CALL_NAME), maybe_arg_count, self.call_args)
+      func_call = maybe_add_wrap(self.interfaces, self.return_type, func_call)
+      return func_str + func_call + ';'
   
   def setupArgs(self, sig):
     self.ctr_arg_types = list(map(lambda s: type_to_dec(self.interfaces, self.enums, s, False, Context.CTR_ARG), sig))
@@ -45,7 +46,7 @@ class DecFunction:
     self.fn_args = ', '.join(['%s %s' % (self.fn_arg_types[j], self.args[j]) for j in range(self.num_args)])
 
   def setupCall(self, raw_sig):
-    self.call_args = ', '.join(['%s' % (self.args[j]) for j in range(self.num_args)])
+    self.call_args = ', '.join(['%s%s' % (self.args[j], maybe_to_del(self.interfaces, raw_sig[j].type.name)) for j in range(self.num_args)])
 
 def dartify_func(names, context):
   if (names.dart_func_name == '__destroy__'): return 'dispose'
@@ -62,6 +63,12 @@ def dartify_func(names, context):
   elif names.attr_type == 'get_array' and context == Context.FN_NAME:
     text = names.dart_func_name.replace('get_', '')+'ElementAt'
   return prefix + lower_first(text)
+
+def maybe_to_del(interfaces, t):
+  return '._delegate' if t in interfaces else ''
+
+def maybe_add_wrap(interfaces, t, func_call):
+  return '%s._(%s)' % (upper_first(t), func_call) if t in interfaces else func_call
 
 def type_to_dec(interfaces, enums, t, non_pointing=False, context=Context.DEFAULT):
   # print 'to dec ', t
@@ -95,8 +102,8 @@ def type_to_dec(interfaces, enums, t, non_pointing=False, context=Context.DEFAUL
     elif t == 'Any' or t == 'VoidPtr':
       ret = 'void*'
     elif t in interfaces:
-      ret = (interfaces[t].getExtendedAttribute('Prefix') or [''])[0] + t[0].upper() + t[1:]
-      ret = '%sPlatform' % ret # add covariant to delegates.dart function args - to avoid type errors for args in ffi.dart
+      ret = (interfaces[t].getExtendedAttribute('Prefix') or [''])[0] + upper_first(t)
+      # ret = '%sPlatform' % ret
     elif t in enums:
       ret = upper_first(t)
     else:

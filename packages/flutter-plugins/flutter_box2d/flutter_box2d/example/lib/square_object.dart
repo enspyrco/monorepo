@@ -9,16 +9,16 @@ class SquareObject {
         _sideLengthPixels = sideLengthMetres * 100 {
     _paint = Paint()..color = Colors.red;
 
-    _shape.setAsBox(_sideLengthMetres / 2, _sideLengthMetres / 2);
+    _shape.setAsBox2(_sideLengthMetres / 2, _sideLengthMetres / 2);
 
-    var zero = B2Vec2(0, 0);
+    var zero = B2Vec2.from2(0, 0);
 
     var bd = B2BodyDef();
-    bd.setType(b2BodyType.b2_dynamicBody);
-    bd.setPosition(zero);
+    bd.type = B2BodyType.dynamicBody;
+    bd.position = zero;
 
     _body = world.createBody(bd);
-    _body.createFixture(_shape, 1);
+    _body.createFixture2(_shape, 1);
     _body.setTransform(zero, 0);
     _body.setLinearVelocity(zero);
     _body.setAwake(true);
