@@ -420,7 +420,7 @@ abstract class B2AABBPlatform {
   void dispose();
 }
 
-abstract class B2CircleShapePlatform {
+abstract class B2CircleShapePlatform implements B2ShapePlatform {
   B2CircleShapePlatform();
 
   B2ShapeType getType();
@@ -443,7 +443,7 @@ abstract class B2CircleShapePlatform {
   void dispose();
 }
 
-abstract class B2EdgeShapePlatform {
+abstract class B2EdgeShapePlatform implements B2ShapePlatform {
   B2EdgeShapePlatform();
 
   void setOneSided(covariant B2Vec2Platform v0, covariant B2Vec2Platform v1,
@@ -483,7 +483,7 @@ abstract class B2JointUserDataPlatform {
   void dispose();
 }
 
-abstract class B2WeldJointPlatform {
+abstract class B2WeldJointPlatform implements B2JointPlatform {
   B2Vec2Platform getLocalAnchorA();
   B2Vec2Platform getLocalAnchorB();
   double getReferenceAngle();
@@ -505,7 +505,7 @@ abstract class B2WeldJointPlatform {
   void dispose();
 }
 
-abstract class B2WeldJointDefPlatform {
+abstract class B2WeldJointDefPlatform implements B2JointDefPlatform {
   B2WeldJointDefPlatform();
 
   void initialize(covariant B2BodyPlatform bodyA,
@@ -533,7 +533,7 @@ abstract class B2WeldJointDefPlatform {
   void dispose();
 }
 
-abstract class B2ChainShapePlatform {
+abstract class B2ChainShapePlatform implements B2ShapePlatform {
   B2ChainShapePlatform();
 
   void clear();
@@ -654,7 +654,7 @@ abstract class JSDestructionListenerPlatform {
   void dispose();
 }
 
-abstract class B2DistanceJointPlatform {
+abstract class B2DistanceJointPlatform implements B2JointPlatform {
   B2Vec2Platform getLocalAnchorA();
   B2Vec2Platform getLocalAnchorB();
   double getLength();
@@ -668,6 +668,7 @@ abstract class B2DistanceJointPlatform {
   double getStiffness();
   void setDamping(double damping);
   double getDamping();
+  void dump();
   B2JointType getType();
   B2BodyPlatform getBodyA();
   B2BodyPlatform getBodyB();
@@ -681,7 +682,7 @@ abstract class B2DistanceJointPlatform {
   void dispose();
 }
 
-abstract class B2DistanceJointDefPlatform {
+abstract class B2DistanceJointDefPlatform implements B2JointDefPlatform {
   B2DistanceJointDefPlatform();
 
   void initialize(
@@ -743,13 +744,14 @@ abstract class JSDrawPlatform {
   void dispose();
 }
 
-abstract class B2FrictionJointPlatform {
+abstract class B2FrictionJointPlatform implements B2JointPlatform {
   B2Vec2Platform getLocalAnchorA();
   B2Vec2Platform getLocalAnchorB();
   void setMaxForce(double force);
   double getMaxForce();
   void setMaxTorque(double torque);
   double getMaxTorque();
+  void dump();
   B2JointType getType();
   B2BodyPlatform getBodyA();
   B2BodyPlatform getBodyB();
@@ -763,7 +765,7 @@ abstract class B2FrictionJointPlatform {
   void dispose();
 }
 
-abstract class B2FrictionJointDefPlatform {
+abstract class B2FrictionJointDefPlatform implements B2JointDefPlatform {
   B2FrictionJointDefPlatform();
 
   void initialize(covariant B2BodyPlatform bodyA,
@@ -789,11 +791,12 @@ abstract class B2FrictionJointDefPlatform {
   void dispose();
 }
 
-abstract class B2GearJointPlatform {
+abstract class B2GearJointPlatform implements B2JointPlatform {
   B2JointPlatform getJoint1();
   B2JointPlatform getJoint2();
   void setRatio(double ratio);
   double getRatio();
+  void dump();
   B2JointType getType();
   B2BodyPlatform getBodyA();
   B2BodyPlatform getBodyB();
@@ -807,7 +810,7 @@ abstract class B2GearJointPlatform {
   void dispose();
 }
 
-abstract class B2GearJointDefPlatform {
+abstract class B2GearJointDefPlatform implements B2JointDefPlatform {
   B2GearJointDefPlatform();
 
   B2JointPlatform get_joint1();
@@ -930,7 +933,7 @@ abstract class B2Mat33Platform {
   void dispose();
 }
 
-abstract class B2MouseJointPlatform {
+abstract class B2MouseJointPlatform implements B2JointPlatform {
   void setTarget(covariant B2Vec2Platform target);
   B2Vec2Platform getTarget();
   void setMaxForce(double force);
@@ -939,6 +942,7 @@ abstract class B2MouseJointPlatform {
   double getStiffness();
   void setDamping(double damping);
   double getDamping();
+  void dump();
   B2JointType getType();
   B2BodyPlatform getBodyA();
   B2BodyPlatform getBodyB();
@@ -952,7 +956,7 @@ abstract class B2MouseJointPlatform {
   void dispose();
 }
 
-abstract class B2MouseJointDefPlatform {
+abstract class B2MouseJointDefPlatform implements B2JointDefPlatform {
   B2MouseJointDefPlatform();
 
   B2Vec2Platform get_target();
@@ -976,7 +980,7 @@ abstract class B2MouseJointDefPlatform {
   void dispose();
 }
 
-abstract class B2PolygonShapePlatform {
+abstract class B2PolygonShapePlatform implements B2ShapePlatform {
   B2PolygonShapePlatform();
 
   void set(covariant B2Vec2Platform vertices, int vertexCount);
@@ -1009,7 +1013,7 @@ abstract class B2PolygonShapePlatform {
   void dispose();
 }
 
-abstract class B2PrismaticJointPlatform {
+abstract class B2PrismaticJointPlatform implements B2JointPlatform {
   B2Vec2Platform getLocalAnchorA();
   B2Vec2Platform getLocalAnchorB();
   B2Vec2Platform getLocalAxisA();
@@ -1028,6 +1032,7 @@ abstract class B2PrismaticJointPlatform {
   void setMaxMotorForce(double force);
   double getMaxMotorForce();
   double getMotorForce(double inv_dt);
+  void dump();
   B2JointType getType();
   B2BodyPlatform getBodyA();
   B2BodyPlatform getBodyB();
@@ -1041,7 +1046,7 @@ abstract class B2PrismaticJointPlatform {
   void dispose();
 }
 
-abstract class B2PrismaticJointDefPlatform {
+abstract class B2PrismaticJointDefPlatform implements B2JointDefPlatform {
   B2PrismaticJointDefPlatform();
 
   void initialize(
@@ -1102,7 +1107,7 @@ abstract class B2ProfilePlatform {
   void dispose();
 }
 
-abstract class B2PulleyJointPlatform {
+abstract class B2PulleyJointPlatform implements B2JointPlatform {
   B2Vec2Platform getGroundAnchorA();
   B2Vec2Platform getGroundAnchorB();
   double getLengthA();
@@ -1110,6 +1115,7 @@ abstract class B2PulleyJointPlatform {
   double getRatio();
   double getCurrentLengthA();
   double getCurrentLengthB();
+  void dump();
   B2JointType getType();
   B2BodyPlatform getBodyA();
   B2BodyPlatform getBodyB();
@@ -1123,7 +1129,7 @@ abstract class B2PulleyJointPlatform {
   void dispose();
 }
 
-abstract class B2PulleyJointDefPlatform {
+abstract class B2PulleyJointDefPlatform implements B2JointDefPlatform {
   B2PulleyJointDefPlatform();
 
   void initialize(
@@ -1179,7 +1185,7 @@ abstract class B2RayCastOutputPlatform {
   void dispose();
 }
 
-abstract class B2RevoluteJointPlatform {
+abstract class B2RevoluteJointPlatform implements B2JointPlatform {
   B2Vec2Platform getLocalAnchorA();
   B2Vec2Platform getLocalAnchorB();
   double getReferenceAngle();
@@ -1197,6 +1203,7 @@ abstract class B2RevoluteJointPlatform {
   void setMaxMotorTorque(double torque);
   double getMaxMotorTorque();
   double getMotorTorque(double inv_dt);
+  void dump();
   B2JointType getType();
   B2BodyPlatform getBodyA();
   B2BodyPlatform getBodyB();
@@ -1210,7 +1217,7 @@ abstract class B2RevoluteJointPlatform {
   void dispose();
 }
 
-abstract class B2RevoluteJointDefPlatform {
+abstract class B2RevoluteJointDefPlatform implements B2JointDefPlatform {
   B2RevoluteJointDefPlatform();
 
   void initialize(covariant B2BodyPlatform bodyA,
@@ -1263,7 +1270,7 @@ abstract class B2RotPlatform {
   void dispose();
 }
 
-abstract class B2WheelJointPlatform {
+abstract class B2WheelJointPlatform implements B2JointPlatform {
   B2Vec2Platform getLocalAnchorA();
   B2Vec2Platform getLocalAnchorB();
   B2Vec2Platform getLocalAxisA();
@@ -1287,6 +1294,7 @@ abstract class B2WheelJointPlatform {
   double getStiffness();
   void setDamping(double damping);
   double getDamping();
+  void dump();
   B2JointType getType();
   B2BodyPlatform getBodyA();
   B2BodyPlatform getBodyB();
@@ -1300,7 +1308,7 @@ abstract class B2WheelJointPlatform {
   void dispose();
 }
 
-abstract class B2WheelJointDefPlatform {
+abstract class B2WheelJointDefPlatform implements B2JointDefPlatform {
   B2WheelJointDefPlatform();
 
   void initialize(
@@ -1343,7 +1351,7 @@ abstract class B2WheelJointDefPlatform {
   void dispose();
 }
 
-abstract class B2MotorJointPlatform {
+abstract class B2MotorJointPlatform implements B2JointPlatform {
   void setLinearOffset(covariant B2Vec2Platform linearOffset);
   B2Vec2Platform getLinearOffset();
   void setAngularOffset(double angularOffset);
@@ -1354,6 +1362,7 @@ abstract class B2MotorJointPlatform {
   double getMaxTorque();
   void setCorrectionFactor(double factor);
   double getCorrectionFactor();
+  void dump();
   B2JointType getType();
   B2BodyPlatform getBodyA();
   B2BodyPlatform getBodyB();
@@ -1367,7 +1376,7 @@ abstract class B2MotorJointPlatform {
   void dispose();
 }
 
-abstract class B2MotorJointDefPlatform {
+abstract class B2MotorJointDefPlatform implements B2JointDefPlatform {
   B2MotorJointDefPlatform();
 
   void initialize(

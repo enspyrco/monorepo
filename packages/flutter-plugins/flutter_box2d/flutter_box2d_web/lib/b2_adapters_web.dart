@@ -943,6 +943,7 @@ class B2DistanceJointJSAdapter implements B2DistanceJointPlatform {
   double getStiffness() => _impl.getStiffness().toDouble();
   void setDamping(double damping) => _impl.setDamping(damping);
   double getDamping() => _impl.getDamping().toDouble();
+  void dump() => _impl.dump();
   B2JointType getType() => _impl.getType();
   B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
   B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
@@ -1055,6 +1056,7 @@ class B2FrictionJointJSAdapter implements B2FrictionJointPlatform {
   double getMaxForce() => _impl.getMaxForce().toDouble();
   void setMaxTorque(double torque) => _impl.setMaxTorque(torque);
   double getMaxTorque() => _impl.getMaxTorque().toDouble();
+  void dump() => _impl.dump();
   B2JointType getType() => _impl.getType();
   B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
   B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
@@ -1117,6 +1119,7 @@ class B2GearJointJSAdapter implements B2GearJointPlatform {
   B2JointJSAdapter getJoint2() => B2JointJSAdapter._(_impl.getJoint2());
   void setRatio(double ratio) => _impl.setRatio(ratio);
   double getRatio() => _impl.getRatio().toDouble();
+  void dump() => _impl.dump();
   B2JointType getType() => _impl.getType();
   B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
   B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
@@ -1310,6 +1313,7 @@ class B2MouseJointJSAdapter implements B2MouseJointPlatform {
   double getStiffness() => _impl.getStiffness().toDouble();
   void setDamping(double damping) => _impl.setDamping(damping);
   double getDamping() => _impl.getDamping().toDouble();
+  void dump() => _impl.dump();
   B2JointType getType() => _impl.getType();
   B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
   B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
@@ -1424,6 +1428,7 @@ class B2PrismaticJointJSAdapter implements B2PrismaticJointPlatform {
   void setMaxMotorForce(double force) => _impl.setMaxMotorForce(force);
   double getMaxMotorForce() => _impl.getMaxMotorForce().toDouble();
   double getMotorForce(double inv_dt) => _impl.getMotorForce(inv_dt).toDouble();
+  void dump() => _impl.dump();
   B2JointType getType() => _impl.getType();
   B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
   B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
@@ -1527,6 +1532,7 @@ class B2PulleyJointJSAdapter implements B2PulleyJointPlatform {
   double getRatio() => _impl.getRatio().toDouble();
   double getCurrentLengthA() => _impl.getCurrentLengthA().toDouble();
   double getCurrentLengthB() => _impl.getCurrentLengthB().toDouble();
+  void dump() => _impl.dump();
   B2JointType getType() => _impl.getType();
   B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
   B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
@@ -1648,6 +1654,7 @@ class B2RevoluteJointJSAdapter implements B2RevoluteJointPlatform {
   double getMaxMotorTorque() => _impl.getMaxMotorTorque().toDouble();
   double getMotorTorque(double inv_dt) =>
       _impl.getMotorTorque(inv_dt).toDouble();
+  void dump() => _impl.dump();
   B2JointType getType() => _impl.getType();
   B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
   B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
@@ -1763,6 +1770,7 @@ class B2WheelJointJSAdapter implements B2WheelJointPlatform {
   double getStiffness() => _impl.getStiffness().toDouble();
   void setDamping(double damping) => _impl.setDamping(damping);
   double getDamping() => _impl.getDamping().toDouble();
+  void dump() => _impl.dump();
   B2JointType getType() => _impl.getType();
   B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
   B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
@@ -1848,6 +1856,7 @@ class B2MotorJointJSAdapter implements B2MotorJointPlatform {
   double getMaxTorque() => _impl.getMaxTorque().toDouble();
   void setCorrectionFactor(double factor) => _impl.setCorrectionFactor(factor);
   double getCorrectionFactor() => _impl.getCorrectionFactor().toDouble();
+  void dump() => _impl.dump();
   B2JointType getType() => _impl.getType();
   B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
   B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
@@ -2674,6 +2683,7 @@ class B2DistanceJointJSImpl {
   external double getStiffness();
   external void setDamping(num damping);
   external double getDamping();
+  external void dump();
   external B2JointType getType();
   external B2BodyJSImpl getBodyA();
   external B2BodyJSImpl getBodyB();
@@ -2756,6 +2766,7 @@ class B2FrictionJointJSImpl {
   external double getMaxForce();
   external void setMaxTorque(num torque);
   external double getMaxTorque();
+  external void dump();
   external B2JointType getType();
   external B2BodyJSImpl getBodyA();
   external B2BodyJSImpl getBodyB();
@@ -2802,6 +2813,7 @@ class B2GearJointJSImpl {
   external B2JointJSImpl getJoint2();
   external void setRatio(num ratio);
   external double getRatio();
+  external void dump();
   external B2JointType getType();
   external B2BodyJSImpl getBodyA();
   external B2BodyJSImpl getBodyB();
@@ -2948,6 +2960,7 @@ class B2MouseJointJSImpl {
   external double getStiffness();
   external void setDamping(num damping);
   external double getDamping();
+  external void dump();
   external B2JointType getType();
   external B2BodyJSImpl getBodyA();
   external B2BodyJSImpl getBodyB();
@@ -3036,6 +3049,7 @@ class B2PrismaticJointJSImpl {
   external void setMaxMotorForce(num force);
   external double getMaxMotorForce();
   external double getMotorForce(num inv_dt);
+  external void dump();
   external B2JointType getType();
   external B2BodyJSImpl getBodyA();
   external B2BodyJSImpl getBodyB();
@@ -3118,6 +3132,7 @@ class B2PulleyJointJSImpl {
   external double getRatio();
   external double getCurrentLengthA();
   external double getCurrentLengthB();
+  external void dump();
   external B2JointType getType();
   external B2BodyJSImpl getBodyA();
   external B2BodyJSImpl getBodyB();
@@ -3209,6 +3224,7 @@ class B2RevoluteJointJSImpl {
   external void setMaxMotorTorque(num torque);
   external double getMaxMotorTorque();
   external double getMotorTorque(num inv_dt);
+  external void dump();
   external B2JointType getType();
   external B2BodyJSImpl getBodyA();
   external B2BodyJSImpl getBodyB();
@@ -3301,6 +3317,7 @@ class B2WheelJointJSImpl {
   external double getStiffness();
   external void setDamping(num damping);
   external double getDamping();
+  external void dump();
   external B2JointType getType();
   external B2BodyJSImpl getBodyA();
   external B2BodyJSImpl getBodyB();
@@ -3367,6 +3384,7 @@ class B2MotorJointJSImpl {
   external double getMaxTorque();
   external void setCorrectionFactor(num factor);
   external double getCorrectionFactor();
+  external void dump();
   external B2JointType getType();
   external B2BodyJSImpl getBodyA();
   external B2BodyJSImpl getBodyB();

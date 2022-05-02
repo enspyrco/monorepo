@@ -513,6 +513,7 @@ interface b2DistanceJoint {
   float GetStiffness();
   void SetDamping(float damping);
   float GetDamping();
+  void Dump();
 };
 
 b2DistanceJoint implements b2Joint;
@@ -565,6 +566,7 @@ interface b2FrictionJoint {
   float GetMaxForce();
   void SetMaxTorque(float torque);
   float GetMaxTorque();
+  void Dump();
 };
 
 b2FrictionJoint implements b2Joint;
@@ -585,6 +587,7 @@ interface b2GearJoint {
   b2Joint GetJoint2();
   void SetRatio(float ratio);
   float GetRatio();
+  void Dump();
 };
 
 b2GearJoint implements b2Joint;
@@ -677,6 +680,7 @@ interface b2MouseJoint {
   float GetStiffness();
   void SetDamping(float damping);
   float GetDamping();
+  void Dump();
 };
 
 b2MouseJoint implements b2Joint;
@@ -726,6 +730,7 @@ interface b2PrismaticJoint {
   void SetMaxMotorForce(float force);
   float GetMaxMotorForce();
   float GetMotorForce(float inv_dt);
+  void Dump();
 };
 
 b2PrismaticJoint implements b2Joint;
@@ -766,6 +771,7 @@ interface b2PulleyJoint {
   float GetRatio();
   float GetCurrentLengthA();
   float GetCurrentLengthB();
+  void Dump();
 };
 
 b2PulleyJoint implements b2Joint;
@@ -815,6 +821,7 @@ interface b2RevoluteJoint {
   void SetMaxMotorTorque(float torque);
   float GetMaxMotorTorque();
   float GetMotorTorque(float inv_dt);
+  void Dump();
 };
 
 b2RevoluteJoint implements b2Joint;
@@ -871,6 +878,7 @@ interface b2WheelJoint {
   float GetStiffness();
   void SetDamping(float damping);
   float GetDamping();
+  void Dump();
 };
 
 b2WheelJoint implements b2Joint;
@@ -904,7 +912,7 @@ interface b2MotorJoint {
   float GetMaxTorque();
   void SetCorrectionFactor(float factor);
   float GetCorrectionFactor();
-
+  void Dump();
 };
 
 b2MotorJoint implements b2Joint;
