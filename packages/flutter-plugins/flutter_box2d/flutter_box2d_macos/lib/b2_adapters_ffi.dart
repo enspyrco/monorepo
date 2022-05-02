@@ -2476,7 +2476,8 @@ class B2AABBFfiAdapter implements B2AABBPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2CircleShapeFfiAdapter implements B2CircleShapePlatform {
+class B2CircleShapeFfiAdapter
+    implements B2CircleShapePlatform, B2ShapeFfiAdapter {
   final Pointer<Void> _self;
   B2CircleShapeFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -2596,7 +2597,7 @@ class B2CircleShapeFfiAdapter implements B2CircleShapePlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2EdgeShapeFfiAdapter implements B2EdgeShapePlatform {
+class B2EdgeShapeFfiAdapter implements B2EdgeShapePlatform, B2ShapeFfiAdapter {
   final Pointer<Void> _self;
   B2EdgeShapeFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -2829,7 +2830,7 @@ class B2JointUserDataFfiAdapter implements B2JointUserDataPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2WeldJointFfiAdapter implements B2WeldJointPlatform {
+class B2WeldJointFfiAdapter implements B2WeldJointPlatform, B2JointFfiAdapter {
   final Pointer<Void> _self;
   B2WeldJointFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -2971,7 +2972,8 @@ class B2WeldJointFfiAdapter implements B2WeldJointPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2WeldJointDefFfiAdapter implements B2WeldJointDefPlatform {
+class B2WeldJointDefFfiAdapter
+    implements B2WeldJointDefPlatform, B2JointDefFfiAdapter {
   final Pointer<Void> _self;
   B2WeldJointDefFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -3149,7 +3151,8 @@ class B2WeldJointDefFfiAdapter implements B2WeldJointDefPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2ChainShapeFfiAdapter implements B2ChainShapePlatform {
+class B2ChainShapeFfiAdapter
+    implements B2ChainShapePlatform, B2ShapeFfiAdapter {
   final Pointer<Void> _self;
   B2ChainShapeFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -3781,7 +3784,8 @@ class JSDestructionListenerFfiAdapter implements JSDestructionListenerPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2DistanceJointFfiAdapter implements B2DistanceJointPlatform {
+class B2DistanceJointFfiAdapter
+    implements B2DistanceJointPlatform, B2JointFfiAdapter {
   final Pointer<Void> _self;
   B2DistanceJointFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -3878,6 +3882,13 @@ class B2DistanceJointFfiAdapter implements B2DistanceJointPlatform {
   @override
   double getDamping() => _getDamping(_self);
 
+  static final _dump = _symbols
+      .lookup<NativeFunction<Void Function(Pointer<Void>)>>(
+          'dart_bind_b2DistanceJoint_Dump_0')
+      .asFunction<void Function(Pointer<Void>)>();
+  @override
+  void dump() => _dump(_self);
+
   static final _getType = _symbols
       .lookup<NativeFunction<Int32 Function(Pointer<Void>)>>(
           'dart_bind_b2DistanceJoint_GetType_0')
@@ -3958,7 +3969,8 @@ class B2DistanceJointFfiAdapter implements B2DistanceJointPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2DistanceJointDefFfiAdapter implements B2DistanceJointDefPlatform {
+class B2DistanceJointDefFfiAdapter
+    implements B2DistanceJointDefPlatform, B2JointDefFfiAdapter {
   final Pointer<Void> _self;
   B2DistanceJointDefFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -4309,7 +4321,8 @@ class JSDrawFfiAdapter implements JSDrawPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2FrictionJointFfiAdapter implements B2FrictionJointPlatform {
+class B2FrictionJointFfiAdapter
+    implements B2FrictionJointPlatform, B2JointFfiAdapter {
   final Pointer<Void> _self;
   B2FrictionJointFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -4356,6 +4369,13 @@ class B2FrictionJointFfiAdapter implements B2FrictionJointPlatform {
       .asFunction<double Function(Pointer<Void>)>();
   @override
   double getMaxTorque() => _getMaxTorque(_self);
+
+  static final _dump = _symbols
+      .lookup<NativeFunction<Void Function(Pointer<Void>)>>(
+          'dart_bind_b2FrictionJoint_Dump_0')
+      .asFunction<void Function(Pointer<Void>)>();
+  @override
+  void dump() => _dump(_self);
 
   static final _getType = _symbols
       .lookup<NativeFunction<Int32 Function(Pointer<Void>)>>(
@@ -4437,7 +4457,8 @@ class B2FrictionJointFfiAdapter implements B2FrictionJointPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2FrictionJointDefFfiAdapter implements B2FrictionJointDefPlatform {
+class B2FrictionJointDefFfiAdapter
+    implements B2FrictionJointDefPlatform, B2JointDefFfiAdapter {
   final Pointer<Void> _self;
   B2FrictionJointDefFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -4601,7 +4622,7 @@ class B2FrictionJointDefFfiAdapter implements B2FrictionJointDefPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2GearJointFfiAdapter implements B2GearJointPlatform {
+class B2GearJointFfiAdapter implements B2GearJointPlatform, B2JointFfiAdapter {
   final Pointer<Void> _self;
   B2GearJointFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -4632,6 +4653,13 @@ class B2GearJointFfiAdapter implements B2GearJointPlatform {
       .asFunction<double Function(Pointer<Void>)>();
   @override
   double getRatio() => _getRatio(_self);
+
+  static final _dump = _symbols
+      .lookup<NativeFunction<Void Function(Pointer<Void>)>>(
+          'dart_bind_b2GearJoint_Dump_0')
+      .asFunction<void Function(Pointer<Void>)>();
+  @override
+  void dump() => _dump(_self);
 
   static final _getType = _symbols
       .lookup<NativeFunction<Int32 Function(Pointer<Void>)>>(
@@ -4713,7 +4741,8 @@ class B2GearJointFfiAdapter implements B2GearJointPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2GearJointDefFfiAdapter implements B2GearJointDefPlatform {
+class B2GearJointDefFfiAdapter
+    implements B2GearJointDefPlatform, B2JointDefFfiAdapter {
   final Pointer<Void> _self;
   B2GearJointDefFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -5403,7 +5432,8 @@ class B2Mat33FfiAdapter implements B2Mat33Platform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2MouseJointFfiAdapter implements B2MouseJointPlatform {
+class B2MouseJointFfiAdapter
+    implements B2MouseJointPlatform, B2JointFfiAdapter {
   final Pointer<Void> _self;
   B2MouseJointFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -5462,6 +5492,13 @@ class B2MouseJointFfiAdapter implements B2MouseJointPlatform {
       .asFunction<double Function(Pointer<Void>)>();
   @override
   double getDamping() => _getDamping(_self);
+
+  static final _dump = _symbols
+      .lookup<NativeFunction<Void Function(Pointer<Void>)>>(
+          'dart_bind_b2MouseJoint_Dump_0')
+      .asFunction<void Function(Pointer<Void>)>();
+  @override
+  void dump() => _dump(_self);
 
   static final _getType = _symbols
       .lookup<NativeFunction<Int32 Function(Pointer<Void>)>>(
@@ -5543,7 +5580,8 @@ class B2MouseJointFfiAdapter implements B2MouseJointPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2MouseJointDefFfiAdapter implements B2MouseJointDefPlatform {
+class B2MouseJointDefFfiAdapter
+    implements B2MouseJointDefPlatform, B2JointDefFfiAdapter {
   final Pointer<Void> _self;
   B2MouseJointDefFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -5690,7 +5728,8 @@ class B2MouseJointDefFfiAdapter implements B2MouseJointDefPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2PolygonShapeFfiAdapter implements B2PolygonShapePlatform {
+class B2PolygonShapeFfiAdapter
+    implements B2PolygonShapePlatform, B2ShapeFfiAdapter {
   final Pointer<Void> _self;
   B2PolygonShapeFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -5891,7 +5930,8 @@ class B2PolygonShapeFfiAdapter implements B2PolygonShapePlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2PrismaticJointFfiAdapter implements B2PrismaticJointPlatform {
+class B2PrismaticJointFfiAdapter
+    implements B2PrismaticJointPlatform, B2JointFfiAdapter {
   final Pointer<Void> _self;
   B2PrismaticJointFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -6023,6 +6063,13 @@ class B2PrismaticJointFfiAdapter implements B2PrismaticJointPlatform {
   @override
   double getMotorForce(double inv_dt) => _getMotorForce(_self, inv_dt);
 
+  static final _dump = _symbols
+      .lookup<NativeFunction<Void Function(Pointer<Void>)>>(
+          'dart_bind_b2PrismaticJoint_Dump_0')
+      .asFunction<void Function(Pointer<Void>)>();
+  @override
+  void dump() => _dump(_self);
+
   static final _getType = _symbols
       .lookup<NativeFunction<Int32 Function(Pointer<Void>)>>(
           'dart_bind_b2PrismaticJoint_GetType_0')
@@ -6103,7 +6150,8 @@ class B2PrismaticJointFfiAdapter implements B2PrismaticJointPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2PrismaticJointDefFfiAdapter implements B2PrismaticJointDefPlatform {
+class B2PrismaticJointDefFfiAdapter
+    implements B2PrismaticJointDefPlatform, B2JointDefFfiAdapter {
   final Pointer<Void> _self;
   B2PrismaticJointDefFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -6481,7 +6529,8 @@ class B2ProfileFfiAdapter implements B2ProfilePlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2PulleyJointFfiAdapter implements B2PulleyJointPlatform {
+class B2PulleyJointFfiAdapter
+    implements B2PulleyJointPlatform, B2JointFfiAdapter {
   final Pointer<Void> _self;
   B2PulleyJointFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -6535,6 +6584,13 @@ class B2PulleyJointFfiAdapter implements B2PulleyJointPlatform {
       .asFunction<double Function(Pointer<Void>)>();
   @override
   double getCurrentLengthB() => _getCurrentLengthB(_self);
+
+  static final _dump = _symbols
+      .lookup<NativeFunction<Void Function(Pointer<Void>)>>(
+          'dart_bind_b2PulleyJoint_Dump_0')
+      .asFunction<void Function(Pointer<Void>)>();
+  @override
+  void dump() => _dump(_self);
 
   static final _getType = _symbols
       .lookup<NativeFunction<Int32 Function(Pointer<Void>)>>(
@@ -6616,7 +6672,8 @@ class B2PulleyJointFfiAdapter implements B2PulleyJointPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2PulleyJointDefFfiAdapter implements B2PulleyJointDefPlatform {
+class B2PulleyJointDefFfiAdapter
+    implements B2PulleyJointDefPlatform, B2JointDefFfiAdapter {
   final Pointer<Void> _self;
   B2PulleyJointDefFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -6941,7 +6998,8 @@ class B2RayCastOutputFfiAdapter implements B2RayCastOutputPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2RevoluteJointFfiAdapter implements B2RevoluteJointPlatform {
+class B2RevoluteJointFfiAdapter
+    implements B2RevoluteJointPlatform, B2JointFfiAdapter {
   final Pointer<Void> _self;
   B2RevoluteJointFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -7066,6 +7124,13 @@ class B2RevoluteJointFfiAdapter implements B2RevoluteJointPlatform {
   @override
   double getMotorTorque(double inv_dt) => _getMotorTorque(_self, inv_dt);
 
+  static final _dump = _symbols
+      .lookup<NativeFunction<Void Function(Pointer<Void>)>>(
+          'dart_bind_b2RevoluteJoint_Dump_0')
+      .asFunction<void Function(Pointer<Void>)>();
+  @override
+  void dump() => _dump(_self);
+
   static final _getType = _symbols
       .lookup<NativeFunction<Int32 Function(Pointer<Void>)>>(
           'dart_bind_b2RevoluteJoint_GetType_0')
@@ -7146,7 +7211,8 @@ class B2RevoluteJointFfiAdapter implements B2RevoluteJointPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2RevoluteJointDefFfiAdapter implements B2RevoluteJointDefPlatform {
+class B2RevoluteJointDefFfiAdapter
+    implements B2RevoluteJointDefPlatform, B2JointDefFfiAdapter {
   final Pointer<Void> _self;
   B2RevoluteJointDefFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -7469,7 +7535,8 @@ class B2RotFfiAdapter implements B2RotPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2WheelJointFfiAdapter implements B2WheelJointPlatform {
+class B2WheelJointFfiAdapter
+    implements B2WheelJointPlatform, B2JointFfiAdapter {
   final Pointer<Void> _self;
   B2WheelJointFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -7636,6 +7703,13 @@ class B2WheelJointFfiAdapter implements B2WheelJointPlatform {
   @override
   double getDamping() => _getDamping(_self);
 
+  static final _dump = _symbols
+      .lookup<NativeFunction<Void Function(Pointer<Void>)>>(
+          'dart_bind_b2WheelJoint_Dump_0')
+      .asFunction<void Function(Pointer<Void>)>();
+  @override
+  void dump() => _dump(_self);
+
   static final _getType = _symbols
       .lookup<NativeFunction<Int32 Function(Pointer<Void>)>>(
           'dart_bind_b2WheelJoint_GetType_0')
@@ -7716,7 +7790,8 @@ class B2WheelJointFfiAdapter implements B2WheelJointPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2WheelJointDefFfiAdapter implements B2WheelJointDefPlatform {
+class B2WheelJointDefFfiAdapter
+    implements B2WheelJointDefPlatform, B2JointDefFfiAdapter {
   final Pointer<Void> _self;
   B2WheelJointDefFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -7984,7 +8059,8 @@ class B2WheelJointDefFfiAdapter implements B2WheelJointDefPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2MotorJointFfiAdapter implements B2MotorJointPlatform {
+class B2MotorJointFfiAdapter
+    implements B2MotorJointPlatform, B2JointFfiAdapter {
   final Pointer<Void> _self;
   B2MotorJointFfiAdapter._(Pointer<Void> self) : _self = self;
 
@@ -8061,6 +8137,13 @@ class B2MotorJointFfiAdapter implements B2MotorJointPlatform {
       .asFunction<double Function(Pointer<Void>)>();
   @override
   double getCorrectionFactor() => _getCorrectionFactor(_self);
+
+  static final _dump = _symbols
+      .lookup<NativeFunction<Void Function(Pointer<Void>)>>(
+          'dart_bind_b2MotorJoint_Dump_0')
+      .asFunction<void Function(Pointer<Void>)>();
+  @override
+  void dump() => _dump(_self);
 
   static final _getType = _symbols
       .lookup<NativeFunction<Int32 Function(Pointer<Void>)>>(
@@ -8142,7 +8225,8 @@ class B2MotorJointFfiAdapter implements B2MotorJointPlatform {
   void dispose() => ___destroy__(_self);
 }
 
-class B2MotorJointDefFfiAdapter implements B2MotorJointDefPlatform {
+class B2MotorJointDefFfiAdapter
+    implements B2MotorJointDefPlatform, B2JointDefFfiAdapter {
   final Pointer<Void> _self;
   B2MotorJointDefFfiAdapter._(Pointer<Void> self) : _self = self;
 

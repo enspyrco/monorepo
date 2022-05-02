@@ -1,15 +1,20 @@
+from utils.utils import upper_first
+
 # ClassSet holds a list of strings for each of the classes we are constructing for output.
 class ClassSet:
-  def __init__(self, name, hasCtor):
-    class_name = name[0].upper() + name[1:]
-    # maybe_delegate = ('\n\tfinal ' + class_name + 'Platform _delegate;\n') if hasCtor else ''
+  def __init__(self, name, interface, maybe_implements):
+    class_name = upper_first(name)
+    delegate_lines = '\n\tfinal ' + class_name + 'Platform _delegate;\n\n\t'+class_name+'._('+class_name + 'Platform delegate) : _delegate = delegate;\n'
+    maybe_implements_dec = '' if maybe_implements == '' else ' implements ' + maybe_implements + ' '
+    maybe_implements_del = '' if maybe_implements == '' else ' implements ' + maybe_implements + 'Platform '
+    maybe_implements_ffi = '' if maybe_implements == '' else ', ' + maybe_implements + 'FfiAdapter '
     self.glue_c = ['\n// ' + name + '\n']
     self.itf = []
     self.itf_mac = []
     self.itf_web = []
-    self.decs = ['class ' + class_name + ' {\n\n\tfinal ' + class_name + 'Platform _delegate;\n\n\t'+class_name+'._('+class_name + 'Platform delegate) : _delegate = delegate;\n']
-    self.dels = ['abstract class ' + class_name + 'Platform {\n']
-    self.ffi = ['class ' + class_name + 'FfiAdapter implements ' + class_name + 'Platform {\n\n\tfinal Pointer<Void> _self;\n\t' + class_name + 'FfiAdapter._(Pointer<Void> self) : _self = self;\n']
+    self.decs = ['class ' + class_name + maybe_implements_dec + ' {\n' + delegate_lines]
+    self.dels = ['abstract class ' + class_name + 'Platform' + maybe_implements_del + '{\n']
+    self.ffi = ['class ' + class_name + 'FfiAdapter implements ' + class_name + 'Platform'+ maybe_implements_ffi + ' {\n\n\tfinal Pointer<Void> _self;\n\t' + class_name + 'FfiAdapter._(Pointer<Void> self) : _self = self;\n']
     self.jsadapter = ['class ' + class_name + 'JSAdapter implements ' + class_name + 'Platform {\n']
     self.jsadapter  += ['\n\t'+class_name+'JSAdapter._('+ class_name + 'JSImpl impl) : _impl = impl;\n']
     self.jsadapter  += ['\n\tfinal '+ class_name + 'JSImpl _impl;\n']

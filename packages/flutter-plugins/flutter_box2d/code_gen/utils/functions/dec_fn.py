@@ -34,10 +34,9 @@ class DecFunction:
       maybe_arg_count = ('%s' % self.num_args) if self.overload else ''
       maybe_ret_type = '' if self.names.attr_type == 'set' else type_to_dec(self.interfaces, self.enums, self.return_type)+' '
       maybe_params = '' if self.names.attr_type == 'get' else '(%s)' % self.fn_args
-      func_str = '\n\t%s%s%s%s%s => ' % (maybe_comment, maybe_ret_type, dartify_func(self.names, Context.FN_NAME), maybe_arg_count, maybe_params)
+      func_str = '\n\t%s%s%s%s%s' % (maybe_comment, maybe_ret_type, dartify_func(self.names, Context.FN_NAME), maybe_arg_count, maybe_params)
       func_call = '_delegate.%s%s(%s)' % (dartify_func(self.names, Context.CALL_NAME), maybe_arg_count, self.call_args)
-      func_call = maybe_add_wrap(self.interfaces, self.return_type, func_call)
-      return func_str + func_call + ';'
+      return func_str + ' => ' + maybe_add_wrap(self.interfaces, self.return_type, func_call) + ';'
   
   def setupArgs(self, sig):
     self.ctr_arg_types = list(map(lambda s: type_to_dec(self.interfaces, self.enums, s, False, Context.CTR_ARG), sig))

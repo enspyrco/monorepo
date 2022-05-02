@@ -525,7 +525,7 @@ class B2AABB {
 	void dispose() => _delegate.dispose();
 }
 
-class B2CircleShape {
+class B2CircleShape implements B2Shape  {
 
 	final B2CircleShapePlatform _delegate;
 
@@ -548,7 +548,7 @@ class B2CircleShape {
 	void dispose() => _delegate.dispose();
 }
 
-class B2EdgeShape {
+class B2EdgeShape implements B2Shape  {
 
 	final B2EdgeShapePlatform _delegate;
 
@@ -592,7 +592,7 @@ class B2JointUserData {
 	void dispose() => _delegate.dispose();
 }
 
-class B2WeldJoint {
+class B2WeldJoint implements B2Joint  {
 
 	final B2WeldJointPlatform _delegate;
 
@@ -619,7 +619,7 @@ class B2WeldJoint {
 	void dispose() => _delegate.dispose();
 }
 
-class B2WeldJointDef {
+class B2WeldJointDef implements B2JointDef  {
 
 	final B2WeldJointDefPlatform _delegate;
 
@@ -651,7 +651,7 @@ class B2WeldJointDef {
 	void dispose() => _delegate.dispose();
 }
 
-class B2ChainShape {
+class B2ChainShape implements B2Shape  {
 
 	final B2ChainShapePlatform _delegate;
 
@@ -820,7 +820,7 @@ class JSDestructionListener {
 	void dispose() => _delegate.dispose();
 }
 
-class B2DistanceJoint {
+class B2DistanceJoint implements B2Joint  {
 
 	final B2DistanceJointPlatform _delegate;
 
@@ -839,6 +839,7 @@ class B2DistanceJoint {
 	double getStiffness() => _delegate.getStiffness();
 	void setDamping(double damping) => _delegate.setDamping(damping);
 	double getDamping() => _delegate.getDamping();
+	void dump() => _delegate.dump();
 	B2JointType getType() => _delegate.getType();
 	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
 	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
@@ -852,7 +853,7 @@ class B2DistanceJoint {
 	void dispose() => _delegate.dispose();
 }
 
-class B2DistanceJointDef {
+class B2DistanceJointDef implements B2JointDef  {
 
 	final B2DistanceJointDefPlatform _delegate;
 
@@ -919,7 +920,7 @@ class JSDraw {
 	void dispose() => _delegate.dispose();
 }
 
-class B2FrictionJoint {
+class B2FrictionJoint implements B2Joint  {
 
 	final B2FrictionJointPlatform _delegate;
 
@@ -931,6 +932,7 @@ class B2FrictionJoint {
 	double getMaxForce() => _delegate.getMaxForce();
 	void setMaxTorque(double torque) => _delegate.setMaxTorque(torque);
 	double getMaxTorque() => _delegate.getMaxTorque();
+	void dump() => _delegate.dump();
 	B2JointType getType() => _delegate.getType();
 	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
 	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
@@ -944,7 +946,7 @@ class B2FrictionJoint {
 	void dispose() => _delegate.dispose();
 }
 
-class B2FrictionJointDef {
+class B2FrictionJointDef implements B2JointDef  {
 
 	final B2FrictionJointDefPlatform _delegate;
 
@@ -974,7 +976,7 @@ class B2FrictionJointDef {
 	void dispose() => _delegate.dispose();
 }
 
-class B2GearJoint {
+class B2GearJoint implements B2Joint  {
 
 	final B2GearJointPlatform _delegate;
 
@@ -984,6 +986,7 @@ class B2GearJoint {
 	B2Joint getJoint2() => B2Joint._(_delegate.getJoint2());
 	void setRatio(double ratio) => _delegate.setRatio(ratio);
 	double getRatio() => _delegate.getRatio();
+	void dump() => _delegate.dump();
 	B2JointType getType() => _delegate.getType();
 	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
 	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
@@ -997,7 +1000,7 @@ class B2GearJoint {
 	void dispose() => _delegate.dispose();
 }
 
-class B2GearJointDef {
+class B2GearJointDef implements B2JointDef  {
 
 	final B2GearJointDefPlatform _delegate;
 
@@ -1149,7 +1152,7 @@ class B2Mat33 {
 	void dispose() => _delegate.dispose();
 }
 
-class B2MouseJoint {
+class B2MouseJoint implements B2Joint  {
 
 	final B2MouseJointPlatform _delegate;
 
@@ -1163,6 +1166,7 @@ class B2MouseJoint {
 	double getStiffness() => _delegate.getStiffness();
 	void setDamping(double damping) => _delegate.setDamping(damping);
 	double getDamping() => _delegate.getDamping();
+	void dump() => _delegate.dump();
 	B2JointType getType() => _delegate.getType();
 	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
 	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
@@ -1176,7 +1180,7 @@ class B2MouseJoint {
 	void dispose() => _delegate.dispose();
 }
 
-class B2MouseJointDef {
+class B2MouseJointDef implements B2JointDef  {
 
 	final B2MouseJointDefPlatform _delegate;
 
@@ -1205,7 +1209,7 @@ class B2MouseJointDef {
 	void dispose() => _delegate.dispose();
 }
 
-class B2PolygonShape {
+class B2PolygonShape implements B2Shape  {
 
 	final B2PolygonShapePlatform _delegate;
 
@@ -1237,7 +1241,7 @@ class B2PolygonShape {
 	void dispose() => _delegate.dispose();
 }
 
-class B2PrismaticJoint {
+class B2PrismaticJoint implements B2Joint  {
 
 	final B2PrismaticJointPlatform _delegate;
 
@@ -1261,6 +1265,7 @@ class B2PrismaticJoint {
 	void setMaxMotorForce(double force) => _delegate.setMaxMotorForce(force);
 	double getMaxMotorForce() => _delegate.getMaxMotorForce();
 	double getMotorForce(double inv_dt) => _delegate.getMotorForce(inv_dt);
+	void dump() => _delegate.dump();
 	B2JointType getType() => _delegate.getType();
 	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
 	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
@@ -1274,7 +1279,7 @@ class B2PrismaticJoint {
 	void dispose() => _delegate.dispose();
 }
 
-class B2PrismaticJointDef {
+class B2PrismaticJointDef implements B2JointDef  {
 
 	final B2PrismaticJointDefPlatform _delegate;
 
@@ -1341,7 +1346,7 @@ class B2Profile {
 	void dispose() => _delegate.dispose();
 }
 
-class B2PulleyJoint {
+class B2PulleyJoint implements B2Joint  {
 
 	final B2PulleyJointPlatform _delegate;
 
@@ -1354,6 +1359,7 @@ class B2PulleyJoint {
 	double getRatio() => _delegate.getRatio();
 	double getCurrentLengthA() => _delegate.getCurrentLengthA();
 	double getCurrentLengthB() => _delegate.getCurrentLengthB();
+	void dump() => _delegate.dump();
 	B2JointType getType() => _delegate.getType();
 	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
 	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
@@ -1367,7 +1373,7 @@ class B2PulleyJoint {
 	void dispose() => _delegate.dispose();
 }
 
-class B2PulleyJointDef {
+class B2PulleyJointDef implements B2JointDef  {
 
 	final B2PulleyJointDefPlatform _delegate;
 
@@ -1431,7 +1437,7 @@ class B2RayCastOutput {
 	void dispose() => _delegate.dispose();
 }
 
-class B2RevoluteJoint {
+class B2RevoluteJoint implements B2Joint  {
 
 	final B2RevoluteJointPlatform _delegate;
 
@@ -1454,6 +1460,7 @@ class B2RevoluteJoint {
 	void setMaxMotorTorque(double torque) => _delegate.setMaxMotorTorque(torque);
 	double getMaxMotorTorque() => _delegate.getMaxMotorTorque();
 	double getMotorTorque(double inv_dt) => _delegate.getMotorTorque(inv_dt);
+	void dump() => _delegate.dump();
 	B2JointType getType() => _delegate.getType();
 	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
 	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
@@ -1467,7 +1474,7 @@ class B2RevoluteJoint {
 	void dispose() => _delegate.dispose();
 }
 
-class B2RevoluteJointDef {
+class B2RevoluteJointDef implements B2JointDef  {
 
 	final B2RevoluteJointDefPlatform _delegate;
 
@@ -1529,7 +1536,7 @@ class B2Rot {
 	void dispose() => _delegate.dispose();
 }
 
-class B2WheelJoint {
+class B2WheelJoint implements B2Joint  {
 
 	final B2WheelJointPlatform _delegate;
 
@@ -1558,6 +1565,7 @@ class B2WheelJoint {
 	double getStiffness() => _delegate.getStiffness();
 	void setDamping(double damping) => _delegate.setDamping(damping);
 	double getDamping() => _delegate.getDamping();
+	void dump() => _delegate.dump();
 	B2JointType getType() => _delegate.getType();
 	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
 	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
@@ -1571,7 +1579,7 @@ class B2WheelJoint {
 	void dispose() => _delegate.dispose();
 }
 
-class B2WheelJointDef {
+class B2WheelJointDef implements B2JointDef  {
 
 	final B2WheelJointDefPlatform _delegate;
 
@@ -1615,7 +1623,7 @@ class B2WheelJointDef {
 	void dispose() => _delegate.dispose();
 }
 
-class B2MotorJoint {
+class B2MotorJoint implements B2Joint  {
 
 	final B2MotorJointPlatform _delegate;
 
@@ -1631,6 +1639,7 @@ class B2MotorJoint {
 	double getMaxTorque() => _delegate.getMaxTorque();
 	void setCorrectionFactor(double factor) => _delegate.setCorrectionFactor(factor);
 	double getCorrectionFactor() => _delegate.getCorrectionFactor();
+	void dump() => _delegate.dump();
 	B2JointType getType() => _delegate.getType();
 	B2Body getBodyA() => B2Body._(_delegate.getBodyA());
 	B2Body getBodyB() => B2Body._(_delegate.getBodyB());
@@ -1644,7 +1653,7 @@ class B2MotorJoint {
 	void dispose() => _delegate.dispose();
 }
 
-class B2MotorJointDef {
+class B2MotorJointDef implements B2JointDef  {
 
 	final B2MotorJointDefPlatform _delegate;
 

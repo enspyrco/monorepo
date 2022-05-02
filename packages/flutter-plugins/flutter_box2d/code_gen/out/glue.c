@@ -2077,6 +2077,10 @@ float dart_bind_b2DistanceJoint_GetDamping_0(b2DistanceJoint* self) {
   return self->GetDamping();
 }
 
+void dart_bind_b2DistanceJoint_Dump_0(b2DistanceJoint* self) {
+  self->Dump();
+}
+
 b2JointType dart_bind_b2DistanceJoint_GetType_0(b2DistanceJoint* self) {
   return self->GetType();
 }
@@ -2324,6 +2328,10 @@ float dart_bind_b2FrictionJoint_GetMaxTorque_0(b2FrictionJoint* self) {
   return self->GetMaxTorque();
 }
 
+void dart_bind_b2FrictionJoint_Dump_0(b2FrictionJoint* self) {
+  self->Dump();
+}
+
 b2JointType dart_bind_b2FrictionJoint_GetType_0(b2FrictionJoint* self) {
   return self->GetType();
 }
@@ -2475,6 +2483,10 @@ void dart_bind_b2GearJoint_SetRatio_1(b2GearJoint* self, float ratio) {
 
 float dart_bind_b2GearJoint_GetRatio_0(b2GearJoint* self) {
   return self->GetRatio();
+}
+
+void dart_bind_b2GearJoint_Dump_0(b2GearJoint* self) {
+  self->Dump();
 }
 
 b2JointType dart_bind_b2GearJoint_GetType_0(b2GearJoint* self) {
@@ -2928,6 +2940,10 @@ float dart_bind_b2MouseJoint_GetDamping_0(b2MouseJoint* self) {
   return self->GetDamping();
 }
 
+void dart_bind_b2MouseJoint_Dump_0(b2MouseJoint* self) {
+  self->Dump();
+}
+
 b2JointType dart_bind_b2MouseJoint_GetType_0(b2MouseJoint* self) {
   return self->GetType();
 }
@@ -3228,6 +3244,10 @@ float dart_bind_b2PrismaticJoint_GetMotorForce_1(b2PrismaticJoint* self, float i
   return self->GetMotorForce(inv_dt);
 }
 
+void dart_bind_b2PrismaticJoint_Dump_0(b2PrismaticJoint* self) {
+  self->Dump();
+}
+
 b2JointType dart_bind_b2PrismaticJoint_GetType_0(b2PrismaticJoint* self) {
   return self->GetType();
 }
@@ -3514,6 +3534,10 @@ float dart_bind_b2PulleyJoint_GetCurrentLengthB_0(b2PulleyJoint* self) {
   return self->GetCurrentLengthB();
 }
 
+void dart_bind_b2PulleyJoint_Dump_0(b2PulleyJoint* self) {
+  self->Dump();
+}
+
 b2JointType dart_bind_b2PulleyJoint_GetType_0(b2PulleyJoint* self) {
   return self->GetType();
 }
@@ -3795,6 +3819,10 @@ float dart_bind_b2RevoluteJoint_GetMaxMotorTorque_0(b2RevoluteJoint* self) {
 
 float dart_bind_b2RevoluteJoint_GetMotorTorque_1(b2RevoluteJoint* self, float inv_dt) {
   return self->GetMotorTorque(inv_dt);
+}
+
+void dart_bind_b2RevoluteJoint_Dump_0(b2RevoluteJoint* self) {
+  self->Dump();
 }
 
 b2JointType dart_bind_b2RevoluteJoint_GetType_0(b2RevoluteJoint* self) {
@@ -4119,6 +4147,10 @@ float dart_bind_b2WheelJoint_GetDamping_0(b2WheelJoint* self) {
   return self->GetDamping();
 }
 
+void dart_bind_b2WheelJoint_Dump_0(b2WheelJoint* self) {
+  self->Dump();
+}
+
 b2JointType dart_bind_b2WheelJoint_GetType_0(b2WheelJoint* self) {
   return self->GetType();
 }
@@ -4350,6 +4382,10 @@ void dart_bind_b2MotorJoint_SetCorrectionFactor_1(b2MotorJoint* self, float fact
 
 float dart_bind_b2MotorJoint_GetCorrectionFactor_0(b2MotorJoint* self) {
   return self->GetCorrectionFactor();
+}
+
+void dart_bind_b2MotorJoint_Dump_0(b2MotorJoint* self) {
+  self->Dump();
 }
 
 b2JointType dart_bind_b2MotorJoint_GetType_0(b2MotorJoint* self) {

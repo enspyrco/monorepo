@@ -36,19 +36,10 @@ names = sorted(interfaces.keys(), key=lambda x: nodeHeights.get(x, 0), reverse=T
 out = Output()
 
 for name in names:
-  # if (name != 'b2PolygonShape'): #  and name != 'b2Vec2'
-  #   continue
-
   interface = interfaces[name]
 
-  # there is a ctor() function in WebIDL.Interface but it just checks for a member with name 'constructor'
-  hasCtor = False
-  for m in interface.members:
-    if not m.isMethod():
-      continue
-    if m.identifier.name == name: hasCtor = True
-  
-  class_set = ClassSet(name, hasCtor)
+  maybe_implements = upper_first(implements[name][0]) if implements.get(name) else ''
+  class_set = ClassSet(name, interface, maybe_implements)
 
   # Interface members
   ###################
