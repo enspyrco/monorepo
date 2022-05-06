@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: annotate_overrides
 @JS()
 library box2d;
 
@@ -12,12 +14,12 @@ class B2ShapeJSAdapter implements B2ShapePlatform {
 
 	final B2ShapeJSImpl _impl;
 
-	B2ShapeType getType() => _impl.getType();
-	int getChildCount() => _impl.getChildCount().toInt();
-	bool testPoint(B2TransformJSAdapter xf, B2Vec2JSAdapter p) => _impl.testPoint(xf._impl, p._impl);
-	bool rayCast(B2RayCastOutputJSAdapter output, B2RayCastInputJSAdapter input, B2TransformJSAdapter transform, int childIndex) => _impl.rayCast(output._impl, input._impl, transform._impl, childIndex);
-	void computeAABB(B2AABBJSAdapter aabb, B2TransformJSAdapter xf, int childIndex) => _impl.computeAABB(aabb._impl, xf._impl, childIndex);
-	void computeMass(B2MassDataJSAdapter massData, double density) => _impl.computeMass(massData._impl, density);
+	B2ShapeType getType() => _impl.GetType();
+	int getChildCount() => _impl.GetChildCount().toInt();
+	bool testPoint(B2TransformJSAdapter xf, B2Vec2JSAdapter p) => _impl.TestPoint(xf._impl, p._impl);
+	bool rayCast(B2RayCastOutputJSAdapter output, B2RayCastInputJSAdapter input, B2TransformJSAdapter transform, int childIndex) => _impl.RayCast(output._impl, input._impl, transform._impl, childIndex);
+	void computeAABB(B2AABBJSAdapter aabb, B2TransformJSAdapter xf, int childIndex) => _impl.ComputeAABB(aabb._impl, xf._impl, childIndex);
+	void computeMass(B2MassDataJSAdapter massData, double density) => _impl.ComputeMass(massData._impl, density);
 	B2ShapeType get_m_type() => _impl.get_m_type();
 	void set_m_type(B2ShapeType arg0) => _impl.set_m_type(arg0);
 	double get_m_radius() => _impl.get_m_radius().toDouble();
@@ -52,17 +54,17 @@ class B2JointJSAdapter implements B2JointPlatform {
 
 	final B2JointJSImpl _impl;
 
-	B2JointType getType() => _impl.getType();
-	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
-	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
-	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.getAnchorA());
-	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.getAnchorB());
-	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.getReactionForce(inv_dt));
-	double getReactionTorque(double inv_dt) => _impl.getReactionTorque(inv_dt).toDouble();
-	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.getNext());
-	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.getUserData());
-	bool getCollideConnected() => _impl.getCollideConnected();
-	void dump() => _impl.dump();
+	B2JointType getType() => _impl.GetType();
+	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.GetBodyA());
+	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.GetBodyB());
+	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.GetAnchorA());
+	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.GetAnchorB());
+	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.GetReactionForce(inv_dt));
+	double getReactionTorque(double inv_dt) => _impl.GetReactionTorque(inv_dt).toDouble();
+	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.GetNext());
+	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.GetUserData());
+	bool getCollideConnected() => _impl.GetCollideConnected();
+	void dump() => _impl.Dump();
 }
 
 class VoidPtrJSAdapter implements VoidPtrPlatform {
@@ -80,27 +82,27 @@ class B2ContactJSAdapter implements B2ContactPlatform {
 
 	final B2ContactJSImpl _impl;
 
-	B2ManifoldJSAdapter getManifold() => B2ManifoldJSAdapter._(_impl.getManifold());
-	void getWorldManifold(B2WorldManifoldJSAdapter manifold) => _impl.getWorldManifold(manifold._impl);
-	bool isTouching() => _impl.isTouching();
-	void setEnabled(bool flag) => _impl.setEnabled(flag);
-	bool isEnabled() => _impl.isEnabled();
-	B2ContactJSAdapter getNext() => B2ContactJSAdapter._(_impl.getNext());
-	B2FixtureJSAdapter getFixtureA() => B2FixtureJSAdapter._(_impl.getFixtureA());
-	int getChildIndexA() => _impl.getChildIndexA().toInt();
-	B2FixtureJSAdapter getFixtureB() => B2FixtureJSAdapter._(_impl.getFixtureB());
-	int getChildIndexB() => _impl.getChildIndexB().toInt();
-	void setFriction(double friction) => _impl.setFriction(friction);
-	double getFriction() => _impl.getFriction().toDouble();
-	void resetFriction() => _impl.resetFriction();
-	void setRestitution(double restitution) => _impl.setRestitution(restitution);
-	double getRestitution() => _impl.getRestitution().toDouble();
-	void resetRestitution() => _impl.resetRestitution();
-	void setRestitutionThreshold(double threshold) => _impl.setRestitutionThreshold(threshold);
-	double getRestitutionThreshold() => _impl.getRestitutionThreshold().toDouble();
-	void resetRestitutionThreshold() => _impl.resetRestitutionThreshold();
-	void setTangentSpeed(double speed) => _impl.setTangentSpeed(speed);
-	double getTangentSpeed() => _impl.getTangentSpeed().toDouble();
+	B2ManifoldJSAdapter getManifold() => B2ManifoldJSAdapter._(_impl.GetManifold());
+	void getWorldManifold(B2WorldManifoldJSAdapter manifold) => _impl.GetWorldManifold(manifold._impl);
+	bool isTouching() => _impl.IsTouching();
+	void setEnabled(bool flag) => _impl.SetEnabled(flag);
+	bool isEnabled() => _impl.IsEnabled();
+	B2ContactJSAdapter getNext() => B2ContactJSAdapter._(_impl.GetNext());
+	B2FixtureJSAdapter getFixtureA() => B2FixtureJSAdapter._(_impl.GetFixtureA());
+	int getChildIndexA() => _impl.GetChildIndexA().toInt();
+	B2FixtureJSAdapter getFixtureB() => B2FixtureJSAdapter._(_impl.GetFixtureB());
+	int getChildIndexB() => _impl.GetChildIndexB().toInt();
+	void setFriction(double friction) => _impl.SetFriction(friction);
+	double getFriction() => _impl.GetFriction().toDouble();
+	void resetFriction() => _impl.ResetFriction();
+	void setRestitution(double restitution) => _impl.SetRestitution(restitution);
+	double getRestitution() => _impl.GetRestitution().toDouble();
+	void resetRestitution() => _impl.ResetRestitution();
+	void setRestitutionThreshold(double threshold) => _impl.SetRestitutionThreshold(threshold);
+	double getRestitutionThreshold() => _impl.GetRestitutionThreshold().toDouble();
+	void resetRestitutionThreshold() => _impl.ResetRestitutionThreshold();
+	void setTangentSpeed(double speed) => _impl.SetTangentSpeed(speed);
+	double getTangentSpeed() => _impl.GetTangentSpeed().toDouble();
 }
 
 class B2ContactListenerJSAdapter implements B2ContactListenerPlatform {
@@ -120,10 +122,10 @@ class JSContactListenerJSAdapter implements JSContactListenerPlatform {
 
 	JSContactListenerJSAdapter() : _impl = JSContactListenerJSImpl();
 
-	void beginContact(B2ContactJSAdapter contact) => _impl.beginContact(contact._impl);
-	void endContact(B2ContactJSAdapter contact) => _impl.endContact(contact._impl);
-	void preSolve(B2ContactJSAdapter contact, B2ManifoldJSAdapter oldManifold) => _impl.preSolve(contact._impl, oldManifold._impl);
-	void postSolve(B2ContactJSAdapter contact, B2ContactImpulseJSAdapter impulse) => _impl.postSolve(contact._impl, impulse._impl);
+	void beginContact(B2ContactJSAdapter contact) => _impl.BeginContact(contact._impl);
+	void endContact(B2ContactJSAdapter contact) => _impl.EndContact(contact._impl);
+	void preSolve(B2ContactJSAdapter contact, B2ManifoldJSAdapter oldManifold) => _impl.PreSolve(contact._impl, oldManifold._impl);
+	void postSolve(B2ContactJSAdapter contact, B2ContactImpulseJSAdapter impulse) => _impl.PostSolve(contact._impl, impulse._impl);
 	void dispose() => _impl.__destroy__();
 }
 
@@ -135,44 +137,44 @@ class B2WorldJSAdapter implements B2WorldPlatform {
 
 	B2WorldJSAdapter.from1(B2Vec2JSAdapter gravity) : _impl = B2WorldJSImpl.from1(gravity._impl);
 
-	//void setDestructionListener(B2DestructionListenerJSAdapter listener) => _impl.setDestructionListener(listener._impl);
-	//void setContactFilter(JSContactFilterJSAdapter filter) => _impl.setContactFilter(filter._impl);
-	//void setContactListener(JSContactListenerJSAdapter listener) => _impl.setContactListener(listener._impl);
-	//void setDebugDraw(B2DrawJSAdapter debugDraw) => _impl.setDebugDraw(debugDraw._impl);
-	B2BodyJSAdapter createBody(B2BodyDefJSAdapter def) => B2BodyJSAdapter._(_impl.createBody(def._impl));
-	void destroyBody(B2BodyJSAdapter body) => _impl.destroyBody(body._impl);
-	B2JointJSAdapter createJoint(B2JointDefJSAdapter def) => B2JointJSAdapter._(_impl.createJoint(def._impl));
-	void destroyJoint(B2JointJSAdapter joint) => _impl.destroyJoint(joint._impl);
-	void step(double timeStep, int velocityIterations, int positionIterations) => _impl.step(timeStep, velocityIterations, positionIterations);
-	void clearForces() => _impl.clearForces();
-	void debugDraw() => _impl.debugDraw();
-	//void queryAABB(B2QueryCallbackJSAdapter callback, B2AABBJSAdapter aabb) => _impl.queryAABB(callback._impl, aabb._impl);
-	//void rayCast(B2RayCastCallbackJSAdapter callback, B2Vec2JSAdapter point1, B2Vec2JSAdapter point2) => _impl.rayCast(callback._impl, point1._impl, point2._impl);
-	B2BodyJSAdapter getBodyList() => B2BodyJSAdapter._(_impl.getBodyList());
-	B2JointJSAdapter getJointList() => B2JointJSAdapter._(_impl.getJointList());
-	B2ContactJSAdapter getContactList() => B2ContactJSAdapter._(_impl.getContactList());
-	void setAllowSleeping(bool flag) => _impl.setAllowSleeping(flag);
-	bool getAllowSleeping() => _impl.getAllowSleeping();
-	void setWarmStarting(bool flag) => _impl.setWarmStarting(flag);
-	bool getWarmStarting() => _impl.getWarmStarting();
-	void setContinuousPhysics(bool flag) => _impl.setContinuousPhysics(flag);
-	bool getContinuousPhysics() => _impl.getContinuousPhysics();
-	void setSubStepping(bool flag) => _impl.setSubStepping(flag);
-	bool getSubStepping() => _impl.getSubStepping();
-	int getProxyCount() => _impl.getProxyCount().toInt();
-	int getBodyCount() => _impl.getBodyCount().toInt();
-	int getJointCount() => _impl.getJointCount().toInt();
-	int getContactCount() => _impl.getContactCount().toInt();
-	int getTreeHeight() => _impl.getTreeHeight().toInt();
-	int getTreeBalance() => _impl.getTreeBalance().toInt();
-	double getTreeQuality() => _impl.getTreeQuality().toDouble();
-	void setGravity(B2Vec2JSAdapter gravity) => _impl.setGravity(gravity._impl);
-	B2Vec2JSAdapter getGravity() => B2Vec2JSAdapter._(_impl.getGravity());
-	bool isLocked() => _impl.isLocked();
-	void setAutoClearForces(bool flag) => _impl.setAutoClearForces(flag);
-	bool getAutoClearForces() => _impl.getAutoClearForces();
-	B2ProfileJSAdapter getProfile() => B2ProfileJSAdapter._(_impl.getProfile());
-	void dump() => _impl.dump();
+	//void setDestructionListener(B2DestructionListenerJSAdapter listener) => _impl.SetDestructionListener(listener._impl);
+	//void setContactFilter(JSContactFilterJSAdapter filter) => _impl.SetContactFilter(filter._impl);
+	//void setContactListener(JSContactListenerJSAdapter listener) => _impl.SetContactListener(listener._impl);
+	//void setDebugDraw(B2DrawJSAdapter debugDraw) => _impl.SetDebugDraw(debugDraw._impl);
+	B2BodyJSAdapter createBody(B2BodyDefJSAdapter def) => B2BodyJSAdapter._(_impl.CreateBody(def._impl));
+	void destroyBody(B2BodyJSAdapter body) => _impl.DestroyBody(body._impl);
+	B2JointJSAdapter createJoint(B2JointDefJSAdapter def) => B2JointJSAdapter._(_impl.CreateJoint(def._impl));
+	void destroyJoint(B2JointJSAdapter joint) => _impl.DestroyJoint(joint._impl);
+	void step(double timeStep, int velocityIterations, int positionIterations) => _impl.Step(timeStep, velocityIterations, positionIterations);
+	void clearForces() => _impl.ClearForces();
+	void debugDraw() => _impl.DebugDraw();
+	//void queryAABB(B2QueryCallbackJSAdapter callback, B2AABBJSAdapter aabb) => _impl.QueryAABB(callback._impl, aabb._impl);
+	//void rayCast(B2RayCastCallbackJSAdapter callback, B2Vec2JSAdapter point1, B2Vec2JSAdapter point2) => _impl.RayCast(callback._impl, point1._impl, point2._impl);
+	B2BodyJSAdapter getBodyList() => B2BodyJSAdapter._(_impl.GetBodyList());
+	B2JointJSAdapter getJointList() => B2JointJSAdapter._(_impl.GetJointList());
+	B2ContactJSAdapter getContactList() => B2ContactJSAdapter._(_impl.GetContactList());
+	void setAllowSleeping(bool flag) => _impl.SetAllowSleeping(flag);
+	bool getAllowSleeping() => _impl.GetAllowSleeping();
+	void setWarmStarting(bool flag) => _impl.SetWarmStarting(flag);
+	bool getWarmStarting() => _impl.GetWarmStarting();
+	void setContinuousPhysics(bool flag) => _impl.SetContinuousPhysics(flag);
+	bool getContinuousPhysics() => _impl.GetContinuousPhysics();
+	void setSubStepping(bool flag) => _impl.SetSubStepping(flag);
+	bool getSubStepping() => _impl.GetSubStepping();
+	int getProxyCount() => _impl.GetProxyCount().toInt();
+	int getBodyCount() => _impl.GetBodyCount().toInt();
+	int getJointCount() => _impl.GetJointCount().toInt();
+	int getContactCount() => _impl.GetContactCount().toInt();
+	int getTreeHeight() => _impl.GetTreeHeight().toInt();
+	int getTreeBalance() => _impl.GetTreeBalance().toInt();
+	double getTreeQuality() => _impl.GetTreeQuality().toDouble();
+	void setGravity(B2Vec2JSAdapter gravity) => _impl.SetGravity(gravity._impl);
+	B2Vec2JSAdapter getGravity() => B2Vec2JSAdapter._(_impl.GetGravity());
+	bool isLocked() => _impl.IsLocked();
+	void setAutoClearForces(bool flag) => _impl.SetAutoClearForces(flag);
+	bool getAutoClearForces() => _impl.GetAutoClearForces();
+	B2ProfileJSAdapter getProfile() => B2ProfileJSAdapter._(_impl.GetProfile());
+	void dump() => _impl.Dump();
 	void dispose() => _impl.__destroy__();
 }
 
@@ -220,29 +222,29 @@ class B2FixtureJSAdapter implements B2FixturePlatform {
 
 	final B2FixtureJSImpl _impl;
 
-	B2ShapeType getType() => _impl.getType();
-	B2ShapeJSAdapter getShape() => B2ShapeJSAdapter._(_impl.getShape());
-	void setSensor(bool sensor) => _impl.setSensor(sensor);
-	bool isSensor() => _impl.isSensor();
-	void setFilterData(B2FilterJSAdapter filter) => _impl.setFilterData(filter._impl);
-	B2FilterJSAdapter getFilterData() => B2FilterJSAdapter._(_impl.getFilterData());
-	void refilter() => _impl.refilter();
-	B2BodyJSAdapter getBody() => B2BodyJSAdapter._(_impl.getBody());
-	B2FixtureJSAdapter getNext() => B2FixtureJSAdapter._(_impl.getNext());
-	B2FixtureUserDataJSAdapter getUserData() => B2FixtureUserDataJSAdapter._(_impl.getUserData());
-	bool testPoint(B2Vec2JSAdapter p) => _impl.testPoint(p._impl);
-	bool rayCast(B2RayCastOutputJSAdapter output, B2RayCastInputJSAdapter input, int childIndex) => _impl.rayCast(output._impl, input._impl, childIndex);
-	void getMassData(B2MassDataJSAdapter massData) => _impl.getMassData(massData._impl);
-	void setDensity(double density) => _impl.setDensity(density);
-	double getDensity() => _impl.getDensity().toDouble();
-	double getFriction() => _impl.getFriction().toDouble();
-	void setFriction(double friction) => _impl.setFriction(friction);
-	double getRestitution() => _impl.getRestitution().toDouble();
-	void setRestitution(double restitution) => _impl.setRestitution(restitution);
-	double getRestitutionThreshold() => _impl.getRestitutionThreshold().toDouble();
-	void setRestitutionThreshold(double threshold) => _impl.setRestitutionThreshold(threshold);
-	B2AABBJSAdapter getAABB(int childIndex) => B2AABBJSAdapter._(_impl.getAABB(childIndex));
-	void dump(int bodyIndex) => _impl.dump(bodyIndex);
+	B2ShapeType getType() => _impl.GetType();
+	B2ShapeJSAdapter getShape() => B2ShapeJSAdapter._(_impl.GetShape());
+	void setSensor(bool sensor) => _impl.SetSensor(sensor);
+	bool isSensor() => _impl.IsSensor();
+	void setFilterData(B2FilterJSAdapter filter) => _impl.SetFilterData(filter._impl);
+	B2FilterJSAdapter getFilterData() => B2FilterJSAdapter._(_impl.GetFilterData());
+	void refilter() => _impl.Refilter();
+	B2BodyJSAdapter getBody() => B2BodyJSAdapter._(_impl.GetBody());
+	B2FixtureJSAdapter getNext() => B2FixtureJSAdapter._(_impl.GetNext());
+	B2FixtureUserDataJSAdapter getUserData() => B2FixtureUserDataJSAdapter._(_impl.GetUserData());
+	bool testPoint(B2Vec2JSAdapter p) => _impl.TestPoint(p._impl);
+	bool rayCast(B2RayCastOutputJSAdapter output, B2RayCastInputJSAdapter input, int childIndex) => _impl.RayCast(output._impl, input._impl, childIndex);
+	void getMassData(B2MassDataJSAdapter massData) => _impl.GetMassData(massData._impl);
+	void setDensity(double density) => _impl.SetDensity(density);
+	double getDensity() => _impl.GetDensity().toDouble();
+	double getFriction() => _impl.GetFriction().toDouble();
+	void setFriction(double friction) => _impl.SetFriction(friction);
+	double getRestitution() => _impl.GetRestitution().toDouble();
+	void setRestitution(double restitution) => _impl.SetRestitution(restitution);
+	double getRestitutionThreshold() => _impl.GetRestitutionThreshold().toDouble();
+	void setRestitutionThreshold(double threshold) => _impl.SetRestitutionThreshold(threshold);
+	B2AABBJSAdapter getAABB(int childIndex) => B2AABBJSAdapter._(_impl.GetAABB(childIndex));
+	void dump(int bodyIndex) => _impl.Dump(bodyIndex);
 	void dispose() => _impl.__destroy__();
 }
 
@@ -256,8 +258,8 @@ class B2TransformJSAdapter implements B2TransformPlatform {
 
 	B2TransformJSAdapter.from2(B2Vec2JSAdapter position, B2RotJSAdapter rotation) : _impl = B2TransformJSImpl.from2(position._impl, rotation._impl);
 
-	void setIdentity() => _impl.setIdentity();
-	void set(B2Vec2JSAdapter position, double angle) => _impl.set(position._impl, angle);
+	void setIdentity() => _impl.SetIdentity();
+	void set(B2Vec2JSAdapter position, double angle) => _impl.Set(position._impl, angle);
 	B2Vec2JSAdapter get_p() => B2Vec2JSAdapter._(_impl.get_p());
 	void set_p(B2Vec2JSAdapter arg0) => _impl.set_p(arg0._impl);
 	B2RotJSAdapter get_q() => B2RotJSAdapter._(_impl.get_q());
@@ -282,7 +284,7 @@ class JSRayCastCallbackJSAdapter implements JSRayCastCallbackPlatform {
 
 	JSRayCastCallbackJSAdapter() : _impl = JSRayCastCallbackJSImpl();
 
-	double reportFixture(B2FixtureJSAdapter fixture, B2Vec2JSAdapter point, B2Vec2JSAdapter normal, double fraction) => _impl.reportFixture(fixture._impl, point._impl, normal._impl, fraction).toDouble();
+	double reportFixture(B2FixtureJSAdapter fixture, B2Vec2JSAdapter point, B2Vec2JSAdapter normal, double fraction) => _impl.ReportFixture(fixture._impl, point._impl, normal._impl, fraction).toDouble();
 	void dispose() => _impl.__destroy__();
 }
 
@@ -303,7 +305,7 @@ class JSQueryCallbackJSAdapter implements JSQueryCallbackPlatform {
 
 	JSQueryCallbackJSAdapter() : _impl = JSQueryCallbackJSImpl();
 
-	bool reportFixture(B2FixtureJSAdapter fixture) => _impl.reportFixture(fixture._impl);
+	bool reportFixture(B2FixtureJSAdapter fixture) => _impl.ReportFixture(fixture._impl);
 	void dispose() => _impl.__destroy__();
 }
 
@@ -334,16 +336,16 @@ class B2Vec2JSAdapter implements B2Vec2Platform {
 
 	B2Vec2JSAdapter.from2(double x, double y) : _impl = B2Vec2JSImpl.from2(x, y);
 
-	void setZero() => _impl.setZero();
-	void set(double x, double y) => _impl.set(x, y);
+	void setZero() => _impl.SetZero();
+	void set(double x, double y) => _impl.Set(x, y);
 	void op_add(B2Vec2JSAdapter v) => _impl.op_add(v._impl);
 	void op_sub(B2Vec2JSAdapter v) => _impl.op_sub(v._impl);
 	void op_mul(double s) => _impl.op_mul(s);
-	double length() => _impl.length().toDouble();
-	double lengthSquared() => _impl.lengthSquared().toDouble();
-	double normalize() => _impl.normalize().toDouble();
-	bool isValid() => _impl.isValid();
-	B2Vec2JSAdapter skew() => B2Vec2JSAdapter._(_impl.skew());
+	double length() => _impl.Length().toDouble();
+	double lengthSquared() => _impl.LengthSquared().toDouble();
+	double normalize() => _impl.Normalize().toDouble();
+	bool isValid() => _impl.IsValid();
+	B2Vec2JSAdapter skew() => B2Vec2JSAdapter._(_impl.Skew());
 	double get_x() => _impl.get_x().toDouble();
 	void set_x(double arg0) => _impl.set_x(arg0);
 	double get_y() => _impl.get_y().toDouble();
@@ -361,8 +363,8 @@ class B2Vec3JSAdapter implements B2Vec3Platform {
 
 	B2Vec3JSAdapter.from3(double x, double y, double z) : _impl = B2Vec3JSImpl.from3(x, y, z);
 
-	void setZero() => _impl.setZero();
-	void set(double x, double y, double z) => _impl.set(x, y, z);
+	void setZero() => _impl.SetZero();
+	void set(double x, double y, double z) => _impl.Set(x, y, z);
 	void op_add(B2Vec3JSAdapter v) => _impl.op_add(v._impl);
 	void op_sub(B2Vec3JSAdapter v) => _impl.op_sub(v._impl);
 	void op_mul(double s) => _impl.op_mul(s);
@@ -392,61 +394,61 @@ class B2BodyJSAdapter implements B2BodyPlatform {
 
 	final B2BodyJSImpl _impl;
 
-	B2FixtureJSAdapter createFixture1(B2FixtureDefJSAdapter shape) => B2FixtureJSAdapter._(_impl.createFixture1(shape._impl));
-	B2FixtureJSAdapter createFixture2(B2ShapeJSAdapter shape, double density) => B2FixtureJSAdapter._(_impl.createFixture2(shape._impl, density));
-	void destroyFixture(B2FixtureJSAdapter fixture) => _impl.destroyFixture(fixture._impl);
-	void setTransform(B2Vec2JSAdapter position, double angle) => _impl.setTransform(position._impl, angle);
-	B2TransformJSAdapter getTransform() => B2TransformJSAdapter._(_impl.getTransform());
-	B2Vec2JSAdapter getPosition() => B2Vec2JSAdapter._(_impl.getPosition());
-	double getAngle() => _impl.getAngle().toDouble();
-	B2Vec2JSAdapter getWorldCenter() => B2Vec2JSAdapter._(_impl.getWorldCenter());
-	B2Vec2JSAdapter getLocalCenter() => B2Vec2JSAdapter._(_impl.getLocalCenter());
-	void setLinearVelocity(B2Vec2JSAdapter v) => _impl.setLinearVelocity(v._impl);
-	B2Vec2JSAdapter getLinearVelocity() => B2Vec2JSAdapter._(_impl.getLinearVelocity());
-	void setAngularVelocity(double omega) => _impl.setAngularVelocity(omega);
-	double getAngularVelocity() => _impl.getAngularVelocity().toDouble();
-	void applyForce(B2Vec2JSAdapter force, B2Vec2JSAdapter point, bool wake) => _impl.applyForce(force._impl, point._impl, wake);
-	void applyForceToCenter(B2Vec2JSAdapter force, bool wake) => _impl.applyForceToCenter(force._impl, wake);
-	void applyTorque(double torque, bool awake) => _impl.applyTorque(torque, awake);
-	void applyLinearImpulse(B2Vec2JSAdapter impulse, B2Vec2JSAdapter point, bool wake) => _impl.applyLinearImpulse(impulse._impl, point._impl, wake);
-	void applyLinearImpulseToCenter(B2Vec2JSAdapter impulse, bool wake) => _impl.applyLinearImpulseToCenter(impulse._impl, wake);
-	void applyAngularImpulse(double impulse, bool wake) => _impl.applyAngularImpulse(impulse, wake);
-	double getMass() => _impl.getMass().toDouble();
-	double getInertia() => _impl.getInertia().toDouble();
-	void getMassData(B2MassDataJSAdapter data) => _impl.getMassData(data._impl);
-	void setMassData(B2MassDataJSAdapter data) => _impl.setMassData(data._impl);
-	void resetMassData() => _impl.resetMassData();
-	B2Vec2JSAdapter getWorldPoint(B2Vec2JSAdapter localPoint) => B2Vec2JSAdapter._(_impl.getWorldPoint(localPoint._impl));
-	B2Vec2JSAdapter getWorldVector(B2Vec2JSAdapter localVector) => B2Vec2JSAdapter._(_impl.getWorldVector(localVector._impl));
-	B2Vec2JSAdapter getLocalPoint(B2Vec2JSAdapter worldPoint) => B2Vec2JSAdapter._(_impl.getLocalPoint(worldPoint._impl));
-	B2Vec2JSAdapter getLocalVector(B2Vec2JSAdapter worldVector) => B2Vec2JSAdapter._(_impl.getLocalVector(worldVector._impl));
-	B2Vec2JSAdapter getLinearVelocityFromWorldPoint(B2Vec2JSAdapter worldPoint) => B2Vec2JSAdapter._(_impl.getLinearVelocityFromWorldPoint(worldPoint._impl));
-	B2Vec2JSAdapter getLinearVelocityFromLocalPoint(B2Vec2JSAdapter localPoint) => B2Vec2JSAdapter._(_impl.getLinearVelocityFromLocalPoint(localPoint._impl));
-	double getLinearDamping() => _impl.getLinearDamping().toDouble();
-	void setLinearDamping(double linearDamping) => _impl.setLinearDamping(linearDamping);
-	double getAngularDamping() => _impl.getAngularDamping().toDouble();
-	void setAngularDamping(double angularDamping) => _impl.setAngularDamping(angularDamping);
-	double getGravityScale() => _impl.getGravityScale().toDouble();
-	void setGravityScale(double scale) => _impl.setGravityScale(scale);
-	void setType(B2BodyType type) => _impl.setType(type);
-	B2BodyType getType() => _impl.getType();
-	void setBullet(bool flag) => _impl.setBullet(flag);
-	bool isBullet() => _impl.isBullet();
-	void setSleepingAllowed(bool flag) => _impl.setSleepingAllowed(flag);
-	bool isSleepingAllowed() => _impl.isSleepingAllowed();
-	void setAwake(bool flag) => _impl.setAwake(flag);
-	bool isAwake() => _impl.isAwake();
-	void setEnabled(bool flag) => _impl.setEnabled(flag);
-	bool isEnabled() => _impl.isEnabled();
-	void setFixedRotation(bool flag) => _impl.setFixedRotation(flag);
-	bool isFixedRotation() => _impl.isFixedRotation();
-	B2FixtureJSAdapter getFixtureList() => B2FixtureJSAdapter._(_impl.getFixtureList());
-	B2JointEdgeJSAdapter getJointList() => B2JointEdgeJSAdapter._(_impl.getJointList());
-	B2ContactEdgeJSAdapter getContactList() => B2ContactEdgeJSAdapter._(_impl.getContactList());
-	B2BodyJSAdapter getNext() => B2BodyJSAdapter._(_impl.getNext());
-	B2BodyUserDataJSAdapter getUserData() => B2BodyUserDataJSAdapter._(_impl.getUserData());
-	B2WorldJSAdapter getWorld() => B2WorldJSAdapter._(_impl.getWorld());
-	void dump() => _impl.dump();
+	B2FixtureJSAdapter createFixture1(B2FixtureDefJSAdapter shape) => B2FixtureJSAdapter._(_impl.CreateFixture(shape._impl, null));
+	B2FixtureJSAdapter createFixture2(B2ShapeJSAdapter shape, double density) => B2FixtureJSAdapter._(_impl.CreateFixture(shape._impl, density));
+	void destroyFixture(B2FixtureJSAdapter fixture) => _impl.DestroyFixture(fixture._impl);
+	void setTransform(B2Vec2JSAdapter position, double angle) => _impl.SetTransform(position._impl, angle);
+	B2TransformJSAdapter getTransform() => B2TransformJSAdapter._(_impl.GetTransform());
+	B2Vec2JSAdapter getPosition() => B2Vec2JSAdapter._(_impl.GetPosition());
+	double getAngle() => _impl.GetAngle().toDouble();
+	B2Vec2JSAdapter getWorldCenter() => B2Vec2JSAdapter._(_impl.GetWorldCenter());
+	B2Vec2JSAdapter getLocalCenter() => B2Vec2JSAdapter._(_impl.GetLocalCenter());
+	void setLinearVelocity(B2Vec2JSAdapter v) => _impl.SetLinearVelocity(v._impl);
+	B2Vec2JSAdapter getLinearVelocity() => B2Vec2JSAdapter._(_impl.GetLinearVelocity());
+	void setAngularVelocity(double omega) => _impl.SetAngularVelocity(omega);
+	double getAngularVelocity() => _impl.GetAngularVelocity().toDouble();
+	void applyForce(B2Vec2JSAdapter force, B2Vec2JSAdapter point, bool wake) => _impl.ApplyForce(force._impl, point._impl, wake);
+	void applyForceToCenter(B2Vec2JSAdapter force, bool wake) => _impl.ApplyForceToCenter(force._impl, wake);
+	void applyTorque(double torque, bool awake) => _impl.ApplyTorque(torque, awake);
+	void applyLinearImpulse(B2Vec2JSAdapter impulse, B2Vec2JSAdapter point, bool wake) => _impl.ApplyLinearImpulse(impulse._impl, point._impl, wake);
+	void applyLinearImpulseToCenter(B2Vec2JSAdapter impulse, bool wake) => _impl.ApplyLinearImpulseToCenter(impulse._impl, wake);
+	void applyAngularImpulse(double impulse, bool wake) => _impl.ApplyAngularImpulse(impulse, wake);
+	double getMass() => _impl.GetMass().toDouble();
+	double getInertia() => _impl.GetInertia().toDouble();
+	void getMassData(B2MassDataJSAdapter data) => _impl.GetMassData(data._impl);
+	void setMassData(B2MassDataJSAdapter data) => _impl.SetMassData(data._impl);
+	void resetMassData() => _impl.ResetMassData();
+	B2Vec2JSAdapter getWorldPoint(B2Vec2JSAdapter localPoint) => B2Vec2JSAdapter._(_impl.GetWorldPoint(localPoint._impl));
+	B2Vec2JSAdapter getWorldVector(B2Vec2JSAdapter localVector) => B2Vec2JSAdapter._(_impl.GetWorldVector(localVector._impl));
+	B2Vec2JSAdapter getLocalPoint(B2Vec2JSAdapter worldPoint) => B2Vec2JSAdapter._(_impl.GetLocalPoint(worldPoint._impl));
+	B2Vec2JSAdapter getLocalVector(B2Vec2JSAdapter worldVector) => B2Vec2JSAdapter._(_impl.GetLocalVector(worldVector._impl));
+	B2Vec2JSAdapter getLinearVelocityFromWorldPoint(B2Vec2JSAdapter worldPoint) => B2Vec2JSAdapter._(_impl.GetLinearVelocityFromWorldPoint(worldPoint._impl));
+	B2Vec2JSAdapter getLinearVelocityFromLocalPoint(B2Vec2JSAdapter localPoint) => B2Vec2JSAdapter._(_impl.GetLinearVelocityFromLocalPoint(localPoint._impl));
+	double getLinearDamping() => _impl.GetLinearDamping().toDouble();
+	void setLinearDamping(double linearDamping) => _impl.SetLinearDamping(linearDamping);
+	double getAngularDamping() => _impl.GetAngularDamping().toDouble();
+	void setAngularDamping(double angularDamping) => _impl.SetAngularDamping(angularDamping);
+	double getGravityScale() => _impl.GetGravityScale().toDouble();
+	void setGravityScale(double scale) => _impl.SetGravityScale(scale);
+	void setType(B2BodyType type) => _impl.SetType(type);
+	B2BodyType getType() => _impl.GetType();
+	void setBullet(bool flag) => _impl.SetBullet(flag);
+	bool isBullet() => _impl.IsBullet();
+	void setSleepingAllowed(bool flag) => _impl.SetSleepingAllowed(flag);
+	bool isSleepingAllowed() => _impl.IsSleepingAllowed();
+	void setAwake(bool flag) => _impl.SetAwake(flag);
+	bool isAwake() => _impl.IsAwake();
+	void setEnabled(bool flag) => _impl.SetEnabled(flag);
+	bool isEnabled() => _impl.IsEnabled();
+	void setFixedRotation(bool flag) => _impl.SetFixedRotation(flag);
+	bool isFixedRotation() => _impl.IsFixedRotation();
+	B2FixtureJSAdapter getFixtureList() => B2FixtureJSAdapter._(_impl.GetFixtureList());
+	B2JointEdgeJSAdapter getJointList() => B2JointEdgeJSAdapter._(_impl.GetJointList());
+	B2ContactEdgeJSAdapter getContactList() => B2ContactEdgeJSAdapter._(_impl.GetContactList());
+	B2BodyJSAdapter getNext() => B2BodyJSAdapter._(_impl.GetNext());
+	B2BodyUserDataJSAdapter getUserData() => B2BodyUserDataJSAdapter._(_impl.GetUserData());
+	B2WorldJSAdapter getWorld() => B2WorldJSAdapter._(_impl.GetWorld());
+	void dump() => _impl.Dump();
 }
 
 class B2BodyDefJSAdapter implements B2BodyDefPlatform {
@@ -513,14 +515,14 @@ class B2AABBJSAdapter implements B2AABBPlatform {
 
 	B2AABBJSAdapter() : _impl = B2AABBJSImpl();
 
-	bool isValid() => _impl.isValid();
-	B2Vec2JSAdapter getCenter() => B2Vec2JSAdapter._(_impl.getCenter());
-	B2Vec2JSAdapter getExtents() => B2Vec2JSAdapter._(_impl.getExtents());
-	double getPerimeter() => _impl.getPerimeter().toDouble();
-	void combine1(B2AABBJSAdapter aabb1) => _impl.combine1(aabb1._impl);
-	void combine2(B2AABBJSAdapter aabb1, B2AABBJSAdapter aabb2) => _impl.combine2(aabb1._impl, aabb2._impl);
-	bool contains(B2AABBJSAdapter aabb) => _impl.contains(aabb._impl);
-	bool rayCast(B2RayCastOutputJSAdapter output, B2RayCastInputJSAdapter input) => _impl.rayCast(output._impl, input._impl);
+	bool isValid() => _impl.IsValid();
+	B2Vec2JSAdapter getCenter() => B2Vec2JSAdapter._(_impl.GetCenter());
+	B2Vec2JSAdapter getExtents() => B2Vec2JSAdapter._(_impl.GetExtents());
+	double getPerimeter() => _impl.GetPerimeter().toDouble();
+	void combine1(B2AABBJSAdapter aabb1) => _impl.Combine(aabb1._impl, null);
+	void combine2(B2AABBJSAdapter aabb1, B2AABBJSAdapter aabb2) => _impl.Combine(aabb1._impl, aabb2._impl);
+	bool contains(B2AABBJSAdapter aabb) => _impl.Contains(aabb._impl);
+	bool rayCast(B2RayCastOutputJSAdapter output, B2RayCastInputJSAdapter input) => _impl.RayCast(output._impl, input._impl);
 	B2Vec2JSAdapter get_lowerBound() => B2Vec2JSAdapter._(_impl.get_lowerBound());
 	void set_lowerBound(B2Vec2JSAdapter arg0) => _impl.set_lowerBound(arg0._impl);
 	B2Vec2JSAdapter get_upperBound() => B2Vec2JSAdapter._(_impl.get_upperBound());
@@ -528,7 +530,7 @@ class B2AABBJSAdapter implements B2AABBPlatform {
 	void dispose() => _impl.__destroy__();
 }
 
-class B2CircleShapeJSAdapter implements B2CircleShapePlatform {
+class B2CircleShapeJSAdapter implements B2CircleShapePlatform, B2ShapeJSAdapter  {
 
 	B2CircleShapeJSAdapter._(B2CircleShapeJSImpl impl) : _impl = impl;
 
@@ -536,12 +538,12 @@ class B2CircleShapeJSAdapter implements B2CircleShapePlatform {
 
 	B2CircleShapeJSAdapter() : _impl = B2CircleShapeJSImpl();
 
-	B2ShapeType getType() => _impl.getType();
-	int getChildCount() => _impl.getChildCount().toInt();
-	bool testPoint(B2TransformJSAdapter xf, B2Vec2JSAdapter p) => _impl.testPoint(xf._impl, p._impl);
-	bool rayCast(B2RayCastOutputJSAdapter output, B2RayCastInputJSAdapter input, B2TransformJSAdapter transform, int childIndex) => _impl.rayCast(output._impl, input._impl, transform._impl, childIndex);
-	void computeAABB(B2AABBJSAdapter aabb, B2TransformJSAdapter xf, int childIndex) => _impl.computeAABB(aabb._impl, xf._impl, childIndex);
-	void computeMass(B2MassDataJSAdapter massData, double density) => _impl.computeMass(massData._impl, density);
+	B2ShapeType getType() => _impl.GetType();
+	int getChildCount() => _impl.GetChildCount().toInt();
+	bool testPoint(B2TransformJSAdapter xf, B2Vec2JSAdapter p) => _impl.TestPoint(xf._impl, p._impl);
+	bool rayCast(B2RayCastOutputJSAdapter output, B2RayCastInputJSAdapter input, B2TransformJSAdapter transform, int childIndex) => _impl.RayCast(output._impl, input._impl, transform._impl, childIndex);
+	void computeAABB(B2AABBJSAdapter aabb, B2TransformJSAdapter xf, int childIndex) => _impl.ComputeAABB(aabb._impl, xf._impl, childIndex);
+	void computeMass(B2MassDataJSAdapter massData, double density) => _impl.ComputeMass(massData._impl, density);
 	B2Vec2JSAdapter get_m_p() => B2Vec2JSAdapter._(_impl.get_m_p());
 	void set_m_p(B2Vec2JSAdapter arg0) => _impl.set_m_p(arg0._impl);
 	B2ShapeType get_m_type() => _impl.get_m_type();
@@ -551,7 +553,7 @@ class B2CircleShapeJSAdapter implements B2CircleShapePlatform {
 	void dispose() => _impl.__destroy__();
 }
 
-class B2EdgeShapeJSAdapter implements B2EdgeShapePlatform {
+class B2EdgeShapeJSAdapter implements B2EdgeShapePlatform, B2ShapeJSAdapter  {
 
 	B2EdgeShapeJSAdapter._(B2EdgeShapeJSImpl impl) : _impl = impl;
 
@@ -559,14 +561,14 @@ class B2EdgeShapeJSAdapter implements B2EdgeShapePlatform {
 
 	B2EdgeShapeJSAdapter() : _impl = B2EdgeShapeJSImpl();
 
-	void setOneSided(B2Vec2JSAdapter v0, B2Vec2JSAdapter v1, B2Vec2JSAdapter v2, B2Vec2JSAdapter v3) => _impl.setOneSided(v0._impl, v1._impl, v2._impl, v3._impl);
-	void setTwoSided(B2Vec2JSAdapter v1, B2Vec2JSAdapter v2) => _impl.setTwoSided(v1._impl, v2._impl);
-	B2ShapeType getType() => _impl.getType();
-	int getChildCount() => _impl.getChildCount().toInt();
-	bool testPoint(B2TransformJSAdapter xf, B2Vec2JSAdapter p) => _impl.testPoint(xf._impl, p._impl);
-	bool rayCast(B2RayCastOutputJSAdapter output, B2RayCastInputJSAdapter input, B2TransformJSAdapter transform, int childIndex) => _impl.rayCast(output._impl, input._impl, transform._impl, childIndex);
-	void computeAABB(B2AABBJSAdapter aabb, B2TransformJSAdapter xf, int childIndex) => _impl.computeAABB(aabb._impl, xf._impl, childIndex);
-	void computeMass(B2MassDataJSAdapter massData, double density) => _impl.computeMass(massData._impl, density);
+	void setOneSided(B2Vec2JSAdapter v0, B2Vec2JSAdapter v1, B2Vec2JSAdapter v2, B2Vec2JSAdapter v3) => _impl.SetOneSided(v0._impl, v1._impl, v2._impl, v3._impl);
+	void setTwoSided(B2Vec2JSAdapter v1, B2Vec2JSAdapter v2) => _impl.SetTwoSided(v1._impl, v2._impl);
+	B2ShapeType getType() => _impl.GetType();
+	int getChildCount() => _impl.GetChildCount().toInt();
+	bool testPoint(B2TransformJSAdapter xf, B2Vec2JSAdapter p) => _impl.TestPoint(xf._impl, p._impl);
+	bool rayCast(B2RayCastOutputJSAdapter output, B2RayCastInputJSAdapter input, B2TransformJSAdapter transform, int childIndex) => _impl.RayCast(output._impl, input._impl, transform._impl, childIndex);
+	void computeAABB(B2AABBJSAdapter aabb, B2TransformJSAdapter xf, int childIndex) => _impl.ComputeAABB(aabb._impl, xf._impl, childIndex);
+	void computeMass(B2MassDataJSAdapter massData, double density) => _impl.ComputeMass(massData._impl, density);
 	B2Vec2JSAdapter get_m_vertex1() => B2Vec2JSAdapter._(_impl.get_m_vertex1());
 	void set_m_vertex1(B2Vec2JSAdapter arg0) => _impl.set_m_vertex1(arg0._impl);
 	B2Vec2JSAdapter get_m_vertex2() => B2Vec2JSAdapter._(_impl.get_m_vertex2());
@@ -595,34 +597,34 @@ class B2JointUserDataJSAdapter implements B2JointUserDataPlatform {
 	void dispose() => _impl.__destroy__();
 }
 
-class B2WeldJointJSAdapter implements B2WeldJointPlatform {
+class B2WeldJointJSAdapter implements B2WeldJointPlatform, B2JointJSAdapter  {
 
 	B2WeldJointJSAdapter._(B2WeldJointJSImpl impl) : _impl = impl;
 
 	final B2WeldJointJSImpl _impl;
 
-	B2Vec2JSAdapter getLocalAnchorA() => B2Vec2JSAdapter._(_impl.getLocalAnchorA());
-	B2Vec2JSAdapter getLocalAnchorB() => B2Vec2JSAdapter._(_impl.getLocalAnchorB());
-	double getReferenceAngle() => _impl.getReferenceAngle().toDouble();
-	void setStiffness(double stiffness) => _impl.setStiffness(stiffness);
-	double getStiffness() => _impl.getStiffness().toDouble();
-	void setDamping(double damping) => _impl.setDamping(damping);
-	double getDamping() => _impl.getDamping().toDouble();
-	void dump() => _impl.dump();
-	B2JointType getType() => _impl.getType();
-	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
-	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
-	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.getAnchorA());
-	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.getAnchorB());
-	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.getReactionForce(inv_dt));
-	double getReactionTorque(double inv_dt) => _impl.getReactionTorque(inv_dt).toDouble();
-	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.getNext());
-	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.getUserData());
-	bool getCollideConnected() => _impl.getCollideConnected();
+	B2Vec2JSAdapter getLocalAnchorA() => B2Vec2JSAdapter._(_impl.GetLocalAnchorA());
+	B2Vec2JSAdapter getLocalAnchorB() => B2Vec2JSAdapter._(_impl.GetLocalAnchorB());
+	double getReferenceAngle() => _impl.GetReferenceAngle().toDouble();
+	void setStiffness(double stiffness) => _impl.SetStiffness(stiffness);
+	double getStiffness() => _impl.GetStiffness().toDouble();
+	void setDamping(double damping) => _impl.SetDamping(damping);
+	double getDamping() => _impl.GetDamping().toDouble();
+	void dump() => _impl.Dump();
+	B2JointType getType() => _impl.GetType();
+	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.GetBodyA());
+	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.GetBodyB());
+	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.GetAnchorA());
+	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.GetAnchorB());
+	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.GetReactionForce(inv_dt));
+	double getReactionTorque(double inv_dt) => _impl.GetReactionTorque(inv_dt).toDouble();
+	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.GetNext());
+	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.GetUserData());
+	bool getCollideConnected() => _impl.GetCollideConnected();
 	void dispose() => _impl.__destroy__();
 }
 
-class B2WeldJointDefJSAdapter implements B2WeldJointDefPlatform {
+class B2WeldJointDefJSAdapter implements B2WeldJointDefPlatform, B2JointDefJSAdapter  {
 
 	B2WeldJointDefJSAdapter._(B2WeldJointDefJSImpl impl) : _impl = impl;
 
@@ -630,7 +632,7 @@ class B2WeldJointDefJSAdapter implements B2WeldJointDefPlatform {
 
 	B2WeldJointDefJSAdapter() : _impl = B2WeldJointDefJSImpl();
 
-	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB, B2Vec2JSAdapter anchor) => _impl.initialize(bodyA._impl, bodyB._impl, anchor._impl);
+	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB, B2Vec2JSAdapter anchor) => _impl.Initialize(bodyA._impl, bodyB._impl, anchor._impl);
 	B2Vec2JSAdapter get_localAnchorA() => B2Vec2JSAdapter._(_impl.get_localAnchorA());
 	void set_localAnchorA(B2Vec2JSAdapter arg0) => _impl.set_localAnchorA(arg0._impl);
 	B2Vec2JSAdapter get_localAnchorB() => B2Vec2JSAdapter._(_impl.get_localAnchorB());
@@ -654,7 +656,7 @@ class B2WeldJointDefJSAdapter implements B2WeldJointDefPlatform {
 	void dispose() => _impl.__destroy__();
 }
 
-class B2ChainShapeJSAdapter implements B2ChainShapePlatform {
+class B2ChainShapeJSAdapter implements B2ChainShapePlatform, B2ShapeJSAdapter  {
 
 	B2ChainShapeJSAdapter._(B2ChainShapeJSImpl impl) : _impl = impl;
 
@@ -662,16 +664,16 @@ class B2ChainShapeJSAdapter implements B2ChainShapePlatform {
 
 	B2ChainShapeJSAdapter() : _impl = B2ChainShapeJSImpl();
 
-	void clear() => _impl.clear();
-	void createLoop(B2Vec2JSAdapter vertices, int count) => _impl.createLoop(vertices._impl, count);
-	void createChain(B2Vec2JSAdapter vertices, int count, B2Vec2JSAdapter prevVertex, B2Vec2JSAdapter nextVertex) => _impl.createChain(vertices._impl, count, prevVertex._impl, nextVertex._impl);
-	void getChildEdge(B2EdgeShapeJSAdapter edge, int index) => _impl.getChildEdge(edge._impl, index);
-	B2ShapeType getType() => _impl.getType();
-	int getChildCount() => _impl.getChildCount().toInt();
-	bool testPoint(B2TransformJSAdapter xf, B2Vec2JSAdapter p) => _impl.testPoint(xf._impl, p._impl);
-	bool rayCast(B2RayCastOutputJSAdapter output, B2RayCastInputJSAdapter input, B2TransformJSAdapter transform, int childIndex) => _impl.rayCast(output._impl, input._impl, transform._impl, childIndex);
-	void computeAABB(B2AABBJSAdapter aabb, B2TransformJSAdapter xf, int childIndex) => _impl.computeAABB(aabb._impl, xf._impl, childIndex);
-	void computeMass(B2MassDataJSAdapter massData, double density) => _impl.computeMass(massData._impl, density);
+	void clear() => _impl.Clear();
+	void createLoop(B2Vec2JSAdapter vertices, int count) => _impl.CreateLoop(vertices._impl, count);
+	void createChain(B2Vec2JSAdapter vertices, int count, B2Vec2JSAdapter prevVertex, B2Vec2JSAdapter nextVertex) => _impl.CreateChain(vertices._impl, count, prevVertex._impl, nextVertex._impl);
+	void getChildEdge(B2EdgeShapeJSAdapter edge, int index) => _impl.GetChildEdge(edge._impl, index);
+	B2ShapeType getType() => _impl.GetType();
+	int getChildCount() => _impl.GetChildCount().toInt();
+	bool testPoint(B2TransformJSAdapter xf, B2Vec2JSAdapter p) => _impl.TestPoint(xf._impl, p._impl);
+	bool rayCast(B2RayCastOutputJSAdapter output, B2RayCastInputJSAdapter input, B2TransformJSAdapter transform, int childIndex) => _impl.RayCast(output._impl, input._impl, transform._impl, childIndex);
+	void computeAABB(B2AABBJSAdapter aabb, B2TransformJSAdapter xf, int childIndex) => _impl.ComputeAABB(aabb._impl, xf._impl, childIndex);
+	void computeMass(B2MassDataJSAdapter massData, double density) => _impl.ComputeMass(massData._impl, density);
 	B2Vec2JSAdapter get_m_vertices() => B2Vec2JSAdapter._(_impl.get_m_vertices());
 	void set_m_vertices(B2Vec2JSAdapter arg0) => _impl.set_m_vertices(arg0._impl);
 	int get_m_count() => _impl.get_m_count().toInt();
@@ -697,7 +699,7 @@ class B2ColorJSAdapter implements B2ColorPlatform {
 
 	B2ColorJSAdapter.from3(double r, double g, double b) : _impl = B2ColorJSImpl.from3(r, g, b);
 
-	void set(double ri, double gi, double bi) => _impl.set(ri, gi, bi);
+	void set(double ri, double gi, double bi) => _impl.Set(ri, gi, bi);
 	double get_r() => _impl.get_r().toDouble();
 	void set_r(double arg0) => _impl.set_r(arg0);
 	double get_g() => _impl.get_g().toDouble();
@@ -760,7 +762,7 @@ class JSContactFilterJSAdapter implements JSContactFilterPlatform {
 
 	JSContactFilterJSAdapter() : _impl = JSContactFilterJSImpl();
 
-	bool shouldCollide(B2FixtureJSAdapter fixtureA, B2FixtureJSAdapter fixtureB) => _impl.shouldCollide(fixtureA._impl, fixtureB._impl);
+	bool shouldCollide(B2FixtureJSAdapter fixtureA, B2FixtureJSAdapter fixtureB) => _impl.ShouldCollide(fixtureA._impl, fixtureB._impl);
 	void dispose() => _impl.__destroy__();
 }
 
@@ -818,45 +820,45 @@ class JSDestructionListenerJSAdapter implements JSDestructionListenerPlatform {
 
 	JSDestructionListenerJSAdapter() : _impl = JSDestructionListenerJSImpl();
 
-	void sayGoodbyeJoint(B2JointJSAdapter joint) => _impl.sayGoodbyeJoint(joint._impl);
-	void sayGoodbyeFixture(B2FixtureJSAdapter joint) => _impl.sayGoodbyeFixture(joint._impl);
+	void sayGoodbyeJoint(B2JointJSAdapter joint) => _impl.SayGoodbyeJoint(joint._impl);
+	void sayGoodbyeFixture(B2FixtureJSAdapter joint) => _impl.SayGoodbyeFixture(joint._impl);
 	void dispose() => _impl.__destroy__();
 }
 
-class B2DistanceJointJSAdapter implements B2DistanceJointPlatform {
+class B2DistanceJointJSAdapter implements B2DistanceJointPlatform, B2JointJSAdapter  {
 
 	B2DistanceJointJSAdapter._(B2DistanceJointJSImpl impl) : _impl = impl;
 
 	final B2DistanceJointJSImpl _impl;
 
-	B2Vec2JSAdapter getLocalAnchorA() => B2Vec2JSAdapter._(_impl.getLocalAnchorA());
-	B2Vec2JSAdapter getLocalAnchorB() => B2Vec2JSAdapter._(_impl.getLocalAnchorB());
-	double getLength() => _impl.getLength().toDouble();
-	void setLength(double length) => _impl.setLength(length);
-	double getMinLength() => _impl.getMinLength().toDouble();
-	void setMinLength(double minLength) => _impl.setMinLength(minLength);
-	double getMaxLength() => _impl.getMaxLength().toDouble();
-	void setMaxLength(double maxLength) => _impl.setMaxLength(maxLength);
-	double getCurrentLength() => _impl.getCurrentLength().toDouble();
-	void setStiffness(double stiffness) => _impl.setStiffness(stiffness);
-	double getStiffness() => _impl.getStiffness().toDouble();
-	void setDamping(double damping) => _impl.setDamping(damping);
-	double getDamping() => _impl.getDamping().toDouble();
-	void dump() => _impl.dump();
-	B2JointType getType() => _impl.getType();
-	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
-	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
-	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.getAnchorA());
-	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.getAnchorB());
-	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.getReactionForce(inv_dt));
-	double getReactionTorque(double inv_dt) => _impl.getReactionTorque(inv_dt).toDouble();
-	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.getNext());
-	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.getUserData());
-	bool getCollideConnected() => _impl.getCollideConnected();
+	B2Vec2JSAdapter getLocalAnchorA() => B2Vec2JSAdapter._(_impl.GetLocalAnchorA());
+	B2Vec2JSAdapter getLocalAnchorB() => B2Vec2JSAdapter._(_impl.GetLocalAnchorB());
+	double getLength() => _impl.GetLength().toDouble();
+	void setLength(double length) => _impl.SetLength(length);
+	double getMinLength() => _impl.GetMinLength().toDouble();
+	void setMinLength(double minLength) => _impl.SetMinLength(minLength);
+	double getMaxLength() => _impl.GetMaxLength().toDouble();
+	void setMaxLength(double maxLength) => _impl.SetMaxLength(maxLength);
+	double getCurrentLength() => _impl.GetCurrentLength().toDouble();
+	void setStiffness(double stiffness) => _impl.SetStiffness(stiffness);
+	double getStiffness() => _impl.GetStiffness().toDouble();
+	void setDamping(double damping) => _impl.SetDamping(damping);
+	double getDamping() => _impl.GetDamping().toDouble();
+	void dump() => _impl.Dump();
+	B2JointType getType() => _impl.GetType();
+	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.GetBodyA());
+	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.GetBodyB());
+	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.GetAnchorA());
+	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.GetAnchorB());
+	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.GetReactionForce(inv_dt));
+	double getReactionTorque(double inv_dt) => _impl.GetReactionTorque(inv_dt).toDouble();
+	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.GetNext());
+	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.GetUserData());
+	bool getCollideConnected() => _impl.GetCollideConnected();
 	void dispose() => _impl.__destroy__();
 }
 
-class B2DistanceJointDefJSAdapter implements B2DistanceJointDefPlatform {
+class B2DistanceJointDefJSAdapter implements B2DistanceJointDefPlatform, B2JointDefJSAdapter  {
 
 	B2DistanceJointDefJSAdapter._(B2DistanceJointDefJSImpl impl) : _impl = impl;
 
@@ -864,7 +866,7 @@ class B2DistanceJointDefJSAdapter implements B2DistanceJointDefPlatform {
 
 	B2DistanceJointDefJSAdapter() : _impl = B2DistanceJointDefJSImpl();
 
-	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB, B2Vec2JSAdapter anchorA, B2Vec2JSAdapter anchorB) => _impl.initialize(bodyA._impl, bodyB._impl, anchorA._impl, anchorB._impl);
+	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB, B2Vec2JSAdapter anchorA, B2Vec2JSAdapter anchorB) => _impl.Initialize(bodyA._impl, bodyB._impl, anchorA._impl, anchorB._impl);
 	B2Vec2JSAdapter get_localAnchorA() => B2Vec2JSAdapter._(_impl.get_localAnchorA());
 	void set_localAnchorA(B2Vec2JSAdapter arg0) => _impl.set_localAnchorA(arg0._impl);
 	B2Vec2JSAdapter get_localAnchorB() => B2Vec2JSAdapter._(_impl.get_localAnchorB());
@@ -898,10 +900,10 @@ class B2DrawJSAdapter implements B2DrawPlatform {
 
 	final B2DrawJSImpl _impl;
 
-	void setFlags(int flags) => _impl.setFlags(flags);
-	int getFlags() => _impl.getFlags();
-	void appendFlags(int flags) => _impl.appendFlags(flags);
-	void clearFlags(int flags) => _impl.clearFlags(flags);
+	void setFlags(int flags) => _impl.SetFlags(flags);
+	int getFlags() => _impl.GetFlags();
+	void appendFlags(int flags) => _impl.AppendFlags(flags);
+	void clearFlags(int flags) => _impl.ClearFlags(flags);
 	void dispose() => _impl.__destroy__();
 }
 
@@ -913,43 +915,43 @@ class JSDrawJSAdapter implements JSDrawPlatform {
 
 	JSDrawJSAdapter() : _impl = JSDrawJSImpl();
 
-	void drawPolygon(B2Vec2JSAdapter vertices, int vertexCount, B2ColorJSAdapter color) => _impl.drawPolygon(vertices._impl, vertexCount, color._impl);
-	void drawSolidPolygon(B2Vec2JSAdapter vertices, int vertexCount, B2ColorJSAdapter color) => _impl.drawSolidPolygon(vertices._impl, vertexCount, color._impl);
-	void drawCircle(B2Vec2JSAdapter center, double radius, B2ColorJSAdapter color) => _impl.drawCircle(center._impl, radius, color._impl);
-	void drawSolidCircle(B2Vec2JSAdapter center, double radius, B2Vec2JSAdapter axis, B2ColorJSAdapter color) => _impl.drawSolidCircle(center._impl, radius, axis._impl, color._impl);
-	void drawSegment(B2Vec2JSAdapter p1, B2Vec2JSAdapter p2, B2ColorJSAdapter color) => _impl.drawSegment(p1._impl, p2._impl, color._impl);
-	void drawTransform(B2TransformJSAdapter xf) => _impl.drawTransform(xf._impl);
-	void drawPoint(B2Vec2JSAdapter p, double size, B2ColorJSAdapter color) => _impl.drawPoint(p._impl, size, color._impl);
+	void drawPolygon(B2Vec2JSAdapter vertices, int vertexCount, B2ColorJSAdapter color) => _impl.DrawPolygon(vertices._impl, vertexCount, color._impl);
+	void drawSolidPolygon(B2Vec2JSAdapter vertices, int vertexCount, B2ColorJSAdapter color) => _impl.DrawSolidPolygon(vertices._impl, vertexCount, color._impl);
+	void drawCircle(B2Vec2JSAdapter center, double radius, B2ColorJSAdapter color) => _impl.DrawCircle(center._impl, radius, color._impl);
+	void drawSolidCircle(B2Vec2JSAdapter center, double radius, B2Vec2JSAdapter axis, B2ColorJSAdapter color) => _impl.DrawSolidCircle(center._impl, radius, axis._impl, color._impl);
+	void drawSegment(B2Vec2JSAdapter p1, B2Vec2JSAdapter p2, B2ColorJSAdapter color) => _impl.DrawSegment(p1._impl, p2._impl, color._impl);
+	void drawTransform(B2TransformJSAdapter xf) => _impl.DrawTransform(xf._impl);
+	void drawPoint(B2Vec2JSAdapter p, double size, B2ColorJSAdapter color) => _impl.DrawPoint(p._impl, size, color._impl);
 	void dispose() => _impl.__destroy__();
 }
 
-class B2FrictionJointJSAdapter implements B2FrictionJointPlatform {
+class B2FrictionJointJSAdapter implements B2FrictionJointPlatform, B2JointJSAdapter  {
 
 	B2FrictionJointJSAdapter._(B2FrictionJointJSImpl impl) : _impl = impl;
 
 	final B2FrictionJointJSImpl _impl;
 
-	B2Vec2JSAdapter getLocalAnchorA() => B2Vec2JSAdapter._(_impl.getLocalAnchorA());
-	B2Vec2JSAdapter getLocalAnchorB() => B2Vec2JSAdapter._(_impl.getLocalAnchorB());
-	void setMaxForce(double force) => _impl.setMaxForce(force);
-	double getMaxForce() => _impl.getMaxForce().toDouble();
-	void setMaxTorque(double torque) => _impl.setMaxTorque(torque);
-	double getMaxTorque() => _impl.getMaxTorque().toDouble();
-	void dump() => _impl.dump();
-	B2JointType getType() => _impl.getType();
-	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
-	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
-	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.getAnchorA());
-	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.getAnchorB());
-	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.getReactionForce(inv_dt));
-	double getReactionTorque(double inv_dt) => _impl.getReactionTorque(inv_dt).toDouble();
-	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.getNext());
-	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.getUserData());
-	bool getCollideConnected() => _impl.getCollideConnected();
+	B2Vec2JSAdapter getLocalAnchorA() => B2Vec2JSAdapter._(_impl.GetLocalAnchorA());
+	B2Vec2JSAdapter getLocalAnchorB() => B2Vec2JSAdapter._(_impl.GetLocalAnchorB());
+	void setMaxForce(double force) => _impl.SetMaxForce(force);
+	double getMaxForce() => _impl.GetMaxForce().toDouble();
+	void setMaxTorque(double torque) => _impl.SetMaxTorque(torque);
+	double getMaxTorque() => _impl.GetMaxTorque().toDouble();
+	void dump() => _impl.Dump();
+	B2JointType getType() => _impl.GetType();
+	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.GetBodyA());
+	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.GetBodyB());
+	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.GetAnchorA());
+	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.GetAnchorB());
+	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.GetReactionForce(inv_dt));
+	double getReactionTorque(double inv_dt) => _impl.GetReactionTorque(inv_dt).toDouble();
+	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.GetNext());
+	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.GetUserData());
+	bool getCollideConnected() => _impl.GetCollideConnected();
 	void dispose() => _impl.__destroy__();
 }
 
-class B2FrictionJointDefJSAdapter implements B2FrictionJointDefPlatform {
+class B2FrictionJointDefJSAdapter implements B2FrictionJointDefPlatform, B2JointDefJSAdapter  {
 
 	B2FrictionJointDefJSAdapter._(B2FrictionJointDefJSImpl impl) : _impl = impl;
 
@@ -957,7 +959,7 @@ class B2FrictionJointDefJSAdapter implements B2FrictionJointDefPlatform {
 
 	B2FrictionJointDefJSAdapter() : _impl = B2FrictionJointDefJSImpl();
 
-	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB, B2Vec2JSAdapter anchor) => _impl.initialize(bodyA._impl, bodyB._impl, anchor._impl);
+	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB, B2Vec2JSAdapter anchor) => _impl.Initialize(bodyA._impl, bodyB._impl, anchor._impl);
 	B2Vec2JSAdapter get_localAnchorA() => B2Vec2JSAdapter._(_impl.get_localAnchorA());
 	void set_localAnchorA(B2Vec2JSAdapter arg0) => _impl.set_localAnchorA(arg0._impl);
 	B2Vec2JSAdapter get_localAnchorB() => B2Vec2JSAdapter._(_impl.get_localAnchorB());
@@ -979,31 +981,31 @@ class B2FrictionJointDefJSAdapter implements B2FrictionJointDefPlatform {
 	void dispose() => _impl.__destroy__();
 }
 
-class B2GearJointJSAdapter implements B2GearJointPlatform {
+class B2GearJointJSAdapter implements B2GearJointPlatform, B2JointJSAdapter  {
 
 	B2GearJointJSAdapter._(B2GearJointJSImpl impl) : _impl = impl;
 
 	final B2GearJointJSImpl _impl;
 
-	B2JointJSAdapter getJoint1() => B2JointJSAdapter._(_impl.getJoint1());
-	B2JointJSAdapter getJoint2() => B2JointJSAdapter._(_impl.getJoint2());
-	void setRatio(double ratio) => _impl.setRatio(ratio);
-	double getRatio() => _impl.getRatio().toDouble();
-	void dump() => _impl.dump();
-	B2JointType getType() => _impl.getType();
-	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
-	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
-	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.getAnchorA());
-	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.getAnchorB());
-	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.getReactionForce(inv_dt));
-	double getReactionTorque(double inv_dt) => _impl.getReactionTorque(inv_dt).toDouble();
-	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.getNext());
-	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.getUserData());
-	bool getCollideConnected() => _impl.getCollideConnected();
+	B2JointJSAdapter getJoint1() => B2JointJSAdapter._(_impl.GetJoint1());
+	B2JointJSAdapter getJoint2() => B2JointJSAdapter._(_impl.GetJoint2());
+	void setRatio(double ratio) => _impl.SetRatio(ratio);
+	double getRatio() => _impl.GetRatio().toDouble();
+	void dump() => _impl.Dump();
+	B2JointType getType() => _impl.GetType();
+	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.GetBodyA());
+	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.GetBodyB());
+	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.GetAnchorA());
+	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.GetAnchorB());
+	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.GetReactionForce(inv_dt));
+	double getReactionTorque(double inv_dt) => _impl.GetReactionTorque(inv_dt).toDouble();
+	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.GetNext());
+	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.GetUserData());
+	bool getCollideConnected() => _impl.GetCollideConnected();
 	void dispose() => _impl.__destroy__();
 }
 
-class B2GearJointDefJSAdapter implements B2GearJointDefPlatform {
+class B2GearJointDefJSAdapter implements B2GearJointDefPlatform, B2JointDefJSAdapter  {
 
 	B2GearJointDefJSAdapter._(B2GearJointDefJSImpl impl) : _impl = impl;
 
@@ -1078,7 +1080,7 @@ class B2WorldManifoldJSAdapter implements B2WorldManifoldPlatform {
 
 	B2WorldManifoldJSAdapter() : _impl = B2WorldManifoldJSImpl();
 
-	void initialize(B2ManifoldJSAdapter manifold, B2TransformJSAdapter xfA, double radiusA, B2TransformJSAdapter xfB, double radiusB) => _impl.initialize(manifold._impl, xfA._impl, radiusA, xfB._impl, radiusB);
+	void initialize(B2ManifoldJSAdapter manifold, B2TransformJSAdapter xfA, double radiusA, B2TransformJSAdapter xfB, double radiusB) => _impl.Initialize(manifold._impl, xfA._impl, radiusA, xfB._impl, radiusB);
 	B2Vec2JSAdapter get_normal() => B2Vec2JSAdapter._(_impl.get_normal());
 	void set_normal(B2Vec2JSAdapter arg0) => _impl.set_normal(arg0._impl);
 	B2Vec2JSAdapter get_points(int arg0) => B2Vec2JSAdapter._(_impl.get_points(arg0));
@@ -1119,11 +1121,11 @@ class B2Mat22JSAdapter implements B2Mat22Platform {
 
 	B2Mat22JSAdapter.from4(double a11, double a12, double a21, double a22) : _impl = B2Mat22JSImpl.from4(a11, a12, a21, a22);
 
-	void set(B2Vec2JSAdapter c1, B2Vec2JSAdapter c2) => _impl.set(c1._impl, c2._impl);
-	void setIdentity() => _impl.setIdentity();
-	void setZero() => _impl.setZero();
-	B2Mat22JSAdapter getInverse() => B2Mat22JSAdapter._(_impl.getInverse());
-	B2Vec2JSAdapter solve(B2Vec2JSAdapter b) => B2Vec2JSAdapter._(_impl.solve(b._impl));
+	void set(B2Vec2JSAdapter c1, B2Vec2JSAdapter c2) => _impl.Set(c1._impl, c2._impl);
+	void setIdentity() => _impl.SetIdentity();
+	void setZero() => _impl.SetZero();
+	B2Mat22JSAdapter getInverse() => B2Mat22JSAdapter._(_impl.GetInverse());
+	B2Vec2JSAdapter solve(B2Vec2JSAdapter b) => B2Vec2JSAdapter._(_impl.Solve(b._impl));
 	B2Vec2JSAdapter get_ex() => B2Vec2JSAdapter._(_impl.get_ex());
 	void set_ex(B2Vec2JSAdapter arg0) => _impl.set_ex(arg0._impl);
 	B2Vec2JSAdapter get_ey() => B2Vec2JSAdapter._(_impl.get_ey());
@@ -1141,11 +1143,11 @@ class B2Mat33JSAdapter implements B2Mat33Platform {
 
 	B2Mat33JSAdapter.from3(B2Vec3JSAdapter c1, B2Vec3JSAdapter c2, B2Vec3JSAdapter c3) : _impl = B2Mat33JSImpl.from3(c1._impl, c2._impl, c3._impl);
 
-	void setZero() => _impl.setZero();
-	B2Vec3JSAdapter solve33(B2Vec3JSAdapter b) => B2Vec3JSAdapter._(_impl.solve33(b._impl));
-	B2Vec2JSAdapter solve22(B2Vec2JSAdapter b) => B2Vec2JSAdapter._(_impl.solve22(b._impl));
-	void getInverse22(B2Mat33JSAdapter M) => _impl.getInverse22(M._impl);
-	void getSymInverse33(B2Mat33JSAdapter M) => _impl.getSymInverse33(M._impl);
+	void setZero() => _impl.SetZero();
+	B2Vec3JSAdapter solve33(B2Vec3JSAdapter b) => B2Vec3JSAdapter._(_impl.Solve33(b._impl));
+	B2Vec2JSAdapter solve22(B2Vec2JSAdapter b) => B2Vec2JSAdapter._(_impl.Solve22(b._impl));
+	void getInverse22(B2Mat33JSAdapter M) => _impl.GetInverse22(M._impl);
+	void getSymInverse33(B2Mat33JSAdapter M) => _impl.GetSymInverse33(M._impl);
 	B2Vec3JSAdapter get_ex() => B2Vec3JSAdapter._(_impl.get_ex());
 	void set_ex(B2Vec3JSAdapter arg0) => _impl.set_ex(arg0._impl);
 	B2Vec3JSAdapter get_ey() => B2Vec3JSAdapter._(_impl.get_ey());
@@ -1155,35 +1157,35 @@ class B2Mat33JSAdapter implements B2Mat33Platform {
 	void dispose() => _impl.__destroy__();
 }
 
-class B2MouseJointJSAdapter implements B2MouseJointPlatform {
+class B2MouseJointJSAdapter implements B2MouseJointPlatform, B2JointJSAdapter  {
 
 	B2MouseJointJSAdapter._(B2MouseJointJSImpl impl) : _impl = impl;
 
 	final B2MouseJointJSImpl _impl;
 
-	void setTarget(B2Vec2JSAdapter target) => _impl.setTarget(target._impl);
-	B2Vec2JSAdapter getTarget() => B2Vec2JSAdapter._(_impl.getTarget());
-	void setMaxForce(double force) => _impl.setMaxForce(force);
-	double getMaxForce() => _impl.getMaxForce().toDouble();
-	void setStiffness(double stiffness) => _impl.setStiffness(stiffness);
-	double getStiffness() => _impl.getStiffness().toDouble();
-	void setDamping(double damping) => _impl.setDamping(damping);
-	double getDamping() => _impl.getDamping().toDouble();
-	void dump() => _impl.dump();
-	B2JointType getType() => _impl.getType();
-	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
-	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
-	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.getAnchorA());
-	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.getAnchorB());
-	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.getReactionForce(inv_dt));
-	double getReactionTorque(double inv_dt) => _impl.getReactionTorque(inv_dt).toDouble();
-	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.getNext());
-	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.getUserData());
-	bool getCollideConnected() => _impl.getCollideConnected();
+	void setTarget(B2Vec2JSAdapter target) => _impl.SetTarget(target._impl);
+	B2Vec2JSAdapter getTarget() => B2Vec2JSAdapter._(_impl.GetTarget());
+	void setMaxForce(double force) => _impl.SetMaxForce(force);
+	double getMaxForce() => _impl.GetMaxForce().toDouble();
+	void setStiffness(double stiffness) => _impl.SetStiffness(stiffness);
+	double getStiffness() => _impl.GetStiffness().toDouble();
+	void setDamping(double damping) => _impl.SetDamping(damping);
+	double getDamping() => _impl.GetDamping().toDouble();
+	void dump() => _impl.Dump();
+	B2JointType getType() => _impl.GetType();
+	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.GetBodyA());
+	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.GetBodyB());
+	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.GetAnchorA());
+	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.GetAnchorB());
+	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.GetReactionForce(inv_dt));
+	double getReactionTorque(double inv_dt) => _impl.GetReactionTorque(inv_dt).toDouble();
+	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.GetNext());
+	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.GetUserData());
+	bool getCollideConnected() => _impl.GetCollideConnected();
 	void dispose() => _impl.__destroy__();
 }
 
-class B2MouseJointDefJSAdapter implements B2MouseJointDefPlatform {
+class B2MouseJointDefJSAdapter implements B2MouseJointDefPlatform, B2JointDefJSAdapter  {
 
 	B2MouseJointDefJSAdapter._(B2MouseJointDefJSImpl impl) : _impl = impl;
 
@@ -1212,7 +1214,7 @@ class B2MouseJointDefJSAdapter implements B2MouseJointDefPlatform {
 	void dispose() => _impl.__destroy__();
 }
 
-class B2PolygonShapeJSAdapter implements B2PolygonShapePlatform {
+class B2PolygonShapeJSAdapter implements B2PolygonShapePlatform, B2ShapeJSAdapter  {
 
 	B2PolygonShapeJSAdapter._(B2PolygonShapeJSImpl impl) : _impl = impl;
 
@@ -1220,15 +1222,15 @@ class B2PolygonShapeJSAdapter implements B2PolygonShapePlatform {
 
 	B2PolygonShapeJSAdapter() : _impl = B2PolygonShapeJSImpl();
 
-	void set(B2Vec2JSAdapter vertices, int vertexCount) => _impl.set(vertices._impl, vertexCount);
-	void setAsBox2(double hx, double hy) => _impl.setAsBox2(hx, hy);
-	void setAsBox4(double hx, double hy, B2Vec2JSAdapter center, double angle) => _impl.setAsBox4(hx, hy, center._impl, angle);
-	B2ShapeType getType() => _impl.getType();
-	int getChildCount() => _impl.getChildCount().toInt();
-	bool testPoint(B2TransformJSAdapter xf, B2Vec2JSAdapter p) => _impl.testPoint(xf._impl, p._impl);
-	bool rayCast(B2RayCastOutputJSAdapter output, B2RayCastInputJSAdapter input, B2TransformJSAdapter transform, int childIndex) => _impl.rayCast(output._impl, input._impl, transform._impl, childIndex);
-	void computeAABB(B2AABBJSAdapter aabb, B2TransformJSAdapter xf, int childIndex) => _impl.computeAABB(aabb._impl, xf._impl, childIndex);
-	void computeMass(B2MassDataJSAdapter massData, double density) => _impl.computeMass(massData._impl, density);
+	void set(B2Vec2JSAdapter vertices, int vertexCount) => _impl.Set(vertices._impl, vertexCount);
+	void setAsBox2(double hx, double hy) => _impl.SetAsBox(hx, hy, null, null);
+	void setAsBox4(double hx, double hy, B2Vec2JSAdapter center, double angle) => _impl.SetAsBox(hx, hy, center._impl, angle);
+	B2ShapeType getType() => _impl.GetType();
+	int getChildCount() => _impl.GetChildCount().toInt();
+	bool testPoint(B2TransformJSAdapter xf, B2Vec2JSAdapter p) => _impl.TestPoint(xf._impl, p._impl);
+	bool rayCast(B2RayCastOutputJSAdapter output, B2RayCastInputJSAdapter input, B2TransformJSAdapter transform, int childIndex) => _impl.RayCast(output._impl, input._impl, transform._impl, childIndex);
+	void computeAABB(B2AABBJSAdapter aabb, B2TransformJSAdapter xf, int childIndex) => _impl.ComputeAABB(aabb._impl, xf._impl, childIndex);
+	void computeMass(B2MassDataJSAdapter massData, double density) => _impl.ComputeMass(massData._impl, density);
 	B2Vec2JSAdapter get_m_centroid() => B2Vec2JSAdapter._(_impl.get_m_centroid());
 	void set_m_centroid(B2Vec2JSAdapter arg0) => _impl.set_m_centroid(arg0._impl);
 	B2Vec2JSAdapter get_m_vertices(int arg0) => B2Vec2JSAdapter._(_impl.get_m_vertices(arg0));
@@ -1244,45 +1246,45 @@ class B2PolygonShapeJSAdapter implements B2PolygonShapePlatform {
 	void dispose() => _impl.__destroy__();
 }
 
-class B2PrismaticJointJSAdapter implements B2PrismaticJointPlatform {
+class B2PrismaticJointJSAdapter implements B2PrismaticJointPlatform, B2JointJSAdapter  {
 
 	B2PrismaticJointJSAdapter._(B2PrismaticJointJSImpl impl) : _impl = impl;
 
 	final B2PrismaticJointJSImpl _impl;
 
-	B2Vec2JSAdapter getLocalAnchorA() => B2Vec2JSAdapter._(_impl.getLocalAnchorA());
-	B2Vec2JSAdapter getLocalAnchorB() => B2Vec2JSAdapter._(_impl.getLocalAnchorB());
-	B2Vec2JSAdapter getLocalAxisA() => B2Vec2JSAdapter._(_impl.getLocalAxisA());
-	double getReferenceAngle() => _impl.getReferenceAngle().toDouble();
-	double getJointTranslation() => _impl.getJointTranslation().toDouble();
-	double getJointSpeed() => _impl.getJointSpeed().toDouble();
-	bool isLimitEnabled() => _impl.isLimitEnabled();
-	void enableLimit(bool flag) => _impl.enableLimit(flag);
-	double getLowerLimit() => _impl.getLowerLimit().toDouble();
-	double getUpperLimit() => _impl.getUpperLimit().toDouble();
-	void setLimits(double lower, double upper) => _impl.setLimits(lower, upper);
-	bool isMotorEnabled() => _impl.isMotorEnabled();
-	void enableMotor(bool flag) => _impl.enableMotor(flag);
-	void setMotorSpeed(double speed) => _impl.setMotorSpeed(speed);
-	double getMotorSpeed() => _impl.getMotorSpeed().toDouble();
-	void setMaxMotorForce(double force) => _impl.setMaxMotorForce(force);
-	double getMaxMotorForce() => _impl.getMaxMotorForce().toDouble();
-	double getMotorForce(double inv_dt) => _impl.getMotorForce(inv_dt).toDouble();
-	void dump() => _impl.dump();
-	B2JointType getType() => _impl.getType();
-	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
-	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
-	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.getAnchorA());
-	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.getAnchorB());
-	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.getReactionForce(inv_dt));
-	double getReactionTorque(double inv_dt) => _impl.getReactionTorque(inv_dt).toDouble();
-	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.getNext());
-	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.getUserData());
-	bool getCollideConnected() => _impl.getCollideConnected();
+	B2Vec2JSAdapter getLocalAnchorA() => B2Vec2JSAdapter._(_impl.GetLocalAnchorA());
+	B2Vec2JSAdapter getLocalAnchorB() => B2Vec2JSAdapter._(_impl.GetLocalAnchorB());
+	B2Vec2JSAdapter getLocalAxisA() => B2Vec2JSAdapter._(_impl.GetLocalAxisA());
+	double getReferenceAngle() => _impl.GetReferenceAngle().toDouble();
+	double getJointTranslation() => _impl.GetJointTranslation().toDouble();
+	double getJointSpeed() => _impl.GetJointSpeed().toDouble();
+	bool isLimitEnabled() => _impl.IsLimitEnabled();
+	void enableLimit(bool flag) => _impl.EnableLimit(flag);
+	double getLowerLimit() => _impl.GetLowerLimit().toDouble();
+	double getUpperLimit() => _impl.GetUpperLimit().toDouble();
+	void setLimits(double lower, double upper) => _impl.SetLimits(lower, upper);
+	bool isMotorEnabled() => _impl.IsMotorEnabled();
+	void enableMotor(bool flag) => _impl.EnableMotor(flag);
+	void setMotorSpeed(double speed) => _impl.SetMotorSpeed(speed);
+	double getMotorSpeed() => _impl.GetMotorSpeed().toDouble();
+	void setMaxMotorForce(double force) => _impl.SetMaxMotorForce(force);
+	double getMaxMotorForce() => _impl.GetMaxMotorForce().toDouble();
+	double getMotorForce(double inv_dt) => _impl.GetMotorForce(inv_dt).toDouble();
+	void dump() => _impl.Dump();
+	B2JointType getType() => _impl.GetType();
+	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.GetBodyA());
+	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.GetBodyB());
+	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.GetAnchorA());
+	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.GetAnchorB());
+	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.GetReactionForce(inv_dt));
+	double getReactionTorque(double inv_dt) => _impl.GetReactionTorque(inv_dt).toDouble();
+	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.GetNext());
+	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.GetUserData());
+	bool getCollideConnected() => _impl.GetCollideConnected();
 	void dispose() => _impl.__destroy__();
 }
 
-class B2PrismaticJointDefJSAdapter implements B2PrismaticJointDefPlatform {
+class B2PrismaticJointDefJSAdapter implements B2PrismaticJointDefPlatform, B2JointDefJSAdapter  {
 
 	B2PrismaticJointDefJSAdapter._(B2PrismaticJointDefJSImpl impl) : _impl = impl;
 
@@ -1290,7 +1292,7 @@ class B2PrismaticJointDefJSAdapter implements B2PrismaticJointDefPlatform {
 
 	B2PrismaticJointDefJSAdapter() : _impl = B2PrismaticJointDefJSImpl();
 
-	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB, B2Vec2JSAdapter anchor, B2Vec2JSAdapter axis) => _impl.initialize(bodyA._impl, bodyB._impl, anchor._impl, axis._impl);
+	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB, B2Vec2JSAdapter anchor, B2Vec2JSAdapter axis) => _impl.Initialize(bodyA._impl, bodyB._impl, anchor._impl, axis._impl);
 	B2Vec2JSAdapter get_localAnchorA() => B2Vec2JSAdapter._(_impl.get_localAnchorA());
 	void set_localAnchorA(B2Vec2JSAdapter arg0) => _impl.set_localAnchorA(arg0._impl);
 	B2Vec2JSAdapter get_localAnchorB() => B2Vec2JSAdapter._(_impl.get_localAnchorB());
@@ -1349,34 +1351,34 @@ class B2ProfileJSAdapter implements B2ProfilePlatform {
 	void dispose() => _impl.__destroy__();
 }
 
-class B2PulleyJointJSAdapter implements B2PulleyJointPlatform {
+class B2PulleyJointJSAdapter implements B2PulleyJointPlatform, B2JointJSAdapter  {
 
 	B2PulleyJointJSAdapter._(B2PulleyJointJSImpl impl) : _impl = impl;
 
 	final B2PulleyJointJSImpl _impl;
 
-	B2Vec2JSAdapter getGroundAnchorA() => B2Vec2JSAdapter._(_impl.getGroundAnchorA());
-	B2Vec2JSAdapter getGroundAnchorB() => B2Vec2JSAdapter._(_impl.getGroundAnchorB());
-	double getLengthA() => _impl.getLengthA().toDouble();
-	double getLengthB() => _impl.getLengthB().toDouble();
-	double getRatio() => _impl.getRatio().toDouble();
-	double getCurrentLengthA() => _impl.getCurrentLengthA().toDouble();
-	double getCurrentLengthB() => _impl.getCurrentLengthB().toDouble();
-	void dump() => _impl.dump();
-	B2JointType getType() => _impl.getType();
-	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
-	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
-	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.getAnchorA());
-	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.getAnchorB());
-	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.getReactionForce(inv_dt));
-	double getReactionTorque(double inv_dt) => _impl.getReactionTorque(inv_dt).toDouble();
-	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.getNext());
-	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.getUserData());
-	bool getCollideConnected() => _impl.getCollideConnected();
+	B2Vec2JSAdapter getGroundAnchorA() => B2Vec2JSAdapter._(_impl.GetGroundAnchorA());
+	B2Vec2JSAdapter getGroundAnchorB() => B2Vec2JSAdapter._(_impl.GetGroundAnchorB());
+	double getLengthA() => _impl.GetLengthA().toDouble();
+	double getLengthB() => _impl.GetLengthB().toDouble();
+	double getRatio() => _impl.GetRatio().toDouble();
+	double getCurrentLengthA() => _impl.GetCurrentLengthA().toDouble();
+	double getCurrentLengthB() => _impl.GetCurrentLengthB().toDouble();
+	void dump() => _impl.Dump();
+	B2JointType getType() => _impl.GetType();
+	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.GetBodyA());
+	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.GetBodyB());
+	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.GetAnchorA());
+	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.GetAnchorB());
+	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.GetReactionForce(inv_dt));
+	double getReactionTorque(double inv_dt) => _impl.GetReactionTorque(inv_dt).toDouble();
+	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.GetNext());
+	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.GetUserData());
+	bool getCollideConnected() => _impl.GetCollideConnected();
 	void dispose() => _impl.__destroy__();
 }
 
-class B2PulleyJointDefJSAdapter implements B2PulleyJointDefPlatform {
+class B2PulleyJointDefJSAdapter implements B2PulleyJointDefPlatform, B2JointDefJSAdapter  {
 
 	B2PulleyJointDefJSAdapter._(B2PulleyJointDefJSImpl impl) : _impl = impl;
 
@@ -1384,7 +1386,7 @@ class B2PulleyJointDefJSAdapter implements B2PulleyJointDefPlatform {
 
 	B2PulleyJointDefJSAdapter() : _impl = B2PulleyJointDefJSImpl();
 
-	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB, B2Vec2JSAdapter groundAnchorA, B2Vec2JSAdapter groundAnchorB, B2Vec2JSAdapter anchorA, B2Vec2JSAdapter anchorB, double ratio) => _impl.initialize(bodyA._impl, bodyB._impl, groundAnchorA._impl, groundAnchorB._impl, anchorA._impl, anchorB._impl, ratio);
+	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB, B2Vec2JSAdapter groundAnchorA, B2Vec2JSAdapter groundAnchorB, B2Vec2JSAdapter anchorA, B2Vec2JSAdapter anchorB, double ratio) => _impl.Initialize(bodyA._impl, bodyB._impl, groundAnchorA._impl, groundAnchorB._impl, anchorA._impl, anchorB._impl, ratio);
 	B2Vec2JSAdapter get_groundAnchorA() => B2Vec2JSAdapter._(_impl.get_groundAnchorA());
 	void set_groundAnchorA(B2Vec2JSAdapter arg0) => _impl.set_groundAnchorA(arg0._impl);
 	B2Vec2JSAdapter get_groundAnchorB() => B2Vec2JSAdapter._(_impl.get_groundAnchorB());
@@ -1440,44 +1442,44 @@ class B2RayCastOutputJSAdapter implements B2RayCastOutputPlatform {
 	void dispose() => _impl.__destroy__();
 }
 
-class B2RevoluteJointJSAdapter implements B2RevoluteJointPlatform {
+class B2RevoluteJointJSAdapter implements B2RevoluteJointPlatform, B2JointJSAdapter  {
 
 	B2RevoluteJointJSAdapter._(B2RevoluteJointJSImpl impl) : _impl = impl;
 
 	final B2RevoluteJointJSImpl _impl;
 
-	B2Vec2JSAdapter getLocalAnchorA() => B2Vec2JSAdapter._(_impl.getLocalAnchorA());
-	B2Vec2JSAdapter getLocalAnchorB() => B2Vec2JSAdapter._(_impl.getLocalAnchorB());
-	double getReferenceAngle() => _impl.getReferenceAngle().toDouble();
-	double getJointAngle() => _impl.getJointAngle().toDouble();
-	double getJointSpeed() => _impl.getJointSpeed().toDouble();
-	bool isLimitEnabled() => _impl.isLimitEnabled();
-	void enableLimit(bool flag) => _impl.enableLimit(flag);
-	double getLowerLimit() => _impl.getLowerLimit().toDouble();
-	double getUpperLimit() => _impl.getUpperLimit().toDouble();
-	void setLimits(double lower, double upper) => _impl.setLimits(lower, upper);
-	bool isMotorEnabled() => _impl.isMotorEnabled();
-	void enableMotor(bool flag) => _impl.enableMotor(flag);
-	void setMotorSpeed(double speed) => _impl.setMotorSpeed(speed);
-	double getMotorSpeed() => _impl.getMotorSpeed().toDouble();
-	void setMaxMotorTorque(double torque) => _impl.setMaxMotorTorque(torque);
-	double getMaxMotorTorque() => _impl.getMaxMotorTorque().toDouble();
-	double getMotorTorque(double inv_dt) => _impl.getMotorTorque(inv_dt).toDouble();
-	void dump() => _impl.dump();
-	B2JointType getType() => _impl.getType();
-	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
-	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
-	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.getAnchorA());
-	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.getAnchorB());
-	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.getReactionForce(inv_dt));
-	double getReactionTorque(double inv_dt) => _impl.getReactionTorque(inv_dt).toDouble();
-	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.getNext());
-	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.getUserData());
-	bool getCollideConnected() => _impl.getCollideConnected();
+	B2Vec2JSAdapter getLocalAnchorA() => B2Vec2JSAdapter._(_impl.GetLocalAnchorA());
+	B2Vec2JSAdapter getLocalAnchorB() => B2Vec2JSAdapter._(_impl.GetLocalAnchorB());
+	double getReferenceAngle() => _impl.GetReferenceAngle().toDouble();
+	double getJointAngle() => _impl.GetJointAngle().toDouble();
+	double getJointSpeed() => _impl.GetJointSpeed().toDouble();
+	bool isLimitEnabled() => _impl.IsLimitEnabled();
+	void enableLimit(bool flag) => _impl.EnableLimit(flag);
+	double getLowerLimit() => _impl.GetLowerLimit().toDouble();
+	double getUpperLimit() => _impl.GetUpperLimit().toDouble();
+	void setLimits(double lower, double upper) => _impl.SetLimits(lower, upper);
+	bool isMotorEnabled() => _impl.IsMotorEnabled();
+	void enableMotor(bool flag) => _impl.EnableMotor(flag);
+	void setMotorSpeed(double speed) => _impl.SetMotorSpeed(speed);
+	double getMotorSpeed() => _impl.GetMotorSpeed().toDouble();
+	void setMaxMotorTorque(double torque) => _impl.SetMaxMotorTorque(torque);
+	double getMaxMotorTorque() => _impl.GetMaxMotorTorque().toDouble();
+	double getMotorTorque(double inv_dt) => _impl.GetMotorTorque(inv_dt).toDouble();
+	void dump() => _impl.Dump();
+	B2JointType getType() => _impl.GetType();
+	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.GetBodyA());
+	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.GetBodyB());
+	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.GetAnchorA());
+	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.GetAnchorB());
+	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.GetReactionForce(inv_dt));
+	double getReactionTorque(double inv_dt) => _impl.GetReactionTorque(inv_dt).toDouble();
+	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.GetNext());
+	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.GetUserData());
+	bool getCollideConnected() => _impl.GetCollideConnected();
 	void dispose() => _impl.__destroy__();
 }
 
-class B2RevoluteJointDefJSAdapter implements B2RevoluteJointDefPlatform {
+class B2RevoluteJointDefJSAdapter implements B2RevoluteJointDefPlatform, B2JointDefJSAdapter  {
 
 	B2RevoluteJointDefJSAdapter._(B2RevoluteJointDefJSImpl impl) : _impl = impl;
 
@@ -1485,7 +1487,7 @@ class B2RevoluteJointDefJSAdapter implements B2RevoluteJointDefPlatform {
 
 	B2RevoluteJointDefJSAdapter() : _impl = B2RevoluteJointDefJSImpl();
 
-	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB, B2Vec2JSAdapter anchor) => _impl.initialize(bodyA._impl, bodyB._impl, anchor._impl);
+	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB, B2Vec2JSAdapter anchor) => _impl.Initialize(bodyA._impl, bodyB._impl, anchor._impl);
 	B2Vec2JSAdapter get_localAnchorA() => B2Vec2JSAdapter._(_impl.get_localAnchorA());
 	void set_localAnchorA(B2Vec2JSAdapter arg0) => _impl.set_localAnchorA(arg0._impl);
 	B2Vec2JSAdapter get_localAnchorB() => B2Vec2JSAdapter._(_impl.get_localAnchorB());
@@ -1527,11 +1529,11 @@ class B2RotJSAdapter implements B2RotPlatform {
 
 	B2RotJSAdapter.from1(double angle) : _impl = B2RotJSImpl.from1(angle);
 
-	void set(double angle) => _impl.set(angle);
-	void setIdentity() => _impl.setIdentity();
-	double getAngle() => _impl.getAngle().toDouble();
-	B2Vec2JSAdapter getXAxis() => B2Vec2JSAdapter._(_impl.getXAxis());
-	B2Vec2JSAdapter getYAxis() => B2Vec2JSAdapter._(_impl.getYAxis());
+	void set(double angle) => _impl.Set(angle);
+	void setIdentity() => _impl.SetIdentity();
+	double getAngle() => _impl.GetAngle().toDouble();
+	B2Vec2JSAdapter getXAxis() => B2Vec2JSAdapter._(_impl.GetXAxis());
+	B2Vec2JSAdapter getYAxis() => B2Vec2JSAdapter._(_impl.GetYAxis());
 	double get_s() => _impl.get_s().toDouble();
 	void set_s(double arg0) => _impl.set_s(arg0);
 	double get_c() => _impl.get_c().toDouble();
@@ -1539,50 +1541,50 @@ class B2RotJSAdapter implements B2RotPlatform {
 	void dispose() => _impl.__destroy__();
 }
 
-class B2WheelJointJSAdapter implements B2WheelJointPlatform {
+class B2WheelJointJSAdapter implements B2WheelJointPlatform, B2JointJSAdapter  {
 
 	B2WheelJointJSAdapter._(B2WheelJointJSImpl impl) : _impl = impl;
 
 	final B2WheelJointJSImpl _impl;
 
-	B2Vec2JSAdapter getLocalAnchorA() => B2Vec2JSAdapter._(_impl.getLocalAnchorA());
-	B2Vec2JSAdapter getLocalAnchorB() => B2Vec2JSAdapter._(_impl.getLocalAnchorB());
-	B2Vec2JSAdapter getLocalAxisA() => B2Vec2JSAdapter._(_impl.getLocalAxisA());
-	double getJointTranslation() => _impl.getJointTranslation().toDouble();
-	double getJointLinearSpeed() => _impl.getJointLinearSpeed().toDouble();
-	double getJointAngle() => _impl.getJointAngle().toDouble();
-	double getJointAngularSpeed() => _impl.getJointAngularSpeed().toDouble();
-	bool isLimitEnabled() => _impl.isLimitEnabled();
-	void enableLimit(bool flag) => _impl.enableLimit(flag);
-	double getLowerLimit() => _impl.getLowerLimit().toDouble();
-	double getUpperLimit() => _impl.getUpperLimit().toDouble();
-	void setLimits(double lower, double upper) => _impl.setLimits(lower, upper);
-	bool isMotorEnabled() => _impl.isMotorEnabled();
-	void enableMotor(bool flag) => _impl.enableMotor(flag);
-	void setMotorSpeed(double speed) => _impl.setMotorSpeed(speed);
-	double getMotorSpeed() => _impl.getMotorSpeed().toDouble();
-	void setMaxMotorTorque(double torque) => _impl.setMaxMotorTorque(torque);
-	double getMaxMotorTorque() => _impl.getMaxMotorTorque().toDouble();
-	double getMotorTorque(double inv_dt) => _impl.getMotorTorque(inv_dt).toDouble();
-	void setStiffness(double stiffness) => _impl.setStiffness(stiffness);
-	double getStiffness() => _impl.getStiffness().toDouble();
-	void setDamping(double damping) => _impl.setDamping(damping);
-	double getDamping() => _impl.getDamping().toDouble();
-	void dump() => _impl.dump();
-	B2JointType getType() => _impl.getType();
-	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
-	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
-	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.getAnchorA());
-	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.getAnchorB());
-	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.getReactionForce(inv_dt));
-	double getReactionTorque(double inv_dt) => _impl.getReactionTorque(inv_dt).toDouble();
-	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.getNext());
-	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.getUserData());
-	bool getCollideConnected() => _impl.getCollideConnected();
+	B2Vec2JSAdapter getLocalAnchorA() => B2Vec2JSAdapter._(_impl.GetLocalAnchorA());
+	B2Vec2JSAdapter getLocalAnchorB() => B2Vec2JSAdapter._(_impl.GetLocalAnchorB());
+	B2Vec2JSAdapter getLocalAxisA() => B2Vec2JSAdapter._(_impl.GetLocalAxisA());
+	double getJointTranslation() => _impl.GetJointTranslation().toDouble();
+	double getJointLinearSpeed() => _impl.GetJointLinearSpeed().toDouble();
+	double getJointAngle() => _impl.GetJointAngle().toDouble();
+	double getJointAngularSpeed() => _impl.GetJointAngularSpeed().toDouble();
+	bool isLimitEnabled() => _impl.IsLimitEnabled();
+	void enableLimit(bool flag) => _impl.EnableLimit(flag);
+	double getLowerLimit() => _impl.GetLowerLimit().toDouble();
+	double getUpperLimit() => _impl.GetUpperLimit().toDouble();
+	void setLimits(double lower, double upper) => _impl.SetLimits(lower, upper);
+	bool isMotorEnabled() => _impl.IsMotorEnabled();
+	void enableMotor(bool flag) => _impl.EnableMotor(flag);
+	void setMotorSpeed(double speed) => _impl.SetMotorSpeed(speed);
+	double getMotorSpeed() => _impl.GetMotorSpeed().toDouble();
+	void setMaxMotorTorque(double torque) => _impl.SetMaxMotorTorque(torque);
+	double getMaxMotorTorque() => _impl.GetMaxMotorTorque().toDouble();
+	double getMotorTorque(double inv_dt) => _impl.GetMotorTorque(inv_dt).toDouble();
+	void setStiffness(double stiffness) => _impl.SetStiffness(stiffness);
+	double getStiffness() => _impl.GetStiffness().toDouble();
+	void setDamping(double damping) => _impl.SetDamping(damping);
+	double getDamping() => _impl.GetDamping().toDouble();
+	void dump() => _impl.Dump();
+	B2JointType getType() => _impl.GetType();
+	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.GetBodyA());
+	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.GetBodyB());
+	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.GetAnchorA());
+	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.GetAnchorB());
+	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.GetReactionForce(inv_dt));
+	double getReactionTorque(double inv_dt) => _impl.GetReactionTorque(inv_dt).toDouble();
+	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.GetNext());
+	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.GetUserData());
+	bool getCollideConnected() => _impl.GetCollideConnected();
 	void dispose() => _impl.__destroy__();
 }
 
-class B2WheelJointDefJSAdapter implements B2WheelJointDefPlatform {
+class B2WheelJointDefJSAdapter implements B2WheelJointDefPlatform, B2JointDefJSAdapter  {
 
 	B2WheelJointDefJSAdapter._(B2WheelJointDefJSImpl impl) : _impl = impl;
 
@@ -1590,7 +1592,7 @@ class B2WheelJointDefJSAdapter implements B2WheelJointDefPlatform {
 
 	B2WheelJointDefJSAdapter() : _impl = B2WheelJointDefJSImpl();
 
-	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB, B2Vec2JSAdapter anchor, B2Vec2JSAdapter axis) => _impl.initialize(bodyA._impl, bodyB._impl, anchor._impl, axis._impl);
+	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB, B2Vec2JSAdapter anchor, B2Vec2JSAdapter axis) => _impl.Initialize(bodyA._impl, bodyB._impl, anchor._impl, axis._impl);
 	B2Vec2JSAdapter get_localAnchorA() => B2Vec2JSAdapter._(_impl.get_localAnchorA());
 	void set_localAnchorA(B2Vec2JSAdapter arg0) => _impl.set_localAnchorA(arg0._impl);
 	B2Vec2JSAdapter get_localAnchorB() => B2Vec2JSAdapter._(_impl.get_localAnchorB());
@@ -1626,37 +1628,37 @@ class B2WheelJointDefJSAdapter implements B2WheelJointDefPlatform {
 	void dispose() => _impl.__destroy__();
 }
 
-class B2MotorJointJSAdapter implements B2MotorJointPlatform {
+class B2MotorJointJSAdapter implements B2MotorJointPlatform, B2JointJSAdapter  {
 
 	B2MotorJointJSAdapter._(B2MotorJointJSImpl impl) : _impl = impl;
 
 	final B2MotorJointJSImpl _impl;
 
-	void setLinearOffset(B2Vec2JSAdapter linearOffset) => _impl.setLinearOffset(linearOffset._impl);
-	B2Vec2JSAdapter getLinearOffset() => B2Vec2JSAdapter._(_impl.getLinearOffset());
-	void setAngularOffset(double angularOffset) => _impl.setAngularOffset(angularOffset);
-	double getAngularOffset() => _impl.getAngularOffset().toDouble();
-	void setMaxForce(double force) => _impl.setMaxForce(force);
-	double getMaxForce() => _impl.getMaxForce().toDouble();
-	void setMaxTorque(double torque) => _impl.setMaxTorque(torque);
-	double getMaxTorque() => _impl.getMaxTorque().toDouble();
-	void setCorrectionFactor(double factor) => _impl.setCorrectionFactor(factor);
-	double getCorrectionFactor() => _impl.getCorrectionFactor().toDouble();
-	void dump() => _impl.dump();
-	B2JointType getType() => _impl.getType();
-	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.getBodyA());
-	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.getBodyB());
-	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.getAnchorA());
-	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.getAnchorB());
-	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.getReactionForce(inv_dt));
-	double getReactionTorque(double inv_dt) => _impl.getReactionTorque(inv_dt).toDouble();
-	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.getNext());
-	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.getUserData());
-	bool getCollideConnected() => _impl.getCollideConnected();
+	void setLinearOffset(B2Vec2JSAdapter linearOffset) => _impl.SetLinearOffset(linearOffset._impl);
+	B2Vec2JSAdapter getLinearOffset() => B2Vec2JSAdapter._(_impl.GetLinearOffset());
+	void setAngularOffset(double angularOffset) => _impl.SetAngularOffset(angularOffset);
+	double getAngularOffset() => _impl.GetAngularOffset().toDouble();
+	void setMaxForce(double force) => _impl.SetMaxForce(force);
+	double getMaxForce() => _impl.GetMaxForce().toDouble();
+	void setMaxTorque(double torque) => _impl.SetMaxTorque(torque);
+	double getMaxTorque() => _impl.GetMaxTorque().toDouble();
+	void setCorrectionFactor(double factor) => _impl.SetCorrectionFactor(factor);
+	double getCorrectionFactor() => _impl.GetCorrectionFactor().toDouble();
+	void dump() => _impl.Dump();
+	B2JointType getType() => _impl.GetType();
+	B2BodyJSAdapter getBodyA() => B2BodyJSAdapter._(_impl.GetBodyA());
+	B2BodyJSAdapter getBodyB() => B2BodyJSAdapter._(_impl.GetBodyB());
+	B2Vec2JSAdapter getAnchorA() => B2Vec2JSAdapter._(_impl.GetAnchorA());
+	B2Vec2JSAdapter getAnchorB() => B2Vec2JSAdapter._(_impl.GetAnchorB());
+	B2Vec2JSAdapter getReactionForce(double inv_dt) => B2Vec2JSAdapter._(_impl.GetReactionForce(inv_dt));
+	double getReactionTorque(double inv_dt) => _impl.GetReactionTorque(inv_dt).toDouble();
+	B2JointJSAdapter getNext() => B2JointJSAdapter._(_impl.GetNext());
+	B2JointUserDataJSAdapter getUserData() => B2JointUserDataJSAdapter._(_impl.GetUserData());
+	bool getCollideConnected() => _impl.GetCollideConnected();
 	void dispose() => _impl.__destroy__();
 }
 
-class B2MotorJointDefJSAdapter implements B2MotorJointDefPlatform {
+class B2MotorJointDefJSAdapter implements B2MotorJointDefPlatform, B2JointDefJSAdapter  {
 
 	B2MotorJointDefJSAdapter._(B2MotorJointDefJSImpl impl) : _impl = impl;
 
@@ -1664,7 +1666,7 @@ class B2MotorJointDefJSAdapter implements B2MotorJointDefPlatform {
 
 	B2MotorJointDefJSAdapter() : _impl = B2MotorJointDefJSImpl();
 
-	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB) => _impl.initialize(bodyA._impl, bodyB._impl);
+	void initialize(B2BodyJSAdapter bodyA, B2BodyJSAdapter bodyB) => _impl.Initialize(bodyA._impl, bodyB._impl);
 	B2Vec2JSAdapter get_linearOffset() => B2Vec2JSAdapter._(_impl.get_linearOffset());
 	void set_linearOffset(B2Vec2JSAdapter arg0) => _impl.set_linearOffset(arg0._impl);
 	double get_angularOffset() => _impl.get_angularOffset().toDouble();
@@ -1752,11 +1754,11 @@ class B2RopeJSAdapter implements B2RopePlatform {
 
 	B2RopeJSAdapter() : _impl = B2RopeJSImpl();
 
-	void create(B2RopeDefJSAdapter def) => _impl.create(def._impl);
-	void setTuning(B2RopeTuningJSAdapter tuning) => _impl.setTuning(tuning._impl);
-	void step(double timeStep, int iterations, B2Vec2JSAdapter position) => _impl.step(timeStep, iterations, position._impl);
-	void reset(B2Vec2JSAdapter position) => _impl.reset(position._impl);
-	//void draw(B2DrawJSAdapter draw) => _impl.draw(draw._impl);
+	void create(B2RopeDefJSAdapter def) => _impl.Create(def._impl);
+	void setTuning(B2RopeTuningJSAdapter tuning) => _impl.SetTuning(tuning._impl);
+	void step(double timeStep, int iterations, B2Vec2JSAdapter position) => _impl.Step(timeStep, iterations, position._impl);
+	void reset(B2Vec2JSAdapter position) => _impl.Reset(position._impl);
+	//void draw(B2DrawJSAdapter draw) => _impl.Draw(draw._impl);
 	void dispose() => _impl.__destroy__();
 }
 
@@ -1776,14 +1778,565 @@ class B2ClipVertexJSAdapter implements B2ClipVertexPlatform {
 }
 
 @JS('b2Shape')
+@staticInterop
 class B2ShapeJSImpl {
 
-	external B2ShapeType getType();
-	external num getChildCount();
-	external bool testPoint(B2TransformJSImpl xf, B2Vec2JSImpl p);
-	external bool rayCast(B2RayCastOutputJSImpl output, B2RayCastInputJSImpl input, B2TransformJSImpl transform, num childIndex);
-	external void computeAABB(B2AABBJSImpl aabb, B2TransformJSImpl xf, num childIndex);
-	external void computeMass(B2MassDataJSImpl massData, num density);
+}
+
+@JS('b2JointDef')
+@staticInterop
+class B2JointDefJSImpl {
+	@JS('b2JointDef')
+	external B2JointDefJSImpl();
+
+}
+
+@JS('b2Joint')
+@staticInterop
+class B2JointJSImpl {
+
+}
+
+@JS('VoidPtr')
+@staticInterop
+class VoidPtrJSImpl {
+
+}
+
+@JS('b2Contact')
+@staticInterop
+class B2ContactJSImpl {
+
+}
+
+@JS('b2ContactListener')
+@staticInterop
+class B2ContactListenerJSImpl {
+
+}
+
+@JS('JSContactListener')
+@staticInterop
+class JSContactListenerJSImpl {
+	@JS('JSContactListener')
+	external JSContactListenerJSImpl();
+
+}
+
+@JS('b2World')
+@staticInterop
+class B2WorldJSImpl {
+	@JS('b2World')
+	external B2WorldJSImpl.from1(B2Vec2JSImpl gravity);
+
+}
+
+@JS('b2FixtureUserData')
+@staticInterop
+class B2FixtureUserDataJSImpl {
+
+}
+
+@JS('b2FixtureDef')
+@staticInterop
+class B2FixtureDefJSImpl {
+	@JS('b2FixtureDef')
+	external B2FixtureDefJSImpl();
+
+}
+
+@JS('b2Fixture')
+@staticInterop
+class B2FixtureJSImpl {
+
+}
+
+@JS('b2Transform')
+@staticInterop
+class B2TransformJSImpl {
+	@JS('b2Transform')
+	external B2TransformJSImpl();
+	@JS('b2Transform')
+	external B2TransformJSImpl.from2(B2Vec2JSImpl? position, B2RotJSImpl? rotation);
+
+}
+
+@JS('b2RayCastCallback')
+@staticInterop
+class B2RayCastCallbackJSImpl {
+
+}
+
+@JS('JSRayCastCallback')
+@staticInterop
+class JSRayCastCallbackJSImpl {
+	@JS('JSRayCastCallback')
+	external JSRayCastCallbackJSImpl();
+
+}
+
+@JS('b2QueryCallback')
+@staticInterop
+class B2QueryCallbackJSImpl {
+
+}
+
+@JS('JSQueryCallback')
+@staticInterop
+class JSQueryCallbackJSImpl {
+	@JS('JSQueryCallback')
+	external JSQueryCallbackJSImpl();
+
+}
+
+@JS('b2MassData')
+@staticInterop
+class B2MassDataJSImpl {
+	@JS('b2MassData')
+	external B2MassDataJSImpl();
+
+}
+
+@JS('b2Vec2')
+@staticInterop
+class B2Vec2JSImpl {
+	@JS('b2Vec2')
+	external B2Vec2JSImpl();
+	@JS('b2Vec2')
+	external B2Vec2JSImpl.from2(num? x, num? y);
+
+}
+
+@JS('b2Vec3')
+@staticInterop
+class B2Vec3JSImpl {
+	@JS('b2Vec3')
+	external B2Vec3JSImpl();
+	@JS('b2Vec3')
+	external B2Vec3JSImpl.from3(num? x, num? y, num? z);
+
+}
+
+@JS('b2BodyUserData')
+@staticInterop
+class B2BodyUserDataJSImpl {
+
+}
+
+@JS('b2Body')
+@staticInterop
+class B2BodyJSImpl {
+
+}
+
+@JS('b2BodyDef')
+@staticInterop
+class B2BodyDefJSImpl {
+	@JS('b2BodyDef')
+	external B2BodyDefJSImpl();
+
+}
+
+@JS('b2Filter')
+@staticInterop
+class B2FilterJSImpl {
+	@JS('b2Filter')
+	external B2FilterJSImpl();
+
+}
+
+@JS('b2AABB')
+@staticInterop
+class B2AABBJSImpl {
+	@JS('b2AABB')
+	external B2AABBJSImpl();
+
+}
+
+@JS('b2CircleShape')
+@staticInterop
+class B2CircleShapeJSImpl extends B2ShapeJSImpl  {
+	@JS('b2CircleShape')
+	external B2CircleShapeJSImpl();
+
+}
+
+@JS('b2EdgeShape')
+@staticInterop
+class B2EdgeShapeJSImpl extends B2ShapeJSImpl  {
+	@JS('b2EdgeShape')
+	external B2EdgeShapeJSImpl();
+
+}
+
+@JS('b2JointUserData')
+@staticInterop
+class B2JointUserDataJSImpl {
+
+}
+
+@JS('b2WeldJoint')
+@staticInterop
+class B2WeldJointJSImpl extends B2JointJSImpl  {
+
+}
+
+@JS('b2WeldJointDef')
+@staticInterop
+class B2WeldJointDefJSImpl extends B2JointDefJSImpl  {
+	@JS('b2WeldJointDef')
+	external B2WeldJointDefJSImpl();
+
+}
+
+@JS('b2ChainShape')
+@staticInterop
+class B2ChainShapeJSImpl extends B2ShapeJSImpl  {
+	@JS('b2ChainShape')
+	external B2ChainShapeJSImpl();
+
+}
+
+@JS('b2Color')
+@staticInterop
+class B2ColorJSImpl {
+	@JS('b2Color')
+	external B2ColorJSImpl();
+	@JS('b2Color')
+	external B2ColorJSImpl.from3(num? r, num? g, num? b);
+
+}
+
+@JS('b2ContactEdge')
+@staticInterop
+class B2ContactEdgeJSImpl {
+	@JS('b2ContactEdge')
+	external B2ContactEdgeJSImpl();
+
+}
+
+@JS('b2ContactFeature')
+@staticInterop
+class B2ContactFeatureJSImpl {
+
+}
+
+@JS('b2ContactFilter')
+@staticInterop
+class B2ContactFilterJSImpl {
+
+}
+
+@JS('JSContactFilter')
+@staticInterop
+class JSContactFilterJSImpl {
+	@JS('JSContactFilter')
+	external JSContactFilterJSImpl();
+
+}
+
+@JS('b2ContactID')
+@staticInterop
+class B2ContactIDJSImpl {
+
+}
+
+@JS('b2ContactImpulse')
+@staticInterop
+class B2ContactImpulseJSImpl {
+
+}
+
+@JS('b2DestructionListener')
+@staticInterop
+class B2DestructionListenerJSImpl {
+
+}
+
+@JS('b2DestructionListenerWrapper')
+@staticInterop
+class B2DestructionListenerWrapperJSImpl {
+
+}
+
+@JS('JSDestructionListener')
+@staticInterop
+class JSDestructionListenerJSImpl {
+	@JS('JSDestructionListener')
+	external JSDestructionListenerJSImpl();
+
+}
+
+@JS('b2DistanceJoint')
+@staticInterop
+class B2DistanceJointJSImpl extends B2JointJSImpl  {
+
+}
+
+@JS('b2DistanceJointDef')
+@staticInterop
+class B2DistanceJointDefJSImpl extends B2JointDefJSImpl  {
+	@JS('b2DistanceJointDef')
+	external B2DistanceJointDefJSImpl();
+
+}
+
+@JS('b2Draw')
+@staticInterop
+class B2DrawJSImpl {
+
+}
+
+@JS('JSDraw')
+@staticInterop
+class JSDrawJSImpl {
+	@JS('JSDraw')
+	external JSDrawJSImpl();
+
+}
+
+@JS('b2FrictionJoint')
+@staticInterop
+class B2FrictionJointJSImpl extends B2JointJSImpl  {
+
+}
+
+@JS('b2FrictionJointDef')
+@staticInterop
+class B2FrictionJointDefJSImpl extends B2JointDefJSImpl  {
+	@JS('b2FrictionJointDef')
+	external B2FrictionJointDefJSImpl();
+
+}
+
+@JS('b2GearJoint')
+@staticInterop
+class B2GearJointJSImpl extends B2JointJSImpl  {
+
+}
+
+@JS('b2GearJointDef')
+@staticInterop
+class B2GearJointDefJSImpl extends B2JointDefJSImpl  {
+	@JS('b2GearJointDef')
+	external B2GearJointDefJSImpl();
+
+}
+
+@JS('b2JointEdge')
+@staticInterop
+class B2JointEdgeJSImpl {
+	@JS('b2JointEdge')
+	external B2JointEdgeJSImpl();
+
+}
+
+@JS('b2Manifold')
+@staticInterop
+class B2ManifoldJSImpl {
+	@JS('b2Manifold')
+	external B2ManifoldJSImpl();
+
+}
+
+@JS('b2WorldManifold')
+@staticInterop
+class B2WorldManifoldJSImpl {
+	@JS('b2WorldManifold')
+	external B2WorldManifoldJSImpl();
+
+}
+
+@JS('b2ManifoldPoint')
+@staticInterop
+class B2ManifoldPointJSImpl {
+	@JS('b2ManifoldPoint')
+	external B2ManifoldPointJSImpl();
+
+}
+
+@JS('b2Mat22')
+@staticInterop
+class B2Mat22JSImpl {
+	@JS('b2Mat22')
+	external B2Mat22JSImpl();
+	@JS('b2Mat22')
+	external B2Mat22JSImpl.from2(B2Vec2JSImpl? a11, B2Vec2JSImpl? a12);
+	@JS('b2Mat22')
+	external B2Mat22JSImpl.from4(num? a11, num? a12, num? a21, num? a22);
+
+}
+
+@JS('b2Mat33')
+@staticInterop
+class B2Mat33JSImpl {
+	@JS('b2Mat33')
+	external B2Mat33JSImpl();
+	@JS('b2Mat33')
+	external B2Mat33JSImpl.from3(B2Vec3JSImpl? c1, B2Vec3JSImpl? c2, B2Vec3JSImpl? c3);
+
+}
+
+@JS('b2MouseJoint')
+@staticInterop
+class B2MouseJointJSImpl extends B2JointJSImpl  {
+
+}
+
+@JS('b2MouseJointDef')
+@staticInterop
+class B2MouseJointDefJSImpl extends B2JointDefJSImpl  {
+	@JS('b2MouseJointDef')
+	external B2MouseJointDefJSImpl();
+
+}
+
+@JS('b2PolygonShape')
+@staticInterop
+class B2PolygonShapeJSImpl extends B2ShapeJSImpl  {
+	@JS('b2PolygonShape')
+	external B2PolygonShapeJSImpl();
+
+}
+
+@JS('b2PrismaticJoint')
+@staticInterop
+class B2PrismaticJointJSImpl extends B2JointJSImpl  {
+
+}
+
+@JS('b2PrismaticJointDef')
+@staticInterop
+class B2PrismaticJointDefJSImpl extends B2JointDefJSImpl  {
+	@JS('b2PrismaticJointDef')
+	external B2PrismaticJointDefJSImpl();
+
+}
+
+@JS('b2Profile')
+@staticInterop
+class B2ProfileJSImpl {
+
+}
+
+@JS('b2PulleyJoint')
+@staticInterop
+class B2PulleyJointJSImpl extends B2JointJSImpl  {
+
+}
+
+@JS('b2PulleyJointDef')
+@staticInterop
+class B2PulleyJointDefJSImpl extends B2JointDefJSImpl  {
+	@JS('b2PulleyJointDef')
+	external B2PulleyJointDefJSImpl();
+
+}
+
+@JS('b2RayCastInput')
+@staticInterop
+class B2RayCastInputJSImpl {
+
+}
+
+@JS('b2RayCastOutput')
+@staticInterop
+class B2RayCastOutputJSImpl {
+
+}
+
+@JS('b2RevoluteJoint')
+@staticInterop
+class B2RevoluteJointJSImpl extends B2JointJSImpl  {
+
+}
+
+@JS('b2RevoluteJointDef')
+@staticInterop
+class B2RevoluteJointDefJSImpl extends B2JointDefJSImpl  {
+	@JS('b2RevoluteJointDef')
+	external B2RevoluteJointDefJSImpl();
+
+}
+
+@JS('b2Rot')
+@staticInterop
+class B2RotJSImpl {
+	@JS('b2Rot')
+	external B2RotJSImpl();
+	@JS('b2Rot')
+	external B2RotJSImpl.from1(num? angle);
+
+}
+
+@JS('b2WheelJoint')
+@staticInterop
+class B2WheelJointJSImpl extends B2JointJSImpl  {
+
+}
+
+@JS('b2WheelJointDef')
+@staticInterop
+class B2WheelJointDefJSImpl extends B2JointDefJSImpl  {
+	@JS('b2WheelJointDef')
+	external B2WheelJointDefJSImpl();
+
+}
+
+@JS('b2MotorJoint')
+@staticInterop
+class B2MotorJointJSImpl extends B2JointJSImpl  {
+
+}
+
+@JS('b2MotorJointDef')
+@staticInterop
+class B2MotorJointDefJSImpl extends B2JointDefJSImpl  {
+	@JS('b2MotorJointDef')
+	external B2MotorJointDefJSImpl();
+
+}
+
+@JS('b2RopeTuning')
+@staticInterop
+class B2RopeTuningJSImpl {
+	@JS('b2RopeTuning')
+	external B2RopeTuningJSImpl();
+
+}
+
+@JS('b2RopeDef')
+@staticInterop
+class B2RopeDefJSImpl {
+	@JS('b2RopeDef')
+	external B2RopeDefJSImpl();
+
+}
+
+@JS('b2Rope')
+@staticInterop
+class B2RopeJSImpl {
+	@JS('b2Rope')
+	external B2RopeJSImpl();
+
+}
+
+@JS('b2ClipVertex')
+@staticInterop
+class B2ClipVertexJSImpl {
+	@JS('b2ClipVertex')
+	external B2ClipVertexJSImpl();
+
+}
+
+extension B2ShapeJSImplExtension on B2ShapeJSImpl {
+
+	external B2ShapeType GetType();
+	external num GetChildCount();
+	external bool TestPoint(B2TransformJSImpl xf, B2Vec2JSImpl p);
+	external bool RayCast(B2RayCastOutputJSImpl output, B2RayCastInputJSImpl input, B2TransformJSImpl transform, num childIndex);
+	external void ComputeAABB(B2AABBJSImpl aabb, B2TransformJSImpl xf, num childIndex);
+	external void ComputeMass(B2MassDataJSImpl massData, num density);
 	external B2ShapeType get_m_type();
 	external void set_m_type(B2ShapeType arg0);
 	external double get_m_radius();
@@ -1791,9 +2344,7 @@ class B2ShapeJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2JointDef')
-class B2JointDefJSImpl {
-	external B2JointDefJSImpl();
+extension B2JointDefJSImplExtension on B2JointDefJSImpl {
 
 	external B2JointType get_type();
 	external void set_type(B2JointType arg0);
@@ -1808,127 +2359,116 @@ class B2JointDefJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2Joint')
-class B2JointJSImpl {
+extension B2JointJSImplExtension on B2JointJSImpl {
 
-	external B2JointType getType();
-	external B2BodyJSImpl getBodyA();
-	external B2BodyJSImpl getBodyB();
-	external B2Vec2JSImpl getAnchorA();
-	external B2Vec2JSImpl getAnchorB();
-	external B2Vec2JSImpl getReactionForce(num inv_dt);
-	external double getReactionTorque(num inv_dt);
-	external B2JointJSImpl getNext();
-	external B2JointUserDataJSImpl getUserData();
-	external bool getCollideConnected();
-	external void dump();
+	external B2JointType GetType();
+	external B2BodyJSImpl GetBodyA();
+	external B2BodyJSImpl GetBodyB();
+	external B2Vec2JSImpl GetAnchorA();
+	external B2Vec2JSImpl GetAnchorB();
+	external B2Vec2JSImpl GetReactionForce(num inv_dt);
+	external double GetReactionTorque(num inv_dt);
+	external B2JointJSImpl GetNext();
+	external B2JointUserDataJSImpl GetUserData();
+	external bool GetCollideConnected();
+	external void Dump();
 }
 
-@JS('VoidPtr')
-class VoidPtrJSImpl {
+extension VoidPtrJSImplExtension on VoidPtrJSImpl {
 
 	external void __destroy__();
 }
 
-@JS('b2Contact')
-class B2ContactJSImpl {
+extension B2ContactJSImplExtension on B2ContactJSImpl {
 
-	external B2ManifoldJSImpl getManifold();
-	external void getWorldManifold(B2WorldManifoldJSImpl manifold);
-	external bool isTouching();
-	external void setEnabled(bool flag);
-	external bool isEnabled();
-	external B2ContactJSImpl getNext();
-	external B2FixtureJSImpl getFixtureA();
-	external num getChildIndexA();
-	external B2FixtureJSImpl getFixtureB();
-	external num getChildIndexB();
-	external void setFriction(num friction);
-	external double getFriction();
-	external void resetFriction();
-	external void setRestitution(num restitution);
-	external double getRestitution();
-	external void resetRestitution();
-	external void setRestitutionThreshold(num threshold);
-	external double getRestitutionThreshold();
-	external void resetRestitutionThreshold();
-	external void setTangentSpeed(num speed);
-	external double getTangentSpeed();
+	external B2ManifoldJSImpl GetManifold();
+	external void GetWorldManifold(B2WorldManifoldJSImpl manifold);
+	external bool IsTouching();
+	external void SetEnabled(bool flag);
+	external bool IsEnabled();
+	external B2ContactJSImpl GetNext();
+	external B2FixtureJSImpl GetFixtureA();
+	external num GetChildIndexA();
+	external B2FixtureJSImpl GetFixtureB();
+	external num GetChildIndexB();
+	external void SetFriction(num friction);
+	external double GetFriction();
+	external void ResetFriction();
+	external void SetRestitution(num restitution);
+	external double GetRestitution();
+	external void ResetRestitution();
+	external void SetRestitutionThreshold(num threshold);
+	external double GetRestitutionThreshold();
+	external void ResetRestitutionThreshold();
+	external void SetTangentSpeed(num speed);
+	external double GetTangentSpeed();
 }
 
-@JS('b2ContactListener')
-class B2ContactListenerJSImpl {
+extension B2ContactListenerJSImplExtension on B2ContactListenerJSImpl {
 
 	external void __destroy__();
 }
 
-@JS('JSContactListener')
-class JSContactListenerJSImpl {
-	external JSContactListenerJSImpl();
+extension JSContactListenerJSImplExtension on JSContactListenerJSImpl {
 
-	external void beginContact(B2ContactJSImpl contact);
-	external void endContact(B2ContactJSImpl contact);
-	external void preSolve(B2ContactJSImpl contact, B2ManifoldJSImpl oldManifold);
-	external void postSolve(B2ContactJSImpl contact, B2ContactImpulseJSImpl impulse);
+	external void BeginContact(B2ContactJSImpl contact);
+	external void EndContact(B2ContactJSImpl contact);
+	external void PreSolve(B2ContactJSImpl contact, B2ManifoldJSImpl oldManifold);
+	external void PostSolve(B2ContactJSImpl contact, B2ContactImpulseJSImpl impulse);
 	external void __destroy__();
 }
 
-@JS('b2World')
-class B2WorldJSImpl {
-	external B2WorldJSImpl.from1(B2Vec2JSImpl gravity);
+extension B2WorldJSImplExtension on B2WorldJSImpl {
 
-	//external void setDestructionListener(B2DestructionListenerJSImpl listener);
-	//external void setContactFilter(JSContactFilterJSImpl filter);
-	//external void setContactListener(JSContactListenerJSImpl listener);
-	//external void setDebugDraw(B2DrawJSImpl debugDraw);
-	external B2BodyJSImpl createBody(B2BodyDefJSImpl def);
-	external void destroyBody(B2BodyJSImpl body);
-	external B2JointJSImpl createJoint(B2JointDefJSImpl def);
-	external void destroyJoint(B2JointJSImpl joint);
-	external void step(num timeStep, num velocityIterations, num positionIterations);
-	external void clearForces();
-	external void debugDraw();
-	//external void queryAABB(B2QueryCallbackJSImpl callback, B2AABBJSImpl aabb);
-	//external void rayCast(B2RayCastCallbackJSImpl callback, B2Vec2JSImpl point1, B2Vec2JSImpl point2);
-	external B2BodyJSImpl getBodyList();
-	external B2JointJSImpl getJointList();
-	external B2ContactJSImpl getContactList();
-	external void setAllowSleeping(bool flag);
-	external bool getAllowSleeping();
-	external void setWarmStarting(bool flag);
-	external bool getWarmStarting();
-	external void setContinuousPhysics(bool flag);
-	external bool getContinuousPhysics();
-	external void setSubStepping(bool flag);
-	external bool getSubStepping();
-	external num getProxyCount();
-	external num getBodyCount();
-	external num getJointCount();
-	external num getContactCount();
-	external num getTreeHeight();
-	external num getTreeBalance();
-	external double getTreeQuality();
-	external void setGravity(B2Vec2JSImpl gravity);
-	external B2Vec2JSImpl getGravity();
-	external bool isLocked();
-	external void setAutoClearForces(bool flag);
-	external bool getAutoClearForces();
-	external B2ProfileJSImpl getProfile();
-	external void dump();
+	//external void SetDestructionListener(B2DestructionListenerJSImpl listener);
+	//external void SetContactFilter(JSContactFilterJSImpl filter);
+	//external void SetContactListener(JSContactListenerJSImpl listener);
+	//external void SetDebugDraw(B2DrawJSImpl debugDraw);
+	external B2BodyJSImpl CreateBody(B2BodyDefJSImpl def);
+	external void DestroyBody(B2BodyJSImpl body);
+	external B2JointJSImpl CreateJoint(B2JointDefJSImpl def);
+	external void DestroyJoint(B2JointJSImpl joint);
+	external void Step(num timeStep, num velocityIterations, num positionIterations);
+	external void ClearForces();
+	external void DebugDraw();
+	//external void QueryAABB(B2QueryCallbackJSImpl callback, B2AABBJSImpl aabb);
+	//external void RayCast(B2RayCastCallbackJSImpl callback, B2Vec2JSImpl point1, B2Vec2JSImpl point2);
+	external B2BodyJSImpl GetBodyList();
+	external B2JointJSImpl GetJointList();
+	external B2ContactJSImpl GetContactList();
+	external void SetAllowSleeping(bool flag);
+	external bool GetAllowSleeping();
+	external void SetWarmStarting(bool flag);
+	external bool GetWarmStarting();
+	external void SetContinuousPhysics(bool flag);
+	external bool GetContinuousPhysics();
+	external void SetSubStepping(bool flag);
+	external bool GetSubStepping();
+	external num GetProxyCount();
+	external num GetBodyCount();
+	external num GetJointCount();
+	external num GetContactCount();
+	external num GetTreeHeight();
+	external num GetTreeBalance();
+	external double GetTreeQuality();
+	external void SetGravity(B2Vec2JSImpl gravity);
+	external B2Vec2JSImpl GetGravity();
+	external bool IsLocked();
+	external void SetAutoClearForces(bool flag);
+	external bool GetAutoClearForces();
+	external B2ProfileJSImpl GetProfile();
+	external void Dump();
 	external void __destroy__();
 }
 
-@JS('b2FixtureUserData')
-class B2FixtureUserDataJSImpl {
+extension B2FixtureUserDataJSImplExtension on B2FixtureUserDataJSImpl {
 
 	external int get_pointer();
 	external void set_pointer(int arg0);
 	external void __destroy__();
 }
 
-@JS('b2FixtureDef')
-class B2FixtureDefJSImpl {
-	external B2FixtureDefJSImpl();
+extension B2FixtureDefJSImplExtension on B2FixtureDefJSImpl {
 
 	external B2ShapeJSImpl get_shape();
 	external void set_shape(B2ShapeJSImpl arg0);
@@ -1949,42 +2489,38 @@ class B2FixtureDefJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2Fixture')
-class B2FixtureJSImpl {
+extension B2FixtureJSImplExtension on B2FixtureJSImpl {
 
-	external B2ShapeType getType();
-	external B2ShapeJSImpl getShape();
-	external void setSensor(bool sensor);
-	external bool isSensor();
-	external void setFilterData(B2FilterJSImpl filter);
-	external B2FilterJSImpl getFilterData();
-	external void refilter();
-	external B2BodyJSImpl getBody();
-	external B2FixtureJSImpl getNext();
-	external B2FixtureUserDataJSImpl getUserData();
-	external bool testPoint(B2Vec2JSImpl p);
-	external bool rayCast(B2RayCastOutputJSImpl output, B2RayCastInputJSImpl input, num childIndex);
-	external void getMassData(B2MassDataJSImpl massData);
-	external void setDensity(num density);
-	external double getDensity();
-	external double getFriction();
-	external void setFriction(num friction);
-	external double getRestitution();
-	external void setRestitution(num restitution);
-	external double getRestitutionThreshold();
-	external void setRestitutionThreshold(num threshold);
-	external B2AABBJSImpl getAABB(num childIndex);
-	external void dump(num bodyIndex);
+	external B2ShapeType GetType();
+	external B2ShapeJSImpl GetShape();
+	external void SetSensor(bool sensor);
+	external bool IsSensor();
+	external void SetFilterData(B2FilterJSImpl filter);
+	external B2FilterJSImpl GetFilterData();
+	external void Refilter();
+	external B2BodyJSImpl GetBody();
+	external B2FixtureJSImpl GetNext();
+	external B2FixtureUserDataJSImpl GetUserData();
+	external bool TestPoint(B2Vec2JSImpl p);
+	external bool RayCast(B2RayCastOutputJSImpl output, B2RayCastInputJSImpl input, num childIndex);
+	external void GetMassData(B2MassDataJSImpl massData);
+	external void SetDensity(num density);
+	external double GetDensity();
+	external double GetFriction();
+	external void SetFriction(num friction);
+	external double GetRestitution();
+	external void SetRestitution(num restitution);
+	external double GetRestitutionThreshold();
+	external void SetRestitutionThreshold(num threshold);
+	external B2AABBJSImpl GetAABB(num childIndex);
+	external void Dump(num bodyIndex);
 	external void __destroy__();
 }
 
-@JS('b2Transform')
-class B2TransformJSImpl {
-	external B2TransformJSImpl();
-	external B2TransformJSImpl.from2(B2Vec2JSImpl position, B2RotJSImpl rotation);
+extension B2TransformJSImplExtension on B2TransformJSImpl {
 
-	external void setIdentity();
-	external void set(B2Vec2JSImpl position, num angle);
+	external void SetIdentity();
+	external void Set(B2Vec2JSImpl position, num angle);
 	external B2Vec2JSImpl get_p();
 	external void set_p(B2Vec2JSImpl arg0);
 	external B2RotJSImpl get_q();
@@ -1992,37 +2528,29 @@ class B2TransformJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2RayCastCallback')
-class B2RayCastCallbackJSImpl {
+extension B2RayCastCallbackJSImplExtension on B2RayCastCallbackJSImpl {
 
 	external void __destroy__();
 }
 
-@JS('JSRayCastCallback')
-class JSRayCastCallbackJSImpl {
-	external JSRayCastCallbackJSImpl();
+extension JSRayCastCallbackJSImplExtension on JSRayCastCallbackJSImpl {
 
-	external double reportFixture(B2FixtureJSImpl fixture, B2Vec2JSImpl point, B2Vec2JSImpl normal, num fraction);
+	external double ReportFixture(B2FixtureJSImpl fixture, B2Vec2JSImpl point, B2Vec2JSImpl normal, num fraction);
 	external void __destroy__();
 }
 
-@JS('b2QueryCallback')
-class B2QueryCallbackJSImpl {
+extension B2QueryCallbackJSImplExtension on B2QueryCallbackJSImpl {
 
 	external void __destroy__();
 }
 
-@JS('JSQueryCallback')
-class JSQueryCallbackJSImpl {
-	external JSQueryCallbackJSImpl();
+extension JSQueryCallbackJSImplExtension on JSQueryCallbackJSImpl {
 
-	external bool reportFixture(B2FixtureJSImpl fixture);
+	external bool ReportFixture(B2FixtureJSImpl fixture);
 	external void __destroy__();
 }
 
-@JS('b2MassData')
-class B2MassDataJSImpl {
-	external B2MassDataJSImpl();
+extension B2MassDataJSImplExtension on B2MassDataJSImpl {
 
 	external double get_mass();
 	external void set_mass(num arg0);
@@ -2033,21 +2561,18 @@ class B2MassDataJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2Vec2')
-class B2Vec2JSImpl {
-	external B2Vec2JSImpl();
-	external B2Vec2JSImpl.from2(num x, num y);
+extension B2Vec2JSImplExtension on B2Vec2JSImpl {
 
-	external void setZero();
-	external void set(num x, num y);
+	external void SetZero();
+	external void Set(num x, num y);
 	external void op_add(B2Vec2JSImpl v);
 	external void op_sub(B2Vec2JSImpl v);
 	external void op_mul(num s);
-	external double length();
-	external double lengthSquared();
-	external double normalize();
-	external bool isValid();
-	external B2Vec2JSImpl skew();
+	external double Length();
+	external double LengthSquared();
+	external double Normalize();
+	external bool IsValid();
+	external B2Vec2JSImpl Skew();
 	external double get_x();
 	external void set_x(num arg0);
 	external double get_y();
@@ -2055,13 +2580,10 @@ class B2Vec2JSImpl {
 	external void __destroy__();
 }
 
-@JS('b2Vec3')
-class B2Vec3JSImpl {
-	external B2Vec3JSImpl();
-	external B2Vec3JSImpl.from3(num x, num y, num z);
+extension B2Vec3JSImplExtension on B2Vec3JSImpl {
 
-	external void setZero();
-	external void set(num x, num y, num z);
+	external void SetZero();
+	external void Set(num x, num y, num z);
 	external void op_add(B2Vec3JSImpl v);
 	external void op_sub(B2Vec3JSImpl v);
 	external void op_mul(num s);
@@ -2074,77 +2596,72 @@ class B2Vec3JSImpl {
 	external void __destroy__();
 }
 
-@JS('b2BodyUserData')
-class B2BodyUserDataJSImpl {
+extension B2BodyUserDataJSImplExtension on B2BodyUserDataJSImpl {
 
 	external int get_pointer();
 	external void set_pointer(int arg0);
 	external void __destroy__();
 }
 
-@JS('b2Body')
-class B2BodyJSImpl {
+extension B2BodyJSImplExtension on B2BodyJSImpl {
 
-	external B2FixtureJSImpl createFixture1(B2FixtureDefJSImpl shape);
-	external B2FixtureJSImpl createFixture2(B2ShapeJSImpl shape, num density);
-	external void destroyFixture(B2FixtureJSImpl fixture);
-	external void setTransform(B2Vec2JSImpl position, num angle);
-	external B2TransformJSImpl getTransform();
-	external B2Vec2JSImpl getPosition();
-	external double getAngle();
-	external B2Vec2JSImpl getWorldCenter();
-	external B2Vec2JSImpl getLocalCenter();
-	external void setLinearVelocity(B2Vec2JSImpl v);
-	external B2Vec2JSImpl getLinearVelocity();
-	external void setAngularVelocity(num omega);
-	external double getAngularVelocity();
-	external void applyForce(B2Vec2JSImpl force, B2Vec2JSImpl point, bool wake);
-	external void applyForceToCenter(B2Vec2JSImpl force, bool wake);
-	external void applyTorque(num torque, bool awake);
-	external void applyLinearImpulse(B2Vec2JSImpl impulse, B2Vec2JSImpl point, bool wake);
-	external void applyLinearImpulseToCenter(B2Vec2JSImpl impulse, bool wake);
-	external void applyAngularImpulse(num impulse, bool wake);
-	external double getMass();
-	external double getInertia();
-	external void getMassData(B2MassDataJSImpl data);
-	external void setMassData(B2MassDataJSImpl data);
-	external void resetMassData();
-	external B2Vec2JSImpl getWorldPoint(B2Vec2JSImpl localPoint);
-	external B2Vec2JSImpl getWorldVector(B2Vec2JSImpl localVector);
-	external B2Vec2JSImpl getLocalPoint(B2Vec2JSImpl worldPoint);
-	external B2Vec2JSImpl getLocalVector(B2Vec2JSImpl worldVector);
-	external B2Vec2JSImpl getLinearVelocityFromWorldPoint(B2Vec2JSImpl worldPoint);
-	external B2Vec2JSImpl getLinearVelocityFromLocalPoint(B2Vec2JSImpl localPoint);
-	external double getLinearDamping();
-	external void setLinearDamping(num linearDamping);
-	external double getAngularDamping();
-	external void setAngularDamping(num angularDamping);
-	external double getGravityScale();
-	external void setGravityScale(num scale);
-	external void setType(B2BodyType type);
-	external B2BodyType getType();
-	external void setBullet(bool flag);
-	external bool isBullet();
-	external void setSleepingAllowed(bool flag);
-	external bool isSleepingAllowed();
-	external void setAwake(bool flag);
-	external bool isAwake();
-	external void setEnabled(bool flag);
-	external bool isEnabled();
-	external void setFixedRotation(bool flag);
-	external bool isFixedRotation();
-	external B2FixtureJSImpl getFixtureList();
-	external B2JointEdgeJSImpl getJointList();
-	external B2ContactEdgeJSImpl getContactList();
-	external B2BodyJSImpl getNext();
-	external B2BodyUserDataJSImpl getUserData();
-	external B2WorldJSImpl getWorld();
-	external void dump();
+	external B2FixtureJSImpl CreateFixture(B2ShapeJSImpl shape, num? density);
+	external void DestroyFixture(B2FixtureJSImpl fixture);
+	external void SetTransform(B2Vec2JSImpl position, num angle);
+	external B2TransformJSImpl GetTransform();
+	external B2Vec2JSImpl GetPosition();
+	external double GetAngle();
+	external B2Vec2JSImpl GetWorldCenter();
+	external B2Vec2JSImpl GetLocalCenter();
+	external void SetLinearVelocity(B2Vec2JSImpl v);
+	external B2Vec2JSImpl GetLinearVelocity();
+	external void SetAngularVelocity(num omega);
+	external double GetAngularVelocity();
+	external void ApplyForce(B2Vec2JSImpl force, B2Vec2JSImpl point, bool wake);
+	external void ApplyForceToCenter(B2Vec2JSImpl force, bool wake);
+	external void ApplyTorque(num torque, bool awake);
+	external void ApplyLinearImpulse(B2Vec2JSImpl impulse, B2Vec2JSImpl point, bool wake);
+	external void ApplyLinearImpulseToCenter(B2Vec2JSImpl impulse, bool wake);
+	external void ApplyAngularImpulse(num impulse, bool wake);
+	external double GetMass();
+	external double GetInertia();
+	external void GetMassData(B2MassDataJSImpl data);
+	external void SetMassData(B2MassDataJSImpl data);
+	external void ResetMassData();
+	external B2Vec2JSImpl GetWorldPoint(B2Vec2JSImpl localPoint);
+	external B2Vec2JSImpl GetWorldVector(B2Vec2JSImpl localVector);
+	external B2Vec2JSImpl GetLocalPoint(B2Vec2JSImpl worldPoint);
+	external B2Vec2JSImpl GetLocalVector(B2Vec2JSImpl worldVector);
+	external B2Vec2JSImpl GetLinearVelocityFromWorldPoint(B2Vec2JSImpl worldPoint);
+	external B2Vec2JSImpl GetLinearVelocityFromLocalPoint(B2Vec2JSImpl localPoint);
+	external double GetLinearDamping();
+	external void SetLinearDamping(num linearDamping);
+	external double GetAngularDamping();
+	external void SetAngularDamping(num angularDamping);
+	external double GetGravityScale();
+	external void SetGravityScale(num scale);
+	external void SetType(B2BodyType type);
+	external B2BodyType GetType();
+	external void SetBullet(bool flag);
+	external bool IsBullet();
+	external void SetSleepingAllowed(bool flag);
+	external bool IsSleepingAllowed();
+	external void SetAwake(bool flag);
+	external bool IsAwake();
+	external void SetEnabled(bool flag);
+	external bool IsEnabled();
+	external void SetFixedRotation(bool flag);
+	external bool IsFixedRotation();
+	external B2FixtureJSImpl GetFixtureList();
+	external B2JointEdgeJSImpl GetJointList();
+	external B2ContactEdgeJSImpl GetContactList();
+	external B2BodyJSImpl GetNext();
+	external B2BodyUserDataJSImpl GetUserData();
+	external B2WorldJSImpl GetWorld();
+	external void Dump();
 }
 
-@JS('b2BodyDef')
-class B2BodyDefJSImpl {
-	external B2BodyDefJSImpl();
+extension B2BodyDefJSImplExtension on B2BodyDefJSImpl {
 
 	external B2BodyType get_type();
 	external void set_type(B2BodyType arg0);
@@ -2177,9 +2694,7 @@ class B2BodyDefJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2Filter')
-class B2FilterJSImpl {
-	external B2FilterJSImpl();
+extension B2FilterJSImplExtension on B2FilterJSImpl {
 
 	external int get_categoryBits();
 	external void set_categoryBits(int arg0);
@@ -2190,18 +2705,15 @@ class B2FilterJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2AABB')
-class B2AABBJSImpl {
-	external B2AABBJSImpl();
+extension B2AABBJSImplExtension on B2AABBJSImpl {
 
-	external bool isValid();
-	external B2Vec2JSImpl getCenter();
-	external B2Vec2JSImpl getExtents();
-	external double getPerimeter();
-	external void combine1(B2AABBJSImpl aabb1);
-	external void combine2(B2AABBJSImpl aabb1, B2AABBJSImpl aabb2);
-	external bool contains(B2AABBJSImpl aabb);
-	external bool rayCast(B2RayCastOutputJSImpl output, B2RayCastInputJSImpl input);
+	external bool IsValid();
+	external B2Vec2JSImpl GetCenter();
+	external B2Vec2JSImpl GetExtents();
+	external double GetPerimeter();
+	external void Combine(B2AABBJSImpl aabb1, B2AABBJSImpl? aabb2);
+	external bool Contains(B2AABBJSImpl aabb);
+	external bool RayCast(B2RayCastOutputJSImpl output, B2RayCastInputJSImpl input);
 	external B2Vec2JSImpl get_lowerBound();
 	external void set_lowerBound(B2Vec2JSImpl arg0);
 	external B2Vec2JSImpl get_upperBound();
@@ -2209,16 +2721,14 @@ class B2AABBJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2CircleShape')
-class B2CircleShapeJSImpl {
-	external B2CircleShapeJSImpl();
+extension B2CircleShapeJSImplExtension on B2CircleShapeJSImpl {
 
-	external B2ShapeType getType();
-	external num getChildCount();
-	external bool testPoint(B2TransformJSImpl xf, B2Vec2JSImpl p);
-	external bool rayCast(B2RayCastOutputJSImpl output, B2RayCastInputJSImpl input, B2TransformJSImpl transform, num childIndex);
-	external void computeAABB(B2AABBJSImpl aabb, B2TransformJSImpl xf, num childIndex);
-	external void computeMass(B2MassDataJSImpl massData, num density);
+	external B2ShapeType GetType();
+	external num GetChildCount();
+	external bool TestPoint(B2TransformJSImpl xf, B2Vec2JSImpl p);
+	external bool RayCast(B2RayCastOutputJSImpl output, B2RayCastInputJSImpl input, B2TransformJSImpl transform, num childIndex);
+	external void ComputeAABB(B2AABBJSImpl aabb, B2TransformJSImpl xf, num childIndex);
+	external void ComputeMass(B2MassDataJSImpl massData, num density);
 	external B2Vec2JSImpl get_m_p();
 	external void set_m_p(B2Vec2JSImpl arg0);
 	external B2ShapeType get_m_type();
@@ -2228,18 +2738,16 @@ class B2CircleShapeJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2EdgeShape')
-class B2EdgeShapeJSImpl {
-	external B2EdgeShapeJSImpl();
+extension B2EdgeShapeJSImplExtension on B2EdgeShapeJSImpl {
 
-	external void setOneSided(B2Vec2JSImpl v0, B2Vec2JSImpl v1, B2Vec2JSImpl v2, B2Vec2JSImpl v3);
-	external void setTwoSided(B2Vec2JSImpl v1, B2Vec2JSImpl v2);
-	external B2ShapeType getType();
-	external num getChildCount();
-	external bool testPoint(B2TransformJSImpl xf, B2Vec2JSImpl p);
-	external bool rayCast(B2RayCastOutputJSImpl output, B2RayCastInputJSImpl input, B2TransformJSImpl transform, num childIndex);
-	external void computeAABB(B2AABBJSImpl aabb, B2TransformJSImpl xf, num childIndex);
-	external void computeMass(B2MassDataJSImpl massData, num density);
+	external void SetOneSided(B2Vec2JSImpl v0, B2Vec2JSImpl v1, B2Vec2JSImpl v2, B2Vec2JSImpl v3);
+	external void SetTwoSided(B2Vec2JSImpl v1, B2Vec2JSImpl v2);
+	external B2ShapeType GetType();
+	external num GetChildCount();
+	external bool TestPoint(B2TransformJSImpl xf, B2Vec2JSImpl p);
+	external bool RayCast(B2RayCastOutputJSImpl output, B2RayCastInputJSImpl input, B2TransformJSImpl transform, num childIndex);
+	external void ComputeAABB(B2AABBJSImpl aabb, B2TransformJSImpl xf, num childIndex);
+	external void ComputeMass(B2MassDataJSImpl massData, num density);
 	external B2Vec2JSImpl get_m_vertex1();
 	external void set_m_vertex1(B2Vec2JSImpl arg0);
 	external B2Vec2JSImpl get_m_vertex2();
@@ -2257,43 +2765,39 @@ class B2EdgeShapeJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2JointUserData')
-class B2JointUserDataJSImpl {
+extension B2JointUserDataJSImplExtension on B2JointUserDataJSImpl {
 
 	external int get_pointer();
 	external void set_pointer(int arg0);
 	external void __destroy__();
 }
 
-@JS('b2WeldJoint')
-class B2WeldJointJSImpl {
+extension B2WeldJointJSImplExtension on B2WeldJointJSImpl {
 
-	external B2Vec2JSImpl getLocalAnchorA();
-	external B2Vec2JSImpl getLocalAnchorB();
-	external double getReferenceAngle();
-	external void setStiffness(num stiffness);
-	external double getStiffness();
-	external void setDamping(num damping);
-	external double getDamping();
-	external void dump();
-	external B2JointType getType();
-	external B2BodyJSImpl getBodyA();
-	external B2BodyJSImpl getBodyB();
-	external B2Vec2JSImpl getAnchorA();
-	external B2Vec2JSImpl getAnchorB();
-	external B2Vec2JSImpl getReactionForce(num inv_dt);
-	external double getReactionTorque(num inv_dt);
-	external B2JointJSImpl getNext();
-	external B2JointUserDataJSImpl getUserData();
-	external bool getCollideConnected();
+	external B2Vec2JSImpl GetLocalAnchorA();
+	external B2Vec2JSImpl GetLocalAnchorB();
+	external double GetReferenceAngle();
+	external void SetStiffness(num stiffness);
+	external double GetStiffness();
+	external void SetDamping(num damping);
+	external double GetDamping();
+	external void Dump();
+	external B2JointType GetType();
+	external B2BodyJSImpl GetBodyA();
+	external B2BodyJSImpl GetBodyB();
+	external B2Vec2JSImpl GetAnchorA();
+	external B2Vec2JSImpl GetAnchorB();
+	external B2Vec2JSImpl GetReactionForce(num inv_dt);
+	external double GetReactionTorque(num inv_dt);
+	external B2JointJSImpl GetNext();
+	external B2JointUserDataJSImpl GetUserData();
+	external bool GetCollideConnected();
 	external void __destroy__();
 }
 
-@JS('b2WeldJointDef')
-class B2WeldJointDefJSImpl {
-	external B2WeldJointDefJSImpl();
+extension B2WeldJointDefJSImplExtension on B2WeldJointDefJSImpl {
 
-	external void initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB, B2Vec2JSImpl anchor);
+	external void Initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB, B2Vec2JSImpl anchor);
 	external B2Vec2JSImpl get_localAnchorA();
 	external void set_localAnchorA(B2Vec2JSImpl arg0);
 	external B2Vec2JSImpl get_localAnchorB();
@@ -2317,20 +2821,18 @@ class B2WeldJointDefJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2ChainShape')
-class B2ChainShapeJSImpl {
-	external B2ChainShapeJSImpl();
+extension B2ChainShapeJSImplExtension on B2ChainShapeJSImpl {
 
-	external void clear();
-	external void createLoop(B2Vec2JSImpl vertices, num count);
-	external void createChain(B2Vec2JSImpl vertices, num count, B2Vec2JSImpl prevVertex, B2Vec2JSImpl nextVertex);
-	external void getChildEdge(B2EdgeShapeJSImpl edge, num index);
-	external B2ShapeType getType();
-	external num getChildCount();
-	external bool testPoint(B2TransformJSImpl xf, B2Vec2JSImpl p);
-	external bool rayCast(B2RayCastOutputJSImpl output, B2RayCastInputJSImpl input, B2TransformJSImpl transform, num childIndex);
-	external void computeAABB(B2AABBJSImpl aabb, B2TransformJSImpl xf, num childIndex);
-	external void computeMass(B2MassDataJSImpl massData, num density);
+	external void Clear();
+	external void CreateLoop(B2Vec2JSImpl vertices, num count);
+	external void CreateChain(B2Vec2JSImpl vertices, num count, B2Vec2JSImpl prevVertex, B2Vec2JSImpl nextVertex);
+	external void GetChildEdge(B2EdgeShapeJSImpl edge, num index);
+	external B2ShapeType GetType();
+	external num GetChildCount();
+	external bool TestPoint(B2TransformJSImpl xf, B2Vec2JSImpl p);
+	external bool RayCast(B2RayCastOutputJSImpl output, B2RayCastInputJSImpl input, B2TransformJSImpl transform, num childIndex);
+	external void ComputeAABB(B2AABBJSImpl aabb, B2TransformJSImpl xf, num childIndex);
+	external void ComputeMass(B2MassDataJSImpl massData, num density);
 	external B2Vec2JSImpl get_m_vertices();
 	external void set_m_vertices(B2Vec2JSImpl arg0);
 	external num get_m_count();
@@ -2346,12 +2848,9 @@ class B2ChainShapeJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2Color')
-class B2ColorJSImpl {
-	external B2ColorJSImpl();
-	external B2ColorJSImpl.from3(num r, num g, num b);
+extension B2ColorJSImplExtension on B2ColorJSImpl {
 
-	external void set(num ri, num gi, num bi);
+	external void Set(num ri, num gi, num bi);
 	external double get_r();
 	external void set_r(num arg0);
 	external double get_g();
@@ -2361,9 +2860,7 @@ class B2ColorJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2ContactEdge')
-class B2ContactEdgeJSImpl {
-	external B2ContactEdgeJSImpl();
+extension B2ContactEdgeJSImplExtension on B2ContactEdgeJSImpl {
 
 	external B2BodyJSImpl get_other();
 	external void set_other(B2BodyJSImpl arg0);
@@ -2376,8 +2873,7 @@ class B2ContactEdgeJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2ContactFeature')
-class B2ContactFeatureJSImpl {
+extension B2ContactFeatureJSImplExtension on B2ContactFeatureJSImpl {
 
 	external int get_indexA();
 	external void set_indexA(int arg0);
@@ -2390,22 +2886,18 @@ class B2ContactFeatureJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2ContactFilter')
-class B2ContactFilterJSImpl {
+extension B2ContactFilterJSImplExtension on B2ContactFilterJSImpl {
 
 	external void __destroy__();
 }
 
-@JS('JSContactFilter')
-class JSContactFilterJSImpl {
-	external JSContactFilterJSImpl();
+extension JSContactFilterJSImplExtension on JSContactFilterJSImpl {
 
-	external bool shouldCollide(B2FixtureJSImpl fixtureA, B2FixtureJSImpl fixtureB);
+	external bool ShouldCollide(B2FixtureJSImpl fixtureA, B2FixtureJSImpl fixtureB);
 	external void __destroy__();
 }
 
-@JS('b2ContactID')
-class B2ContactIDJSImpl {
+extension B2ContactIDJSImplExtension on B2ContactIDJSImpl {
 
 	external B2ContactFeatureJSImpl get_cf();
 	external void set_cf(B2ContactFeatureJSImpl arg0);
@@ -2414,8 +2906,7 @@ class B2ContactIDJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2ContactImpulse')
-class B2ContactImpulseJSImpl {
+extension B2ContactImpulseJSImplExtension on B2ContactImpulseJSImpl {
 
 	external double get_normalImpulses(num arg0);
 	external void set_normalImpulses(num arg0, num arg1);
@@ -2426,62 +2917,55 @@ class B2ContactImpulseJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2DestructionListener')
-class B2DestructionListenerJSImpl {
+extension B2DestructionListenerJSImplExtension on B2DestructionListenerJSImpl {
 
 	external void __destroy__();
 }
 
-@JS('b2DestructionListenerWrapper')
-class B2DestructionListenerWrapperJSImpl {
+extension B2DestructionListenerWrapperJSImplExtension on B2DestructionListenerWrapperJSImpl {
 
 	external void __destroy__();
 }
 
-@JS('JSDestructionListener')
-class JSDestructionListenerJSImpl {
-	external JSDestructionListenerJSImpl();
+extension JSDestructionListenerJSImplExtension on JSDestructionListenerJSImpl {
 
-	external void sayGoodbyeJoint(B2JointJSImpl joint);
-	external void sayGoodbyeFixture(B2FixtureJSImpl joint);
+	external void SayGoodbyeJoint(B2JointJSImpl joint);
+	external void SayGoodbyeFixture(B2FixtureJSImpl joint);
 	external void __destroy__();
 }
 
-@JS('b2DistanceJoint')
-class B2DistanceJointJSImpl {
+extension B2DistanceJointJSImplExtension on B2DistanceJointJSImpl {
 
-	external B2Vec2JSImpl getLocalAnchorA();
-	external B2Vec2JSImpl getLocalAnchorB();
-	external double getLength();
-	external void setLength(num length);
-	external double getMinLength();
-	external void setMinLength(num minLength);
-	external double getMaxLength();
-	external void setMaxLength(num maxLength);
-	external double getCurrentLength();
-	external void setStiffness(num stiffness);
-	external double getStiffness();
-	external void setDamping(num damping);
-	external double getDamping();
-	external void dump();
-	external B2JointType getType();
-	external B2BodyJSImpl getBodyA();
-	external B2BodyJSImpl getBodyB();
-	external B2Vec2JSImpl getAnchorA();
-	external B2Vec2JSImpl getAnchorB();
-	external B2Vec2JSImpl getReactionForce(num inv_dt);
-	external double getReactionTorque(num inv_dt);
-	external B2JointJSImpl getNext();
-	external B2JointUserDataJSImpl getUserData();
-	external bool getCollideConnected();
+	external B2Vec2JSImpl GetLocalAnchorA();
+	external B2Vec2JSImpl GetLocalAnchorB();
+	external double GetLength();
+	external void SetLength(num length);
+	external double GetMinLength();
+	external void SetMinLength(num minLength);
+	external double GetMaxLength();
+	external void SetMaxLength(num maxLength);
+	external double GetCurrentLength();
+	external void SetStiffness(num stiffness);
+	external double GetStiffness();
+	external void SetDamping(num damping);
+	external double GetDamping();
+	external void Dump();
+	external B2JointType GetType();
+	external B2BodyJSImpl GetBodyA();
+	external B2BodyJSImpl GetBodyB();
+	external B2Vec2JSImpl GetAnchorA();
+	external B2Vec2JSImpl GetAnchorB();
+	external B2Vec2JSImpl GetReactionForce(num inv_dt);
+	external double GetReactionTorque(num inv_dt);
+	external B2JointJSImpl GetNext();
+	external B2JointUserDataJSImpl GetUserData();
+	external bool GetCollideConnected();
 	external void __destroy__();
 }
 
-@JS('b2DistanceJointDef')
-class B2DistanceJointDefJSImpl {
-	external B2DistanceJointDefJSImpl();
+extension B2DistanceJointDefJSImplExtension on B2DistanceJointDefJSImpl {
 
-	external void initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB, B2Vec2JSImpl anchorA, B2Vec2JSImpl anchorB);
+	external void Initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB, B2Vec2JSImpl anchorA, B2Vec2JSImpl anchorB);
 	external B2Vec2JSImpl get_localAnchorA();
 	external void set_localAnchorA(B2Vec2JSImpl arg0);
 	external B2Vec2JSImpl get_localAnchorB();
@@ -2509,58 +2993,52 @@ class B2DistanceJointDefJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2Draw')
-class B2DrawJSImpl {
+extension B2DrawJSImplExtension on B2DrawJSImpl {
 
-	external void setFlags(int flags);
-	external int getFlags();
-	external void appendFlags(int flags);
-	external void clearFlags(int flags);
+	external void SetFlags(int flags);
+	external int GetFlags();
+	external void AppendFlags(int flags);
+	external void ClearFlags(int flags);
 	external void __destroy__();
 }
 
-@JS('JSDraw')
-class JSDrawJSImpl {
-	external JSDrawJSImpl();
+extension JSDrawJSImplExtension on JSDrawJSImpl {
 
-	external void drawPolygon(B2Vec2JSImpl vertices, num vertexCount, B2ColorJSImpl color);
-	external void drawSolidPolygon(B2Vec2JSImpl vertices, num vertexCount, B2ColorJSImpl color);
-	external void drawCircle(B2Vec2JSImpl center, num radius, B2ColorJSImpl color);
-	external void drawSolidCircle(B2Vec2JSImpl center, num radius, B2Vec2JSImpl axis, B2ColorJSImpl color);
-	external void drawSegment(B2Vec2JSImpl p1, B2Vec2JSImpl p2, B2ColorJSImpl color);
-	external void drawTransform(B2TransformJSImpl xf);
-	external void drawPoint(B2Vec2JSImpl p, num size, B2ColorJSImpl color);
+	external void DrawPolygon(B2Vec2JSImpl vertices, num vertexCount, B2ColorJSImpl color);
+	external void DrawSolidPolygon(B2Vec2JSImpl vertices, num vertexCount, B2ColorJSImpl color);
+	external void DrawCircle(B2Vec2JSImpl center, num radius, B2ColorJSImpl color);
+	external void DrawSolidCircle(B2Vec2JSImpl center, num radius, B2Vec2JSImpl axis, B2ColorJSImpl color);
+	external void DrawSegment(B2Vec2JSImpl p1, B2Vec2JSImpl p2, B2ColorJSImpl color);
+	external void DrawTransform(B2TransformJSImpl xf);
+	external void DrawPoint(B2Vec2JSImpl p, num size, B2ColorJSImpl color);
 	external void __destroy__();
 }
 
-@JS('b2FrictionJoint')
-class B2FrictionJointJSImpl {
+extension B2FrictionJointJSImplExtension on B2FrictionJointJSImpl {
 
-	external B2Vec2JSImpl getLocalAnchorA();
-	external B2Vec2JSImpl getLocalAnchorB();
-	external void setMaxForce(num force);
-	external double getMaxForce();
-	external void setMaxTorque(num torque);
-	external double getMaxTorque();
-	external void dump();
-	external B2JointType getType();
-	external B2BodyJSImpl getBodyA();
-	external B2BodyJSImpl getBodyB();
-	external B2Vec2JSImpl getAnchorA();
-	external B2Vec2JSImpl getAnchorB();
-	external B2Vec2JSImpl getReactionForce(num inv_dt);
-	external double getReactionTorque(num inv_dt);
-	external B2JointJSImpl getNext();
-	external B2JointUserDataJSImpl getUserData();
-	external bool getCollideConnected();
+	external B2Vec2JSImpl GetLocalAnchorA();
+	external B2Vec2JSImpl GetLocalAnchorB();
+	external void SetMaxForce(num force);
+	external double GetMaxForce();
+	external void SetMaxTorque(num torque);
+	external double GetMaxTorque();
+	external void Dump();
+	external B2JointType GetType();
+	external B2BodyJSImpl GetBodyA();
+	external B2BodyJSImpl GetBodyB();
+	external B2Vec2JSImpl GetAnchorA();
+	external B2Vec2JSImpl GetAnchorB();
+	external B2Vec2JSImpl GetReactionForce(num inv_dt);
+	external double GetReactionTorque(num inv_dt);
+	external B2JointJSImpl GetNext();
+	external B2JointUserDataJSImpl GetUserData();
+	external bool GetCollideConnected();
 	external void __destroy__();
 }
 
-@JS('b2FrictionJointDef')
-class B2FrictionJointDefJSImpl {
-	external B2FrictionJointDefJSImpl();
+extension B2FrictionJointDefJSImplExtension on B2FrictionJointDefJSImpl {
 
-	external void initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB, B2Vec2JSImpl anchor);
+	external void Initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB, B2Vec2JSImpl anchor);
 	external B2Vec2JSImpl get_localAnchorA();
 	external void set_localAnchorA(B2Vec2JSImpl arg0);
 	external B2Vec2JSImpl get_localAnchorB();
@@ -2582,30 +3060,27 @@ class B2FrictionJointDefJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2GearJoint')
-class B2GearJointJSImpl {
+extension B2GearJointJSImplExtension on B2GearJointJSImpl {
 
-	external B2JointJSImpl getJoint1();
-	external B2JointJSImpl getJoint2();
-	external void setRatio(num ratio);
-	external double getRatio();
-	external void dump();
-	external B2JointType getType();
-	external B2BodyJSImpl getBodyA();
-	external B2BodyJSImpl getBodyB();
-	external B2Vec2JSImpl getAnchorA();
-	external B2Vec2JSImpl getAnchorB();
-	external B2Vec2JSImpl getReactionForce(num inv_dt);
-	external double getReactionTorque(num inv_dt);
-	external B2JointJSImpl getNext();
-	external B2JointUserDataJSImpl getUserData();
-	external bool getCollideConnected();
+	external B2JointJSImpl GetJoint1();
+	external B2JointJSImpl GetJoint2();
+	external void SetRatio(num ratio);
+	external double GetRatio();
+	external void Dump();
+	external B2JointType GetType();
+	external B2BodyJSImpl GetBodyA();
+	external B2BodyJSImpl GetBodyB();
+	external B2Vec2JSImpl GetAnchorA();
+	external B2Vec2JSImpl GetAnchorB();
+	external B2Vec2JSImpl GetReactionForce(num inv_dt);
+	external double GetReactionTorque(num inv_dt);
+	external B2JointJSImpl GetNext();
+	external B2JointUserDataJSImpl GetUserData();
+	external bool GetCollideConnected();
 	external void __destroy__();
 }
 
-@JS('b2GearJointDef')
-class B2GearJointDefJSImpl {
-	external B2GearJointDefJSImpl();
+extension B2GearJointDefJSImplExtension on B2GearJointDefJSImpl {
 
 	external B2JointJSImpl get_joint1();
 	external void set_joint1(B2JointJSImpl arg0);
@@ -2626,9 +3101,7 @@ class B2GearJointDefJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2JointEdge')
-class B2JointEdgeJSImpl {
-	external B2JointEdgeJSImpl();
+extension B2JointEdgeJSImplExtension on B2JointEdgeJSImpl {
 
 	external B2BodyJSImpl get_other();
 	external void set_other(B2BodyJSImpl arg0);
@@ -2641,9 +3114,7 @@ class B2JointEdgeJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2Manifold')
-class B2ManifoldJSImpl {
-	external B2ManifoldJSImpl();
+extension B2ManifoldJSImplExtension on B2ManifoldJSImpl {
 
 	external B2ManifoldPointJSImpl get_points(num arg0);
 	external void set_points(num arg0, B2ManifoldPointJSImpl arg1);
@@ -2658,11 +3129,9 @@ class B2ManifoldJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2WorldManifold')
-class B2WorldManifoldJSImpl {
-	external B2WorldManifoldJSImpl();
+extension B2WorldManifoldJSImplExtension on B2WorldManifoldJSImpl {
 
-	external void initialize(B2ManifoldJSImpl manifold, B2TransformJSImpl xfA, num radiusA, B2TransformJSImpl xfB, num radiusB);
+	external void Initialize(B2ManifoldJSImpl manifold, B2TransformJSImpl xfA, num radiusA, B2TransformJSImpl xfB, num radiusB);
 	external B2Vec2JSImpl get_normal();
 	external void set_normal(B2Vec2JSImpl arg0);
 	external B2Vec2JSImpl get_points(num arg0);
@@ -2672,9 +3141,7 @@ class B2WorldManifoldJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2ManifoldPoint')
-class B2ManifoldPointJSImpl {
-	external B2ManifoldPointJSImpl();
+extension B2ManifoldPointJSImplExtension on B2ManifoldPointJSImpl {
 
 	external B2Vec2JSImpl get_localPoint();
 	external void set_localPoint(B2Vec2JSImpl arg0);
@@ -2687,17 +3154,13 @@ class B2ManifoldPointJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2Mat22')
-class B2Mat22JSImpl {
-	external B2Mat22JSImpl();
-	external B2Mat22JSImpl.from2(B2Vec2JSImpl a11, B2Vec2JSImpl a12);
-	external B2Mat22JSImpl.from4(num a11, num a12, num a21, num a22);
+extension B2Mat22JSImplExtension on B2Mat22JSImpl {
 
-	external void set(B2Vec2JSImpl c1, B2Vec2JSImpl c2);
-	external void setIdentity();
-	external void setZero();
-	external B2Mat22JSImpl getInverse();
-	external B2Vec2JSImpl solve(B2Vec2JSImpl b);
+	external void Set(B2Vec2JSImpl c1, B2Vec2JSImpl c2);
+	external void SetIdentity();
+	external void SetZero();
+	external B2Mat22JSImpl GetInverse();
+	external B2Vec2JSImpl Solve(B2Vec2JSImpl b);
 	external B2Vec2JSImpl get_ex();
 	external void set_ex(B2Vec2JSImpl arg0);
 	external B2Vec2JSImpl get_ey();
@@ -2705,16 +3168,13 @@ class B2Mat22JSImpl {
 	external void __destroy__();
 }
 
-@JS('b2Mat33')
-class B2Mat33JSImpl {
-	external B2Mat33JSImpl();
-	external B2Mat33JSImpl.from3(B2Vec3JSImpl c1, B2Vec3JSImpl c2, B2Vec3JSImpl c3);
+extension B2Mat33JSImplExtension on B2Mat33JSImpl {
 
-	external void setZero();
-	external B2Vec3JSImpl solve33(B2Vec3JSImpl b);
-	external B2Vec2JSImpl solve22(B2Vec2JSImpl b);
-	external void getInverse22(B2Mat33JSImpl M);
-	external void getSymInverse33(B2Mat33JSImpl M);
+	external void SetZero();
+	external B2Vec3JSImpl Solve33(B2Vec3JSImpl b);
+	external B2Vec2JSImpl Solve22(B2Vec2JSImpl b);
+	external void GetInverse22(B2Mat33JSImpl M);
+	external void GetSymInverse33(B2Mat33JSImpl M);
 	external B2Vec3JSImpl get_ex();
 	external void set_ex(B2Vec3JSImpl arg0);
 	external B2Vec3JSImpl get_ey();
@@ -2724,34 +3184,31 @@ class B2Mat33JSImpl {
 	external void __destroy__();
 }
 
-@JS('b2MouseJoint')
-class B2MouseJointJSImpl {
+extension B2MouseJointJSImplExtension on B2MouseJointJSImpl {
 
-	external void setTarget(B2Vec2JSImpl target);
-	external B2Vec2JSImpl getTarget();
-	external void setMaxForce(num force);
-	external double getMaxForce();
-	external void setStiffness(num stiffness);
-	external double getStiffness();
-	external void setDamping(num damping);
-	external double getDamping();
-	external void dump();
-	external B2JointType getType();
-	external B2BodyJSImpl getBodyA();
-	external B2BodyJSImpl getBodyB();
-	external B2Vec2JSImpl getAnchorA();
-	external B2Vec2JSImpl getAnchorB();
-	external B2Vec2JSImpl getReactionForce(num inv_dt);
-	external double getReactionTorque(num inv_dt);
-	external B2JointJSImpl getNext();
-	external B2JointUserDataJSImpl getUserData();
-	external bool getCollideConnected();
+	external void SetTarget(B2Vec2JSImpl target);
+	external B2Vec2JSImpl GetTarget();
+	external void SetMaxForce(num force);
+	external double GetMaxForce();
+	external void SetStiffness(num stiffness);
+	external double GetStiffness();
+	external void SetDamping(num damping);
+	external double GetDamping();
+	external void Dump();
+	external B2JointType GetType();
+	external B2BodyJSImpl GetBodyA();
+	external B2BodyJSImpl GetBodyB();
+	external B2Vec2JSImpl GetAnchorA();
+	external B2Vec2JSImpl GetAnchorB();
+	external B2Vec2JSImpl GetReactionForce(num inv_dt);
+	external double GetReactionTorque(num inv_dt);
+	external B2JointJSImpl GetNext();
+	external B2JointUserDataJSImpl GetUserData();
+	external bool GetCollideConnected();
 	external void __destroy__();
 }
 
-@JS('b2MouseJointDef')
-class B2MouseJointDefJSImpl {
-	external B2MouseJointDefJSImpl();
+extension B2MouseJointDefJSImplExtension on B2MouseJointDefJSImpl {
 
 	external B2Vec2JSImpl get_target();
 	external void set_target(B2Vec2JSImpl arg0);
@@ -2774,19 +3231,16 @@ class B2MouseJointDefJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2PolygonShape')
-class B2PolygonShapeJSImpl {
-	external B2PolygonShapeJSImpl();
+extension B2PolygonShapeJSImplExtension on B2PolygonShapeJSImpl {
 
-	external void set(B2Vec2JSImpl vertices, num vertexCount);
-	external void setAsBox2(num hx, num hy);
-	external void setAsBox4(num hx, num hy, B2Vec2JSImpl center, num angle);
-	external B2ShapeType getType();
-	external num getChildCount();
-	external bool testPoint(B2TransformJSImpl xf, B2Vec2JSImpl p);
-	external bool rayCast(B2RayCastOutputJSImpl output, B2RayCastInputJSImpl input, B2TransformJSImpl transform, num childIndex);
-	external void computeAABB(B2AABBJSImpl aabb, B2TransformJSImpl xf, num childIndex);
-	external void computeMass(B2MassDataJSImpl massData, num density);
+	external void Set(B2Vec2JSImpl vertices, num vertexCount);
+	external void SetAsBox(num hx, num hy, B2Vec2JSImpl? center, num? angle);
+	external B2ShapeType GetType();
+	external num GetChildCount();
+	external bool TestPoint(B2TransformJSImpl xf, B2Vec2JSImpl p);
+	external bool RayCast(B2RayCastOutputJSImpl output, B2RayCastInputJSImpl input, B2TransformJSImpl transform, num childIndex);
+	external void ComputeAABB(B2AABBJSImpl aabb, B2TransformJSImpl xf, num childIndex);
+	external void ComputeMass(B2MassDataJSImpl massData, num density);
 	external B2Vec2JSImpl get_m_centroid();
 	external void set_m_centroid(B2Vec2JSImpl arg0);
 	external B2Vec2JSImpl get_m_vertices(num arg0);
@@ -2802,46 +3256,43 @@ class B2PolygonShapeJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2PrismaticJoint')
-class B2PrismaticJointJSImpl {
+extension B2PrismaticJointJSImplExtension on B2PrismaticJointJSImpl {
 
-	external B2Vec2JSImpl getLocalAnchorA();
-	external B2Vec2JSImpl getLocalAnchorB();
-	external B2Vec2JSImpl getLocalAxisA();
-	external double getReferenceAngle();
-	external double getJointTranslation();
-	external double getJointSpeed();
-	external bool isLimitEnabled();
-	external void enableLimit(bool flag);
-	external double getLowerLimit();
-	external double getUpperLimit();
-	external void setLimits(num lower, num upper);
-	external bool isMotorEnabled();
-	external void enableMotor(bool flag);
-	external void setMotorSpeed(num speed);
-	external double getMotorSpeed();
-	external void setMaxMotorForce(num force);
-	external double getMaxMotorForce();
-	external double getMotorForce(num inv_dt);
-	external void dump();
-	external B2JointType getType();
-	external B2BodyJSImpl getBodyA();
-	external B2BodyJSImpl getBodyB();
-	external B2Vec2JSImpl getAnchorA();
-	external B2Vec2JSImpl getAnchorB();
-	external B2Vec2JSImpl getReactionForce(num inv_dt);
-	external double getReactionTorque(num inv_dt);
-	external B2JointJSImpl getNext();
-	external B2JointUserDataJSImpl getUserData();
-	external bool getCollideConnected();
+	external B2Vec2JSImpl GetLocalAnchorA();
+	external B2Vec2JSImpl GetLocalAnchorB();
+	external B2Vec2JSImpl GetLocalAxisA();
+	external double GetReferenceAngle();
+	external double GetJointTranslation();
+	external double GetJointSpeed();
+	external bool IsLimitEnabled();
+	external void EnableLimit(bool flag);
+	external double GetLowerLimit();
+	external double GetUpperLimit();
+	external void SetLimits(num lower, num upper);
+	external bool IsMotorEnabled();
+	external void EnableMotor(bool flag);
+	external void SetMotorSpeed(num speed);
+	external double GetMotorSpeed();
+	external void SetMaxMotorForce(num force);
+	external double GetMaxMotorForce();
+	external double GetMotorForce(num inv_dt);
+	external void Dump();
+	external B2JointType GetType();
+	external B2BodyJSImpl GetBodyA();
+	external B2BodyJSImpl GetBodyB();
+	external B2Vec2JSImpl GetAnchorA();
+	external B2Vec2JSImpl GetAnchorB();
+	external B2Vec2JSImpl GetReactionForce(num inv_dt);
+	external double GetReactionTorque(num inv_dt);
+	external B2JointJSImpl GetNext();
+	external B2JointUserDataJSImpl GetUserData();
+	external bool GetCollideConnected();
 	external void __destroy__();
 }
 
-@JS('b2PrismaticJointDef')
-class B2PrismaticJointDefJSImpl {
-	external B2PrismaticJointDefJSImpl();
+extension B2PrismaticJointDefJSImplExtension on B2PrismaticJointDefJSImpl {
 
-	external void initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB, B2Vec2JSImpl anchor, B2Vec2JSImpl axis);
+	external void Initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB, B2Vec2JSImpl anchor, B2Vec2JSImpl axis);
 	external B2Vec2JSImpl get_localAnchorA();
 	external void set_localAnchorA(B2Vec2JSImpl arg0);
 	external B2Vec2JSImpl get_localAnchorB();
@@ -2875,8 +3326,7 @@ class B2PrismaticJointDefJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2Profile')
-class B2ProfileJSImpl {
+extension B2ProfileJSImplExtension on B2ProfileJSImpl {
 
 	external double get_step();
 	external void set_step(num arg0);
@@ -2897,35 +3347,32 @@ class B2ProfileJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2PulleyJoint')
-class B2PulleyJointJSImpl {
+extension B2PulleyJointJSImplExtension on B2PulleyJointJSImpl {
 
-	external B2Vec2JSImpl getGroundAnchorA();
-	external B2Vec2JSImpl getGroundAnchorB();
-	external double getLengthA();
-	external double getLengthB();
-	external double getRatio();
-	external double getCurrentLengthA();
-	external double getCurrentLengthB();
-	external void dump();
-	external B2JointType getType();
-	external B2BodyJSImpl getBodyA();
-	external B2BodyJSImpl getBodyB();
-	external B2Vec2JSImpl getAnchorA();
-	external B2Vec2JSImpl getAnchorB();
-	external B2Vec2JSImpl getReactionForce(num inv_dt);
-	external double getReactionTorque(num inv_dt);
-	external B2JointJSImpl getNext();
-	external B2JointUserDataJSImpl getUserData();
-	external bool getCollideConnected();
+	external B2Vec2JSImpl GetGroundAnchorA();
+	external B2Vec2JSImpl GetGroundAnchorB();
+	external double GetLengthA();
+	external double GetLengthB();
+	external double GetRatio();
+	external double GetCurrentLengthA();
+	external double GetCurrentLengthB();
+	external void Dump();
+	external B2JointType GetType();
+	external B2BodyJSImpl GetBodyA();
+	external B2BodyJSImpl GetBodyB();
+	external B2Vec2JSImpl GetAnchorA();
+	external B2Vec2JSImpl GetAnchorB();
+	external B2Vec2JSImpl GetReactionForce(num inv_dt);
+	external double GetReactionTorque(num inv_dt);
+	external B2JointJSImpl GetNext();
+	external B2JointUserDataJSImpl GetUserData();
+	external bool GetCollideConnected();
 	external void __destroy__();
 }
 
-@JS('b2PulleyJointDef')
-class B2PulleyJointDefJSImpl {
-	external B2PulleyJointDefJSImpl();
+extension B2PulleyJointDefJSImplExtension on B2PulleyJointDefJSImpl {
 
-	external void initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB, B2Vec2JSImpl groundAnchorA, B2Vec2JSImpl groundAnchorB, B2Vec2JSImpl anchorA, B2Vec2JSImpl anchorB, num ratio);
+	external void Initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB, B2Vec2JSImpl groundAnchorA, B2Vec2JSImpl groundAnchorB, B2Vec2JSImpl anchorA, B2Vec2JSImpl anchorB, num ratio);
 	external B2Vec2JSImpl get_groundAnchorA();
 	external void set_groundAnchorA(B2Vec2JSImpl arg0);
 	external B2Vec2JSImpl get_groundAnchorB();
@@ -2953,8 +3400,7 @@ class B2PulleyJointDefJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2RayCastInput')
-class B2RayCastInputJSImpl {
+extension B2RayCastInputJSImplExtension on B2RayCastInputJSImpl {
 
 	external B2Vec2JSImpl get_p1();
 	external void set_p1(B2Vec2JSImpl arg0);
@@ -2965,8 +3411,7 @@ class B2RayCastInputJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2RayCastOutput')
-class B2RayCastOutputJSImpl {
+extension B2RayCastOutputJSImplExtension on B2RayCastOutputJSImpl {
 
 	external B2Vec2JSImpl get_normal();
 	external void set_normal(B2Vec2JSImpl arg0);
@@ -2975,45 +3420,42 @@ class B2RayCastOutputJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2RevoluteJoint')
-class B2RevoluteJointJSImpl {
+extension B2RevoluteJointJSImplExtension on B2RevoluteJointJSImpl {
 
-	external B2Vec2JSImpl getLocalAnchorA();
-	external B2Vec2JSImpl getLocalAnchorB();
-	external double getReferenceAngle();
-	external double getJointAngle();
-	external double getJointSpeed();
-	external bool isLimitEnabled();
-	external void enableLimit(bool flag);
-	external double getLowerLimit();
-	external double getUpperLimit();
-	external void setLimits(num lower, num upper);
-	external bool isMotorEnabled();
-	external void enableMotor(bool flag);
-	external void setMotorSpeed(num speed);
-	external double getMotorSpeed();
-	external void setMaxMotorTorque(num torque);
-	external double getMaxMotorTorque();
-	external double getMotorTorque(num inv_dt);
-	external void dump();
-	external B2JointType getType();
-	external B2BodyJSImpl getBodyA();
-	external B2BodyJSImpl getBodyB();
-	external B2Vec2JSImpl getAnchorA();
-	external B2Vec2JSImpl getAnchorB();
-	external B2Vec2JSImpl getReactionForce(num inv_dt);
-	external double getReactionTorque(num inv_dt);
-	external B2JointJSImpl getNext();
-	external B2JointUserDataJSImpl getUserData();
-	external bool getCollideConnected();
+	external B2Vec2JSImpl GetLocalAnchorA();
+	external B2Vec2JSImpl GetLocalAnchorB();
+	external double GetReferenceAngle();
+	external double GetJointAngle();
+	external double GetJointSpeed();
+	external bool IsLimitEnabled();
+	external void EnableLimit(bool flag);
+	external double GetLowerLimit();
+	external double GetUpperLimit();
+	external void SetLimits(num lower, num upper);
+	external bool IsMotorEnabled();
+	external void EnableMotor(bool flag);
+	external void SetMotorSpeed(num speed);
+	external double GetMotorSpeed();
+	external void SetMaxMotorTorque(num torque);
+	external double GetMaxMotorTorque();
+	external double GetMotorTorque(num inv_dt);
+	external void Dump();
+	external B2JointType GetType();
+	external B2BodyJSImpl GetBodyA();
+	external B2BodyJSImpl GetBodyB();
+	external B2Vec2JSImpl GetAnchorA();
+	external B2Vec2JSImpl GetAnchorB();
+	external B2Vec2JSImpl GetReactionForce(num inv_dt);
+	external double GetReactionTorque(num inv_dt);
+	external B2JointJSImpl GetNext();
+	external B2JointUserDataJSImpl GetUserData();
+	external bool GetCollideConnected();
 	external void __destroy__();
 }
 
-@JS('b2RevoluteJointDef')
-class B2RevoluteJointDefJSImpl {
-	external B2RevoluteJointDefJSImpl();
+extension B2RevoluteJointDefJSImplExtension on B2RevoluteJointDefJSImpl {
 
-	external void initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB, B2Vec2JSImpl anchor);
+	external void Initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB, B2Vec2JSImpl anchor);
 	external B2Vec2JSImpl get_localAnchorA();
 	external void set_localAnchorA(B2Vec2JSImpl arg0);
 	external B2Vec2JSImpl get_localAnchorB();
@@ -3045,16 +3487,13 @@ class B2RevoluteJointDefJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2Rot')
-class B2RotJSImpl {
-	external B2RotJSImpl();
-	external B2RotJSImpl.from1(num angle);
+extension B2RotJSImplExtension on B2RotJSImpl {
 
-	external void set(num angle);
-	external void setIdentity();
-	external double getAngle();
-	external B2Vec2JSImpl getXAxis();
-	external B2Vec2JSImpl getYAxis();
+	external void Set(num angle);
+	external void SetIdentity();
+	external double GetAngle();
+	external B2Vec2JSImpl GetXAxis();
+	external B2Vec2JSImpl GetYAxis();
 	external double get_s();
 	external void set_s(num arg0);
 	external double get_c();
@@ -3062,51 +3501,48 @@ class B2RotJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2WheelJoint')
-class B2WheelJointJSImpl {
+extension B2WheelJointJSImplExtension on B2WheelJointJSImpl {
 
-	external B2Vec2JSImpl getLocalAnchorA();
-	external B2Vec2JSImpl getLocalAnchorB();
-	external B2Vec2JSImpl getLocalAxisA();
-	external double getJointTranslation();
-	external double getJointLinearSpeed();
-	external double getJointAngle();
-	external double getJointAngularSpeed();
-	external bool isLimitEnabled();
-	external void enableLimit(bool flag);
-	external double getLowerLimit();
-	external double getUpperLimit();
-	external void setLimits(num lower, num upper);
-	external bool isMotorEnabled();
-	external void enableMotor(bool flag);
-	external void setMotorSpeed(num speed);
-	external double getMotorSpeed();
-	external void setMaxMotorTorque(num torque);
-	external double getMaxMotorTorque();
-	external double getMotorTorque(num inv_dt);
-	external void setStiffness(num stiffness);
-	external double getStiffness();
-	external void setDamping(num damping);
-	external double getDamping();
-	external void dump();
-	external B2JointType getType();
-	external B2BodyJSImpl getBodyA();
-	external B2BodyJSImpl getBodyB();
-	external B2Vec2JSImpl getAnchorA();
-	external B2Vec2JSImpl getAnchorB();
-	external B2Vec2JSImpl getReactionForce(num inv_dt);
-	external double getReactionTorque(num inv_dt);
-	external B2JointJSImpl getNext();
-	external B2JointUserDataJSImpl getUserData();
-	external bool getCollideConnected();
+	external B2Vec2JSImpl GetLocalAnchorA();
+	external B2Vec2JSImpl GetLocalAnchorB();
+	external B2Vec2JSImpl GetLocalAxisA();
+	external double GetJointTranslation();
+	external double GetJointLinearSpeed();
+	external double GetJointAngle();
+	external double GetJointAngularSpeed();
+	external bool IsLimitEnabled();
+	external void EnableLimit(bool flag);
+	external double GetLowerLimit();
+	external double GetUpperLimit();
+	external void SetLimits(num lower, num upper);
+	external bool IsMotorEnabled();
+	external void EnableMotor(bool flag);
+	external void SetMotorSpeed(num speed);
+	external double GetMotorSpeed();
+	external void SetMaxMotorTorque(num torque);
+	external double GetMaxMotorTorque();
+	external double GetMotorTorque(num inv_dt);
+	external void SetStiffness(num stiffness);
+	external double GetStiffness();
+	external void SetDamping(num damping);
+	external double GetDamping();
+	external void Dump();
+	external B2JointType GetType();
+	external B2BodyJSImpl GetBodyA();
+	external B2BodyJSImpl GetBodyB();
+	external B2Vec2JSImpl GetAnchorA();
+	external B2Vec2JSImpl GetAnchorB();
+	external B2Vec2JSImpl GetReactionForce(num inv_dt);
+	external double GetReactionTorque(num inv_dt);
+	external B2JointJSImpl GetNext();
+	external B2JointUserDataJSImpl GetUserData();
+	external bool GetCollideConnected();
 	external void __destroy__();
 }
 
-@JS('b2WheelJointDef')
-class B2WheelJointDefJSImpl {
-	external B2WheelJointDefJSImpl();
+extension B2WheelJointDefJSImplExtension on B2WheelJointDefJSImpl {
 
-	external void initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB, B2Vec2JSImpl anchor, B2Vec2JSImpl axis);
+	external void Initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB, B2Vec2JSImpl anchor, B2Vec2JSImpl axis);
 	external B2Vec2JSImpl get_localAnchorA();
 	external void set_localAnchorA(B2Vec2JSImpl arg0);
 	external B2Vec2JSImpl get_localAnchorB();
@@ -3142,38 +3578,35 @@ class B2WheelJointDefJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2MotorJoint')
-class B2MotorJointJSImpl {
+extension B2MotorJointJSImplExtension on B2MotorJointJSImpl {
 
-	external void setLinearOffset(B2Vec2JSImpl linearOffset);
-	external B2Vec2JSImpl getLinearOffset();
-	external void setAngularOffset(num angularOffset);
-	external double getAngularOffset();
-	external void setMaxForce(num force);
-	external double getMaxForce();
-	external void setMaxTorque(num torque);
-	external double getMaxTorque();
-	external void setCorrectionFactor(num factor);
-	external double getCorrectionFactor();
-	external void dump();
-	external B2JointType getType();
-	external B2BodyJSImpl getBodyA();
-	external B2BodyJSImpl getBodyB();
-	external B2Vec2JSImpl getAnchorA();
-	external B2Vec2JSImpl getAnchorB();
-	external B2Vec2JSImpl getReactionForce(num inv_dt);
-	external double getReactionTorque(num inv_dt);
-	external B2JointJSImpl getNext();
-	external B2JointUserDataJSImpl getUserData();
-	external bool getCollideConnected();
+	external void SetLinearOffset(B2Vec2JSImpl linearOffset);
+	external B2Vec2JSImpl GetLinearOffset();
+	external void SetAngularOffset(num angularOffset);
+	external double GetAngularOffset();
+	external void SetMaxForce(num force);
+	external double GetMaxForce();
+	external void SetMaxTorque(num torque);
+	external double GetMaxTorque();
+	external void SetCorrectionFactor(num factor);
+	external double GetCorrectionFactor();
+	external void Dump();
+	external B2JointType GetType();
+	external B2BodyJSImpl GetBodyA();
+	external B2BodyJSImpl GetBodyB();
+	external B2Vec2JSImpl GetAnchorA();
+	external B2Vec2JSImpl GetAnchorB();
+	external B2Vec2JSImpl GetReactionForce(num inv_dt);
+	external double GetReactionTorque(num inv_dt);
+	external B2JointJSImpl GetNext();
+	external B2JointUserDataJSImpl GetUserData();
+	external bool GetCollideConnected();
 	external void __destroy__();
 }
 
-@JS('b2MotorJointDef')
-class B2MotorJointDefJSImpl {
-	external B2MotorJointDefJSImpl();
+extension B2MotorJointDefJSImplExtension on B2MotorJointDefJSImpl {
 
-	external void initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB);
+	external void Initialize(B2BodyJSImpl bodyA, B2BodyJSImpl bodyB);
 	external B2Vec2JSImpl get_linearOffset();
 	external void set_linearOffset(B2Vec2JSImpl arg0);
 	external double get_angularOffset();
@@ -3197,9 +3630,7 @@ class B2MotorJointDefJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2RopeTuning')
-class B2RopeTuningJSImpl {
-	external B2RopeTuningJSImpl();
+extension B2RopeTuningJSImplExtension on B2RopeTuningJSImpl {
 
 	external B2StretchingModel get_stretchingModel();
 	external void set_stretchingModel(B2StretchingModel arg0);
@@ -3228,9 +3659,7 @@ class B2RopeTuningJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2RopeDef')
-class B2RopeDefJSImpl {
-	external B2RopeDefJSImpl();
+extension B2RopeDefJSImplExtension on B2RopeDefJSImpl {
 
 	external B2Vec2JSImpl get_position();
 	external void set_position(B2Vec2JSImpl arg0);
@@ -3245,21 +3674,17 @@ class B2RopeDefJSImpl {
 	external void __destroy__();
 }
 
-@JS('b2Rope')
-class B2RopeJSImpl {
-	external B2RopeJSImpl();
+extension B2RopeJSImplExtension on B2RopeJSImpl {
 
-	external void create(B2RopeDefJSImpl def);
-	external void setTuning(B2RopeTuningJSImpl tuning);
-	external void step(num timeStep, num iterations, B2Vec2JSImpl position);
-	external void reset(B2Vec2JSImpl position);
-	//external void draw(B2DrawJSImpl draw);
+	external void Create(B2RopeDefJSImpl def);
+	external void SetTuning(B2RopeTuningJSImpl tuning);
+	external void Step(num timeStep, num iterations, B2Vec2JSImpl position);
+	external void Reset(B2Vec2JSImpl position);
+	//external void Draw(B2DrawJSImpl draw);
 	external void __destroy__();
 }
 
-@JS('b2ClipVertex')
-class B2ClipVertexJSImpl {
-	external B2ClipVertexJSImpl();
+extension B2ClipVertexJSImplExtension on B2ClipVertexJSImpl {
 
 	external B2Vec2JSImpl get_v();
 	external void set_v(B2Vec2JSImpl arg0);
