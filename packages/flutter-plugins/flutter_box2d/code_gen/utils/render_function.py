@@ -50,7 +50,9 @@ def render_function(interfaces, enums, class_set, names, sigs, return_type, non_
     ffi_fn = FfiFunction(interfaces, enums, args, i, const, constructor, overload, names, return_type)
     class_set.ffi.append(ffi_fn.render(sig, min_args, max_args, raw_sig))
 
-    web_fn = WebFunction(interfaces, enums, args, i, const, constructor, overload, names, return_type)
+    web_fn = WebFunction(interfaces, enums, args, i, min_args, const, constructor, overload, names, return_type)
     web_fn.render(sig, raw_sig)
     class_set.jsadapter.append(web_fn.adapter())
-    class_set.jsimpl.append(web_fn.impl())
+    class_set.jsimpl_intr.append(web_fn.impl_intr())
+    class_set.jsimpl_extn.append(web_fn.impl_extn())
+

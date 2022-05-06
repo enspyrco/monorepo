@@ -9,16 +9,21 @@ class Context(Enum):
   JSA_ARG = 4
 
 class WebFunction:
-  def __init__(self, interfaces, enums, args, i, const, constructor, overload, names, return_type):
+  def __init__(self, interfaces, enums, args, i, min_args, const, constructor, overload, names, return_type):
     self.interfaces = interfaces
     self.enums = enums
     self.args = args
     self.num_args = i
+    self.min_args = min_args
     self.const = const
     self.constructor = constructor
     self.overload = overload
     self.names = names
     self.return_type = return_type
+    self.jsimpl_intr = ''
+    self.jsimpl_extn = ''
+
+    if overload and not constructor: print('%s : %s%s' % (names.class_name, names.func_name, i))
   
   def render(self, sig, raw_sig):
     self.setupArgs(sig)
@@ -29,7 +34,7 @@ class WebFunction:
 
     if(self.constructor):
       self.jsadapter = '\n\t%s%s(%s) : _impl = %s%s(%s);\n' % (self.names.dart_class_name+'JSAdapter', maybe_from, self.jsa_in_args, self.names.dart_class_name+'JSImpl', maybe_from, self.call_args)
-      self.jsimpl = '\texternal %s%s(%s);\n' % (self.names.dart_class_name+'JSImpl', maybe_from, self.jsi_in_args)
+      self.jsimpl_intr = '\t@JS(\'%s\')\n\texternal %s%s(%s);\n' % (self.names.func_name, self.names.dart_class_name+'JSImpl', maybe_from, self.jsi_in_args)
     else:
       maybe_convert = ''
       if (self.return_type == 'Float'): maybe_convert = '.toDouble()'
@@ -38,19 +43,23 @@ class WebFunction:
       func_str = ''
       if self.return_type in self.interfaces:
         wrapper = (self.interfaces[self.return_type].getExtendedAttribute('Prefix') or [''])[0] + upper_first(self.return_type)
-        func_str += '%sJSAdapter._(_impl.%s%s(%s)%s);' % (wrapper, self.names.dart_func_name, maybe_arg_count, self.call_args, maybe_convert)
+        func_str += '%sJSAdapter._(_impl.%s(%s)%s);' % (wrapper, self.names.func_name, self.call_args, maybe_convert)
       else:
-        func_str += '_impl.%s%s(%s)%s;' % (self.names.dart_func_name, maybe_arg_count, self.call_args, maybe_convert)
+        func_str += '_impl.%s(%s)%s;' % (self.names.func_name, self.call_args, maybe_convert)
       
       maybe_comment = '//' if not_supported_yet(sig) else ''
       self.jsadapter = '\n\t%s%s %s%s(%s) => %s' % (maybe_comment, self.return_type_jsa, dartify_call(self.names.dart_func_name), maybe_arg_count, self.jsa_in_args, func_str)
-      self.jsimpl = '\n\t%sexternal %s %s%s(%s);' % (maybe_comment, self.return_type_jsi, self.names.dart_func_name, maybe_arg_count, self.jsi_in_args)
+      self.jsimpl_extn = '\n\t%sexternal %s %s(%s);' % (maybe_comment, self.return_type_jsi, self.names.func_name, self.jsi_in_args)
+      self.jsimpl_extn = self.jsimpl_extn if (self.num_args == len(self.args)) else ''
   
   def adapter(self):
     return self.jsadapter
   
-  def impl(self):
-    return self.jsimpl
+  def impl_intr(self):
+    return self.jsimpl_intr
+  
+  def impl_extn(self):
+    return self.jsimpl_extn
   
   def setupArgs(self, sig):
     self.arg_types_jsi = list(map(lambda s: type_to_web(self.interfaces, self.enums, s, False, Context.JSI_ARG), sig))
@@ -60,13 +69,30 @@ class WebFunction:
     self.jsa_in_arg_types = list(map(lambda s: type_to_web(self.interfaces, self.enums, s, False, Context.JSA_ARG), sig))
     self.jsa_in_args = ', '.join(['%s %s' % (self.jsa_in_arg_types[j], self.args[j]) for j in range(self.num_args)])
     self.jsi_in_arg_types = list(map(lambda s: type_to_web(self.interfaces, self.enums, s, False, Context.JSI_ARG), sig))
-    self.jsi_in_args = ', '.join(['%s %s' % (self.jsi_in_arg_types[j], self.args[j]) for j in range(self.num_args)])
+    self.jsi_in_args = ', '.join(['%s%s %s' % (self.jsi_in_arg_types[j], self.maybeNullable(j), self.args[j]) for j in range(self.num_args)])
     self.return_type_jsi = type_to_web(self.interfaces, self.enums, self.return_type, False, Context.JSI_RET)
     self.return_type_jsa = type_to_web(self.interfaces, self.enums, self.return_type, False, Context.JSA_RET)    
   
+  # make latter args nullable in overloaded functions 
+  def maybeNullable(self, x):
+    return '?' if x >= self.min_args else ''
+
   def setupCall(self, raw_sig):
+    if len(raw_sig) == 0: 
+      self.call_args = ''
+      return
+
+    if(self.constructor):
+      self.call_args = ', '.join(['%s%s' % (self.args[j], '._impl' if raw_sig[j].type.name in self.interfaces else '') for j in range(self.num_args)])
+      return
+    
     # we may want to check if the type is a reference type with "if raw_sig[j].getExtendedAttribute('Ref')"
-    self.call_args = ', '.join(['%s%s' % (self.args[j], '._impl' if raw_sig[j].type.name in self.interfaces else '') for j in range(self.num_args)])
+    self.call_args = '%s%s' % (self.args[0], '._impl' if raw_sig[0].type.name in self.interfaces else '')
+    for x in range(1, len(self.args)): # go through max_args so we can use single overloaded JS function and pass null for missing args 
+      if(x >= self.num_args):
+        self.call_args += ', null'
+      else:
+        self.call_args += ', ' + '%s%s' % (self.args[x], '._impl' if raw_sig[x].type.name in self.interfaces else '')
 
 def dartify_call(text):
   if (text == '__destroy__'): return 'dispose'

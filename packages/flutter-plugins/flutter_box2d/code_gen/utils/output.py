@@ -8,6 +8,9 @@ class ClassSet:
     maybe_implements_dec = '' if maybe_implements == '' else ' implements ' + maybe_implements + ' '
     maybe_implements_del = '' if maybe_implements == '' else ' implements ' + maybe_implements + 'Platform '
     maybe_implements_ffi = '' if maybe_implements == '' else ', ' + maybe_implements + 'FfiAdapter '
+    maybe_implements_web_adpr = '' if maybe_implements == '' else ', ' + maybe_implements + 'JSAdapter '
+    maybe_implements_web_impl = '' if maybe_implements == '' else ' extends ' + maybe_implements + 'JSImpl '
+
     self.glue_c = ['\n// ' + name + '\n']
     self.itf = []
     self.itf_mac = []
@@ -15,10 +18,11 @@ class ClassSet:
     self.decs = ['class ' + class_name + maybe_implements_dec + ' {\n' + delegate_lines]
     self.dels = ['abstract class ' + class_name + 'Platform' + maybe_implements_del + '{\n']
     self.ffi = ['class ' + class_name + 'FfiAdapter implements ' + class_name + 'Platform'+ maybe_implements_ffi + ' {\n\n\tfinal Pointer<Void> _self;\n\t' + class_name + 'FfiAdapter._(Pointer<Void> self) : _self = self;\n']
-    self.jsadapter = ['class ' + class_name + 'JSAdapter implements ' + class_name + 'Platform {\n']
+    self.jsadapter = ['class ' + class_name + 'JSAdapter implements ' + class_name + 'Platform' + maybe_implements_web_adpr + ' {\n']
     self.jsadapter  += ['\n\t'+class_name+'JSAdapter._('+ class_name + 'JSImpl impl) : _impl = impl;\n']
     self.jsadapter  += ['\n\tfinal '+ class_name + 'JSImpl _impl;\n']
-    self.jsimpl = ['@JS(\'' + name + '\')\nclass ' + class_name + 'JSImpl {\n']
+    self.jsimpl_intr = ['@JS(\'' + name + '\')\n@staticInterop\nclass ' + class_name + 'JSImpl'+maybe_implements_web_impl+' {\n']
+    self.jsimpl_extn = ['extension '+class_name+'JSImplExtension on '+class_name+'JSImpl {\n']
   
   def addEndings(self):
     self.glue_c += ['\n']
@@ -26,7 +30,8 @@ class ClassSet:
     self.decs += ['\n}\n\n']
     self.ffi += ['\n}\n\n']
     self.jsadapter += ['\n}\n\n']
-    self.jsimpl += ['\n}\n\n']
+    self.jsimpl_intr += ['\n}\n\n']
+    self.jsimpl_extn += ['\n}\n\n']
 
 # When we finish contstructing the strings for each of the classes to be output, we add them to a variable of type Output
 # which is used at the end of the process to write everything out to file.
@@ -40,7 +45,8 @@ class Output:
     self.decs = []
     self.ffi = []
     self.jsadapter = []
-    self.jsimpl = []
+    self.jsimpl_intr = []
+    self.jsimpl_extn = []
     self.enums = []
     
   def finishThenAdd(self, class_set):
@@ -53,7 +59,8 @@ class Output:
     self.decs += class_set.decs
     self.ffi += class_set.ffi
     self.jsadapter += class_set.jsadapter
-    self.jsimpl += class_set.jsimpl
+    self.jsimpl_intr += class_set.jsimpl_intr
+    self.jsimpl_extn += class_set.jsimpl_extn
   
   def writeToFiles(self):
     with open('out/glue.c', 'w') as c:
@@ -90,7 +97,9 @@ class Output:
       dart.write(pre_js)
       for x in self.jsadapter:
         dart.write(x)
-      for x in self.jsimpl:
+      for x in self.jsimpl_intr:
+        dart.write(x)
+      for x in self.jsimpl_extn:
         dart.write(x)
     with open('out/b2_enums.dart', 'w') as dart:
       for x in self.enums:
@@ -177,7 +186,9 @@ typedef EmptyConstructor = Pointer<Void> Function();
 
 '''
 
-pre_js = '''@JS()
+pre_js = '''// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: annotate_overrides
+@JS()
 library box2d;
 
 import 'package:js/js.dart';
