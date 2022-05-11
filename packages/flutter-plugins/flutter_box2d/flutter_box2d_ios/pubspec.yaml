@@ -1,0 +1,28 @@
+name: flutter_box2d_ios
+description: A new flutter plugin project.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=2.16.2 <3.0.0"
+  flutter: ">=2.5.0"
+
+flutter:
+  plugin:
+    implements: flutter_box2d
+    platforms:
+      ios:
+        dartPluginClass: FlutterBox2DIOS
+        ffiPlugin: true
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_box2d_platform_interface:
+    path: ../flutter_box2d_platform_interface
+  ffi: ^1.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0

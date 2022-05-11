@@ -69,6 +69,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  flutter_box2d_ios:
+    dependency: transitive
+    description:
+      path: "../../flutter_box2d_ios"
+      relative: true
+    source: path
+    version: "0.0.1"
   flutter_box2d_macos:
     dependency: transitive
     description:
