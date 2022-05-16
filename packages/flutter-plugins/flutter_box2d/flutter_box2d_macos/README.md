@@ -1,16 +1,13 @@
 # flutter_box2d_macos
 
-## ffigen
+## Native Unit Testing
 
-> Currently (Apr '22), being on an M1 Mac, I have to jump on the master branch of flutter to get ARM64 Dart
+The unit tests are done in `flutter_box2d/example/macos/RunnerTests`
 
-```sh
-dart run ffigen
-```
+Currently we copy `flutter_box2d_macos/macos/Classes/bindings/box2d_glue.cpp` to
+`flutter_box2d/example/macos/RunnerTests/box2d_glue.h`
 
-### ffigen setup
-
-- Add ffigen under dev_dependencies in your pubspec.yaml (run dart pub add -d ffigen).
-- Install LLVM (see Installing LLVM).
-- Configurations must be provided in pubspec.yaml or in a custom YAML file (see configurations).
-- Run the tool with `dart run ffigen`.
+- we need a header file to access the functions in `box2d_glue.cpp`
+- the easiest way I found was just to copy and change to a header file
+- when we get our bindings generator to generate a valid box2d_glue.cpp,
+  we will have the bindings generator script copy the box2d_glue.cpp as a header

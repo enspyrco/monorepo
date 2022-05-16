@@ -26,8 +26,9 @@
 - (void)testExample {
     // Use XCTAssert and related functions to verify your tests produce the correct results.
     
-    b2Vec2* vec = dart_bind_b2Vec2_b2Vec2_2(10, 11);
-    
+    b2Vec2* vec = dart_bind_b2Vec2_b2Vec2_2(3, 4);
+    XCTAssertEqual(vec->Length(), 5);
+
 }
 
 - (void)testPerformanceExample {
