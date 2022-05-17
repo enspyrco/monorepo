@@ -4,7 +4,7 @@ description: Using shelf_web_socket with functions_framework for a serverless we
 publish_to: none
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   shelf:
