@@ -13,7 +13,6 @@ A new flutter plugin project.
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Your Company' => 'email@example.com' }
   s.source           = { :path => '.' }
-  s.source_files     = 'Classes/**/*'
   s.dependency 'Flutter'
 
   s.platform = :ios, '9.0'
@@ -21,7 +20,6 @@ A new flutter plugin project.
   s.swift_version = '5.0'
 
   # Box2D source & headers
-  s.public_header_files = 'Classes/**/*.h'
   s.source_files        = 'Classes/**/*.{cpp,h}'
   s.pod_target_xcconfig = {
     # Allow relative "#include"s from the project base directory:

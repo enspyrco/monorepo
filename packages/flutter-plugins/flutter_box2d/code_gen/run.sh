@@ -1,3 +1,4 @@
+mkdir -p out
 python3 parse_and_generate.py Box2D.idl
 mv out/b2_adapters_ffi.dart ../flutter_box2d_macos/lib/b2_adapters_ffi.dart
 mv out/b2_adapters_web.dart ../flutter_box2d_web/lib/b2_adapters_web.dart

@@ -64,6 +64,7 @@ class Output:
   
   def writeToFiles(self):
     with open('out/glue.c', 'w') as c:
+      c.write(pre_c)
       for x in self.glue_c:
         c.write(x)
     with open('out/flutter_box2d_platform_interface.dart', 'w') as dart:
@@ -134,6 +135,15 @@ abstract class FlutterBox2DPlatform extends PlatformInterface {
     _instance = instance;
   }
 '''
+
+pre_c = '''#include "box2d.h"
+#include "b2_rope.h"
+#include "b2_voronoi_diagram.h"
+
+typedef b2Shape::Type b2ShapeType;
+typedef b2ContactFeature::Type b2ContactFeatureType;
+typedef b2Manifold::Type b2ManifoldType;
+''';
 
 pre_itf_mac = '''import 'package:flutter_box2d_platform_interface/b2_delegates.dart';
 import 'package:flutter_box2d_platform_interface/flutter_box2d_platform_interface.dart';
