@@ -2,6 +2,8 @@
 
 A Docker container with the flutter tool & various CI tools installed in a minimal ubuntu image.
 
+The container uses Flutter stable, currently version 3.0.0. If Flutter has released a new version (see [SDK releases](https://docs.flutter.dev/development/tools/sdk/releases)) this repo should be updated with a PR that changes the version number in this text to the new version. The CI will do the rest.
+
 > [Project Notes]
 
 With the available tools you can:
