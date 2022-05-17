@@ -7,8 +7,7 @@ issue_tracker: https://github.com/enspyrco/monorepo/issues?q=is%3Aissue+is%3Aope
 version: 0.0.1
 
 environment:
-  sdk: ">=2.16.1 <3.0.0"
-  flutter: ">=2.5.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -19,4 +18,3 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito: ^5.0.0
-  
