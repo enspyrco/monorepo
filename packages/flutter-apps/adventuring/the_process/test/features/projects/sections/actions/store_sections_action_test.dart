@@ -6,13 +6,13 @@ import 'package:test/test.dart';
 import 'package:the_process/projects/models/section_model.dart';
 import 'package:the_process/sections/actions/set_sections_action.dart';
 
-import '../../../test-doubles/data/example_data.dart' as example_data;
+import '../../../../test-doubles/data/example_data.dart';
 
 void main() {
   group('StoreSectionsAction', () {
     test('serializes to & from json correctly', () {
       // store some example json data
-      var jsonMap = example_data.storeProjectSectionsActionJson;
+      var jsonMap = storeProjectSectionsActionJson;
 
       // create the action from given json data
       var action = SetSectionsAction.fromJson(jsonMap);
