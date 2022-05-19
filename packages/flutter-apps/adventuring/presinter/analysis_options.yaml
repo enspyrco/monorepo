@@ -1,4 +1,10 @@
-include: package:flutter_lints/flutter.yaml
+include: package:redfire_lints/flutter.yaml
 
 linter:
   rules:
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
