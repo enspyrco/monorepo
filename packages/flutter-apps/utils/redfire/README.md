@@ -77,7 +77,7 @@ See if anything inspires you in:
 
 Or if you have an improvement in mind, open an issue to discuss a feature request.
 
-[< monorepo]: ../../README.md
+[< monorepo]: ../../../../README.md
 [📒]: https://enspyrco.notion.site/RedFire-406c10fbadfb44e3a6f2806a1b6023bf
 [Redux]: https://github.com/fluttercommunity/redux.dart
 [Redux plugin for DevTools]: https://github.com/nickmeinhold/devtools
