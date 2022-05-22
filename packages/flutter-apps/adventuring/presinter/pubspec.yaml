@@ -7,16 +7,32 @@ environment:
   sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
-  firebase_auth: ^3.3.9
-  firebase_core: ^1.13.1
   flutter:
     sdk: flutter
-  flutterfire_ui: ^0.3.5+1
+
+  redfire:
+    path: ../../../flutter-apps/utils/redfire
+  
+  firebase_auth: ^3.3.9
+  firebase_core: ^1.13.1
+  flutter_redux: ^0.10.0
+  
+  redux: ^5.0.0  
+  fast_immutable_collections: ^7.4.0
+  flutterfire_ui: ^0.3.6+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  
+  redfire_lints:
+    path: ../../../flutter-apps/utils/redfire_lints
+  redfire_test:
+    path: ../../../flutter-apps/utils/redfire_test
+  
+  freezed: ^2.0.3+1
+  json_serializable: ^6.2.0
+  build_runner: ^2.1.11
 
 flutter:
   uses-material-design: true

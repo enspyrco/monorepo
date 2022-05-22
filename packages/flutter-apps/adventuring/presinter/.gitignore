@@ -47,3 +47,10 @@ app.*.map.json
 
 # Firebase config files
 lib/firebase_options.dart
+lib/redfire_options.dart
+android/app/google-services.json
+
+# build_runner generated files
+**/*.g.dart
+**/*.freezed.dart
+**/*.mocks.dart
