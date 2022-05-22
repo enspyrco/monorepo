@@ -44,7 +44,7 @@ Using code snippets will save you *lots* of time & hassle
 
 *VS Code*:
 
-- copy the `.vscode/project.code-snippets` file from the redfire package into your project
+- (if the project is not in the monorepo) copy the `.vscode/redfire.code-snippets` file from <https://github.com/enspyrco/monorepo> into your project
 - optionally remove the redfire specific snippets, ie. the ones that end in `_redfire`
 
 ### Configure static analysis
