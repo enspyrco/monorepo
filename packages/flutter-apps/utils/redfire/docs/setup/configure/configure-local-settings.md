@@ -60,9 +60,10 @@ analyzer:
     - lib/**/*.g.dart
     - lib/**/*.freezed.dart
     - test/**/*.mocks.dart
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
 ```
 
 You may not want all of the above, see [Customizing static analysis](https://dart.dev/guides/language/analysis-options) for more info.
