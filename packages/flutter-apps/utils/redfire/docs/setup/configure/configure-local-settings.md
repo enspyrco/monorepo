@@ -29,9 +29,10 @@ A similar argument can be made for your RedFire config file.
 If you don't want to commit the config files, add the following to your `.gitignore`:
 
 ```.gitignore
-# Firebase config file
+# Firebase config files
 lib/firebase_options.dart
 lib/redfire_options.dart
+android/app/google-services.json
 ```
 
 ## lints
@@ -44,7 +45,7 @@ Using code snippets will save you *lots* of time & hassle
 
 *VS Code*:
 
-- copy the `.vscode/project.code-snippets` file from the redfire package into your project
+- (if the project is not in the monorepo) copy the `.vscode/redfire.code-snippets` file from <https://github.com/enspyrco/monorepo> into your project
 - optionally remove the redfire specific snippets, ie. the ones that end in `_redfire`
 
 ### Configure static analysis
@@ -60,9 +61,10 @@ analyzer:
     - lib/**/*.g.dart
     - lib/**/*.freezed.dart
     - test/**/*.mocks.dart
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
 ```
 
 You may not want all of the above, see [Customizing static analysis](https://dart.dev/guides/language/analysis-options) for more info.

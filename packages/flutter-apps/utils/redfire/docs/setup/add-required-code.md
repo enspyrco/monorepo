@@ -103,11 +103,12 @@ import 'app_state.dart';
 
 void main() => runApp(AppWidget<AppState>(
   config: RedFireOptions.currentPlatform,
-  initialState: AppState.init(),
+  logins: ISet(),
+  initialState: AppState.initial(),
   initialActions: const [],
   middlewares: const [],
   reducers: const [],
-  pageTransforms: const [],
+  pageTransforms: ISet(),
   title: <Your App Title>, // optional, defaults to 'Title Note Set'
   homePage: <Home Page>, // shown on successful authentication
 ));
