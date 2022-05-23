@@ -4,7 +4,7 @@ import 'package:redfire/utils.dart';
 import 'package:redfire/widgets.dart';
 
 import 'app/app_state.dart';
-import 'app/home_page.dart';
+import 'home/home_screen.dart';
 import 'redfire_options.dart';
 
 void main() => runApp(AppWidget<AppState>(
@@ -16,5 +16,5 @@ void main() => runApp(AppWidget<AppState>(
       reducers: const [],
       pageTransforms: ISet(),
       title: 'PresInter', // optional, defaults to 'Title Note Set'
-      homePage: const HomePage(), // shown on successful authentication
+      homePage: const HomeScreen(), // shown on successful authentication
     ));
