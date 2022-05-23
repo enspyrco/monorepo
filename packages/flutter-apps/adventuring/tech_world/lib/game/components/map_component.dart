@@ -46,7 +46,7 @@ class MapComponent extends Component {
       start: end.inUnits.toOffset(),
       end: start.inUnits.toOffset(),
       barriers: _barrierOffsets,
-    ).findThePath()
+    ).findThePath().toList()
       ..insert(0, start.inUnits.toOffset())
       ..add(end.inUnits.toOffset()); //
 
