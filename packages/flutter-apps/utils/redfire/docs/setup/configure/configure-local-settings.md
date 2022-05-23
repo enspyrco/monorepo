@@ -29,9 +29,10 @@ A similar argument can be made for your RedFire config file.
 If you don't want to commit the config files, add the following to your `.gitignore`:
 
 ```.gitignore
-# Firebase config file
+# Firebase config files
 lib/firebase_options.dart
 lib/redfire_options.dart
+android/app/google-services.json
 ```
 
 ## lints
