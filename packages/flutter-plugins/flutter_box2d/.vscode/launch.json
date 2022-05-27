@@ -17,6 +17,22 @@
       "request": "launch",
       "type": "dart",
       "deviceId": "chrome"
-    }
+    },
+    {
+      "name": "example [macos with deep_clean]",
+      "preLaunchTask": "deepCleanMacOS",
+      "cwd": "flutter_box2d/example",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "macos"
+    },
+    {
+      "name": "example [Nick's iPhone with deep_clean]",
+      "preLaunchTask": "deepCleanIOS",
+      "cwd": "flutter_box2d/example",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "Nick’s iPhone"
+    },
   ]
 }
