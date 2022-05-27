@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "deepCleanMacOS",
+      "type": "shell",
+      "command": "./deep_clean.sh",
+      "args": ["macos"],
+      "options": {
+        "cwd": "${workspaceFolder}/scripts"
+      }
+    },
+    {
+      "label": "deepCleanIOS",
+      "type": "shell",
+      "command": "./deep_clean.sh",
+      "args": ["ios"],
+      "options": {
+        "cwd": "${workspaceFolder}/scripts"
+      }
+    }
+  ]
+}
