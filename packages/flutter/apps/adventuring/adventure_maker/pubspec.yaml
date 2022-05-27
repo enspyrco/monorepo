@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
   
   redfire:
-    path: ../../../flutter/apps/utils/redfire
+    path: ../../../../flutter/apps/utils/redfire
   freezed_annotation:
   json_annotation: ^4.4.0
   redux:
@@ -25,9 +25,9 @@ dev_dependencies:
   mockito:
 
   redfire_lints:
-    path: ../../../flutter/apps/utils/redfire_lints
+    path: ../../../../flutter/apps/utils/redfire_lints
   redfire_test:
-    path: ../../../flutter/apps/utils/redfire_test
+    path: ../../../../flutter/apps/utils/redfire_test
 
   build_runner:
   freezed:

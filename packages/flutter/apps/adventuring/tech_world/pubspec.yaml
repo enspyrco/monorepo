@@ -23,7 +23,7 @@ dependencies:
   freezed_annotation:
   json_annotation: ^4.4.0
   redfire:
-    path: ../../../flutter/apps/utils/redfire
+    path: ../../../../flutter/apps/utils/redfire
   redux:
   flutter_redux:
   fast_immutable_collections:
@@ -35,9 +35,9 @@ dev_dependencies:
     sdk: flutter
   test:
   redfire_lints:
-    path: ../../../flutter/apps/utils/redfire_lints
+    path: ../../../../flutter/apps/utils/redfire_lints
   redfire_test:
-    path: ../../../flutter/apps/utils/redfire_test
+    path: ../../../../flutter/apps/utils/redfire_test
   build_runner:
   freezed:
   json_serializable: any

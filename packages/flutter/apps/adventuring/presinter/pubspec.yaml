@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
 
   redfire:
-    path: ../../../flutter/apps/utils/redfire
+    path: ../../../../flutter/apps/utils/redfire
   
   firebase_auth: ^3.3.9
   firebase_core: ^1.13.1
@@ -26,9 +26,9 @@ dev_dependencies:
     sdk: flutter
   
   redfire_lints:
-    path: ../../../flutter/apps/utils/redfire_lints
+    path: ../../../../flutter/apps/utils/redfire_lints
   redfire_test:
-    path: ../../../flutter/apps/utils/redfire_test
+    path: ../../../../flutter/apps/utils/redfire_test
   
   freezed: ^2.0.3+1
   json_serializable: ^6.2.0
