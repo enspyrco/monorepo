@@ -20,7 +20,7 @@ void main() {
       var mockClient =
           MockClient.streaming((req, stream) => Future.value(response));
       var notion = NotionClient(client: mockClient, token: 'token');
-      notion.retrievePageProperties(id: 'e93dda7fa5ed4e28ba27e857cd1f6757');
+      notion.getPageProperties(id: 'e93dda7fa5ed4e28ba27e857cd1f6757');
       notion.close();
 
       expect(true, isTrue);
