@@ -1,5 +1,8 @@
 import 'package:api_client_utils/api_client_utils.dart';
+import 'package:api_client_utils/types.dart';
 import 'package:http/http.dart' as http;
+import 'package:notion_api_client/src/pageable.dart';
+import 'package:notion_api_client/src/state/pages/page_object.dart';
 
 class NotionClient {
   static const _host = 'api.notion.com';
@@ -14,15 +17,29 @@ class NotionClient {
   }
 
   /// "GET" or "POST", "HEAD", "PUT", or "DELETE"
-  Future<Object?> retrievePageProperties({required String id}) async {
+  Future<PageObject> getPageProperties({required String id}) async {
     var json = await _requester.request('GET', 'pages/$id');
-    return json;
+    return PageObject.fromJson(json as JsonMap);
   }
 
-  Future<Object?> retrievePageContent({required String id}) async {
+  Future<PageableResponse?> getBlockChildren({required String id}) async {
+    var json = await _requester.request('GET', 'blocks/$id/children');
+    var response = PageableResponse.fromJson(json as JsonMap);
+    return response;
+  }
+
+  Future<Object?> getPageContent({required String id}) async {
     var json = await _requester.request('GET', 'pages/$id');
     return json;
   }
 
   void close() => _client.close();
 }
+
+// Paginated endpoints
+// - Query a database
+// - List databases
+// - Retrieve a page property item
+// - Retrieve block children
+// - List all users
+// - Search

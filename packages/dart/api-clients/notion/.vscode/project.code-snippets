@@ -1,0 +1,7 @@
+{
+  "JSON access": {
+    "prefix": ["js"],
+    "body": ["json['$1'] as $0"],
+    "description": "A for loop."
+  }
+}
