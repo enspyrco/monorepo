@@ -4,7 +4,7 @@ This is a folder containing the packages that make up the `flutter_box2d` plugin
 
 ## Development
 
-### Cache busting
+### Cache busting (iOS/macOS)
 
 During development, while using the example project to test changes, it
 can be useful to clean and delete all the potentially cached pods stuff
