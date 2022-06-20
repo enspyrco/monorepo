@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../utils/build_context_extensions.dart';
 import '../../actions/create_project_action.dart';
 import '../../actions/update_projects_view_action.dart';
-import '../../models/project_model.dart';
+import '../../models/project_state.dart';
 
 class CreateProjectForm extends StatefulWidget {
   const CreateProjectForm({Key? key}) : super(key: key);
@@ -49,7 +49,7 @@ class CreateProjectFormState extends State<CreateProjectForm> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       context.dispatch(CreateProjectAction(
-                          ProjectModel.init(name: _controller.text)));
+                          ProjectState.init(name: _controller.text)));
                     }
                   },
                   child: const Text('Submit'),

@@ -6,7 +6,7 @@ import 'package:the_process/home/home_screen.dart';
 import 'package:the_process/home/logo_icon.dart';
 import 'package:the_process/home/notifications-button/notifications_button.dart';
 import 'package:the_process/organisations/widgets/organisation_selector.dart';
-import 'package:the_process/projects/widgets/projects-grid/projects_grid.dart';
+import 'package:the_process/projects/widgets/grid-view/projects_grid.dart';
 
 void main() {
   group('Home Screen', () {

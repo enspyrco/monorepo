@@ -3,16 +3,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:redfire_test/redfire_test.dart';
 import 'package:the_process/app_state.dart';
 import 'package:the_process/projects/models/project_state.dart';
-import 'package:the_process/projects/widgets/projects-grid/new_project_item.dart';
-import 'package:the_process/projects/widgets/projects-grid/project_item.dart';
-import 'package:the_process/projects/widgets/projects-grid/projects_grid.dart';
+import 'package:the_process/projects/widgets/grid-view/new_project_item.dart';
+import 'package:the_process/projects/widgets/grid-view/project_item.dart';
+import 'package:the_process/projects/widgets/grid-view/projects_grid.dart';
 
 void main() {
   testWidgets('Lays out ProjectItem widgets & NewProjectItem', (tester) async {
     var projectA = ProjectState.init(name: 'a');
     var projectB = ProjectState.init(name: 'b');
     var projectC = ProjectState.init(name: 'c');
-    var initialState = AppState.init()
+    AppState initialState = AppState.init()
         .copyWith
         .projects(all: ISet([projectA, projectB, projectC]));
 
