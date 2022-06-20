@@ -2,7 +2,7 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
 
-import '../models/project_model.dart';
+import '../models/project_state.dart';
 
 part 'set_projects_action.freezed.dart';
 part 'set_projects_action.g.dart';
@@ -10,7 +10,7 @@ part 'set_projects_action.g.dart';
 @freezed
 class SetProjectsAction with _$SetProjectsAction, ReduxAction {
   const SetProjectsAction._();
-  const factory SetProjectsAction(ISet<ProjectModel> projects) =
+  const factory SetProjectsAction(ISet<ProjectState> projects) =
       _SetProjectsAction;
 
   factory SetProjectsAction.fromJson(JsonMap json) =>

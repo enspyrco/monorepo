@@ -9,7 +9,7 @@ import 'package:redux/redux.dart';
 import '../../app_state.dart';
 import '../actions/set_projects_action.dart';
 import '../actions/tap_projects_action.dart';
-import '../models/project_model.dart';
+import '../models/project_state.dart';
 
 class TapProjectsMiddleware
     extends TypedMiddleware<AppState, TapProjectsAction> {
@@ -35,8 +35,8 @@ class TapProjectsMiddleware
             // ... and direct the stream to the store.
             _subscription = changes.listen((jsonList) {
               var models = jsonList
-                  .map<ProjectModel>(
-                      (jsonItem) => ProjectModel.fromJson(jsonItem as JsonMap))
+                  .map<ProjectState>(
+                      (jsonItem) => ProjectState.fromJson(jsonItem as JsonMap))
                   .toISet();
               store.dispatch(SetProjectsAction(models));
             }, onError: store.dispatchProblem);

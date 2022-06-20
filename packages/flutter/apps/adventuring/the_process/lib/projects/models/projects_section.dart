@@ -2,7 +2,7 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
 
-import 'project_model.dart';
+import 'project_state.dart';
 
 part 'projects_section.freezed.dart';
 part 'projects_section.g.dart';
@@ -13,7 +13,7 @@ class ProjectsSection with _$ProjectsSection, ReduxState {
 
   const ProjectsSection._();
   const factory ProjectsSection({
-    required ISet<ProjectModel> all,
+    required ISet<ProjectState> all,
     required bool creating,
   }) = _ProjectsSection;
 

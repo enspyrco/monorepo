@@ -7,7 +7,7 @@ import '../../app_state.dart';
 import '../../organisations/models/organisation_model.dart';
 import '../actions/create_project_action.dart';
 import '../actions/update_projects_view_action.dart';
-import '../models/project_model.dart';
+import '../models/project_state.dart';
 
 class CreateProjectMiddleware
     extends TypedMiddleware<AppState, CreateProjectAction> {
@@ -22,7 +22,7 @@ class CreateProjectMiddleware
 
             String uid = store.state.auth.userData!.uid;
 
-            ProjectModel project = action.project.copyWith(
+            ProjectState project = action.project.copyWith(
                 ownerIds: ISet([uid]), organisationIds: ISet([selected.id]));
 
             final service = RedFireLocator.getDatabaseService();

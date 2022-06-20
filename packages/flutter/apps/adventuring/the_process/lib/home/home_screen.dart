@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../organisations/widgets/organisation_selector.dart';
-import '../projects/widgets/grid-view/projects_grid.dart';
+import '../projects/widgets/projects-grid/projects_grid.dart';
 import 'account-avatar/account_avatar.dart';
 import 'logo_icon.dart';
 import 'notifications-button/notifications_button.dart';
