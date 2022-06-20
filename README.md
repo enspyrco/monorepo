@@ -46,6 +46,7 @@ If you plan to work on several packages at once you will need to open the `monor
 
 avs = Adventuverse (project)
 avm = adventure_maker
+dvr = domain_visualiser
 flr = flireator
 rfr = redfire
 rft = redfire_test
