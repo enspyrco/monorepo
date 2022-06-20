@@ -1,0 +1,49 @@
+<mxfile host="65bd71144e">
+    <diagram id="D5d6mffWI1PhgG9KSLMe" name="Page-1">
+        <mxGraphModel dx="900" dy="679" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="&lt;font style=&quot;font-size: 36px&quot;&gt;+&lt;/font&gt;" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;opacity=50;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="40" width="135" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;font style=&quot;font-size: 14px&quot;&gt;1. tap to begin&amp;nbsp;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=24;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="60" width="110" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;opacity=50;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="190" width="135" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="" style="endArrow=none;html=1;fontSize=14;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="57.5" y="230" as="sourcePoint"/>
+                        <mxPoint x="157.5" y="230" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" value="&lt;font style=&quot;font-size: 10px&quot;&gt;name...&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="77.5" y="200" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Cancel" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="250" width="42" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="OK" style="rounded=1;whiteSpace=wrap;html=1;fontSize=10;" vertex="1" parent="1">
+                    <mxGeometry x="115" y="250" width="42" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="&lt;font style=&quot;font-size: 14px&quot;&gt;2. enter project name&amp;nbsp;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=24;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="210" width="150" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;opacity=50;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="340" width="135" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="&lt;font style=&quot;font-size: 14px&quot;&gt;3. wait patiently&amp;nbsp;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=24;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="370" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.donut;dx=10;strokeColor=none;fillColor=#10739E;fontSize=10;align=center;fillOpacity=20;" vertex="1" parent="1">
+                    <mxGeometry x="77.5" y="360" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=mxgraph.basic.partConcEllipse;startAngle=0;endAngle=0.65;arcWidth=0.2;strokeColor=none;fillColor=#10739E;fontSize=22;fontColor=#10739E;align=center;fontStyle=1" vertex="1" parent="17">
+                    <mxGeometry width="60" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
