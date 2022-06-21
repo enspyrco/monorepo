@@ -41,3 +41,21 @@ If you plan to work on several packages at once you will need to open the `monor
 ### [ws_game_server_types](packages/ws_game_server_types/README.md) [![badge](https://enspyrco-monorepo.web.app/coverage/ws_game_server_types/badge.png)](https://enspyrco-monorepo.web.app/coverage/ws_game_server_types/)
 
 *Types for game objects sent via a ws_game_server.*
+
+## TLAs
+
+Three letter acronyms used in commit messages:
+
+- avs = Adventuverse (project)
+- avm = adventure_maker
+- dvr = domain_visualiser
+- flr = flireator
+- rfr = redfire
+- rft = redfire_test
+- rfl = redfire_lints
+- twr = tech_world
+- tpr = the_process
+- wgs = ws_game_server
+- wgt = ws_game_server_types
+- &plus; = multiple repos
+- &ast; = monorepo, CI/CD, etc.
