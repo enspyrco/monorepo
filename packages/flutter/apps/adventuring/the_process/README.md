@@ -4,6 +4,8 @@
 
 *A tool to automate "the process", a system for organising collaboration.*
 
+> the_process exists in the Adventuverse (see monorepo/projects/adventuverse) so the Firestore config files (rules, etc.) can be found there.
+
 [Project Notes](https://enspyrco.notion.site/TheProcess-c30833015cb84700b4692ccc897a0de1)
 
 ## Help Docs

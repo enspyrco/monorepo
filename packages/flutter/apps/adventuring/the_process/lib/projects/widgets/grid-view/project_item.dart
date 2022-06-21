@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:redfire/actions.dart';
 
 import '../../../utils/build_context_extensions.dart';
-import '../../models/project_model.dart';
+import '../../models/project_state.dart';
 import '../../pages/project_detail_page.dart';
 
-class ProjectsGridItemView extends StatelessWidget {
-  const ProjectsGridItemView(this.project, {Key? key}) : super(key: key);
+class ProjectItem extends StatelessWidget {
+  const ProjectItem(this.project, {Key? key}) : super(key: key);
 
-  final ProjectModel project;
+  final ProjectState project;
 
   @override
   Widget build(BuildContext context) {

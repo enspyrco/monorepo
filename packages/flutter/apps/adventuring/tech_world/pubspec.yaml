@@ -21,7 +21,7 @@ dependencies:
   # redfire dependencies
   #######################
   freezed_annotation:
-  json_annotation: ^4.4.0
+  json_annotation: ^4.5.0
   redfire:
     path: ../../../../flutter/apps/utils/redfire
   redux:
@@ -40,7 +40,7 @@ dev_dependencies:
     path: ../../../../flutter/apps/utils/redfire_test
   build_runner:
   freezed:
-  json_serializable: any
+  json_serializable: ^6.2.0
 
 flutter:
   uses-material-design: true

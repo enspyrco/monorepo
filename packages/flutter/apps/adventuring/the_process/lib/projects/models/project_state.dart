@@ -2,15 +2,15 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:redfire/types.dart';
 
-part 'project_model.freezed.dart';
-part 'project_model.g.dart';
+part 'project_state.freezed.dart';
+part 'project_state.g.dart';
 
 @freezed
-class ProjectModel with _$ProjectModel, ReduxState {
-  static const String className = 'ProjectModel';
+class ProjectState with _$ProjectState, ReduxState {
+  static const String className = 'ProjectState';
 
-  const ProjectModel._();
-  const factory ProjectModel({
+  const ProjectState._();
+  const factory ProjectState({
     required String id,
     required String name,
     required ISet<String> ownerIds,
@@ -18,11 +18,11 @@ class ProjectModel with _$ProjectModel, ReduxState {
     required ISet<String> memberIds,
     required ISet<String> organisationIds,
     required ISet<String> sectionIds,
-  }) = _ProjectModel;
+  }) = _ProjectState;
 
-  factory ProjectModel.fromJson(JsonMap json) => _$ProjectModelFromJson(json);
+  factory ProjectState.fromJson(JsonMap json) => _$ProjectStateFromJson(json);
 
-  factory ProjectModel.init({required String name}) => ProjectModel(
+  factory ProjectState.init({required String name}) => ProjectState(
         id: '',
         name: name,
         ownerIds: ISet(),
