@@ -4,7 +4,7 @@ import '../../../../../types.dart';
 import 'hidden_popup_menu_button.dart';
 import 'menu_button_option.dart';
 
-/// The button actually consists of two buttons in a stack.  A [PopupMenuButton]
+/// The button actually consists of two buttons in a stack.  A [HiddenPopupMenuButton]
 /// and the injected [topButton], eg. [AvatarMenuButton] passed in our
 /// custom-made [ProfileAvatar].
 ///
@@ -14,8 +14,8 @@ import 'menu_button_option.dart';
 /// A global key is given to [HiddenPopupMenuButton] to be used as the
 /// [PopupMenuButton]'s key. The key is also used by the [topButton] to pop the
 /// menu.
-class RedFireMenuButton<T extends RedFireState> extends StatelessWidget {
-  const RedFireMenuButton(
+class CompositeMenuButton<T extends RedFireState> extends StatelessWidget {
+  const CompositeMenuButton(
       {required Widget topButton,
       Set<MenuButtonOption>? options,
       required GlobalKey<PopupMenuButtonState> popupKey,

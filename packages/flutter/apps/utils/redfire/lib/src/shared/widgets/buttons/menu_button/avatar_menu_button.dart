@@ -4,8 +4,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import '../../../../auth/models/auth_user_data.dart';
 import '../../../../profile/widgets/profile_avatar.dart';
 import '../../../../types/red_fire_state.dart';
+import 'composite_menu_button.dart';
 import 'menu_button_option.dart';
-import 'redfire_menu_button.dart';
 
 class AvatarMenuButton<T extends RedFireState> extends StatefulWidget {
   const AvatarMenuButton({Set<MenuButtonOption>? options, Key? key})
@@ -24,7 +24,7 @@ class _AvatarMenuButtonState<T extends RedFireState>
 
   @override
   Widget build(BuildContext context) {
-    return RedFireMenuButton<T>(
+    return CompositeMenuButton<T>(
         options: widget._options,
         topButton: StoreConnector<T, AuthUserData?>(
             distinct: true,
