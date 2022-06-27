@@ -80,4 +80,7 @@ build/
 *.mocks.dart
 
 # Except for application packages
-pubspec.lock  
+pubspec.lock
+
+# local IDE settings
+.vscode/settings.json

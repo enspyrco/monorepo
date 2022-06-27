@@ -57,7 +57,6 @@ For latest progress see [RedFire feature modules GitHub project].
 
 </details>
 
-
 ## Need more info?
 
 Here are some of the [gory details] if that's your thing.

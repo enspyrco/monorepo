@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
                 const StartChallengeButton()
               else
                 const DismissChallengeButton(),
-              const AccountButton<AppState>(),
+              const AvatarMenuButton<AppState>(),
             ],
           ),
           body: Stack(
