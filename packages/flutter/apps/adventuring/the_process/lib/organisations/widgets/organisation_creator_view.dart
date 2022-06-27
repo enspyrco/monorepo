@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redfire/extensions.dart';
 
 import '../../app_state.dart';
+import '../../utils/build_context_extensions.dart';
 import '../actions/create_organisation_action.dart';
 import '../models/organisation_model.dart';
 
@@ -47,7 +46,7 @@ class _OrganisationCreatorViewState extends State<OrganisationCreatorView> {
                       )
                     : IconButton(
                         icon: const Icon(Icons.add),
-                        onPressed: () => context.dispatch<AppState>(
+                        onPressed: () => context.dispatch(
                             CreateOrganisationAction(OrganisationModel.init(
                                 name: _controller.text))),
                         hoverColor: Colors.transparent,

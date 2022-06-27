@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:redfire/extensions.dart';
-
-import '../../../app_state.dart';
 import '../../../sections/actions/create_section_action.dart';
 import '../../../sections/actions/update_new_section_v_m_action.dart';
+import '../../../utils/build_context_extensions.dart';
 
 class NewSectionItem extends StatelessWidget {
   const NewSectionItem({Key? key}) : super(key: key);
@@ -21,8 +19,7 @@ class NewSectionItem extends StatelessWidget {
           suffixIcon: Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: FloatingActionButton(
-              onPressed: () =>
-                  context.dispatch<AppState>(const CreateSectionAction()),
+              onPressed: () => context.dispatch(const CreateSectionAction()),
               backgroundColor: Colors.blue,
               foregroundColor: Colors.white,
               mini: true,
@@ -32,7 +29,7 @@ class NewSectionItem extends StatelessWidget {
           ),
         ),
         onChanged: (value) =>
-            context.dispatch<AppState>(UpdateNewSectionVMAction(name: value)),
+            context.dispatch(UpdateNewSectionVMAction(name: value)),
       ),
     );
   }

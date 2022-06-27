@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:redfire/actions.dart';
-import 'package:redfire/extensions.dart';
+
+import '../../../../utils/build_context_extensions.dart';
 
 class UseCaseDocumentButton extends StatelessWidget {
   final String? documentId;

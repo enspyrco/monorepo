@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redfire/extensions.dart';
 
 import '../../app_state.dart';
 import '../../projects/actions/tap_projects_action.dart';
+import '../../utils/build_context_extensions.dart';
 import '../actions/set_selected_organisation_action.dart';
 import '../models/organisation_model.dart';
 import '../models/organisation_selector_view_model.dart';
@@ -29,10 +29,9 @@ class OrganisationSelector extends StatelessWidget {
             ),
             onChanged: (OrganisationModel? selected) {
               if (selected != null) {
-                context.dispatch<AppState>(
-                    SetSelectedOrganisationAction(selected));
-                context.dispatch<AppState>(
-                    TapProjectsAction(organisationId: selected.id));
+                context.dispatch(SetSelectedOrganisationAction(selected));
+                context
+                    .dispatch(TapProjectsAction(organisationId: selected.id));
               }
             },
             items: selector.all.map<DropdownMenuItem<OrganisationModel>>(

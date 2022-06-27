@@ -30,7 +30,7 @@
       "name": "tech_world",
       "type": "dart",
       "request": "launch",
-      "cwd": "packages/flutter-apps/adventuring/tech_world",
+      "cwd": "packages/flutter/apps/adventuring/tech_world",
       "program": "lib/main.dart"
     },
     {
@@ -46,7 +46,7 @@
       "name": "the_process",
       "type": "dart",
       "request": "launch",
-      "cwd": "packages/flutter-apps/adventuring/the_process",
+      "cwd": "packages/flutter/apps/adventuring/the_process",
       "program": "lib/main.dart"
     },
     {
