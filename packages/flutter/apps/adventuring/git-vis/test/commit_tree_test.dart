@@ -11,7 +11,7 @@ void main() {
     for (var branch in branches) {
       print(branch);
     }
-  });
+  }, skip: true); // test is not finished yet
 
   test('walk', () {
     // get all branches, convert to a list of the hash values
@@ -20,7 +20,7 @@ void main() {
     var tree = CommitTree.walkAndParse(branches: branches);
 
     print('$tree');
-  });
+  }, skip: true); // test is not finished yet
 
   test('commitObject1', () {
     var object = Commit.from('commitObject1', commitObject1);

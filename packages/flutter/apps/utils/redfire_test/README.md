@@ -28,7 +28,6 @@ dev_dependencies:
 
 We aim to follow the test-doubles nomenclature described in [Martin Fowler's 2006 TestDouble article](https://martinfowler.com/bliki/TestDouble.html).
 
-
 #### Creating example objects
 
 There are two approaches:

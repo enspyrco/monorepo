@@ -21,7 +21,7 @@ void main() {
       expect(find.byType(OrganisationSelector), findsOneWidget);
       expect(find.byType(ProjectsGrid), findsOneWidget);
       expect(find.byType(NotificationsButton), findsOneWidget);
-      expect(find.byType(AvatarMenuButton), findsOneWidget);
+      expect(find.byType(AvatarMenuButton<AppState>), findsOneWidget);
     }));
   });
 }
