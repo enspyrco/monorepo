@@ -14,7 +14,7 @@ class UnrecognizedTypeInJsonException {
   String toString() {
     String start = (type == null)
         ? 'No type was found in'
-        : 'The type $type was not recognized by';
+        : 'The type $type was not recognized in';
 
     String end = (json == null) ? '' : '\n  json: $json';
 

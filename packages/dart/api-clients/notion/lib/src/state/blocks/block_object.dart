@@ -6,6 +6,11 @@ import '../../exceptions.dart';
 import '../common/rich_text_object.dart';
 import '../users/user_object.dart';
 
+const constructorFrom = {
+  'paragraph': ParagraphBlockObject.fromJson,
+  'child_page': ChildPageBlockObject.fromJson
+};
+
 class BlockObject {
   BlockObject._(JsonMap json)
       : id = json['id'] as String,
@@ -46,12 +51,17 @@ class BlockObject {
 
   factory BlockObject.fromJson(JsonMap json) {
     var type = json['type'];
+    var constructor = constructorFrom[type];
 
-    if (type == 'paragraph') {
-      return ParagraphBlockObject.fromJson(json);
+    if (constructor == null) {
+      throw UnrecognizedTypeInJsonException('BlockObject', type, json);
     }
 
-    throw UnrecognizedTypeInJsonException('BlockObject.fromJson', type, json);
+    return constructor(json);
+
+    // if (type == 'paragraph') {
+    //   return ParagraphBlockObject.fromJson(json);
+    // }
   }
 }
 
@@ -307,7 +317,7 @@ class ChildPageBlockObject extends BlockObject {
   final String title;
 
   ChildPageBlockObject.fromJson(JsonMap json)
-      : title = json['title'] as String,
+      : title = (json['child_page'] as JsonMap)['title'] as String,
         super._(json);
 }
 

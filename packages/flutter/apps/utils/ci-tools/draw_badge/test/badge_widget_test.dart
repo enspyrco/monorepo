@@ -10,6 +10,7 @@ import 'package:lcov_parser/lcov_parser.dart';
 import 'utils/save_child_widget.dart';
 
 void main() {
+  // This test is not a normal test and is only used in CI to produce images.
   testWidgets('Create a BadgeWidget for each package & save to a png file',
       (tester) async {
     await tester.runAsync(() async {
@@ -50,5 +51,5 @@ void main() {
         }
       }
     });
-  });
+  }, skip: true); // We don't want to run this test locally with Run All Tests
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../types.dart';
 import 'hidden_popup_menu_button.dart';
-import 'menu_button_option.dart';
+import 'menu_option.dart';
 
 /// The button actually consists of two buttons in a stack.  A [HiddenPopupMenuButton]
 /// and the injected [topButton], eg. [AvatarMenuButton] passed in our
@@ -17,15 +17,15 @@ import 'menu_button_option.dart';
 class CompositeMenuButton<T extends RedFireState> extends StatelessWidget {
   const CompositeMenuButton(
       {required Widget topButton,
-      Set<MenuButtonOption>? options,
+      required Set<MenuOption> options,
       required GlobalKey<PopupMenuButtonState> popupKey,
       Key? key})
       : _topButton = topButton,
-        _options = options ?? const {},
+        _options = options,
         _popupKey = popupKey,
         super(key: key);
 
-  final Set<MenuButtonOption> _options;
+  final Set<MenuOption> _options;
   final Widget _topButton;
   final GlobalKey<PopupMenuButtonState> _popupKey;
 

@@ -27,6 +27,13 @@
       "args": ["--web-hostname", "localhost", "--web-port", "5000"]
     },
     {
+      "name": "presinter",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "packages/flutter/apps/adventuring/presinter",
+      "program": "lib/main.dart"
+    },
+    {
       "name": "tech_world",
       "type": "dart",
       "request": "launch",
