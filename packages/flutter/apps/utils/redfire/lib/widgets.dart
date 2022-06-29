@@ -11,6 +11,6 @@ export 'src/auth/widgets/auth_page_buttons/google_sign_in_button.dart';
 export 'src/profile/widgets/profile_avatar.dart';
 // shared
 export 'src/shared/widgets/buttons/menu_button/avatar_menu_button.dart';
-export 'src/shared/widgets/buttons/menu_button/menu_button_option.dart';
+export 'src/shared/widgets/buttons/menu_button/menu_option_preset.dart';
 export 'src/shared/widgets/empty_app_bar.dart';
 export 'src/shared/widgets/waiting_indicator.dart';

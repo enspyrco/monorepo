@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:redfire/widgets.dart';
 import 'package:redfire_test/redfire_test.dart';
 import 'package:the_process/app_state.dart';
-import 'package:the_process/home/account-avatar/account_avatar.dart';
 import 'package:the_process/home/home_screen.dart';
 import 'package:the_process/home/logo_icon.dart';
 import 'package:the_process/home/notifications-button/notifications_button.dart';
@@ -21,7 +21,7 @@ void main() {
       expect(find.byType(OrganisationSelector), findsOneWidget);
       expect(find.byType(ProjectsGrid), findsOneWidget);
       expect(find.byType(NotificationsButton), findsOneWidget);
-      expect(find.byType(AccountAvatar), findsOneWidget);
+      expect(find.byType(AvatarMenuButton), findsOneWidget);
     }));
   });
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:redfire/widgets.dart';
 
+import '../app_state.dart';
 import '../organisations/widgets/organisation_selector.dart';
 import '../projects/widgets/grid-view/projects_grid.dart';
-import 'account-avatar/account_avatar.dart';
 import 'logo_icon.dart';
 import 'notifications-button/notifications_button.dart';
 
@@ -17,7 +18,13 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.black),
         leading: const LogoIcon(),
-        actions: const [NotificationsButton(), AccountAvatar()],
+        actions: const [
+          NotificationsButton(),
+          AvatarMenuButton<AppState>(options: {
+            MenuOptionPreset.accountDetails,
+            MenuOptionPreset.signOut
+          })
+        ],
       ),
       body: Column(
         children: [
