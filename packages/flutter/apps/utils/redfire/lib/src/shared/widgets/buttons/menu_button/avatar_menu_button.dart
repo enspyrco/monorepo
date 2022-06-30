@@ -8,8 +8,8 @@ import 'composite_menu_button.dart';
 import 'menu_option.dart';
 
 class AvatarMenuButton<T extends RedFireState> extends StatefulWidget {
-  const AvatarMenuButton({Set<MenuOption>? options, Key? key})
-      : _options = options ?? const {},
+  const AvatarMenuButton({required Set<MenuOption> options, Key? key})
+      : _options = options,
         super(key: key);
 
   final Set<MenuOption> _options;

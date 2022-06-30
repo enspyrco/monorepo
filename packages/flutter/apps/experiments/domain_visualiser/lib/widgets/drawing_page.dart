@@ -20,7 +20,14 @@ class DrawingPage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: const [
-              Material(child: AvatarMenuButton<AppState>()),
+              Material(
+                child: AvatarMenuButton<AppState>(
+                  options: {
+                    MenuOptionPreset.accountDetails,
+                    MenuOptionPreset.signOut
+                  },
+                ),
+              ),
             ],
           ),
         ),
