@@ -46,7 +46,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: const [AvatarMenuButton<AppState>()],
+        actions: const [
+          AvatarMenuButton<AppState>(
+            options: {
+              MenuOptionPreset.accountDetails,
+              MenuOptionPreset.signOut
+            },
+          )
+        ],
         bottom: PreferredSize(
             preferredSize: const Size.fromHeight(50),
             child: Row(
