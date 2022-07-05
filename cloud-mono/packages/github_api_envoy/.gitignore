@@ -1,0 +1,10 @@
+# Files and directories created by pub.
+.dart_tool/
+.packages
+
+# Conventional directory for build output.
+build/
+
+# Credentials used in tests
+test/data/adventures-in.2022-02-16.private-key.pem
+test/data/mobbing-on-discord-7ad4cd6e7835.json
