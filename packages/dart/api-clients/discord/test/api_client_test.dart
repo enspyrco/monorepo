@@ -12,15 +12,17 @@ void main() {
         botToken: botToken,
         version: 8);
 
-    var command = ApplicationCommand(
-      type: ApplicationCommandType.chatInput,
-      name: 'dartcode',
-      description: 'Dart code to be run',
-    );
+    var command = ChatCommand(
+      name: 'run',
+      description:
+          'Provide some Dart code, it run on the server and the result shown here',
+    )..addStringOption(
+        name: 'code', description: 'The Dart code to be run', required: true);
 
     var response = await api.createCommand(command);
     print(response.body);
   });
+
   test('Create objects and combine into a command', () async {
     final api = DiscordApi(
         applicationId: applicationId,
@@ -97,7 +99,7 @@ void main() {
         botToken: botToken,
         version: 8);
 
-    var response = await api.deletCommand('939887590138601522');
+    var response = await api.deletCommand('...');
     print(response.body);
   });
 }
