@@ -15,14 +15,12 @@ dependencies:
   secret_manager_api_client:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/api-clients/secret_manager_api_client
-      ref: github-app-auth
+      path: packages/dart/api-clients/secret-manager
     # path: ../api-clients/secret_manager_api_client
   git_hub_api_client:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/api-clients/git_hub_api_client
-      ref: github-app-auth
+      path: packages/dart/api-clients/git-hub
     # path: ../api-clients/git_hub_api_client
 
 dev_dependencies:

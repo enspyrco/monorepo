@@ -8,9 +8,15 @@ environment:
 
 dependencies:
   firestore_api_client:
-    path: ../api-clients/firestore_api_client
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/api-clients/firestore
+    # path: ../api-clients/firestore_api_client
   json_utils:
-    path: ../json_utils
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/utils/json_utils
+    # path: ../json_utils
   shelf: ^1.1.0
 
 dev_dependencies:
