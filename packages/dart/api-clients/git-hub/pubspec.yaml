@@ -11,7 +11,10 @@ dependencies:
   googleapis_auth: ^1.3.0
   http: ^0.13.4
   json_utils:
-    path: ../../utils/json_utils
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/utils/json_utils
+    # path: ../../utils/json_utils
   
 dev_dependencies:
   lints: ^1.0.0
