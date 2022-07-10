@@ -35,6 +35,8 @@ dev_dependencies:
     path: ../redfire_test
   redfire_lints:
     path: ../redfire_lints
+  firestore_service_interface:
+    path: ../../../../interfaces/firestore_service_interface
 
 flutter:  
   fonts:

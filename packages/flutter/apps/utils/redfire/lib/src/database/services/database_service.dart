@@ -1,18 +1,29 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 
 import '../../types/typedefs.dart';
 
-class DatabaseService {
+class DatabaseService implements FirestoreService {
   final FirebaseFirestore _firestore;
 
   DatabaseService({FirebaseFirestore? database})
       : _firestore = database ?? FirebaseFirestore.instance;
 
+  // Add a document with the given data at the given path and return the
+  // document id.
+  @override
+  Future<String> createDocument(
+      {required String at, required JsonMap from}) async {
+    final ref = await _firestore.collection(at).add(from);
+    return ref.id;
+  }
+
   /// Get the documents in the collection at [path],
   /// converting each document in the returned [QuerySnapshot] into a [JsonMap]
   /// The document id is added to the json.
+  @override
   Future<JsonList> getDocuments({
     required String at,
     Object? where,
@@ -53,14 +64,6 @@ class DatabaseService {
     }
   }
 
-  // Add a document with the given data at the given path and return the
-  // document id.
-  Future<String> createDocument(
-      {required String at, required JsonMap from}) async {
-    final ref = await _firestore.collection(at).add(from);
-    return ref.id;
-  }
-
   /// Takes a [JsonMap] and the path where it should be saved
   ///
   /// If the document exists, its contents will be overwritten with the newly
@@ -68,6 +71,7 @@ class DatabaseService {
   /// existing document.
   ///
   /// If the document does not exist, it will be created.
+  @override
   Future<void> setDocument(
       {required String at, required JsonMap to, bool merge = false}) async {
     return await _firestore.doc(at).set(to);
@@ -78,17 +82,20 @@ class DatabaseService {
   /// Updates the fields of the document without overwriting the entire document.
   ///
   /// If the document does not exist, an error is produced.
+  @override
   Future<void> updateDocument({required String at, required JsonMap to}) async {
     return await _firestore.doc(at).update(to);
   }
 
   /// Delete the document at the given location.
+  @override
   Future<void> deleteDocument({required String at}) async {
     return await _firestore.doc(at).delete();
   }
 
   /// Tap the database to create a stream from the document at [path],
   /// converting the data in each [DocumentSnapshot] into a [JsonMap]
+  @override
   Stream<JsonMap> tapDocument({required String at}) {
     return _firestore.doc(at).snapshots().map((event) => event.data() ?? {});
   }
@@ -96,6 +103,7 @@ class DatabaseService {
   /// Tap the database to create a stream from the collection at [path],
   /// converting the data in each [QuerySnapshot] into a [JsonMap]
   /// The document id is added to the json.
+  @override
   Stream<JsonList> tapCollection(
       {required String at,
       Object? where,
