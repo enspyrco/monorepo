@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firestore_service_interface/firestore_service_interface.dart';
 
 import '../../types/typedefs.dart';
 
-class DatabaseService implements FirestoreService {
+class DatabaseService {
   final FirebaseFirestore _firestore;
 
   DatabaseService({FirebaseFirestore? database})
@@ -140,5 +139,10 @@ class DatabaseService implements FirestoreService {
             .snapshots()
             .map((event) =>
                 event.docs.map((doc) => doc.data()..['id'] = doc.id).toList());
+  }
+
+  @override
+  void someFunc() {
+    // TODO: implement someFunc
   }
 }
