@@ -1,6 +1,8 @@
 # firestore_api_client
 
-*Wrappers around Firebase & GCP packages for use in an event sourcing architecture.*
+*Convenience wrappers around the googleapis.dart Firestore API.*
+
+[Notion](https://www.notion.so/enspyrco/googleapis-Firestore-Service-9e12340b0cd44470aedd83c569618082)
 
 <!-- 
 This README describes the package. If you publish this package to pub.dev,

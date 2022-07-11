@@ -50,6 +50,7 @@ Three letter acronyms used in commit messages:
 - avm = adventure_maker
 - dvr = domain_visualiser
 - flr = flireator
+- fsi = firestore_service_interface
 - rfr = redfire
 - rft = redfire_test
 - rfl = redfire_lints

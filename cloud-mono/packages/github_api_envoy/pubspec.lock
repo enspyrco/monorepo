@@ -116,9 +116,11 @@ packages:
   git_hub_api_client:
     dependency: "direct main"
     description:
-      path: "../api-clients/git_hub_api_client"
-      relative: true
-    source: path
+      path: "packages/dart/api-clients/git-hub"
+      ref: HEAD
+      resolved-ref: cd78917a6367a43d53d137a5b72c916ed07d2ebd
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   glob:
     dependency: transitive
@@ -179,9 +181,11 @@ packages:
   json_utils:
     dependency: transitive
     description:
-      path: "../json_utils"
-      relative: true
-    source: path
+      path: "packages/dart/utils/json_utils"
+      ref: HEAD
+      resolved-ref: cd78917a6367a43d53d137a5b72c916ed07d2ebd
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   lints:
     dependency: "direct dev"
@@ -270,9 +274,11 @@ packages:
   secret_manager_api_client:
     dependency: "direct main"
     description:
-      path: "../api-clients/secret_manager_api_client"
-      relative: true
-    source: path
+      path: "packages/dart/api-clients/secret-manager"
+      ref: HEAD
+      resolved-ref: cd78917a6367a43d53d137a5b72c916ed07d2ebd
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   shelf:
     dependency: "direct main"
