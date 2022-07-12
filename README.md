@@ -51,6 +51,7 @@ Three letter acronyms used in commit messages:
 - dvr = domain_visualiser
 - flr = flireator
 - fsi = firestore_service_interface
+- gau = googleapis_utils
 - rfr = redfire
 - rft = redfire_test
 - rfl = redfire_lints
