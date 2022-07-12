@@ -12,5 +12,8 @@ void main(List<String> arguments) async {
   var docId = await apiClient.createDocument(at: 'at', from: {'a': 'b'});
   print(docId);
 
+  var docs = await apiClient.getDocuments(at: 'at', where: 'a', isEqualTo: 'a');
+  docs.forEach(print);
+
   httpClient.close();
 }
