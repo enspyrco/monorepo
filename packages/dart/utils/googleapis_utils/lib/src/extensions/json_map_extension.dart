@@ -13,50 +13,35 @@ extension JsonMapExtension on JsonMap {
   }
 }
 
+extension NullableObjectExtension on Object? {
+  Value toValue() => TypeUtil.encode(this);
+}
+
 // Adapted from: https://github.com/cachapa/firedart/blob/master/lib/firestore/type_util.dart
 
 abstract class TypeUtil {
-  static Value encode(dynamic value) {
-    if (value == null) {
-      return Value(nullValue: "NULL_VALUE");
-    }
-    if (value is bool) {
-      return Value(booleanValue: value);
-    }
-    if (value is int) {
-      return Value(integerValue: value.toString());
-    }
-    if (value is double) {
-      return Value(doubleValue: value);
-    }
+  static Value encode(Object? value) {
+    if (value == null) return Value(nullValue: 'NULL_VALUE');
+    if (value is bool) return Value(booleanValue: value);
+    if (value is int) return Value(integerValue: value.toString());
+    if (value is double) return Value(doubleValue: value);
     if (value is DateTime) {
       return Value(timestampValue: value.microsecondsSinceEpoch.toString());
     }
-    if (value is String) {
-      return Value(stringValue: value);
-    }
+    if (value is String) return Value(stringValue: value);
     if (value is List) {
       return Value(
-        arrayValue: ArrayValue(
-          values: value.map((e) => encode(e)).toList(),
-        ),
-      );
+          arrayValue: ArrayValue(values: value.map((e) => encode(e)).toList()));
     }
     if (value is Map) {
       return Value(
-        mapValue: MapValue(
-          fields: value.map(
-            (key, val) => MapEntry(
-              key,
-              encode(val),
-            ),
-          ),
-        ),
-      );
+          mapValue: MapValue(
+              fields: value.map(
+        (key, val) => MapEntry(key, encode(val)),
+      )));
     }
-    if (value is Uint8List) {
-      return Value(bytesValue: value.toString());
-    }
+    if (value is Uint8List) return Value(bytesValue: value.toString());
+
     // if (value is DocumentReference) {
     //   return Value()..referenceValue = value.fullPath;
     // }
