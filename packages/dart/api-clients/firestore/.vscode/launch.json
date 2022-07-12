@@ -7,8 +7,8 @@
     {
       "type": "dart",
       "request": "launch",
-      "name": "firestore_api_client_example",
-      "program": "bin/firestore_api_client_example.dart"
+      "name": "[example] using firestore_api_client",
+      "program": "example/bin/firestore_api_client_example.dart"
     }
   ]
 }
