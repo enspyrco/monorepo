@@ -1,8 +1,10 @@
 import 'package:firestore_service_interface/firestore_service_interface.dart';
-import 'package:googleapis/firestore/v1.dart';
+import 'package:googleapis/firestore/v1.dart' as v1;
 import 'package:googleapis_auth/googleapis_auth.dart';
 import 'package:googleapis_utils/googleapis_utils.dart';
 import 'package:json_utils/json_utils.dart';
+
+import 'document.dart';
 
 /// If [api] is omitted, [client] is used to create one (using [rootUrl] if present), so [client] must be present.
 /// If [api] is present, [client] & [rootUrl] will be ignored and should be ommited.
@@ -13,18 +15,18 @@ class GoogleapisFirestoreService implements FirestoreService {
       {required String projectId,
       AutoRefreshingAuthClient? client,
       String? rootUrl,
-      FirestoreApi? api})
+      v1.FirestoreApi? api})
       : _databaseName = 'projects/' + projectId + '/databases/(default)' {
     _api = api ??
         ((rootUrl == null)
-            ? FirestoreApi(client!)
-            : FirestoreApi(client!, rootUrl: rootUrl));
+            ? v1.FirestoreApi(client!)
+            : v1.FirestoreApi(client!, rootUrl: rootUrl));
     _docs = _api.projects.databases.documents;
   }
 
   final String _databaseName;
-  late final FirestoreApi _api;
-  late final ProjectsDatabasesDocumentsResource _docs;
+  late final v1.FirestoreApi _api;
+  late final v1.ProjectsDatabasesDocumentsResource _docs;
 
   /// From FirestoreService interface:
   ///
@@ -85,7 +87,7 @@ class GoogleapisFirestoreService implements FirestoreService {
   ///
   /// Relevant endpoint:
   @override
-  Future<JsonList> getDocuments(
+  Future<List<Document>> getDocuments(
       {required String at,
       Object? where,
       Object? isEqualTo,
@@ -125,27 +127,27 @@ class GoogleapisFirestoreService implements FirestoreService {
     //   }
     // }
 
-    Filter filter;
+    v1.Filter filter;
     if (isEqualTo != null) {
-      filter = Filter()
-        ..fieldFilter = (FieldFilter()
-          ..field = (FieldReference()..fieldPath = where.toString())
+      filter = v1.Filter()
+        ..fieldFilter = (v1.FieldFilter()
+          ..field = (v1.FieldReference()..fieldPath = where.toString())
           ..op = 'EQUAL'
           ..value = isEqualTo.toValue());
     } else {
-      filter = Filter();
+      filter = v1.Filter();
     }
 
     var response = await _docs.runQuery(
-        RunQueryRequest()
-          ..structuredQuery = (StructuredQuery()
-            ..from = [CollectionSelector()..collectionId = at]
+        v1.RunQueryRequest()
+          ..structuredQuery = (v1.StructuredQuery()
+            ..from = [v1.CollectionSelector()..collectionId = at]
             ..where = filter),
         _databaseName + '/documents');
 
     return response
         .toList()
-        .map<JsonMap>((e) => e.document?.toJson() ?? {})
+        .map<Document>((e) => DocumentGoogleApis.from(e.document!))
         .toList();
   }
 
@@ -153,7 +155,7 @@ class GoogleapisFirestoreService implements FirestoreService {
   ///
   /// Relevant endpoint:
   @override
-  Stream<JsonList> tapCollection(
+  Stream<List<Document>> tapCollection(
       {required String at,
       Object? where,
       Object? isEqualTo,
@@ -175,7 +177,7 @@ class GoogleapisFirestoreService implements FirestoreService {
   ///
   /// Relevant endpoint:
   @override
-  Stream<JsonMap> tapDocument({required String at}) {
+  Stream<Document> tapDocument({required String at}) {
     // TODO: implement tapDocument
     throw UnimplementedError();
   }

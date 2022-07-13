@@ -1,13 +1,14 @@
 name: firestore_service_interface
-description: A starting point for Dart libraries or applications.
-version: 1.0.0
-# homepage: https://www.example.com
+description: A common interface for firestore services built on googleapis & cloud_firstore.
+version: 0.0.1
+publish_to: none
 
 environment:
   sdk: '>=2.17.0 <3.0.0'
 
-# dependencies:
-#   path: ^1.8.0
+dependencies:
+  json_utils:
+    path: ../../dart/utils/json_utils
 
 dev_dependencies:
   lints: ^2.0.0

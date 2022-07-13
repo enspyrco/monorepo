@@ -1,4 +1,6 @@
-import 'typedefs.dart';
+import 'package:json_utils/json_utils.dart';
+
+import 'document.dart';
 
 abstract class FirestoreService {
   /// Add a document with the given data at the given path and return the document
@@ -8,7 +10,7 @@ abstract class FirestoreService {
   /// Get the documents in the collection at [path],
   /// converting each document in the returned [QuerySnapshot] into a [JsonMap]
   /// The document id is added to the json.
-  Future<JsonList> getDocuments({
+  Future<List<Document>> getDocuments({
     required String at,
     Object? where,
     Object? isEqualTo,
@@ -46,12 +48,12 @@ abstract class FirestoreService {
 
   /// Tap the database to create a stream from the document at [path],
   /// converting the data in each [DocumentSnapshot] into a [JsonMap]
-  Stream<JsonMap> tapDocument({required String at});
+  Stream<Document> tapDocument({required String at});
 
   /// Tap the database to create a stream from the collection at [path],
   /// converting the data in each [QuerySnapshot] into a [JsonMap]
   /// The document id is added to the json.
-  Stream<JsonList> tapCollection(
+  Stream<List<Document>> tapCollection(
       {required String at,
       Object? where,
       Object? isEqualTo,

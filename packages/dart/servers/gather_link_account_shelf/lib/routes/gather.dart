@@ -16,16 +16,21 @@ Future<Response> gatherHandler(Request request) async {
     }
 
     var doc = docs.first;
-    doc['name'];
+    var uid = doc.id;
+    var fields = doc.fields;
+    fields['gather'] = gatherId;
+
+    firestore.setDocument(at: 'users/$uid', to: fields);
   } catch (e) {
     firestore.createDocument(at: 'errors', from: {
-      'uid': ,
+      'nonce': nonce,
+      'gatherId': gatherId,
       'timestamp': DateTime.now().millisecondsSinceEpoch,
       'error': e
     });
   } finally {
-    client.close();
+    Locate.client.close();
   }
 
-  return Response.ok('playerId: $playerId, nonce: $nonce');
+  return Response.ok('gatherId: $gatherId');
 }
