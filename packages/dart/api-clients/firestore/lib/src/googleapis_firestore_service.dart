@@ -145,6 +145,9 @@ class GoogleapisFirestoreService implements FirestoreService {
             ..where = filter),
         _databaseName + '/documents');
 
+    // The response can come back with items that have null doc member
+    response.removeWhere((e) => e.document == null);
+
     return response
         .toList()
         .map<Document>((e) => DocumentGoogleApis.from(e.document!))
