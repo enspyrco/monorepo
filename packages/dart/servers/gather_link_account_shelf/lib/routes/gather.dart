@@ -4,7 +4,7 @@ import '../services/locate.dart';
 
 Future<Response> gatherHandler(Request request) async {
   var nonce = request.url.queryParameters['nonce'];
-  var gatherId = request.url.queryParameters['playerId'];
+  var gatherId = request.url.queryParameters['gatherPlayerId'];
   final firestore = Locate.firestore;
 
   try {
