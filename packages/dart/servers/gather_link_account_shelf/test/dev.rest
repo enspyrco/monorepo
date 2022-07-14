@@ -1,1 +1,1 @@
-GET http://localhost:8080/gather/?playerId=1&nonce=24562 HTTP/1.1
+GET http://localhost:8080/gather/?playerId=1&nonce=abcd HTTP/1.1

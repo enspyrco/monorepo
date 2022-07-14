@@ -9,7 +9,10 @@ environment:
 dependencies:
   googleapis: ^9.1.0
   json_utils:
-    path: ../json_utils
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/utils/json_utils
+    # path: ../json_utils
 
 dev_dependencies:
   lints: ^2.0.0
