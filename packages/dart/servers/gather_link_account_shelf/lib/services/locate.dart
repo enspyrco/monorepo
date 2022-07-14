@@ -21,12 +21,31 @@ class Locate {
 
   /// Creates a client that authenticates as the default service account to make
   /// a service that accesses the Firestore. The client can now be located witout error.
-  Future<GoogleapisFirestoreService> provideDefaultFirestore() async {
+  Future<void> provideDefaultFirestore() async {
     if (_firestore == null) {
       _client = await clientViaApplicationDefaultCredentials(scopes: []);
       _firestore = GoogleapisFirestoreService(
           client: _client, projectId: config.projectId);
     }
-    return _firestore!;
+    return;
+  }
+
+  Future<void> provideLocalFirestore() async {
+    if (_firestore == null) {
+      _client = await clientViaApplicationDefaultCredentials(scopes: []);
+      _firestore = GoogleapisFirestoreService(
+          client: _client,
+          rootUrl: 'http://localhost:8081/',
+          projectId: 'demo-project');
+    }
+    return;
+  }
+
+  /// Set client and firestore, if not already
+  void provide(
+      {required GoogleapisFirestoreService firestore,
+      required AutoRefreshingAuthClient client}) {
+    _client ??= client;
+    _firestore ??= firestore;
   }
 }
