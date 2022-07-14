@@ -9,23 +9,30 @@ Future<Response> gatherHandler(Request request) async {
 
   try {
     var docs = await firestore.getDocuments(
-        at: 'users', where: 'nonce', isEqualTo: nonce);
+        at: 'users', where: 'gathernonce', isEqualTo: nonce);
 
     if (docs.length != 1) {
       throw 'There should be 1 document with the provided nonce but there were ${docs.length}';
     }
 
     var doc = docs.first;
-    doc['name'];
-  } catch (e) {
+    var uid = doc.id;
+    var fields = doc.fields;
+    fields['gather'] = gatherId;
+    fields.remove('gathernonce');
+
+    firestore.setDocument(at: 'users/$uid', to: fields);
+  } catch (error, trace) {
     firestore.createDocument(at: 'errors', from: {
-      'uid': ,
+      'nonce': nonce,
+      'gatherId': gatherId,
       'timestamp': DateTime.now().millisecondsSinceEpoch,
-      'error': e
+      'error': error.toString(),
+      'trace': trace.toString()
     });
   } finally {
-    client.close();
+    // Locate.client.close();
   }
 
-  return Response.ok('playerId: $playerId, nonce: $nonce');
+  return Response.ok('gatherId: $gatherId');
 }

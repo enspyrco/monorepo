@@ -13,6 +13,8 @@ dependencies:
     path: ../../../interfaces/firestore_service_interface
   googleapis_utils:
     path: ../../utils/googleapis_utils
+  json_utils:
+    path: ../../utils/json_utils
 
 dev_dependencies:
   lints: ^1.0.0

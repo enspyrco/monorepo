@@ -13,6 +13,12 @@ extension JsonMapExtension on JsonMap {
   }
 }
 
+extension FieldsExtension on Map<String, Value>? {
+  JsonMap unwrapValues() => (this == null)
+      ? {}
+      : this!.map((key, value) => MapEntry(key, TypeUtil.decode(value)));
+}
+
 extension NullableObjectExtension on Object? {
   Value toValue() => TypeUtil.encode(this);
 }
@@ -36,9 +42,7 @@ abstract class TypeUtil {
     if (value is Map) {
       return Value(
           mapValue: MapValue(
-              fields: value.map(
-        (key, val) => MapEntry(key, encode(val)),
-      )));
+              fields: value.map((key, val) => MapEntry(key, encode(val)))));
     }
     if (value is Uint8List) return Value(bytesValue: value.toString());
 
@@ -52,35 +56,29 @@ abstract class TypeUtil {
     throw Exception('Unknown type: ${value.runtimeType}');
   }
 
-  // static dynamic decode(fs.Value value, FirestoreGateway gateway) {
-  //   switch (value.whichValueType()) {
-  //     case fs.Value_ValueType.nullValue:
-  //       return null;
-  //     case fs.Value_ValueType.booleanValue:
-  //       return value.booleanValue;
-  //     case fs.Value_ValueType.doubleValue:
-  //       return value.doubleValue;
-  //     case fs.Value_ValueType.stringValue:
-  //       return value.stringValue;
-  //     case fs.Value_ValueType.integerValue:
-  //       return value.integerValue.toInt();
-  //     case fs.Value_ValueType.timestampValue:
-  //       return value.timestampValue.toDateTime().toLocal();
-  //     case fs.Value_ValueType.bytesValue:
-  //       return value.bytesValue;
-  //     case fs.Value_ValueType.referenceValue:
-  //       return DocumentReference(gateway, value.referenceValue);
-  //     case fs.Value_ValueType.geoPointValue:
-  //       return GeoPoint.fromLatLng(value.geoPointValue);
-  //     case fs.Value_ValueType.arrayValue:
-  //       return value.arrayValue.values
-  //           .map((item) => decode(item, gateway))
-  //           .toList(growable: false);
-  //     case fs.Value_ValueType.mapValue:
-  //       return value.mapValue.fields
-  //           .map((key, value) => MapEntry(key, decode(value, gateway)));
-  //     default:
-  //       throw Exception('Unrecognized type: ${value.whichValueType()}');
-  //   }
-  // }
+  static Object? decode(Value value) {
+    if (value.nullValue != null) return null;
+    if (value.booleanValue != null) return value.booleanValue;
+    if (value.doubleValue != null) return value.doubleValue;
+    if (value.stringValue != null) return value.stringValue;
+    if (value.integerValue != null) return int.parse(value.integerValue!);
+    if (value.timestampValue != null) {
+      return DateTime.parse(value.timestampValue!);
+    }
+    if (value.bytesValue != null) return value.bytesValue;
+    if (value.referenceValue != null) {
+      return null; // DocumentReference(gateway, value.referenceValue);
+    }
+    if (value.geoPointValue != null) {
+      return null; // GeoPoint.fromLatLng(value.geoPointValue);
+    }
+    if (value.arrayValue != null) {
+      return value.arrayValue!.values!.map(decode).toList(growable: false);
+    }
+    if (value.mapValue != null) {
+      return value.mapValue!.fields!
+          .map((key, value) => MapEntry(key, decode(value)));
+    }
+    throw Exception('Unrecognized type for Value: $value');
+  }
 }

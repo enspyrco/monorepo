@@ -2,6 +2,35 @@
 
 *Convenience wrappers around the googleapis.dart Firestore API.*
 
+## Example
+
+### Setup
+
+#### Run the Firebase Emulator
+
+From the project directory:
+
+```sh
+cd example && firebase emulators:start --only firestore --project demo-project
+```
+
+> Using the --project flag with a prefix that starts with `demo-` creates a demo project, ie. no real Firebase configuration and no live resources.
+
+- see: <https://firebase.google.com/docs/emulator-suite/connect_firestore>
+
+### Run
+
+```sh
+dart run bin/firestore_api_client_example.dart
+```
+
+### Debug
+
+#### VS Code
+
+- Open the project folder in VS Code
+- Run the `firestore_api_client_example` launch config
+
 [Notion](https://www.notion.so/enspyrco/googleapis-Firestore-Service-9e12340b0cd44470aedd83c569618082)
 
 <!-- 

@@ -3,4 +3,4 @@
 /// More dartdocs go here.
 library googleapis_utils;
 
-export 'src/extensions/json_map_extension.dart';
+export 'src/extensions.dart';
