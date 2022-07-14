@@ -1,0 +1,1 @@
+GET https://gather-link-account-shelf-eogj3aa7na-uc.a.run.app/gather/?playerId=1&nonce=abcd HTTP/1.1
