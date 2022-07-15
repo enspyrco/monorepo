@@ -29,7 +29,7 @@ Future<Response> gatherHandler(Request request) async {
       <head>
       </head>
       <body>
-        <div>Credentials saved!\n\nIf this window didn't automatically close, please close it.</div>
+        <div>Gather account successfully linked!\n\nThis window should automatically close - if it has not done as it was told, please close it.</div>
       </body>
       <script>
         window.close();
