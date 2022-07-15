@@ -25,7 +25,16 @@ Future<Response> gatherHandler(Request request) async {
 
     await firestore.setDocument(at: 'users/$uid', to: fields);
 
-    return Response.ok('gatherId: $gatherId');
+    return Response.ok('''
+      <head>
+      </head>
+      <body>
+        <div>Credentials saved!\n\nIf this window didn't automatically close, please close it.</div>
+      </body>
+      <script>
+        window.close();
+      </script>
+    ''');
   } catch (error, trace) {
     firestore.createDocument(at: 'errors', from: {
       'nonce': nonce,
