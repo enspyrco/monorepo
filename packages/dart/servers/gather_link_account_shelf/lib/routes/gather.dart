@@ -3,11 +3,13 @@ import 'package:shelf/shelf.dart' show Response, Request;
 import '../services/locate.dart';
 
 Future<Response> gatherHandler(Request request) async {
-  var nonce = request.url.queryParameters['nonce'];
-  var gatherId = request.url.queryParameters['gatherPlayerId'];
   final firestore = Locate.firestore;
+  String? nonce, gatherId;
 
   try {
+    nonce = request.url.queryParameters['nonce']!;
+    gatherId = request.url.queryParameters['gatherPlayerId']!;
+
     var docs = await firestore.getDocuments(
         at: 'users', where: 'gathernonce', isEqualTo: nonce);
 
@@ -21,7 +23,9 @@ Future<Response> gatherHandler(Request request) async {
     fields['gather'] = gatherId;
     fields.remove('gathernonce');
 
-    firestore.setDocument(at: 'users/$uid', to: fields);
+    await firestore.setDocument(at: 'users/$uid', to: fields);
+
+    return Response.ok('gatherId: $gatherId');
   } catch (error, trace) {
     firestore.createDocument(at: 'errors', from: {
       'nonce': nonce,
@@ -30,9 +34,10 @@ Future<Response> gatherHandler(Request request) async {
       'error': error.toString(),
       'trace': trace.toString()
     });
+
+    return Response.internalServerError(
+        body: 'error:\n$error\n\ntrace:\n$trace');
   } finally {
     // Locate.client.close();
   }
-
-  return Response.ok('gatherId: $gatherId');
 }
