@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
-// https://www.scottbrady91.com/dart/generating-a-crypto-random-string-in-dart
+// From: https://www.scottbrady91.com/dart/generating-a-crypto-random-string-in-dart
 class Utils {
   static final Random _random = Random.secure();
 

@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:gather_link_accounts/auth_screen.dart';
+import 'package:gather_link_accounts/auth/auth_screen.dart';
 
 import 'firebase_options.dart';
-import 'home_screen.dart';
+import 'home/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
