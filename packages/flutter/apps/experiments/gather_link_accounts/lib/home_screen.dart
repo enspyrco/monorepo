@@ -1,8 +1,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+import 'utils.dart';
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late String nonce;
+
+  @override
+  void initState() {
+    super.initState();
+    nonce = Utils.generateNonce();
+  }
 
   @override
   Widget build(BuildContext context) {
