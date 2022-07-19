@@ -25,7 +25,7 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Center(
         child: SizedBox(
-      width: 200,
+      width: 210,
       child: Column(
         children: [
           const SizedBox(height: 50),
@@ -48,27 +48,67 @@ class _AuthScreenState extends State<AuthScreen> {
           Text(errorText),
           const SizedBox(height: 50),
           (enabled)
-              ? OutlinedButton(
-                  onPressed: () async {
-                    setState(() {
-                      errorText = '';
-                      enabled = false;
-                    });
-                    try {
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
-                          email: emailController.text,
-                          password: passwordController.text);
-                    } catch (error) {
-                      setState(() {
-                        errorText = error.toString();
-                        enabled = true;
-                      });
-                    }
-                  },
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: Colors.blue, width: 1),
-                  ),
-                  child: const Text('Submit'))
+              ? Row(
+                  children: [
+                    OutlinedButton(
+                        onPressed: () async {
+                          setState(() {
+                            errorText = '';
+                            enabled = false;
+                          });
+                          try {
+                            await FirebaseAuth.instance
+                                .signInWithEmailAndPassword(
+                                    email: emailController.text,
+                                    password: passwordController.text);
+                          } on FirebaseAuthException catch (error) {
+                            setState(() {
+                              errorText = error.message ?? '?';
+                              enabled = true;
+                            });
+                          } catch (error) {
+                            setState(() {
+                              errorText = error.toString();
+                              enabled = true;
+                            });
+                          }
+                        },
+                        style: OutlinedButton.styleFrom(
+                          side: const BorderSide(color: Colors.blue, width: 1),
+                        ),
+                        child: const Text('Login')),
+                    const SizedBox(width: 20),
+                    const Text('OR'),
+                    const SizedBox(width: 20),
+                    OutlinedButton(
+                        onPressed: () async {
+                          setState(() {
+                            errorText = '';
+                            enabled = false;
+                          });
+                          try {
+                            await FirebaseAuth.instance
+                                .createUserWithEmailAndPassword(
+                                    email: emailController.text,
+                                    password: passwordController.text);
+                          } on FirebaseAuthException catch (error) {
+                            setState(() {
+                              errorText = error.message ?? '?';
+                              enabled = true;
+                            });
+                          } catch (error) {
+                            setState(() {
+                              errorText = error.toString();
+                              enabled = true;
+                            });
+                          }
+                        },
+                        style: OutlinedButton.styleFrom(
+                          side: const BorderSide(color: Colors.blue, width: 1),
+                        ),
+                        child: const Text('Create')),
+                  ],
+                )
               : const CircularProgressIndicator(),
         ],
       ),
