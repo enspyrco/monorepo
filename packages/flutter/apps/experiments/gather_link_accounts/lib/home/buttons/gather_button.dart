@@ -18,13 +18,15 @@ class GatherButton extends StatelessWidget {
     return SizedBox(
       width: 180,
       child: ElevatedButton(
-        onPressed: () async {
-          if (await canLaunchUrl(gatherUri)) {
-            await launchUrl(gatherUri);
-          } else {
-            throw "Could not launch $gatherUri";
-          }
-        },
+        onPressed: linkingState.disabled
+            ? null
+            : () async {
+                if (await canLaunchUrl(gatherUri)) {
+                  await launchUrl(gatherUri);
+                } else {
+                  throw "Could not launch $gatherUri";
+                }
+              },
         style: ElevatedButton.styleFrom(primary: Colors.white),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
