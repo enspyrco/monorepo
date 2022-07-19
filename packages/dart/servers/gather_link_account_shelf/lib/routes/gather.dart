@@ -25,16 +25,8 @@ Future<Response> gatherHandler(Request request) async {
 
     await firestore.setDocument(at: 'users/$uid', to: fields);
 
-    return Response.ok('''
-      <head>
-      </head>
-      <body>
-        <div>Gather account successfully linked!\n\nThis window should automatically close - if it has not done as it was told, please close it.</div>
-      </body>
-      <script>
-        window.close();
-      </script>
-    ''');
+    return Response.ok('Gather account successfully linked!\n\n'
+        'You can close this window and return to the original window.');
   } catch (error, trace) {
     firestore.createDocument(at: 'errors', from: {
       'nonce': nonce,
