@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:gather_link_accounts/auth_screen.dart';
 
 import 'firebase_options.dart';
+import 'home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,13 +20,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const AuthGuard(),
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class AuthGuard extends StatelessWidget {
+  const AuthGuard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +47,11 @@ class HomeScreen extends StatelessWidget {
                       if (snapshot.hasError) {
                         // handle error
                       }
-                      if (snapshot.hasData) {
-                        var user = snapshot.data;
-                        if (user == null) {
-                          return const Center(child: Text('Auth Screen'));
-                        }
-                        return const Center(child: Text('Home Screen'));
-                      } else {
-                        return Container();
+                      var user = snapshot.data;
+                      if (user == null) {
+                        return const AuthScreen();
                       }
+                      return const HomeScreen();
                     }),
               );
             } else {
