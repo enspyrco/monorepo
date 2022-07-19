@@ -1,5 +1,2 @@
 **/.DS_Store
 .vscode/settings.json
-
-# Firebase config
-packages/flutter/apps/experiments/gather_link_accounts/lib/firebase_options.dart
