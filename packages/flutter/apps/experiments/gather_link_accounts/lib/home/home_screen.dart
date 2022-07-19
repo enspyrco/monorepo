@@ -19,24 +19,29 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late final String nonce;
-  late final Uri gatherUri;
+  late final String gatherNonce, githubNonce;
+  late final Uri gatherUri, githubUri;
   late final Future<void> setNonceFuture;
   late final Stream<DocumentSnapshot<JsonMap>> docStream;
-  LinkingState linkingState = LinkingState.checking;
+  LinkingState gatherState = LinkingState.checking;
+  LinkingState githubState = LinkingState.checking;
 
   @override
   void initState() {
     super.initState();
-    nonce = Utils.generateNonce();
+    gatherNonce = Utils.generateNonce();
+    githubNonce = Utils.generateNonce();
     var gatherRedirect = Uri.encodeComponent(
-        'https://gather-link-account-shelf-eogj3aa7na-uc.a.run.app/gather/?nonce=$nonce&');
+        'https://gather-link-account-shelf-eogj3aa7na-uc.a.run.app/gather/?nonce=$gatherNonce&');
     gatherUri =
         Uri.parse('https://gather.town/getPublicId?redirectTo=$gatherRedirect');
+    githubUri = Uri.parse(
+        'https://github.com/login/oauth/authorize?client_id=3b2457d371c7b9b4a1b8&state=$githubNonce');
     setNonceFuture = FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
-        .set({'gathernonce': nonce}, SetOptions(merge: true));
+        .set({'gathernonce': gatherNonce, 'githubnonce': githubNonce},
+            SetOptions(merge: true));
     docStream = FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -50,11 +55,12 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, snapshot) {
           if (snapshot.hasData && snapshot.data!.exists) {
             JsonMap docJson = snapshot.data!.data()!;
-            if (docJson['gather'] != null) {
-              linkingState = LinkingState.linked;
-            } else {
-              linkingState = LinkingState.waiting;
-            }
+            gatherState = (docJson['gather'] == null)
+                ? gatherState = LinkingState.waiting
+                : gatherState = LinkingState.linked;
+            githubState = (docJson['github'] == null)
+                ? githubState = LinkingState.waiting
+                : githubState = LinkingState.linked;
           } else {
             return const CircularProgressIndicator();
           }
@@ -62,9 +68,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
             children: [
               const SizedBox(height: 100),
-              GatherButton(gatherUri: gatherUri, linkingState: linkingState),
+              GatherButton(gatherUri: gatherUri, linkingState: gatherState),
               const SizedBox(height: 100),
-              const GitHubButton(),
+              GitHubButton(githubUri: githubUri, linkingState: githubState),
               const SizedBox(height: 100),
               const SignOutButton(),
             ],
