@@ -81,16 +81,20 @@ packages:
   firestore_api_client:
     dependency: "direct main"
     description:
-      path: "../../api-clients/firestore"
-      relative: true
-    source: path
+      path: "packages/dart/api-clients/firestore"
+      ref: HEAD
+      resolved-ref: ff45212bcee6d273e1b987b5027cbccc389129af
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   firestore_service_interface:
     dependency: transitive
     description:
-      path: "../../../interfaces/firestore_service_interface"
-      relative: true
-    source: path
+      path: "packages/interfaces/firestore_service_interface"
+      ref: HEAD
+      resolved-ref: ff45212bcee6d273e1b987b5027cbccc389129af
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   frontend_server_client:
     dependency: transitive
@@ -123,9 +127,11 @@ packages:
   googleapis_utils:
     dependency: transitive
     description:
-      path: "../../utils/googleapis_utils"
-      relative: true
-    source: path
+      path: "packages/dart/utils/googleapis_utils"
+      ref: HEAD
+      resolved-ref: ff45212bcee6d273e1b987b5027cbccc389129af
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   http:
     dependency: "direct dev"
@@ -172,9 +178,11 @@ packages:
   json_utils:
     dependency: "direct main"
     description:
-      path: "../../utils/json_utils"
-      relative: true
-    source: path
+      path: "packages/dart/utils/json_utils"
+      ref: HEAD
+      resolved-ref: ff45212bcee6d273e1b987b5027cbccc389129af
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   lints:
     dependency: "direct dev"

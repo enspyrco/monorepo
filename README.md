@@ -53,7 +53,8 @@ Three letter acronyms used in commit messages:
 - fsi = firestore_service_interface
 - fac = firestore_api_client
 - gau = googleapis_utils
-- gla = gather_link_account_shelf
+- gla = gather_link_account
+- gls = gather_link_account_shelf
 - rfr = redfire
 - rft = redfire_test
 - rfl = redfire_lints
