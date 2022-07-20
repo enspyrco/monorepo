@@ -15,12 +15,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Gather Link Accounts',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const AuthGuard(),
+      home: AuthGuard(),
     );
   }
 }
@@ -40,7 +37,7 @@ class AuthGuard extends StatelessWidget {
             }
             if (snapshot.hasData) {
               return Scaffold(
-                appBar: AppBar(),
+                // appBar: AppBar(),
                 body: StreamBuilder(
                     stream: FirebaseAuth.instance.authStateChanges(),
                     builder: (context, AsyncSnapshot<User?> snapshot) {

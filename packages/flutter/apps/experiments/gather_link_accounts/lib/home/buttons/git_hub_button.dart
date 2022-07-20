@@ -16,7 +16,7 @@ class GitHubButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 180,
+      width: 200,
       child: ElevatedButton(
           onPressed: linkingState.disabled
               ? null
@@ -30,10 +30,10 @@ class GitHubButton extends StatelessWidget {
           style: ElevatedButton.styleFrom(primary: Colors.black),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            const Text(
-              'Link GitHub',
-              style:
-                  TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
+            Text(
+              '${linkingState.buttonText}GitHub',
+              style: const TextStyle(
+                  fontWeight: FontWeight.w400, color: Colors.white),
             ),
             const SizedBox(width: 10),
             Padding(

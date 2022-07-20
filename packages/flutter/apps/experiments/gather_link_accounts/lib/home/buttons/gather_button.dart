@@ -16,7 +16,7 @@ class GatherButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 180,
+      width: 200,
       child: ElevatedButton(
         onPressed: linkingState.disabled
             ? null
@@ -24,7 +24,7 @@ class GatherButton extends StatelessWidget {
                 if (await canLaunchUrl(gatherUri)) {
                   await launchUrl(gatherUri);
                 } else {
-                  throw "Could not launch $gatherUri";
+                  throw 'Could not launch $gatherUri';
                 }
               },
         style: ElevatedButton.styleFrom(primary: Colors.white),
@@ -32,7 +32,7 @@ class GatherButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              linkingState.buttonText,
+              '${linkingState.buttonText}Gather',
               style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   color: Color.fromARGB(200, 5, 73, 255)),
