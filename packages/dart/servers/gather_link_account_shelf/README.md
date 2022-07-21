@@ -1,5 +1,15 @@
 # gather_link_account_shelf
 
+Missing files:
+
+- `lib/config/secret.dart` contains:
+
+```dart
+const clientSecret = '...';
+```
+
+The secret can be found in the GitHub OAuth app page, eg. <https://github.com/settings/applications/1941750>
+
 This [shelf](https://pub.dev/packages/shelf) server handles HTTP GET requests via
 several routes. There is also a Dockerfile for running with [Docker](https://www.docker.com/).
 
