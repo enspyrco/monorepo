@@ -14,7 +14,7 @@ Future<Response> gatherHandler(Request request) async {
         at: 'users', where: 'gathernonce', isEqualTo: nonce);
 
     if (docs.length != 1) {
-      throw 'There should be 1 document with the provided nonce but there were ${docs.length}';
+      throw '${docs.length} docs were found with the passed nonce, there should be 1';
     }
 
     var doc = docs.first;

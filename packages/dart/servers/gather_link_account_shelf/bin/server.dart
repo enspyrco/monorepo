@@ -1,15 +1,15 @@
 import 'dart:io';
 
 import 'package:gather_link_account_shelf/routes/gather.dart';
-import 'package:gather_link_account_shelf/routes/root.dart';
+import 'package:gather_link_account_shelf/routes/github.dart';
 import 'package:gather_link_account_shelf/services/locate.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart';
 import 'package:shelf_router/shelf_router.dart';
 
 final _router = Router()
-  ..get('/', rootHandler)
-  ..get('/gather/', gatherHandler);
+  ..get('/gather/', gatherHandler)
+  ..get('/github/', githubHandler);
 
 const locator = Locate();
 
