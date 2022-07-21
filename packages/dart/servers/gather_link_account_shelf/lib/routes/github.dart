@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:gather_link_account_shelf/config/secret.dart';
+import 'package:http/http.dart' as http;
 import 'package:shelf/shelf.dart' show Request, Response;
 
 import '../services/locate.dart';
@@ -6,7 +10,7 @@ import '../services/locate.dart';
 
 Future<Response> githubHandler(Request request) async {
   final firestore = Locate.firestore;
-  String? nonce, code, githubId;
+  String? nonce, code, githubUsername;
 
   try {
     nonce = request.url.queryParameters['state']!;
@@ -19,15 +23,36 @@ Future<Response> githubHandler(Request request) async {
       throw '${docs.length} docs were found with the passed nonce, there should be 1';
     }
 
-    // TODO: Exchange the code & secret for a token
-    // TODO: Use the github API to get the username
+    // Exchange the code & secret for a token
+    var tokenResponse = await http.post(
+        Uri(
+            scheme: 'https',
+            host: 'github.com',
+            path: 'login/oauth/access_token'),
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: {
+          'client_id': '3b2457d371c7b9b4a1b8',
+          'client_secret': clientSecret,
+          'code': code
+        });
+    var decodedTokenResponse =
+        jsonDecode(utf8.decode(tokenResponse.bodyBytes)) as Map;
+    var accessToken = decodedTokenResponse['access_token'] as String;
 
-    githubId = 'github id';
+    // Use the github API to get the username
+    var userResponse = await http.get(
+        Uri(scheme: 'https', host: 'api.github.com', path: 'user'),
+        headers: {'Authorization': 'token $accessToken'});
+    var decodedUserResponse =
+        jsonDecode(utf8.decode(userResponse.bodyBytes)) as Map;
+    githubUsername = decodedUserResponse['login'] as String;
 
     var doc = docs.first;
     var uid = doc.id;
     var fields = doc.fields;
-    fields['github'] = githubId;
+    fields['github'] = githubUsername;
     fields.remove('githubnonce');
 
     await firestore.setDocument(at: 'users/$uid', to: fields);
@@ -37,7 +62,7 @@ Future<Response> githubHandler(Request request) async {
   } catch (error, trace) {
     firestore.createDocument(at: 'errors', from: {
       'nonce': nonce,
-      'githubId': githubId,
+      'githubUsername': githubUsername,
       'timestamp': DateTime.now().millisecondsSinceEpoch,
       'error': error.toString(),
       'trace': trace.toString()
