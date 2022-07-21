@@ -10,16 +10,10 @@
       "type": "dart"
     },
     {
-      "name": "gather_link_accounts (profile mode)",
+      "name": "[web] gather_link_accounts",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "profile"
-    },
-    {
-      "name": "gather_link_accounts (release mode)",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "release"
+      "deviceId": "chrome"
     }
   ]
 }
