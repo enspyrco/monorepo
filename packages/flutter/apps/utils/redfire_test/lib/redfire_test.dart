@@ -14,7 +14,6 @@ export 'src/test-doubles/platform/mocks/platform_test_doubles.mocks.dart';
 export 'src/test-doubles/redux/empty_reducer.dart';
 export 'src/test-doubles/redux/example_app_state.dart';
 export 'src/test-doubles/redux/fake_store.dart';
-export 'src/test-doubles/redux/redux_test_doubles.mocks.dart';
 export 'src/test-doubles/services/mocks/service_test_doubles.mocks.dart';
 export 'src/test-doubles/services/stubs/services_with_mocked_plugins.dart';
 export 'src/test-doubles/stubbed.dart';

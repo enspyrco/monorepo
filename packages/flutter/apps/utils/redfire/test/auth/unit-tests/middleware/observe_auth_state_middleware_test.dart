@@ -32,24 +32,24 @@ void main() {
     test(
         'should listen to AuthService.streamOfStoreAuthState and dispatch emitted actions',
         () async {
-      final mockStore = MockStore<ExampleAppState>();
-      when<dynamic>(mockStore.dispatch(any)).thenReturn(null);
+      final fakeStore = FakeStore<ExampleAppState>(ExampleAppState.init());
       final controller = StreamController<SetAuthUserDataAction>();
       final mockAuthService = MockAuthService();
+      final authServiceStream = controller.stream.asBroadcastStream();
       when(mockAuthService.streamOfSetAuthUserData)
-          .thenAnswer((_) => controller.stream);
+          .thenAnswer((_) => authServiceStream);
 
       RedFireLocator.provide(authService: mockAuthService);
 
       // Create then invoke the middleware under test.
       await ObserveAuthStateMiddleware()(
-          mockStore, const ObserveAuthStateAction(), emptyAppReducer);
+          fakeStore, const ObserveAuthStateAction(), emptyAppReducer);
 
-      final data = AuthUserDataExample.normal;
-      final action = SetAuthUserDataAction(data);
+      final action = SetAuthUserDataAction(AuthUserDataExample.normal);
       controller.add(action);
 
-      await untilCalled<dynamic>(mockStore.dispatch(action));
+      await expectLater(authServiceStream, emits(action));
+      expect(fakeStore.dispatched, contains(action));
     });
 
     // We can't verify [store.dispatchProblem] (as it is an extension member)

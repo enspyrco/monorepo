@@ -29,11 +29,11 @@ void main() {
     });
 
     test('should ', () async {
-      final mockStore = MockStore<RedFireState>();
+      final fakeStore = FakeStore<RedFireState>(ExampleAppState.init());
 
       // Create then invoke the middleware under test.
       final middleware = SignOutMiddleware();
-      await middleware(mockStore, const SignOutAction(), (dynamic _) => null);
+      await middleware(fakeStore, const SignOutAction(), (dynamic _) => null);
       expect(true, false);
     }, skip: true); // haven't finished the test
   });
