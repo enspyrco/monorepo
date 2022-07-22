@@ -1,11 +1,11 @@
 import 'package:mockito/mockito.dart';
-import 'package:redfire/src/database/services/database_service.dart';
+import 'package:redfire/src/database/services/flutterfire_firestore_service.dart';
 import 'package:redfire/src/types/typedefs.dart';
 import 'package:redfire_test/redfire_test.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('DatabaseService', () {
+  group('FirestoreService', () {
     test('uses the Firestore to create a document at a given path', () async {
       // Create some test data.
       const testJson = {'uid': 'uid', 'name': 'testy'};
@@ -25,7 +25,7 @@ void main() {
       when(mockDocumentReference.id).thenReturn(testId);
 
       // Create the service under test.
-      final service = DatabaseService(database: mockFirestore);
+      final service = FlutterfireFirestoreService(database: mockFirestore);
 
       // Interact with the service under test.
       final id = await service.createDocument(at: testPath, from: testJson);

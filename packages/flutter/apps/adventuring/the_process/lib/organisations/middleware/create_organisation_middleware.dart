@@ -19,7 +19,7 @@ class CreateOrganisationMiddleware
             var organisation = action.organisation
                 .copyWith(ownerIds: ISet([store.state.auth.userData!.uid]));
 
-            final service = RedFireLocator.getDatabaseService();
+            final service = RedFireLocator.getFirestoreService();
             await service.createDocument(
                 at: 'organisations', from: organisation.toJson());
           } catch (error, trace) {

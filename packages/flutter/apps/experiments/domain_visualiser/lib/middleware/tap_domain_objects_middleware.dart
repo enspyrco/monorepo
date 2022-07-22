@@ -26,7 +26,7 @@ class TapDomainObjectsMiddleware
             }
 
             // ... otherwise tap the database at the appropriate location...
-            final service = RedFireLocator.getDatabaseService();
+            final service = RedFireLocator.getFirestoreService();
             final changes = service.tapCollection(at: 'domain-objects');
 
             // ... and direct the stream to the store.

@@ -17,7 +17,7 @@ class AddDomainObjectMiddleware
 
             final object = (action.object as ClassBox).copyWith(userId: userId);
 
-            await RedFireLocator.getDatabaseService().setDocument(
+            await RedFireLocator.getFirestoreService().setDocument(
                 at: 'domain-objects/${object.id}', to: object.toJson());
           } catch (error, trace) {
             store.dispatchProblem(error, trace);

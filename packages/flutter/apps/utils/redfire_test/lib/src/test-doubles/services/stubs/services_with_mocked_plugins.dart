@@ -17,7 +17,7 @@ class ServicesHarness {
   late final MockGoogleSignIn _mockGoogleSignIn;
   late final MockSignInWithAppleWrapper _mockSignInWithAppleWrapper;
   // database
-  late final DatabaseService _databaseService;
+  late final FlutterfireFirestoreService _firestoreService;
   late final MockFirebaseFirestore _mockFirebaseFirestore;
   // platform
   late final PlatformService _platformService;
@@ -36,7 +36,8 @@ class ServicesHarness {
 
     // Create a real DatabaseService with mock plugin.
     _mockFirebaseFirestore = MockFirebaseFirestore();
-    _databaseService = DatabaseService(database: _mockFirebaseFirestore);
+    _firestoreService =
+        FlutterfireFirestoreService(database: _mockFirebaseFirestore);
 
     // Create a real PlatformService with mock plugins.
     _mockPlatformWrapper = MockPlatformWrapper();
@@ -53,7 +54,7 @@ class ServicesHarness {
   MockSignInWithAppleWrapper get mockSignInWithAppleWrapper =>
       _mockSignInWithAppleWrapper;
   // database
-  DatabaseService get database => _databaseService;
+  FlutterfireFirestoreService get database => _firestoreService;
   MockFirebaseFirestore get mockFirebaseFirestore => _mockFirebaseFirestore;
   // platform
   PlatformService get platform => _platformService;

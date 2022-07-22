@@ -62,7 +62,7 @@ class AppWidgetHarness<T extends RedFireState> {
             initialState: initialState, middleware: redfireMiddlewares()) {
     RedFireLocator.provide(
         authService: services.auth,
-        databaseService: services.database,
+        firestoreService: services.database,
         platformService: services.platform);
     _appWidget = AppWidget.fromStore(
       config: MockRedFireConfig(),

@@ -7,7 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../utils.dart';
 import '../auth/services/auth_service.dart';
-import '../database/services/database_service.dart';
+import '../database/services/flutterfire_firestore_service.dart';
 import '../networking/services/http_service.dart';
 import '../platform/plugins/wrappers/apple_signin_wrapper.dart';
 import '../platform/services/platform_service.dart';
@@ -37,8 +37,8 @@ class RedFireLocator {
               : null,
           apple:
               (kIsWeb || Platform.isAndroid) ? null : SignInWithAppleWrapper());
-  static DatabaseService getDatabaseService() =>
-      _databaseService ?? DatabaseService();
+  static FlutterfireFirestoreService getFirestoreService() =>
+      _firestoreService ?? FlutterfireFirestoreService();
   static PlatformService getPlatformService() =>
       _platformService ?? PlatformService();
   static HttpService getHttpService() => _httpService ?? HttpService();
@@ -47,22 +47,22 @@ class RedFireLocator {
   // Provide one or more
   static void provide(
       {AuthService? authService,
-      DatabaseService? databaseService,
+      FlutterfireFirestoreService? firestoreService,
       PlatformService? platformService,
       HttpService? httpService}) {
     _authService = authService;
-    _databaseService = databaseService;
+    _firestoreService = firestoreService;
     _platformService = platformService;
     _httpService = httpService;
   }
 
   static void provideAll(
       {required AuthService authService,
-      required DatabaseService databaseService,
+      required FlutterfireFirestoreService firestoreService,
       required PlatformService platformService,
       required HttpService httpService}) {
     _authService = authService;
-    _databaseService = databaseService;
+    _firestoreService = firestoreService;
     _platformService = platformService;
     _httpService = httpService;
   }
@@ -72,7 +72,7 @@ class RedFireLocator {
 
   static RedFireConfig? _config;
   static AuthService? _authService;
-  static DatabaseService? _databaseService;
+  static FlutterfireFirestoreService? _firestoreService;
   static PlatformService? _platformService;
   static HttpService? _httpService;
   static List<ReduxAction>? _onSignInActions;

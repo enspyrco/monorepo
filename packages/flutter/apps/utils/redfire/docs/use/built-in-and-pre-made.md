@@ -6,7 +6,7 @@
 <summary>Built-in services</summary>
 <br>
 
-- DatabaseService
+- FlutterfireFirestoreService
   - .`tapCollection` - adds the docId to the json as 'id'
   - if you add a `String? id` member to your Model, it will hold the docId
 - AuthenticationService

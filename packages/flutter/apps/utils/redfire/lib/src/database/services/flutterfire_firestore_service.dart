@@ -4,10 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../types/typedefs.dart';
 
-class DatabaseService {
+class FlutterfireFirestoreService {
   final FirebaseFirestore _firestore;
 
-  DatabaseService({FirebaseFirestore? database})
+  FlutterfireFirestoreService({FirebaseFirestore? database})
       : _firestore = database ?? FirebaseFirestore.instance;
 
   // Add a document with the given data at the given path and return the

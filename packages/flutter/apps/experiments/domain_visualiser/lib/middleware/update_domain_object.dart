@@ -12,7 +12,7 @@ class UpdateDomainObjectMiddleware
           next(action);
 
           try {
-            await RedFireLocator.getDatabaseService().updateDocument(
+            await RedFireLocator.getFirestoreService().updateDocument(
                 at: 'domain-objects/${action.object.id}',
                 to: action.object.toJson());
           } catch (error, trace) {

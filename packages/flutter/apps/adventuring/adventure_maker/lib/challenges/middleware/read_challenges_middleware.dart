@@ -16,7 +16,7 @@ class ReadChallengesMiddleware
           next(action);
 
           try {
-            final service = RedFireLocator.getDatabaseService();
+            final service = RedFireLocator.getFirestoreService();
             var jsonList = await service.getDocuments(
                 at: 'challenges',
                 where: 'parentIds',

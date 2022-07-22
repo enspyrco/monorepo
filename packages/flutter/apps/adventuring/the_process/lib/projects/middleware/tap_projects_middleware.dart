@@ -26,7 +26,7 @@ class TapProjectsMiddleware
             }
 
             // ... otherwise tap the database at the appropriate location...
-            final service = RedFireLocator.getDatabaseService();
+            final service = RedFireLocator.getFirestoreService();
             final changes = service.tapCollection(
                 at: 'projects',
                 where: 'organisationIds',

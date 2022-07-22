@@ -23,12 +23,12 @@ class TapSectionsMiddleware
               return;
             }
 
-            final databaseService = RedFireLocator.getDatabaseService();
+            final firestoreService = RedFireLocator.getFirestoreService();
 
             // Convert json from the database to an action that handles the data,
             // storing in the app state.
             _subscription =
-                databaseService.tapCollection(at: 'sections').listen((json) {
+                firestoreService.tapCollection(at: 'sections').listen((json) {
               store.dispatch(SetSectionsAction(
                   list: json
                       .map((e) => SectionModel.fromJson(e as JsonMap))

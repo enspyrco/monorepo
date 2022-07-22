@@ -16,7 +16,7 @@ class ReadAdventuresMiddleware
           next(action);
 
           try {
-            final service = RedFireLocator.getDatabaseService();
+            final service = RedFireLocator.getFirestoreService();
             JsonList jsonList = await service.getDocuments(at: 'adventures');
             var adventures = jsonList
                 .map<AdventureModel>(

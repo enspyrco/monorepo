@@ -17,7 +17,7 @@ class SelectAdventureNodeMiddleware
           next(action);
 
           try {
-            final service = RedFireLocator.getDatabaseService();
+            final service = RedFireLocator.getFirestoreService();
 
             if (action.selection.isAdventure()) {
               var jsonList = await service.getDocuments(

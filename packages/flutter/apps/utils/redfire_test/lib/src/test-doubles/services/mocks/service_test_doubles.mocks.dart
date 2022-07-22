@@ -10,7 +10,8 @@ import 'package:firebase_auth/firebase_auth.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:redfire/src/auth/actions/set_auth_user_data_action.dart' as _i7;
 import 'package:redfire/src/auth/services/auth_service.dart' as _i5;
-import 'package:redfire/src/database/services/database_service.dart' as _i8;
+import 'package:redfire/src/database/services/flutterfire_firestore_service.dart'
+    as _i8;
 import 'package:redfire/src/networking/services/http_service.dart' as _i11;
 import 'package:redfire/src/platform/services/platform_service.dart' as _i9;
 import 'package:redfire/src/settings/enums/platform_enum.dart' as _i10;
@@ -149,11 +150,12 @@ class MockAuthService extends _i1.Mock implements _i5.AuthService {
           returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
 }
 
-/// A class which mocks [DatabaseService].
+/// A class which mocks [FlutterfireFirestoreService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDatabaseService extends _i1.Mock implements _i8.DatabaseService {
-  MockDatabaseService() {
+class MockFlutterfireFirestoreService extends _i1.Mock
+    implements _i8.FlutterfireFirestoreService {
+  MockFlutterfireFirestoreService() {
     _i1.throwOnMissingStub(this);
   }
 

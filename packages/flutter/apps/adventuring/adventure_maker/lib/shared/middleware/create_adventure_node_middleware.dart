@@ -15,7 +15,7 @@ class CreateAdventureNodeMiddleware
             var uid = store.state.auth.userData?.uid;
             if (uid == null) return;
 
-            var service = RedFireLocator.getDatabaseService();
+            var service = RedFireLocator.getFirestoreService();
 
             if (store.state.adventures.selected == null) {
               await service.createDocument(at: 'adventures', from: {
