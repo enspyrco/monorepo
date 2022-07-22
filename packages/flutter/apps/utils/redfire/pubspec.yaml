@@ -19,7 +19,7 @@ dependencies:
   flutter_redux:
   fast_immutable_collections:
   freezed_annotation:
-  json_annotation: ^4.4.0
+  json_annotation: ^4.6.0
   flutterfire_ui: ^0.3.2
   
 dev_dependencies:
