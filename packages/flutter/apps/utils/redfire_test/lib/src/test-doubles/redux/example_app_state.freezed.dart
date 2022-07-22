@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'example_app_state.dart';
@@ -11,38 +12,11 @@ part of 'example_app_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ExampleAppState _$ExampleAppStateFromJson(Map<String, dynamic> json) {
   return _ExampleAppState.fromJson(json);
 }
-
-/// @nodoc
-class _$ExampleAppStateTearOff {
-  const _$ExampleAppStateTearOff();
-
-  _ExampleAppState call(
-      {@PageDataConverter() required IList<PageData> pages,
-      required IList<ProblemInfo> problems,
-      required Settings settings,
-      required AuthState auth,
-      ProfileData? profile}) {
-    return _ExampleAppState(
-      pages: pages,
-      problems: problems,
-      settings: settings,
-      auth: auth,
-      profile: profile,
-    );
-  }
-
-  ExampleAppState fromJson(Map<String, Object?> json) {
-    return ExampleAppState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ExampleAppState = _$ExampleAppStateTearOff();
 
 /// @nodoc
 mixin _$ExampleAppState {
@@ -144,11 +118,11 @@ class _$ExampleAppStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ExampleAppStateCopyWith<$Res>
+abstract class _$$_ExampleAppStateCopyWith<$Res>
     implements $ExampleAppStateCopyWith<$Res> {
-  factory _$ExampleAppStateCopyWith(
-          _ExampleAppState value, $Res Function(_ExampleAppState) then) =
-      __$ExampleAppStateCopyWithImpl<$Res>;
+  factory _$$_ExampleAppStateCopyWith(
+          _$_ExampleAppState value, $Res Function(_$_ExampleAppState) then) =
+      __$$_ExampleAppStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {@PageDataConverter() IList<PageData> pages,
@@ -166,15 +140,15 @@ abstract class _$ExampleAppStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ExampleAppStateCopyWithImpl<$Res>
+class __$$_ExampleAppStateCopyWithImpl<$Res>
     extends _$ExampleAppStateCopyWithImpl<$Res>
-    implements _$ExampleAppStateCopyWith<$Res> {
-  __$ExampleAppStateCopyWithImpl(
-      _ExampleAppState _value, $Res Function(_ExampleAppState) _then)
-      : super(_value, (v) => _then(v as _ExampleAppState));
+    implements _$$_ExampleAppStateCopyWith<$Res> {
+  __$$_ExampleAppStateCopyWithImpl(
+      _$_ExampleAppState _value, $Res Function(_$_ExampleAppState) _then)
+      : super(_value, (v) => _then(v as _$_ExampleAppState));
 
   @override
-  _ExampleAppState get _value => super._value as _ExampleAppState;
+  _$_ExampleAppState get _value => super._value as _$_ExampleAppState;
 
   @override
   $Res call({
@@ -184,7 +158,7 @@ class __$ExampleAppStateCopyWithImpl<$Res>
     Object? auth = freezed,
     Object? profile = freezed,
   }) {
-    return _then(_ExampleAppState(
+    return _then(_$_ExampleAppState(
       pages: pages == freezed
           ? _value.pages
           : pages // ignore: cast_nullable_to_non_nullable
@@ -243,7 +217,7 @@ class _$_ExampleAppState implements _ExampleAppState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ExampleAppState &&
+            other is _$_ExampleAppState &&
             const DeepCollectionEquality().equals(other.pages, pages) &&
             const DeepCollectionEquality().equals(other.problems, problems) &&
             const DeepCollectionEquality().equals(other.settings, settings) &&
@@ -251,6 +225,7 @@ class _$_ExampleAppState implements _ExampleAppState {
             const DeepCollectionEquality().equals(other.profile, profile));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -262,22 +237,24 @@ class _$_ExampleAppState implements _ExampleAppState {
 
   @JsonKey(ignore: true)
   @override
-  _$ExampleAppStateCopyWith<_ExampleAppState> get copyWith =>
-      __$ExampleAppStateCopyWithImpl<_ExampleAppState>(this, _$identity);
+  _$$_ExampleAppStateCopyWith<_$_ExampleAppState> get copyWith =>
+      __$$_ExampleAppStateCopyWithImpl<_$_ExampleAppState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ExampleAppStateToJson(this);
+    return _$$_ExampleAppStateToJson(
+      this,
+    );
   }
 }
 
 abstract class _ExampleAppState implements ExampleAppState {
   factory _ExampleAppState(
-      {@PageDataConverter() required IList<PageData> pages,
-      required IList<ProblemInfo> problems,
-      required Settings settings,
-      required AuthState auth,
-      ProfileData? profile}) = _$_ExampleAppState;
+      {@PageDataConverter() required final IList<PageData> pages,
+      required final IList<ProblemInfo> problems,
+      required final Settings settings,
+      required final AuthState auth,
+      final ProfileData? profile}) = _$_ExampleAppState;
 
   factory _ExampleAppState.fromJson(Map<String, dynamic> json) =
       _$_ExampleAppState.fromJson;
@@ -295,6 +272,6 @@ abstract class _ExampleAppState implements ExampleAppState {
   ProfileData? get profile;
   @override
   @JsonKey(ignore: true)
-  _$ExampleAppStateCopyWith<_ExampleAppState> get copyWith =>
+  _$$_ExampleAppStateCopyWith<_$_ExampleAppState> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -13,7 +13,7 @@ dependencies:
   redfire:
     path: ../../../../flutter/apps/utils/redfire
   freezed_annotation:
-  json_annotation: ^4.4.0
+  json_annotation: ^4.6.0
   redux:
   flutter_redux:
   fast_immutable_collections:

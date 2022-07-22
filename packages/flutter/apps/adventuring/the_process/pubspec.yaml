@@ -20,7 +20,7 @@ dependencies:
   
   # redux - app state
   freezed_annotation:
-  json_annotation: ^4.4.0
+  json_annotation: ^4.6.0
   fast_immutable_collections: ^7.1.2
 
   # utils 
