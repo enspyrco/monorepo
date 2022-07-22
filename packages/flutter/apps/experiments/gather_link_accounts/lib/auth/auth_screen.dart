@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gather_link_accounts/auth/buttons/google_sign_in_button.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -28,6 +29,8 @@ class _AuthScreenState extends State<AuthScreen> {
       width: 210,
       child: Column(
         children: [
+          const SizedBox(height: 50),
+          const GoogleSignInButton(),
           const SizedBox(height: 50),
           TextField(
             autofocus: true,
