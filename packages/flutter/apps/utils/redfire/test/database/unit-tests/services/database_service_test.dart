@@ -25,7 +25,7 @@ void main() {
       when(mockDocumentReference.id).thenReturn(testId);
 
       // Create the service under test.
-      final service = FlutterfireFirestoreService(database: mockFirestore);
+      final service = FlutterfireFirestoreService(firestore: mockFirestore);
 
       // Interact with the service under test.
       final id = await service.createDocument(at: testPath, from: testJson);

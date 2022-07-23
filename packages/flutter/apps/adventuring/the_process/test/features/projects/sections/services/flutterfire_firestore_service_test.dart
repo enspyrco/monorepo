@@ -15,7 +15,7 @@ void main() {
       when(mockDocRef.id).thenReturn('id');
       RedFireLocator.provide(
           firestoreService:
-              FlutterfireFirestoreService(database: firestoreMock));
+              FlutterfireFirestoreService(firestore: firestoreMock));
       final service = RedFireLocator.getFirestoreService();
 
       service

@@ -37,7 +37,7 @@ class ServicesHarness {
     // Create a real DatabaseService with mock plugin.
     _mockFirebaseFirestore = MockFirebaseFirestore();
     _firestoreService =
-        FlutterfireFirestoreService(database: _mockFirebaseFirestore);
+        FlutterfireFirestoreService(firestore: _mockFirebaseFirestore);
 
     // Create a real PlatformService with mock plugins.
     _mockPlatformWrapper = MockPlatformWrapper();

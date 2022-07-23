@@ -26,7 +26,7 @@ class ProfilePage<T extends RedFireState> extends StatelessWidget {
 //               child: Column(
 //             children: [
 //               if (profileData == null)
-//                 const WaitingIndicator('Connecting to database...')
+//                 const WaitingIndicator('Connecting to firestore...')
 //               else ...[
 //                 Text(
 //                     profileData.displayName ?? 'they who have yet to be named'),

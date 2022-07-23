@@ -7,8 +7,8 @@ import '../../types/typedefs.dart';
 class FlutterfireFirestoreService {
   final FirebaseFirestore _firestore;
 
-  FlutterfireFirestoreService({FirebaseFirestore? database})
-      : _firestore = database ?? FirebaseFirestore.instance;
+  FlutterfireFirestoreService({FirebaseFirestore? firestore})
+      : _firestore = firestore ?? FirebaseFirestore.instance;
 
   // Add a document with the given data at the given path and return the
   // document id.
@@ -92,14 +92,14 @@ class FlutterfireFirestoreService {
     return await _firestore.doc(at).delete();
   }
 
-  /// Tap the database to create a stream from the document at [path],
+  /// Tap the firestore to create a stream from the document at [path],
   /// converting the data in each [DocumentSnapshot] into a [JsonMap]
   @override
   Stream<JsonMap> tapDocument({required String at}) {
     return _firestore.doc(at).snapshots().map((event) => event.data() ?? {});
   }
 
-  /// Tap the database to create a stream from the collection at [path],
+  /// Tap the firestore to create a stream from the collection at [path],
   /// converting the data in each [QuerySnapshot] into a [JsonMap]
   /// The document id is added to the json.
   @override

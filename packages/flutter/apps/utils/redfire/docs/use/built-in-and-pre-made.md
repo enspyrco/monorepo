@@ -31,7 +31,7 @@
 - profile
 - simplified database access
   - snippets make it easy to
-    - create a middleware that uses the database service to read/watch docs/collections and save to AppState
+    - create a middleware that uses the firestore service to read/watch docs/collections and save to AppState
     - easily create a widget that reacts to AppState
 
 </details>

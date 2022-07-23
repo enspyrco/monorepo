@@ -22,7 +22,7 @@ class TapProfileMiddleware<T extends RedFireState>
               return;
             }
 
-            // Otherwise tap the database at the appropriate location and...
+            // Otherwise tap into the firestore at the appropriate location and...
             final firestoreService = RedFireLocator.getFirestoreService();
             final userId = store.state.auth.userData?.uid;
             final profilePath = 'profiles/$userId';
