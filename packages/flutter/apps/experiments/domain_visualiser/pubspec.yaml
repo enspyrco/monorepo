@@ -12,6 +12,12 @@ dependencies:
   
   redfire:
     path: ../../../../flutter/apps/utils/redfire
+  # cloud_firestore_extensions:
+  #   path: ../../utils/flutterfire/cloud_firestore_extensions
+  firestore_service_interface:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/interfaces/firestore_service_interface
   firebase_core: ^1.12.0
   firebase_auth: ^3.3.6
   freezed_annotation:

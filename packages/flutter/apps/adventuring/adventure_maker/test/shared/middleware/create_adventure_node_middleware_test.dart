@@ -20,7 +20,7 @@ void main() {
       var signedInAppState =
           AppState.init().copyWith.auth(userData: exampleAuthUser);
       var store = FakeStore(signedInAppState);
-      var mockService = MockFlutterfireFirestoreService();
+      var mockService = MockFirestoreServiceFlutterfire();
 
       // Stub test-doubles.
       when(mockService.createDocument(
@@ -45,7 +45,7 @@ void main() {
       var exampleAuthUser = AuthUserDataExample.minimal;
       var state = AppState.init().copyWith.auth(userData: exampleAuthUser);
       var store = FakeStore(state);
-      var mockService = MockFlutterfireFirestoreService();
+      var mockService = MockFirestoreServiceFlutterfire();
 
       // Stub test-doubles.
       when(mockService.createDocument(

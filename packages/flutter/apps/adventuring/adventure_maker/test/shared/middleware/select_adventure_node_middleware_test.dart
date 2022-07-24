@@ -2,6 +2,7 @@ import 'package:adventure_maker/adventures/models/adventure_model.dart';
 import 'package:adventure_maker/app_state.dart';
 import 'package:adventure_maker/shared/actions/select_adventure_node_action.dart';
 import 'package:adventure_maker/shared/middleware/select_adventure_node_middleware.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 import 'package:mockito/mockito.dart';
 import 'package:redfire/actions.dart';
 import 'package:redfire/services.dart';
@@ -18,7 +19,7 @@ void main() {
       var signedInAppState =
           AppState.init().copyWith.auth(userData: exampleAuthUser);
       var store = FakeStore(signedInAppState);
-      var mockService = MockFlutterfireFirestoreService();
+      var mockService = MockFirestoreServiceFlutterfire();
 
       // Stub test-doubles.
       when(mockService.getDocuments(
@@ -47,16 +48,15 @@ void main() {
       var signedInAppState =
           AppState.init().copyWith.auth(userData: exampleAuthUser);
       var store = FakeStore(signedInAppState);
-      var mockService = MockFlutterfireFirestoreService();
+      var mockService = MockFirestoreServiceFlutterfire();
 
       // Stub test-doubles.
       when(mockService.getDocuments(
               at: anyNamed('at'),
               where: anyNamed('where'),
               arrayContains: anyNamed('arrayContains')))
-          .thenAnswer((_) => Future.value([
-                <String, Object?>{'id': 'id'}
-              ]));
+          .thenAnswer(
+              (_) => Future.value([Document(id: 'id', path: '/', fields: {})]));
 
       // Provide test-doubles.
       RedFireLocator.provide(firestoreService: mockService);

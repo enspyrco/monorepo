@@ -1,6 +1,8 @@
 import 'dart:async';
 
+// import 'package:cloud_firestore_extensions/cloud_firestore_extensions.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire/types.dart';
@@ -27,7 +29,7 @@ class TapDomainObjectsMiddleware
 
             // ... otherwise tap the database at the appropriate location...
             final service = RedFireLocator.getFirestoreService();
-            final changes = service.tapCollection(at: 'domain-objects');
+            final changes = service.tapIntoCollection(at: 'domain-objects');
 
             // ... and direct the stream to the store.
             _subscription = changes.listen((jsonList) {
@@ -41,5 +43,5 @@ class TapDomainObjectsMiddleware
             store.dispatchProblem(error, trace);
           }
         });
-  static StreamSubscription<JsonList>? _subscription;
+  static StreamSubscription<List<Document>>? _subscription;
 }

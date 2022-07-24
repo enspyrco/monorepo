@@ -6,7 +6,7 @@ void main() {
     final response = await post(Uri.parse('http://0.0.0.0:8080/'),
         body: '{"pageId" : "8da7e92d9c4947db9d0ba0e39437b33e"}');
     expect(response.statusCode, 200);
-  });
+  }, skip: true);
 }
 
 

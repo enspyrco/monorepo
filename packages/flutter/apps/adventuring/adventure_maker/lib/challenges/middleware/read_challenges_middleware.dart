@@ -1,7 +1,6 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
-import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
 
 import '../../app_state.dart';
@@ -17,14 +16,14 @@ class ReadChallengesMiddleware
 
           try {
             final service = RedFireLocator.getFirestoreService();
-            var jsonList = await service.getDocuments(
+            var documents = await service.getDocuments(
                 at: 'challenges',
                 where: 'parentIds',
                 arrayContains: store.state.adventures.selected!);
 
-            var challenges = jsonList
+            var challenges = documents
                 .map<ChallengeModel>(
-                    (json) => ChallengeModel.fromJson(json as JsonMap))
+                    (document) => ChallengeModel.fromJson(document.fields))
                 .toISet();
 
             store.dispatch(SetAdventureNodesAction(challenges));

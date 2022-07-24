@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
-import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
 
 import '../../app_state.dart';
@@ -30,13 +30,13 @@ class TapOrganisationsMiddleware
             // ... otherwise tap the database at the appropriate location...
             final service = RedFireLocator.getFirestoreService();
             final organisationsChanges =
-                service.tapCollection(at: 'organisations');
+                service.tapIntoCollection(at: 'organisations');
 
             // ... and direct the stream to the store.
-            _subscription = organisationsChanges.listen((newJsonList) {
-              var organisations = newJsonList
-                  .map<OrganisationModel>((jsonItem) =>
-                      OrganisationModel.fromJson(jsonItem as JsonMap))
+            _subscription = organisationsChanges.listen((documents) {
+              var organisations = documents
+                  .map<OrganisationModel>(
+                      (document) => OrganisationModel.fromJson(document.fields))
                   .toISet();
 
               // Find any added organisatons.
@@ -67,5 +67,5 @@ class TapOrganisationsMiddleware
           }
         });
 
-  static StreamSubscription<JsonList>? _subscription;
+  static StreamSubscription<List<Document>>? _subscription;
 }

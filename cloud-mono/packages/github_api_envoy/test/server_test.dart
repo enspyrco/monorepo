@@ -65,5 +65,5 @@ void main() {
     final response = await get(Uri.parse(local + '/echo/hello'));
     expect(response.statusCode, 200);
     expect(response.body, 'hello\n');
-  });
+  }, skip: true);
 }

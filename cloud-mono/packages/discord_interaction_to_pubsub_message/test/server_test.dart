@@ -13,13 +13,13 @@ void main() {
   test('make a POST request to local server', () async {
     final response = await post(Uri.parse(localServer), body: '{"type": 1}');
     expect(response.statusCode, 200);
-  });
+  }, skip: true);
 
   // Test that the server ACKs a PING
   test('make a POST request to live server', () async {
     final response = await post(Uri.parse(liverServer), body: '{"type": 1}');
     expect(response.statusCode, 200);
-  });
+  }, skip: true);
 
   // Test the server with typical json and headers
   // TODO: not sure why validation fails - the body taken from the logs has been decoded perhaps?
@@ -31,5 +31,5 @@ void main() {
           'X-Signature-Timestamp': timestamp
         });
     expect(response.statusCode, 200);
-  });
+  }, skip: true);
 }

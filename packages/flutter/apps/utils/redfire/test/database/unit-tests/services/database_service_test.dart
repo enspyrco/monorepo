@@ -1,5 +1,5 @@
 import 'package:mockito/mockito.dart';
-import 'package:redfire/src/database/services/flutterfire_firestore_service.dart';
+import 'package:redfire/src/database/services/firestore_service_flutterfire.dart';
 import 'package:redfire/src/types/typedefs.dart';
 import 'package:redfire_test/redfire_test.dart';
 import 'package:test/test.dart';
@@ -25,7 +25,7 @@ void main() {
       when(mockDocumentReference.id).thenReturn(testId);
 
       // Create the service under test.
-      final service = FlutterfireFirestoreService(firestore: mockFirestore);
+      final service = FirestoreServiceFlutterfire(firestore: mockFirestore);
 
       // Interact with the service under test.
       final id = await service.createDocument(at: testPath, from: testJson);

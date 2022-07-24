@@ -1,6 +1,7 @@
 name: redfire
 description: A redux based state management & navigation solution, with prebuilt modules for Firebase features.
 version: 0.0.1
+publish_to: none
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -21,6 +22,15 @@ dependencies:
   freezed_annotation:
   json_annotation: ^4.6.0
   flutterfire_ui: ^0.3.2
+  firestore_service_interface:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/interfaces/firestore_service_interface
+  cloud_firestore_extensions:
+    path: ../flutterfire/cloud_firestore_extensions
+    # git:
+    #   url: https://github.com/enspyrco/monorepo.git
+    #   path: packages/flutter/apps/utils/flutterfire/cloud_firestore_extensions
   
 dev_dependencies:
   flutter_test:
@@ -32,9 +42,13 @@ dev_dependencies:
   test:
   mockito:
   redfire_test:
-    path: ../redfire_test
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/apps/utils/redfire_test
   redfire_lints:
-    path: ../redfire_lints
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/apps/utils/redfire_lints
 
 flutter:  
   fonts:

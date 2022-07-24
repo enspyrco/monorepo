@@ -1,0 +1,3 @@
+dependency_overrides:
+  json_utils:
+    path: ../../dart/utils/json_utils
