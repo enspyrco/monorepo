@@ -1,14 +1,16 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore_extensions/cloud_firestore_extensions.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 
 import '../../types/typedefs.dart';
 
-class DatabaseService {
+class FirestoreServiceFlutterfire implements FirestoreService {
   final FirebaseFirestore _firestore;
 
-  DatabaseService({FirebaseFirestore? database})
-      : _firestore = database ?? FirebaseFirestore.instance;
+  FirestoreServiceFlutterfire({FirebaseFirestore? firestore})
+      : _firestore = firestore ?? FirebaseFirestore.instance;
 
   // Add a document with the given data at the given path and return the
   // document id.
@@ -23,7 +25,7 @@ class DatabaseService {
   /// converting each document in the returned [QuerySnapshot] into a [JsonMap]
   /// The document id is added to the json.
   @override
-  Future<JsonList> getDocuments({
+  Future<List<Document>> getDocuments({
     required String at,
     Object? where,
     Object? isEqualTo,
@@ -40,7 +42,7 @@ class DatabaseService {
   }) async {
     if (where == null) {
       var snapshot = await _firestore.collection(at).get();
-      return snapshot.docs.map((doc) => doc.data()..['id'] = doc.id).toList();
+      return snapshot.docs.toDocuments();
     } else {
       var snapshot = await _firestore
           .collection(at)
@@ -59,7 +61,7 @@ class DatabaseService {
             isNull: isNull,
           )
           .get();
-      return snapshot.docs.map((doc) => doc.data()..['id'] = doc.id).toList();
+      return snapshot.docs.toDocuments();
     }
   }
 
@@ -92,18 +94,18 @@ class DatabaseService {
     return await _firestore.doc(at).delete();
   }
 
-  /// Tap the database to create a stream from the document at [path],
+  /// Tap the firestore to create a stream from the document at [path],
   /// converting the data in each [DocumentSnapshot] into a [JsonMap]
   @override
-  Stream<JsonMap> tapDocument({required String at}) {
-    return _firestore.doc(at).snapshots().map((event) => event.data() ?? {});
+  Stream<Document> tapIntoDocument({required String at}) {
+    return _firestore.doc(at).snapshots().map((event) => event.toDocument());
   }
 
-  /// Tap the database to create a stream from the collection at [path],
+  /// Tap the firestore to create a stream from the collection at [path],
   /// converting the data in each [QuerySnapshot] into a [JsonMap]
   /// The document id is added to the json.
   @override
-  Stream<JsonList> tapCollection(
+  Stream<List<Document>> tapIntoCollection(
       {required String at,
       Object? where,
       Object? isEqualTo,
@@ -118,8 +120,10 @@ class DatabaseService {
       List<Object?>? whereNotIn,
       bool? isNull}) {
     return (where == null)
-        ? _firestore.collection(at).snapshots().map((event) =>
-            event.docs.map((doc) => doc.data()..['id'] = doc.id).toList())
+        ? _firestore
+            .collection(at)
+            .snapshots()
+            .map((event) => event.docs.toDocuments())
         : _firestore
             .collection(at)
             .where(
@@ -137,12 +141,6 @@ class DatabaseService {
               isNull: isNull,
             )
             .snapshots()
-            .map((event) =>
-                event.docs.map((doc) => doc.data()..['id'] = doc.id).toList());
-  }
-
-  @override
-  void someFunc() {
-    // TODO: implement someFunc
+            .map((event) => event.docs.toDocuments());
   }
 }

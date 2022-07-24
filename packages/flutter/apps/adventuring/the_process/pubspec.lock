@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "41.0.0"
+    version: "42.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.0"
+    version: "4.3.0"
   args:
     dependency: transitive
     description:
@@ -127,6 +127,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.4.0"
+  cloud_firestore_extensions:
+    dependency: transitive
+    description:
+      path: "../../utils/flutterfire/cloud_firestore_extensions"
+      relative: true
+    source: path
+    version: "1.0.0"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
@@ -295,6 +302,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.3+8"
+  firestore_service_interface:
+    dependency: "direct main"
+    description:
+      path: "../../../../interfaces/firestore_service_interface"
+      relative: true
+    source: path
+    version: "0.0.1"
   fixnum:
     dependency: transitive
     description:
@@ -497,6 +511,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.3.1"
+  json_utils:
+    dependency: transitive
+    description:
+      path: "packages/dart/utils/json_utils"
+      ref: HEAD
+      resolved-ref: "631900d98cc92c0355979b17242ecb23a9b162d4"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.1"
   lints:
     dependency: transitive
     description:

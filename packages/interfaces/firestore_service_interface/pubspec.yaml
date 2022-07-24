@@ -11,7 +11,6 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/dart/utils/json_utils
-    # path: ../../dart/utils/json_utils
 
 dev_dependencies:
   lints: ^2.0.0

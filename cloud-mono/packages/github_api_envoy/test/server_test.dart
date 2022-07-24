@@ -24,7 +24,7 @@ void main() {
         installationId: '23353229');
     var jsonResponse = await githubApp.createRepo(name: 'justATestRepo');
     print(jsonResponse);
-  });
+  }, skip: true); // this is a live test that creates a repo so we skip it
 
   test('SecretManagerService', () async {
     var serviceAccountCredentialsJson =
@@ -65,5 +65,5 @@ void main() {
     final response = await get(Uri.parse(local + '/echo/hello'));
     expect(response.statusCode, 200);
     expect(response.body, 'hello\n');
-  });
+  }, skip: true);
 }

@@ -59,7 +59,7 @@ void main() {
 
     // expect(dartOption1['name'], equals(option1['name']));
     // expect(dartOption1['description'], equals(option1['description']));
-  });
+  }, skip: true);
 
   test('hello', () async {
     final api = DiscordApi(
@@ -72,5 +72,5 @@ void main() {
     final response =
         await api.createCommandFrom({'name': 'High Five', 'type': 2});
     print(response.body);
-  });
+  }, skip: true);
 }

@@ -8,5 +8,5 @@ void main() {
   test('...', () async {
     var value = extractInfo(body);
     expect(value, '12+23');
-  });
+  }, skip: true);
 }

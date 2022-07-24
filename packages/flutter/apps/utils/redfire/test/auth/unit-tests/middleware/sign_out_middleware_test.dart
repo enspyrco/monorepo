@@ -1,8 +1,8 @@
 import 'package:mockito/mockito.dart';
 import 'package:redfire/actions.dart';
 import 'package:redfire/src/auth/middleware/sign_out_middleware.dart';
+import 'package:redfire/src/types/red_fire_state.dart';
 import 'package:redfire/src/utils/red_fire_locator.dart';
-import 'package:redfire/types.dart';
 import 'package:redfire_test/redfire_test.dart';
 import 'package:test/test.dart';
 

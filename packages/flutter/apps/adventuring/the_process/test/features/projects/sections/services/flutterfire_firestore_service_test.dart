@@ -5,7 +5,7 @@ import 'package:redfire_test/redfire_test.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('DatabaseService', () {
+  group('FlutterfireFirestoreService', () {
     test('createSection function calls firestore collection() with uid', () {
       final firestoreMock = MockFirebaseFirestore();
       final mockColRef = MockCollectionReference<JsonMap>();
@@ -14,8 +14,9 @@ void main() {
       when(mockColRef.add(any)).thenAnswer((_) => Future.value(mockDocRef));
       when(mockDocRef.id).thenReturn('id');
       RedFireLocator.provide(
-          databaseService: DatabaseService(database: firestoreMock));
-      final service = RedFireLocator.getDatabaseService();
+          firestoreService:
+              FirestoreServiceFlutterfire(firestore: firestoreMock));
+      final service = RedFireLocator.getFirestoreService();
 
       service
           .createDocument(at: 'new/uid', from: {'uid': 'uid', 'name': 'testy'});

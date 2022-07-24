@@ -48,12 +48,12 @@ abstract class FirestoreService {
 
   /// Tap the database to create a stream from the document at [path],
   /// converting the data in each [DocumentSnapshot] into a [JsonMap]
-  Stream<Document> tapDocument({required String at});
+  Stream<Document> tapIntoDocument({required String at});
 
   /// Tap the database to create a stream from the collection at [path],
   /// converting the data in each [QuerySnapshot] into a [JsonMap]
   /// The document id is added to the json.
-  Stream<List<Document>> tapCollection(
+  Stream<List<Document>> tapIntoCollection(
       {required String at,
       Object? where,
       Object? isEqualTo,

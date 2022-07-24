@@ -18,7 +18,7 @@ class DeleteOrganisationMiddleware
             var selected = store.state.organisations.selector.selected;
             if (selected == null) return;
 
-            final service = RedFireLocator.getDatabaseService();
+            final service = RedFireLocator.getFirestoreService();
             await service.deleteDocument(at: 'organisations/${selected.id}');
           } catch (error, trace) {
             store.dispatchProblem(error, trace);

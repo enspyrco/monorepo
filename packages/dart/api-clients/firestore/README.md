@@ -1,4 +1,4 @@
-# firestore_api_client
+# firestore_service_googleapis
 
 *Convenience wrappers around the googleapis.dart Firestore API.*
 
@@ -21,7 +21,7 @@ cd example && firebase emulators:start --only firestore --project demo-project
 ### Run
 
 ```sh
-dart run bin/firestore_api_client_example.dart
+dart run bin/firestore_service_googleapis_example.dart
 ```
 
 ### Debug
@@ -29,7 +29,7 @@ dart run bin/firestore_api_client_example.dart
 #### VS Code
 
 - Open the project folder in VS Code
-- Run the `firestore_api_client_example` launch config
+- Run the `firestore_service_googleapis_example` launch config
 
 [Notion](https://www.notion.so/enspyrco/googleapis-Firestore-Service-9e12340b0cd44470aedd83c569618082)
 

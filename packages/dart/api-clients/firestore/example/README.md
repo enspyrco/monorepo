@@ -1,5 +1,5 @@
-# firestore_api_client_example
+# firestore_service_googleapis_example
 
-A simple CLI app that shows how to use the `firestore_api_client` package.
+A simple CLI app that shows how to use the `firestore_service_googleapis` package.
 
 For information on setup and running, see [../README.md](../README.md)

@@ -25,7 +25,7 @@ class CreateProjectMiddleware
             ProjectState project = action.project.copyWith(
                 ownerIds: ISet([uid]), organisationIds: ISet([selected.id]));
 
-            final service = RedFireLocator.getDatabaseService();
+            final service = RedFireLocator.getFirestoreService();
 
             await service.createDocument(
                 at: 'projects', from: project.toJson());

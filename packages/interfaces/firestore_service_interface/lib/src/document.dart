@@ -5,10 +5,25 @@ import 'package:json_utils/json_utils.dart';
 ///    than the cost of converting every time (so they are left as String)
 ///  - the converse for id, the benefit of having id already extracted from name
 ///     outweighs the cost of doing it every time
-abstract class Document {
-  String get id;
-  String get name;
-  JsonMap get fields;
-  String get createTime;
-  String get updateTime;
+class Document {
+  Document(
+      {required this.id,
+      required this.path,
+      required this.fields,
+      this.createTime,
+      this.updateTime});
+  final String id;
+
+  /// cloud_firestore: we use reference.path
+  /// googleapis: we get the path from the name
+  final String path;
+  final JsonMap fields;
+
+  /// googleapis: always present
+  /// cloud_firestore: not accessible so always null
+  final String? createTime;
+
+  /// googleapis: always present
+  /// cloud_firestore: not accessible so always null
+  final String? updateTime;
 }

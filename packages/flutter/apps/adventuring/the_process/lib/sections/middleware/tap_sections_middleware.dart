@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
-import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
 
 import '../../app_state.dart';
@@ -23,15 +23,16 @@ class TapSectionsMiddleware
               return;
             }
 
-            final databaseService = RedFireLocator.getDatabaseService();
+            final firestoreService = RedFireLocator.getFirestoreService();
 
             // Convert json from the database to an action that handles the data,
             // storing in the app state.
-            _subscription =
-                databaseService.tapCollection(at: 'sections').listen((json) {
+            _subscription = firestoreService
+                .tapIntoCollection(at: 'sections')
+                .listen((documents) {
               store.dispatch(SetSectionsAction(
-                  list: json
-                      .map((e) => SectionModel.fromJson(e as JsonMap))
+                  list: documents
+                      .map((document) => SectionModel.fromJson(document.fields))
                       .toIList()));
             }, onError: store.dispatchProblem);
           } catch (error, trace) {
@@ -39,5 +40,5 @@ class TapSectionsMiddleware
           }
         });
 
-  static StreamSubscription<JsonList>? _subscription;
+  static StreamSubscription<List<Document>>? _subscription;
 }

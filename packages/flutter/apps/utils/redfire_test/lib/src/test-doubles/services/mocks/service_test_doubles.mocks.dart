@@ -7,13 +7,16 @@ import 'dart:async' as _i6;
 import 'package:fast_immutable_collections/fast_immutable_collections.dart'
     as _i3;
 import 'package:firebase_auth/firebase_auth.dart' as _i4;
+import 'package:firestore_service_interface/firestore_service_interface.dart'
+    as _i9;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:redfire/src/auth/actions/set_auth_user_data_action.dart' as _i7;
 import 'package:redfire/src/auth/services/auth_service.dart' as _i5;
-import 'package:redfire/src/database/services/database_service.dart' as _i8;
-import 'package:redfire/src/networking/services/http_service.dart' as _i11;
-import 'package:redfire/src/platform/services/platform_service.dart' as _i9;
-import 'package:redfire/src/settings/enums/platform_enum.dart' as _i10;
+import 'package:redfire/src/database/services/firestore_service_flutterfire.dart'
+    as _i8;
+import 'package:redfire/src/networking/services/http_service.dart' as _i12;
+import 'package:redfire/src/platform/services/platform_service.dart' as _i10;
+import 'package:redfire/src/settings/enums/platform_enum.dart' as _i11;
 import 'package:redfire/types.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -149,11 +152,12 @@ class MockAuthService extends _i1.Mock implements _i5.AuthService {
           returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
 }
 
-/// A class which mocks [DatabaseService].
+/// A class which mocks [FirestoreServiceFlutterfire].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDatabaseService extends _i1.Mock implements _i8.DatabaseService {
-  MockDatabaseService() {
+class MockFirestoreServiceFlutterfire extends _i1.Mock
+    implements _i8.FirestoreServiceFlutterfire {
+  MockFirestoreServiceFlutterfire() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -163,7 +167,7 @@ class MockDatabaseService extends _i1.Mock implements _i8.DatabaseService {
           Invocation.method(#createDocument, [], {#at: at, #from: from}),
           returnValue: Future<String>.value('')) as _i6.Future<String>);
   @override
-  _i6.Future<List<Object?>> getDocuments(
+  _i6.Future<List<_i9.Document>> getDocuments(
           {String? at,
           Object? where,
           Object? isEqualTo,
@@ -193,8 +197,8 @@ class MockDatabaseService extends _i1.Mock implements _i8.DatabaseService {
                 #whereNotIn: whereNotIn,
                 #isNull: isNull
               }),
-              returnValue: Future<List<Object?>>.value(<Object?>[]))
-          as _i6.Future<List<Object?>>);
+              returnValue: Future<List<_i9.Document>>.value(<_i9.Document>[]))
+          as _i6.Future<List<_i9.Document>>);
   @override
   _i6.Future<void> setDocument(
           {String? at, Map<String, Object?>? to, bool? merge = false}) =>
@@ -215,12 +219,48 @@ class MockDatabaseService extends _i1.Mock implements _i8.DatabaseService {
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
   @override
-  _i6.Stream<Map<String, Object?>> tapDocument({String? at}) =>
-      (super.noSuchMethod(Invocation.method(#tapDocument, [], {#at: at}),
-              returnValue: Stream<Map<String, Object?>>.empty())
-          as _i6.Stream<Map<String, Object?>>);
+  _i6.Stream<_i9.Document> tapIntoDocument({String? at}) => (super.noSuchMethod(
+      Invocation.method(#tapIntoDocument, [], {#at: at}),
+      returnValue: Stream<_i9.Document>.empty()) as _i6.Stream<_i9.Document>);
   @override
-  _i6.Stream<List<Object?>> tapCollection(
+  _i6.Stream<List<_i9.Document>> tapIntoCollection(
+          {String? at,
+          Object? where,
+          Object? isEqualTo,
+          Object? isNotEqualTo,
+          Object? isLessThan,
+          Object? isLessThanOrEqualTo,
+          Object? isGreaterThan,
+          Object? isGreaterThanOrEqualTo,
+          Object? arrayContains,
+          List<Object?>? arrayContainsAny,
+          List<Object?>? whereIn,
+          List<Object?>? whereNotIn,
+          bool? isNull}) =>
+      (super.noSuchMethod(
+              Invocation.method(#tapIntoCollection, [], {
+                #at: at,
+                #where: where,
+                #isEqualTo: isEqualTo,
+                #isNotEqualTo: isNotEqualTo,
+                #isLessThan: isLessThan,
+                #isLessThanOrEqualTo: isLessThanOrEqualTo,
+                #isGreaterThan: isGreaterThan,
+                #isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+                #arrayContains: arrayContains,
+                #arrayContainsAny: arrayContainsAny,
+                #whereIn: whereIn,
+                #whereNotIn: whereNotIn,
+                #isNull: isNull
+              }),
+              returnValue: Stream<List<_i9.Document>>.empty())
+          as _i6.Stream<List<_i9.Document>>);
+  @override
+  _i6.Stream<_i9.Document> tapDocument({String? at}) => (super.noSuchMethod(
+      Invocation.method(#tapDocument, [], {#at: at}),
+      returnValue: Stream<_i9.Document>.empty()) as _i6.Stream<_i9.Document>);
+  @override
+  _i6.Stream<List<_i9.Document>> tapCollection(
           {String? at,
           Object? where,
           Object? isEqualTo,
@@ -250,25 +290,22 @@ class MockDatabaseService extends _i1.Mock implements _i8.DatabaseService {
                 #whereNotIn: whereNotIn,
                 #isNull: isNull
               }),
-              returnValue: Stream<List<Object?>>.empty())
-          as _i6.Stream<List<Object?>>);
-  @override
-  void someFunc() => super.noSuchMethod(Invocation.method(#someFunc, []),
-      returnValueForMissingStub: null);
+              returnValue: Stream<List<_i9.Document>>.empty())
+          as _i6.Stream<List<_i9.Document>>);
 }
 
 /// A class which mocks [PlatformService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPlatformService extends _i1.Mock implements _i9.PlatformService {
+class MockPlatformService extends _i1.Mock implements _i10.PlatformService {
   MockPlatformService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i10.PlatformsEnum detectPlatform() =>
+  _i11.PlatformsEnum detectPlatform() =>
       (super.noSuchMethod(Invocation.method(#detectPlatform, []),
-          returnValue: _i10.PlatformsEnum.web) as _i10.PlatformsEnum);
+          returnValue: _i11.PlatformsEnum.web) as _i11.PlatformsEnum);
   @override
   _i6.Future<void> getAuthorized(
           {_i2.ProvidersEnum? provider, String? state}) =>
@@ -287,7 +324,7 @@ class MockPlatformService extends _i1.Mock implements _i9.PlatformService {
 /// A class which mocks [HttpService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHttpService extends _i1.Mock implements _i11.HttpService {
+class MockHttpService extends _i1.Mock implements _i12.HttpService {
   MockHttpService() {
     _i1.throwOnMissingStub(this);
   }
