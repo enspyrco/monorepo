@@ -1,8 +1,20 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
 library cloud_firestore_extensions;
 
-export 'src/extensions.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
+import 'package:json_utils/json_utils.dart';
 
-// TODO: Export any libraries intended for clients of this package.
+extension QueryDocumentSnapshotsExtension
+    on List<QueryDocumentSnapshot<JsonMap>> {
+  List<Document> toDocuments() {
+    return map((doc) =>
+            Document(id: doc.id, path: doc.reference.path, fields: doc.data()))
+        .toList();
+  }
+}
+
+extension DocumentSnapshotExtension on DocumentSnapshot<JsonMap> {
+  Document toDocument() {
+    return Document(id: id, path: reference.path, fields: data() ?? {});
+  }
+}
