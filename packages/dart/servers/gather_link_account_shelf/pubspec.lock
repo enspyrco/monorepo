@@ -14,14 +14,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "41.0.0"
+    version: "42.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.0"
+    version: "4.3.0"
   args:
     dependency: "direct main"
     description:
@@ -78,21 +78,19 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.2"
-  firestore_api_client:
+  firestore_service_googleapis:
     dependency: "direct main"
     description:
-      path: "packages/dart/api-clients/firestore"
-      ref: HEAD
-      resolved-ref: ff45212bcee6d273e1b987b5027cbccc389129af
-      url: "https://github.com/enspyrco/monorepo.git"
-    source: git
+      path: "../../api-clients/firestore"
+      relative: true
+    source: path
     version: "0.0.1"
   firestore_service_interface:
     dependency: transitive
     description:
       path: "packages/interfaces/firestore_service_interface"
       ref: HEAD
-      resolved-ref: ff45212bcee6d273e1b987b5027cbccc389129af
+      resolved-ref: "631900d98cc92c0355979b17242ecb23a9b162d4"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
@@ -129,7 +127,7 @@ packages:
     description:
       path: "packages/dart/utils/googleapis_utils"
       ref: HEAD
-      resolved-ref: ff45212bcee6d273e1b987b5027cbccc389129af
+      resolved-ref: "631900d98cc92c0355979b17242ecb23a9b162d4"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
@@ -178,11 +176,9 @@ packages:
   json_utils:
     dependency: "direct main"
     description:
-      path: "packages/dart/utils/json_utils"
-      ref: HEAD
-      resolved-ref: ff45212bcee6d273e1b987b5027cbccc389129af
-      url: "https://github.com/enspyrco/monorepo.git"
-    source: git
+      path: "../../utils/json_utils"
+      relative: true
+    source: path
     version: "0.0.1"
   lints:
     dependency: "direct dev"
@@ -309,7 +305,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.9.0"
+    version: "1.9.1"
   stack_trace:
     dependency: transitive
     description:
@@ -372,7 +368,7 @@ packages:
       name: vm_service
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "9.0.0"
+    version: "9.3.0"
   watcher:
     dependency: transitive
     description:

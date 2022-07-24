@@ -1,5 +1,7 @@
 import 'dart:typed_data';
 
+import 'package:firestore_service_interface/firestore_service_interface.dart'
+    as our;
 import 'package:googleapis/firestore/v1.dart';
 import 'package:json_utils/json_utils.dart';
 
@@ -81,4 +83,13 @@ abstract class TypeUtil {
     }
     throw Exception('Unrecognized type for Value: $value');
   }
+}
+
+extension DocumentExtension on Document {
+  our.Document toOurDocument() => our.Document(
+      id: Uri.parse(name!).pathSegments.last,
+      path: name!,
+      fields: fields.unwrapValues(),
+      createTime: createTime,
+      updateTime: updateTime);
 }

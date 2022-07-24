@@ -50,8 +50,9 @@ Three letter acronyms used in commit messages:
 - avm = adventure_maker
 - dvr = domain_visualiser
 - flr = flireator
+- fsg = firestore_service_googleapis
 - fsi = firestore_service_interface
-- fac = firestore_api_client
+- fsf = firestore_service_flutterfire
 - gau = googleapis_utils
 - gla = gather_link_account
 - gls = gather_link_account_shelf

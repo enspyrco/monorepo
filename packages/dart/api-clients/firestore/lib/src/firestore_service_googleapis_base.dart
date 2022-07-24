@@ -10,8 +10,8 @@ import 'document.dart';
 /// If [api] is present, [client] & [rootUrl] will be ignored and should be ommited.
 ///
 /// The main purpose of [rootUrl] is to make a service use the emulator while under testing.
-class GoogleapisFirestoreService implements FirestoreService {
-  GoogleapisFirestoreService(
+class FirestoreServiceGoogleapis implements FirestoreService {
+  FirestoreServiceGoogleapis(
       {required String projectId,
       AutoRefreshingAuthClient? client,
       String? rootUrl,
@@ -57,12 +57,15 @@ class GoogleapisFirestoreService implements FirestoreService {
   ///
   /// Relevant endpoint: https://cloud.google.com/firestore/docs/reference/rest/v1/projects.databases.documents/patch
   @override
-  Future<void> setDocument({
+  Future<Document> setDocument({
     required String at,
     required JsonMap to,
     bool merge = false,
   }) async {
-    _docs.patch(to.toDocument(), _databaseName + '/documents/' + at);
+    var doc =
+        await _docs.patch(to.toDocument(), _databaseName + '/documents/' + at);
+
+    return doc.toOurDocument();
   }
 
   /// From FirestoreService interface:

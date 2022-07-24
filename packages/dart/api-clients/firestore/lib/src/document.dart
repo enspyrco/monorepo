@@ -21,7 +21,7 @@ class DocumentGoogleApis implements Document {
   String get id => _id;
 
   @override
-  String get name => _name;
+  String get path => _name;
 
   @override
   JsonMap get fields => _fields;

@@ -1,10 +1,10 @@
-import 'package:firestore_api_client/firestore_api_client.dart';
+import 'package:firestore_service_googleapis/firestore_service_googleapis.dart';
 import 'package:googleapis_auth/auth_io.dart';
 
 void main(List<String> arguments) async {
   final httpClient = await clientViaApplicationDefaultCredentials(scopes: []);
 
-  final apiClient = GoogleapisFirestoreService(
+  final apiClient = FirestoreServiceGoogleapis(
       client: httpClient,
       rootUrl: 'http://localhost:8081/',
       projectId: 'demo-project');

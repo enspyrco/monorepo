@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:firestore_api_client/firestore_api_client.dart';
+import 'package:firestore_service_googleapis/firestore_service_googleapis.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:json_utils/json_utils.dart';
 import 'package:shelf/shelf.dart' show Request, Response;
@@ -15,13 +15,13 @@ Future<Response> handler(Request request) async {
 
     // Use a client that authenticates as the default service account
     final client = await clientViaApplicationDefaultCredentials(scopes: []);
-    final firestoreService =
-        FirestoreService(client: client, projectId: 'the-adventuverse');
+    final firestoreService = FirestoreServiceGoogleapis(
+        client: client, projectId: 'the-adventuverse');
 
     try {
       var json = jsonDecode(body) as JsonMap;
       var doc = await firestoreService.setDocument(at: 'emails', to: json);
-      print('saved: ${doc.name}');
+      print('saved: ${doc.path}');
     } catch (e) {
       firestoreService.setDocument(at: 'email-errors', to: {'error': '$e'});
     } finally {

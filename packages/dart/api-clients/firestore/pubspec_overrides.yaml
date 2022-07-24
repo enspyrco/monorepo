@@ -1,0 +1,7 @@
+dependency_overrides:
+  firestore_service_interface:
+    path: ../../../interfaces/firestore_service_interface
+  googleapis_utils:
+    path: ../../utils/googleapis_utils
+  json_utils:
+    path: ../../utils/json_utils
