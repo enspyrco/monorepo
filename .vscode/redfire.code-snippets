@@ -96,7 +96,7 @@
       "",
       "\t\t\t// ... otherwise tap the database at the appropriate location...",
       "\t\t\tfinal service = RedFireLocator.getFirestoreService();",
-      "\t\t\tfinal changes = service.tapCollection(at: '${1}');",
+      "\t\t\tfinal changes = service.tapIntoCollection(at: '${1}');",
       "",
       "\t\t\t// ... and direct the stream to the store.",
       "\t\t\t_subscription = changes.listen((jsonList) {",

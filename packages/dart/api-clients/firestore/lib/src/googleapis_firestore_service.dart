@@ -158,7 +158,7 @@ class GoogleapisFirestoreService implements FirestoreService {
   ///
   /// Relevant endpoint:
   @override
-  Stream<List<Document>> tapCollection(
+  Stream<List<Document>> tapIntoCollection(
       {required String at,
       Object? where,
       Object? isEqualTo,
@@ -180,7 +180,7 @@ class GoogleapisFirestoreService implements FirestoreService {
   ///
   /// Relevant endpoint:
   @override
-  Stream<Document> tapDocument({required String at}) {
+  Stream<Document> tapIntoDocument({required String at}) {
     // TODO: implement tapDocument
     throw UnimplementedError();
   }
