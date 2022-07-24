@@ -16,7 +16,7 @@ dependencies:
   firestore_service_interface:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/interfaces/firestore_service_interface
+      path: packages/dart/interfaces/firestore_service_interface
 
   # redux
   redux:
