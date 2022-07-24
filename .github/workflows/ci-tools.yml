@@ -4,7 +4,7 @@ on:
   push:
     paths: # only run if PR changes are in the relevant folders
       - 'containers/ci-tools/**'
-      - 'packages/flutter-apps/ci-tools/draw_badge/**'
+      - 'packages/flutter/utils/ci-tools/draw_badge/**'
       - 'packages/cli-apps/ci-tools/deploy_coverage/**'
     branches:
       - main

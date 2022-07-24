@@ -1,4 +1,4 @@
 dependency_overrides:
   firestore_service_interface:
-    path: ../../../../interfaces/firestore_service_interface
+    path: ../../../dart/interfaces/firestore_service_interface
     

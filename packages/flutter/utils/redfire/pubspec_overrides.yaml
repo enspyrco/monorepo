@@ -4,6 +4,6 @@ dependency_overrides:
   redfire_lints:
     path: ../redfire_lints
   firestore_service_interface:
-    path: ../../../../interfaces/firestore_service_interface
+    path: ../../../dart/interfaces/firestore_service_interface
   cloud_firestore_extensions:
     path: ../flutterfire/cloud_firestore_extensions

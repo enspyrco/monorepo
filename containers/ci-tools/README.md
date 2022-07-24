@@ -83,7 +83,7 @@ docker build -t citools -f containers/ci-tools/Dockerfile .
 `ci-tools.yml` runs whenever there are changes to files in the relevant folders:
 
 - 'containers/ci-tools/'
-- 'packages/flutter-apps/ci-tools/draw_badge/'
+- 'packages/flutter/utils/ci-tools/draw_badge/'
 - 'packages/cli-apps/ci-tools/deploy_coverage/'
 
 The workflow builds and deploys the image using `docker/build-push-action` with
