@@ -11,9 +11,9 @@ dependencies:
     sdk: flutter
   
   redfire:
-    path: ../../../../flutter/apps/utils/redfire
+    path: ../../../../flutter/utils/redfire
   # cloud_firestore_extensions:
-  #   path: ../../utils/flutterfire/cloud_firestore_extensions
+  #   path: ../utils/flutterfire/cloud_firestore_extensions
   firestore_service_interface:
     git:
       url: https://github.com/enspyrco/monorepo.git
@@ -32,13 +32,13 @@ dependencies:
   
 dev_dependencies:
   redfire_test:
-    path: ../../../../flutter/apps/utils/redfire_test
+    path: ../../../../flutter/utils/redfire_test
   build_runner:
   freezed:
   json_serializable: ^6.0.1
 
   redfire_lints:
-    path: ../../../../flutter/apps/utils/redfire_lints
+    path: ../../../../flutter/utils/redfire_lints
 
 flutter:
   uses-material-design: true

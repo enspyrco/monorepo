@@ -130,7 +130,7 @@ packages:
   cloud_firestore_extensions:
     dependency: transitive
     description:
-      path: "../../utils/flutterfire/cloud_firestore_extensions"
+      path: "../utils/flutterfire/cloud_firestore_extensions"
       relative: true
     source: path
     version: "1.0.0"
@@ -298,7 +298,7 @@ packages:
   firestore_service_interface:
     dependency: "direct main"
     description:
-      path: "../../../../interfaces/firestore_service_interface"
+      path: "../../../dart/interfaces/firestore_service_interface"
       relative: true
     source: path
     version: "0.0.1"
@@ -635,21 +635,21 @@ packages:
   redfire:
     dependency: "direct main"
     description:
-      path: "../../utils/redfire"
+      path: "../utils/redfire"
       relative: true
     source: path
     version: "0.0.1"
   redfire_lints:
     dependency: "direct dev"
     description:
-      path: "../../utils/redfire_lints"
+      path: "utils/redfire_lints"
       relative: true
     source: path
     version: "1.0.0"
   redfire_test:
     dependency: "direct dev"
     description:
-      path: "../../utils/redfire_test"
+      path: "utils/redfire_test"
       relative: true
     source: path
     version: "0.0.1"

@@ -14,7 +14,7 @@
       "name": "adventure_maker",
       "type": "dart",
       "request": "launch",
-      "cwd": "packages/flutter-apps/adventuring/adventure_maker",
+      "cwd": "packages/flutter/apps/adventuring/adventure_maker",
       "program": "lib/main.dart"
     },
     {
@@ -22,7 +22,7 @@
       "type": "dart",
       "request": "launch",
       "deviceId": "chrome",
-      "cwd": "packages/flutter-apps/adventuring/adventure_maker",
+      "cwd": "packages/flutter/apps/adventuring/adventure_maker",
       "program": "lib/main.dart",
       "args": ["--web-hostname", "localhost", "--web-port", "5000"]
     },
@@ -45,7 +45,7 @@
       "type": "dart",
       "request": "launch",
       "deviceId": "chrome",
-      "cwd": "packages/flutter-apps/adventuring/tech_world",
+      "cwd": "packages/flutter/apps/adventuring/tech_world",
       "program": "lib/main.dart",
       "args": ["--web-hostname", "localhost", "--web-port", "5000"]
     },

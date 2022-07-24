@@ -30,7 +30,7 @@ dependencies:
     path: ../flutterfire/cloud_firestore_extensions
     # git:
     #   url: https://github.com/enspyrco/monorepo.git
-    #   path: packages/flutter/apps/utils/flutterfire/cloud_firestore_extensions
+    #   path: packages/flutter/utils/flutterfire/cloud_firestore_extensions
   
 dev_dependencies:
   flutter_test:
@@ -44,11 +44,11 @@ dev_dependencies:
   redfire_test:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/apps/utils/redfire_test
+      path: packages/flutter/utils/redfire_test
   redfire_lints:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/apps/utils/redfire_lints
+      path: packages/flutter/utils/redfire_lints
 
 flutter:  
   fonts:
