@@ -1,16 +1,13 @@
 # gather_link_accounts
 
-A new Flutter project.
+Frontend app for linking Gather and other accounts.
 
-## Getting Started
+The backend is `gather_link_accounts_shelf`.
 
-This project is a starting point for a Flutter application.
+## Deploy
 
-A few resources to get you started if this is your first Flutter project:
+We have a predeploy hook set to: `flutter build web` so just call:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```sh
+firebase deploy --only hosting
+```

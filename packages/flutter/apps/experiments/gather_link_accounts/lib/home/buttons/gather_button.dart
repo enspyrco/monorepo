@@ -33,9 +33,11 @@ class GatherButton extends StatelessWidget {
           children: [
             Text(
               '${linkingState.buttonText}Gather',
-              style: const TextStyle(
+              style: TextStyle(
                   fontWeight: FontWeight.w400,
-                  color: Color.fromARGB(200, 5, 73, 255)),
+                  color: (linkingState == LinkingState.linked)
+                      ? const Color.fromARGB(255, 129, 204, 248)
+                      : const Color.fromARGB(200, 5, 73, 255)),
             ),
             const SizedBox(width: 10),
             Padding(
