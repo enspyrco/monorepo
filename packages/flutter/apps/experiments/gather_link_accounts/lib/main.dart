@@ -4,11 +4,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gather_link_accounts/auth/auth_screen.dart';
+import 'package:gather_link_accounts/state/signed_in_state.dart';
 
 import 'firebase_options.dart';
 import 'home/home_screen.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
@@ -34,7 +36,7 @@ class AuthGuard extends StatefulWidget {
 
 class _AuthGuardState extends State<AuthGuard> {
   StreamSubscription<User?>? subscription;
-  bool signedIn = false;
+  SignedInState signedIn = SignedInState.checking;
 
   @override
   void initState() {
@@ -42,7 +44,8 @@ class _AuthGuardState extends State<AuthGuard> {
     subscription =
         FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (!mounted) return;
-      setState(() => signedIn = user != null);
+      setState(() => signedIn =
+          (user == null) ? SignedInState.notSignedIn : SignedInState.signedIn);
     });
   }
 
@@ -56,7 +59,9 @@ class _AuthGuardState extends State<AuthGuard> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: signedIn ? const HomeScreen() : const AuthScreen(),
+        body: (signedIn == SignedInState.signedIn)
+            ? const HomeScreen()
+            : AuthScreen(signedIn),
       ),
     );
   }

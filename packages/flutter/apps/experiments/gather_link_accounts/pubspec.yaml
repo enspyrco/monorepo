@@ -1,5 +1,5 @@
 name: gather_link_accounts
-description: Frontend app to link Gather and other accounts.
+description: Frontend app for linking Gather and other accounts.
 publish_to: 'none'
 version: 0.0.1
 
@@ -9,13 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # cloud_firestore: ^3.3.0
-  # firebase_auth: ^3.4.2
-  # firebase_core: ^1.19.2
-  cloud_firestore: any
-  firebase_auth: any
-  firebase_core: any
-  firebase_core_web: 1.6.6
+  cloud_firestore: ^3.3.0
+  firebase_auth: ^3.4.2
+  firebase_core: ^1.19.2
   url_launcher: ^6.1.5
 
 dev_dependencies:

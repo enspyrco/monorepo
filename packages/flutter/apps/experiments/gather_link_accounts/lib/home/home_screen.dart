@@ -25,6 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
   late final Stream<DocumentSnapshot<JsonMap>> docStream;
   LinkingState gatherState = LinkingState.checking;
   LinkingState githubState = LinkingState.checking;
+  final finishedText =
+      'Your accounts have been linked!\n\nYou can now close this window and will\n'
+      'soon be teleported into the first adventure...';
 
   @override
   void initState() {
@@ -53,13 +56,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return StreamBuilder<DocSnapshot>(
         stream: docStream,
         builder: (context, snapshot) {
+          print('$gatherState, $githubState');
           if (snapshot.hasData && snapshot.data!.exists) {
             JsonMap docJson = snapshot.data!.data()!;
             gatherState = (docJson['gather'] == null)
-                ? gatherState = LinkingState.waiting
+                ? gatherState = LinkingState.notLinked
                 : gatherState = LinkingState.linked;
             githubState = (docJson['github'] == null)
-                ? githubState = LinkingState.waiting
+                ? githubState = LinkingState.notLinked
                 : githubState = LinkingState.linked;
           } else {
             return const CircularProgressIndicator();
@@ -67,12 +71,28 @@ class _HomeScreenState extends State<HomeScreen> {
           return Center(
               child: Column(
             children: [
+              if (githubState == LinkingState.linked &&
+                  gatherState == LinkingState.linked) ...[
+                const SizedBox(height: 100),
+                Text(finishedText),
+              ],
               const SizedBox(height: 100),
               GatherButton(gatherUri: gatherUri, linkingState: gatherState),
-              const SizedBox(height: 100),
+              if (githubState != LinkingState.linked ||
+                  gatherState != LinkingState.linked)
+                const SizedBox(height: 100),
               GitHubButton(githubUri: githubUri, linkingState: githubState),
-              const SizedBox(height: 100),
-              const SignOutButton(),
+              const SizedBox(height: 150),
+              SizedBox(
+                  width: 230,
+                  child: Row(children: const [
+                    SignOutButton(),
+                    Text('if you would like to start')
+                  ])),
+              const SizedBox(
+                width: 300,
+                child: Text('             again and use a different account.'),
+              )
             ],
           ));
         });
