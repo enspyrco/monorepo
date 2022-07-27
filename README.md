@@ -48,6 +48,7 @@ Three letter acronyms used in commit messages:
 
 - avs = Adventuverse (project)
 - avm = adventure_maker
+- ccv = coding-challenge-verifier
 - dvr = domain_visualiser
 - flr = flireator
 - fsg = firestore_service_googleapis
