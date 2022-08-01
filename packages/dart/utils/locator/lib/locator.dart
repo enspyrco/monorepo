@@ -21,12 +21,17 @@ class Locator {
 
   /// Creates an entry in the _objectOfType map.
   /// The object can now be located witout error.
-  static void add<T>(Object object) {
-    var object = _objectOfType[T] as T?;
-
-    if (object == null) {
-      throw 'You attempted to add an object with a type that has already been added.\n'
-          'Consider using a collection of the given type.';
+  ///
+  /// Setting `overwrite: false` will throw if an object has already been added
+  /// for the given type.
+  static void add<T>(Object object, {bool overwrite = true}) {
+    if (!overwrite) {
+      if (_objectOfType[T] != null) {
+        throw 'You attempted to add an object with a type that has already been added.\n'
+            'Consider using a collection of the given type.';
+      }
     }
+
+    _objectOfType[T] = object;
   }
 }
