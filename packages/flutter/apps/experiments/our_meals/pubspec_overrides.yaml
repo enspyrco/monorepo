@@ -1,0 +1,7 @@
+dependency_overrides:
+  locator:
+    path: ../../../../dart/utils/locator
+  enspyr_redux:
+    path: ../../../../dart/utils/redux
+  redux_widgets:
+    path: ../../../utils/redux_widgets
