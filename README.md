@@ -58,6 +58,7 @@ Three letter acronyms used in commit messages:
 - gla = gather_link_account
 - gls = gather_link_account_shelf
 - lcr = locator
+- rdx = enspyr_redux
 - rfr = redfire
 - rft = redfire_test
 - rfl = redfire_lints
