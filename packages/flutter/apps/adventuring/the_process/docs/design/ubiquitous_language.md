@@ -12,11 +12,15 @@ The starting point of the app after successful login.  Consists of the [Home Scr
 
 The first screen pushed onto the navigator stack. The Home Screen contains the [Logo Icon], [Notifications Button], [Account Avatar], [Organisation Selector] and [Projects Grid].
 
-#### Logo Icon
+#### App Bar
 
-#### Account Avatar
+A transparent bar at the top of the screen holding a [Logo Icon] on the left and the [Notifications Button] and [Account Avatar] on the right.
 
-#### Notifications Button
+##### Logo Icon
+
+##### Account Avatar
+
+##### Notifications Button
 
 #### Organisation Selector
 
