@@ -1,0 +1,5 @@
+dependency_overrides:  
+  redfire:
+    path: ../redfire
+  redfire_lints:
+    path: ../redfire_lints

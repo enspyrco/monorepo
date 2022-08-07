@@ -10,9 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # redfire 
+  # redfire
   redfire:
-    path: ../../../../flutter/utils/redfire
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/redfire
   firestore_service_interface:
     git:
       url: https://github.com/enspyrco/monorepo.git
@@ -40,9 +42,13 @@ dev_dependencies:
   
   # redfire
   redfire_lints:
-    path: ../../../../flutter/utils/redfire_lints
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/redfire_lints
   redfire_test:
-    path: ../../../../flutter/utils/redfire_test
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/redfire_test
   
   # code gen
   build_runner:

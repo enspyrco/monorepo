@@ -14,7 +14,9 @@ dependencies:
   flame: 1.0.0-releasecandidate.16
   vector_math: 
   ws_game_server_types:
-    path: ../../../../dart/servers/ws_game_server_types
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/servers/ws_game_server_types
   web_socket_channel:
   
   #######################
@@ -23,7 +25,9 @@ dependencies:
   freezed_annotation:
   json_annotation: ^4.5.0
   redfire:
-    path: ../../../../flutter/utils/redfire
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/redfire
   firestore_service_interface:
     git:
       url: https://github.com/enspyrco/monorepo.git
@@ -39,9 +43,13 @@ dev_dependencies:
     sdk: flutter
   test:
   redfire_lints:
-    path: ../../../../flutter/utils/redfire_lints
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/redfire_lints
   redfire_test:
-    path: ../../../../flutter/utils/redfire_test
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/redfire_test
   build_runner:
   freezed:
   json_serializable: ^6.2.0
