@@ -58,3 +58,6 @@ app.*.map.json
 # Firebase config file
 lib/firebase_options.dart
 lib/redfire_options.dart
+
+# local settings
+.vscode/settings.json

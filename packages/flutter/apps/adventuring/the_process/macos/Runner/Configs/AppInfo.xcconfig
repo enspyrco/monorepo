@@ -11,4 +11,4 @@ PRODUCT_NAME = the_process
 PRODUCT_BUNDLE_IDENTIFIER = co.enspyr.theProcess
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2021 co.enspyr. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2022 co.enspyr. All rights reserved.

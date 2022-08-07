@@ -13,19 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(color: Colors.black),
-        leading: const LogoIcon(),
-        actions: const [
-          NotificationsButton(),
-          AvatarMenuButton<AppState>(options: {
-            MenuOptionPreset.accountDetails,
-            MenuOptionPreset.signOut
-          })
-        ],
-      ),
+      appBar: const BasicAppBar(),
       body: Column(
         children: [
           Row(
@@ -35,6 +23,43 @@ class HomeScreen extends StatelessWidget {
           const ProjectsGrid()
         ],
       ),
+    );
+  }
+}
+
+class BasicAppBar extends StatefulWidget implements PreferredSizeWidget {
+  const BasicAppBar({Key? key}) : super(key: key);
+
+  @override
+  State<BasicAppBar> createState() => _BasicAppBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(80.0);
+}
+
+class _BasicAppBarState extends State<BasicAppBar> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            children: const <Widget>[
+              LogoIcon(),
+              Spacer(),
+              NotificationsButton(),
+              AvatarMenuButton<AppState>(
+                options: {
+                  MenuOptionPreset.accountDetails,
+                  MenuOptionPreset.signOut
+                },
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
