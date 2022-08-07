@@ -10,10 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  firebase_core: ^1.12.0
+  firebase_core:
   firebase_auth:
   google_sign_in:
-  sign_in_with_apple: ^3.3.0 # 3.2.0 → 3.3.0 was a breaking change due to federation
+  sign_in_with_apple:
   http:
   redux:
   mockito:
@@ -22,10 +22,13 @@ dependencies:
   fast_immutable_collections:
 
   redfire:
-    path: ../redfire
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/redfire
   redfire_lints:
-    path: ../redfire_lints
-  
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/redfire_lints  
 
 dev_dependencies:
   flutter_test:
