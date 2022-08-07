@@ -35,7 +35,7 @@ class AuthGate extends StatelessWidget {
     return StoreProvider(
       store: _store,
       child: MaterialApp(
-        home: StoreConnector<AppState, SignedInState>(
+        home: StateStreamBuilder<AppState, SignedInState>(
           transformer: (state) => state.user.signedIn,
           builder: (context, signedIn) {
             if (signedIn == SignedInState.checking ||
