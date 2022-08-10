@@ -11,11 +11,9 @@ dependencies:
     sdk: flutter
 
   redfire:
-    path: ../../../../flutter/utils/redfire
-  redfire_lints:
-    path: ../../../../flutter/utils/redfire_lints
-  redfire_test:
-    path: ../../../../flutter/utils/redfire_test
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/redfire
   
   firebase_auth: ^3.3.9
   firebase_core: ^1.13.1
@@ -23,11 +21,20 @@ dependencies:
   
   redux: ^5.0.0  
   fast_immutable_collections: ^7.4.0
-  flutterfire_ui: ^0.3.6+1
+  flutterfire_ui:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  redfire_test:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/redfire_test
+  redfire_lints:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/redfire_lints
   
   freezed: ^2.0.3+1
   json_serializable: ^6.2.0

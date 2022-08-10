@@ -1,0 +1,7 @@
+dependency_overrides:
+  redfire:
+    path: ../../../../flutter/utils/redfire
+  redfire_lints:
+    path: ../../../../flutter/utils/redfire_lints
+  redfire_test:
+    path: ../../../../flutter/utils/redfire_test
