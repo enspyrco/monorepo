@@ -54,3 +54,6 @@ android/app/google-services.json
 **/*.g.dart
 **/*.freezed.dart
 **/*.mocks.dart
+
+# local settings
+.vscode/settings.json

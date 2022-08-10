@@ -1,3 +1,9 @@
 dependency_overrides:
+  redfire:
+    path: ../../../../flutter/utils/redfire
+  redfire_test:
+    path: ../../../../flutter/utils/redfire_test
+  redfire_lints:
+    path: ../../../../flutter/utils/redfire_lints
   firestore_service_interface:
     path: ../../../../dart/interfaces/firestore_service_interface

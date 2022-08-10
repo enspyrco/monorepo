@@ -130,10 +130,12 @@ packages:
   cloud_firestore_extensions:
     dependency: transitive
     description:
-      path: "../../../utils/flutterfire/cloud_firestore_extensions"
-      relative: true
-    source: path
-    version: "1.0.0"
+      path: "packages/flutter/utils/flutterfire/cloud_firestore_extensions"
+      ref: HEAD
+      resolved-ref: "31fcab648fd517df655810250f85d8aa318414c5"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.1"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
@@ -379,7 +381,7 @@ packages:
       name: flutterfire_ui
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.6+1"
+    version: "0.4.3"
   freezed:
     dependency: "direct dev"
     description:
@@ -642,14 +644,14 @@ packages:
     source: path
     version: "0.0.1"
   redfire_lints:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       path: "../../../utils/redfire_lints"
       relative: true
     source: path
     version: "1.0.0"
   redfire_test:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       path: "../../../utils/redfire_test"
       relative: true
