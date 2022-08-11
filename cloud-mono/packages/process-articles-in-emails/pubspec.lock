@@ -88,9 +88,9 @@ packages:
   firestore_service_interface:
     dependency: transitive
     description:
-      path: "packages/interfaces/firestore_service_interface"
+      path: "packages/dart/interfaces/firestore_service_interface"
       ref: HEAD
-      resolved-ref: "631900d98cc92c0355979b17242ecb23a9b162d4"
+      resolved-ref: "31fcab648fd517df655810250f85d8aa318414c5"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"

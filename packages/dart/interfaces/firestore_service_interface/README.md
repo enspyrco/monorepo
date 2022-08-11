@@ -1,6 +1,6 @@
 # firestore_service_interface
 
-An interface for a firesetore service allowing different implementations for
+An interface for a firestore service allowing different implementations for
 Flutter apps (FlutterFire) and Dart servers (googleapis.dart).
 
 <!-- 
