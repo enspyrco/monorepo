@@ -5,7 +5,6 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:firestore_service_interface/firestore_service_interface.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
-import 'package:redfire/types.dart';
 import 'package:redux/redux.dart';
 
 import '../actions/set_domain_objects_action.dart';
@@ -34,8 +33,8 @@ class TapDomainObjectsMiddleware
             // ... and direct the stream to the store.
             _subscription = changes.listen((jsonList) {
               var models = jsonList
-                  .map<DomainObject>((jsonItem) => const DomainObjectConverter()
-                      .fromJson(jsonItem as JsonMap))
+                  .map<DomainObject>((jsonItem) =>
+                      const DomainObjectConverter().fromJson(jsonItem.fields))
                   .toISet();
               store.dispatch(SetDomainObjectsAction(models));
             }, onError: store.dispatchProblem);

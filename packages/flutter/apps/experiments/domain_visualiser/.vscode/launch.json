@@ -8,6 +8,17 @@
       "name": "domain_visualiser",
       "request": "launch",
       "type": "dart"
-    }
+    },
+    {
+      "name": "web",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
+      "args": [
+        "--web-hostname",
+        "localhost",
+        "--web-port",
+        "5000"],
+    },
   ]
 }
