@@ -61,6 +61,7 @@ Three letter acronyms used in commit messages:
 - lcr = locator
 - oml = our_meals
 - rdx = enspyr_redux
+- rds = redux_devtools_screen
 - rfr = redfire
 - rft = redfire_test
 - rfl = redfire_lints
