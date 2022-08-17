@@ -7,7 +7,7 @@ import 'action_history/actions_history_view.dart';
 import 'app_state/app_state_view.dart';
 import 'events/events_model.dart';
 
-/// Requires `serviceManager.service!.onExtensionEvent` to be passed in.
+/// Requires DevTools `serviceManager.service?.onExtensionEvent` to be passed in.
 ///
 /// Listens to a [Stream] of events from [redfire] and keeps
 /// a [StreamSubscription] for canceling on dispose.
@@ -19,7 +19,7 @@ import 'events/events_model.dart';
 class RedFireStatefulWidget extends StatefulWidget {
   const RedFireStatefulWidget(this.eventsStream, {Key? key}) : super(key: key);
 
-  final Stream<Event> eventsStream;
+  final Stream<Event>? eventsStream;
 
   @override
   State<RedFireStatefulWidget> createState() => _RedFireStatefulWidgetState();
@@ -32,16 +32,20 @@ class _RedFireStatefulWidgetState extends State<RedFireStatefulWidget> {
   @override
   void initState() {
     super.initState();
-    _eventsSubscription = widget.eventsStream
-        .where((event) => event.extensionKind?.startsWith('redfire:') ?? false)
-        .listen((event) {
-      if (event.extensionKind == 'redfire:action_dispatched') {
-        _model.add(event.extensionData!.data);
-      } else if (event.extensionKind == 'redfire:remove_all') {
-        _model.removeAll();
-      }
-    });
-    _model.addListener(() => setState(() {}));
+
+    if (widget.eventsStream != null) {
+      _eventsSubscription = widget.eventsStream!
+          .where(
+              (event) => event.extensionKind?.startsWith('redfire:') ?? false)
+          .listen((event) {
+        if (event.extensionKind == 'redfire:action_dispatched') {
+          _model.add(event.extensionData!.data);
+        } else if (event.extensionKind == 'redfire:remove_all') {
+          _model.removeAll();
+        }
+      });
+      _model.addListener(() => setState(() {}));
+    }
   }
 
   @override
@@ -52,6 +56,13 @@ class _RedFireStatefulWidgetState extends State<RedFireStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [ActionsHistoryView(_model), AppStateView(_model)]);
+    return (widget.eventsStream == null)
+        ? const Text('Not connected to app...')
+        : Row(
+            children: [
+              ActionsHistoryView(_model),
+              AppStateView(_model),
+            ],
+          );
   }
 }
