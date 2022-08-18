@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-class EventsModel extends ChangeNotifier {
+class StateChanges extends ChangeNotifier {
   // Internal state.
   final List<Map<String, dynamic>> _events = [];
   int? _selectedIndex;

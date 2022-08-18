@@ -1,16 +1,20 @@
 name: redux_devtools_screen
-description: A new Flutter package project.
+description: A widget for visualising state changes in an app using redux.
 version: 0.0.1
-homepage:
+publish_to: none
 
 environment:
-  sdk: '>=2.19.0-100.0.dev <3.0.0'
+  sdk: '>=2.18.0 <3.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
+  collection: ^1.16.0
   flutter:
     sdk: flutter
-  vm_service: ^9.3.0
+  json_utils:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/utils/json_utils
 
 dev_dependencies:
   flutter_test:
