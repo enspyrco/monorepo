@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:vm_service/vm_service.dart';
 import 'package:vm_service/vm_service_io.dart';
 
-const String host = 'localhost';
+const String host = '127.0.0.1';
 const int port = 7575;
 
 late VmService serviceClient;
@@ -18,16 +18,16 @@ void main() async {
 
   // From example:
   // String sdk = path.dirname(path.dirname(Platform.resolvedExecutable));
-  String sdk = '/Users/nick/SDKs/dart-sdk/sdk/sdk';
+  String sdk = '/Users/nick/SDKs/dart-sdk';
 
   print('Using sdk at $sdk.');
 
   // pause_isolates_on_start, pause_isolates_on_exit
-  process = await Process.start('$sdk/bin/dart', [
+  process = await Process.start('$sdk/xcodebuild/ReleaseARM64/dart', [
     '--pause_isolates_on_start',
     '--enable-vm-service=$port',
     '--disable-service-auth-codes',
-    'example/sample_main.dart'
+    '/Users/nick/git/orgs/enspyrco/monorepo/packages/flutter/apps/experiments/redux_devtools/lib/sample_main.dart'
   ]);
 
   print('dart process started');
@@ -40,7 +40,7 @@ void main() async {
   await Future.delayed(const Duration(milliseconds: 500));
 
   // ignore: deprecated_member_use_from_same_package
-  serviceClient = await vmServiceConnectUri('$host:$port');
+  serviceClient = await vmServiceConnectUri('ws://$host:$port/ws');
   //vmServiceConnect(host, port, log: StdoutLog());
 
   print('socket connected');
