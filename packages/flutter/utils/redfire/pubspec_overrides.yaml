@@ -7,3 +7,5 @@ dependency_overrides:
     path: ../../../dart/interfaces/firestore_service_interface
   cloud_firestore_extensions:
     path: ../flutterfire/cloud_firestore_extensions
+  redux_devtools_screen:
+    path: ../redux_devtools_screen
