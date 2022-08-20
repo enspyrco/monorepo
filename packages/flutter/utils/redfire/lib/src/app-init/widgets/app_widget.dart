@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:redux_devtools_screen/redux_devtools_screen.dart';
+import 'package:split_view/split_view.dart';
 
 import '../../auth/utils/login_configs.dart';
 import '../../navigation/actions/remove_current_page_action.dart';
@@ -15,6 +17,7 @@ import '../../settings/extensions/theme_set_extensions.dart';
 import '../../settings/models/settings.dart';
 import '../../types/red_fire_state.dart';
 import '../../types/redux_action.dart';
+import '../../utils/devtools_global.dart';
 import '../../utils/red_fire_config.dart';
 import '../../utils/red_fire_locator.dart';
 import '../redux/redfire_initial_actions.dart';
@@ -125,18 +128,23 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
     return StoreProvider<T>(
       store: widget._store,
       child: StoreConnector<T, Settings>(
-          distinct: true,
-          converter: (store) => store.state.settings,
-          builder: (context, settings) {
-            return MaterialApp(
-              title: widget._title,
-              theme: settings.lightTheme.data,
-              darkTheme: settings.darkTheme.data,
-              themeMode: settings.brightnessMode.theme,
-              home: StoreConnector<T, IList<PageData>>(
-                distinct: true,
-                converter: (store) => store.state.pages,
-                builder: (context, pages) => Navigator(
+        distinct: true,
+        converter: (store) => store.state.settings,
+        builder: (context, settings) {
+          return MaterialApp(
+            title: widget._title,
+            theme: settings.lightTheme.data,
+            darkTheme: settings.darkTheme.data,
+            themeMode: settings.brightnessMode.theme,
+            home: SplitView(
+              viewMode: SplitViewMode.Horizontal,
+              children: [
+                Material(
+                    child: ReduxDevToolsScreen(reduxEventsController.stream)),
+                StoreConnector<T, IList<PageData>>(
+                  distinct: true,
+                  converter: (store) => store.state.pages,
+                  builder: (context, pages) => Navigator(
                     pages: pages.toPages<T>(),
                     onPopPage: (route, dynamic result) {
                       if (!route.didPop(result)) {
@@ -148,10 +156,14 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
                       }
 
                       return true;
-                    }),
-              ),
-            );
-          }),
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
