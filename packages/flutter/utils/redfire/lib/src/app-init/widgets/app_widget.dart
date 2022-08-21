@@ -7,8 +7,6 @@ import 'package:redux_devtools_screen/redux_devtools_screen.dart';
 import 'package:split_view/split_view.dart';
 
 import '../../auth/utils/login_configs.dart';
-import '../../navigation/actions/remove_current_page_action.dart';
-import '../../navigation/extensions/page_data_list_extension.dart';
 import '../../navigation/models/page_data.dart';
 import '../../platform/plugins/wrappers/firebase_wrapper.dart';
 import '../../redux/extensions/reducers_list_extension.dart';
@@ -25,6 +23,7 @@ import '../redux/redfire_middlewares.dart';
 import '../redux/redfire_reducers.dart';
 import 'initializing_error_page.dart';
 import 'initializing_indicator.dart';
+import 'pages_navigator.dart';
 
 class AppWidget<T extends RedFireState> extends StatefulWidget {
   late final Store<T> _store;
@@ -132,36 +131,21 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
         converter: (store) => store.state.settings,
         builder: (context, settings) {
           return MaterialApp(
-            title: widget._title,
-            theme: settings.lightTheme.data,
-            darkTheme: settings.darkTheme.data,
-            themeMode: settings.brightnessMode.theme,
-            home: SplitView(
-              viewMode: SplitViewMode.Horizontal,
-              children: [
-                Material(
-                    child: ReduxDevToolsScreen(reduxEventsController.stream)),
-                StoreConnector<T, IList<PageData>>(
-                  distinct: true,
-                  converter: (store) => store.state.pages,
-                  builder: (context, pages) => Navigator(
-                    pages: pages.toPages<T>(),
-                    onPopPage: (route, dynamic result) {
-                      if (!route.didPop(result)) {
-                        return false;
-                      }
-
-                      if (route.isCurrent) {
-                        widget._store.dispatch(const RemoveCurrentPageAction());
-                      }
-
-                      return true;
-                    },
-                  ),
-                ),
-              ],
-            ),
-          );
+              title: widget._title,
+              theme: settings.lightTheme.data,
+              darkTheme: settings.darkTheme.data,
+              themeMode: settings.brightnessMode.theme,
+              home: (const bool.fromEnvironment('REDUX_DEVTOOLS'))
+                  ? SplitView(
+                      viewMode: SplitViewMode.Horizontal,
+                      children: [
+                        Material(
+                            child: ReduxDevToolsScreen(
+                                reduxEventsController.stream)),
+                        PagesNavigator<T>(widget._store),
+                      ],
+                    )
+                  : PagesNavigator<T>(widget._store));
         },
       ),
     );
