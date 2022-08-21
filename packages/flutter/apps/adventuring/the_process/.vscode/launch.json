@@ -10,16 +10,13 @@
       "type": "dart"
     },
     {
-      "name": "the_process (profile mode)",
+      "name": "the_process (devtools)",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "profile"
-    },
-    {
-      "name": "the_process (release mode)",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "release"
+      "toolArgs": [
+        "--dart-define",
+        "REDUX_DEVTOOLS=true"
+      ]
     }
   ]
 }
