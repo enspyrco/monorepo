@@ -1,4 +1,3 @@
-import 'package:enspyr_redux/redux.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -7,13 +6,14 @@ import 'package:our_meals/auth/state_management/tap_into_auth_state.dart';
 import 'package:our_meals/auth/widgets/sign_in_screen.dart';
 import 'package:our_meals/firebase_options.dart';
 import 'package:our_meals/home/home_screen.dart';
-import 'package:redux_widgets/redux_widget.dart';
+import 'package:redaux/redaux.dart';
+import 'package:redaux_widgets/redaux_widget.dart';
 
 import 'app_state.dart';
 import 'auth/services/firebase_auth_service.dart';
 import 'auth/state/user_state.dart';
 
-final _store = ReduxStore<AppState>(state: AppState.initial);
+final _store = Store<AppState>(state: AppState.initial);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

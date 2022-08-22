@@ -1,4 +1,4 @@
-import 'package:enspyr_redux/redux.dart';
+import 'package:redaux/redaux.dart';
 
 enum SignedInState {
   checking(true),
@@ -11,7 +11,7 @@ enum SignedInState {
   final bool disableButton;
 }
 
-class UserState extends ReduxState {
+class UserState extends State {
   static UserState get initial => UserState(signedIn: SignedInState.checking);
 
   UserState(

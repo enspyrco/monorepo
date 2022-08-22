@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:enspyr_redux/redux.dart';
+import 'package:redaux/redaux.dart';
 
 import '../../app_state.dart';
 import '../../utils/locate.dart';
@@ -8,19 +8,19 @@ import '../services/firebase_auth_service.dart';
 import '../state/user_state.dart';
 import 'update_user_state.dart';
 
-class TapIntoAuthStateAction extends ReduxAction<AppState> {
+class TapIntoAuthStateAction extends Action<AppState> {
   const TapIntoAuthStateAction();
-  static final ReduxMiddleware<AppState> _m = TapIntoAuthStateMiddleware();
-  static const ReduxReducer<AppState>? _r = null;
+  static final Middleware<AppState> _m = TapIntoAuthStateMiddleware();
+  static const Reducer<AppState>? _r = null;
 
   @override
-  ReduxMiddleware<AppState>? get middleware => _m;
+  Middleware<AppState>? get middleware => _m;
 
   @override
-  ReduxReducer<AppState>? get reducer => _r;
+  Reducer<AppState>? get reducer => _r;
 }
 
-class TapIntoAuthStateMiddleware extends ReduxMiddleware<AppState> {
+class TapIntoAuthStateMiddleware extends Middleware<AppState> {
   StreamSubscription<UserState>? subscription;
 
   @override

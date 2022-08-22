@@ -12,7 +12,7 @@ abstract class Action<S extends State> {
 }
 
 abstract class Middleware<S extends State> {
-  void call(ReduxStore<S> store, Action<S> action);
+  void call(Store<S> store, Action<S> action);
 }
 
 abstract class Reducer<S extends State> {
@@ -23,8 +23,8 @@ abstract class State {}
 
 abstract class ReduxService {}
 
-class ReduxStore<S extends State> {
-  ReduxStore({
+class Store<S extends State> {
+  Store({
     required S state,
     StreamController<S>? streamController,
   })  : _state = state,

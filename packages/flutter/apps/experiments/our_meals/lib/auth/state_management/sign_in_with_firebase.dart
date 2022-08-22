@@ -1,23 +1,23 @@
-import 'package:enspyr_redux/redux.dart';
+import 'package:redaux/redaux.dart';
 
 import '../../app_state.dart';
 
-class SignInWithFirebaseAction extends ReduxAction<AppState> {
+class SignInWithFirebaseAction extends Action<AppState> {
   final String idToken;
 
   SignInWithFirebaseAction({required this.idToken});
 
-  static final ReduxMiddleware<AppState> _m = SignInWithFirebaseMiddleware();
-  static const ReduxReducer<AppState>? _r = null;
+  static final Middleware<AppState> _m = SignInWithFirebaseMiddleware();
+  static const Reducer<AppState>? _r = null;
 
   @override
-  ReduxMiddleware<AppState>? get middleware => _m;
+  Middleware<AppState>? get middleware => _m;
 
   @override
-  ReduxReducer<AppState>? get reducer => _r;
+  Reducer<AppState>? get reducer => _r;
 }
 
-class SignInWithFirebaseMiddleware extends ReduxMiddleware<AppState> {
+class SignInWithFirebaseMiddleware extends Middleware<AppState> {
   @override
   void call(store, covariant SignInWithFirebaseAction action) {}
 }
