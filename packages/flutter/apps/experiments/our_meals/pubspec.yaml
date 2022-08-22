@@ -17,14 +17,14 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/dart/utils/locator
-  enspyr_redux:
+  redaux:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/utils/redux
-  redux_widgets:
+      path: packages/dart/utils/redaux
+  redaux_widgets:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redux_widgets
+      path: packages/flutter/utils/redaux_widgets
 
 dev_dependencies:
   flutter_test:

@@ -1,24 +1,24 @@
-import 'package:enspyr_redux/redux.dart';
+import 'package:redaux/redaux.dart';
 
 import '../../app_state.dart';
 import '../state/user_state.dart';
 
-class UpdateUserStateAction extends ReduxAction<AppState> {
+class UpdateUserStateAction extends Action<AppState> {
   final UserState user;
 
   UpdateUserStateAction(this.user);
 
-  static const ReduxMiddleware<AppState>? _m = null;
-  static final ReduxReducer<AppState> _r = UpdateUserStateReducer();
+  static const Middleware<AppState>? _m = null;
+  static final Reducer<AppState> _r = UpdateUserStateReducer();
 
   @override
-  ReduxMiddleware<AppState>? get middleware => _m;
+  Middleware<AppState>? get middleware => _m;
 
   @override
-  ReduxReducer<AppState>? get reducer => _r;
+  Reducer<AppState>? get reducer => _r;
 }
 
-class UpdateUserStateReducer extends ReduxReducer<AppState> {
+class UpdateUserStateReducer extends Reducer<AppState> {
   @override
   AppState call(state, covariant UpdateUserStateAction action) =>
       state.copyWith(user: action.user);

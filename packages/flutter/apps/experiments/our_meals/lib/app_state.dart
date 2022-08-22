@@ -1,8 +1,8 @@
-import 'package:enspyr_redux/redux.dart';
+import 'package:redaux/redaux.dart';
 
 import 'auth/state/user_state.dart';
 
-class AppState extends ReduxState {
+class AppState extends State {
   static AppState get initial => AppState(user: UserState.initial);
 
   AppState({required this.user});

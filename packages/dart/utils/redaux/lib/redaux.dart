@@ -1,30 +1,30 @@
 /// Support for doing something awesome.
 ///
 /// More dartdocs go here.
-library enspyr_redux;
+library redaux;
 
 import 'dart:async';
 
-abstract class ReduxAction<S extends ReduxState> {
-  const ReduxAction();
-  ReduxReducer<S>? get reducer;
-  ReduxMiddleware<S>? get middleware;
+abstract class Action<S extends State> {
+  const Action();
+  Reducer<S>? get reducer;
+  Middleware<S>? get middleware;
 }
 
-abstract class ReduxMiddleware<S extends ReduxState> {
-  void call(ReduxStore<S> store, ReduxAction<S> action);
+abstract class Middleware<S extends State> {
+  void call(Store<S> store, Action<S> action);
 }
 
-abstract class ReduxReducer<S extends ReduxState> {
-  S call(S state, ReduxAction<S> action);
+abstract class Reducer<S extends State> {
+  S call(S state, Action<S> action);
 }
 
-abstract class ReduxState {}
+abstract class State {}
 
 abstract class ReduxService {}
 
-class ReduxStore<S extends ReduxState> {
-  ReduxStore({
+class Store<S extends State> {
+  Store({
     required S state,
     StreamController<S>? streamController,
   })  : _state = state,
@@ -38,7 +38,7 @@ class ReduxStore<S extends ReduxState> {
   /// It is equal to the last value returned by the store's reducer.
   S get state => _state;
 
-  /// Dispatches a [ReduxAction]. This is the only way to trigger a state change.
+  /// Dispatches a [Action]. This is the only way to trigger a state change.
   /// Arguments:
   /// - [action]: A plain object describing the change that makes sense for the
   ///   application.
@@ -46,10 +46,10 @@ class ReduxStore<S extends ReduxState> {
   ///   Actions are the only way to get data into the store, so any data,
   ///   whether from the UI events, network callbacks, or other sources such as
   ///   WebSockets needs to eventually be dispatched as actions. Actions must
-  ///   inherit from or implement [ReduxAction].
+  ///   inherit from or implement [Action].
   ///
   /// See: https://redux.js.org/api/store#dispatchaction
-  void dispatch(ReduxAction<S> action) {
+  void dispatch(Action<S> action) {
     // let the middleware go free
     action.middleware?.call(this, action);
 

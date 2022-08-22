@@ -1,4 +1,4 @@
-import 'package:enspyr_redux/redux.dart';
+import 'package:redaux/redaux.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as plugin;
 
 import '../../utils/types.dart';

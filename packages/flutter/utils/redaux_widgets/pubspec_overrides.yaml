@@ -1,0 +1,3 @@
+dependency_overrides:
+  redaux:
+    path: ../../../dart/utils/redaux

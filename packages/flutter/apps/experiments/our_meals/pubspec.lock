@@ -50,13 +50,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.2"
-  enspyr_redux:
-    dependency: "direct main"
-    description:
-      path: "../../../../dart/utils/redux"
-      relative: true
-    source: path
-    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -198,10 +191,17 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
-  redux_widgets:
+  redaux:
     dependency: "direct main"
     description:
-      path: "../../../utils/redux_widgets"
+      path: "../../../../dart/utils/redaux"
+      relative: true
+    source: path
+    version: "0.0.1"
+  redaux_widgets:
+    dependency: "direct main"
+    description:
+      path: "../../../utils/redaux_widgets"
       relative: true
     source: path
     version: "0.0.1"

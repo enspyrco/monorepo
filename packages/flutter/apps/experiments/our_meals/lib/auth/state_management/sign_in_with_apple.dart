@@ -1,21 +1,21 @@
-import 'package:enspyr_redux/redux.dart';
+import 'package:redaux/redaux.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../app_state.dart';
 import 'sign_in_with_firebase.dart';
 
-class SignInWithAppleAction extends ReduxAction<AppState> {
-  static final ReduxMiddleware<AppState> _m = SignInWithAppleMiddleware();
-  static const ReduxReducer<AppState>? _r = null;
+class SignInWithAppleAction extends Action<AppState> {
+  static final Middleware<AppState> _m = SignInWithAppleMiddleware();
+  static const Reducer<AppState>? _r = null;
 
   @override
-  ReduxMiddleware<AppState>? get middleware => _m;
+  Middleware<AppState>? get middleware => _m;
 
   @override
-  ReduxReducer<AppState>? get reducer => _r;
+  Reducer<AppState>? get reducer => _r;
 }
 
-class SignInWithAppleMiddleware extends ReduxMiddleware<AppState> {
+class SignInWithAppleMiddleware extends Middleware<AppState> {
   @override
   void call(store, covariant SignInWithAppleAction action) async {
     final AuthorizationCredentialAppleID credential =
