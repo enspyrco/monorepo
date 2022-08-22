@@ -1,6 +1,6 @@
-import 'package:enspyr_redux/redux.dart';
+import 'package:redaux/redaux.dart';
 
-class StoreProviderNotFoundError<S extends ReduxState> extends Error {
+class StoreProviderNotFoundError<S extends State> extends Error {
   StoreProviderNotFoundError();
 
   @override

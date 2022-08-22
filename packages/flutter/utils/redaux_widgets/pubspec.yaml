@@ -1,4 +1,4 @@
-name: redux_widgets
+name: redaux_widgets
 description: Widgets for interacting with a redux store from enspyr_redux.
 version: 0.0.1
 publish_to: none
@@ -11,10 +11,10 @@ dependencies:
   flutter:
     sdk: flutter
   
-  enspyr_redux:
+  redaux:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/utils/redux
+      path: packages/dart/utils/redaux
 
 dev_dependencies:
   flutter_test:

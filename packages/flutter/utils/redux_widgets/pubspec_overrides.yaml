@@ -1,3 +1,0 @@
-dependency_overrides:
-  enspyr_redux:
-    path: ../../../dart/utils/redux

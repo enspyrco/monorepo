@@ -1,16 +1,16 @@
 import 'dart:async';
 
-import 'package:enspyr_redux/redux.dart';
 import 'package:flutter/widgets.dart';
+import 'package:redaux/redaux.dart' as redaux;
 
 import '../exceptions/transform_failure_exception.dart';
 import 'store_provider.dart';
 
-class StateStreamBuilder<S extends ReduxState, VM> extends StatelessWidget {
+class StateStreamBuilder<S extends redaux.State, VM> extends StatelessWidget {
   final Widget Function(BuildContext context, VM vm) builder;
   final VM Function(S state) transformer;
-  final void Function(ReduxStore<S> store)? onInit;
-  final void Function(ReduxStore<S> store)? onDispose;
+  final void Function(redaux.Store<S> store)? onInit;
+  final void Function(redaux.Store<S> store)? onDispose;
 
   const StateStreamBuilder({
     Key? key,
@@ -32,12 +32,12 @@ class StateStreamBuilder<S extends ReduxState, VM> extends StatelessWidget {
   }
 }
 
-class _StateStreamBuilder<S extends ReduxState, VM> extends StatefulWidget {
-  final ReduxStore<S> store;
+class _StateStreamBuilder<S extends redaux.State, VM> extends StatefulWidget {
+  final redaux.Store<S> store;
   final Widget Function(BuildContext context, VM vm) builder;
   final VM Function(S state) transformer;
-  final void Function(ReduxStore<S> store)? onInit;
-  final void Function(ReduxStore<S> store)? onDispose;
+  final void Function(redaux.Store<S> store)? onInit;
+  final void Function(redaux.Store<S> store)? onDispose;
 
   const _StateStreamBuilder({
     Key? key,
@@ -54,7 +54,7 @@ class _StateStreamBuilder<S extends ReduxState, VM> extends StatefulWidget {
   }
 }
 
-class _StateStreamBuilderState<S extends ReduxState, VM>
+class _StateStreamBuilderState<S extends redaux.State, VM>
     extends State<_StateStreamBuilder<S, VM>> {
   late Stream<VM> _stream;
   VM? _latestValue;
