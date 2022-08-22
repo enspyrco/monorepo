@@ -60,7 +60,7 @@ Three letter acronyms used in commit messages:
 - gls = gather_link_account_shelf
 - lcr = locator
 - oml = our_meals
-- rdx = enspyr_redux
+- rdx = redaux
 - rdd = redux_devtools_desktop
 - rds = redux_devtools_screen
 - rfr = redfire
