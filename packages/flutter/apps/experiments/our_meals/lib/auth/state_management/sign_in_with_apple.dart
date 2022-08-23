@@ -1,33 +1,32 @@
 import 'package:redaux/redaux.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart' as plugin;
 
 import '../../app_state.dart';
 import 'sign_in_with_firebase.dart';
 
-class SignInWithAppleAction extends Action<AppState> {
+class SignInWithApple extends AsyncAction<AppState> {
   static final Middleware<AppState> _m = SignInWithAppleMiddleware();
-  static const Reducer<AppState>? _r = null;
 
   @override
   Middleware<AppState>? get middleware => _m;
 
   @override
-  Reducer<AppState>? get reducer => _r;
+  final List<AsyncAction> history = [];
 }
 
 class SignInWithAppleMiddleware extends Middleware<AppState> {
   @override
-  void call(store, covariant SignInWithAppleAction action) async {
-    final AuthorizationCredentialAppleID credential =
-        await SignInWithApple.getAppleIDCredential(
+  void call(store, covariant SignInWithApple action) async {
+    final plugin.AuthorizationCredentialAppleID credential =
+        await plugin.SignInWithApple.getAppleIDCredential(
       scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
+        plugin.AppleIDAuthorizationScopes.email,
+        plugin.AppleIDAuthorizationScopes.fullName,
       ],
     );
 
     var token = credential.identityToken ?? (throw 'a');
 
-    store.dispatch(SignInWithFirebaseAction(idToken: token));
+    store.dispatch(SignInWithFirebase(idToken: token));
   }
 }

@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:redaux/redaux.dart';
 
 import '../../utils/types.dart';
 import '../extensions/user_extension.dart';
 import '../state/user_state.dart';
 
-class FirebaseAuthService implements ReduxService {
+class FirebaseAuthService {
   FirebaseAuthService(this.plugin);
 
   FirebaseAuth plugin;
