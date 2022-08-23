@@ -17,8 +17,8 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     if (signedIn == SignedInState.notSignedIn) {
       return plugin.SignInWithAppleButton(
-          onPressed: () => StoreProvider.of<AppState>(context)
-              .dispatch(SignInWithAppleAction()));
+          onPressed: () =>
+              StoreProvider.of<AppState>(context).dispatch(SignInWithApple()));
     }
     return const CircularProgressIndicator();
   }

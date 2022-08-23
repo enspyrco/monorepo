@@ -8,19 +8,14 @@ import '../services/firebase_auth_service.dart';
 import '../state/user_state.dart';
 import 'update_user_state.dart';
 
-class TapIntoAuthStateAction extends Action<AppState> {
-  const TapIntoAuthStateAction();
-  static final Middleware<AppState> _m = TapIntoAuthStateMiddleware();
-  static const Reducer<AppState>? _r = null;
+class BindAuthState extends AsyncAction<AppState> {
+  static final Middleware<AppState> _m = BindAuthStateMiddleware();
 
   @override
   Middleware<AppState>? get middleware => _m;
-
-  @override
-  Reducer<AppState>? get reducer => _r;
 }
 
-class TapIntoAuthStateMiddleware extends Middleware<AppState> {
+class BindAuthStateMiddleware extends Middleware<AppState> {
   StreamSubscription<UserState>? subscription;
 
   @override
@@ -29,6 +24,6 @@ class TapIntoAuthStateMiddleware extends Middleware<AppState> {
 
     subscription = service
         .tapIntoAuthState()
-        .listen((user) => store.dispatch(UpdateUserStateAction(user)));
+        .listen((user) => store.dispatch(UpdateUserState(user)));
   }
 }

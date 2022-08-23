@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:locator/locator.dart';
-import 'package:our_meals/auth/state_management/tap_into_auth_state.dart';
+import 'package:our_meals/auth/state_management/bind_auth_state.dart';
 import 'package:our_meals/auth/widgets/sign_in_screen.dart';
 import 'package:our_meals/firebase_options.dart';
 import 'package:our_meals/home/home_screen.dart';
@@ -44,7 +44,7 @@ class AuthGate extends StatelessWidget {
             }
             return const HomeScreen();
           },
-          onInit: (store) => store.dispatch(const TapIntoAuthStateAction()),
+          onInit: (store) => store.dispatch(BindAuthState()),
         ),
       ),
     );
