@@ -3,7 +3,7 @@ import 'package:our_meals/auth/state/user_state.dart';
 import 'package:redaux_widgets/redaux_widget.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as plugin;
 
-import '../../app_state.dart';
+import '../../app/state/app_state.dart';
 import '../state_management/sign_in_with_apple.dart';
 
 class SignInScreen extends StatelessWidget {
