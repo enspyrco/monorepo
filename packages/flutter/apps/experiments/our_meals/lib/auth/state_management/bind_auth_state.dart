@@ -2,22 +2,20 @@ import 'dart:async';
 
 import 'package:redaux/redaux.dart';
 
-import '../../app_state.dart';
+import '../../app/state/app_state.dart';
 import '../../utils/locate.dart';
 import '../services/firebase_auth_service.dart';
 import '../state/user_state.dart';
 import 'update_user_state.dart';
 
 class BindAuthState extends AsyncAction<AppState> {
-  static final Middleware<AppState> _m = BindAuthStateMiddleware();
-
   @override
-  Middleware<AppState>? get middleware => _m;
+  Middleware<AppState> get middleware => _BindAuthStateMiddleware.instance;
 }
 
-class BindAuthStateMiddleware extends Middleware<AppState> {
-  StreamSubscription<UserState>? subscription;
-
+/// A file private singleton, allowing each [BindAuthState] action to return
+/// the appropriate Middleware.
+class _BindAuthStateMiddleware extends Middleware<AppState> {
   @override
   void call(store, action) {
     var service = locate<FirebaseAuthService>();
@@ -26,4 +24,8 @@ class BindAuthStateMiddleware extends Middleware<AppState> {
         .tapIntoAuthState()
         .listen((user) => store.dispatch(UpdateUserState(user)));
   }
+
+  StreamSubscription<UserState>? subscription;
+
+  static final instance = _BindAuthStateMiddleware();
 }

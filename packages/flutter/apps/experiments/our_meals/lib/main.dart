@@ -9,7 +9,7 @@ import 'package:our_meals/home/home_screen.dart';
 import 'package:redaux/redaux.dart';
 import 'package:redaux_widgets/redaux_widget.dart';
 
-import 'app_state.dart';
+import 'app/state/app_state.dart';
 import 'auth/services/firebase_auth_service.dart';
 import 'auth/state/user_state.dart';
 

@@ -3,7 +3,7 @@ import 'package:redaux/redaux.dart' as redaux;
 
 import '../errors/store_provider_not_found_error.dart';
 
-class StoreProvider<S extends redaux.State> extends InheritedWidget {
+class StoreProvider<S extends redaux.RootState> extends InheritedWidget {
   final redaux.Store<S> _store;
 
   const StoreProvider({
@@ -13,7 +13,7 @@ class StoreProvider<S extends redaux.State> extends InheritedWidget {
   })  : _store = store,
         super(key: key, child: child);
 
-  static redaux.Store<S> of<S extends redaux.State>(BuildContext context,
+  static redaux.Store<S> of<S extends redaux.RootState>(BuildContext context,
       {bool listen = true}) {
     final provider = (listen
         ? context.dependOnInheritedWidgetOfExactType<StoreProvider<S>>()
