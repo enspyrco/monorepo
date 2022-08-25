@@ -6,7 +6,8 @@ import 'package:redaux/redaux.dart' as redaux;
 import '../exceptions/transform_failure_exception.dart';
 import 'store_provider.dart';
 
-class StateStreamBuilder<S extends redaux.State, VM> extends StatelessWidget {
+class StateStreamBuilder<S extends redaux.RootState, VM>
+    extends StatelessWidget {
   final Widget Function(BuildContext context, VM vm) builder;
   final VM Function(S state) transformer;
   final void Function(redaux.Store<S> store)? onInit;
@@ -32,7 +33,8 @@ class StateStreamBuilder<S extends redaux.State, VM> extends StatelessWidget {
   }
 }
 
-class _StateStreamBuilder<S extends redaux.State, VM> extends StatefulWidget {
+class _StateStreamBuilder<S extends redaux.RootState, VM>
+    extends StatefulWidget {
   final redaux.Store<S> store;
   final Widget Function(BuildContext context, VM vm) builder;
   final VM Function(S state) transformer;
@@ -54,7 +56,7 @@ class _StateStreamBuilder<S extends redaux.State, VM> extends StatefulWidget {
   }
 }
 
-class _StateStreamBuilderState<S extends redaux.State, VM>
+class _StateStreamBuilderState<S extends redaux.RootState, VM>
     extends State<_StateStreamBuilder<S, VM>> {
   late Stream<VM> _stream;
   VM? _latestValue;

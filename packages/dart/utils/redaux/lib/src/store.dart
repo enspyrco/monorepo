@@ -1,9 +1,8 @@
 import 'dart:async';
 
-import 'action.dart';
-import 'state.dart';
+import 'package:redaux/redaux.dart';
 
-class Store<S extends State> {
+class Store<S extends RootState> {
   Store({
     required S state,
     StreamController<S>? streamController,
@@ -13,6 +12,7 @@ class Store<S extends State> {
   S _state;
 
   final StreamController<S> _streamController;
+  final Map<Action, List<AsyncAction<S>>?> actionHistory = {};
 
   /// Returns the current state tree of the application.
   /// It is equal to the last value returned by the store's reducer.
@@ -32,20 +32,57 @@ class Store<S extends State> {
   ///   each of which inherit from [Action].
   ///
   /// See: https://redux.js.org/api/store#dispatchaction
-  void dispatch(Action action) {
+  void dispatch(Action action, {AsyncAction<S>? parent}) {
+    print(action);
+
+    if (const bool.fromEnvironment('DEVTOOLS') && parent != null) {
+      // find the history list, add the parent into to the list and map the list to the new action
+      actionHistory[action] = (actionHistory[parent] ??= [])..add(parent);
+      // clean up the old history list
+      actionHistory.remove(parent);
+    }
+
     // call middleware for async actions
     if (action is AsyncAction<S>) {
-      action.middleware?.call(this, action);
+      safeAsyncCall(action);
     }
 
     // call reducer for sync actions
     if (action is SyncAction<S>) {
-      _state = action.reducer?.call(_state, action) ?? _state;
+      _state = action.reducer.call(_state, action);
     }
 
     // put an event in the stream with the new state
     _streamController.add(_state);
   }
 
+  /// This function wraps the middleware calls in a try/catch and if the
+  /// middleware call throws, an [ErrorMessage] is added to the AppState.
+  /// We do this in a separate async function so the `dispatch` function (that
+  /// calls this async function) can stay sync so dispatching SyncActions
+  /// (that change state) will be a sync call.
+  void safeAsyncCall(AsyncAction<S> action) async {
+    try {
+      action.middleware.call(this, action);
+    } catch (thrown, trace) {
+      var newErrorMessages = [
+        ErrorMessage(message: '$thrown', trace: '$trace'),
+        ...state.errorMessages
+      ];
+
+      // TODO: avoid the need to cast here
+      _state = state.copyWith(errorMessages: newErrorMessages) as S;
+    }
+  }
+
   Stream<S> get stateChanges => _streamController.stream;
+}
+
+class ErrorMessage extends State {
+  ErrorMessage({required this.message, required this.trace});
+  final String message;
+  final String trace;
+  @override
+  ErrorMessage copyWith({String? message, String? trace}) => ErrorMessage(
+      message: message ?? this.message, trace: trace ?? this.trace);
 }
