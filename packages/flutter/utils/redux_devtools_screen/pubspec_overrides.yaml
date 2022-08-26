@@ -1,3 +1,3 @@
 dependency_overrides:
-  json_utils:
-    path: ../../../dart/utils/json_utils
+  json_types:
+    path: ../../../dart/utils/json_types

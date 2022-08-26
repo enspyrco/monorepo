@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../types.dart';
+import 'package:json_types/json_types.dart';
 
 typedef ReduxActionFromJson = ReduxAction Function(JsonMap json);
 
@@ -27,6 +26,6 @@ class ReduxActionConverter implements JsonConverter<ReduxAction?, JsonMap> {
   JsonMap toJson(ReduxAction? data) {
     final json = data?.toJson();
     json?['type'] = data?.typeName;
-    return json ?? {};
+    return json ?? <String, dynamic>{};
   }
 }

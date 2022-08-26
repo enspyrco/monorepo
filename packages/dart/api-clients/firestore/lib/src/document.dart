@@ -1,7 +1,7 @@
 import 'package:firestore_service_interface/firestore_service_interface.dart';
 import 'package:googleapis/firestore/v1.dart' as v1;
 import 'package:googleapis_utils/googleapis_utils.dart';
-import 'package:json_utils/json_utils.dart';
+import 'package:json_types/json_types.dart';
 
 class DocumentGoogleApis implements Document {
   final String _id;

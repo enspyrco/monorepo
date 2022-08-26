@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_types/json_types.dart';
 
 import '../../types/redux_action.dart';
-import '../../types/typedefs.dart';
 
 part 'remove_current_page_action.freezed.dart';
 part 'remove_current_page_action.g.dart';

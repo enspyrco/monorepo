@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../types/typedefs.dart';
+import 'package:json_types/json_types.dart';
 
 part 'apple_id_credential.freezed.dart';
 part 'apple_id_credential.g.dart';

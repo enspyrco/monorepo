@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_types/json_types.dart';
 
-import '../../types/typedefs.dart';
 import 'page_data.dart';
 
 part 'initial_page_data.freezed.dart';

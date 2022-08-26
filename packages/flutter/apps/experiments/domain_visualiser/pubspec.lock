@@ -506,6 +506,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.3.1"
+  json_types:
+    dependency: transitive
+    description:
+      path: "packages/dart/utils/json_types"
+      ref: HEAD
+      resolved-ref: "5bfd066a92e134477c8fe3848157ec172812c009"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.1"
   json_utils:
     dependency: transitive
     description:
@@ -662,6 +671,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0"
+  redux_devtools_screen:
+    dependency: transitive
+    description:
+      path: "packages/flutter/utils/redux_devtools_screen"
+      ref: HEAD
+      resolved-ref: "5bfd066a92e134477c8fe3848157ec172812c009"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.1"
   shelf:
     dependency: transitive
     description:
@@ -723,6 +741,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.2"
+  split_view:
+    dependency: transitive
+    description:
+      name: split_view
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.1"
   stack_trace:
     dependency: transitive
     description:

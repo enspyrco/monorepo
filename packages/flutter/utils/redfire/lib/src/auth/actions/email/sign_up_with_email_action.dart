@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_types/json_types.dart';
 
 import '../../../../types.dart';
 

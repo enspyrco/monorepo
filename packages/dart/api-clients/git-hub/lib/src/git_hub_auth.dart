@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:corsac_jwt/corsac_jwt.dart';
 import 'package:http/http.dart';
-import 'package:json_utils/json_utils.dart';
+import 'package:json_types/json_types.dart';
 
 class GitHubAuth {
   final String _privateKey;

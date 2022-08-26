@@ -2,7 +2,7 @@ library cloud_firestore_extensions;
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firestore_service_interface/firestore_service_interface.dart';
-import 'package:json_utils/json_utils.dart';
+import 'package:json_types/json_types.dart';
 
 extension QueryDocumentSnapshotsExtension
     on List<QueryDocumentSnapshot<JsonMap>> {

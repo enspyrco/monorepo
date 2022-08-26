@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_types/json_types.dart';
 
 import '../../types/redux_action.dart';
-import '../../types/typedefs.dart';
 
 part 'tap_profile_action.freezed.dart';
 part 'tap_profile_action.g.dart';

@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore_extensions/cloud_firestore_extensions.dart';
 import 'package:firestore_service_interface/firestore_service_interface.dart';
-
-import '../../types/typedefs.dart';
+import 'package:json_types/json_types.dart';
 
 class FirestoreServiceFlutterfire implements FirestoreService {
   final FirebaseFirestore _firestore;

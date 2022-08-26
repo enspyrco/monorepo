@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_types/json_types.dart';
 
-import '../../types/typedefs.dart';
 import '../enums/brightness_mode_enum.dart';
 import '../enums/platform_enum.dart';
 import '../enums/theme_brightness_enum.dart';
