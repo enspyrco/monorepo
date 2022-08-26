@@ -58,6 +58,7 @@ Three letter acronyms used in commit messages:
 - gau = googleapis_utils
 - gla = gather_link_account
 - gls = gather_link_account_shelf
+- jst = json_types
 - lcr = locator
 - oml = our_meals
 - rdx = redaux
