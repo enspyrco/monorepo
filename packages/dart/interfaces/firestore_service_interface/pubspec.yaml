@@ -7,10 +7,10 @@ environment:
   sdk: '>=2.17.0 <3.0.0'
 
 dependencies:
-  json_utils:
+  json_types:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/utils/json_utils
+      path: packages/dart/utils/json_types
 
 dev_dependencies:
   lints: ^2.0.0

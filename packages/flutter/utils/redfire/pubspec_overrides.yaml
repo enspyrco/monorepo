@@ -1,4 +1,6 @@
 dependency_overrides:
+  json_types:
+    path: ../../../dart/utils/json_types
   redfire_test:
     path: ../redfire_test
   redfire_lints:

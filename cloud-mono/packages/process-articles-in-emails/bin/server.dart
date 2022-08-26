@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:firestore_service_googleapis/firestore_service_googleapis.dart';
 import 'package:googleapis_auth/auth_io.dart';
-import 'package:json_utils/json_utils.dart';
+import 'package:json_types/json_types.dart';
 import 'package:shelf/shelf.dart' show Request, Response;
 import 'package:shelf/shelf_io.dart' as shelf_io;
 

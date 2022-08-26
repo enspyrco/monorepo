@@ -513,6 +513,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.3.1"
+  json_types:
+    dependency: transitive
+    description:
+      path: "packages/dart/utils/json_types"
+      ref: HEAD
+      resolved-ref: "5bfd066a92e134477c8fe3848157ec172812c009"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.1"
   json_utils:
     dependency: transitive
     description:

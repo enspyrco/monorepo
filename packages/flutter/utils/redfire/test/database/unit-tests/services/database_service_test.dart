@@ -1,6 +1,6 @@
+import 'package:json_types/json_types.dart';
 import 'package:mockito/mockito.dart';
 import 'package:redfire/src/database/services/firestore_service_flutterfire.dart';
-import 'package:redfire/src/types/typedefs.dart';
 import 'package:redfire_test/redfire_test.dart';
 import 'package:test/test.dart';
 

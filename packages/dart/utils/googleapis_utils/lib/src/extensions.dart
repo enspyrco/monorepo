@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:firestore_service_interface/firestore_service_interface.dart'
     as our;
 import 'package:googleapis/firestore/v1.dart';
-import 'package:json_utils/json_utils.dart';
+import 'package:json_types/json_types.dart';
 
 extension JsonMapExtension on JsonMap {
   Document toDocument() {

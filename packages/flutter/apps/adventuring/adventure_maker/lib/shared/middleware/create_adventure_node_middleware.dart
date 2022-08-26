@@ -18,7 +18,8 @@ class CreateAdventureNodeMiddleware
             var service = RedFireLocator.getFirestoreService();
 
             if (store.state.adventures.selected == null) {
-              await service.createDocument(at: 'adventures', from: {
+              await service
+                  .createDocument(at: 'adventures', from: <String, dynamic>{
                 'ownerIds': [uid],
                 'name': action.name
               });
@@ -26,7 +27,8 @@ class CreateAdventureNodeMiddleware
             }
 
             if (store.state.challenges.selected == null) {
-              await service.createDocument(at: 'challenges', from: {
+              await service
+                  .createDocument(at: 'challenges', from: <String, dynamic>{
                 'ownerIds': [uid],
                 'name': action.name,
                 'parentIds': [store.state.adventures.selected!.id]
@@ -36,7 +38,7 @@ class CreateAdventureNodeMiddleware
             }
 
             if (store.state.tasks.selected == null) {
-              await service.createDocument(at: 'tasks', from: {
+              await service.createDocument(at: 'tasks', from: <String, dynamic>{
                 'ownerIds': [uid],
                 'name': action.name,
                 'parentIds': [store.state.challenges.selected!.id]
@@ -46,7 +48,7 @@ class CreateAdventureNodeMiddleware
             }
 
             if (store.state.steps.selected == null) {
-              await service.createDocument(at: 'steps', from: {
+              await service.createDocument(at: 'steps', from: <String, dynamic>{
                 'ownerIds': [uid],
                 'name': action.name,
                 'parentIds': [store.state.tasks.selected!.id]

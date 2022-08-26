@@ -55,8 +55,8 @@ void main() {
               at: anyNamed('at'),
               where: anyNamed('where'),
               arrayContains: anyNamed('arrayContains')))
-          .thenAnswer(
-              (_) => Future.value([Document(id: 'id', path: '/', fields: {})]));
+          .thenAnswer((_) => Future.value(
+              [Document(id: 'id', path: '/', fields: <String, dynamic>{})]));
 
       // Provide test-doubles.
       RedFireLocator.provide(firestoreService: mockService);

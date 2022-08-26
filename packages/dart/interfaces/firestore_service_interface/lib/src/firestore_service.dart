@@ -1,4 +1,4 @@
-import 'package:json_utils/json_utils.dart';
+import 'package:json_types/json_types.dart';
 
 import 'document.dart';
 

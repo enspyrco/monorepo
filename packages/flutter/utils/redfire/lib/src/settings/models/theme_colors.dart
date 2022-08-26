@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../types/typedefs.dart';
+import 'package:json_types/json_types.dart';
 
 part 'theme_colors.freezed.dart';
 part 'theme_colors.g.dart';

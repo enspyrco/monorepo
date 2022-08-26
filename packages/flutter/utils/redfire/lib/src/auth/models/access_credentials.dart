@@ -1,7 +1,6 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../types.dart';
+import 'package:json_types/json_types.dart';
 
 part 'access_credentials.freezed.dart';
 part 'access_credentials.g.dart';

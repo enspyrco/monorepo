@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../types/typedefs.dart';
+import 'package:json_types/json_types.dart';
 
 part 'auth_provider_data.freezed.dart';
 part 'auth_provider_data.g.dart';

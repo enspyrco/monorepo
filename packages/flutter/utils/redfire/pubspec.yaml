@@ -22,6 +22,10 @@ dependencies:
   freezed_annotation:
   json_annotation: ^4.6.0
   flutterfire_ui: ^0.4.0
+  json_types:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/utils/json_types
   firestore_service_interface:
     git:
       url: https://github.com/enspyrco/monorepo.git

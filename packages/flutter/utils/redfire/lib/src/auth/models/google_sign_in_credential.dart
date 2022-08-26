@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../types/typedefs.dart';
+import 'package:json_types/json_types.dart';
 
 part 'google_sign_in_credential.freezed.dart';
 part 'google_sign_in_credential.g.dart';

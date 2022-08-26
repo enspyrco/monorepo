@@ -1,6 +1,7 @@
 library redfire_types;
 
-// Types needed for child packages to declare AppState, models, etc.
+// typedefs for json
+export 'package:json_types/json_types.dart';
 
 // auth
 export 'src/auth/enums/auth_step_enum.dart';
@@ -34,4 +35,3 @@ export 'src/types/red_fire_state.dart';
 export 'src/types/redux_action.dart';
 export 'src/types/redux_service.dart';
 export 'src/types/redux_state.dart';
-export 'src/types/typedefs.dart';

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:git_hub_api_client/src/git_hub_auth.dart';
 import 'package:http/http.dart';
-import 'package:json_utils/json_utils.dart';
+import 'package:json_types/json_types.dart';
 
 class GitHubService {
   final GitHubAuth _auth;

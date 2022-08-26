@@ -1,4 +1,5 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 import 'package:redfire/extensions.dart';
 import 'package:redfire/services.dart';
 import 'package:redfire/types.dart';
@@ -17,8 +18,9 @@ class ReadAdventuresMiddleware
 
           try {
             final service = RedFireLocator.getFirestoreService();
-            JsonList jsonList = await service.getDocuments(at: 'adventures');
-            var adventures = jsonList
+            List<Document> documents =
+                await service.getDocuments(at: 'adventures');
+            var adventures = documents
                 .map<AdventureModel>(
                     (jsonItem) => AdventureModel.fromJson(jsonItem as JsonMap))
                 .toISet();

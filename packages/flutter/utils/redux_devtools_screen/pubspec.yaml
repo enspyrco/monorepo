@@ -10,10 +10,10 @@ dependencies:
   collection: ^1.16.0
   flutter:
     sdk: flutter
-  json_utils:
+  json_types:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/utils/json_utils
+      path: packages/dart/utils/json_types
 
 dev_dependencies:
   flutter_test:

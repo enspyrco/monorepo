@@ -18,8 +18,9 @@ void main() {
               FirestoreServiceFlutterfire(firestore: firestoreMock));
       final service = RedFireLocator.getFirestoreService();
 
-      service
-          .createDocument(at: 'new/uid', from: {'uid': 'uid', 'name': 'testy'});
+      service.createDocument(
+          at: 'new/uid',
+          from: <String, dynamic>{'uid': 'uid', 'name': 'testy'});
 
       verify(firestoreMock.collection('new/uid'));
     });
