@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -6,16 +8,11 @@ import 'package:redux/redux.dart';
 import 'package:redux_devtools_screen/redux_devtools_screen.dart';
 import 'package:split_view/split_view.dart';
 
+import '../../../types.dart';
 import '../../auth/utils/login_configs.dart';
-import '../../navigation/models/page_data.dart';
-import '../../platform/plugins/wrappers/firebase_wrapper.dart';
 import '../../redux/extensions/reducers_list_extension.dart';
 import '../../settings/extensions/brightness_mode_enum_extensions.dart';
 import '../../settings/extensions/theme_set_extensions.dart';
-import '../../settings/models/settings.dart';
-import '../../types/red_fire_state.dart';
-import '../../types/redux_action.dart';
-import '../../utils/devtools_global.dart';
 import '../../utils/red_fire_config.dart';
 import '../../utils/red_fire_locator.dart';
 import '../redux/redfire_initial_actions.dart';
@@ -130,6 +127,7 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
         distinct: true,
         converter: (store) => store.state.settings,
         builder: (context, settings) {
+          var placeHolder = StreamController<JsonMap>().stream;
           return MaterialApp(
               title: widget._title,
               theme: settings.lightTheme.data,
@@ -139,9 +137,7 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
                   ? SplitView(
                       viewMode: SplitViewMode.Horizontal,
                       children: [
-                        Material(
-                            child: ReduxDevToolsScreen(
-                                reduxEventsController.stream)),
+                        Material(child: ReduxDevToolsScreen(placeHolder)),
                         PagesNavigator<T>(widget._store),
                       ],
                     )
