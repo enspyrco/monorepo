@@ -1,9 +1,12 @@
+import 'package:json_types/json_types.dart';
+
 import 'middleware.dart';
 import 'reducer.dart';
 import 'state.dart';
 
-class Action {
-  final List<AsyncAction> history = [];
+abstract class Action {
+  JsonMap toJson();
+  String? parentId;
 }
 
 abstract class SyncAction<S extends RootState> extends Action {
