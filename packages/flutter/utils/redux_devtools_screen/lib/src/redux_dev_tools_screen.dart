@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:redux_devtools_screen/src/models/redux_state_event.dart';
+import 'package:json_types/json_types.dart';
 
 import 'action_history/actions_history_view.dart';
 import 'app_state/app_state_view.dart';
-import 'models/state_changes.dart';
+import 'models/dispatch_events.dart';
 
 /// When used by the DevTools plugin, `serviceManager.service?.onExtensionEvent`
 /// is transformed to a Stream<ReduxStateEvent>.
@@ -20,35 +20,37 @@ import 'models/state_changes.dart';
 class ReduxDevToolsScreen extends StatefulWidget {
   const ReduxDevToolsScreen(this.eventsStream, {Key? key}) : super(key: key);
 
-  final Stream<ReduxStateEvent>? eventsStream;
+  // An event could be a 'dispatch' event or a 'remove all' event
+  final Stream<JsonMap>? eventsStream;
 
   @override
   State<ReduxDevToolsScreen> createState() => _ReduxDevToolsScreenState();
 }
 
 class _ReduxDevToolsScreenState extends State<ReduxDevToolsScreen> {
-  final _stateChanges = StateChanges();
-  StreamSubscription<ReduxStateEvent>? _eventsSubscription;
+  final _dispatchEvents = DispatchEvents();
+  StreamSubscription<JsonMap>? _subscription;
+  final Map<String, JsonMap> eventFor = {};
 
   @override
   void initState() {
     super.initState();
 
     if (widget.eventsStream != null) {
-      _eventsSubscription = widget.eventsStream!.listen((event) {
-        if (event.type == 'redfire:action_dispatched') {
-          _stateChanges.add(event.data);
-        } else if (event.type == 'redfire:remove_all') {
-          _stateChanges.removeAll();
+      _subscription = widget.eventsStream!.listen((event) {
+        if (event['type'] == 'redfire:action_dispatched') {
+          _dispatchEvents.add(event['data']);
+        } else if (event['type'] == 'redfire:remove_all') {
+          _dispatchEvents.removeAll();
         }
       });
-      _stateChanges.addListener(() => setState(() {}));
+      _dispatchEvents.addListener(() => setState(() {}));
     }
   }
 
   @override
   void dispose() {
-    _eventsSubscription?.cancel();
+    _subscription?.cancel();
     super.dispose();
   }
 
@@ -58,8 +60,8 @@ class _ReduxDevToolsScreenState extends State<ReduxDevToolsScreen> {
         ? const Text('Not connected to app...')
         : Row(
             children: [
-              ActionsHistoryView(_stateChanges),
-              AppStateView(_stateChanges),
+              ActionsHistoryView(_dispatchEvents),
+              AppStateView(_dispatchEvents),
             ],
           );
   }

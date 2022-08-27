@@ -1,18 +1,21 @@
 import 'dart:async';
 
+import 'package:json_types/json_types.dart';
 import 'package:redaux/redaux.dart';
 
 class Store<S extends RootState> {
   Store({
     required S state,
-    StreamController<S>? streamController,
+    StreamController<S>? stateChangesController,
   })  : _state = state,
-        _streamController = streamController ?? StreamController<S>();
+        _stateChangesController =
+            stateChangesController ?? StreamController<S>();
 
   S _state;
 
-  final StreamController<S> _streamController;
-  final Map<Action, List<AsyncAction<S>>?> actionHistory = {};
+  final StreamController<S> _stateChangesController;
+  final StreamController<JsonMap> _dispatchEventsController =
+      StreamController<JsonMap>.broadcast();
 
   /// Returns the current state tree of the application.
   /// It is equal to the last value returned by the store's reducer.
@@ -35,11 +38,16 @@ class Store<S extends RootState> {
   void dispatch(Action action, {AsyncAction<S>? parent}) {
     print(action);
 
-    if (const bool.fromEnvironment('DEVTOOLS') && parent != null) {
-      // find the history list, add the parent into to the list and map the list to the new action
-      actionHistory[action] = (actionHistory[parent] ??= [])..add(parent);
-      // clean up the old history list
-      actionHistory.remove(parent);
+    if (const bool.fromEnvironment('REDAUXDEVTOOLS')) {
+      var data = <String, Object?>{
+        'state': _state.toJson(),
+        'action': action.toJson()
+      };
+
+      // Emit json describing the action and (potential) state change on
+      // each action dispatch.
+      _dispatchEventsController
+          .add({'data': data, 'type': 'redfire:action_dispatched'});
     }
 
     // call middleware for async actions
@@ -53,7 +61,7 @@ class Store<S extends RootState> {
     }
 
     // put an event in the stream with the new state
-    _streamController.add(_state);
+    _stateChangesController.add(_state);
   }
 
   /// This function wraps the middleware calls in a try/catch and if the
@@ -75,14 +83,5 @@ class Store<S extends RootState> {
     }
   }
 
-  Stream<S> get stateChanges => _streamController.stream;
-}
-
-class ErrorMessage extends State {
-  ErrorMessage({required this.message, required this.trace});
-  final String message;
-  final String trace;
-  @override
-  ErrorMessage copyWith({String? message, String? trace}) => ErrorMessage(
-      message: message ?? this.message, trace: trace ?? this.trace);
+  Stream<S> get stateChanges => _stateChangesController.stream;
 }

@@ -1,30 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:json_types/json_types.dart';
 
-import '../models/state_changes.dart';
+import '../models/dispatch_events.dart';
 import 'action_history_item.dart';
 
 class ActionsHistoryView extends StatelessWidget {
-  const ActionsHistoryView(this._stateChanges, {super.key});
+  const ActionsHistoryView(this._dispatchEvents, {super.key});
 
-  final StateChanges _stateChanges;
+  final DispatchEvents _dispatchEvents;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 300,
       child: ListView.builder(
-          itemCount: _stateChanges.events.length,
+          itemCount: _dispatchEvents.events.length,
           itemBuilder: (context, index) {
-            final actionMap = _stateChanges.events[index]['action'];
+            final actionMap =
+                _dispatchEvents.events[index]['action'] as JsonMap?;
             if (actionMap == null) {
               return Container();
             }
             return ActionHistoryItem(
-                currentlySelected: index == _stateChanges.selectedIndex,
-                actionName: actionMap['description'],
-                actionState: actionMap['json'],
-                onTap: () => _stateChanges.setSelected(index));
+                currentlySelected: index == _dispatchEvents.selectedIndex,
+                actionName: actionMap['description'] as String,
+                actionState: actionMap['json'] as JsonMap,
+                onTap: () => _dispatchEvents.setSelected(index));
           }),
     );
   }

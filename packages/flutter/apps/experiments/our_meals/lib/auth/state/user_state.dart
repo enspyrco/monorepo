@@ -22,6 +22,7 @@ class UserState extends State {
   final String? displayName;
   final String? photoUrl;
 
+  @override
   UserState copyWith(
       {SignedInState? signedIn,
       String? uid,
@@ -33,4 +34,12 @@ class UserState extends State {
         displayName: displayName ?? this.displayName,
         photoUrl: photoUrl ?? this.photoUrl);
   }
+
+  @override
+  toJson() => <String, dynamic>{
+        'signedIn': signedIn.name,
+        'uid': uid,
+        'displayName': displayName,
+        'photoUrl': photoUrl
+      };
 }

@@ -142,6 +142,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
+  json_types:
+    dependency: transitive
+    description:
+      path: "packages/dart/utils/json_types"
+      ref: HEAD
+      resolved-ref: "166825f8739373d3d606a89432b96ab911a5ae1a"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.1"
   lints:
     dependency: transitive
     description:

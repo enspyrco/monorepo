@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:redux_devtools_screen/src/models/state_changes.dart';
+import 'package:redux_devtools_screen/src/models/dispatch_events.dart';
 
 import 'state_tree/key_provider.dart';
 import 'state_tree/primitives/tree_controller.dart';
@@ -7,9 +7,9 @@ import 'state_tree/primitives/tree_node.dart';
 import 'state_tree/widgets/tree_view.dart';
 
 class AppStateView extends StatelessWidget {
-  AppStateView(this._stateChanges, {super.key});
+  AppStateView(this._dispatchEvents, {super.key});
 
-  final StateChanges _stateChanges;
+  final DispatchEvents _dispatchEvents;
   final _keyProvider = KeyProvider();
   final _controller = TreeController(allNodesExpanded: false);
 
@@ -17,7 +17,8 @@ class AppStateView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: TreeView(
-        toTreeNodes(_stateChanges.selectedState, _stateChanges.previousState),
+        toTreeNodes(
+            _dispatchEvents.selectedState, _dispatchEvents.previousState),
         treeController: _controller,
       ),
     );
