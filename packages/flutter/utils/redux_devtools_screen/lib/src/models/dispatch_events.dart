@@ -1,29 +1,29 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:json_types/json_types.dart';
 
-class StateChanges extends ChangeNotifier {
+class DispatchEvents extends ChangeNotifier {
   // Internal state.
   final List<Map<String, dynamic>> _events = [];
   int? _selectedIndex;
 
   // Getters for reading state.
-  UnmodifiableListView<Map<String, dynamic>> get events =>
-      UnmodifiableListView(_events);
+  UnmodifiableListView<JsonMap> get events => UnmodifiableListView(_events);
   int? get selectedIndex => _selectedIndex;
-  Map<String, dynamic> get selectedState =>
-      (_selectedIndex == null) ? {} : _events[_selectedIndex!]['state_json'];
+  JsonMap get selectedState =>
+      (_selectedIndex == null) ? {} : _events[_selectedIndex!]['state'];
   Map<String, dynamic> get previousState =>
       (_selectedIndex == null || _selectedIndex == 0)
           ? {}
-          : _events[_selectedIndex! - 1]['state_json'];
+          : _events[_selectedIndex! - 1]['state'];
 
   void setSelected(int index) {
     _selectedIndex = index;
     notifyListeners();
   }
 
-  void add(Map<String, dynamic> event) {
+  void add(JsonMap event) {
     _events.add(event);
     notifyListeners();
   }
