@@ -25,4 +25,6 @@ class FirebaseAuthService {
   Stream<UserState> tapIntoAuthState() {
     return plugin.authStateChanges().map((user) => user.toState());
   }
+
+  Future<void> signOut() async => plugin.signOut();
 }

@@ -12,8 +12,12 @@ class UpdateUserState extends SyncAction<AppState> {
   Reducer<AppState> get reducer => _UpdateUserStateReducer.instance;
 
   @override
-  toJson() =>
-      {'name_': 'Update User State', 'id_': hashCode, 'parent_': parentId};
+  toJson() => {
+        'name_': 'Update User State',
+        'type_': 'sync',
+        'id_': hashCode,
+        'parent_': parentId
+      };
 }
 
 class _UpdateUserStateReducer extends Reducer<AppState> {
