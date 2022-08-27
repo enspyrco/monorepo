@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:locator/locator.dart';
 import 'package:redaux/redaux.dart';
 
 import '../../app/state/app_state.dart';
-import '../../utils/locate.dart';
 import '../services/firebase_auth_service.dart';
 import '../state/user_state.dart';
 import 'update_user_state.dart';
@@ -13,8 +13,12 @@ class BindAuthState extends AsyncAction<AppState> {
   Middleware<AppState> get middleware => _BindAuthStateMiddleware.instance;
 
   @override
-  toJson() =>
-      {'name_': 'Bind Auth State', 'id_': hashCode, 'parent_': parentId};
+  toJson() => {
+        'name_': 'Bind Auth State',
+        'type_': 'async',
+        'id_': hashCode,
+        'parent_': parentId
+      };
 }
 
 /// A file private singleton, allowing each [BindAuthState] action to return
