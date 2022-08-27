@@ -126,13 +126,13 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.4.5"
+    version: "3.4.6"
   cloud_firestore_extensions:
     dependency: transitive
     description:
       path: "packages/flutter/utils/flutterfire/cloud_firestore_extensions"
       ref: HEAD
-      resolved-ref: "146811077cddcc5b37e016e961732e5888d465b7"
+      resolved-ref: "4aef88ca0c1456479f7af48c240e48175709f2ad"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
@@ -142,14 +142,14 @@ packages:
       name: cloud_firestore_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.7.2"
+    version: "5.7.3"
   cloud_firestore_web:
     dependency: transitive
     description:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.8.5"
+    version: "2.8.6"
   code_builder:
     dependency: transitive
     description:
@@ -233,77 +233,77 @@ packages:
       name: firebase_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.6.4"
+    version: "3.7.0"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
       name: firebase_auth_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.5.4"
+    version: "6.6.0"
   firebase_auth_web:
     dependency: transitive
     description:
       name: firebase_auth_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.4"
+    version: "4.3.0"
   firebase_core:
     dependency: transitive
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.21.0"
+    version: "1.21.1"
   firebase_core_platform_interface:
     dependency: transitive
     description:
       name: firebase_core_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.5.0"
+    version: "4.5.1"
   firebase_core_web:
     dependency: transitive
     description:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.1"
+    version: "1.7.2"
   firebase_database:
     dependency: transitive
     description:
       name: firebase_database
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "9.1.2"
+    version: "9.1.3"
   firebase_database_platform_interface:
     dependency: transitive
     description:
       name: firebase_database_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.2+2"
+    version: "0.2.2+3"
   firebase_database_web:
     dependency: transitive
     description:
       name: firebase_database_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.1+4"
+    version: "0.2.1+5"
   firebase_dynamic_links:
     dependency: transitive
     description:
       name: firebase_dynamic_links
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.5"
+    version: "4.3.6"
   firebase_dynamic_links_platform_interface:
     dependency: transitive
     description:
       name: firebase_dynamic_links_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.3+10"
+    version: "0.2.3+11"
   firestore_service_interface:
     dependency: "direct main"
     description:
@@ -386,7 +386,7 @@ packages:
       name: flutterfire_ui
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.3+6"
+    version: "0.4.3+7"
   freezed:
     dependency: "direct dev"
     description:
@@ -518,16 +518,7 @@ packages:
     description:
       path: "packages/dart/utils/json_types"
       ref: HEAD
-      resolved-ref: "5bfd066a92e134477c8fe3848157ec172812c009"
-      url: "https://github.com/enspyrco/monorepo.git"
-    source: git
-    version: "0.0.1"
-  json_utils:
-    dependency: transitive
-    description:
-      path: "packages/dart/utils/json_utils"
-      ref: HEAD
-      resolved-ref: "146811077cddcc5b37e016e961732e5888d465b7"
+      resolved-ref: "4aef88ca0c1456479f7af48c240e48175709f2ad"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
@@ -690,7 +681,7 @@ packages:
     description:
       path: "packages/flutter/utils/redux_devtools_screen"
       ref: HEAD
-      resolved-ref: "146811077cddcc5b37e016e961732e5888d465b7"
+      resolved-ref: "4aef88ca0c1456479f7af48c240e48175709f2ad"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
