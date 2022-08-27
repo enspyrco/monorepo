@@ -10,16 +10,13 @@
       "type": "dart"
     },
     {
-      "name": "our_meals (profile mode)",
+      "name": "our_meals (devtools)",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "profile"
-    },
-    {
-      "name": "our_meals (release mode)",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "release"
+      "toolArgs": [
+        "--dart-define",
+        "REDAUX_DEVTOOLS=true"
+      ]
     }
   ]
 }

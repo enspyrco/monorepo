@@ -13,6 +13,7 @@ dependencies:
   firebase_auth: ^3.3.18
   sign_in_with_apple: ^3.3.0
   crypto: ^3.0.2
+  split_view: ^3.2.1
   locator:
     git:
       url: https://github.com/enspyrco/monorepo.git
@@ -25,6 +26,10 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/redaux_widgets
+  redux_devtools_screen:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/redux_devtools_screen
 
 dev_dependencies:
   flutter_test:

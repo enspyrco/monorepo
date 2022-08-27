@@ -8,6 +8,8 @@ import 'package:our_meals/firebase_options.dart';
 import 'package:our_meals/home/home_screen.dart';
 import 'package:redaux/redaux.dart';
 import 'package:redaux_widgets/redaux_widget.dart';
+import 'package:redux_devtools_screen/redux_devtools_screen.dart';
+import 'package:split_view/split_view.dart';
 
 import 'app/state/app_state.dart';
 import 'auth/services/firebase_auth_service.dart';
@@ -35,18 +37,23 @@ class AuthGate extends StatelessWidget {
     return StoreProvider(
       store: _store,
       child: MaterialApp(
-        home: StateStreamBuilder<AppState, SignedInState>(
-          transformer: (state) => state.user.signedIn,
-          builder: (context, signedIn) {
-            if (signedIn == SignedInState.checking ||
-                signedIn == SignedInState.notSignedIn) {
-              return SignInScreen(signedIn, platform);
-            }
-            return const HomeScreen();
-          },
-          onInit: (store) => store.dispatch(BindAuthState()),
-        ),
-      ),
+          home: SplitView(
+        viewMode: SplitViewMode.Horizontal,
+        children: [
+          Material(child: ReduxDevToolsScreen(_store.dispatchEvents)),
+          StateStreamBuilder<AppState, SignedInState>(
+            transformer: (state) => state.user.signedIn,
+            builder: (context, signedIn) {
+              if (signedIn == SignedInState.checking ||
+                  signedIn == SignedInState.notSignedIn) {
+                return SignInScreen(signedIn, platform);
+              }
+              return const HomeScreen();
+            },
+            onInit: (store) => store.dispatch(BindAuthState()),
+          ),
+        ],
+      )),
     );
   }
 }

@@ -16,7 +16,8 @@ class UpdateUserState extends SyncAction<AppState> {
         'name_': 'Update User State',
         'type_': 'sync',
         'id_': hashCode,
-        'parent_': parentId
+        'parent_': parentId,
+        'state_': <String, dynamic>{'user': user.toJson()}
       };
 }
 
