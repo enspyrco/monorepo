@@ -8,6 +8,10 @@ import 'sign_in_with_firebase.dart';
 class SignInWithApple extends AsyncAction<AppState> {
   @override
   Middleware<AppState> get middleware => _SignInWithAppleMiddleware.instance;
+
+  @override
+  toJson() =>
+      {'name_': 'Sign In With Apple', 'id_': hashCode, 'parent_': parentId};
 }
 
 class _SignInWithAppleMiddleware extends Middleware<AppState> {

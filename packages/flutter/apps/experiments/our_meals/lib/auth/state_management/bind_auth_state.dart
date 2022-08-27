@@ -11,6 +11,10 @@ import 'update_user_state.dart';
 class BindAuthState extends AsyncAction<AppState> {
   @override
   Middleware<AppState> get middleware => _BindAuthStateMiddleware.instance;
+
+  @override
+  toJson() =>
+      {'name_': 'Bind Auth State', 'id_': hashCode, 'parent_': parentId};
 }
 
 /// A file private singleton, allowing each [BindAuthState] action to return

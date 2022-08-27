@@ -14,6 +14,10 @@ class SignInWithFirebase extends AsyncAction<AppState> {
 
   @override
   Middleware<AppState> get middleware => _SignInWithFirebaseMiddleware.instance;
+
+  @override
+  toJson() =>
+      {'name_': 'Sign In With Firebase', 'id_': hashCode, 'parent_': parentId};
 }
 
 class _SignInWithFirebaseMiddleware extends Middleware<AppState> {

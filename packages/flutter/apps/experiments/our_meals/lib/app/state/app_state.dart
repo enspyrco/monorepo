@@ -13,4 +13,7 @@ class AppState extends RootState {
   AppState copyWith({List<ErrorMessage>? errorMessages, UserState? user}) {
     return AppState(user: user ?? this.user);
   }
+
+  @override
+  toJson() => {'user': user.toJson()};
 }
