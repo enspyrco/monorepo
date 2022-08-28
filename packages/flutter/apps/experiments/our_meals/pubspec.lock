@@ -214,6 +214,15 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  redux_devtools_screen:
+    dependency: "direct main"
+    description:
+      path: "packages/flutter/utils/redux_devtools_screen"
+      ref: HEAD
+      resolved-ref: "19a67b25a6174ee2200fe6d16d737f6b2b54cb68"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.1"
   sign_in_with_apple:
     dependency: "direct main"
     description:
@@ -247,6 +256,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.2"
+  split_view:
+    dependency: "direct main"
+    description:
+      name: split_view
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.1"
   stack_trace:
     dependency: transitive
     description:

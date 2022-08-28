@@ -17,7 +17,8 @@ class BindAuthState extends AsyncAction<AppState> {
         'name_': 'Bind Auth State',
         'type_': 'async',
         'id_': hashCode,
-        'parent_': parentId
+        'parent_': parentId,
+        'state_': <String, dynamic>{}
       };
 }
 

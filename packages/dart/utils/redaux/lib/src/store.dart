@@ -38,18 +38,6 @@ class Store<S extends RootState> {
   void dispatch(Action action, {AsyncAction<S>? parent}) {
     print(action);
 
-    if (const bool.fromEnvironment('REDAUXDEVTOOLS')) {
-      var data = <String, Object?>{
-        'state': _state.toJson(),
-        'action': action.toJson()
-      };
-
-      // Emit json describing the action and (potential) state change on
-      // each action dispatch.
-      _dispatchEventsController
-          .add({'data': data, 'type': 'redfire:action_dispatched'});
-    }
-
     // call middleware for async actions
     if (action is AsyncAction<S>) {
       safeAsyncCall(action);
@@ -58,6 +46,15 @@ class Store<S extends RootState> {
     // call reducer for sync actions
     if (action is SyncAction<S>) {
       _state = action.reducer.call(_state, action);
+    }
+
+    if (const bool.fromEnvironment('REDAUX_DEVTOOLS')) {
+      // Emit json describing the action and (potential) state change on
+      // each action dispatch.
+      _dispatchEventsController.add({
+        'data': {'state': _state.toJson(), 'action': action.toJson()},
+        'type': 'redfire:action_dispatched'
+      });
     }
 
     // put an event in the stream with the new state
@@ -84,4 +81,5 @@ class Store<S extends RootState> {
   }
 
   Stream<S> get stateChanges => _stateChangesController.stream;
+  Stream<JsonMap> get dispatchEvents => _dispatchEventsController.stream;
 }

@@ -14,7 +14,8 @@ class SignInWithApple extends AsyncAction<AppState> {
         'name_': 'Sign In With Apple',
         'type_': 'async',
         'id_': hashCode,
-        'parent_': parentId
+        'parent_': parentId,
+        'state_': <String, dynamic>{}
       };
 }
 

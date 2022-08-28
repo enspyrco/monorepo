@@ -20,7 +20,8 @@ class SignInWithFirebase extends AsyncAction<AppState> {
         'name_': 'Sign In With Firebase',
         'type_': 'async',
         'id_': hashCode,
-        'parent_': parentId
+        'parent_': parentId,
+        'state_': <String, dynamic>{'idToken': idToken, 'rawNonce': rawNonce}
       };
 }
 

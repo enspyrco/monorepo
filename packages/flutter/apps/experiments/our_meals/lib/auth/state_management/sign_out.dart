@@ -13,7 +13,8 @@ class SignOut extends AsyncAction<AppState> {
         'name_': 'Sign Out',
         'type_': 'async',
         'id_': hashCode,
-        'parent_': parentId
+        'parent_': parentId,
+        'state_': <String, dynamic>{}
       };
 }
 
