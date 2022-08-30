@@ -217,11 +217,9 @@ packages:
   redux_devtools_screen:
     dependency: "direct main"
     description:
-      path: "packages/flutter/utils/redux_devtools_screen"
-      ref: HEAD
-      resolved-ref: "19a67b25a6174ee2200fe6d16d737f6b2b54cb68"
-      url: "https://github.com/enspyrco/monorepo.git"
-    source: git
+      path: "../../../utils/redux_devtools_screen"
+      relative: true
+    source: path
     version: "0.0.1"
   sign_in_with_apple:
     dependency: "direct main"

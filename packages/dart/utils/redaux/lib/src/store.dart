@@ -52,7 +52,10 @@ class Store<S extends RootState> {
       // Emit json describing the action and (potential) state change on
       // each action dispatch.
       _dispatchEventsController.add({
-        'data': {'state': _state.toJson(), 'action': action.toJson()},
+        'data': {
+          'state': _state.toJson(),
+          'action': action.toJson(parentId: parent?.hashCode)
+        },
         'type': 'redfire:action_dispatched'
       });
     }

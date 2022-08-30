@@ -13,7 +13,7 @@ class BindAuthState extends AsyncAction<AppState> {
   Middleware<AppState> get middleware => _BindAuthStateMiddleware.instance;
 
   @override
-  toJson() => {
+  toJson({int? parentId}) => {
         'name_': 'Bind Auth State',
         'type_': 'async',
         'id_': hashCode,
@@ -29,9 +29,8 @@ class _BindAuthStateMiddleware extends Middleware<AppState> {
   void call(store, action) {
     var service = locate<FirebaseAuthService>();
 
-    subscription = service
-        .tapIntoAuthState()
-        .listen((user) => store.dispatch(UpdateUserState(user)));
+    subscription = service.tapIntoAuthState().listen(
+        (user) => store.dispatch(UpdateUserState(user), parent: action));
   }
 
   StreamSubscription<UserState>? subscription;

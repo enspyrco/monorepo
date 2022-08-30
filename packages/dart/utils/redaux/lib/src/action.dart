@@ -5,8 +5,7 @@ import 'reducer.dart';
 import 'state.dart';
 
 abstract class Action {
-  JsonMap toJson();
-  String? parentId;
+  JsonMap toJson({int? parentId});
 }
 
 abstract class SyncAction<S extends RootState> extends Action {

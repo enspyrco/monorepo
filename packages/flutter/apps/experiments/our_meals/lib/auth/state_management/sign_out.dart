@@ -9,7 +9,7 @@ class SignOut extends AsyncAction<AppState> {
   Middleware<AppState> get middleware => _SignOutMiddleware.instance;
 
   @override
-  toJson() => {
+  toJson({int? parentId}) => {
         'name_': 'Sign Out',
         'type_': 'async',
         'id_': hashCode,
