@@ -10,7 +10,7 @@ class SignInWithApple extends AsyncAction<AppState> {
   Middleware<AppState> get middleware => _SignInWithAppleMiddleware.instance;
 
   @override
-  toJson() => {
+  toJson({int? parentId}) => {
         'name_': 'Sign In With Apple',
         'type_': 'async',
         'id_': hashCode,
