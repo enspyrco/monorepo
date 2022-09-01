@@ -48,23 +48,33 @@ class DispatchEvents extends ChangeNotifier {
 
   void identifyLineage() {
     if (_selectedIndex == null) return;
+    var selectedIndex = _selectedIndex!;
 
+    // clear out the lineage data structure and add the endpoint
     _lineageFor.clear();
-    _lineageFor[_selectedIndex!] = LineageShape.endpoint;
-    var currentIndex = _selectedIndex!;
+    _lineageFor[selectedIndex] = LineageShape.endpoint;
+
+    // move to the next action
+    var currentIndex = selectedIndex;
+    var parentId = _events[currentIndex]['action']['parent_'];
+    if (parentId == null) return;
+    currentIndex = _indexFor[parentId]!;
 
     while (true) {
-      var action = _events.elementAt(currentIndex)['action'];
-      var parentId = action['parent_'];
+      parentId = _events[currentIndex]['action']['parent_'];
 
       if (parentId == null) {
         _lineageFor[currentIndex] = LineageShape.origin;
         break;
       }
 
-      _lineageFor[currentIndex] = LineageShape.inBetween;
+      _lineageFor[currentIndex] = LineageShape.connection;
 
       currentIndex = _indexFor[parentId]!;
+    }
+
+    for (int i = selectedIndex; i != currentIndex; i--) {
+      _lineageFor[i] ??= LineageShape.notConnection;
     }
   }
 }
