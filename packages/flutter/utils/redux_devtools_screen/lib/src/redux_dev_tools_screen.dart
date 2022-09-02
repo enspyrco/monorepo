@@ -30,7 +30,6 @@ class ReduxDevToolsScreen extends StatefulWidget {
 class _ReduxDevToolsScreenState extends State<ReduxDevToolsScreen> {
   final _dispatchEvents = DispatchEvents();
   StreamSubscription<JsonMap>? _subscription;
-  final Map<String, JsonMap> eventFor = {};
 
   @override
   void initState() {
