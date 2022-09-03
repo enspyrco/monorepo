@@ -1,4 +1,4 @@
-name: redux_devtools_screen
+name: redaux_dev_tools_screen
 description: A widget for visualising state changes in an app using redux.
 version: 0.0.1
 publish_to: none

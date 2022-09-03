@@ -1,11 +1,13 @@
+library redaux_dev_tools_screen;
+
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:json_types/json_types.dart';
 
-import 'action_history/actions_history_view.dart';
-import 'app_state/app_state_view.dart';
-import 'models/dispatch_events.dart';
+import 'src/action_history/actions_history_view.dart';
+import 'src/app_state/app_state_view.dart';
+import 'src/models/dispatch_events.dart';
 
 /// When used by the DevTools plugin, `serviceManager.service?.onExtensionEvent`
 /// is transformed to a Stream<ReduxStateEvent>.
@@ -17,17 +19,17 @@ import 'models/dispatch_events.dart';
 ///
 /// Each event is added to the [EventsModel] which is passed down for display
 /// by child widgets.
-class ReduxDevToolsScreen extends StatefulWidget {
-  const ReduxDevToolsScreen(this.eventsStream, {Key? key}) : super(key: key);
+class RedauxDevToolsScreen extends StatefulWidget {
+  const RedauxDevToolsScreen(this.eventsStream, {Key? key}) : super(key: key);
 
   // An event could be a 'dispatch' event or a 'remove all' event
   final Stream<JsonMap>? eventsStream;
 
   @override
-  State<ReduxDevToolsScreen> createState() => _ReduxDevToolsScreenState();
+  State<RedauxDevToolsScreen> createState() => _RedauxDevToolsScreenState();
 }
 
-class _ReduxDevToolsScreenState extends State<ReduxDevToolsScreen> {
+class _RedauxDevToolsScreenState extends State<RedauxDevToolsScreen> {
   final _dispatchEvents = DispatchEvents();
   StreamSubscription<JsonMap>? _subscription;
 

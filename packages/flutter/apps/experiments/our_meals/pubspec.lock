@@ -200,17 +200,17 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  redaux_dev_tools_screen:
+    dependency: "direct main"
+    description:
+      path: "../../../utils/redaux_dev_tools_screen"
+      relative: true
+    source: path
+    version: "0.0.1"
   redaux_widgets:
     dependency: "direct main"
     description:
       path: "../../../utils/redaux_widgets"
-      relative: true
-    source: path
-    version: "0.0.1"
-  redux_devtools_screen:
-    dependency: "direct main"
-    description:
-      path: "../../../utils/redux_devtools_screen"
       relative: true
     source: path
     version: "0.0.1"

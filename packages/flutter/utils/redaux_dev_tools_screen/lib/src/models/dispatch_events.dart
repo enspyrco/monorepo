@@ -2,7 +2,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_types/json_types.dart';
-import 'package:redux_devtools_screen/src/enums/lineage_shape.dart';
+
+import '../enums/lineage_shape.dart';
 
 class DispatchEvents extends ChangeNotifier {
   /// The list of dispatch events, added to each time [Store.dispatch] is called

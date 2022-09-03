@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:redux_devtools_screen/src/models/dispatch_events.dart';
 
+import '../models/dispatch_events.dart';
 import 'state_tree/key_provider.dart';
 import 'state_tree/primitives/tree_controller.dart';
 import 'state_tree/primitives/tree_node.dart';
