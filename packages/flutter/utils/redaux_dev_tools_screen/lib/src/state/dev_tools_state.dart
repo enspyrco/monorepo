@@ -16,8 +16,7 @@ class DevToolsState extends RootState {
       : _dispatchEvents = dispatchEvents ?? [],
         _selectedIndex = selectedIndex,
         _lineageFor = lineageForIndex ?? {},
-        _indexFor = indexForActionId ?? {},
-        super(errorMessages ?? []);
+        _indexFor = indexForActionId ?? {};
 
   static DevToolsState get initial => DevToolsState();
 
