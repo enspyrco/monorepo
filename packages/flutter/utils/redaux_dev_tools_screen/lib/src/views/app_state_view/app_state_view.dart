@@ -1,27 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:redaux_widgets/redaux_widget.dart';
 
-import '../models/dispatch_events.dart';
+import '../../state/dev_tools_state.dart';
+import '../../state/viewmodels/app_state_view_view_model.dart';
 import 'state_tree/key_provider.dart';
 import 'state_tree/primitives/tree_controller.dart';
 import 'state_tree/primitives/tree_node.dart';
 import 'state_tree/widgets/tree_view.dart';
 
 class AppStateView extends StatelessWidget {
-  AppStateView(this._dispatchEvents, {super.key});
-
-  final DispatchEvents _dispatchEvents;
   final _keyProvider = KeyProvider();
   final _controller = TreeController(allNodesExpanded: false);
 
+  AppStateView({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: TreeView(
-        toTreeNodes(
-            _dispatchEvents.selectedState, _dispatchEvents.previousState),
-        treeController: _controller,
-      ),
-    );
+    return StateStreamBuilder<DevToolsState, AppStateViewViewModel>(
+        transformer: (state) =>
+            AppStateViewViewModel(state.selectedState, state.previousState),
+        builder: (context, vm) {
+          return Center(
+            child: TreeView(
+              toTreeNodes(vm.selectedAppState, vm.previousAppState),
+              treeController: _controller,
+            ),
+          );
+        });
   }
 
   List<TreeNode> toTreeNodes(dynamic currentJson, dynamic previousJson) {

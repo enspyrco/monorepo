@@ -1,3 +1,7 @@
 dependency_overrides:
+  redaux:
+    path: ../../../dart/utils/redaux
+  redaux_widgets:
+    path: ../../../flutter/utils/redaux_widgets
   json_types:
     path: ../../../dart/utils/json_types
