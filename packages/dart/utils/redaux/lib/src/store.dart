@@ -3,14 +3,16 @@ import 'dart:async';
 import 'package:json_types/json_types.dart';
 import 'package:redaux/redaux.dart';
 
+/// [stateChangesController] should be broadcast type as UI components will
+/// listen for a time at random intervals and only want the state changes while
+/// they are listening.
 class Store<S extends RootState> {
   Store({
     required S state,
     StreamController<S>? stateChangesController,
   })  : _state = state,
         _stateChangesController =
-            stateChangesController ?? StreamController<S>();
-
+            stateChangesController ?? StreamController<S>.broadcast();
   S _state;
 
   final StreamController<S> _stateChangesController;
