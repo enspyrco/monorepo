@@ -12,16 +12,12 @@ class ActionHistoryItem extends StatelessWidget {
     required this.actionName,
     required this.actionType,
     required this.actionState,
-    // required this.isSelected,
     required this.index,
-    // this.lineage,
   }) : super(key: key);
 
   final String actionName;
   final String actionType;
   final Map<String, dynamic> actionState;
-  // final bool isSelected;
-  // final LineageShape? lineage;
   final int index;
 
   @override

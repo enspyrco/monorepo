@@ -1,14 +1,12 @@
 library redaux_dev_tools_screen;
 
-import 'dart:async';
-
 import 'package:flutter/widgets.dart';
 import 'package:json_types/json_types.dart';
 import 'package:redaux/redaux.dart' hide State;
-import 'package:redaux_dev_tools_screen/src/views/main_view.dart';
 import 'package:redaux_widgets/redaux_widget.dart';
 
-import 'src/state/dev_tools_state.dart';
+import 'redaux_dev_tools_screen.dart';
+import 'src/views/main_view.dart';
 
 export 'src/state/dev_tools_state.dart';
 
