@@ -1,12 +1,8 @@
-import 'dart:async';
-
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
-import 'package:redux_devtools_screen/redux_devtools_screen.dart';
-import 'package:split_view/split_view.dart';
 
 import '../../../types.dart';
 import '../../auth/utils/login_configs.dart';
@@ -127,21 +123,12 @@ class _AppWidgetState<T extends RedFireState> extends State<AppWidget<T>> {
         distinct: true,
         converter: (store) => store.state.settings,
         builder: (context, settings) {
-          var placeHolder = StreamController<JsonMap>().stream;
           return MaterialApp(
               title: widget._title,
               theme: settings.lightTheme.data,
               darkTheme: settings.darkTheme.data,
               themeMode: settings.brightnessMode.theme,
-              home: (const bool.fromEnvironment('REDUX_DEVTOOLS'))
-                  ? SplitView(
-                      viewMode: SplitViewMode.Horizontal,
-                      children: [
-                        Material(child: ReduxDevToolsScreen(placeHolder)),
-                        PagesNavigator<T>(widget._store),
-                      ],
-                    )
-                  : PagesNavigator<T>(widget._store));
+              home: PagesNavigator<T>(widget._store));
         },
       ),
     );
