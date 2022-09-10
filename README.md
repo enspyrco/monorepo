@@ -67,6 +67,7 @@ Three letter acronyms used in commit messages:
 - rfr = redfire
 - rft = redfire_test
 - rfl = redfire_lints
+- rwt = redaux_widgets_test_utils
 - twr = tech_world
 - tpr = the_process
 - wgs = ws_game_server
