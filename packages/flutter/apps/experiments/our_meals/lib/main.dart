@@ -7,8 +7,8 @@ import 'package:our_meals/auth/widgets/sign_in_screen.dart';
 import 'package:our_meals/firebase_options.dart';
 import 'package:our_meals/home/home_screen.dart';
 import 'package:redaux/redaux.dart';
+import 'package:redaux_dev_tools_screen/redaux_dev_tools_screen.dart';
 import 'package:redaux_widgets/redaux_widget.dart';
-import 'package:redux_devtools_screen/redux_devtools_screen.dart';
 import 'package:split_view/split_view.dart';
 
 import 'app/state/app_state.dart';
@@ -40,7 +40,7 @@ class AuthGate extends StatelessWidget {
           home: SplitView(
         viewMode: SplitViewMode.Horizontal,
         children: [
-          Material(child: ReduxDevToolsScreen(_store.dispatchEvents)),
+          Material(child: RedauxDevToolsScreen(_store.dispatchEvents)),
           StateStreamBuilder<AppState, SignedInState>(
             transformer: (state) => state.user.signedIn,
             builder: (context, signedIn) {

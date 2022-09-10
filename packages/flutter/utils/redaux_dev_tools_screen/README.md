@@ -1,4 +1,4 @@
-# redux_devtools_screen
+# redaux_dev_tools_screen
 
 *A widget for visualising state changes in an app using redux.*
 

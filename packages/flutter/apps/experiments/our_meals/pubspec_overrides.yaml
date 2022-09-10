@@ -5,5 +5,5 @@ dependency_overrides:
     path: ../../../../dart/utils/redaux
   redaux_widgets:
     path: ../../../utils/redaux_widgets
-  redux_devtools_screen:
-    path: ../../../utils/redux_devtools_screen
+  redaux_dev_tools_screen:
+    path: ../../../utils/redaux_dev_tools_screen
