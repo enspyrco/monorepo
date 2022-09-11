@@ -39,7 +39,7 @@ class _SignInWithFirebaseMiddleware extends Middleware<AppState> {
         photoUrl: user.photoURL,
         uid: user.uid);
 
-    store.dispatch(UpdateUserState(state), parent: action);
+    store.dispatch(UpdateUserState(state)..parent = action);
   }
 
   final service = FirebaseAuthService(FirebaseAuth.instance);

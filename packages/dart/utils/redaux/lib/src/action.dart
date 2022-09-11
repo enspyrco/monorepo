@@ -5,6 +5,7 @@ import 'reducer.dart';
 import 'state.dart';
 
 abstract class Action {
+  AsyncAction? parent;
   JsonMap toJson({int? parentId});
 }
 

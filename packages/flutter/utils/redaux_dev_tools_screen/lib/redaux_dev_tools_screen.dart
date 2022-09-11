@@ -8,6 +8,7 @@ import 'package:redaux_widgets/redaux_widget.dart';
 import 'redaux_dev_tools_screen.dart';
 import 'src/views/main_view.dart';
 
+export 'src/endwares/emit_dispatch_events_endware.dart';
 export 'src/state/dev_tools_state.dart';
 
 /// Visualise the data flow of an app by adding a [RedauxDevToolsScreen] widget
@@ -20,10 +21,10 @@ export 'src/state/dev_tools_state.dart';
 ///   app state.
 /// - a 'remove all' event to clear the dispatch events data.
 class RedauxDevToolsScreen extends StatefulWidget {
-  const RedauxDevToolsScreen(this._eventsStream, this._store, {super.key});
+  RedauxDevToolsScreen(this._eventsStream, {super.key});
 
   final Stream<JsonMap>? _eventsStream;
-  final Store<DevToolsState> _store;
+  final Store<DevToolsState> _store = Store(state: DevToolsState.initial);
 
   @override
   State<RedauxDevToolsScreen> createState() => _RedauxDevToolsScreenState();

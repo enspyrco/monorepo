@@ -46,9 +46,8 @@ class _SignInWithAppleMiddleware extends Middleware<AppState> {
     var token = credential.identityToken ??
         (throw 'The credential.identityToken variable was null');
 
-    store.dispatch(
-        SignInWithFirebase(idToken: token, rawNonce: generateNonce()),
-        parent: action);
+    store.dispatch(SignInWithFirebase(idToken: token, rawNonce: generateNonce())
+      ..parent = action);
   }
 
   static final instance = _SignInWithAppleMiddleware();

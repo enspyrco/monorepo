@@ -30,7 +30,7 @@ class _BindAuthStateMiddleware extends Middleware<AppState> {
     var service = locate<FirebaseAuthService>();
 
     subscription = service.tapIntoAuthState().listen(
-        (user) => store.dispatch(UpdateUserState(user), parent: action));
+        (user) => store.dispatch(UpdateUserState(user)..parent = action));
   }
 
   StreamSubscription<UserState>? subscription;
