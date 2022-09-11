@@ -17,9 +17,9 @@ class WidgetTestHarness<T extends RootState> {
   final Store<T> _store;
   final Widget _widgetUnderTest;
 
-  WidgetTestHarness({required T initialState, required Widget widgetUnderTest})
+  WidgetTestHarness({required T initialState, required Widget child})
       : _store = Store<T>(state: initialState),
-        _widgetUnderTest = widgetUnderTest;
+        _widgetUnderTest = child;
 
   Widget get widget => StoreProvider<T>(
       store: _store,
