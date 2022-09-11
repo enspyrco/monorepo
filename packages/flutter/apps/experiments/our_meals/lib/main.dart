@@ -15,7 +15,11 @@ import 'app/state/app_state.dart';
 import 'auth/services/firebase_auth_service.dart';
 import 'auth/state/user_state.dart';
 
-final _store = Store<AppState>(state: AppState.initial);
+// TODO: When we put this somewhere (eg. a redafire library) we should add some notes
+// about how already added endWares may mess with results
+// Or even better, how to avoid to problems
+final _endware = EmitDispatchEventsEndware<AppState>();
+final _store = Store<AppState>(state: AppState.initial, endWares: [_endware]);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +44,7 @@ class AuthGate extends StatelessWidget {
           home: SplitView(
         viewMode: SplitViewMode.Horizontal,
         children: [
-          Material(child: RedauxDevToolsScreen(_store.dispatchEvents)),
+          Material(child: RedauxDevToolsScreen(_endware.dispatchEvents)),
           StateStreamBuilder<AppState, SignedInState>(
             transformer: (state) => state.user.signedIn,
             builder: (context, signedIn) {

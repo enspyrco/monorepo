@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:json_types/json_types.dart';
+import 'package:flutter/material.dart' hide Action;
 import 'package:redaux/redaux.dart';
 import 'package:redaux_widgets/widgets/store_provider.dart';
+
+import 'record_dispatch_events_endware.dart';
 
 /// A test harness for wrapping a widget under test that provides the functionality
 /// that a test may want in order to interact with the widget or check for
@@ -14,12 +15,14 @@ import 'package:redaux_widgets/widgets/store_provider.dart';
 /// The harness exposes Store.dispatchEvents so tests can observe dispatched
 /// actions and the associated state change.
 class WidgetTestHarness<T extends RootState> {
-  final Store<T> _store;
+  late final Store<T> _store;
   final Widget _widgetUnderTest;
+  final dispatchedEvents = RecordDispatchEventsEndware<T>();
 
-  WidgetTestHarness({required T initialState, required Widget widgetUnderTest})
-      : _store = Store<T>(state: initialState),
-        _widgetUnderTest = widgetUnderTest;
+  WidgetTestHarness({required T initialState, required Widget child})
+      : _widgetUnderTest = child {
+    _store = Store<T>(state: initialState, endWares: [dispatchedEvents]);
+  }
 
   Widget get widget => StoreProvider<T>(
       store: _store,
@@ -27,5 +30,5 @@ class WidgetTestHarness<T extends RootState> {
 
   T get state => _store.state;
 
-  Stream<JsonMap> get dispatchEvents => _store.dispatchEvents;
+  bool contains(Action action) => dispatchedEvents.includes(action);
 }
