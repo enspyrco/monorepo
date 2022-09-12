@@ -5,3 +5,5 @@ dependency_overrides:
     path: ../../../flutter/utils/redaux_widgets
   json_types:
     path: ../../../dart/utils/json_types
+  redaux_widgets_test_utils:
+    path: ../../../flutter/utils/redaux_widgets_test_utils
