@@ -15,20 +15,20 @@ import 'record_dispatch_events_endware.dart';
 /// The harness exposes Store.dispatchEvents so tests can observe dispatched
 /// actions and the associated state change.
 class WidgetTestHarness<T extends RootState> {
+  WidgetTestHarness(
+      {required T initialState, required Widget child, List<Endware>? endwares})
+      : _widgetUnderTest = child {
+    _store = Store<T>(
+        state: initialState, endWares: [...?endwares, dispatchedEvents]);
+  }
+
   late final Store<T> _store;
   final Widget _widgetUnderTest;
   final dispatchedEvents = RecordDispatchEventsEndware<T>();
-
-  WidgetTestHarness({required T initialState, required Widget child})
-      : _widgetUnderTest = child {
-    _store = Store<T>(state: initialState, endWares: [dispatchedEvents]);
-  }
 
   Widget get widget => StoreProvider<T>(
       store: _store,
       child: MaterialApp(home: Scaffold(body: _widgetUnderTest)));
 
   T get state => _store.state;
-
-  bool contains(Action action) => dispatchedEvents.includes(action);
 }
