@@ -5,13 +5,13 @@ import '../state/dev_tools_state.dart';
 import 'select_action.dart';
 
 class AddDispatchEvent extends SyncAction<DevToolsState> {
-  AddDispatchEvent(this._event);
+  AddDispatchEvent(this._eventJson);
 
-  final JsonMap _event;
+  final JsonMap _eventJson;
 
-  int get actionId => _event['action']['id_'];
+  int get actionId => _eventJson['action']['id_'];
 
-  JsonMap get event => JsonMap.unmodifiable(_event);
+  JsonMap get eventJson => JsonMap.unmodifiable(_eventJson);
 
   @override
   Reducer<DevToolsState> get reducer => _AddDispatchEventReducer.instance;
@@ -22,7 +22,7 @@ class AddDispatchEvent extends SyncAction<DevToolsState> {
         'type_': 'sync',
         'id_': hashCode,
         'parent_': parentId,
-        'state_': {'event': event}
+        'state_': {'event': eventJson}
       };
 }
 
@@ -30,7 +30,7 @@ class _AddDispatchEventReducer extends Reducer<DevToolsState> {
   @override
   DevToolsState call(state, covariant AddDispatchEvent action) {
     var newState = state.copyWith(
-        dispatchEvents: [...state.dispatchEvents, action.event],
+        dispatchEvents: [...state.dispatchEvents, action.eventJson],
         selectedIndex: state.dispatchEvents.length,
         indexForActionId: {
           ...state.indexFor,
