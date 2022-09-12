@@ -4,7 +4,7 @@ import 'package:json_types/json_types.dart';
 import 'package:redaux_widgets/redaux_widget.dart';
 
 import '../../../redaux_dev_tools_screen.dart';
-import 'action_history_item.dart';
+import 'actions_history_item.dart';
 
 class ActionsHistoryView extends StatelessWidget {
   const ActionsHistoryView({super.key});
@@ -27,7 +27,7 @@ class ActionsHistoryView extends StatelessWidget {
                         if (actionData == null) {
                           return Container();
                         }
-                        return ActionHistoryItem(
+                        return ActionsHistoryItem(
                           actionName: actionData['name_'],
                           actionType: actionData['type_'],
                           actionState: actionData['state_'],

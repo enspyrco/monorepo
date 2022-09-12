@@ -6,8 +6,8 @@ import '../../state-management/select_action.dart';
 import '../../state/dev_tools_state.dart';
 import '../../state/viewmodels/action_history_item_view_model.dart';
 
-class ActionHistoryItem extends StatelessWidget {
-  const ActionHistoryItem({
+class ActionsHistoryItem extends StatelessWidget {
+  const ActionsHistoryItem({
     Key? key,
     required this.actionName,
     required this.actionType,
