@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_types/json_types.dart';
 import 'package:redaux_dev_tools_screen/redaux_dev_tools_screen.dart';
+import 'package:redaux_dev_tools_screen/src/state-management/select_action.dart';
 import 'package:redaux_dev_tools_screen/src/views/action_history_view/actions_history_item.dart';
 import 'package:redaux_widgets_test_utils/redaux_widgets_test_utils.dart';
 
@@ -16,7 +17,14 @@ void main() {
         actionState: actionState,
         index: index);
     var harness = WidgetTestHarness(
-        initialState: DevToolsState.initial, child: widgetUnderTest);
+        initialState: DevToolsState.initial,
+        child: widgetUnderTest,
+        endwares: [EmitDispatchEventsEndware()]);
+
     await tester.pumpWidget(harness.widget);
+
+    await tester.tap(find.byType(ActionsHistoryItem));
+
+    expect(harness.dispatchedEvents, contains(SelectAction(index)));
   });
 }
