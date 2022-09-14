@@ -8,8 +8,8 @@ import 'package:redaux_widgets/redaux_widget.dart';
 import 'redaux_dev_tools_screen.dart';
 import 'src/views/main_view.dart';
 
-export 'src/endwares/emit_dispatch_events_endware.dart';
 export 'src/state/dev_tools_state.dart';
+export 'src/utils/emit_dispatch_events_endware.dart';
 
 /// Visualise the data flow of an app by adding a [RedauxDevToolsScreen] widget
 /// and passing in the `dispatchEvents` stream from the Redaux Store.
