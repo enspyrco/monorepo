@@ -1,4 +1,4 @@
-# resource_collector_desktop
+# resourganizer_desktop
 
 A desktop app to automate resource collection and saving metadata.
 

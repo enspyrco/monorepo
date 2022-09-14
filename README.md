@@ -61,12 +61,13 @@ Three letter acronyms used in commit messages:
 - jst = json_types
 - lcr = locator
 - oml = our_meals
-- rdx = redaux
 - rdd = redux_devtools_desktop
 - rds = redux_devtools_screen
+- rdx = redaux
 - rfr = redfire
 - rft = redfire_test
 - rfl = redfire_lints
+- rsd = resourganizer_desktop
 - rwt = redaux_widgets_test_utils
 - twr = tech_world
 - tpr = the_process
