@@ -2,7 +2,7 @@ import 'package:flutter/material.dart' hide Action;
 import 'package:redaux/redaux.dart';
 import 'package:redaux_widgets/widgets/store_provider.dart';
 
-import 'record_dispatch_events_endware.dart';
+import 'record_actions_endware.dart';
 
 /// A test harness for wrapping a widget under test that provides the functionality
 /// that a test may want in order to interact with the widget or check for
@@ -19,16 +19,20 @@ class WidgetTestHarness<T extends RootState> {
       {required T initialState, required Widget child, List<Endware>? endwares})
       : _widgetUnderTest = child {
     _store = Store<T>(
-        state: initialState, endWares: [...?endwares, dispatchedEvents]);
+        state: initialState, endWares: [...?endwares, _actionsEndware]);
   }
 
   late final Store<T> _store;
   final Widget _widgetUnderTest;
-  final dispatchedEvents = RecordDispatchEventsEndware<T>();
+  final _actionsEndware = RecordActionsEndware<T>();
 
   Widget get widget => StoreProvider<T>(
       store: _store,
       child: MaterialApp(home: Scaffold(body: _widgetUnderTest)));
 
   T get state => _store.state;
+
+  List<Action> get dispatchedActions => _actionsEndware.actions;
+
+  void dispatch(Action action) => _store.dispatch(action);
 }
