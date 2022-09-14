@@ -9,6 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  desktop_drop: ^0.3.3
+  cross_file: ^0.3.3+1
+
 
 dev_dependencies:
   flutter_test:
