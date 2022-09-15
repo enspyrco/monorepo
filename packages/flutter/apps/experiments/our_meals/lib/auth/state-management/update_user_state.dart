@@ -9,7 +9,7 @@ class UpdateUserState extends SyncAction<AppState> {
   final UserState user;
 
   @override
-  Reducer<AppState> get reducer => _UpdateUserStateReducer.instance;
+  AppState reduce(state) => state.copyWith(user: user);
 
   @override
   toJson({int? parentId}) => {
@@ -19,12 +19,4 @@ class UpdateUserState extends SyncAction<AppState> {
         'parent_': parentId,
         'state_': <String, dynamic>{'user': user.toJson()}
       };
-}
-
-class _UpdateUserStateReducer extends Reducer<AppState> {
-  @override
-  AppState call(state, covariant UpdateUserState action) =>
-      state.copyWith(user: action.user);
-
-  static final instance = _UpdateUserStateReducer();
 }

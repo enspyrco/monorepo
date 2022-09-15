@@ -1,7 +1,6 @@
 import 'package:json_types/json_types.dart';
 
 import 'middleware.dart';
-import 'reducer.dart';
 import 'state.dart';
 
 abstract class Action {
@@ -10,7 +9,7 @@ abstract class Action {
 }
 
 abstract class SyncAction<S extends RootState> extends Action {
-  Reducer<S> get reducer;
+  S reduce(S state);
 }
 
 abstract class AsyncAction<S extends RootState> extends Action {

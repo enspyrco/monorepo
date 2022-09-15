@@ -54,7 +54,7 @@ class Store<S extends RootState> {
 
     // call reducer for sync actions
     if (action is SyncAction<S>) {
-      _state = action.reducer.call(_state, action);
+      _state = action.reduce(_state);
     }
 
     _endWares?.forEach((fn) => fn.call(this, action));

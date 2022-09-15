@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:our_meals/auth/services/firebase_auth_service.dart';
-import 'package:our_meals/auth/state_management/update_user_state.dart';
+import 'package:our_meals/auth/state-management/update_user_state.dart';
 import 'package:redaux/redaux.dart';
 
 import '../../app/state/app_state.dart';

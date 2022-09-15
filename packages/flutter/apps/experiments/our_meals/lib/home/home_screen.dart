@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:redaux_widgets/redaux_widget.dart';
 
 import '../app/state/app_state.dart';
-import '../auth/state_management/sign_out.dart';
+import '../auth/state-management/sign_out.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
