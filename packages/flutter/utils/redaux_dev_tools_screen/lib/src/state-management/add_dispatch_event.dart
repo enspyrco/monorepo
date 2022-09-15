@@ -14,7 +14,17 @@ class AddDispatchEvent extends SyncAction<DevToolsState> {
   JsonMap get eventJson => JsonMap.unmodifiable(_eventJson);
 
   @override
-  Reducer<DevToolsState> get reducer => _AddDispatchEventReducer.instance;
+  DevToolsState reduce(state) {
+    var newState = state.copyWith(
+        dispatchEvents: [...state.dispatchEvents, eventJson],
+        selectedIndex: state.dispatchEvents.length,
+        indexForActionId: {
+          ...state.indexFor,
+          actionId: state.dispatchEvents.length
+        });
+    return updateSelectedAndLineage(
+        newState, newState.dispatchEvents.length - 1);
+  }
 
   @override
   toJson({int? parentId}) => {
@@ -24,21 +34,4 @@ class AddDispatchEvent extends SyncAction<DevToolsState> {
         'parent_': parentId,
         'state_': {'event': eventJson}
       };
-}
-
-class _AddDispatchEventReducer extends Reducer<DevToolsState> {
-  @override
-  DevToolsState call(state, covariant AddDispatchEvent action) {
-    var newState = state.copyWith(
-        dispatchEvents: [...state.dispatchEvents, action.eventJson],
-        selectedIndex: state.dispatchEvents.length,
-        indexForActionId: {
-          ...state.indexFor,
-          action.actionId: state.dispatchEvents.length
-        });
-    return updateSelectedAndLineage(
-        newState, newState.dispatchEvents.length - 1);
-  }
-
-  static final instance = _AddDispatchEventReducer();
 }

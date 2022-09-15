@@ -4,7 +4,7 @@ import '../state/dev_tools_state.dart';
 
 class RemoveDispatchEvents extends SyncAction<DevToolsState> {
   @override
-  Reducer<DevToolsState> get reducer => _RemoveDispatchEventsReducer.instance;
+  DevToolsState reduce(state) => state.copyWith(selectedIndex: null);
 
   @override
   toJson({int? parentId}) => {
@@ -13,12 +13,4 @@ class RemoveDispatchEvents extends SyncAction<DevToolsState> {
         'id_': hashCode,
         'parent_': parentId
       };
-}
-
-class _RemoveDispatchEventsReducer extends Reducer<DevToolsState> {
-  @override
-  DevToolsState call(state, covariant RemoveDispatchEvents action) =>
-      state.copyWith(selectedIndex: null);
-
-  static final instance = _RemoveDispatchEventsReducer();
 }

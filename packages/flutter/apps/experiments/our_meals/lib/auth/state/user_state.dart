@@ -12,27 +12,33 @@ enum SignedInState {
 }
 
 class UserState extends State {
-  static UserState get initial => UserState(signedIn: SignedInState.checking);
-
-  UserState(
-      {required this.signedIn, this.uid, this.displayName, this.photoUrl});
+  UserState({
+    required this.signedIn,
+    this.uid,
+    this.displayName,
+    this.photoUrl,
+  });
 
   final SignedInState signedIn;
   final String? uid;
   final String? displayName;
   final String? photoUrl;
 
+  static UserState get initial => UserState(signedIn: SignedInState.checking);
+
   @override
-  UserState copyWith(
-      {SignedInState? signedIn,
-      String? uid,
-      String? displayName,
-      String? photoUrl}) {
+  UserState copyWith({
+    SignedInState? signedIn,
+    String? uid,
+    String? displayName,
+    String? photoUrl,
+  }) {
     return UserState(
-        signedIn: signedIn ?? this.signedIn,
-        uid: uid ?? this.uid,
-        displayName: displayName ?? this.displayName,
-        photoUrl: photoUrl ?? this.photoUrl);
+      signedIn: signedIn ?? this.signedIn,
+      uid: uid ?? this.uid,
+      displayName: displayName ?? this.displayName,
+      photoUrl: photoUrl ?? this.photoUrl,
+    );
   }
 
   @override
@@ -40,6 +46,6 @@ class UserState extends State {
         'signedIn': signedIn.name,
         'uid': uid,
         'displayName': displayName,
-        'photoUrl': photoUrl
+        'photoUrl': photoUrl,
       };
 }

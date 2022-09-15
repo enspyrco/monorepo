@@ -10,8 +10,9 @@ class SelectAction extends SyncAction<DevToolsState> {
 
   int get index => _index;
 
+  /// Select a list item and also identify the appropriate lineage to be drawn.
   @override
-  Reducer<DevToolsState> get reducer => _SelectActionReducer.instance;
+  DevToolsState reduce(state) => updateSelectedAndLineage(state, index);
 
   @override
   toJson({int? parentId}) => {
@@ -21,15 +22,6 @@ class SelectAction extends SyncAction<DevToolsState> {
         'parent_': parentId,
         'state_': {'index': index}
       };
-}
-
-/// Select a list item and also identify the appropriate lineage to be drawn.
-class _SelectActionReducer extends Reducer<DevToolsState> {
-  @override
-  DevToolsState call(state, covariant SelectAction action) =>
-      updateSelectedAndLineage(state, action.index);
-
-  static final instance = _SelectActionReducer();
 }
 
 DevToolsState updateSelectedAndLineage(DevToolsState state, int index) {
