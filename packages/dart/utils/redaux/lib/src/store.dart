@@ -30,7 +30,7 @@ class Store<S extends RootState> {
   /// It is equal to the last value returned by the store's reducer.
   S get state => _state;
 
-  /// Dispatches an [Action]. This is the only way to trigger a state change.
+  /// Dispatching an [Action] is the only way to trigger a state change.
   /// Arguments:
   /// - [action]: A plain object describing the action the store should take,
   ///             either call a middleware for async or reducer for sync actions
@@ -47,30 +47,30 @@ class Store<S extends RootState> {
   void dispatch(Action action) {
     print(action);
 
-    // call middleware for async actions
-    if (action is AsyncAction<S>) {
-      safeAsyncCall(action);
-    }
-
     // call reducer for sync actions
     if (action is SyncAction<S>) {
-      _state = action.reduce(_state);
+      _state = action.arrive(_state);
+
+      // put an event in the stream with the new state
+      _stateChangesController.add(_state);
+    }
+
+    // call middleware for async actions
+    if (action is AsyncAction<S>) {
+      tryLeaving(action);
     }
 
     _endWares?.forEach((fn) => fn.call(this, action));
-
-    // put an event in the stream with the new state
-    _stateChangesController.add(_state);
   }
 
-  /// This function wraps the middleware calls in a try/catch and if the
-  /// middleware call throws, an [ErrorMessage] is added to the AppState.
+  /// This function wraps the `leave` calls in a try/catch and if the
+  /// call throws, an [ErrorMessage] is added to the AppState.
   /// We do this in a separate async function so the `dispatch` function (that
   /// calls this async function) can stay sync so dispatching SyncActions
   /// (that change state) will be a sync call.
-  void safeAsyncCall(AsyncAction<S> action) async {
+  void tryLeaving(AsyncAction<S> action) async {
     try {
-      action.middleware.call(this, action);
+      await action.leave(this);
     } catch (thrown, trace) {
       var newErrorMessages = [
         ErrorMessage(message: '$thrown', trace: '$trace'),
