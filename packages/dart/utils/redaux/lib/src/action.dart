@@ -1,7 +1,6 @@
 import 'package:json_types/json_types.dart';
 
-import 'middleware.dart';
-import 'state.dart';
+import '../redaux.dart';
 
 abstract class Action {
   AsyncAction? parent;
@@ -9,9 +8,9 @@ abstract class Action {
 }
 
 abstract class SyncAction<S extends RootState> extends Action {
-  S reduce(S state);
+  S arrive(S state);
 }
 
 abstract class AsyncAction<S extends RootState> extends Action {
-  Middleware<S> get middleware;
+  Future<void> leave(Store<S> store);
 }
