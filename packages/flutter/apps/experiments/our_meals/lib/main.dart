@@ -1,18 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:locator/locator.dart';
-import 'package:our_meals/auth/state-management/bind_auth_state.dart';
-import 'package:our_meals/auth/widgets/sign_in_screen.dart';
 import 'package:our_meals/firebase_options.dart';
 import 'package:our_meals/home/home_screen.dart';
 import 'package:redaux/redaux.dart';
+import 'package:redaux_auth/redaux_auth.dart';
 import 'package:redaux_dev_tools_screen/redaux_dev_tools_screen.dart';
 import 'package:redaux_widgets/redaux_widget.dart';
 
 import 'app/state/app_state.dart';
-import 'auth/services/firebase_auth_service.dart';
-import 'auth/state/user_state.dart';
 
 final _eventsEndware = EmitDispatchEventsEndware<AppState>();
 final _store =
@@ -23,7 +18,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  Locator.add<FirebaseAuthService>(FirebaseAuthService(FirebaseAuth.instance));
+
+  authInit();
 
   runApp(const AuthGate());
 }
@@ -53,11 +49,11 @@ class AuthGate extends StatelessWidget {
                 builder: (context, signedIn) {
                   if (signedIn == SignedInState.checking ||
                       signedIn == SignedInState.notSignedIn) {
-                    return SignInScreen(signedIn, platform);
+                    return SignInScreen<AppState>(signedIn, platform);
                   }
                   return const HomeScreen();
                 },
-                onInit: (store) => store.dispatch(BindAuthState()),
+                onInit: (store) => store.dispatch(BindAuthState<AppState>()),
               ),
             ),
           ],

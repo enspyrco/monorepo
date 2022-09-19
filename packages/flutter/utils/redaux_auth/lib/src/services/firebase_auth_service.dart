@@ -1,13 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../utils/types.dart';
 import '../extensions/user_extension.dart';
 import '../state/user_state.dart';
+import '../utils/types.dart';
 
 class FirebaseAuthService {
-  FirebaseAuthService(this.plugin);
+  FirebaseAuthService({FirebaseAuth? plugin})
+      : _plugin = plugin ?? FirebaseAuth.instance;
 
-  FirebaseAuth plugin;
+  final FirebaseAuth _plugin;
 
   Future<FirebaseCredential> signInToFirebase(
       String idToken, String rawNonce) async {
@@ -19,12 +20,12 @@ class FirebaseAuthService {
 
     // Sign in with Firebase. If the nonce we generated earlier does
     // not match the nonce in the identityToken, sign in will fail.
-    return await plugin.signInWithCredential(oauthCredential);
+    return await _plugin.signInWithCredential(oauthCredential);
   }
 
   Stream<UserState> tapIntoAuthState() {
-    return plugin.authStateChanges().map((user) => user.toState());
+    return _plugin.authStateChanges().map((user) => user.toState());
   }
 
-  Future<void> signOut() async => plugin.signOut();
+  Future<void> signOut() async => _plugin.signOut();
 }

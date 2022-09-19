@@ -1,15 +1,16 @@
 import 'package:redaux/redaux.dart';
 
-import '../../app/state/app_state.dart';
 import '../state/user_state.dart';
 
-class UpdateUserState extends SyncAction<AppState> {
+class UpdateUserState<T extends RootState> extends SyncAction<T> {
   UpdateUserState(this.user);
 
   final UserState user;
 
   @override
-  AppState reduce(state) => state.copyWith(user: user);
+  T arrive(T state) {
+    return (state as dynamic).copyWith(user: user);
+  }
 
   @override
   toJson({int? parentId}) => {

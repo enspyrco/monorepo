@@ -69,6 +69,7 @@ Three letter acronyms used in commit messages:
 - rfl = redfire_lints
 - rsd = resourganizer_desktop
 - rwt = redaux_widgets_test_utils
+- rxa = redux_auth
 - twr = tech_world
 - tpr = the_process
 - wgs = ws_game_server

@@ -37,7 +37,7 @@ packages:
     source: hosted
     version: "1.16.0"
   crypto:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: crypto
       url: "https://pub.dartlang.org"
@@ -51,7 +51,7 @@ packages:
     source: hosted
     version: "1.3.1"
   firebase_auth:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_auth
       url: "https://pub.dartlang.org"
@@ -200,6 +200,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  redaux_auth:
+    dependency: "direct main"
+    description:
+      path: "../../../utils/redaux_auth"
+      relative: true
+    source: path
+    version: "0.0.1"
   redaux_dev_tools_screen:
     dependency: "direct main"
     description:
@@ -215,12 +222,12 @@ packages:
     source: path
     version: "0.0.1"
   sign_in_with_apple:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: sign_in_with_apple
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.0"
+    version: "4.1.0"
   sign_in_with_apple_platform_interface:
     dependency: transitive
     description:
@@ -298,4 +305,4 @@ packages:
     version: "2.1.2"
 sdks:
   dart: ">=2.17.0 <3.0.0"
-  flutter: ">=2.0.0"
+  flutter: ">=2.8.0"

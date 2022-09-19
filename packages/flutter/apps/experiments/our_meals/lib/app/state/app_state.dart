@@ -1,12 +1,12 @@
 import 'package:redaux/redaux.dart';
+import 'package:redaux_auth/redaux_auth.dart';
 
-import '../../auth/state/user_state.dart';
-
-class AppState extends RootState {
+class AppState extends RootState with AuthState {
   static AppState get initial => AppState(user: UserState.initial);
 
   AppState({required this.user});
 
+  @override
   UserState user;
 
   @override

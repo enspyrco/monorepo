@@ -1,72 +1,64 @@
-import 'dart:io';
-
-import 'package:cross_file/cross_file.dart';
-import 'package:desktop_drop/desktop_drop.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:redaux/redaux.dart';
+import 'package:redaux_auth/redaux_auth.dart';
+import 'package:redaux_dev_tools_screen/redaux_dev_tools_screen.dart';
+import 'package:redaux_widgets/widgets/state_stream_builder.dart';
+import 'package:redaux_widgets/widgets/store_provider.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'app_state.dart';
+import 'example_drop_target.dart';
+import 'firebase_options.dart';
+
+final _eventsEndware = EmitDispatchEventsEndware<AppState>();
+final _store =
+    Store<AppState>(state: AppState.initial, endWares: [_eventsEndware]);
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  authInit();
+
+  runApp(const AppWidget());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-        home: MaterialApp(
-            home: Scaffold(
-      body: ExampleDragTarget(),
-    )));
-  }
-}
-
-class ExampleDragTarget extends StatefulWidget {
-  const ExampleDragTarget({super.key});
-
-  @override
-  State<ExampleDragTarget> createState() => _ExampleDragTargetState();
-}
-
-class _ExampleDragTargetState extends State<ExampleDragTarget> {
-  final List<XFile> _files = [];
-
-  bool _dragging = false;
+class AppWidget extends StatelessWidget {
+  const AppWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return DropTarget(
-      onDragDone: (details) {
-        setState(() {
-          for (final file in details.files) {
-            debugPrint("uri: ${file.path} "
-                "${File(file.path).existsSync()}");
-          }
-          _files.addAll(details.files);
-        });
-      },
-      onDragEntered: (details) {
-        if (!mounted) return;
+    var platform = Theme.of(context).platform;
 
-        setState(() {
-          _dragging = true;
-        });
-      },
-      onDragExited: (details) {
-        if (!mounted) return;
-
-        setState(() {
-          _dragging = false;
-        });
-      },
-      child: Container(
-        height: 200,
-        width: 200,
-        color: _dragging ? Colors.blue.withOpacity(0.4) : Colors.black26,
-        child: _files.isEmpty
-            ? const Center(child: Text("Drop here"))
-            : Text(_files.map((f) => f.name).join("\n")),
+    return StoreProvider(
+      store: _store,
+      child: MaterialApp(
+        home: Scaffold(
+          body: Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: RedauxDevToolsScreen(_eventsEndware.dispatchEvents),
+              ),
+              Expanded(
+                flex: 1,
+                child: StateStreamBuilder<AppState, SignedInState>(
+                  transformer: (state) => state.user.signedIn,
+                  builder: (context, signedIn) {
+                    if (signedIn == SignedInState.checking ||
+                        signedIn == SignedInState.notSignedIn) {
+                      return SignInScreen<AppState>(signedIn, platform);
+                    }
+                    return const ExampleDragTarget();
+                  },
+                  onInit: (store) => store.dispatch(BindAuthState<AppState>()),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
