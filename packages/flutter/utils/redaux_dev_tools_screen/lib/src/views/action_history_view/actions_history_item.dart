@@ -50,7 +50,7 @@ class ActionsHistoryItem extends StatelessWidget {
                   subtitle: vm.isSelected
                       ? Text(actionState.toString())
                       : Container(),
-                  onTap: () => context.dispatch(SelectAction(index)),
+                  onTap: () => context.land(SelectAction(index)),
                   tileColor: isAsync ? Colors.green[50] : Colors.blue[50]),
             ),
           ),

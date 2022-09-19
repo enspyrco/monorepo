@@ -10,9 +10,9 @@ import 'app_state.dart';
 import 'example_drop_target.dart';
 import 'firebase_options.dart';
 
-final _eventsEndware = EmitDispatchEventsEndware<AppState>();
+final _emitEvents = EmitDispatchEvents<AppState>();
 final _store =
-    Store<AppState>(state: AppState.initial, endWares: [_eventsEndware]);
+    Store<AppState>(state: AppState.initial, systemChecks: [_emitEvents]);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +40,7 @@ class AppWidget extends StatelessWidget {
             children: [
               Expanded(
                 flex: 1,
-                child: RedauxDevToolsScreen(_eventsEndware.dispatchEvents),
+                child: RedauxDevToolsScreen(_emitEvents.onDispatch),
               ),
               Expanded(
                 flex: 1,
@@ -53,7 +53,7 @@ class AppWidget extends StatelessWidget {
                     }
                     return const ExampleDragTarget();
                   },
-                  onInit: (store) => store.dispatch(BindAuthState<AppState>()),
+                  onInit: (store) => store.launch(BindAuthState<AppState>()),
                 ),
               ),
             ],

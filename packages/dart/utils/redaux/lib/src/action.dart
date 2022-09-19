@@ -8,9 +8,9 @@ abstract class Action {
 }
 
 abstract class SyncAction<S extends RootState> extends Action {
-  S arrive(S state);
+  S land(S state);
 }
 
 abstract class AsyncAction<S extends RootState> extends Action {
-  Future<void> leave(Store<S> store);
+  Future<void> launch(Store<S> store);
 }

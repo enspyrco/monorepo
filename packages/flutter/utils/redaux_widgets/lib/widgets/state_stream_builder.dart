@@ -105,7 +105,7 @@ class _StateStreamBuilderState<S extends redaux.RootState, VM>
   }
 
   void _createStream() {
-    _stream = widget.store.stateChanges
+    _stream = widget.store.onStateChange
         .map((_) => widget.transformer(widget.store.state))
         .transform(StreamTransformer.fromHandlers(
             handleError: _handleTransformFailure))

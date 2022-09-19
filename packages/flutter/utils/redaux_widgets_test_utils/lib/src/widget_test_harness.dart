@@ -2,7 +2,7 @@ import 'package:flutter/material.dart' hide Action;
 import 'package:redaux/redaux.dart';
 import 'package:redaux_widgets/widgets/store_provider.dart';
 
-import 'record_actions_endware.dart';
+import 'record_actions.dart';
 
 /// A test harness for wrapping a widget under test that provides the functionality
 /// that a test may want in order to interact with the widget or check for
@@ -12,19 +12,21 @@ import 'record_actions_endware.dart';
 /// a [MaterialApp] and a [StoreProvider]. Other mini-widget-trees that would
 /// be useful as wrappers around `widgetUnderTest` can easily be added as a getter.
 ///
-/// The harness exposes Store.dispatchEvents so tests can observe dispatched
+/// The harness exposes [Store.onDispatch] so tests can observe dispatched
 /// actions and the associated state change.
 class WidgetTestHarness<T extends RootState> {
   WidgetTestHarness(
-      {required T initialState, required Widget child, List<Endware>? endwares})
+      {required T initialState,
+      required Widget child,
+      List<SystemCheck>? systemChecks})
       : _widgetUnderTest = child {
     _store = Store<T>(
-        state: initialState, endWares: [...?endwares, _actionsEndware]);
+        state: initialState, systemChecks: [...?systemChecks, _recorded]);
   }
 
   late final Store<T> _store;
   final Widget _widgetUnderTest;
-  final _actionsEndware = RecordActionsEndware<T>();
+  final _recorded = RecordActions<T>();
 
   Widget get widget => StoreProvider<T>(
       store: _store,
@@ -32,7 +34,8 @@ class WidgetTestHarness<T extends RootState> {
 
   T get state => _store.state;
 
-  List<Action> get dispatchedActions => _actionsEndware.actions;
+  List<Action> get recordedActions => _recorded.actions;
 
-  void dispatch(Action action) => _store.dispatch(action);
+  void launch(AsyncAction<T> action) => _store.launch(action);
+  void land(SyncAction<T> action) => _store.land(action);
 }

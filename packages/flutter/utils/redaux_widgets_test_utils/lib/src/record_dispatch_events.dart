@@ -1,6 +1,6 @@
 import 'package:redaux/redaux.dart';
 
-class RecordDispatchEventsEndware<T extends RootState> extends Endware<T> {
+class RecordDispatchEvents<T extends RootState> extends SystemCheck<T> {
   final List<DispatchEvent> events = [];
   final Map<Action, T> stateForAction = {};
 
