@@ -1,25 +1,11 @@
+import 'package:json_types/json_types.dart';
 import 'package:redaux/redaux.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as plugin;
 
-import '../../app/state/app_state.dart';
-import '../../utils/nonce.dart';
+import '../utils/nonce.dart';
 import 'sign_in_with_firebase.dart';
 
-class SignInWithApple extends AsyncAction<AppState> {
-  @override
-  Middleware<AppState> get middleware => _SignInWithAppleMiddleware.instance;
-
-  @override
-  toJson({int? parentId}) => {
-        'name_': 'Sign In With Apple',
-        'type_': 'async',
-        'id_': hashCode,
-        'parent_': parentId,
-        'state_': <String, dynamic>{}
-      };
-}
-
-class _SignInWithAppleMiddleware extends Middleware<AppState> {
+class SignInWithApple<T extends RootState> extends AsyncAction<T> {
   /// From: `somewhere I can't remember now...`
   /// To prevent replay attacks with the credential returned from Apple, we
   /// include a nonce in the credential request. When signing in with
@@ -32,9 +18,8 @@ class _SignInWithAppleMiddleware extends Middleware<AppState> {
   /// must match the nonce field in the ID token.
 
   // final nonce = sha256ofString(rawNonce);
-
   @override
-  void call(store, covariant SignInWithApple action) async {
+  Future<void> leave(Store<T> store) async {
     final plugin.AuthorizationCredentialAppleID credential =
         await plugin.SignInWithApple.getAppleIDCredential(
       scopes: [
@@ -46,9 +31,17 @@ class _SignInWithAppleMiddleware extends Middleware<AppState> {
     var token = credential.identityToken ??
         (throw 'The credential.identityToken variable was null');
 
-    store.dispatch(SignInWithFirebase(idToken: token, rawNonce: generateNonce())
-      ..parent = action);
+    store.dispatch(
+        SignInWithFirebase<T>(idToken: token, rawNonce: generateNonce())
+          ..parent = this);
   }
 
-  static final instance = _SignInWithAppleMiddleware();
+  @override
+  JsonMap toJson({int? parentId}) => {
+        'name_': 'Sign In With Apple',
+        'type_': 'async',
+        'id_': hashCode,
+        'parent_': parentId,
+        'state_': <String, dynamic>{}
+      };
 }

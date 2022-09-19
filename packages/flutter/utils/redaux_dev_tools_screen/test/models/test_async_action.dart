@@ -3,8 +3,7 @@ import 'package:redaux_dev_tools_screen/redaux_dev_tools_screen.dart';
 
 class TestAsyncAction extends AsyncAction<DevToolsState> {
   @override
-  Middleware<DevToolsState> get middleware =>
-      _TestAsyncActionMiddleware.instance;
+  Future<void> leave(Store<DevToolsState> store) async {}
 
   @override
   toJson({int? parentId}) => {
@@ -13,13 +12,4 @@ class TestAsyncAction extends AsyncAction<DevToolsState> {
         'id_': hashCode,
         'parent_': parentId
       };
-}
-
-class _TestAsyncActionMiddleware extends Middleware<DevToolsState> {
-  @override
-  void call(store, covariant TestAsyncAction action) async {
-    // doesn't do anything
-  }
-
-  static final instance = _TestAsyncActionMiddleware();
 }

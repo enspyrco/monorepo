@@ -1,7 +1,7 @@
-name: resourganizer_desktop
-description: A desktop app to automate resource collection and saving metadata.
-publish_to: 'none'
+name: redaux_auth
+description: Drop-in redaux components for authentication.
 version: 0.0.1
+publish_to: none
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
@@ -9,9 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  desktop_drop: ^0.3.3
-  cross_file: ^0.3.3+1
-  firebase_core: ^1.22.0
+  firebase_auth: ^3.4.0
+  sign_in_with_apple: ^4.1.0
+  crypto: ^3.0.2
   locator:
     git:
       url: https://github.com/enspyrco/monorepo.git
@@ -24,19 +24,17 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/redaux_widgets
-  redaux_dev_tools_screen:
+  json_types:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redaux_dev_tools_screen
-  redaux_auth:
-    git:
-      url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redaux_auth
+      path: packages/dart/utils/json_types
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
-
-flutter:
-  uses-material-design: true
+  lints: ^2.0.0
+  test: ^1.16.0
+  redaux_widgets_test_utils:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/redaux_widgets_test_utils

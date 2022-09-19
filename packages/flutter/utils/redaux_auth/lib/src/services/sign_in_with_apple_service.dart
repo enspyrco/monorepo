@@ -1,6 +1,6 @@
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as plugin;
 
-import '../../utils/types.dart';
+import '../utils/types.dart';
 
 class SignInWithAppleService {
   // Request credential for the currently signed in Apple account.

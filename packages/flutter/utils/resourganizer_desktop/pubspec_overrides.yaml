@@ -1,0 +1,11 @@
+dependency_overrides:
+  locator:
+    path: ../../../dart/utils/locator
+  redaux:
+    path: ../../../dart/utils/redaux
+  redaux_widgets:
+    path: ../redaux_widgets
+  redaux_dev_tools_screen:
+    path: ../redaux_dev_tools_screen
+  redaux_auth:
+    path: ../redaux_auth

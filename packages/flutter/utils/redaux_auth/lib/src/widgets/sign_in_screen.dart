@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:our_meals/auth/state/user_state.dart';
+import 'package:redaux/redaux.dart';
 import 'package:redaux_widgets/redaux_widget.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as plugin;
 
-import '../../app/state/app_state.dart';
 import '../state-management/sign_in_with_apple.dart';
+import '../state/user_state.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen<T extends RootState> extends StatelessWidget {
   const SignInScreen(this.signedIn, this.platform, {Key? key})
       : super(key: key);
 
@@ -18,7 +18,7 @@ class SignInScreen extends StatelessWidget {
     if (signedIn == SignedInState.notSignedIn) {
       return plugin.SignInWithAppleButton(
           onPressed: () =>
-              StoreProvider.of<AppState>(context).dispatch(SignInWithApple()));
+              StoreProvider.of<T>(context).dispatch(SignInWithApple<T>()));
     }
     return const CircularProgressIndicator();
   }

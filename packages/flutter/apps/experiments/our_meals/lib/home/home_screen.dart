@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:redaux_auth/redaux_auth.dart';
 import 'package:redaux_widgets/redaux_widget.dart';
 
 import '../app/state/app_state.dart';
-import '../auth/state-management/sign_out.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     return TextButton(
       child: const Text('Home Screen'),
       onPressed: () {
-        StoreProvider.of<AppState>(context).dispatch(SignOut());
+        StoreProvider.of<AppState>(context).dispatch(SignOut<AppState>());
       },
     );
   }

@@ -4,7 +4,7 @@ import '../state/dev_tools_state.dart';
 
 class RemoveDispatchEvents extends SyncAction<DevToolsState> {
   @override
-  DevToolsState reduce(state) => state.copyWith(selectedIndex: null);
+  DevToolsState arrive(state) => state.copyWith(selectedIndex: null);
 
   @override
   toJson({int? parentId}) => {

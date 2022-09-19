@@ -7,3 +7,5 @@ dependency_overrides:
     path: ../../../utils/redaux_widgets
   redaux_dev_tools_screen:
     path: ../../../utils/redaux_dev_tools_screen
+  redaux_auth:
+    path: ../../../utils/redaux_auth

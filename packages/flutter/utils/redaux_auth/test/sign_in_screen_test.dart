@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:our_meals/auth/state/user_state.dart';
-import 'package:our_meals/auth/widgets/sign_in_screen.dart';
+import 'package:redaux_auth/redaux_auth.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 void main() {
