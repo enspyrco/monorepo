@@ -12,13 +12,14 @@ StreamSubscription<UserState>? _subscription;
 
 class BindAuthState<T extends RootState> extends AsyncAction<T> {
   @override
-  Future<void> leave(Store store) async {
+  Future<void> launch(Store store) async {
     var service = locate<FirebaseAuthService>();
 
     _subscription?.cancel();
 
-    _subscription = service.tapIntoAuthState().listen(
-        (user) => store.dispatch(UpdateUserState<T>(user)..parent = this));
+    _subscription = service
+        .tapIntoAuthState()
+        .listen((user) => store.land(UpdateUserState<T>(user)..parent = this));
   }
 
   @override

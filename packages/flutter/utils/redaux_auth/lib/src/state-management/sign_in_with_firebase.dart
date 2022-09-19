@@ -14,7 +14,7 @@ class SignInWithFirebase<T extends RootState> extends AsyncAction<T> {
   final String rawNonce;
 
   @override
-  Future<void> leave(Store<T> store) async {
+  Future<void> launch(Store<T> store) async {
     final service = locate<FirebaseAuthService>();
 
     UserCredential credential =
@@ -28,7 +28,7 @@ class SignInWithFirebase<T extends RootState> extends AsyncAction<T> {
         photoUrl: user.photoURL,
         uid: user.uid);
 
-    store.dispatch(UpdateUserState<T>(state)..parent = this);
+    store.land(UpdateUserState<T>(state)..parent = this);
   }
 
   @override

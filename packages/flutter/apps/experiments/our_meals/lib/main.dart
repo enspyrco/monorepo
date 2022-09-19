@@ -9,9 +9,9 @@ import 'package:redaux_widgets/redaux_widget.dart';
 
 import 'app/state/app_state.dart';
 
-final _eventsEndware = EmitDispatchEventsEndware<AppState>();
+final _events = EmitDispatchEvents<AppState>();
 final _store =
-    Store<AppState>(state: AppState.initial, endWares: [_eventsEndware]);
+    Store<AppState>(state: AppState.initial, systemChecks: [_events]);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +39,7 @@ class AuthGate extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Material(
-                child: RedauxDevToolsScreen(_eventsEndware.dispatchEvents),
+                child: RedauxDevToolsScreen(_events.onDispatch),
               ),
             ),
             Expanded(
@@ -53,7 +53,7 @@ class AuthGate extends StatelessWidget {
                   }
                   return const HomeScreen();
                 },
-                onInit: (store) => store.dispatch(BindAuthState<AppState>()),
+                onInit: (store) => store.launch(BindAuthState<AppState>()),
               ),
             ),
           ],

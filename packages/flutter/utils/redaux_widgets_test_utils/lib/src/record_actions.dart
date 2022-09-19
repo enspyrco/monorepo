@@ -1,8 +1,8 @@
 import 'package:redaux/redaux.dart';
 
-/// We add a [RecordActionsEndware] to [Store.endwares] in [WidgetTestHarness]
+/// We add a [RecordActions] to [Store.systemChecks] in [WidgetTestHarness]
 /// so we can later check that actions were dispatched.
-class RecordActionsEndware<T extends RootState> extends Endware<T> {
+class RecordActions<T extends RootState> extends SystemCheck<T> {
   final List<Action> actions = [];
 
   @override

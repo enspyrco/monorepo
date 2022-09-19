@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     return TextButton(
       child: const Text('Home Screen'),
       onPressed: () {
-        StoreProvider.of<AppState>(context).dispatch(SignOut<AppState>());
+        StoreProvider.of<AppState>(context).launch(SignOut<AppState>());
       },
     );
   }

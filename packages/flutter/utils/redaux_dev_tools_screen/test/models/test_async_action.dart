@@ -3,7 +3,7 @@ import 'package:redaux_dev_tools_screen/redaux_dev_tools_screen.dart';
 
 class TestAsyncAction extends AsyncAction<DevToolsState> {
   @override
-  Future<void> leave(Store<DevToolsState> store) async {}
+  Future<void> launch(Store<DevToolsState> store) async {}
 
   @override
   toJson({int? parentId}) => {

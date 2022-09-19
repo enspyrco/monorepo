@@ -33,9 +33,9 @@ class _MainViewState extends State<MainView> {
     if (widget._eventsStream != null) {
       _subscription = widget._eventsStream!.listen((event) {
         if (event['type'] == 'redfire:action_dispatched') {
-          context.dispatch(AddDispatchEvent(event['data']));
+          context.land(AddDispatchEvent(event['data']));
         } else if (event['type'] == 'redfire:remove_all') {
-          context.dispatch(RemoveDispatchEvents());
+          context.land(RemoveDispatchEvents());
         }
       });
     }

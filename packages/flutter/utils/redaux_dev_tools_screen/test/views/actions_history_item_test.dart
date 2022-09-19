@@ -15,9 +15,9 @@ void main() {
     /// in the [MainView], which is listening to the [dispatchEvents] stream that
     /// was passed in to the [RedauxDevToolsScreen].
 
-    /// The [dispatchEvents] stream emits json created in [EmitDispatchEventsEndware],
+    /// The [dispatchEvents] stream emits json created in [EmitDispatchEvents],
     /// for each action by the app being inspected with the [RedauxDevToolsScreen].
-    harness.dispatch(AddDispatchEvent(
+    harness.land(AddDispatchEvent(
         {'state': DevToolsState.initial.toJson(), 'action': action.toJson()}));
   }
 
@@ -43,7 +43,7 @@ void main() {
     await tester.pumpWidget(harness.widget);
 
     /// When a [SelectAction] is dispatched by the [widgetUnderTest], we need
-    /// the [DevToolsState] to have appropriate data or the reducer will throw.
+    /// the [DevToolsState] to have appropriate data or the [land] function will throw.
     /// We could just add appropriate initial state but I think it is clearer
     /// and a better test to dispatch actions to setup the state.
 
@@ -53,8 +53,7 @@ void main() {
     await tester.tap(find.byType(ActionsHistoryItem));
 
     // check that the expected action was dispatched by the widget
-    expect(
-        harness.dispatchedActions, containsA<SelectAction>(withIndex: index));
+    expect(harness.recordedActions, containsA<SelectAction>(withIndex: index));
   });
 }
 

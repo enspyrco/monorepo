@@ -19,7 +19,7 @@ class SignInWithApple<T extends RootState> extends AsyncAction<T> {
 
   // final nonce = sha256ofString(rawNonce);
   @override
-  Future<void> leave(Store<T> store) async {
+  Future<void> launch(Store<T> store) async {
     final plugin.AuthorizationCredentialAppleID credential =
         await plugin.SignInWithApple.getAppleIDCredential(
       scopes: [
@@ -31,7 +31,7 @@ class SignInWithApple<T extends RootState> extends AsyncAction<T> {
     var token = credential.identityToken ??
         (throw 'The credential.identityToken variable was null');
 
-    store.dispatch(
+    store.launch(
         SignInWithFirebase<T>(idToken: token, rawNonce: generateNonce())
           ..parent = this);
   }

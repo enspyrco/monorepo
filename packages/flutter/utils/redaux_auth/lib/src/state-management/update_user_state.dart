@@ -8,7 +8,7 @@ class UpdateUserState<T extends RootState> extends SyncAction<T> {
   final UserState user;
 
   @override
-  T arrive(T state) {
+  T land(T state) {
     return (state as dynamic).copyWith(user: user);
   }
 

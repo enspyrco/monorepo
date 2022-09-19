@@ -12,7 +12,7 @@ class SelectAction extends SyncAction<DevToolsState> {
 
   /// Select a list item and also identify the appropriate lineage to be drawn.
   @override
-  DevToolsState arrive(state) => updateSelectedAndLineage(state, index);
+  DevToolsState land(state) => updateSelectedAndLineage(state, index);
 
   @override
   toJson({int? parentId}) => {

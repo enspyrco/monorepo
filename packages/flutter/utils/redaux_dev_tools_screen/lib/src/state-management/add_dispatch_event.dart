@@ -14,7 +14,7 @@ class AddDispatchEvent extends SyncAction<DevToolsState> {
   JsonMap get eventJson => JsonMap.unmodifiable(_eventJson);
 
   @override
-  DevToolsState arrive(state) {
+  DevToolsState land(state) {
     var newState = state.copyWith(
         dispatchEvents: [...state.dispatchEvents, eventJson],
         selectedIndex: state.dispatchEvents.length,
