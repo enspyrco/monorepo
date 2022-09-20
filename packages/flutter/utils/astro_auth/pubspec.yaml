@@ -1,5 +1,5 @@
-name: redaux_auth
-description: Drop-in redaux components for authentication.
+name: astro_auth
+description: Drop-in astro components for authentication.
 version: 0.0.1
 publish_to: none
 
@@ -16,14 +16,14 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/dart/utils/locator
-  redaux:
+  astro:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/utils/redaux
-  redaux_widgets:
+      path: packages/dart/utils/astro
+  astro_widgets:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redaux_widgets
+      path: packages/flutter/utils/astro_widgets
   json_types:
     git:
       url: https://github.com/enspyrco/monorepo.git
@@ -34,7 +34,7 @@ dev_dependencies:
     sdk: flutter
   lints: ^2.0.0
   test: ^1.16.0
-  redaux_widgets_test_utils:
+  astro_widgets_test_utils:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redaux_widgets_test_utils
+      path: packages/flutter/utils/astro_widgets_test_utils

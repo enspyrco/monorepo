@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:redaux/redaux.dart';
-import 'package:redaux_widgets/redaux_widget.dart';
+import 'package:astro/astro.dart';
+import 'package:astro_widgets/astro_widget.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as plugin;
 
 import '../state-management/sign_in_with_apple.dart';

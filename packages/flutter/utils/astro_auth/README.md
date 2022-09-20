@@ -1,6 +1,6 @@
-# redaux_auth
+# astro_auth
 
-*Drop-in redaux components for authentication.*
+*Drop-in astro components for authentication.*
 
 ## Features
 

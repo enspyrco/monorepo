@@ -1,7 +1,7 @@
 /// Support for doing something awesome.
 ///
 /// More dartdocs go here.
-library redaux_auth;
+library astro_auth;
 
 export 'src/interfaces/auth_state.dart';
 export 'src/services/firebase_auth_service.dart';

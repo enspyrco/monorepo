@@ -1,5 +1,5 @@
 import 'package:json_types/json_types.dart';
-import 'package:redaux/redaux.dart';
+import 'package:astro/astro.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as plugin;
 
 import '../utils/nonce.dart';

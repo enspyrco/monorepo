@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:redaux_auth/astro_auth.dart';
+import 'package:astro_auth/astro_auth.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 void main() {

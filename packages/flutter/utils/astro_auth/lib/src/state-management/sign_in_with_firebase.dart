@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:json_types/json_types.dart';
 import 'package:locator/locator.dart';
-import 'package:redaux/redaux.dart';
+import 'package:astro/astro.dart';
 
 import '../services/firebase_auth_service.dart';
 import '../state/user_state.dart';
