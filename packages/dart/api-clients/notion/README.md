@@ -2,21 +2,15 @@
 
 *A Dart client for the Notion API.*
 
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+## Missing files
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+Add `example/credentials.dart` with:
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+```dart
+const token = '...';
+```
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+The token can be found at [My integrations | Notion Developers](https://www.notion.so/my-integrations).
 
 ## Features
 
