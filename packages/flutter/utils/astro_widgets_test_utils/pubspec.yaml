@@ -1,5 +1,5 @@
-name: redaux_widgets_test_utils
-description: Helper classes for testing apps that use redaux_widgets.
+name: astro_widgets_test_utils
+description: Helper classes for testing apps that use astro_widgets.
 version: 0.0.1
 publish_to: none
 
@@ -11,14 +11,14 @@ dependencies:
   flutter:
     sdk: flutter
   
-  redaux:
+  astro:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/utils/redaux
-  redaux_widgets:
+      path: packages/dart/utils/astro
+  astro_widgets:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redaux_widgets
+      path: packages/flutter/utils/astro_widgets
   json_types:
     git:
       url: https://github.com/enspyrco/monorepo.git

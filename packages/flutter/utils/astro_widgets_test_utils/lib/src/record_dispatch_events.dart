@@ -1,4 +1,4 @@
-import 'package:redaux/redaux.dart';
+import 'package:astro/astro.dart';
 
 class RecordDispatchEvents<T extends RootState> extends SystemCheck<T> {
   final List<DispatchEvent> events = [];

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' hide Action;
-import 'package:redaux/redaux.dart';
-import 'package:redaux_widgets/widgets/store_provider.dart';
+import 'package:astro/astro.dart';
+import 'package:astro_widgets/widgets/store_provider.dart';
 
 import 'record_actions.dart';
 

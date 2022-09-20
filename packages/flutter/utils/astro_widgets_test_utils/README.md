@@ -1,6 +1,6 @@
-# redaux_widgets_test_utils
+# astro_widgets_test_utils
 
-*Helper classes for testing apps that use `redaux_widgets`.*
+*Helper classes for testing apps that use `astro_widgets`.*
 
 ## Features
 

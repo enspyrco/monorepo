@@ -1,7 +1,7 @@
 dependency_overrides:
-  redaux:
-    path: ../../../dart/utils/redaux
-  redaux_widgets:
-    path: ../redaux_widgets
+  astro:
+    path: ../../../dart/utils/astro
+  astro_widgets:
+    path: ../astro_widgets
   json_types:
     path: ../../../dart/utils/json_types

@@ -1,4 +1,4 @@
-import 'package:redaux/redaux.dart';
+import 'package:astro/astro.dart';
 
 /// We add a [RecordActions] to [Store.systemChecks] in [WidgetTestHarness]
 /// so we can later check that actions were dispatched.
