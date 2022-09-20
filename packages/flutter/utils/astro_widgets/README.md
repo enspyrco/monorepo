@@ -1,4 +1,4 @@
-# redaux_widgets
+# astro_widgets
 
 Widgets for interacting with a redux store from enspyr_redux.
 

@@ -1,17 +1,17 @@
 import 'dart:async';
 
+import 'package:astro/astro.dart' as astro;
 import 'package:flutter/widgets.dart';
-import 'package:redaux/redaux.dart' as redaux;
 
 import '../exceptions/transform_failure_exception.dart';
 import 'store_provider.dart';
 
-class StateStreamBuilder<S extends redaux.RootState, VM>
+class StateStreamBuilder<S extends astro.RootState, VM>
     extends StatelessWidget {
   final Widget Function(BuildContext context, VM vm) builder;
   final VM Function(S state) transformer;
-  final void Function(redaux.Store<S> store)? onInit;
-  final void Function(redaux.Store<S> store)? onDispose;
+  final void Function(astro.Store<S> store)? onInit;
+  final void Function(astro.Store<S> store)? onDispose;
 
   const StateStreamBuilder({
     Key? key,
@@ -33,13 +33,13 @@ class StateStreamBuilder<S extends redaux.RootState, VM>
   }
 }
 
-class _StateStreamBuilder<S extends redaux.RootState, VM>
+class _StateStreamBuilder<S extends astro.RootState, VM>
     extends StatefulWidget {
-  final redaux.Store<S> store;
+  final astro.Store<S> store;
   final Widget Function(BuildContext context, VM vm) builder;
   final VM Function(S state) transformer;
-  final void Function(redaux.Store<S> store)? onInit;
-  final void Function(redaux.Store<S> store)? onDispose;
+  final void Function(astro.Store<S> store)? onInit;
+  final void Function(astro.Store<S> store)? onDispose;
 
   const _StateStreamBuilder({
     Key? key,
@@ -56,7 +56,7 @@ class _StateStreamBuilder<S extends redaux.RootState, VM>
   }
 }
 
-class _StateStreamBuilderState<S extends redaux.RootState, VM>
+class _StateStreamBuilderState<S extends astro.RootState, VM>
     extends State<_StateStreamBuilder<S, VM>> {
   late Stream<VM> _stream;
   VM? _latestValue;

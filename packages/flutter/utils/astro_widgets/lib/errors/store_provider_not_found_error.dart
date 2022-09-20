@@ -1,4 +1,4 @@
-import 'package:redaux/redaux.dart';
+import 'package:astro/astro.dart';
 
 class StoreProviderNotFoundError<S extends State> extends Error {
   StoreProviderNotFoundError();
