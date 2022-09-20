@@ -46,6 +46,11 @@ If you plan to work on several packages at once you will need to open the `monor
 
 Three letter acronyms used in commit messages:
 
+- ast = astro
+- aau = astro_auth
+- ads = astro_devtools_screen
+- aws = astro_widgets
+- awt = astro_widgets_test_utils
 - avs = Adventuverse (project)
 - avm = adventure_maker
 - ccv = coding-challenge-verifier
@@ -62,14 +67,10 @@ Three letter acronyms used in commit messages:
 - lcr = locator
 - oml = our_meals
 - rdd = redux_devtools_desktop
-- rds = redux_devtools_screen
-- rdx = redaux
 - rfr = redfire
 - rft = redfire_test
 - rfl = redfire_lints
 - rsd = resourganizer_desktop
-- rwt = redaux_widgets_test_utils
-- rxa = redux_auth
 - twr = tech_world
 - tpr = the_process
 - wgs = ws_game_server

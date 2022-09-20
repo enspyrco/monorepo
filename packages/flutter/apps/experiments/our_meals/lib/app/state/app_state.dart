@@ -1,5 +1,5 @@
-import 'package:redaux/redaux.dart';
-import 'package:redaux_auth/redaux_auth.dart';
+import 'package:astro/astro.dart';
+import 'package:astro_auth/astro_auth.dart';
 
 class AppState extends RootState with AuthState {
   static AppState get initial => AppState(user: UserState.initial);

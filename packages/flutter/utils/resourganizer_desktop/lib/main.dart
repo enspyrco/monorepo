@@ -1,10 +1,10 @@
+import 'package:astro/astro.dart';
+import 'package:astro_auth/astro_auth.dart';
+import 'package:astro_dev_tools_screen/astro_dev_tools_screen.dart';
+import 'package:astro_widgets/widgets/state_stream_builder.dart';
+import 'package:astro_widgets/widgets/store_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:redaux/redaux.dart';
-import 'package:redaux_auth/redaux_auth.dart';
-import 'package:redaux_dev_tools_screen/redaux_dev_tools_screen.dart';
-import 'package:redaux_widgets/widgets/state_stream_builder.dart';
-import 'package:redaux_widgets/widgets/store_provider.dart';
 
 import 'app_state.dart';
 import 'example_drop_target.dart';
@@ -40,7 +40,7 @@ class AppWidget extends StatelessWidget {
             children: [
               Expanded(
                 flex: 1,
-                child: RedauxDevToolsScreen(_emitEvents.onDispatch),
+                child: AstroDevToolsScreen(_emitEvents.onDispatch),
               ),
               Expanded(
                 flex: 1,
