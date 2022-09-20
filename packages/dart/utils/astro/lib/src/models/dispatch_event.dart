@@ -1,4 +1,4 @@
-import '../../redaux.dart';
+import '../../astro.dart';
 
 class DispatchEvent<T extends RootState> {
   DispatchEvent(this.action, this.state);

@@ -1,4 +1,4 @@
-name: redaux
+name: astro
 description: A simplified redux implementation with more constraints, such as each action has only one reducer/middleware.
 version: 0.0.1
 publish_to: none

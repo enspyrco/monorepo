@@ -2,12 +2,12 @@ import 'action.dart';
 import 'state.dart';
 import 'store.dart';
 
-/// The redaux library is an attempt to make action dispatch easier to reason
+/// The astro library is an attempt to make action dispatch easier to reason
 /// about by restricting the relationship b/w actions and launch/land functions to
 /// a 1:1 relationship but there may be times (eg. during testing & development)
 /// where being able to run logic on every dispatch is advantageous.
 ///
-/// SystemChecks in redaux are are called for every action:
+/// SystemChecks in astro are are called for every action:
 /// - before launch for async actions
 /// - after landing for sync actions
 ///

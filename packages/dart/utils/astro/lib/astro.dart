@@ -1,7 +1,4 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
-library redaux;
+library astro;
 
 export 'src/action.dart';
 export 'src/models/dispatch_event.dart';

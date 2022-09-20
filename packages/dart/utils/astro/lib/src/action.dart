@@ -1,6 +1,6 @@
 import 'package:json_types/json_types.dart';
 
-import '../redaux.dart';
+import '../astro.dart';
 
 abstract class Action {
   AsyncAction? parent;

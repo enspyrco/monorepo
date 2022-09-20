@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:redaux/redaux.dart';
+import 'package:astro/astro.dart';
 
 /// [stateChangesController] should be broadcast type as UI components will
 /// listen for a time at random intervals and only want the state changes while

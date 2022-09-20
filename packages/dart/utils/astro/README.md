@@ -1,4 +1,4 @@
-# redaux
+# astro
 
 *A simplified redux implementation with more constraints, such as each action has only one reducer/middleware.*
 
