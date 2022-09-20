@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:json_types/json_types.dart';
 import 'package:redaux_widgets/redaux_widget.dart';
 
-import '../../../redaux_dev_tools_screen.dart';
+import '../../../astro_dev_tools_screen.dart';
 import 'actions_history_item.dart';
 
 class ActionsHistoryView extends StatelessWidget {

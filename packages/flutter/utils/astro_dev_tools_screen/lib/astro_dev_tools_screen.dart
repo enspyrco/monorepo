@@ -5,7 +5,7 @@ import 'package:json_types/json_types.dart';
 import 'package:redaux/redaux.dart' hide State;
 import 'package:redaux_widgets/redaux_widget.dart';
 
-import 'redaux_dev_tools_screen.dart';
+import 'astro_dev_tools_screen.dart';
 import 'src/views/main_view.dart';
 
 export 'src/state/dev_tools_state.dart';

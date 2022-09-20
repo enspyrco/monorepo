@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_types/json_types.dart';
 import 'package:redaux/redaux.dart';
-import 'package:redaux_dev_tools_screen/redaux_dev_tools_screen.dart';
+import 'package:redaux_dev_tools_screen/astro_dev_tools_screen.dart';
 import 'package:redaux_dev_tools_screen/src/state-management/add_dispatch_event.dart';
 import 'package:redaux_dev_tools_screen/src/state-management/select_action.dart';
 import 'package:redaux_dev_tools_screen/src/views/action_history_view/actions_history_item.dart';
