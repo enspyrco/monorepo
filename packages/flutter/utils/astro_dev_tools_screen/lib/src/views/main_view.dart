@@ -11,8 +11,8 @@ import 'app_state_view/app_state_view.dart';
 
 /// The [MainView] lays out the [ActionsHistoryView] and [AppStateView].
 ///
-/// The [MainView] takes a [Stream] of dispatch events from [redaux], listens to
-/// the stream and dispatches an appropriate Action (as we are also using redaux
+/// The [MainView] takes a [Stream] of dispatch events from [astro], listens to
+/// the stream and dispatches an appropriate Action (as we are also using astro
 /// for our state management) for each incoming event.
 class MainView extends StatefulWidget {
   const MainView(this._eventsStream, {super.key});

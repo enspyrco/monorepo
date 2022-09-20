@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:redaux_widgets/redaux_widget.dart';
+import 'package:astro_widgets/astro_widget.dart';
 
 import '../../state/dev_tools_state.dart';
 import '../../state/viewmodels/app_state_view_view_model.dart';

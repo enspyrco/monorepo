@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart' hide SelectAction;
-import 'package:redaux_widgets/widgets/state_stream_builder.dart';
+import 'package:astro_widgets/widgets/state_stream_builder.dart';
 
 import '../../extensions/build_context_extension.dart';
 import '../../state-management/select_action.dart';

@@ -1,4 +1,4 @@
-name: redaux_dev_tools_screen
+name: astro_dev_tools_screen
 description: A widget for visualising state changes in an app using redux.
 version: 0.0.1
 publish_to: none
@@ -10,14 +10,14 @@ dependencies:
   collection: ^1.16.0
   flutter:
     sdk: flutter
-  redaux:
+  astro:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/utils/redaux
-  redaux_widgets:
+      path: packages/dart/utils/astro
+  astro_widgets:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redaux_widgets
+      path: packages/flutter/utils/astro_widgets
   json_types:
     git:
       url: https://github.com/enspyrco/monorepo.git
@@ -28,7 +28,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
   test: ^1.21.4
-  redaux_widgets_test_utils:
+  astro_widgets_test_utils:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redaux_widgets_test_utils
+      path: packages/flutter/utils/astro_widgets_test_utils

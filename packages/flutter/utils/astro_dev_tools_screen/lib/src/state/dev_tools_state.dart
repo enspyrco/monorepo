@@ -1,10 +1,10 @@
+import 'package:astro/astro.dart';
 import 'package:collection/collection.dart';
 import 'package:json_types/json_types.dart';
-import 'package:redaux/redaux.dart';
 
 import '../enums/lineage_shape.dart';
 
-/// The AppState for redaux, named differently as the [RedauxDevToolsScreen] is
+/// The AppState for astro, named differently as the [AstroDevToolsScreen] is
 /// for visualising the AppState of apps.
 class DevToolsState extends RootState {
   DevToolsState(

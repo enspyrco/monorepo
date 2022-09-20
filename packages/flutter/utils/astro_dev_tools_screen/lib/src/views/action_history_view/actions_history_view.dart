@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_types/json_types.dart';
-import 'package:redaux_widgets/redaux_widget.dart';
+import 'package:astro_widgets/astro_widget.dart';
 
 import '../../../astro_dev_tools_screen.dart';
 import 'actions_history_item.dart';

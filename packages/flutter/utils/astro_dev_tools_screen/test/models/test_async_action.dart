@@ -1,5 +1,5 @@
-import 'package:redaux/redaux.dart';
-import 'package:redaux_dev_tools_screen/astro_dev_tools_screen.dart';
+import 'package:astro/astro.dart';
+import 'package:astro_dev_tools_screen/astro_dev_tools_screen.dart';
 
 class TestAsyncAction extends AsyncAction<DevToolsState> {
   @override

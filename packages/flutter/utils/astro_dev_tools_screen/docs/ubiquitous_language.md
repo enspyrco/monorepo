@@ -10,8 +10,8 @@
 
 ## Actions History List
 
-The Redaux DevTools Screeen has two main areas: the Actions History List and the State Change View.
-As each Action is emitted by the Store and received by the Redaux DevTools Screeen, it is added to a
+The Astro DevTools Screeen has two main areas: the Actions History List and the State Change View.
+As each Action is emitted by the Store and received by the Astro DevTools Screeen, it is added to a
 the collection of Actions that backs the Actions History List. Each Action is displayed in the list as
 an [Actions History Item].
 

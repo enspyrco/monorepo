@@ -1,4 +1,4 @@
-import 'package:redaux/redaux.dart';
+import 'package:astro/astro.dart';
 
 import '../state/dev_tools_state.dart';
 

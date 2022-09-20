@@ -1,4 +1,4 @@
-# redaux_dev_tools_screen
+# astro_dev_tools_screen
 
 *A widget for visualising state changes in an app using redux.*
 

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:json_types/json_types.dart';
-import 'package:redaux/redaux.dart';
+import 'package:astro/astro.dart';
 
 class EmitDispatchEvents<T extends RootState> extends SystemCheck<T> {
   final StreamController<JsonMap> _onDispatchController =

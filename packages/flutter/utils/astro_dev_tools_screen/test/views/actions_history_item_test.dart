@@ -1,11 +1,11 @@
+import 'package:astro/astro.dart';
+import 'package:astro_dev_tools_screen/astro_dev_tools_screen.dart';
+import 'package:astro_dev_tools_screen/src/state-management/add_dispatch_event.dart';
+import 'package:astro_dev_tools_screen/src/state-management/select_action.dart';
+import 'package:astro_dev_tools_screen/src/views/action_history_view/actions_history_item.dart';
+import 'package:astro_widgets_test_utils/astro_widgets_test_utils.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_types/json_types.dart';
-import 'package:redaux/redaux.dart';
-import 'package:redaux_dev_tools_screen/astro_dev_tools_screen.dart';
-import 'package:redaux_dev_tools_screen/src/state-management/add_dispatch_event.dart';
-import 'package:redaux_dev_tools_screen/src/state-management/select_action.dart';
-import 'package:redaux_dev_tools_screen/src/views/action_history_view/actions_history_item.dart';
-import 'package:redaux_widgets_test_utils/redaux_widgets_test_utils.dart';
 
 import '../models/test_async_action.dart';
 
@@ -13,10 +13,10 @@ void main() {
   void setStateForDispatchedAction(WidgetTestHarness harness, Action action) {
     /// The json passed in to [AddDispatchEvent] is recieved by a listener
     /// in the [MainView], which is listening to the [dispatchEvents] stream that
-    /// was passed in to the [RedauxDevToolsScreen].
+    /// was passed in to the [AstroDevToolsScreen].
 
     /// The [dispatchEvents] stream emits json created in [EmitDispatchEvents],
-    /// for each action by the app being inspected with the [RedauxDevToolsScreen].
+    /// for each action by the app being inspected with the [AstroDevToolsScreen].
     harness.land(AddDispatchEvent(
         {'state': DevToolsState.initial.toJson(), 'action': action.toJson()}));
   }
