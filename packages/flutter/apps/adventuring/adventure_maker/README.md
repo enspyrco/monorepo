@@ -4,4 +4,4 @@
 
 *Create, organise & discover adventures taking place in tech-world.*
 
-[Project Notes](https://enspyrco.notion.site/Adventures-83bc88c84c834854872de24abe3d8a6c)
+[Project Notes](https://www.notion.so/enspyrco/AdventureMaker-6515d681ad864178b8fcac850a53cdcc)

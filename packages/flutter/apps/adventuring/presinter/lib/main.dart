@@ -5,7 +5,6 @@ import 'package:redfire/widgets.dart';
 
 import 'app/app_state.dart';
 import 'home/home_screen.dart';
-import 'redfire_options.dart';
 
 void main() => runApp(AppWidget<AppState>(
       logins: {AppleLoginConfig()}.lock,

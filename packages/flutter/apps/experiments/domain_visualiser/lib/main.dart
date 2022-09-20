@@ -8,7 +8,6 @@ import 'middleware/add_domain_object_middleware.dart';
 import 'middleware/tap_domain_objects_middleware.dart';
 import 'middleware/update_domain_object.dart';
 import 'reducers/set_domain_objects.dart';
-import 'utils/redfire_options.dart';
 import 'widgets/drawing_page.dart';
 
 void main() => runApp(AppWidget<AppState>(
