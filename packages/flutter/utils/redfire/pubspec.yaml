@@ -35,10 +35,10 @@ dependencies:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/flutterfire/cloud_firestore_extensions
   # split_view: ^3.2.1
-  # redaux_dev_tools_screen:
+  # astro_dev_tools_screen:
   #   git:
   #     url: https://github.com/enspyrco/monorepo.git
-  #     path: packages/flutter/utils/redaux_dev_tools_screen
+  #     path: packages/flutter/utils/astro_dev_tools_screen
   
 dev_dependencies:
   flutter_test:

@@ -9,5 +9,5 @@ dependency_overrides:
     path: ../../../dart/interfaces/firestore_service_interface
   cloud_firestore_extensions:
     path: ../flutterfire/cloud_firestore_extensions
-  # redaux_dev_tools_screen:
-  #   path: ../redaux_dev_tools_screen
+  # astro_dev_tools_screen:
+  #   path: ../astro_dev_tools_screen
