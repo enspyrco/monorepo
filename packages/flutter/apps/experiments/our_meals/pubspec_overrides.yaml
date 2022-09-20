@@ -1,11 +1,11 @@
 dependency_overrides:
   locator:
     path: ../../../../dart/utils/locator
-  redaux:
-    path: ../../../../dart/utils/redaux
-  redaux_widgets:
-    path: ../../../utils/redaux_widgets
-  redaux_dev_tools_screen:
-    path: ../../../utils/redaux_dev_tools_screen
-  redaux_auth:
-    path: ../../../utils/redaux_auth
+  astro:
+    path: ../../../../dart/utils/astro
+  astro_widgets:
+    path: ../../../utils/astro_widgets
+  astro_dev_tools_screen:
+    path: ../../../utils/astro_dev_tools_screen
+  astro_auth:
+    path: ../../../utils/astro_auth

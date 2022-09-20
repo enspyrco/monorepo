@@ -1,8 +1,8 @@
 { 
   "action (async)": {
-    "prefix": "redaux_async_action",
+    "prefix": "astro_async_action",
     "body": [
-      "import 'package:redaux/redaux.dart';",
+      "import 'package:astro/astro.dart';",
       "",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} extends AsyncAction<AppState> {",
       "",
@@ -24,12 +24,12 @@
       "\tstatic final instance = _${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Middleware();",
       "}",
     ],
-    "description": "async action for redaux"
+    "description": "async action for astro"
   },
   "action (sync)": {
-    "prefix": "redaux_sync_action",
+    "prefix": "astro_sync_action",
     "body": [
-      "import 'package:redaux/redaux.dart';",
+      "import 'package:astro/astro.dart';",
       "",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} extends SyncAction<AppState> {",
       "",
@@ -41,7 +41,7 @@
       "",
       "}"
     ],
-    "description": "sync action for redaux"
+    "description": "sync action for astro"
   },
   // "redfire action (tap)": {
   //   "prefix": "rf_action_tap",

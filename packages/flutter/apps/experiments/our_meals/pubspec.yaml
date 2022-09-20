@@ -14,22 +14,22 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/dart/utils/locator
-  redaux:
+  astro:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/utils/redaux
-  redaux_widgets:
+      path: packages/dart/utils/astro
+  astro_widgets:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redaux_widgets
-  redaux_dev_tools_screen:
+      path: packages/flutter/utils/astro_widgets
+  astro_dev_tools_screen:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redaux_dev_tools_screen
-  redaux_auth:
+      path: packages/flutter/utils/astro_dev_tools_screen
+  astro_auth:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redaux_auth
+      path: packages/flutter/utils/astro_auth
 
 dev_dependencies:
   flutter_test:

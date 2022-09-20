@@ -1,11 +1,11 @@
+import 'package:astro/astro.dart';
+import 'package:astro_auth/astro_auth.dart';
+import 'package:astro_dev_tools_screen/astro_dev_tools_screen.dart';
+import 'package:astro_widgets/astro_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:our_meals/firebase_options.dart';
 import 'package:our_meals/home/home_screen.dart';
-import 'package:redaux/redaux.dart';
-import 'package:redaux_auth/redaux_auth.dart';
-import 'package:redaux_dev_tools_screen/redaux_dev_tools_screen.dart';
-import 'package:redaux_widgets/redaux_widget.dart';
 
 import 'app/state/app_state.dart';
 
@@ -39,7 +39,7 @@ class AuthGate extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Material(
-                child: RedauxDevToolsScreen(_events.onDispatch),
+                child: AstroDevToolsScreen(_events.onDispatch),
               ),
             ),
             Expanded(

@@ -1,6 +1,6 @@
+import 'package:astro_auth/astro_auth.dart';
+import 'package:astro_widgets/astro_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:redaux_auth/redaux_auth.dart';
-import 'package:redaux_widgets/redaux_widget.dart';
 
 import '../app/state/app_state.dart';
 

@@ -1,0 +1,11 @@
+dependency_overrides:
+  locator:
+    path: ../../../dart/utils/locator
+  astro:
+    path: ../../../dart/utils/astro
+  astro_widgets:
+    path: ../astro_widgets
+  astro_widgets_test_utils:
+    path: ../astro_widgets_test_utils
+  json_types:
+    path: ../../../dart/utils/json_types
