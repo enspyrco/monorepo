@@ -4,16 +4,17 @@ import 'package:flutter/widgets.dart';
 import '../errors/store_provider_not_found_error.dart';
 
 class StoreProvider<S extends astro.RootState> extends InheritedWidget {
-  final astro.Store<S> _store;
+  final astro.MissionControl<S> _store;
 
   const StoreProvider({
     Key? key,
-    required astro.Store<S> store,
+    required astro.MissionControl<S> store,
     required Widget child,
   })  : _store = store,
         super(key: key, child: child);
 
-  static astro.Store<S> of<S extends astro.RootState>(BuildContext context,
+  static astro.MissionControl<S> of<S extends astro.RootState>(
+      BuildContext context,
       {bool listen = true}) {
     final provider = (listen
         ? context.dependOnInheritedWidgetOfExactType<StoreProvider<S>>()

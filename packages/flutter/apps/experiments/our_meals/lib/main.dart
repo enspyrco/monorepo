@@ -9,9 +9,9 @@ import 'package:our_meals/home/home_screen.dart';
 
 import 'app/state/app_state.dart';
 
-final _events = EmitDispatchEvents<AppState>();
+final _events = EmitMissionEvents<AppState>();
 final _store =
-    Store<AppState>(state: AppState.initial, systemChecks: [_events]);
+    MissionControl<AppState>(state: AppState.initial, systemChecks: [_events]);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

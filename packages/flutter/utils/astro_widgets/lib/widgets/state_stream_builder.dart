@@ -10,8 +10,8 @@ class StateStreamBuilder<S extends astro.RootState, VM>
     extends StatelessWidget {
   final Widget Function(BuildContext context, VM vm) builder;
   final VM Function(S state) transformer;
-  final void Function(astro.Store<S> store)? onInit;
-  final void Function(astro.Store<S> store)? onDispose;
+  final void Function(astro.MissionControl<S> store)? onInit;
+  final void Function(astro.MissionControl<S> store)? onDispose;
 
   const StateStreamBuilder({
     Key? key,
@@ -35,11 +35,11 @@ class StateStreamBuilder<S extends astro.RootState, VM>
 
 class _StateStreamBuilder<S extends astro.RootState, VM>
     extends StatefulWidget {
-  final astro.Store<S> store;
+  final astro.MissionControl<S> store;
   final Widget Function(BuildContext context, VM vm) builder;
   final VM Function(S state) transformer;
-  final void Function(astro.Store<S> store)? onInit;
-  final void Function(astro.Store<S> store)? onDispose;
+  final void Function(astro.MissionControl<S> store)? onInit;
+  final void Function(astro.MissionControl<S> store)? onDispose;
 
   const _StateStreamBuilder({
     Key? key,

@@ -2,9 +2,10 @@ import 'package:astro/astro.dart';
 
 import '../state/dev_tools_state.dart';
 
-class RemoveDispatchEvents extends SyncAction<DevToolsState> {
+class RemoveMissionEvents extends DockingMission<DevToolsState> {
   @override
-  DevToolsState land(state) => state.copyWith(selectedIndex: null);
+  DevToolsState dockingInstructions(state) =>
+      state.copyWith(selectedIndex: null);
 
   @override
   toJson({int? parentId}) => {

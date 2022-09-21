@@ -10,9 +10,9 @@ import 'app_state.dart';
 import 'example_drop_target.dart';
 import 'firebase_options.dart';
 
-final _emitEvents = EmitDispatchEvents<AppState>();
-final _store =
-    Store<AppState>(state: AppState.initial, systemChecks: [_emitEvents]);
+final _emitEvents = EmitMissionEvents<AppState>();
+final _store = MissionControl<AppState>(
+    state: AppState.initial, systemChecks: [_emitEvents]);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

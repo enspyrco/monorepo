@@ -8,7 +8,7 @@ class StoreProviderNotFoundError<S extends State> extends Error {
     return '''Error: No StoreProvider<$S> found. Try:
           
   * Move the StoreProvider<$S> higher in the widget tree, above
-    where it is first used (eg. by a context.dispatch call)
+    where it is first used (eg. by a context.launch call)
   * Provide full type information to Store<$S>, StoreProvider<$S>
     and StateStreamBuilder<$S, VM>
   * Move the StoreProvider<$S> above MaterialApp if the Navigator
