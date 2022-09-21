@@ -10,12 +10,12 @@
       "type": "dart"
     },
     {
-      "name": "our_meals (devtools)",
+      "name": "our_meals (inspector)",
       "request": "launch",
       "type": "dart",
       "toolArgs": [
         "--dart-define",
-        "REDAUX_DEVTOOLS=true"
+        "INSPECTOR=true"
       ]
     }
   ]

@@ -1,6 +1,6 @@
 import 'package:astro/astro.dart';
 import 'package:astro_auth/astro_auth.dart';
-import 'package:astro_dev_tools_screen/astro_dev_tools_screen.dart';
+import 'package:astro_inspector_screen/astro_inspector_screen.dart';
 import 'package:astro_widgets/widgets/state_stream_builder.dart';
 import 'package:astro_widgets/widgets/store_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -40,7 +40,7 @@ class AppWidget extends StatelessWidget {
             children: [
               Expanded(
                 flex: 1,
-                child: AstroDevToolsScreen(_emitEvents.onDispatch),
+                child: AstroInspectorScreen(_emitEvents.onDispatch),
               ),
               Expanded(
                 flex: 1,
