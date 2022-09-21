@@ -4,7 +4,6 @@ import 'models/error_message.dart';
 
 abstract class State {
   State copyWith();
-
   JsonMap toJson();
 }
 

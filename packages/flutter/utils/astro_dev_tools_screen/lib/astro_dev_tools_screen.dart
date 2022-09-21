@@ -9,7 +9,7 @@ import 'astro_dev_tools_screen.dart';
 import 'src/views/main_view.dart';
 
 export 'src/state/dev_tools_state.dart';
-export 'src/utils/emit_dispatch_events.dart';
+export 'src/utils/emit_mission_events.dart';
 
 /// Visualise the data flow of an app by adding a [AstroDevToolsScreen] widget
 /// and passing in the `_events` stream from the Astro Store.
@@ -17,14 +17,15 @@ export 'src/utils/emit_dispatch_events.dart';
 /// is transformed to a Stream<ReduxStateEvent>.
 ///
 /// At this time, an event is either
-/// - a 'dispatch' event, consisting of the dispatched action and corresponding
-///   app state.
-/// - a 'remove all' event to clear the dispatch events data.
+/// - a 'mission' event, consisting of the mission object and any corresponding
+///   state change.
+/// - a 'remove all' event to clear the mission events data.
 class AstroDevToolsScreen extends StatefulWidget {
   AstroDevToolsScreen(this._events, {super.key});
 
   final Stream<JsonMap>? _events;
-  final Store<DevToolsState> _store = Store(state: DevToolsState.initial);
+  final MissionControl<DevToolsState> _store =
+      MissionControl(state: DevToolsState.initial);
 
   @override
   State<AstroDevToolsScreen> createState() => _AstroDevToolsScreenState();

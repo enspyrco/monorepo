@@ -1,20 +1,20 @@
+import 'package:astro/astro.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:json_types/json_types.dart';
 import 'package:locator/locator.dart';
-import 'package:astro/astro.dart';
 
 import '../services/firebase_auth_service.dart';
 import '../state/user_state.dart';
 import 'update_user_state.dart';
 
-class SignInWithFirebase<T extends RootState> extends AsyncAction<T> {
+class SignInWithFirebase<T extends RootState> extends AwayMission<T> {
   SignInWithFirebase({required this.idToken, required this.rawNonce});
 
   final String idToken;
   final String rawNonce;
 
   @override
-  Future<void> launch(Store<T> store) async {
+  Future<void> flightPlan(MissionControl<T> store) async {
     final service = locate<FirebaseAuthService>();
 
     UserCredential credential =

@@ -189,13 +189,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
-  sync_http:
-    dependency: transitive
-    description:
-      name: sync_http
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.1"
   term_glyph:
     dependency: transitive
     description:

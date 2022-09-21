@@ -1,13 +1,13 @@
+import 'package:astro_widgets/astro_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_types/json_types.dart';
-import 'package:astro_widgets/astro_widget.dart';
 
 import '../../../astro_dev_tools_screen.dart';
-import 'actions_history_item.dart';
+import 'missions_history_item.dart';
 
-class ActionsHistoryView extends StatelessWidget {
-  const ActionsHistoryView({super.key});
+class MissionsHistoryView extends StatelessWidget {
+  const MissionsHistoryView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,19 +18,19 @@ class ActionsHistoryView extends StatelessWidget {
           child: SizedBox(
             width: 300,
             child: StateStreamBuilder<DevToolsState, List<JsonMap>>(
-                transformer: (state) => state.dispatchEvents,
-                builder: (context, dispatchEvents) {
+                transformer: (state) => state.missionEvents,
+                builder: (context, missionEvents) {
                   return ListView.builder(
-                      itemCount: dispatchEvents.length,
+                      itemCount: missionEvents.length,
                       itemBuilder: (context, index) {
-                        final actionData = dispatchEvents[index]['action'];
+                        final actionData = missionEvents[index]['mission'];
                         if (actionData == null) {
                           return Container();
                         }
-                        return ActionsHistoryItem(
-                          actionName: actionData['name_'],
-                          actionType: actionData['type_'],
-                          actionState: actionData['state_'],
+                        return MissionsHistoryItem(
+                          missionName: actionData['name_'],
+                          missionType: actionData['type_'],
+                          missionState: actionData['state_'],
                           index: index,
                         );
                       });

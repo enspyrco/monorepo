@@ -1,32 +1,32 @@
-import 'package:flutter/material.dart' hide SelectAction;
 import 'package:astro_widgets/widgets/state_stream_builder.dart';
+import 'package:flutter/material.dart' hide SelectMission;
 
 import '../../extensions/build_context_extension.dart';
-import '../../state-management/select_action.dart';
+import '../../state-management/select_mission.dart';
 import '../../state/dev_tools_state.dart';
-import '../../state/viewmodels/action_history_item_view_model.dart';
+import '../../state/viewmodels/mission_history_item_view_model.dart';
 
-class ActionsHistoryItem extends StatelessWidget {
-  const ActionsHistoryItem({
+class MissionsHistoryItem extends StatelessWidget {
+  const MissionsHistoryItem({
     Key? key,
-    required this.actionName,
-    required this.actionType,
-    required this.actionState,
+    required this.missionName,
+    required this.missionType,
+    required this.missionState,
     required this.index,
   }) : super(key: key);
 
-  final String actionName;
-  final String actionType;
-  final Map<String, dynamic> actionState;
+  final String missionName;
+  final String missionType;
+  final Map<String, dynamic> missionState;
   final int index;
 
   @override
   Widget build(BuildContext context) {
-    var isAsync = actionType == 'async';
+    var isAsync = missionType == 'async';
 
-    return StateStreamBuilder<DevToolsState, ActionHistoryItemViewModel>(
+    return StateStreamBuilder<DevToolsState, MissionHistoryItemViewModel>(
         transformer: (state) {
-      return ActionHistoryItemViewModel(
+      return MissionHistoryItemViewModel(
           index == state.selectedIndex, state.lineageFor[index]?.shapeWidgets);
     }, builder: (context, vm) {
       return Stack(
@@ -46,11 +46,11 @@ class ActionsHistoryItem extends StatelessWidget {
                         width: vm.isSelected ? 3 : 1),
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  title: Text(actionName),
+                  title: Text(missionName),
                   subtitle: vm.isSelected
-                      ? Text(actionState.toString())
+                      ? Text(missionState.toString())
                       : Container(),
-                  onTap: () => context.land(SelectAction(index)),
+                  onTap: () => context.land(SelectMission(index)),
                   tileColor: isAsync ? Colors.green[50] : Colors.blue[50]),
             ),
           ),

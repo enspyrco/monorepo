@@ -2,20 +2,15 @@ import 'dart:async';
 
 import 'package:astro/astro.dart';
 
-/// [stateChangesController] should be broadcast type as UI components will
+/// Pass in [systemChecks] to run logic on every [Mission], before
+/// [AwayMission.flightPlan] is called and after
+/// [DockingMission.dockingInstructions] is called.
+///
+/// Make sure [onStateChangeController] is broadcast type as UI components will
 /// listen for a time at random intervals and only want the state changes while
 /// they are listening.
-///
-/// Passing in [systemChecks] allows logic to run on every dispatched [Action], after
-/// the action's [launch] or [land] has been called. If the same result can
-/// be achieved using just actions, without adding system checks, the 1:1
-/// relationship between an Action a launch/land function will probably make your
-/// app easier to reason about.
-///
-/// Actions must extend or implement either [AsyncAction] or [SyncAction],
-/// each of which inherit from [Action].
-class Store<S extends RootState> {
-  Store({
+class MissionControl<S extends RootState> {
+  MissionControl({
     required S state,
     StreamController<S>? onStateChangeController,
     List<SystemCheck>? systemChecks,
@@ -26,40 +21,40 @@ class Store<S extends RootState> {
   final StreamController<S> _onStateChangeController =
       StreamController<S>.broadcast();
 
-  /// [SystemCheck]s are called on every dispatched action, before [launch] is
-  /// called or after [land] is called.
+  /// [SystemCheck]s are called on every mission, before [AwayMission.flightPlan]
+  /// is called and after [DockingMission.dockingInstructions] is called.
   final List<SystemCheck>? _systemChecks;
 
   /// Returns the current state tree of the application.
   S get state => _state;
 
-  /// Landing a [SyncAction] is the only way to upate the state held in the
+  /// Landing a [DockingMission] is the only way to upate the state held in the
   /// store, so any data, whether from UI events, network callbacks, or other
   /// sources such as WebSockets needs to eventually be landed (ie. call land on
-  /// the store with a SyncAction that described the desired state change).
-  void land(SyncAction<S> action) {
-    print('land: $action');
+  /// [DockingMission] that described the desired state change).
+  void land(DockingMission<S> mission) {
+    print('land: $mission');
 
-    _state = action.land(_state);
+    _state = mission.dockingInstructions(_state);
 
     // emit the new state for any listeners (eg. StateStreamBuilder widgets)
     _onStateChangeController.add(_state);
 
-    _systemChecks?.forEach((fn) => fn.call(this, action));
+    _systemChecks?.forEach((fn) => fn.call(this, mission));
   }
 
   /// Creation or retrieval of data that is asynchronous must be performed via
-  /// an [AsyncAction]. If the desired end result is changing the app state,
-  /// the [AsyncAction] should land a [SyncAction] when it is complete.
-  void launch(AsyncAction<S> action) async {
-    print('launch: $action');
+  /// an [AwayMission]. If the desired end result is changing the app state,
+  /// the [AwayMission] should land a [DockingMission] when it is complete.
+  void launch(AwayMission<S> mission) async {
+    print('launch: $mission');
 
-    _systemChecks?.forEach((fn) => fn.call(this, action));
+    _systemChecks?.forEach((fn) => fn.call(this, mission));
 
     /// We wrap the `launch` calls in a try/catch and if the
     /// call throws, an [ErrorMessage] is added to the AppState.
     try {
-      await action.launch(this);
+      await mission.flightPlan(this);
     } catch (thrown, trace) {
       print(thrown);
       var newErrorMessages = [
