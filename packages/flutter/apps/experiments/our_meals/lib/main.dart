@@ -1,6 +1,6 @@
 import 'package:astro/astro.dart';
 import 'package:astro_auth/astro_auth.dart';
-import 'package:astro_dev_tools_screen/astro_dev_tools_screen.dart';
+import 'package:astro_inspector_screen/astro_inspector_screen.dart';
 import 'package:astro_widgets/astro_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +39,7 @@ class AuthGate extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Material(
-                child: AstroDevToolsScreen(_events.onDispatch),
+                child: AstroInspectorScreen(_events.onDispatch),
               ),
             ),
             Expanded(

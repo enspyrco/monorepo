@@ -15,10 +15,10 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
-  astro_dev_tools_screen:
+  astro_inspector_screen:
     dependency: "direct main"
     description:
-      path: "../../../utils/astro_dev_tools_screen"
+      path: "../../../utils/astro_inspector_screen"
       relative: true
     source: path
     version: "0.0.1"

@@ -48,7 +48,7 @@ Three letter acronyms used in commit messages:
 
 - ast = astro
 - aau = astro_auth
-- ads = astro_devtools_screen
+- ais = astro_inspector_screen
 - aws = astro_widgets
 - awt = astro_widgets_test_utils
 - avs = Adventuverse (project)
