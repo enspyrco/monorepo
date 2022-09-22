@@ -12,7 +12,8 @@ class HomeScreen extends StatelessWidget {
     return TextButton(
       child: const Text('Home Screen'),
       onPressed: () {
-        StoreProvider.of<AppState>(context).launch(SignOut<AppState>());
+        MissionControlProvider.of<AppState>(context)
+            .launch(SignOut<AppState>());
       },
     );
   }

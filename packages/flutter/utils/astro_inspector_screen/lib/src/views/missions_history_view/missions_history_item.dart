@@ -1,7 +1,7 @@
-import 'package:astro_widgets/widgets/state_stream_builder.dart';
-import 'package:flutter/material.dart' hide SelectMission;
+import 'package:astro_inspector_screen/src/extensions/build_context_extension.dart';
+import 'package:astro_widgets/widgets/on_state_change_builder.dart';
+import 'package:flutter/material.dart';
 
-import '../../extensions/build_context_extension.dart';
 import '../../state-management/select_mission.dart';
 import '../../state/inspector_state.dart';
 import '../../state/viewmodels/mission_history_item_view_model.dart';
@@ -24,7 +24,7 @@ class MissionsHistoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var isAsync = missionType == 'async';
 
-    return StateStreamBuilder<InspectorState, MissionHistoryItemViewModel>(
+    return OnStateChangeBuilder<InspectorState, MissionHistoryItemViewModel>(
         transformer: (state) {
       return MissionHistoryItemViewModel(
           index == state.selectedIndex, state.lineageFor[index]?.shapeWidgets);

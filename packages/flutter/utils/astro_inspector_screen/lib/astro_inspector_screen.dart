@@ -34,7 +34,7 @@ class AstroInspectorScreen extends StatefulWidget {
 class _AstroInspectorScreenState extends State<AstroInspectorScreen> {
   @override
   Widget build(BuildContext context) {
-    return StoreProvider<InspectorState>(
-        store: widget._store, child: MainView(widget._events));
+    return MissionControlProvider<InspectorState>(
+        missionControl: widget._store, child: MainView(widget._events));
   }
 }

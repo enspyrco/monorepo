@@ -1,5 +1,5 @@
 import 'package:astro/astro.dart';
-import 'package:astro_widgets/widgets/store_provider.dart';
+import 'package:astro_widgets/widgets/mission_control_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'record_missions.dart';
@@ -9,7 +9,7 @@ import 'record_missions.dart';
 /// expected values and behaviour.
 ///
 /// The `widget` getter returns the `widgetUnderTest` wrapped in a [Scaffold],
-/// a [MaterialApp] and a [StoreProvider]. Other mini-widget-trees that would
+/// a [MaterialApp] and a [MissionControlProvider]. Other mini-widget-trees that would
 /// be useful as wrappers around `widgetUnderTest` can easily be added as a getter.
 ///
 /// The harness exposes [MissionControl.onDispatch] so tests can observe started
@@ -20,22 +20,22 @@ class WidgetTestHarness<T extends RootState> {
       required Widget child,
       List<SystemCheck>? systemChecks})
       : _widgetUnderTest = child {
-    _store = MissionControl<T>(
+    _missionControl = MissionControl<T>(
         state: initialState, systemChecks: [...?systemChecks, _recorded]);
   }
 
-  late final MissionControl<T> _store;
+  late final MissionControl<T> _missionControl;
   final Widget _widgetUnderTest;
   final _recorded = RecordMissions<T>();
 
-  Widget get widget => StoreProvider<T>(
-      store: _store,
+  Widget get widget => MissionControlProvider<T>(
+      missionControl: _missionControl,
       child: MaterialApp(home: Scaffold(body: _widgetUnderTest)));
 
-  T get state => _store.state;
+  T get state => _missionControl.state;
 
   List<Mission> get recordedMissions => _recorded.missions;
 
-  void launch(AwayMission<T> mission) => _store.launch(mission);
-  void land(DockingMission<T> mission) => _store.land(mission);
+  void launch(AwayMission<T> mission) => _missionControl.launch(mission);
+  void land(DockingMission<T> mission) => _missionControl.land(mission);
 }

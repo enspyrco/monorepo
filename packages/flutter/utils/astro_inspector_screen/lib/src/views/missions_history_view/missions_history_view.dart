@@ -1,4 +1,4 @@
-import 'package:astro_widgets/astro_widget.dart';
+import 'package:astro_widgets/widgets/on_state_change_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_types/json_types.dart';
@@ -17,7 +17,7 @@ class MissionsHistoryView extends StatelessWidget {
         Expanded(
           child: SizedBox(
             width: 300,
-            child: StateStreamBuilder<InspectorState, List<JsonMap>>(
+            child: OnStateChangeBuilder<InspectorState, List<JsonMap>>(
                 transformer: (state) => state.missionEvents,
                 builder: (context, missionEvents) {
                   return ListView.builder(

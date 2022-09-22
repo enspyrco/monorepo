@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:astro/astro.dart';
 import 'package:astro_widgets/astro_widget.dart';
+import 'package:flutter/material.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as plugin;
 
 import '../state-management/sign_in_with_apple.dart';
@@ -17,8 +17,8 @@ class SignInScreen<T extends RootState> extends StatelessWidget {
   Widget build(BuildContext context) {
     if (signedIn == SignedInState.notSignedIn) {
       return plugin.SignInWithAppleButton(
-          onPressed: () =>
-              StoreProvider.of<T>(context).launch(SignInWithApple<T>()));
+          onPressed: () => MissionControlProvider.of<T>(context)
+              .launch(SignInWithApple<T>()));
     }
     return const CircularProgressIndicator();
   }

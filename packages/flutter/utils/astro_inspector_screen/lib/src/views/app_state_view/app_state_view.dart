@@ -1,4 +1,4 @@
-import 'package:astro_widgets/astro_widget.dart';
+import 'package:astro_widgets/widgets/on_state_change_builder.dart';
 import 'package:flutter/material.dart';
 
 import '../../state/inspector_state.dart';
@@ -16,7 +16,7 @@ class AppStateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StateStreamBuilder<InspectorState, AppStateViewViewModel>(
+    return OnStateChangeBuilder<InspectorState, AppStateViewViewModel>(
         transformer: (state) =>
             AppStateViewViewModel(state.selectedState, state.previousState),
         builder: (context, vm) {

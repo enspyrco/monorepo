@@ -31,8 +31,8 @@ class AuthGate extends StatelessWidget {
   Widget build(BuildContext context) {
     var platform = Theme.of(context).platform;
 
-    return StoreProvider(
-      store: _store,
+    return MissionControlProvider(
+      missionControl: _store,
       child: MaterialApp(
         home: Row(
           children: [
@@ -44,7 +44,7 @@ class AuthGate extends StatelessWidget {
             ),
             Expanded(
               flex: 1,
-              child: StateStreamBuilder<AppState, SignedInState>(
+              child: OnStateChangeBuilder<AppState, SignedInState>(
                 transformer: (state) => state.user.signedIn,
                 builder: (context, signedIn) {
                   if (signedIn == SignedInState.checking ||
