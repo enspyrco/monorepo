@@ -12,14 +12,13 @@ StreamSubscription<UserState>? _subscription;
 
 class BindAuthState<T extends RootState> extends AwayMission<T> {
   @override
-  Future<void> flightPlan(MissionControl store) async {
+  Future<void> flightPlan(MissionControl missionControl) async {
     var service = locate<FirebaseAuthService>();
 
     _subscription?.cancel();
 
-    _subscription = service
-        .tapIntoAuthState()
-        .listen((user) => store.land(UpdateUserState<T>(user)..parent = this));
+    _subscription = service.tapIntoAuthState().listen(
+        (user) => missionControl.land(UpdateUserState<T>(user)..parent = this));
   }
 
   @override

@@ -10,7 +10,7 @@ import 'package:our_meals/home/home_screen.dart';
 import 'app/state/app_state.dart';
 
 final _events = EmitMissionEvents<AppState>();
-final _store =
+final _missionControl =
     MissionControl<AppState>(state: AppState.initial, systemChecks: [_events]);
 
 void main() async {
@@ -32,7 +32,7 @@ class AuthGate extends StatelessWidget {
     var platform = Theme.of(context).platform;
 
     return MissionControlProvider(
-      missionControl: _store,
+      missionControl: _missionControl,
       child: MaterialApp(
         home: Row(
           children: [
@@ -53,7 +53,8 @@ class AuthGate extends StatelessWidget {
                   }
                   return const HomeScreen();
                 },
-                onInit: (store) => store.launch(BindAuthState<AppState>()),
+                onInit: (missionControl) =>
+                    missionControl.launch(BindAuthState<AppState>()),
               ),
             ),
           ],

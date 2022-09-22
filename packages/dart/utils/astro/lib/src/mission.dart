@@ -14,5 +14,5 @@ abstract class DockingMission<S extends RootState> extends Mission {
 }
 
 abstract class AwayMission<S extends RootState> extends Mission {
-  Future<void> flightPlan(MissionControl<S> store);
+  Future<void> flightPlan(MissionControl<S> missionControl);
 }

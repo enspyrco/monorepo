@@ -53,7 +53,8 @@ class AppWidget extends StatelessWidget {
                     }
                     return const ExampleDragTarget();
                   },
-                  onInit: (store) => store.launch(BindAuthState<AppState>()),
+                  onInit: (missionControl) =>
+                      missionControl.launch(BindAuthState<AppState>()),
                 ),
               ),
             ],

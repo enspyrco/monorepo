@@ -9,12 +9,12 @@ class EmitMissionEvents<T extends RootState> extends SystemCheck<T> {
   Stream<JsonMap> get onDispatch => _onMissionStartController.stream;
 
   @override
-  void call(store, Mission mission) async {
+  void call(missionControl, Mission mission) async {
     // Emit json describing the mission and (potential) state change on
     // each mission.
     _onMissionStartController.add({
       'data': {
-        'state': store.state.toJson(),
+        'state': missionControl.state.toJson(),
         'mission': mission.toJson(parentId: mission.parent?.hashCode)
       },
       'type': 'redfire:mission_started'

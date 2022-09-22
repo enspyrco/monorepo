@@ -6,6 +6,6 @@ class RecordMissions<T extends RootState> extends SystemCheck<T> {
   final List<Mission> missions = [];
 
   @override
-  void call(MissionControl<T> store, Mission mission) async =>
+  void call(MissionControl<T> missionControl, Mission mission) async =>
       missions.add(mission);
 }

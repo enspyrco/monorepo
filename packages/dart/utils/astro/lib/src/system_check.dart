@@ -19,5 +19,5 @@ import 'state.dart';
 /// in the order they were added to the [MissionControl.systemChecks] list.
 abstract class SystemCheck<S extends RootState> {
   const SystemCheck();
-  void call(MissionControl<S> store, Mission mission);
+  void call(MissionControl<S> missionControl, Mission mission);
 }

@@ -28,8 +28,8 @@ class MissionControl<S extends RootState> {
   /// Returns the current state tree of the application.
   S get state => _state;
 
-  /// Landing a [DockingMission] is the only way to upate the state held in the
-  /// store, so any data, whether from UI events, network callbacks, or other
+  /// Landing a [DockingMission] is the only way to upate the state held in
+  /// MissionControl, so any data, whether from UI events, network callbacks, or other
   /// sources such as WebSockets needs to eventually be landed (ie. call land on
   /// [DockingMission] that described the desired state change).
   void land(DockingMission<S> mission) {
