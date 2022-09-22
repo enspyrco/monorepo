@@ -1,19 +1,18 @@
 import 'dart:async';
 
-import 'package:astro/astro.dart' as astro;
+import 'package:astro/astro.dart' hide State;
 import 'package:flutter/widgets.dart';
 
 import '../exceptions/transform_failure_exception.dart';
-import 'store_provider.dart';
+import 'mission_control_provider.dart';
 
-class StateStreamBuilder<S extends astro.RootState, VM>
-    extends StatelessWidget {
-  final Widget Function(BuildContext context, VM vm) builder;
-  final VM Function(S state) transformer;
-  final void Function(astro.MissionControl<S> store)? onInit;
-  final void Function(astro.MissionControl<S> store)? onDispose;
+class OnStateChangeBuilder<S extends RootState, VM> extends StatelessWidget {
+  final Widget Function(BuildContext, VM) builder;
+  final VM Function(S) transformer;
+  final void Function(MissionControl<S>)? onInit;
+  final void Function(MissionControl<S>)? onDispose;
 
-  const StateStreamBuilder({
+  const OnStateChangeBuilder({
     Key? key,
     required this.builder,
     required this.transformer,
@@ -23,8 +22,8 @@ class StateStreamBuilder<S extends astro.RootState, VM>
 
   @override
   Widget build(BuildContext context) {
-    return _StateStreamBuilder<S, VM>(
-      store: StoreProvider.of<S>(context),
+    return _OnStateChangeBuilder<S, VM>(
+      missionControl: MissionControlProvider.of<S>(context),
       builder: builder,
       transformer: transformer,
       onInit: onInit,
@@ -33,17 +32,16 @@ class StateStreamBuilder<S extends astro.RootState, VM>
   }
 }
 
-class _StateStreamBuilder<S extends astro.RootState, VM>
-    extends StatefulWidget {
-  final astro.MissionControl<S> store;
-  final Widget Function(BuildContext context, VM vm) builder;
-  final VM Function(S state) transformer;
-  final void Function(astro.MissionControl<S> store)? onInit;
-  final void Function(astro.MissionControl<S> store)? onDispose;
+class _OnStateChangeBuilder<S extends RootState, VM> extends StatefulWidget {
+  final MissionControl<S> missionControl;
+  final Widget Function(BuildContext, VM) builder;
+  final VM Function(S) transformer;
+  final void Function(MissionControl<S>)? onInit;
+  final void Function(MissionControl<S>)? onDispose;
 
-  const _StateStreamBuilder({
+  const _OnStateChangeBuilder({
     Key? key,
-    required this.store,
+    required this.missionControl,
     required this.transformer,
     required this.builder,
     this.onInit,
@@ -52,12 +50,12 @@ class _StateStreamBuilder<S extends astro.RootState, VM>
 
   @override
   State<StatefulWidget> createState() {
-    return _StateStreamBuilderState<S, VM>();
+    return _OnStateChangeBuilderState<S, VM>();
   }
 }
 
-class _StateStreamBuilderState<S extends astro.RootState, VM>
-    extends State<_StateStreamBuilder<S, VM>> {
+class _OnStateChangeBuilderState<S extends RootState, VM>
+    extends State<_OnStateChangeBuilder<S, VM>> {
   late Stream<VM> _stream;
   VM? _latestValue;
   Object? _latestError;
@@ -71,7 +69,7 @@ class _StateStreamBuilderState<S extends astro.RootState, VM>
   void initState() {
     super.initState();
 
-    widget.onInit?.call(widget.store);
+    widget.onInit?.call(widget.missionControl);
 
     _computeLatestValue();
     _createStream();
@@ -79,15 +77,15 @@ class _StateStreamBuilderState<S extends astro.RootState, VM>
 
   @override
   void dispose() {
-    widget.onDispose?.call(widget.store);
+    widget.onDispose?.call(widget.missionControl);
     super.dispose();
   }
 
   @override
-  void didUpdateWidget(_StateStreamBuilder<S, VM> oldWidget) {
+  void didUpdateWidget(_OnStateChangeBuilder<S, VM> oldWidget) {
     _computeLatestValue();
 
-    if (widget.store != oldWidget.store) {
+    if (widget.missionControl != oldWidget.missionControl) {
       _createStream();
     }
 
@@ -97,7 +95,7 @@ class _StateStreamBuilderState<S extends astro.RootState, VM>
   void _computeLatestValue() {
     try {
       _latestError = null;
-      _latestValue = widget.transformer(widget.store.state);
+      _latestValue = widget.transformer(widget.missionControl.state);
     } catch (e, s) {
       _latestValue = null;
       _latestError = TransformFailureException(e, s);
@@ -105,8 +103,8 @@ class _StateStreamBuilderState<S extends astro.RootState, VM>
   }
 
   void _createStream() {
-    _stream = widget.store.onStateChange
-        .map((_) => widget.transformer(widget.store.state))
+    _stream = widget.missionControl.onStateChange
+        .map((_) => widget.transformer(widget.missionControl.state))
         .transform(StreamTransformer.fromHandlers(
             handleError: _handleTransformFailure))
         .where((vm) => vm != _latestValue)

@@ -19,7 +19,7 @@ class SignInWithApple<T extends RootState> extends AwayMission<T> {
 
   // final nonce = sha256ofString(rawNonce);
   @override
-  Future<void> flightPlan(MissionControl<T> store) async {
+  Future<void> flightPlan(MissionControl<T> missionControl) async {
     final plugin.AuthorizationCredentialAppleID credential =
         await plugin.SignInWithApple.getAppleIDCredential(
       scopes: [
@@ -31,7 +31,7 @@ class SignInWithApple<T extends RootState> extends AwayMission<T> {
     var token = credential.identityToken ??
         (throw 'The credential.identityToken variable was null');
 
-    store.launch(
+    missionControl.launch(
         SignInWithFirebase<T>(idToken: token, rawNonce: generateNonce())
           ..parent = this);
   }

@@ -7,9 +7,9 @@ class RecordMissionEvents<T extends RootState> extends SystemCheck<T> {
   final Map<Mission, T> stateForMission = {};
 
   @override
-  void call(MissionControl<T> store, Mission mission) async {
-    events.add(MissionEvent(mission, store.state));
-    stateForMission[mission] = store.state;
+  void call(MissionControl<T> missionControl, Mission mission) async {
+    events.add(MissionEvent(mission, missionControl.state));
+    stateForMission[mission] = missionControl.state;
   }
 
   bool includes(Mission mission) => stateForMission[mission] != null;

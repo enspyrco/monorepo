@@ -12,7 +12,7 @@ export 'src/state/inspector_state.dart';
 export 'src/utils/emit_mission_events.dart';
 
 /// Visualise the data flow of an app by adding a [AstroInspectorScreen] widget
-/// and passing in the `_events` stream from the Astro Store.
+/// and passing in the `_events` stream from the astro [MissionControl].
 /// When used by the Inspector plugin, `serviceManager.service?.onExtensionEvent`
 /// is transformed to a Stream<ReduxStateEvent>.
 ///
@@ -24,7 +24,7 @@ class AstroInspectorScreen extends StatefulWidget {
   AstroInspectorScreen(this._events, {super.key});
 
   final Stream<JsonMap>? _events;
-  final MissionControl<InspectorState> _store =
+  final MissionControl<InspectorState> _missionControl =
       MissionControl(state: InspectorState.initial);
 
   @override
@@ -34,7 +34,8 @@ class AstroInspectorScreen extends StatefulWidget {
 class _AstroInspectorScreenState extends State<AstroInspectorScreen> {
   @override
   Widget build(BuildContext context) {
-    return StoreProvider<InspectorState>(
-        store: widget._store, child: MainView(widget._events));
+    return MissionControlProvider<InspectorState>(
+        missionControl: widget._missionControl,
+        child: MainView(widget._events));
   }
 }
