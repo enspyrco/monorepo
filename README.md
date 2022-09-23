@@ -69,7 +69,9 @@ Three letter acronyms used in commit messages:
 - jst = json_types
 - lcr = locator
 - oml = our_meals
+- pae = process_articles_in_emails
 - rdd = redux_devtools_desktop
+- rdp = run_dart_code_in_pubsub_message
 - rfr = redfire
 - rft = redfire_test
 - rfl = redfire_lints
