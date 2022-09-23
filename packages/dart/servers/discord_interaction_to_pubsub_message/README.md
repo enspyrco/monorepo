@@ -5,6 +5,8 @@
 - Built with Dart package [Shelf]
 - Made for running in a [Docker] container on [Cloud Run]
 
+[Project Notes](https://www.notion.so/enspyrco/discord-interaction-to-pubsub-34cd5d2cad0849a5950c80860f0cb6ad)
+
 ## Prototyping, testing & deploying
 
 - [Run & debug a shelf server locally]
