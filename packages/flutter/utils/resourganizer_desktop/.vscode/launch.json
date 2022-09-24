@@ -9,5 +9,14 @@
       "request": "launch",
       "type": "dart"
     },
+    {
+      "name": "resourganizer_desktop (inspector)",
+      "request": "launch",
+      "type": "dart",
+      "toolArgs": [
+        "--dart-define",
+        "IN-APP-INSPECTOR=true"
+      ]
+    }
   ]
 }
