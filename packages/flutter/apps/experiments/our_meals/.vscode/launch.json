@@ -15,7 +15,7 @@
       "type": "dart",
       "toolArgs": [
         "--dart-define",
-        "INSPECTOR=true"
+        "IN-APP-INSPECTOR=true"
       ]
     }
   ]

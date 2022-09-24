@@ -12,7 +12,7 @@ import 'record_missions.dart';
 /// a [MaterialApp] and a [MissionControlProvider]. Other mini-widget-trees that would
 /// be useful as wrappers around `widgetUnderTest` can easily be added as a getter.
 ///
-/// The harness exposes [MissionControl.onDispatch] so tests can observe started
+/// The harness exposes [MissionControl.stream] so tests can observe started
 /// missions and any associated state change.
 class WidgetTestHarness<T extends RootState> {
   WidgetTestHarness(

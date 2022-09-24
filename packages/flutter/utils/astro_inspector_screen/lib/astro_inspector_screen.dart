@@ -5,11 +5,11 @@ import 'package:astro_widgets/astro_widget.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_types/json_types.dart';
 
-import 'src/state/inspector_state.dart';
+import 'astro_inspector_screen.dart';
 import 'src/views/main_view.dart';
 
 export 'src/state/inspector_state.dart';
-export 'src/utils/emit_mission_events.dart';
+export 'src/utils/on_mission_start_system_check.dart';
 
 /// Visualise the data flow of an app by adding a [AstroInspectorScreen] widget
 /// and passing in the `_events` stream from the astro [MissionControl].
