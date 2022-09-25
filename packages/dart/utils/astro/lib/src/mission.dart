@@ -2,17 +2,17 @@ import 'package:json_types/json_types.dart';
 
 import '../astro.dart';
 
-/// All missions must extend either [AwayMission] or [DockingMission], which
+/// All missions must extend either [AwayMission] or [LandingMission], which
 /// both inherit from [Mission].
 abstract class Mission {
   AwayMission? parent;
   JsonMap toJson({int? parentId});
 }
 
-abstract class DockingMission<S extends RootState> extends Mission {
-  S dockingInstructions(S state);
+abstract class LandingMission<T extends RootState> extends Mission {
+  T landingInstructions(T state);
 }
 
-abstract class AwayMission<S extends RootState> extends Mission {
-  Future<void> flightPlan(MissionControl<S> missionControl);
+abstract class AwayMission<T extends RootState> extends Mission {
+  Future<void> flightPlan(AwayMissionControl<T> missionControl);
 }

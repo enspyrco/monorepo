@@ -3,7 +3,7 @@ import 'mission_control.dart';
 import 'state.dart';
 
 /// [SystemCheck]s in astro are are called for every [Mission] - before
-/// [AwayMission.flightPlan] is called and after [DockingMission.dockingInstructions]
+/// [AwayMission.flightPlan] is called and after [LandingMission.landingInstructions]
 /// is called.
 ///
 /// An [AwayMission] involves calling an async function ([AwayMission.flightPlan]),
@@ -12,7 +12,7 @@ import 'state.dart';
 /// in [MissionControl.launch].
 ///
 /// On the other hand, we always want to know what the new state is *after* a
-/// [DockingMission.dockingInstructions] has run so we run the [SystemCheck]
+/// [LandingMission.landingInstructions] has run so we run the [SystemCheck]
 /// last in [MissionControl.land].
 ///
 /// When multiple system checks are added to [MissionControl], they are called

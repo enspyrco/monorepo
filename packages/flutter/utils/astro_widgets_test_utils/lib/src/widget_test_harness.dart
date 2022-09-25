@@ -37,5 +37,5 @@ class WidgetTestHarness<T extends RootState> {
   List<Mission> get recordedMissions => _recorded.missions;
 
   void launch(AwayMission<T> mission) => _missionControl.launch(mission);
-  void land(DockingMission<T> mission) => _missionControl.land(mission);
+  void land(LandingMission<T> mission) => _missionControl.land(mission);
 }

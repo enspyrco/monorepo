@@ -2,13 +2,13 @@ import 'package:astro/astro.dart';
 
 import '../state/user_state.dart';
 
-class UpdateUserState<T extends RootState> extends DockingMission<T> {
+class UpdateUserState<T extends RootState> extends LandingMission<T> {
   UpdateUserState(this.user);
 
   final UserState user;
 
   @override
-  T dockingInstructions(T state) {
+  T landingInstructions(T state) {
     return (state as dynamic).copyWith(user: user);
   }
 
