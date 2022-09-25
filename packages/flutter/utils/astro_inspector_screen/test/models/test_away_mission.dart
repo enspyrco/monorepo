@@ -4,7 +4,7 @@ import 'package:astro_inspector_screen/astro_inspector_screen.dart';
 class TestAwayMission extends AwayMission<InspectorState> {
   @override
   Future<void> flightPlan(
-      MissionControl<InspectorState> missionControl) async {}
+      AwayMissionControl<InspectorState> missionControl) async {}
 
   @override
   toJson({int? parentId}) => {

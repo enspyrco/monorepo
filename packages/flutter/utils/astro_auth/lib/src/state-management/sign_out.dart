@@ -6,7 +6,7 @@ import '../services/firebase_auth_service.dart';
 
 class SignOut<T extends RootState> extends AwayMission<T> {
   @override
-  Future<void> flightPlan(MissionControl<T> missionControl) async {
+  Future<void> flightPlan(AwayMissionControl<T> missionControl) async {
     var service = locate<FirebaseAuthService>();
     await service.signOut();
   }

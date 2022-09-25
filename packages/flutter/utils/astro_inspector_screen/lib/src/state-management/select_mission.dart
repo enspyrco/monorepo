@@ -3,7 +3,7 @@ import 'package:astro/astro.dart';
 import '../enums/lineage_shape.dart';
 import '../state/inspector_state.dart';
 
-class SelectMission extends DockingMission<InspectorState> {
+class SelectMission extends LandingMission<InspectorState> {
   final int _index;
 
   SelectMission(this._index);
@@ -12,7 +12,7 @@ class SelectMission extends DockingMission<InspectorState> {
 
   /// Select a list item and also identify the appropriate lineage to be drawn.
   @override
-  InspectorState dockingInstructions(state) =>
+  InspectorState landingInstructions(state) =>
       updateSelectedAndLineage(state, index);
 
   @override

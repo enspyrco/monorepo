@@ -2,9 +2,9 @@ import 'package:astro/astro.dart';
 
 import '../state/inspector_state.dart';
 
-class RemoveMissionEvents extends DockingMission<InspectorState> {
+class RemoveMissionEvents extends LandingMission<InspectorState> {
   @override
-  InspectorState dockingInstructions(state) =>
+  InspectorState landingInstructions(state) =>
       state.copyWith(selectedIndex: null);
 
   @override

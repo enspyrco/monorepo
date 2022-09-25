@@ -8,7 +8,7 @@ import 'select_mission.dart';
 /// Also sets the selected index to the new mission event.
 /// The incoming json is assumed to have the form:
 /// `{ mission: {id_ : <id>, ... }`
-class AddMissionEvent extends DockingMission<InspectorState> {
+class AddMissionEvent extends LandingMission<InspectorState> {
   AddMissionEvent(this._eventJson);
 
   final JsonMap _eventJson;
@@ -18,7 +18,7 @@ class AddMissionEvent extends DockingMission<InspectorState> {
   JsonMap get eventJson => JsonMap.unmodifiable(_eventJson);
 
   @override
-  InspectorState dockingInstructions(state) {
+  InspectorState landingInstructions(state) {
     var newState = state.copyWith(
         missionEvents: [...state.missionEvents, eventJson],
         selectedIndex: state.missionEvents.length,

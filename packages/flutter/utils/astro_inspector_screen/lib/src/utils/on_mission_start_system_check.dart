@@ -9,7 +9,7 @@ class OnMissionStartSystemCheck<T extends RootState> extends SystemCheck<T> {
   Stream<JsonMap> get stream => _controller.stream;
 
   @override
-  void call(missionControl, Mission mission) async {
+  void call(MissionControl missionControl, Mission mission) async {
     // Emit json describing the mission and (potential) state change on
     // each mission.
     _controller.add({

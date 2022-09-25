@@ -14,7 +14,7 @@ class SignInWithFirebase<T extends RootState> extends AwayMission<T> {
   final String rawNonce;
 
   @override
-  Future<void> flightPlan(MissionControl<T> missionControl) async {
+  Future<void> flightPlan(AwayMissionControl<T> missionControl) async {
     final service = locate<FirebaseAuthService>();
 
     UserCredential credential =
@@ -28,7 +28,7 @@ class SignInWithFirebase<T extends RootState> extends AwayMission<T> {
         photoUrl: user.photoURL,
         uid: user.uid);
 
-    missionControl.land(UpdateUserState<T>(state)..parent = this);
+    missionControl.land(UpdateUserState<T>(state));
   }
 
   @override
