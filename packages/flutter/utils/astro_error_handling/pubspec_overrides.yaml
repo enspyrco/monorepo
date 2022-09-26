@@ -5,9 +5,7 @@ dependency_overrides:
     path: ../../../dart/utils/astro
   astro_widgets:
     path: ../astro_widgets
-  astro_inspector_screen:
-    path: ../astro_inspector_screen
-  astro_auth:
-    path: ../astro_auth
-  astro_error_handling:
-    path: ../astro_error_handling
+  astro_widgets_test_utils:
+    path: ../astro_widgets_test_utils
+  json_types:
+    path: ../../../dart/utils/json_types

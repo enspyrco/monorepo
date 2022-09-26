@@ -7,3 +7,5 @@ dependency_overrides:
     path: ../../../dart/utils/json_types
   astro_widgets_test_utils:
     path: ../../../flutter/utils/astro_widgets_test_utils
+  astro_error_handling:
+    path: ../../../flutter/utils/astro_error_handling

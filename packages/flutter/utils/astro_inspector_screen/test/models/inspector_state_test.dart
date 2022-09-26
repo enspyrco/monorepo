@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('InspectorState.addMissionEvent throws on invalid input', () {
-    var state = InspectorState();
+    var state = InspectorState.initial;
     // expect(() => state.addMissionEvent({}),
     //     throwsA('added json has no `mission` key'));
     // expect(() => missionEvents.add({'mission': 'blah'}),

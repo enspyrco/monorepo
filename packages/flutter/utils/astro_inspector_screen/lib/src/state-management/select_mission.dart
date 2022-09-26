@@ -40,7 +40,7 @@ InspectorState updateSelectedAndLineage(InspectorState state, int index) {
   var parentId = state.missionEvents[currentIndex]['mission']['parent_'];
   if (parentId == null) {
     // if first mission is selected parent is null
-    return state.copyWith(selectedIndex: index, lineageForIndex: {});
+    return state.copyWith(selectedIndex: index, lineageFor: {});
   }
   currentIndex = state.indexFor[parentId]!;
 
@@ -64,5 +64,5 @@ InspectorState updateSelectedAndLineage(InspectorState state, int index) {
     lineageFor[i] ??= LineageShape.notConnection;
   }
 
-  return state.copyWith(selectedIndex: index, lineageForIndex: lineageFor);
+  return state.copyWith(selectedIndex: index, lineageFor: lineageFor);
 }
