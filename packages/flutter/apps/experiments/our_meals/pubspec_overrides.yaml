@@ -9,3 +9,5 @@ dependency_overrides:
     path: ../../../utils/astro_inspector_screen
   astro_auth:
     path: ../../../utils/astro_auth
+  astro_error_handling:
+    path: ../../../utils/astro_error_handling

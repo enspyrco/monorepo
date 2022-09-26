@@ -1,4 +1,3 @@
-import 'package:astro/astro.dart';
 import 'package:astro_inspector_screen/astro_inspector_screen.dart';
 import 'package:astro_inspector_screen/src/state-management/add_mission_event.dart';
 import 'package:astro_inspector_screen/src/state-management/select_mission.dart';
@@ -10,19 +9,6 @@ import 'package:json_types/json_types.dart';
 import '../models/test_away_mission.dart';
 
 void main() {
-  void setStateForMission(WidgetTestHarness harness, Mission mission) {
-    /// The json passed in to [AddDispatchEvent] is recieved by a listener
-    /// in the [MainView], which is listening to the [missionEvents] stream that
-    /// was passed in to the [AstroInspectorScreen].
-
-    /// The [missionEvents] stream emits json created in [EmitDispatchEvents],
-    /// for each mission by the app being inspected with the [AstroInspectorScreen].
-    harness.land(AddMissionEvent({
-      'state': InspectorState.initial.toJson(),
-      'mission': mission.toJson()
-    }));
-  }
-
   testWidgets('MissionsHistoryItem starts SelectMission on tap',
       (tester) async {
     const String missionName = 'Mission Name';
@@ -50,7 +36,10 @@ void main() {
     /// and a better test to start missions to setup the state.
 
     /// Setup the [InspectorState] as if the inspected app launched a [TestAwayMission]
-    setStateForMission(harness, TestAwayMission());
+    harness.land(AddMissionEvent({
+      'state': InspectorState.initial.toJson(),
+      'mission': TestAwayMission().toJson()
+    }));
 
     await tester.tap(find.byType(MissionsHistoryItem));
 

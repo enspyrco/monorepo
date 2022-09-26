@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:astro/astro.dart';
+import 'package:astro_error_handling/astro_error_handling.dart';
 
 /// Pass in [systemChecks] to run logic on every [Mission], before
 /// [AwayMission.flightPlan] is called and after
@@ -57,15 +58,35 @@ class MissionControl<T extends RootState> {
       await mission.flightPlan(AwayMissionControl(this, mission));
     } catch (thrown, trace) {
       print(thrown);
-      var newErrorMessages = [
+
+      // TODO: avoid dynamic dispatch
+      _state = (state as dynamic).copyWith(errorMessages: [
         ErrorMessage(message: '$thrown', trace: '$trace'),
         ...state.errorMessages
-      ];
-
-      // TODO: can we avoid the need to cast here?
-      _state = state.copyWith(errorMessages: newErrorMessages) as T;
+      ]) as T;
     }
   }
 
   Stream<T> get onStateChange => _onStateChangeController.stream;
+}
+
+/// An [AwayMissionControl] object is created by [MissionControl] on each call
+/// to [AwayMision.flightPlan] for the purpose of allowing land/launch calls
+/// inside `flightPlan` to automatically set the parent.
+///
+/// The call to `launch` & `land` is just passed on to [MissionControl.launch] &
+/// [MissionControl.land], while setting the `parent` member of the mission.
+class AwayMissionControl<T extends RootState> {
+  AwayMissionControl(
+      MissionControl<T> missionControl, AwayMission<T> currentMission)
+      : _missionControl = missionControl,
+        _currentMission = currentMission;
+  final MissionControl<T> _missionControl;
+  final AwayMission<T> _currentMission;
+
+  void land(LandingMission<T> mission) =>
+      _missionControl.land(mission..parent = _currentMission);
+
+  Future<void> launch(AwayMission<T> mission) =>
+      _missionControl.launch(mission..parent = _currentMission);
 }

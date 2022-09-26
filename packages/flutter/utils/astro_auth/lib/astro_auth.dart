@@ -1,9 +1,6 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
 library astro_auth;
 
-export 'src/interfaces/auth_state.dart';
+export 'src/interfaces/astro_auth.dart';
 export 'src/services/firebase_auth_service.dart';
 export 'src/state-management/bind_auth_state.dart';
 export 'src/state-management/sign_out.dart';

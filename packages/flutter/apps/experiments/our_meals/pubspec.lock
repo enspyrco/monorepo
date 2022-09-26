@@ -15,6 +15,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  astro_error_handling:
+    dependency: "direct main"
+    description:
+      path: "../../../utils/astro_error_handling"
+      relative: true
+    source: path
+    version: "0.0.1"
   astro_inspector_screen:
     dependency: "direct main"
     description:

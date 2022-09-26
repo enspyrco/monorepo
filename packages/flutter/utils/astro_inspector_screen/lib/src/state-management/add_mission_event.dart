@@ -22,10 +22,7 @@ class AddMissionEvent extends LandingMission<InspectorState> {
     var newState = state.copyWith(
         missionEvents: [...state.missionEvents, eventJson],
         selectedIndex: state.missionEvents.length,
-        indexForMissionId: {
-          ...state.indexFor,
-          missionId: state.missionEvents.length
-        });
+        indexFor: {...state.indexFor, missionId: state.missionEvents.length});
     return updateSelectedAndLineage(
         newState, newState.missionEvents.length - 1);
   }

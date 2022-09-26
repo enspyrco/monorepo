@@ -1,3 +1,5 @@
 dependency_overrides:
   json_types:
     path: ../json_types
+  astro_error_handling:
+    path: ../../../flutter/utils/astro_error_handling

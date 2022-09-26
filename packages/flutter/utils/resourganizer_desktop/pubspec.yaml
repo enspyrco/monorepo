@@ -32,6 +32,10 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/astro_auth
+  astro_error_handling:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_error_handling
 
 dev_dependencies:
   flutter_test:
