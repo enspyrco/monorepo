@@ -1,7 +1,0 @@
-dependency_overrides:
-  astro:
-    path: ../../../dart/utils/astro
-  astro_widgets:
-    path: ../astro_widgets
-  json_types:
-    path: ../../../dart/utils/json_types

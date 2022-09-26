@@ -1,5 +1,5 @@
+import 'package:astro/widgets/on_state_change_builder.dart';
 import 'package:astro_inspector_screen/src/extensions/build_context_extension.dart';
-import 'package:astro_widgets/widgets/on_state_change_builder.dart';
 import 'package:flutter/material.dart';
 
 import '../../state-management/select_mission.dart';

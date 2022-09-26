@@ -2,7 +2,7 @@ import 'package:astro_inspector_screen/astro_inspector_screen.dart';
 import 'package:astro_inspector_screen/src/state-management/add_mission_event.dart';
 import 'package:astro_inspector_screen/src/state-management/select_mission.dart';
 import 'package:astro_inspector_screen/src/views/missions_history_view/missions_history_item.dart';
-import 'package:astro_widgets_test_utils/astro_widgets_test_utils.dart';
+import 'package:astro_test_utils/astro_widgets_test_utils.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_types/json_types.dart';
 

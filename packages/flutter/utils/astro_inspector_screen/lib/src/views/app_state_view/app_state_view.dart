@@ -1,4 +1,4 @@
-import 'package:astro_widgets/widgets/on_state_change_builder.dart';
+import 'package:astro/widgets/on_state_change_builder.dart';
 import 'package:flutter/material.dart';
 
 import '../../state/inspector_state.dart';

@@ -1,0 +1,5 @@
+dependency_overrides:
+  json_types:
+    path: ../../../dart/utils/json_types
+  astro_error_handling:
+    path: ../astro_error_handling

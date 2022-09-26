@@ -1,7 +1,6 @@
 library astro_inspector_screen;
 
 import 'package:astro/astro.dart' hide State;
-import 'package:astro_widgets/astro_widget.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_types/json_types.dart';
 

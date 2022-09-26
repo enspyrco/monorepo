@@ -19,11 +19,7 @@ dependencies:
   astro:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/utils/astro
-  astro_widgets:
-    git:
-      url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/astro_widgets
+      path: packages/flutter/utils/astro
   json_types:
     git:
       url: https://github.com/enspyrco/monorepo.git
@@ -34,7 +30,7 @@ dev_dependencies:
     sdk: flutter
   lints: ^2.0.0
   test: ^1.16.0
-  astro_widgets_test_utils:
+  astro_test_utils:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/astro_widgets_test_utils
+      path: packages/flutter/utils/astro_test_utils
