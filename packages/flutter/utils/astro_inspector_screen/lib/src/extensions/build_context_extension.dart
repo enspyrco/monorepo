@@ -1,5 +1,5 @@
 import 'package:astro/astro.dart' show LandingMission, AwayMission;
-import 'package:astro_widgets/widgets/mission_control_provider.dart';
+import 'package:astro/widgets/mission_control_provider.dart';
 import 'package:flutter/widgets.dart' show BuildContext;
 
 import '../state/inspector_state.dart';

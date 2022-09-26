@@ -1,3 +1,0 @@
-dependency_overrides:
-  astro:
-    path: ../../../dart/utils/astro

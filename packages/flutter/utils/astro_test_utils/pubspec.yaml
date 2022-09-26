@@ -1,19 +1,15 @@
-name: astro_error_handling
-description: An astro plugin for error handling.
+name: astro_test_utils
+description: Helper classes for testing apps that use astro.
 version: 0.0.1
 publish_to: none
 
 environment:
-  sdk: '>=2.18.1 <3.0.0'
+  sdk: '>=2.18.0 <3.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  locator:
-    git:
-      url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/utils/locator
   astro:
     git:
       url: https://github.com/enspyrco/monorepo.git
@@ -27,3 +23,5 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+
+flutter:

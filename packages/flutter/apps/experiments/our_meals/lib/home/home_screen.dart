@@ -1,5 +1,5 @@
+import 'package:astro/widgets/mission_control_provider.dart';
 import 'package:astro_auth/astro_auth.dart';
-import 'package:astro_widgets/astro_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../app/state/app_state.dart';
