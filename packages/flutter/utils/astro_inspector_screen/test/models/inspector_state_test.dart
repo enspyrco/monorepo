@@ -2,11 +2,11 @@ import 'package:astro_inspector_screen/src/state/inspector_state.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('InspectorState.addMissionEvent throws on invalid input', () {
+  test('InspectorState.addMissionUpdate throws on invalid input', () {
     var state = InspectorState.initial;
-    // expect(() => state.addMissionEvent({}),
+    // expect(() => state.addMissionUpdate({}),
     //     throwsA('added json has no `mission` key'));
-    // expect(() => missionEvents.add({'mission': 'blah'}),
+    // expect(() => missionUpdates.add({'mission': 'blah'}),
     // throwsA(isA<_TypeError>()));
   });
 }

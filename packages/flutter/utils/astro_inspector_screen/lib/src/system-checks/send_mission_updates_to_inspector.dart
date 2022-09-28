@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:astro/astro.dart';
 import 'package:json_types/json_types.dart';
 
-class OnMissionStartSystemCheck<T extends RootState> extends SystemCheck<T> {
+class SendMissionUpdatesToInspector<T extends RootState>
+    extends SystemCheck<T> {
   final StreamController<JsonMap> _controller =
       StreamController<JsonMap>.broadcast();
   Stream<JsonMap> get stream => _controller.stream;
@@ -17,7 +19,14 @@ class OnMissionStartSystemCheck<T extends RootState> extends SystemCheck<T> {
         'state': missionControl.state.toJson(),
         'mission': mission.toJson(parentId: mission.parent?.hashCode)
       },
-      'type': 'redfire:mission_started'
+      'type': 'astro:mission_update'
+    });
+
+    // Post an event with state change information that our
+    // Flutter DevTools plugin can listen for.
+    postEvent('astro:mission_update', {
+      'state': missionControl.state.toJson(),
+      'mission': mission.toJson(parentId: mission.parent?.hashCode)
     });
   }
 }

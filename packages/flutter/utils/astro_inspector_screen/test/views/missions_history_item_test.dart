@@ -1,6 +1,6 @@
 import 'package:astro_inspector_screen/astro_inspector_screen.dart';
-import 'package:astro_inspector_screen/src/state-management/add_mission_event.dart';
-import 'package:astro_inspector_screen/src/state-management/select_mission.dart';
+import 'package:astro_inspector_screen/src/missions/add_mission_update.dart';
+import 'package:astro_inspector_screen/src/missions/select_mission.dart';
 import 'package:astro_inspector_screen/src/views/missions_history_view/missions_history_item.dart';
 import 'package:astro_test_utils/astro_widgets_test_utils.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -36,7 +36,7 @@ void main() {
     /// and a better test to start missions to setup the state.
 
     /// Setup the [InspectorState] as if the inspected app launched a [TestAwayMission]
-    harness.land(AddMissionEvent({
+    harness.land(AddMissionUpdate({
       'state': InspectorState.initial.toJson(),
       'mission': TestAwayMission().toJson()
     }));
