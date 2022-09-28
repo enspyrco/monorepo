@@ -5,7 +5,7 @@ import 'package:astro/core/system_check.dart';
 import 'package:astro/widgets/mission_control_provider.dart';
 import 'package:flutter/material.dart';
 
-import 'record_missions.dart';
+import 'system-checks/record_missions.dart';
 
 /// A test harness for wrapping a widget under test that provides the functionality
 /// that a test may want in order to interact with the widget or check for

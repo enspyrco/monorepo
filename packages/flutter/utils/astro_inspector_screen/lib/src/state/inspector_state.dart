@@ -10,14 +10,14 @@ import '../enums/lineage_shape.dart';
 class InspectorState extends RootState {
   InspectorState(
       {required this.errorMessages,
-      required this.missionEvents,
+      required this.missionUpdates,
       required this.selectedIndex,
       required this.lineageFor,
       required this.indexFor});
 
   static InspectorState get initial => InspectorState(
         errorMessages: UnmodifiableListView([]),
-        missionEvents: UnmodifiableListView([]),
+        missionUpdates: UnmodifiableListView([]),
         selectedIndex: null,
         lineageFor: UnmodifiableMapView({}),
         indexFor: UnmodifiableMapView({}),
@@ -28,9 +28,9 @@ class InspectorState extends RootState {
   @override
   final List<ErrorMessage> errorMessages;
 
-  /// The list of mission events, added to each time [MissionControl.launch] or
+  /// The list of mission updates, added to each time [MissionControl.launch] or
   /// [MissionControl.land] is called
-  final List<JsonMap> missionEvents;
+  final List<JsonMap> missionUpdates;
 
   /// [selectedIndex] is a nullable int, as 'nothing selected' is a valid state
   final int? selectedIndex;
@@ -43,24 +43,24 @@ class InspectorState extends RootState {
   final Map<int, LineageShape> lineageFor;
 
   /// Convenience getters to safely extract the current selected state and
-  /// previous state from the [missionEvents]
+  /// previous state from the [missionUpdates]
   JsonMap get selectedState =>
-      (selectedIndex == null) ? {} : missionEvents[selectedIndex!]['state'];
+      (selectedIndex == null) ? {} : missionUpdates[selectedIndex!]['state'];
   Map<String, dynamic> get previousState =>
       (selectedIndex == null || selectedIndex == 0)
           ? {}
-          : missionEvents[selectedIndex! - 1]['state'];
+          : missionUpdates[selectedIndex! - 1]['state'];
 
   @override
   InspectorState copyWith(
       {List<ErrorMessage>? errorMessages,
-      List<JsonMap>? missionEvents,
+      List<JsonMap>? missionUpdates,
       int? selectedIndex,
       Map<int, LineageShape>? lineageFor,
       Map<int, int>? indexFor}) {
     return InspectorState(
         errorMessages: errorMessages ?? this.errorMessages,
-        missionEvents: missionEvents ?? this.missionEvents,
+        missionUpdates: missionUpdates ?? this.missionUpdates,
         selectedIndex: selectedIndex ?? this.selectedIndex,
         indexFor: indexFor ?? this.indexFor,
         lineageFor: lineageFor ?? this.lineageFor);
@@ -68,7 +68,7 @@ class InspectorState extends RootState {
 
   @override
   JsonMap toJson() => {
-        'missionEvents': (missionEvents.isEmpty) ? {} : missionEvents.first,
+        'missionUpdates': (missionUpdates.isEmpty) ? {} : missionUpdates.first,
         'errorMessages': errorMessages,
         'selectedIndex': selectedIndex,
         'lineageForIndex': lineageFor,

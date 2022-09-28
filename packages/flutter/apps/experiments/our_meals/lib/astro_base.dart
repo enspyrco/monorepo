@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 import 'app/state/app_state.dart';
 
-final _onMissionStartSystemCheck = OnMissionStartSystemCheck<AppState>();
+final _sendMissionUpdates = SendMissionUpdatesToInspector<AppState>();
 final _missionControl = MissionControl<AppState>(
-    state: AppState.initial, systemChecks: [_onMissionStartSystemCheck]);
+    state: AppState.initial, systemChecks: [_sendMissionUpdates]);
 
 void initAstroPlugins() {
   astroAuthInit();
@@ -29,12 +29,11 @@ class AstroBase extends StatelessWidget {
       child: MaterialApp(
         home: Row(
           children: [
-            if (const bool.fromEnvironment('IN-APP-INSPECTOR'))
+            if (const bool.fromEnvironment('IN-APP-ASTRO-INSPECTOR'))
               Expanded(
                 flex: 1,
                 child: Material(
-                  child:
-                      AstroInspectorScreen(_onMissionStartSystemCheck.stream),
+                  child: AstroInspectorScreen(_sendMissionUpdates.stream),
                 ),
               ),
             Expanded(

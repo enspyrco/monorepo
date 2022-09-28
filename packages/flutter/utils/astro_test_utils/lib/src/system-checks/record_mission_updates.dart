@@ -1,14 +1,14 @@
 import 'package:astro/astro.dart';
 
-import 'mission_event.dart';
+import '../state/mission_update.dart';
 
-class RecordMissionEvents<T extends RootState> extends SystemCheck<T> {
-  final List<MissionEvent> events = [];
+class RecordMissionUpdates<T extends RootState> extends SystemCheck<T> {
+  final List<MissionUpdate> updates = [];
   final Map<Mission, T> stateForMission = {};
 
   @override
   void call(MissionControl<T> missionControl, Mission mission) async {
-    events.add(MissionEvent(mission, missionControl.state));
+    updates.add(MissionUpdate(mission, missionControl.state));
     stateForMission[mission] = missionControl.state;
   }
 

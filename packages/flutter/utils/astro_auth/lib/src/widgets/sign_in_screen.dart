@@ -2,7 +2,7 @@ import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as plugin;
 
-import '../state-management/sign_in_with_apple.dart';
+import '../missions/sign_in_with_apple.dart';
 import '../state/user_state.dart';
 
 class SignInScreen<T extends RootState> extends StatelessWidget {

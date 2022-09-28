@@ -26,6 +26,6 @@ class AppState extends RootState with AstroAuth {
   @override
   toJson() => {
         'user': user.toJson(),
-        'errorMessages': errorMessages.map((e) => e.toJson())
+        'errorMessages': errorMessages.map((e) => e.toJson()).toList()
       };
 }

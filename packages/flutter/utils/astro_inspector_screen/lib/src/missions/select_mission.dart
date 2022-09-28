@@ -25,7 +25,7 @@ class SelectMission extends LandingMission<InspectorState> {
       };
 }
 
-/// Used by [SelectMission] & [AddMissionEvent] to select a mission and
+/// Used by [SelectMission] & [AddMissionUpdate] to select a mission and
 /// calculate how each list item is involved in the lineage. There are 5
 /// possibilities - in between the `origin` and the `endpoint` the list items
 /// are either a `connection` (one of the missions in the the lineage) or
@@ -37,7 +37,7 @@ InspectorState updateSelectedAndLineage(InspectorState state, int index) {
   // Process the selected mission
   lineageFor[index] = LineageShape.endpoint;
   int currentIndex = index;
-  var parentId = state.missionEvents[currentIndex]['mission']['parent_'];
+  var parentId = state.missionUpdates[currentIndex]['mission']['parent_'];
   if (parentId == null) {
     // if first mission is selected parent is null
     return state.copyWith(selectedIndex: index, lineageFor: {});
@@ -46,7 +46,7 @@ InspectorState updateSelectedAndLineage(InspectorState state, int index) {
 
   // Move to the parent and process the mission until there is no parent
   while (true) {
-    parentId = state.missionEvents[currentIndex]['mission']['parent_'];
+    parentId = state.missionUpdates[currentIndex]['mission']['parent_'];
 
     if (parentId == null) {
       lineageFor[currentIndex] = LineageShape.origin;
