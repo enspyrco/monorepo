@@ -17,16 +17,14 @@ class SendMissionUpdatesToInspector<T extends RootState>
     _controller.add({
       'data': {
         'state': missionControl.state.toJson(),
-        'mission': mission.toJson(parentId: mission.parent?.hashCode)
+        'mission': mission.toJson()
       },
       'type': 'astro:mission_update'
     });
 
     // Post an event with state change information that our
     // Flutter DevTools plugin can listen for.
-    postEvent('astro:mission_update', {
-      'state': missionControl.state.toJson(),
-      'mission': mission.toJson(parentId: mission.parent?.hashCode)
-    });
+    postEvent('astro:mission_update',
+        {'state': missionControl.state.toJson(), 'mission': mission.toJson()});
   }
 }

@@ -32,11 +32,11 @@ class SignInWithFirebase<T extends RootState> extends AwayMission<T> {
   }
 
   @override
-  JsonMap toJson({int? parentId}) => {
+  JsonMap toJson() => {
         'name_': 'Sign In With Firebase',
         'type_': 'async',
         'id_': hashCode,
-        'parent_': parentId,
+        'parent_': parent?.hashCode,
         'state_': <String, dynamic>{'idToken': idToken, 'rawNonce': rawNonce}
       };
 }

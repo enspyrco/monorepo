@@ -13,11 +13,11 @@ class UpdateUserState<T extends RootState> extends LandingMission<T> {
   }
 
   @override
-  toJson({int? parentId}) => {
+  toJson() => {
         'name_': 'Update User State',
         'type_': 'sync',
         'id_': hashCode,
-        'parent_': parentId,
+        'parent_': parent?.hashCode,
         'state_': <String, dynamic>{'user': user.toJson()}
       };
 }

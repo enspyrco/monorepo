@@ -16,11 +16,11 @@ class SelectMission extends LandingMission<InspectorState> {
       updateSelectedAndLineage(state, index);
 
   @override
-  toJson({int? parentId}) => {
+  toJson() => {
         'name_': 'SelectMission',
         'type_': 'sync',
         'id_': hashCode,
-        'parent_': parentId,
+        'parent_': parent?.hashCode,
         'state_': {'index': index}
       };
 }

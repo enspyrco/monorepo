@@ -7,7 +7,7 @@ import 'root_state.dart';
 /// both inherit from [Mission].
 abstract class Mission {
   AwayMission? parent;
-  JsonMap toJson({int? parentId});
+  JsonMap toJson();
 }
 
 abstract class LandingMission<T extends RootState> extends Mission {

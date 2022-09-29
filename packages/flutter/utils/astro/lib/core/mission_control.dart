@@ -37,7 +37,17 @@ class MissionControl<T extends RootState> {
   void land(LandingMission<T> mission) {
     print('land: $mission');
 
-    _state = mission.landingInstructions(_state);
+    try {
+      _state = mission.landingInstructions(_state);
+    } catch (thrown, trace) {
+      print('landing error: $thrown');
+
+      _state = (state as dynamic).copyWith(errorMessages: [
+        ErrorMessage(
+            message: 'Landing $mission, resulted in $thrown', trace: '$trace'),
+        ...state.errorMessages
+      ]) as T; // TODO: avoid dynamic dispatch
+    }
 
     // emit the new state for any listeners (eg. StateStreamBuilder widgets)
     _onStateChangeController.add(_state);
@@ -53,18 +63,20 @@ class MissionControl<T extends RootState> {
 
     _systemChecks?.forEach((fn) => fn.call(this, mission));
 
-    /// We wrap the `launch` calls in a try/catch and if the
-    /// call throws, an [ErrorMessage] is added to the AppState.
     try {
       await mission.flightPlan(AwayMissionControl(this, mission));
     } catch (thrown, trace) {
-      print(thrown);
+      print('launch error: $thrown');
 
-      // TODO: avoid dynamic dispatch
       _state = (state as dynamic).copyWith(errorMessages: [
-        ErrorMessage(message: '$thrown', trace: '$trace'),
+        ErrorMessage(
+            message: 'Launching $mission, resulted in $thrown',
+            trace: '$trace'),
         ...state.errorMessages
-      ]) as T;
+      ]) as T; // TODO: avoid dynamic dispatch
+
+      // emit the new state for any listeners (eg. StateStreamBuilder widgets)
+      _onStateChangeController.add(_state);
     }
   }
 

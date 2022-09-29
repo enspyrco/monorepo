@@ -10,10 +10,10 @@ class RemoveAll extends LandingMission<InspectorState> {
       state.copyWith(selectedIndex: null, missionUpdates: []);
 
   @override
-  toJson({int? parentId}) => {
+  toJson() => {
         'name_': 'RemoveAll',
         'type_': 'sync',
         'id_': hashCode,
-        'parent_': parentId
+        'parent_': parent?.hashCode
       };
 }
