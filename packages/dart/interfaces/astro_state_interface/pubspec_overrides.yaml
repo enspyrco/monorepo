@@ -1,0 +1,3 @@
+dependency_overrides:
+  json_types:
+    path: ../../utils/json_types
