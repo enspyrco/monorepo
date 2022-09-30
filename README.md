@@ -51,6 +51,7 @@ Three letter acronyms used in commit messages:
 - aeh = astro_error_handling
 - aei = astro_error_handling_interface
 - ast = astro
+- asi = astro_state_interface
 - ais = astro_inspector_screen
 - atu = astro_test_utils
 - avs = Adventuverse (project)
