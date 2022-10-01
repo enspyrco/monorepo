@@ -1,9 +1,9 @@
 import 'dart:collection';
 
-import 'package:astro/astro.dart';
 import 'package:astro_error_handling/astro_error_handling.dart';
+import 'package:astro_state_interface/astro_state_interface.dart';
 
-class ExampleAppState extends RootState {
+class ExampleAppState with AstroState, ErrorHandlingState {
   ExampleAppState({required this.errorMessages});
 
   static ExampleAppState get initial =>

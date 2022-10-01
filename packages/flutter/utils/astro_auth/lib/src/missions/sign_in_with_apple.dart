@@ -1,11 +1,12 @@
 import 'package:astro/astro.dart';
+import 'package:astro_state_interface/astro_state_interface.dart';
 import 'package:json_types/json_types.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as plugin;
 
 import '../utils/nonce.dart';
 import 'sign_in_with_firebase.dart';
 
-class SignInWithApple<T extends RootState> extends AwayMission<T> {
+class SignInWithApple<T extends AstroState> extends AwayMission<T> {
   /// From: `somewhere I can't remember now...`
   /// To prevent replay attacks with the credential returned from Apple, we
   /// include a nonce in the credential request. When signing in with

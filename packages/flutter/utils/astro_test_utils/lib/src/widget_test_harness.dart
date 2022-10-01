@@ -1,8 +1,8 @@
 import 'package:astro/core/mission.dart';
 import 'package:astro/core/mission_control.dart';
-import 'package:astro/core/root_state.dart';
 import 'package:astro/core/system_check.dart';
 import 'package:astro/widgets/mission_control_provider.dart';
+import 'package:astro_state_interface/astro_state_interface.dart';
 import 'package:flutter/material.dart';
 
 import 'system-checks/record_missions.dart';
@@ -17,7 +17,7 @@ import 'system-checks/record_missions.dart';
 ///
 /// The harness exposes [MissionControl.stream] so tests can observe started
 /// missions and any associated state change.
-class WidgetTestHarness<T extends RootState> {
+class WidgetTestHarness<T extends AstroState> {
   WidgetTestHarness(
       {required T initialState,
       required Widget child,

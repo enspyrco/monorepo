@@ -43,10 +43,26 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  astro_error_handling_interface:
+    dependency: transitive
+    description:
+      path: "packages/dart/interfaces/astro_error_handling_interface"
+      ref: HEAD
+      resolved-ref: "346ae8a671a18525da14069503cf6fe437da2138"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.1"
   astro_inspector_screen:
     dependency: "direct main"
     description:
       path: "../../../utils/astro_inspector_screen"
+      relative: true
+    source: path
+    version: "0.0.1"
+  astro_state_interface:
+    dependency: "direct main"
+    description:
+      path: "../../../../dart/interfaces/astro_state_interface"
       relative: true
     source: path
     version: "0.0.1"
@@ -126,28 +142,28 @@ packages:
       name: firebase_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.10.0"
+    version: "3.11.0"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
       name: firebase_auth_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.9.0"
+    version: "6.10.0"
   firebase_auth_web:
     dependency: transitive
     description:
       name: firebase_auth_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.5.0"
+    version: "4.6.0"
   firebase_core:
     dependency: "direct main"
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.23.0"
+    version: "1.24.0"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -161,7 +177,7 @@ packages:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.2"
+    version: "1.7.3"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -238,7 +254,7 @@ packages:
     description:
       path: "packages/dart/utils/json_types"
       ref: HEAD
-      resolved-ref: "0002430c042f1cdf53daaefcfb125068bcfbf563"
+      resolved-ref: "346ae8a671a18525da14069503cf6fe437da2138"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"

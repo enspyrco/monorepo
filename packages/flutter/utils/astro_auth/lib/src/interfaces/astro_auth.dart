@@ -1,5 +1,5 @@
 import '../state/user_state.dart';
 
-abstract class AstroAuth {
+mixin AuthState {
   abstract final UserState user;
 }

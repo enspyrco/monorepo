@@ -1,4 +1,5 @@
 import 'package:astro/astro.dart';
+import 'package:astro_state_interface/astro_state_interface.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:json_types/json_types.dart';
 import 'package:locator/locator.dart';
@@ -7,7 +8,7 @@ import '../services/firebase_auth_service.dart';
 import '../state/user_state.dart';
 import 'update_user_state.dart';
 
-class SignInWithFirebase<T extends RootState> extends AwayMission<T> {
+class SignInWithFirebase<T extends AstroState> extends AwayMission<T> {
   SignInWithFirebase({required this.idToken, required this.rawNonce});
 
   final String idToken;

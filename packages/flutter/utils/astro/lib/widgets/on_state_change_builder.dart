@@ -1,13 +1,13 @@
 import 'dart:async';
 
+import 'package:astro_state_interface/astro_state_interface.dart';
 import 'package:flutter/widgets.dart';
 
 import '../core/mission_control.dart';
-import '../core/root_state.dart';
 import 'exceptions/transform_failure_exception.dart';
 import 'mission_control_provider.dart';
 
-class OnStateChangeBuilder<S extends RootState, VM> extends StatelessWidget {
+class OnStateChangeBuilder<S extends AstroState, VM> extends StatelessWidget {
   final Widget Function(BuildContext, VM) builder;
   final VM Function(S) transformer;
   final void Function(MissionControl<S>)? onInit;
@@ -33,7 +33,7 @@ class OnStateChangeBuilder<S extends RootState, VM> extends StatelessWidget {
   }
 }
 
-class _OnStateChangeBuilder<S extends RootState, VM> extends StatefulWidget {
+class _OnStateChangeBuilder<S extends AstroState, VM> extends StatefulWidget {
   final MissionControl<S> missionControl;
   final Widget Function(BuildContext, VM) builder;
   final VM Function(S) transformer;
@@ -55,7 +55,7 @@ class _OnStateChangeBuilder<S extends RootState, VM> extends StatefulWidget {
   }
 }
 
-class _OnStateChangeBuilderState<S extends RootState, VM>
+class _OnStateChangeBuilderState<S extends AstroState, VM>
     extends State<_OnStateChangeBuilder<S, VM>> {
   late Stream<VM> _stream;
   VM? _latestValue;

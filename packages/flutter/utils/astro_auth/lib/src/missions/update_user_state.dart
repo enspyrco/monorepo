@@ -1,8 +1,9 @@
 import 'package:astro/astro.dart';
+import 'package:astro_state_interface/astro_state_interface.dart';
 
 import '../state/user_state.dart';
 
-class UpdateUserState<T extends RootState> extends LandingMission<T> {
+class UpdateUserState<T extends AstroState> extends LandingMission<T> {
   UpdateUserState(this.user);
 
   final UserState user;

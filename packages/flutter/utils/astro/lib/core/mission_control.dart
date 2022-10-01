@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:astro_error_handling/astro_error_handling.dart';
+import 'package:astro_state_interface/astro_state_interface.dart';
 
 import '../astro.dart';
 
@@ -11,7 +11,7 @@ import '../astro.dart';
 /// Make sure [onStateChangeController] is broadcast type as UI components will
 /// listen for a time at random intervals and only want the state changes while
 /// they are listening.
-class MissionControl<T extends RootState> {
+class MissionControl<T extends AstroState> {
   MissionControl({
     required T state,
     StreamController<T>? onStateChangeController,
@@ -89,7 +89,7 @@ class MissionControl<T extends RootState> {
 ///
 /// The call to `launch` & `land` is just passed on to [MissionControl.launch] &
 /// [MissionControl.land], while setting the `parent` member of the mission.
-class AwayMissionControl<T extends RootState> {
+class AwayMissionControl<T extends AstroState> {
   AwayMissionControl(
       MissionControl<T> missionControl, AwayMission<T> currentMission)
       : _missionControl = missionControl,

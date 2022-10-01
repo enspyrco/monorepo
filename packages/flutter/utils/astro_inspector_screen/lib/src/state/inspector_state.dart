@@ -1,5 +1,6 @@
 import 'package:astro/astro.dart';
 import 'package:astro_error_handling/astro_error_handling.dart';
+import 'package:astro_state_interface/astro_state_interface.dart';
 import 'package:collection/collection.dart';
 import 'package:json_types/json_types.dart';
 
@@ -7,7 +8,7 @@ import '../enums/lineage_shape.dart';
 
 /// The AppState for astro, named differently as the [AstroInspectorScreen] is
 /// for visualising the AppState of apps.
-class InspectorState extends RootState {
+class InspectorState with AstroState, ErrorHandlingState {
   InspectorState(
       {required this.errorMessages,
       required this.missionUpdates,

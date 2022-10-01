@@ -1,6 +1,7 @@
+import 'package:astro_state_interface/astro_state_interface.dart';
+
 import 'mission.dart';
 import 'mission_control.dart';
-import 'root_state.dart';
 
 /// [SystemCheck]s in astro are are called for every [Mission] - before
 /// [AwayMission.flightPlan] is called and after [LandingMission.landingInstructions]
@@ -17,7 +18,7 @@ import 'root_state.dart';
 ///
 /// When multiple system checks are added to [MissionControl], they are called
 /// in the order they were added to the [MissionControl.systemChecks] list.
-abstract class SystemCheck<S extends RootState> {
+abstract class SystemCheck<S extends AstroState> {
   const SystemCheck();
   void call(MissionControl<S> missionControl, Mission mission);
 }

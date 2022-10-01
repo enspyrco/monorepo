@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:astro/astro.dart';
+import 'package:astro_state_interface/astro_state_interface.dart';
 import 'package:json_types/json_types.dart';
 import 'package:locator/locator.dart';
 
@@ -10,7 +11,7 @@ import 'update_user_state.dart';
 
 StreamSubscription<UserState>? _subscription;
 
-class BindAuthState<T extends RootState> extends AwayMission<T> {
+class BindAuthState<T extends AstroState> extends AwayMission<T> {
   @override
   Future<void> flightPlan(AwayMissionControl<T> missionControl) async {
     var service = locate<FirebaseAuthService>();

@@ -1,10 +1,10 @@
+import 'package:astro_state_interface/astro_state_interface.dart';
 import 'package:flutter/widgets.dart';
 
 import '../core/mission_control.dart';
-import '../core/root_state.dart';
 import 'errors/mission_control_provider_not_found.dart';
 
-class MissionControlProvider<S extends RootState> extends InheritedWidget {
+class MissionControlProvider<S extends AstroState> extends InheritedWidget {
   final MissionControl<S> _missionControl;
 
   const MissionControlProvider({
@@ -14,7 +14,7 @@ class MissionControlProvider<S extends RootState> extends InheritedWidget {
   })  : _missionControl = missionControl,
         super(key: key, child: child);
 
-  static MissionControl<S> of<S extends RootState>(BuildContext context,
+  static MissionControl<S> of<S extends AstroState>(BuildContext context,
       {bool listen = true}) {
     final provider = (listen
         ? context

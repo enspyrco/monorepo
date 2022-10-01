@@ -1,8 +1,9 @@
 import 'package:astro/astro.dart';
+import 'package:astro_state_interface/astro_state_interface.dart';
 
 import '../state/mission_update.dart';
 
-class RecordMissionUpdates<T extends RootState> extends SystemCheck<T> {
+class RecordMissionUpdates<T extends AstroState> extends SystemCheck<T> {
   final List<MissionUpdate> updates = [];
   final Map<Mission, T> stateForMission = {};
 

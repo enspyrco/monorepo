@@ -1,10 +1,10 @@
 import 'dart:collection';
 
-import 'package:astro/astro.dart';
 import 'package:astro_auth/astro_auth.dart';
 import 'package:astro_error_handling/astro_error_handling.dart';
+import 'package:astro_state_interface/astro_state_interface.dart';
 
-class AppState extends RootState with AstroAuth {
+class AppState with AstroState, ErrorHandlingState, AuthState {
   AppState({required this.user, required this.errorMessages});
 
   static AppState get initial => AppState(
