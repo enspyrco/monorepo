@@ -48,6 +48,7 @@ Three letter acronyms used in commit messages:
 
 - acf - authorization code flow
 - aau = astro_auth
+- aci = astro_core_interface
 - aeh = astro_error_handling
 - aei = astro_error_handling_interface
 - ast = astro
