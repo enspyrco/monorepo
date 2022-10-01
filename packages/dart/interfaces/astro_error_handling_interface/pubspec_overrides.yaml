@@ -1,0 +1,3 @@
+dependency_overrides:
+  astro_state_interface:
+    path: ../astro_state_interface
