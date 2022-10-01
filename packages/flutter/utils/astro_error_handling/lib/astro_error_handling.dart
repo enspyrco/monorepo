@@ -4,15 +4,37 @@ import 'package:astro_error_handling_interface/astro_error_handling_interface.da
 import 'package:astro_state_interface/astro_state_interface.dart';
 import 'package:json_types/json_types.dart';
 
-class ErrorHandlers with BaseErrorHandlers {
+/// TODO: We need a type for [state] that has [copyWith(errorMessages: ...]
+/// and as [extends AstroState]
+///
+/// TODO: We need the types for AwayMission & LandingMission
+/// - make an interface package?
+///
+class ErrorHandlers<S extends AstroState> with BaseErrorHandlers<S> {
   @override
-  AstroState handleLandingError(AstroState state) {
-    return state;
+  S handleLandingError(
+      {required Object thrown,
+      required StackTrace trace,
+      required dynamic mission,
+      required S state}) {
+    return (state as dynamic).copyWith(errorMessages: [
+      ErrorMessage(
+          message: 'Landing $mission, resulted in $thrown', trace: '$trace'),
+      ...(state as ErrorHandlingState).errorMessages
+    ]) as S; // TODO: avoid dynamic dispatch
   }
 
   @override
-  AstroState handleLaunchError(AstroState state) {
-    return state;
+  AstroState handleLaunchError(
+      {required Object thrown,
+      required StackTrace trace,
+      required dynamic mission,
+      required S state}) {
+    return (state as dynamic).copyWith(errorMessages: [
+      ErrorMessage(
+          message: 'Launching $mission, resulted in $thrown', trace: '$trace'),
+      ...(state as ErrorHandlingState).errorMessages
+    ]) as S; // TODO: avoid dynamic dispatch
   }
 }
 
@@ -35,3 +57,5 @@ class ErrorMessage with AstroState {
 mixin ErrorHandlingState {
   abstract final List<ErrorMessage> errorMessages;
 }
+
+abstract class Blah with AstroState, ErrorHandlingState {}

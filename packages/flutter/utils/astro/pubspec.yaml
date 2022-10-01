@@ -23,13 +23,13 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/dart/interfaces/astro_error_handling_interface
+  astro_error_handling:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_error_handling
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
   test: ^1.21.4
-  astro_error_handling:
-    git:
-      url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/astro_error_handling

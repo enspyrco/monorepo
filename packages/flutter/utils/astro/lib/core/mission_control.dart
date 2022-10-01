@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:astro_error_handling/astro_error_handling.dart';
+import 'package:astro_error_handling_interface/astro_error_handling_interface.dart';
 import 'package:astro_state_interface/astro_state_interface.dart';
 
 import '../astro.dart';
@@ -14,11 +16,14 @@ import '../astro.dart';
 class MissionControl<T extends AstroState> {
   MissionControl({
     required T state,
+    BaseErrorHandlers<T>? errorHandlers,
     StreamController<T>? onStateChangeController,
     List<SystemCheck>? systemChecks,
   })  : _state = state,
+        _errorHandlers = errorHandlers ?? ErrorHandlers<T>(),
         _systemChecks = systemChecks;
   T _state;
+  final BaseErrorHandlers _errorHandlers;
 
   final StreamController<T> _onStateChangeController =
       StreamController<T>.broadcast();
@@ -42,11 +47,8 @@ class MissionControl<T extends AstroState> {
     } catch (thrown, trace) {
       print('landing error: $thrown');
 
-      _state = (state as dynamic).copyWith(errorMessages: [
-        ErrorMessage(
-            message: 'Landing $mission, resulted in $thrown', trace: '$trace'),
-        ...state.errorMessages
-      ]) as T; // TODO: avoid dynamic dispatch
+      _state = _errorHandlers.handleLandingError(
+          thrown: thrown, trace: trace, mission: mission, state: _state) as T;
     }
 
     // emit the new state for any listeners (eg. StateStreamBuilder widgets)
@@ -68,12 +70,8 @@ class MissionControl<T extends AstroState> {
     } catch (thrown, trace) {
       print('launch error: $thrown');
 
-      _state = (state as dynamic).copyWith(errorMessages: [
-        ErrorMessage(
-            message: 'Launching $mission, resulted in $thrown',
-            trace: '$trace'),
-        ...state.errorMessages
-      ]) as T; // TODO: avoid dynamic dispatch
+      _state = _errorHandlers.handleLaunchError(
+          thrown: thrown, trace: trace, mission: mission, state: _state) as T;
 
       // emit the new state for any listeners (eg. StateStreamBuilder widgets)
       _onStateChangeController.add(_state);
