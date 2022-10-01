@@ -1,5 +1,5 @@
 dependency_overrides:
-  astro_core_interface:
-    path: ../astro_core_interface
+  json_types:
+    path: ../../utils/json_types
   astro_state_interface:
     path: ../astro_state_interface

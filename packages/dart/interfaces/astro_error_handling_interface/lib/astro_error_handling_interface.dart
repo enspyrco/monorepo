@@ -1,16 +1,17 @@
 library astro_error_handling_interface;
 
+import 'package:astro_core_interface/astro_core_interface.dart';
 import 'package:astro_state_interface/astro_state_interface.dart';
 
-mixin BaseErrorHandlers<S extends AstroState> {
+mixin ErrorHandlers<S extends AstroState> {
   AstroState handleLaunchError(
       {required Object thrown,
       required StackTrace trace,
-      required dynamic mission,
+      required AwayMission mission,
       required S state});
   AstroState handleLandingError(
       {required Object thrown,
       required StackTrace trace,
-      required dynamic mission,
+      required LandingMission mission,
       required S state});
 }
