@@ -5,8 +5,6 @@ import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_error_handling_interface/astro_error_handling_interface.dart';
 import 'package:astro_state_interface/astro_state_interface.dart';
 
-import '../astro.dart';
-
 /// Pass in [systemChecks] to run logic on every [Mission], before
 /// [AwayMission.flightPlan] is called and after
 /// [LandingMission.landingInstructions] is called.
