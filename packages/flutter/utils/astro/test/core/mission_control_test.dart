@@ -9,7 +9,7 @@ void main() {
   test('MissionControl handles errors when landing missions', () {
     // Setup objects under test & test doubles
     var appState = ExampleAppState.initial;
-    var missionControl = MissionControl(state: appState);
+    var missionControl = DefaultMissionControl(state: appState);
     var mission = ExampleLandingMission();
 
     // Check there are no error messages before we start
@@ -28,7 +28,7 @@ void main() {
   test('MissionControl handles errors when launching missions', () {
     // Setup objects under test & test doubles
     var appState = ExampleAppState.initial;
-    var missionControl = MissionControl(state: appState);
+    var missionControl = DefaultMissionControl(state: appState);
     var mission = ExampleAwayMission();
 
     // Check there are no error messages before we start

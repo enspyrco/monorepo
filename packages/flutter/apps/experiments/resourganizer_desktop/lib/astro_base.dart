@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'app/state/app_state.dart';
 
 final _sendMissionUpdates = SendMissionUpdatesToInspector<AppState>();
-final _missionControl = MissionControl<AppState>(
+final _missionControl = DefaultMissionControl<AppState>(
     state: AppState.initial, systemChecks: [_sendMissionUpdates]);
 
 void initAstroPlugins() {

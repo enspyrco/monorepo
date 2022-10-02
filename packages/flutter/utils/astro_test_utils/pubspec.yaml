@@ -18,6 +18,10 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/dart/interfaces/astro_state_interface
+  astro_core_interface:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/interfaces/astro_core_interface
   json_types:
     git:
       url: https://github.com/enspyrco/monorepo.git

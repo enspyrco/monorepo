@@ -22,10 +22,14 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/astro_inspector_screen
+  astro_core_interface:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/interfaces/astro_core_interface
   astro_state_interface:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/astro_state_interface
+      path: packages/dart/interfaces/astro_state_interface
   astro_auth:
     git:
       url: https://github.com/enspyrco/monorepo.git

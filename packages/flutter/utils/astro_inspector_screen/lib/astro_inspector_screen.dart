@@ -1,6 +1,7 @@
 library astro_inspector_screen;
 
 import 'package:astro/astro.dart' hide State;
+import 'package:astro_core_interface/astro_core_interface.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_types/json_types.dart';
 
@@ -24,7 +25,7 @@ class AstroInspectorScreen extends StatefulWidget {
 
   final Stream<JsonMap>? _onMissionUpdate;
   final MissionControl<InspectorState> _missionControl =
-      MissionControl(state: InspectorState.initial);
+      DefaultMissionControl(state: InspectorState.initial);
 
   @override
   State<AstroInspectorScreen> createState() => _AstroInspectorScreenState();

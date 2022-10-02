@@ -1,7 +1,7 @@
+import 'package:astro_core_interface/astro_core_interface.dart';
 import 'package:astro_state_interface/astro_state_interface.dart';
 import 'package:flutter/widgets.dart';
 
-import '../core/mission_control.dart';
 import 'errors/mission_control_provider_not_found.dart';
 
 class MissionControlProvider<S extends AstroState> extends InheritedWidget {

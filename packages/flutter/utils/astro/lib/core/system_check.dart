@@ -1,7 +1,5 @@
+import 'package:astro_core_interface/astro_core_interface.dart';
 import 'package:astro_state_interface/astro_state_interface.dart';
-
-import 'mission.dart';
-import 'mission_control.dart';
 
 /// [SystemCheck]s in astro are are called for every [Mission] - before
 /// [AwayMission.flightPlan] is called and after [LandingMission.landingInstructions]

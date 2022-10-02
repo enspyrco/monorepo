@@ -36,6 +36,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  astro_core_interface:
+    dependency: "direct main"
+    description:
+      path: "../../../../dart/interfaces/astro_core_interface"
+      relative: true
+    source: path
+    version: "0.0.1"
   astro_error_handling:
     dependency: "direct main"
     description:
@@ -48,7 +55,7 @@ packages:
     description:
       path: "packages/dart/interfaces/astro_error_handling_interface"
       ref: HEAD
-      resolved-ref: "4bc8970ab8059fab49b947f527d081e9876d9bd6"
+      resolved-ref: "5570ebaca02234657f5c67731f334abdf2802fd9"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
@@ -254,7 +261,7 @@ packages:
     description:
       path: "packages/dart/utils/json_types"
       ref: HEAD
-      resolved-ref: "4bc8970ab8059fab49b947f527d081e9876d9bd6"
+      resolved-ref: "5570ebaca02234657f5c67731f334abdf2802fd9"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"

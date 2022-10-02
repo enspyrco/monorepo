@@ -1,4 +1,4 @@
-import 'package:astro/astro.dart';
+import 'package:astro_core_interface/astro_core_interface.dart';
 import 'package:json_types/json_types.dart';
 
 import '../state/inspector_state.dart';

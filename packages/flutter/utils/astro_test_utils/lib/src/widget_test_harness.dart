@@ -1,7 +1,5 @@
-import 'package:astro/core/mission.dart';
-import 'package:astro/core/mission_control.dart';
-import 'package:astro/core/system_check.dart';
-import 'package:astro/widgets/mission_control_provider.dart';
+import 'package:astro/astro.dart';
+import 'package:astro_core_interface/astro_core_interface.dart';
 import 'package:astro_state_interface/astro_state_interface.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +21,7 @@ class WidgetTestHarness<T extends AstroState> {
       required Widget child,
       List<SystemCheck>? systemChecks})
       : _widgetUnderTest = child {
-    _missionControl = MissionControl<T>(
+    _missionControl = DefaultMissionControl<T>(
         state: initialState, systemChecks: [...?systemChecks, _recorded]);
   }
 

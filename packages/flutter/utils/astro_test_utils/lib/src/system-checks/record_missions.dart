@@ -1,4 +1,5 @@
-import 'package:astro/astro.dart';
+import 'package:astro/core/system_check.dart';
+import 'package:astro_core_interface/astro_core_interface.dart';
 import 'package:astro_state_interface/astro_state_interface.dart';
 
 /// We add a [RecordMissions] to [MissionControl.systemChecks] in [WidgetTestHarness]
