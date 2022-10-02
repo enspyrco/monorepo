@@ -1,4 +1,4 @@
-import 'package:astro/astro.dart';
+import 'package:astro_state_interface/astro_state_interface.dart';
 
 enum SignedInState {
   checking(true),
@@ -11,7 +11,7 @@ enum SignedInState {
   final bool disableButton;
 }
 
-class UserState extends State {
+class UserState with AstroState {
   UserState({
     required this.signedIn,
     this.uid,

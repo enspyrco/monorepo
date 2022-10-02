@@ -1,6 +1,6 @@
-import '../../core/root_state.dart';
+import 'package:astro_state_interface/astro_state_interface.dart';
 
-class MissionControlProviderNotFound<S extends RootState> extends Error {
+class MissionControlProviderNotFound<S extends AstroState> extends Error {
   MissionControlProviderNotFound();
 
   @override

@@ -5,17 +5,26 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "resourganizer_desktop",
+      "name": "vanilla",
       "request": "launch",
       "type": "dart"
     },
     {
-      "name": "resourganizer_desktop (inspector)",
+      "name": "in-app-inspector",
       "request": "launch",
       "type": "dart",
       "toolArgs": [
         "--dart-define",
-        "IN-APP-INSPECTOR=true"
+        "IN-APP-ASTRO-INSPECTOR=true"
+      ]
+    },
+    {
+      "name": "devtools-inspector",
+      "request": "launch",
+      "type": "dart",
+      "toolArgs": [
+        "--dart-define",
+        "DEVTOOLS-ASTRO-INSPECTOR=true"
       ]
     }
   ]

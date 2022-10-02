@@ -1,6 +1,7 @@
 name: astro_core_interface
-description: A starting point for Dart libraries or applications.
+description: Interface types for the core astro classes.
 version: 0.0.1
+publish_to: none
 
 environment:
   sdk: '>=2.17.0 <3.0.0'
