@@ -278,7 +278,7 @@ packages:
       path: "../../../../dart/utils/locator"
       relative: true
     source: path
-    version: "1.0.0"
+    version: "0.0.1"
   logging:
     dependency: transitive
     description:
