@@ -1,0 +1,29 @@
+name: astro_navigation
+description: The default astro navigation plugin.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=2.17.0 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  astro_core_interface:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/interfaces/astro_core_interface
+  astro_state_interface:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/interfaces/astro_state_interface
+  json_types:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/utils/json_types
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0

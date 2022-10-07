@@ -1,0 +1,7 @@
+dependency_overrides:
+  astro_core_interface:
+    path: ../../../dart/interfaces/astro_core_interface
+  astro_state_interface:
+    path: ../../../dart/interfaces/astro_state_interface
+  json_types:
+    path: ../../../dart/utils/json_types
