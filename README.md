@@ -51,6 +51,7 @@ Three letter acronyms used in commit messages:
 - aci = astro_core_interface
 - aeh = astro_error_handling
 - aei = astro_error_handling_interface
+- anv = astro_navigation
 - ast = astro
 - asi = astro_state_interface
 - ais = astro_inspector_screen
