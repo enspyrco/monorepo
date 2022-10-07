@@ -74,6 +74,7 @@ Three letter acronyms used in commit messages:
 - lcr = locator
 - oml = our_meals
 - pae = process_articles_in_emails
+- pdu = pdf_utils
 - rdd = redux_devtools_desktop
 - rdp = run_dart_code_in_pubsub_message
 - rfr = redfire
