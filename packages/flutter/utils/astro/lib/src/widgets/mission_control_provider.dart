@@ -5,14 +5,15 @@ import 'package:flutter/widgets.dart';
 import 'errors/mission_control_provider_not_found.dart';
 
 class MissionControlProvider<S extends AstroState> extends InheritedWidget {
-  final MissionControl<S> _missionControl;
-
   const MissionControlProvider({
     Key? key,
     required MissionControl<S> missionControl,
     required Widget child,
   })  : _missionControl = missionControl,
         super(key: key, child: child);
+
+  /// Like the [AppState], [MissionControl] is immutable
+  final MissionControl<S> _missionControl;
 
   static MissionControl<S> of<S extends AstroState>(BuildContext context,
       {bool listen = true}) {

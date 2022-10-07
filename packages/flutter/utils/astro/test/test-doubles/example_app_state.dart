@@ -10,10 +10,10 @@ class ExampleAppState with AstroState, ErrorHandlingState {
       ExampleAppState(errorMessages: UnmodifiableListView([]));
 
   @override
-  final List<ErrorMessage> errorMessages;
+  final List<ErrorReport> errorMessages;
 
   @override
-  ExampleAppState copyWith({List<ErrorMessage>? errorMessages}) {
+  ExampleAppState copyWith({List<ErrorReport>? errorMessages}) {
     return ExampleAppState(errorMessages: errorMessages ?? this.errorMessages);
   }
 

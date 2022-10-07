@@ -15,7 +15,7 @@ class SignInWithFirebase<T extends AstroState> extends AwayMission<T> {
   final String rawNonce;
 
   @override
-  Future<void> flightPlan(AwayMissionControl<T> missionControl) async {
+  Future<void> flightPlan(MissionControl<T> missionControl) async {
     final service = locate<FirebaseAuthService>();
 
     UserCredential credential =

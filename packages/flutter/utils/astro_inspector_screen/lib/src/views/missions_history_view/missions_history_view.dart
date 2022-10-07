@@ -1,4 +1,4 @@
-import 'package:astro/widgets/on_state_change_builder.dart';
+import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_types/json_types.dart';

@@ -1,4 +1,3 @@
-import 'package:astro/astro.dart';
 import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_state_interface/astro_state_interface.dart';
 import 'package:collection/collection.dart';
@@ -27,7 +26,7 @@ class InspectorState with AstroState, ErrorHandlingState {
   /// If there are errors (eg. decoding invalid json) we save an error message
   /// that the screen will display
   @override
-  final List<ErrorMessage> errorMessages;
+  final List<ErrorReport> errorMessages;
 
   /// The list of mission updates, added to each time [MissionControl.launch] or
   /// [MissionControl.land] is called
@@ -54,7 +53,7 @@ class InspectorState with AstroState, ErrorHandlingState {
 
   @override
   InspectorState copyWith(
-      {List<ErrorMessage>? errorMessages,
+      {List<ErrorReport>? errorMessages,
       List<JsonMap>? missionUpdates,
       int? selectedIndex,
       Map<int, LineageShape>? lineageFor,

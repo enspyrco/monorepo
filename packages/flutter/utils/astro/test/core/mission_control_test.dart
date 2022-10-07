@@ -1,4 +1,4 @@
-import 'package:astro/core/mission_control.dart';
+import 'package:astro/src/core/mission_control.dart';
 import 'package:test/test.dart';
 
 import '../test-doubles/example_app_state.dart';

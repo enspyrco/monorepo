@@ -13,7 +13,7 @@ StreamSubscription<UserState>? _subscription;
 
 class BindAuthState<T extends AstroState> extends AwayMission<T> {
   @override
-  Future<void> flightPlan(AwayMissionControl<T> missionControl) async {
+  Future<void> flightPlan(MissionControl<T> missionControl) async {
     var service = locate<FirebaseAuthService>();
 
     _subscription?.cancel();

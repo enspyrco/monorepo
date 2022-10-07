@@ -16,7 +16,7 @@ class DefaultErrorHandlers<S extends AstroState> with ErrorHandlers<S> {
       required LandingMission mission,
       required S state}) {
     return (state as dynamic).copyWith(errorMessages: [
-      ErrorMessage(
+      ErrorReport(
           message: 'Landing $mission, resulted in $thrown', trace: '$trace'),
       ...(state as ErrorHandlingState).errorMessages
     ]) as S; // TODO: avoid dynamic dispatch
@@ -29,7 +29,7 @@ class DefaultErrorHandlers<S extends AstroState> with ErrorHandlers<S> {
       required AwayMission mission,
       required S state}) {
     return (state as dynamic).copyWith(errorMessages: [
-      ErrorMessage(
+      ErrorReport(
           message: 'Launching $mission, resulted in $thrown', trace: '$trace'),
       ...(state as ErrorHandlingState).errorMessages
     ]) as S; // TODO: avoid dynamic dispatch
@@ -37,21 +37,21 @@ class DefaultErrorHandlers<S extends AstroState> with ErrorHandlers<S> {
 }
 
 /// Class for carrying basic error information for display to the user.
-class ErrorMessage with AstroState {
-  ErrorMessage({required this.message, this.trace});
+class ErrorReport with AstroState {
+  ErrorReport({required this.message, this.trace});
 
   final String message;
 
   final String? trace;
 
   @override
-  ErrorMessage copyWith({String? message, String? trace}) => ErrorMessage(
-      message: message ?? this.message, trace: trace ?? this.trace);
+  ErrorReport copyWith({String? message, String? trace}) =>
+      ErrorReport(message: message ?? this.message, trace: trace ?? this.trace);
 
   @override
   JsonMap toJson() => <String, dynamic>{'message': message, 'trace': trace};
 }
 
 mixin ErrorHandlingState {
-  abstract final List<ErrorMessage> errorMessages;
+  abstract final List<ErrorReport> errorMessages;
 }
