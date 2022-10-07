@@ -1,4 +1,4 @@
-import 'package:astro/widgets/mission_control_provider.dart';
+import 'package:astro/astro.dart';
 import 'package:astro_auth/astro_auth.dart';
 import 'package:flutter/material.dart';
 

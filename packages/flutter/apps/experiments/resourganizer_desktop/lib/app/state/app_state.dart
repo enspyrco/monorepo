@@ -14,10 +14,10 @@ class AppState with AstroState, ErrorHandlingState, AuthState {
   final UserState user;
 
   @override
-  final List<ErrorMessage> errorMessages;
+  final List<ErrorReport> errorMessages;
 
   @override
-  AppState copyWith({List<ErrorMessage>? errorMessages, UserState? user}) {
+  AppState copyWith({List<ErrorReport>? errorMessages, UserState? user}) {
     return AppState(
       errorMessages: errorMessages ?? this.errorMessages,
       user: user ?? this.user,

@@ -68,7 +68,7 @@ class DefaultMissionControl<T extends AstroState> implements MissionControl<T> {
     _systemChecks?.forEach((fn) => fn.call(this, mission));
 
     try {
-      await mission.flightPlan(DefaultAwayMissionControl(this, mission));
+      await mission.flightPlan(ParentingMissionControl(this, mission));
     } catch (thrown, trace) {
       print('launch error: $thrown');
 
@@ -90,9 +90,9 @@ class DefaultMissionControl<T extends AstroState> implements MissionControl<T> {
 ///
 /// The call to `launch` & `land` is just passed on to [MissionControl.launch] &
 /// [MissionControl.land], while setting the `parent` member of the mission.
-class DefaultAwayMissionControl<T extends AstroState>
-    implements AwayMissionControl<T> {
-  DefaultAwayMissionControl(
+class ParentingMissionControl<T extends AstroState>
+    implements MissionControl<T> {
+  ParentingMissionControl(
       MissionControl<T> missionControl, AwayMission<T> currentMission)
       : _missionControl = missionControl,
         _currentMission = currentMission;
@@ -106,4 +106,10 @@ class DefaultAwayMissionControl<T extends AstroState>
   @override
   Future<void> launch(AwayMission<T> mission) =>
       _missionControl.launch(mission..parent = _currentMission);
+
+  @override
+  Stream<T> get onStateChange => _missionControl.onStateChange;
+
+  @override
+  T get state => _missionControl.state;
 }

@@ -6,7 +6,7 @@ import 'example_exception.dart';
 class ExampleAwayMission extends AwayMission<ExampleAppState> {
   @override
   Future<void> flightPlan(
-      AwayMissionControl<ExampleAppState> missionControl) async {
+      MissionControl<ExampleAppState> missionControl) async {
     throw ExampleException();
   }
 

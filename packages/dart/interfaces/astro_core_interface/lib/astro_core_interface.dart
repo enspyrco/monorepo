@@ -15,7 +15,7 @@ abstract class LandingMission<T extends AstroState> extends Mission {
 }
 
 abstract class AwayMission<T extends AstroState> extends Mission {
-  Future<void> flightPlan(AwayMissionControl<T> missionControl);
+  Future<void> flightPlan(MissionControl<T> missionControl);
 }
 
 ///
@@ -24,11 +24,6 @@ abstract class MissionControl<T extends AstroState> {
   void land(LandingMission<T> mission);
   Future<void> launch(AwayMission<T> mission);
   Stream<T> get onStateChange;
-}
-
-abstract class AwayMissionControl<T extends AstroState> {
-  void land(LandingMission<T> mission);
-  Future<void> launch(AwayMission<T> mission);
 }
 
 /// [SystemCheck]s in astro are are called for every [Mission] - before
@@ -50,3 +45,5 @@ abstract class SystemCheck<S extends AstroState> {
   const SystemCheck();
   void call(MissionControl<S> missionControl, Mission mission);
 }
+
+abstract class AstroProvider<S extends AstroState> {}

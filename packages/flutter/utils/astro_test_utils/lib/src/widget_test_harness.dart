@@ -1,5 +1,4 @@
-import 'package:astro/core/mission_control.dart';
-import 'package:astro/widgets/mission_control_provider.dart';
+import 'package:astro/astro.dart';
 import 'package:astro_core_interface/astro_core_interface.dart';
 import 'package:astro_state_interface/astro_state_interface.dart';
 import 'package:flutter/material.dart';

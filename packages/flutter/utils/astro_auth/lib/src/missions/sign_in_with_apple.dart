@@ -20,7 +20,7 @@ class SignInWithApple<T extends AstroState> extends AwayMission<T> {
 
   // final nonce = sha256ofString(rawNonce);
   @override
-  Future<void> flightPlan(AwayMissionControl<T> missionControl) async {
+  Future<void> flightPlan(MissionControl<T> missionControl) async {
     final plugin.AuthorizationCredentialAppleID credential =
         await plugin.SignInWithApple.getAppleIDCredential(
       scopes: [

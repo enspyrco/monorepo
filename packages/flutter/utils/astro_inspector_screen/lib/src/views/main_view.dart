@@ -1,11 +1,12 @@
 import 'dart:async';
 
+import 'package:astro/astro.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_types/json_types.dart';
 
-import '../extensions/build_context_extension.dart';
 import '../missions/add_mission_update.dart';
 import '../missions/remove_all.dart';
+import '../state/inspector_state.dart';
 import 'app_state_view/app_state_view.dart';
 import 'missions_history_view/missions_history_view.dart';
 
@@ -33,9 +34,10 @@ class _MainViewState extends State<MainView> {
     if (widget._onMissionUpdate != null) {
       _subscription = widget._onMissionUpdate!.listen((event) {
         if (event['type'] == 'astro:mission_update') {
-          context.land(AddMissionUpdate(event['data']));
+          MissionControlProvider.of<InspectorState>(context)
+              .land(AddMissionUpdate(event['data']));
         } else if (event['type'] == 'astro:remove_all') {
-          context.land(RemoveAll());
+          MissionControlProvider.of<InspectorState>(context).land(RemoveAll());
         }
       });
     }
