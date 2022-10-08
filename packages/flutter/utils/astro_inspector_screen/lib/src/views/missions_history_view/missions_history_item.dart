@@ -1,4 +1,6 @@
 import 'package:astro/astro.dart';
+import 'package:astro_core_interface/astro_core_interface.dart';
+import 'package:astro_locator/astro_locator.dart';
 import 'package:flutter/material.dart';
 
 import '../../missions/select_mission.dart';
@@ -49,9 +51,8 @@ class MissionsHistoryItem extends StatelessWidget {
                   subtitle: vm.isSelected
                       ? Text(missionState.toString())
                       : Container(),
-                  onTap: () =>
-                      MissionControlProvider.of<InspectorState>(context)
-                          .land(SelectMission(index)),
+                  onTap: () => locate<MissionControl<InspectorState>>()
+                      .land(SelectMission(index)),
                   tileColor: isAsync ? Colors.green[50] : Colors.blue[50]),
             ),
           ),

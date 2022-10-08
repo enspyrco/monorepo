@@ -1,5 +1,6 @@
-import 'package:astro/astro.dart';
 import 'package:astro_auth/astro_auth.dart';
+import 'package:astro_core_interface/astro_core_interface.dart';
+import 'package:astro_locator/astro_locator.dart';
 import 'package:flutter/material.dart';
 
 import '../app/state/app_state.dart';
@@ -12,8 +13,7 @@ class HomeScreen extends StatelessWidget {
     return TextButton(
       child: const Text('Home Screen'),
       onPressed: () {
-        MissionControlProvider.of<AppState>(context)
-            .launch(SignOut<AppState>());
+        locate<MissionControl<AppState>>().launch(SignOut<AppState>());
       },
     );
   }
