@@ -1,4 +1,5 @@
-import 'package:astro/astro.dart';
+import 'package:astro_core_interface/astro_core_interface.dart';
+import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_state_interface/astro_state_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as plugin;
@@ -17,8 +18,8 @@ class SignInScreen<T extends AstroState> extends StatelessWidget {
   Widget build(BuildContext context) {
     if (signedIn == SignedInState.notSignedIn) {
       return plugin.SignInWithAppleButton(
-          onPressed: () => MissionControlProvider.of<T>(context)
-              .launch(SignInWithApple<T>()));
+          onPressed: () =>
+              locate<MissionControl<T>>().launch(SignInWithApple<T>()));
     }
     return const CircularProgressIndicator();
   }

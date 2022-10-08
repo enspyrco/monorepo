@@ -1,6 +1,6 @@
 dependency_overrides:
-  locator:
-    path: ../../../dart/utils/locator
+  astro_locator:
+    path: ../../../dart/utils/astro_locator
   astro:
     path: ../astro
   astro_core_interface:

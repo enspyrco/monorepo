@@ -73,6 +73,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  astro_locator:
+    dependency: "direct main"
+    description:
+      path: "../../../../dart/utils/astro_locator"
+      relative: true
+    source: path
+    version: "0.0.1"
   astro_state_interface:
     dependency: "direct main"
     description:
@@ -294,11 +301,13 @@ packages:
     source: hosted
     version: "2.0.0"
   locator:
-    dependency: "direct main"
+    dependency: transitive
     description:
-      path: "../../../../dart/utils/locator"
-      relative: true
-    source: path
+      path: "packages/dart/utils/locator"
+      ref: HEAD
+      resolved-ref: "3b5cbd38b5a5e3fa07cc179fa090040254a90ef3"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   logging:
     dependency: transitive

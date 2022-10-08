@@ -12,10 +12,10 @@ dependencies:
   desktop_drop: ^0.3.3
   cross_file: ^0.3.3+1
   firebase_core: ^1.22.0
-  locator:
+  astro_locator:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/utils/locator
+      path: packages/dart/utils/astro_locator
   astro:
     git:
       url: https://github.com/enspyrco/monorepo.git

@@ -24,7 +24,7 @@ class Locator {
     var object = _objectOfType[T] as T?;
 
     if (object == null) {
-      throw 'You attempted to locate an object before it has been added.\n'
+      throw 'You attempted to locate an object of type $T before it has been added.\n'
           'Make sure to call the `add` function before calling the Locator object.';
     }
 

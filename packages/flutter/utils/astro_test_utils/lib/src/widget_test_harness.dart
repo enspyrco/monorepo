@@ -29,9 +29,7 @@ class WidgetTestHarness<T extends AstroState> {
   final Widget _widgetUnderTest;
   final _recorded = RecordMissions<T>();
 
-  Widget get widget => MissionControlProvider<T>(
-      missionControl: _missionControl,
-      child: MaterialApp(home: Scaffold(body: _widgetUnderTest)));
+  Widget get widget => MaterialApp(home: Scaffold(body: _widgetUnderTest));
 
   T get state => _missionControl.state;
 

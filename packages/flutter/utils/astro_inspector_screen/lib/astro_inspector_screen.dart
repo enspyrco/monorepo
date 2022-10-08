@@ -1,11 +1,12 @@
 library astro_inspector_screen;
 
-import 'package:astro/astro.dart' hide State;
+import 'package:astro/astro.dart';
 import 'package:astro_core_interface/astro_core_interface.dart';
+import 'package:astro_inspector_screen/astro_inspector_screen.dart';
+import 'package:astro_locator/astro_locator.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_types/json_types.dart';
 
-import 'astro_inspector_screen.dart';
 import 'src/views/main_view.dart';
 
 export 'src/state/inspector_state.dart';
@@ -21,11 +22,12 @@ export 'src/system-checks/send_mission_updates_to_inspector.dart';
 ///   state change.
 /// - a 'remove all' event to clear the mission updates data.
 class AstroInspectorScreen extends StatefulWidget {
-  AstroInspectorScreen(this._onMissionUpdate, {super.key});
+  const AstroInspectorScreen(this._onMissionUpdate, {super.key});
 
   final Stream<JsonMap>? _onMissionUpdate;
-  final MissionControl<InspectorState> _missionControl =
-      DefaultMissionControl(state: InspectorState.initial);
+  // TODO delete
+  // final MissionControl<InspectorState> _missionControl =
+  //     DefaultMissionControl(state: InspectorState.initial);
 
   @override
   State<AstroInspectorScreen> createState() => _AstroInspectorScreenState();
@@ -33,9 +35,14 @@ class AstroInspectorScreen extends StatefulWidget {
 
 class _AstroInspectorScreenState extends State<AstroInspectorScreen> {
   @override
+  void initState() {
+    super.initState();
+    Locator.add<MissionControl<InspectorState>>(
+        DefaultMissionControl(state: InspectorState.initial));
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return MissionControlProvider<InspectorState>(
-        missionControl: widget._missionControl,
-        child: MainView(widget._onMissionUpdate));
+    return MainView(widget._onMissionUpdate);
   }
 }
