@@ -1,5 +1,5 @@
-import 'package:astro_core_interface/astro_core_interface.dart';
-import 'package:astro_state_interface/astro_state_interface.dart';
+import 'package:astro_types/core_types.dart';
+import 'package:astro_types/state_types.dart';
 
 import '../state/user_state.dart';
 

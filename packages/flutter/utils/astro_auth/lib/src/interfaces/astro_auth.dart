@@ -1,5 +1,5 @@
 import '../state/user_state.dart';
 
-mixin AuthState {
+mixin DefaultAuthState {
   abstract final UserState user;
 }

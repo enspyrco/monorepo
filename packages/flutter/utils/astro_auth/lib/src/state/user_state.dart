@@ -1,4 +1,4 @@
-import 'package:astro_state_interface/astro_state_interface.dart';
+import 'package:astro_types/state_types.dart';
 
 enum SignedInState {
   checking(true),
