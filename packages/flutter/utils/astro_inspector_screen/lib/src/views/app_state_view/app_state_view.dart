@@ -53,7 +53,9 @@ class AppStateView extends StatelessWidget {
               TreeNode(
                 toTreeNodes(
                   element,
-                  previousJson == null || previousJson.isEmpty
+                  previousJson == null ||
+                          previousJson.isEmpty ||
+                          i >= previousJson.length
                       ? null
                       : previousJson.elementAt(i),
                 ),
