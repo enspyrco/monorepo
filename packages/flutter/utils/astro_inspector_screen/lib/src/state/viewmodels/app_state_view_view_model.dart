@@ -1,4 +1,4 @@
-import 'package:json_types/json_types.dart';
+import 'package:astro_types/json_types.dart';
 
 /// ViewModel class for the [AppStateView] widget
 class AppStateViewViewModel {

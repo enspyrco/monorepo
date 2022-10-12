@@ -1,5 +1,5 @@
-import 'package:astro_core_interface/astro_core_interface.dart';
-import 'package:astro_state_interface/astro_state_interface.dart';
+import 'package:astro_types/core_types.dart';
+import 'package:astro_types/state_types.dart';
 
 /// We add a [RecordMissions] to [MissionControl.systemChecks] in [WidgetTestHarness]
 /// so we can later check that missions were launched or landed.
