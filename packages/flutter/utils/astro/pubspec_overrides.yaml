@@ -1,13 +1,7 @@
 dependency_overrides:
-  json_types:
-    path: ../../../dart/utils/json_types
+  astro_types:
+    path: ../../../flutter/utils/astro_types
   astro_locator:
     path: ../../../dart/utils/astro_locator
-  astro_state_interface:
-    path: ../../../dart/interfaces/astro_state_interface
-  astro_core_interface:
-    path: ../../../dart/interfaces/astro_core_interface
-  astro_error_handling_interface:
-    path: ../../../dart/interfaces/astro_error_handling_interface
   astro_error_handling:
     path: ../astro_error_handling

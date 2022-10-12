@@ -1,22 +1,22 @@
 import 'dart:async';
 
-import 'package:astro_core_interface/astro_core_interface.dart';
 import 'package:astro_locator/astro_locator.dart';
-import 'package:astro_state_interface/astro_state_interface.dart';
+import 'package:astro_types/core_types.dart';
+import 'package:astro_types/state_types.dart';
 import 'package:flutter/widgets.dart';
 
 import 'exceptions/transform_failure_exception.dart';
 
 class OnStateChangeBuilder<S extends AstroState, VM> extends StatelessWidget {
-  final Widget Function(BuildContext, VM) builder;
   final VM Function(S) transformer;
+  final Widget Function(BuildContext context, VM vm) builder;
   final void Function(MissionControl<S>)? onInit;
   final void Function(MissionControl<S>)? onDispose;
 
   const OnStateChangeBuilder({
     Key? key,
-    required this.builder,
     required this.transformer,
+    required this.builder,
     this.onInit,
     this.onDispose,
   }) : super(key: key);

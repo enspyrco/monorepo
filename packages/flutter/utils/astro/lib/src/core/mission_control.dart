@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:astro_core_interface/astro_core_interface.dart';
 import 'package:astro_error_handling/astro_error_handling.dart';
-import 'package:astro_error_handling_interface/astro_error_handling_interface.dart';
-import 'package:astro_state_interface/astro_state_interface.dart';
+import 'package:astro_types/core_types.dart';
+import 'package:astro_types/error_handling_types.dart';
+import 'package:astro_types/state_types.dart';
 
 /// Pass in [systemChecks] to run logic on every [Mission], before
 /// [AwayMission.flightPlan] is called and after
@@ -45,6 +45,7 @@ class DefaultMissionControl<T extends AstroState> implements MissionControl<T> {
 
     try {
       _state = mission.landingInstructions(_state);
+      print('state: ${_state.toJson()}');
     } catch (thrown, trace) {
       print('landing error: $thrown');
 
