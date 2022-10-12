@@ -3,13 +3,13 @@ dependency_overrides:
     path: ../../../../dart/utils/astro_locator
   astro:
     path: ../../../utils/astro
+  astro_types:
+    path: ../../../utils/astro_types
   astro_inspector_screen:
     path: ../../../utils/astro_inspector_screen
-  astro_core_interface:
-    path: ../../../../dart/interfaces/astro_core_interface
-  astro_state_interface:
-    path: ../../../../dart/interfaces/astro_state_interface
   astro_auth:
     path: ../../../utils/astro_auth
   astro_error_handling:
     path: ../../../utils/astro_error_handling
+  astro_navigation:
+    path: ../../../utils/astro_navigation
