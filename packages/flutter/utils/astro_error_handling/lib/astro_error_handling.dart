@@ -1,11 +1,11 @@
 library astro_error_handling;
 
-import 'package:astro_core_interface/astro_core_interface.dart';
-import 'package:astro_error_handling_interface/astro_error_handling_interface.dart';
-import 'package:astro_state_interface/astro_state_interface.dart';
-import 'package:json_types/json_types.dart';
+import 'package:astro_types/core_types.dart';
+import 'package:astro_types/error_handling_types.dart';
+import 'package:astro_types/json_types.dart';
+import 'package:astro_types/state_types.dart';
 
-/// TODO: We need a type for [state] that has [copyWith(errorMessages: ...]
+/// TODO: We need a type for [state] that has [copyWith(reports: ...]
 /// and as [extends AstroState]
 ///
 class DefaultErrorHandlers<S extends AstroState> with ErrorHandlers<S> {
@@ -15,10 +15,10 @@ class DefaultErrorHandlers<S extends AstroState> with ErrorHandlers<S> {
       required StackTrace trace,
       required LandingMission mission,
       required S state}) {
-    return (state as dynamic).copyWith(errorMessages: [
+    return (state as dynamic).copyWith(reports: [
       ErrorReport(
           message: 'Landing $mission, resulted in $thrown', trace: '$trace'),
-      ...(state as ErrorHandlingState).errorMessages
+      ...(state as DefaultErrorHandlingState).reports
     ]) as S; // TODO: avoid dynamic dispatch
   }
 
@@ -28,10 +28,10 @@ class DefaultErrorHandlers<S extends AstroState> with ErrorHandlers<S> {
       required StackTrace trace,
       required AwayMission mission,
       required S state}) {
-    return (state as dynamic).copyWith(errorMessages: [
+    return (state as dynamic).copyWith(reports: [
       ErrorReport(
           message: 'Launching $mission, resulted in $thrown', trace: '$trace'),
-      ...(state as ErrorHandlingState).errorMessages
+      ...(state as DefaultErrorHandlingState).reports
     ]) as S; // TODO: avoid dynamic dispatch
   }
 }
@@ -41,7 +41,6 @@ class ErrorReport with AstroState {
   ErrorReport({required this.message, this.trace});
 
   final String message;
-
   final String? trace;
 
   @override
@@ -50,8 +49,15 @@ class ErrorReport with AstroState {
 
   @override
   JsonMap toJson() => <String, dynamic>{'message': message, 'trace': trace};
+
+  @override
+  bool operator ==(Object other) =>
+      other is ErrorReport && other.message == message && other.trace == trace;
+
+  @override
+  int get hashCode => Object.hash(message, trace);
 }
 
-mixin ErrorHandlingState {
-  abstract final List<ErrorReport> errorMessages;
+mixin DefaultErrorHandlingState {
+  abstract final List<ErrorReport> reports;
 }

@@ -2,6 +2,12 @@
 
 *An astro plugin for error handling.*
 
+Plugin components:
+
+- packages: astro_navigation
+- AstroBase: Listen to state.navigation.stack & push pages into Navigator
+- snippets: Create PageState & Page - classes are named with the file name
+
 ## Features
 
 TODO: List what your package can do. Maybe include images, gifs, or videos.
