@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/widgets.dart';
-import 'package:json_types/json_types.dart';
 import 'package:redfire/types.dart';
 import 'package:redfire_test/redfire_test.dart';
 import 'package:test/test.dart';
