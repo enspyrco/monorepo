@@ -2,30 +2,47 @@ import 'dart:collection';
 
 import 'package:astro_auth/astro_auth.dart';
 import 'package:astro_error_handling/astro_error_handling.dart';
-import 'package:astro_state_interface/astro_state_interface.dart';
+import 'package:astro_navigation/astro_navigation.dart';
+import 'package:astro_types/state_types.dart';
 
-class AppState with AstroState, ErrorHandlingState, AuthState {
-  AppState({required this.user, required this.errorMessages});
+class AppState
+    with
+        AstroState,
+        DefaultNavigationState,
+        DefaultErrorHandlingState,
+        DefaultAuthState {
+  AppState(
+      {required this.navigation, required this.user, required this.reports});
 
   static AppState get initial => AppState(
-      user: UserState.initial, errorMessages: UnmodifiableListView([]));
+      navigation: NavigationState.initial,
+      user: UserState.initial,
+      reports: UnmodifiableListView([]));
+
+  @override
+  final NavigationState navigation;
 
   @override
   final UserState user;
 
   @override
-  final List<ErrorReport> errorMessages;
+  final List<ErrorReport> reports;
 
   @override
-  AppState copyWith({List<ErrorReport>? errorMessages, UserState? user}) {
+  AppState copyWith(
+      {NavigationState? navigation,
+      List<ErrorReport>? reports,
+      UserState? user}) {
     return AppState(
+        navigation: navigation ?? this.navigation,
         user: user ?? this.user,
-        errorMessages: errorMessages ?? this.errorMessages);
+        reports: reports ?? this.reports);
   }
 
   @override
   toJson() => {
         'user': user.toJson(),
-        'errorMessages': errorMessages.map((e) => e.toJson()).toList()
+        'reports': reports.map((e) => e.toJson()).toList(),
+        'navigation': navigation.toJson(),
       };
 }

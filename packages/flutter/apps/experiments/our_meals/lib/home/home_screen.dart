@@ -1,6 +1,6 @@
 import 'package:astro_auth/astro_auth.dart';
-import 'package:astro_core_interface/astro_core_interface.dart';
 import 'package:astro_locator/astro_locator.dart';
+import 'package:astro_types/core_types.dart';
 import 'package:flutter/material.dart';
 
 import '../app/state/app_state.dart';

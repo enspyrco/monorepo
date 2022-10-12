@@ -13,6 +13,7 @@
       "name": "in-app-inspector",
       "request": "launch",
       "type": "dart",
+      "program": "/${workspaceFolder}/lib/main.dart",
       "toolArgs": [
         "--dart-define",
         "IN-APP-ASTRO-INSPECTOR=true"
