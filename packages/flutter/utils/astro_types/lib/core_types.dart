@@ -1,7 +1,7 @@
-library astro_core_interface;
+library astro_types;
 
-import 'package:astro_state_interface/astro_state_interface.dart';
-import 'package:json_types/json_types.dart';
+import 'json_types.dart';
+import 'state_types.dart';
 
 /// All missions must extend either [AwayMission] or [LandingMission], which
 /// both inherit from [Mission].

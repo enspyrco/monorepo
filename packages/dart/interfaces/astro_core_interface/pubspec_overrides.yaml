@@ -1,5 +1,0 @@
-dependency_overrides:
-  json_types:
-    path: ../../utils/json_types
-  astro_state_interface:
-    path: ../astro_state_interface

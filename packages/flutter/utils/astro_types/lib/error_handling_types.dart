@@ -1,7 +1,6 @@
-library astro_error_handling_interface;
+import 'package:astro_types/state_types.dart';
 
-import 'package:astro_core_interface/astro_core_interface.dart';
-import 'package:astro_state_interface/astro_state_interface.dart';
+import 'core_types.dart';
 
 mixin ErrorHandlers<S extends AstroState> {
   AstroState handleLaunchError(

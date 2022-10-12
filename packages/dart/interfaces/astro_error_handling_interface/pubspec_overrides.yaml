@@ -1,5 +1,0 @@
-dependency_overrides:
-  astro_core_interface:
-    path: ../astro_core_interface
-  astro_state_interface:
-    path: ../astro_state_interface
