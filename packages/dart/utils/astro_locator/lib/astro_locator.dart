@@ -23,13 +23,14 @@ class Locator {
   T call<T>() {
     var object = _objectOfType[T] as T?;
 
-    String typeKeys = _objectOfType.isEmpty
-        ? 'No objects have been added to the Locator yet.'
-        : 'Only the following types have been added: \n  - ${_objectOfType.keys.join('\n  - ')}.';
-
-    var finalFrame = StackTrace.current.toString().split('\n')[1].substring(7);
-
     if (object == null) {
+      String typeKeys = _objectOfType.isEmpty
+          ? 'No objects have been added to the Locator yet.'
+          : 'Only the following types have been added: \n  - ${_objectOfType.keys.join('\n  - ')}.';
+
+      var finalFrame =
+          StackTrace.current.toString().split('\n')[1].substring(7);
+
       throw 'You attempted to locate an object with type: `$T`\n\n'
           '$typeKeys\n\n'
           'Make sure `Locator.add<$T>(...)` was called before `locate<$T>()`.\n\n'
