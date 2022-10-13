@@ -48,4 +48,15 @@ class UserState with AstroState {
         'displayName': displayName,
         'photoUrl': photoUrl,
       };
+
+  @override
+  bool operator ==(Object other) =>
+      other is UserState &&
+      other.signedIn == signedIn &&
+      other.uid == uid &&
+      other.displayName == displayName &&
+      other.photoUrl == photoUrl;
+
+  @override
+  int get hashCode => Object.hash(signedIn, uid, displayName, photoUrl);
 }

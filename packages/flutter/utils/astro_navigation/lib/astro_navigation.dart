@@ -2,6 +2,7 @@ library astro_navigation;
 
 import 'package:astro_types/navigation_types.dart';
 import 'package:astro_types/state_types.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 export 'src/missions/push_route.dart';
@@ -30,6 +31,13 @@ class NavigationState extends AstroState {
   Map<String, dynamic> toJson() {
     return {'stack': stack.map((e) => (e as AstroState).toJson()).toList()};
   }
+
+  @override
+  bool operator ==(Object other) =>
+      other is NavigationState && listEquals(other.stack, stack);
+
+  @override
+  int get hashCode => Object.hashAll(stack);
 }
 
 /// Holds a map of {type : generator function}

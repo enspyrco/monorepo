@@ -4,6 +4,7 @@ import 'package:astro_auth/astro_auth.dart';
 import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/state_types.dart';
+import 'package:flutter/foundation.dart';
 
 class AppState
     with
@@ -45,4 +46,14 @@ class AppState
         'reports': reports.map((e) => e.toJson()).toList(),
         'navigation': navigation.toJson(),
       };
+
+  @override
+  bool operator ==(Object other) =>
+      other is AppState &&
+      other.navigation == navigation &&
+      other.user == user &&
+      listEquals(other.reports, reports);
+
+  @override
+  int get hashCode => Object.hashAll([navigation, user, ...reports]);
 }
