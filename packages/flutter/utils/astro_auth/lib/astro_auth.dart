@@ -5,6 +5,8 @@ export 'src/missions/bind_auth_state.dart';
 export 'src/missions/sign_out.dart';
 export 'src/routes/auth-check/auth_check_page_state.dart';
 export 'src/routes/auth-check/auth_check_screen.dart';
+export 'src/routes/auth-gate/auth_gate_page_state.dart';
+export 'src/routes/auth-gate/auth_gate_screen.dart';
 export 'src/routes/sign-in/sign_in_page_state.dart';
 export 'src/routes/sign-in/sign_in_screen.dart';
 export 'src/services/firebase_auth_service.dart';

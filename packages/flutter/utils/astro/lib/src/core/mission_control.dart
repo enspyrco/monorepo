@@ -45,7 +45,6 @@ class DefaultMissionControl<T extends AstroState> implements MissionControl<T> {
 
     try {
       _state = mission.landingInstructions(_state);
-      print('state: ${_state.toJson()}');
     } catch (thrown, trace) {
       print('landing error: $thrown');
 
