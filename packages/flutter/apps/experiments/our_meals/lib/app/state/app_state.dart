@@ -1,10 +1,7 @@
-import 'dart:collection';
-
 import 'package:astro_auth/astro_auth.dart';
 import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/state_types.dart';
-import 'package:flutter/foundation.dart';
 
 class AppState
     with
@@ -12,13 +9,13 @@ class AppState
         DefaultNavigationState,
         DefaultErrorHandlingState,
         DefaultAuthState {
-  AppState(
-      {required this.navigation, required this.user, required this.reports});
+  AppState({required this.navigation, required this.user, required this.error});
 
   static AppState get initial => AppState(
-      navigation: NavigationState.initial,
-      user: UserState.initial,
-      reports: UnmodifiableListView([]));
+        navigation: NavigationState.initial,
+        user: UserState.initial,
+        error: ErrorHandlingState.initial,
+      );
 
   @override
   final NavigationState navigation;
@@ -27,23 +24,23 @@ class AppState
   final UserState user;
 
   @override
-  final List<ErrorReport> reports;
+  final ErrorHandlingState error;
 
   @override
   AppState copyWith(
       {NavigationState? navigation,
-      List<ErrorReport>? reports,
+      ErrorHandlingState? error,
       UserState? user}) {
     return AppState(
         navigation: navigation ?? this.navigation,
         user: user ?? this.user,
-        reports: reports ?? this.reports);
+        error: error ?? this.error);
   }
 
   @override
   toJson() => {
         'user': user.toJson(),
-        'reports': reports.map((e) => e.toJson()).toList(),
+        'error': error.toJson(),
         'navigation': navigation.toJson(),
       };
 
@@ -52,8 +49,8 @@ class AppState
       other is AppState &&
       other.navigation == navigation &&
       other.user == user &&
-      listEquals(other.reports, reports);
+      other.error == error;
 
   @override
-  int get hashCode => Object.hashAll([navigation, user, ...reports]);
+  int get hashCode => Object.hash(navigation, user, error);
 }

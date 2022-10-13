@@ -2,8 +2,8 @@ import 'package:astro_types/core_types.dart';
 import 'package:astro_types/error_handling_types.dart';
 import 'package:astro_types/state_types.dart';
 
+import '../models/error_handling_state.dart';
 import '../models/error_report.dart';
-import '../state/default_error_handling_state.dart';
 
 /// TODO: We need a type for [state] that has [copyWith(reports: ...]
 /// and as [extends AstroState]
@@ -18,7 +18,7 @@ class DefaultErrorHandlers<S extends AstroState> with ErrorHandlers<S> {
     return (state as dynamic).copyWith(reports: [
       ErrorReport(
           message: 'Landing $mission, resulted in $thrown', trace: '$trace'),
-      ...(state as DefaultErrorHandlingState).reports
+      ...(state as ErrorHandlingState).reports
     ]) as S; // TODO: avoid dynamic dispatch
   }
 
@@ -31,7 +31,7 @@ class DefaultErrorHandlers<S extends AstroState> with ErrorHandlers<S> {
     return (state as dynamic).copyWith(reports: [
       ErrorReport(
           message: 'Launching $mission, resulted in $thrown', trace: '$trace'),
-      ...(state as DefaultErrorHandlingState).reports
+      ...(state as ErrorHandlingState).reports
     ]) as S; // TODO: avoid dynamic dispatch
   }
 }

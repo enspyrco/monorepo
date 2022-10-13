@@ -9,31 +9,30 @@ class AppState
         DefaultErrorHandlingState,
         DefaultAuthState,
         DefaultNavigationState {
-  AppState(
-      {required this.reports, required this.user, required this.navigation});
+  AppState({required this.error, required this.user, required this.navigation});
 
   static AppState get initial => AppState(
-      reports: const [],
-      user: UserState(signedIn: SignedInState.checking),
+      error: ErrorHandlingState.initial,
+      user: UserState.initial,
       navigation: NavigationState.initial);
 
   @override
   final UserState user;
 
   @override
-  final List<ErrorReport> reports;
+  final ErrorHandlingState error;
 
   @override
   final NavigationState navigation;
 
   @override
   AppState copyWith({
-    List<ErrorReport>? reports,
+    ErrorHandlingState? error,
     UserState? user,
     NavigationState? navigation,
   }) {
     return AppState(
-      reports: reports ?? this.reports,
+      error: error ?? this.error,
       user: user ?? this.user,
       navigation: navigation ?? this.navigation,
     );
@@ -42,7 +41,7 @@ class AppState
   @override
   toJson() => {
         'user': user.toJson(),
-        'reports': reports.map((e) => e.toJson()).toList(),
+        'error': error.toJson(),
         'navigation': navigation.toJson(),
       };
 }

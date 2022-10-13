@@ -22,7 +22,7 @@ void main() {
     int i = 0;
     final widget = MaterialApp(
         home: OnStateChangeBuilder<ExampleAppState, List<ErrorReport>>(
-            transformer: (state) => state.reports,
+            transformer: (state) => state.error.reports,
             builder: (context, vm) {
               return Text('builds: ${i++}, reports: ${vm.length}');
             }));
@@ -60,7 +60,7 @@ void main() {
     final widget = MaterialApp(
         home: OnStateChangeBuilder<IdentityEquivalenceAppState,
                 List<ErrorReport>>(
-            transformer: (state) => state.reports,
+            transformer: (state) => state.error.reports,
             builder: (context, vm) {
               return Text('builds: ${i++}, reports: ${vm.length}');
             }));

@@ -9,14 +9,14 @@ import '../enums/lineage_shape.dart';
 /// for visualising the AppState of apps.
 class InspectorState with AstroState, DefaultErrorHandlingState {
   InspectorState(
-      {required this.reports,
+      {required this.error,
       required this.missionUpdates,
       required this.selectedIndex,
       required this.lineageFor,
       required this.indexFor});
 
   static InspectorState get initial => InspectorState(
-        reports: UnmodifiableListView([]),
+        error: ErrorHandlingState.initial,
         missionUpdates: UnmodifiableListView([]),
         selectedIndex: null,
         lineageFor: UnmodifiableMapView({}),
@@ -26,7 +26,7 @@ class InspectorState with AstroState, DefaultErrorHandlingState {
   /// If there are errors (eg. decoding invalid json) we save an error message
   /// that the screen will display
   @override
-  final List<ErrorReport> reports;
+  final ErrorHandlingState error;
 
   /// The list of mission updates, added to each time [MissionControl.launch] or
   /// [MissionControl.land] is called
@@ -53,13 +53,13 @@ class InspectorState with AstroState, DefaultErrorHandlingState {
 
   @override
   InspectorState copyWith(
-      {List<ErrorReport>? reports,
+      {ErrorHandlingState? error,
       List<JsonMap>? missionUpdates,
       int? selectedIndex,
       Map<int, LineageShape>? lineageFor,
       Map<int, int>? indexFor}) {
     return InspectorState(
-        reports: reports ?? this.reports,
+        error: error ?? this.error,
         missionUpdates: missionUpdates ?? this.missionUpdates,
         selectedIndex: selectedIndex ?? this.selectedIndex,
         indexFor: indexFor ?? this.indexFor,
@@ -69,7 +69,7 @@ class InspectorState with AstroState, DefaultErrorHandlingState {
   @override
   JsonMap toJson() => {
         'missionUpdates': (missionUpdates.isEmpty) ? {} : missionUpdates.first,
-        'reports': reports,
+        'error': error,
         'selectedIndex': selectedIndex,
         'lineageForIndex': lineageFor,
         'indexForMissionId': indexFor

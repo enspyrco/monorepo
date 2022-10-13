@@ -19,12 +19,12 @@ class UserState with AstroState {
     this.photoUrl,
   });
 
+  static UserState get initial => UserState(signedIn: SignedInState.checking);
+
   final SignedInState signedIn;
   final String? uid;
   final String? displayName;
   final String? photoUrl;
-
-  static UserState get initial => UserState(signedIn: SignedInState.checking);
 
   @override
   UserState copyWith({

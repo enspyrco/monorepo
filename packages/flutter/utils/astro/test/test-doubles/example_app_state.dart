@@ -1,30 +1,27 @@
-import 'dart:collection';
-
 import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_types/state_types.dart';
-import 'package:flutter/foundation.dart';
 
 class ExampleAppState with AstroState, DefaultErrorHandlingState {
-  ExampleAppState({required this.reports});
+  ExampleAppState({required this.error});
 
   static ExampleAppState get initial =>
-      ExampleAppState(reports: UnmodifiableListView([]));
+      ExampleAppState(error: ErrorHandlingState.initial);
 
   @override
-  final List<ErrorReport> reports;
+  final ErrorHandlingState error;
 
   @override
-  ExampleAppState copyWith({List<ErrorReport>? reports}) {
-    return ExampleAppState(reports: reports ?? this.reports);
+  ExampleAppState copyWith({ErrorHandlingState? error}) {
+    return ExampleAppState(error: error ?? this.error);
   }
 
   @override
-  toJson() => {'reports': reports.map((e) => e.toJson()).toList()};
+  toJson() => {'error': error.toJson()};
 
   @override
   bool operator ==(Object other) =>
-      other is ExampleAppState && listEquals(other.reports, reports);
+      other is ExampleAppState && other.error == error;
 
   @override
-  int get hashCode => Object.hashAll(reports);
+  int get hashCode => error.hashCode;
 }

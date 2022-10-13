@@ -16,13 +16,13 @@ void main() {
     var mission = ThrowingLandingMission<ExampleAppState>();
 
     // Check there are no error messages before we start
-    expect(appState.reports, isEmpty);
+    expect(appState.error.reports, isEmpty);
 
     // Set an expectation that MissionControl will emit an app state with an error message
     expect(
         missionControl.onStateChange,
         emits(predicate<ExampleAppState>(
-            (appState) => appState.reports.isNotEmpty)));
+            (appState) => appState.error.reports.isNotEmpty)));
 
     // Land the mission
     missionControl.land(mission);
@@ -35,13 +35,13 @@ void main() {
     var mission = ExampleAwayMission<ExampleAppState>();
 
     // Check there are no error messages before we start
-    expect(appState.reports, isEmpty);
+    expect(appState.error.reports, isEmpty);
 
     // Set an expectation that MissionControl will emit an app state with an error message
     expect(
         missionControl.onStateChange,
         emits(predicate<ExampleAppState>(
-            (appState) => appState.reports.isNotEmpty)));
+            (appState) => appState.error.reports.isNotEmpty)));
 
     // Launch the mission
     missionControl.launch(mission);
@@ -53,18 +53,23 @@ void main() {
     var missionControl = DefaultMissionControl(state: appState);
 
     // Check there are no error messages before we start
-    expect(appState.reports, isEmpty);
+    expect(appState.error.reports, isEmpty);
 
     // We expect that MissionControl will emit app states with the relevant error reports
     expect(
         missionControl.onStateChange,
         emitsInOrder([
-          ExampleAppState(reports: [ErrorReport(message: 'message')]),
-          ExampleAppState(reports: [ErrorReport(message: 'message')]),
-          ExampleAppState(reports: [
+          ExampleAppState(
+              error: ErrorHandlingState(
+                  reports: [ErrorReport(message: 'message')])),
+          ExampleAppState(
+              error: ErrorHandlingState(
+                  reports: [ErrorReport(message: 'message')])),
+          ExampleAppState(
+              error: ErrorHandlingState(reports: [
             ErrorReport(message: 'message'),
             ErrorReport(message: 'message')
-          ])
+          ]))
         ]));
 
     // Launch the mission

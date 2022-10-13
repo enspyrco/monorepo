@@ -1,5 +1,5 @@
-import '../models/error_report.dart';
+import '../models/error_handling_state.dart';
 
 mixin DefaultErrorHandlingState {
-  abstract final List<ErrorReport> reports;
+  abstract final ErrorHandlingState error;
 }

@@ -1,22 +1,20 @@
-import 'dart:collection';
-
 import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_types/state_types.dart';
 
 class IdentityEquivalenceAppState with AstroState, DefaultErrorHandlingState {
-  IdentityEquivalenceAppState({required this.reports});
+  IdentityEquivalenceAppState({required this.error});
 
   static IdentityEquivalenceAppState get initial =>
-      IdentityEquivalenceAppState(reports: UnmodifiableListView([]));
+      IdentityEquivalenceAppState(error: ErrorHandlingState.initial);
 
   @override
-  final List<ErrorReport> reports;
+  final ErrorHandlingState error;
 
   @override
-  IdentityEquivalenceAppState copyWith({List<ErrorReport>? reports}) {
-    return IdentityEquivalenceAppState(reports: reports ?? this.reports);
+  IdentityEquivalenceAppState copyWith({ErrorHandlingState? error}) {
+    return IdentityEquivalenceAppState(error: error ?? this.error);
   }
 
   @override
-  toJson() => {'reports': reports.map((e) => e.toJson()).toList()};
+  toJson() => {'error': error.toJson()};
 }
