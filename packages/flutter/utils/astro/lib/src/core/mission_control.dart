@@ -41,13 +41,9 @@ class DefaultMissionControl<T extends AstroState> implements MissionControl<T> {
   /// [LandingMission] that described the desired state change).
   @override
   void land(LandingMission<T> mission) {
-    print('land: $mission');
-
     try {
       _state = mission.landingInstructions(_state);
     } catch (thrown, trace) {
-      print('landing error: $thrown');
-
       _state = _errorHandlers.handleLandingError(
           thrown: thrown, trace: trace, mission: mission, state: _state) as T;
     }
@@ -63,15 +59,11 @@ class DefaultMissionControl<T extends AstroState> implements MissionControl<T> {
   /// the [AwayMission] should land a [LandingMission] when it is complete.
   @override
   Future<void> launch(AwayMission<T> mission) async {
-    print('launch: $mission');
-
     _systemChecks?.forEach((fn) => fn.call(this, mission));
 
     try {
       await mission.flightPlan(ParentingMissionControl(this, mission));
     } catch (thrown, trace) {
-      print('launch error: $thrown');
-
       _state = _errorHandlers.handleLaunchError(
           thrown: thrown, trace: trace, mission: mission, state: _state) as T;
 

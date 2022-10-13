@@ -125,7 +125,6 @@ class _OnStateChangeBuilderState<S extends AstroState, VM>
   // latestValue. Important: This must be done after all other optional
   // transformations, such as ignoreChange.
   void _updatePrevious(VM vm, EventSink<VM> sink) {
-    print('previous: $_previous, vm: $vm');
     _latestError = null;
     _previous = vm;
     sink.add(vm);
