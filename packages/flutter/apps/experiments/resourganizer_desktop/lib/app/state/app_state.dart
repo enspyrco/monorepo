@@ -9,15 +9,15 @@ class AppState
         DefaultErrorHandlingState,
         DefaultAuthState,
         DefaultNavigationState {
-  AppState({required this.error, required this.user, required this.navigation});
+  AppState({required this.error, required this.auth, required this.navigation});
 
   static AppState get initial => AppState(
       error: ErrorHandlingState.initial,
-      user: UserState.initial,
+      auth: AuthState.initial,
       navigation: NavigationState.initial);
 
   @override
-  final UserState user;
+  final AuthState auth;
 
   @override
   final ErrorHandlingState error;
@@ -28,19 +28,19 @@ class AppState
   @override
   AppState copyWith({
     ErrorHandlingState? error,
-    UserState? user,
+    AuthState? auth,
     NavigationState? navigation,
   }) {
     return AppState(
       error: error ?? this.error,
-      user: user ?? this.user,
+      auth: auth ?? this.auth,
       navigation: navigation ?? this.navigation,
     );
   }
 
   @override
   toJson() => {
-        'user': user.toJson(),
+        'auth': auth.toJson(),
         'error': error.toJson(),
         'navigation': navigation.toJson(),
       };

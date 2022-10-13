@@ -60,3 +60,23 @@ class UserState with AstroState {
   @override
   int get hashCode => Object.hash(signedIn, uid, displayName, photoUrl);
 }
+
+class AuthState extends AstroState {
+  AuthState({required this.user});
+
+  static AuthState get initial => AuthState(user: UserState.initial);
+
+  final UserState user;
+
+  @override
+  AuthState copyWith({UserState? user}) => AuthState(user: user ?? this.user);
+
+  @override
+  toJson() => {'user': user.toJson()};
+
+  @override
+  bool operator ==(Object other) => other is AuthState && other.user == user;
+
+  @override
+  int get hashCode => user.hashCode;
+}

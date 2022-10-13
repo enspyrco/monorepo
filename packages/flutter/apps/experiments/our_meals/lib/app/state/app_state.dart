@@ -9,11 +9,11 @@ class AppState
         DefaultNavigationState,
         DefaultErrorHandlingState,
         DefaultAuthState {
-  AppState({required this.navigation, required this.user, required this.error});
+  AppState({required this.navigation, required this.auth, required this.error});
 
   static AppState get initial => AppState(
         navigation: NavigationState.initial,
-        user: UserState.initial,
+        auth: AuthState.initial,
         error: ErrorHandlingState.initial,
       );
 
@@ -21,7 +21,7 @@ class AppState
   final NavigationState navigation;
 
   @override
-  final UserState user;
+  final AuthState auth;
 
   @override
   final ErrorHandlingState error;
@@ -30,16 +30,16 @@ class AppState
   AppState copyWith(
       {NavigationState? navigation,
       ErrorHandlingState? error,
-      UserState? user}) {
+      AuthState? auth}) {
     return AppState(
         navigation: navigation ?? this.navigation,
-        user: user ?? this.user,
+        auth: auth ?? this.auth,
         error: error ?? this.error);
   }
 
   @override
   toJson() => {
-        'user': user.toJson(),
+        'auth': auth.toJson(),
         'error': error.toJson(),
         'navigation': navigation.toJson(),
       };
@@ -48,9 +48,9 @@ class AppState
   bool operator ==(Object other) =>
       other is AppState &&
       other.navigation == navigation &&
-      other.user == user &&
+      other.auth == auth &&
       other.error == error;
 
   @override
-  int get hashCode => Object.hash(navigation, user, error);
+  int get hashCode => Object.hash(navigation, auth, error);
 }

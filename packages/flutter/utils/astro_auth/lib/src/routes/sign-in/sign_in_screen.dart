@@ -14,7 +14,7 @@ class SignInScreen<T extends AstroState> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OnStateChangeBuilder<T, SignedInState>(
-        transformer: (state) => (state as dynamic).user.signedIn,
+        transformer: (state) => (state as dynamic).auth.user.signedIn,
         builder: (context, signedInState) {
           if (signedInState == SignedInState.notSignedIn) {
             return plugin.SignInWithAppleButton(

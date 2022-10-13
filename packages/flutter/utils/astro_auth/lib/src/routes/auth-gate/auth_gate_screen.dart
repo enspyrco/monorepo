@@ -13,7 +13,7 @@ class AuthGateScreen<S extends AstroState> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OnStateChangeBuilder<S, SignedInState>(
-      transformer: (state) => (state as dynamic).user.signedIn,
+      transformer: (state) => (state as dynamic).auth.user.signedIn,
       builder: ((context, signedInState) {
         switch (signedInState) {
           case SignedInState.checking:
