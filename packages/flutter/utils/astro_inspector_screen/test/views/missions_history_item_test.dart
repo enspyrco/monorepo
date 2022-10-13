@@ -3,8 +3,8 @@ import 'package:astro_inspector_screen/src/missions/add_mission_update.dart';
 import 'package:astro_inspector_screen/src/missions/select_mission.dart';
 import 'package:astro_inspector_screen/src/views/missions_history_view/missions_history_item.dart';
 import 'package:astro_test_utils/astro_widgets_test_utils.dart';
+import 'package:astro_types/json_types.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:json_types/json_types.dart';
 
 import '../models/test_away_mission.dart';
 

@@ -1,7 +1,7 @@
 import 'package:astro/astro.dart';
+import 'package:astro_types/json_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:json_types/json_types.dart';
 
 import '../../../astro_inspector_screen.dart';
 import 'missions_history_item.dart';

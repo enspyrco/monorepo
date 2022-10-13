@@ -43,28 +43,12 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
-  astro_core_interface:
-    dependency: "direct main"
-    description:
-      path: "../../../../dart/interfaces/astro_core_interface"
-      relative: true
-    source: path
-    version: "0.0.1"
   astro_error_handling:
     dependency: "direct main"
     description:
       path: "../../../utils/astro_error_handling"
       relative: true
     source: path
-    version: "0.0.1"
-  astro_error_handling_interface:
-    dependency: transitive
-    description:
-      path: "packages/dart/interfaces/astro_error_handling_interface"
-      ref: HEAD
-      resolved-ref: "05c788c3f3b25febe148fda25fb9e860b25dafdf"
-      url: "https://github.com/enspyrco/monorepo.git"
-    source: git
     version: "0.0.1"
   astro_inspector_screen:
     dependency: "direct main"
@@ -80,10 +64,17 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
-  astro_state_interface:
+  astro_navigation:
     dependency: "direct main"
     description:
-      path: "../../../../dart/interfaces/astro_state_interface"
+      path: "../../../utils/astro_navigation"
+      relative: true
+    source: path
+    version: "0.0.1"
+  astro_types:
+    dependency: "direct main"
+    description:
+      path: "../../../utils/astro_types"
       relative: true
     source: path
     version: "0.0.1"
@@ -142,7 +133,7 @@ packages:
       name: convert
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.2"
+    version: "3.1.0"
   coverage:
     dependency: transitive
     description:
@@ -284,15 +275,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
-  json_types:
-    dependency: transitive
-    description:
-      path: "packages/dart/utils/json_types"
-      ref: HEAD
-      resolved-ref: "05c788c3f3b25febe148fda25fb9e860b25dafdf"
-      url: "https://github.com/enspyrco/monorepo.git"
-    source: git
-    version: "0.0.1"
   lints:
     dependency: transitive
     description:
@@ -300,15 +282,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  locator:
-    dependency: transitive
-    description:
-      path: "packages/dart/utils/locator"
-      ref: HEAD
-      resolved-ref: "3b5cbd38b5a5e3fa07cc179fa090040254a90ef3"
-      url: "https://github.com/enspyrco/monorepo.git"
-    source: git
-    version: "0.0.1"
   logging:
     dependency: transitive
     description:

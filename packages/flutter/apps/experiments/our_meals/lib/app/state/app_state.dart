@@ -1,31 +1,56 @@
-import 'dart:collection';
-
 import 'package:astro_auth/astro_auth.dart';
 import 'package:astro_error_handling/astro_error_handling.dart';
-import 'package:astro_state_interface/astro_state_interface.dart';
+import 'package:astro_navigation/astro_navigation.dart';
+import 'package:astro_types/state_types.dart';
 
-class AppState with AstroState, ErrorHandlingState, AuthState {
-  AppState({required this.user, required this.errorMessages});
+class AppState
+    with
+        AstroState,
+        DefaultNavigationState,
+        DefaultErrorHandlingState,
+        DefaultAuthState {
+  AppState({required this.navigation, required this.auth, required this.error});
 
   static AppState get initial => AppState(
-      user: UserState.initial, errorMessages: UnmodifiableListView([]));
+        navigation: NavigationState.initial,
+        auth: AuthState.initial,
+        error: ErrorHandlingState.initial,
+      );
 
   @override
-  final UserState user;
+  final NavigationState navigation;
 
   @override
-  final List<ErrorReport> errorMessages;
+  final AuthState auth;
 
   @override
-  AppState copyWith({List<ErrorReport>? errorMessages, UserState? user}) {
+  final ErrorHandlingState error;
+
+  @override
+  AppState copyWith(
+      {NavigationState? navigation,
+      ErrorHandlingState? error,
+      AuthState? auth}) {
     return AppState(
-        user: user ?? this.user,
-        errorMessages: errorMessages ?? this.errorMessages);
+        navigation: navigation ?? this.navigation,
+        auth: auth ?? this.auth,
+        error: error ?? this.error);
   }
 
   @override
   toJson() => {
-        'user': user.toJson(),
-        'errorMessages': errorMessages.map((e) => e.toJson()).toList()
+        'auth': auth.toJson(),
+        'error': error.toJson(),
+        'navigation': navigation.toJson(),
       };
+
+  @override
+  bool operator ==(Object other) =>
+      other is AppState &&
+      other.navigation == navigation &&
+      other.auth == auth &&
+      other.error == error;
+
+  @override
+  int get hashCode => Object.hash(navigation, auth, error);
 }

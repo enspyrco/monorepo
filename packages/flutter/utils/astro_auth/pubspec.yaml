@@ -20,18 +20,14 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/astro
-  astro_core_interface:
+  astro_navigation:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/interfaces/astro_core_interface
-  astro_state_interface:
+      path: packages/flutter/utils/astro_navigation
+  astro_types:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/interfaces/astro_state_interface
-  json_types:
-    git:
-      url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/utils/json_types
+      path: packages/flutter/utils/astro_types
 
 dev_dependencies:
   flutter_test:

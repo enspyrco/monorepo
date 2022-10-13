@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:astro_core_interface/astro_core_interface.dart';
 import 'package:astro_inspector_screen/astro_inspector_screen.dart';
 import 'package:astro_locator/astro_locator.dart';
+import 'package:astro_types/core_types.dart';
+import 'package:astro_types/json_types.dart';
 import 'package:flutter/widgets.dart';
-import 'package:json_types/json_types.dart';
 
 import '../missions/add_mission_update.dart';
 import '../missions/remove_all.dart';

@@ -1,5 +1,5 @@
-import 'package:astro_state_interface/astro_state_interface.dart';
-import 'package:json_types/json_types.dart';
+import 'package:astro_types/json_types.dart';
+import 'package:astro_types/state_types.dart';
 
 /// Class for carrying basic error information for display to the user.
 class ExampleErrorMessage with AstroState {

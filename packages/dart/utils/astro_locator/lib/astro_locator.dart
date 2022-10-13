@@ -24,8 +24,17 @@ class Locator {
     var object = _objectOfType[T] as T?;
 
     if (object == null) {
-      throw 'You attempted to locate an object of type $T before it has been added.\n'
-          'Make sure to call the `add` function before calling the Locator object.';
+      String typeKeys = _objectOfType.isEmpty
+          ? 'No objects have been added to the Locator yet.'
+          : 'Only the following types have been added: \n  - ${_objectOfType.keys.join('\n  - ')}.';
+
+      var finalFrame =
+          StackTrace.current.toString().split('\n')[1].substring(7);
+
+      throw 'You attempted to locate an object with type: `$T`\n\n'
+          '$typeKeys\n\n'
+          'Make sure `Locator.add<$T>(...)` was called before `locate<$T>()`.\n\n'
+          'The last frame on the stack was: $finalFrame.';
     }
 
     return object;

@@ -1,0 +1,18 @@
+name: astro_types
+description: A separate package for types from astro packages, for dependency inversion.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=2.17.0 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  meta: ^1.8.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0

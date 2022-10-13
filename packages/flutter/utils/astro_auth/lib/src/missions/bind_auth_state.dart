@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:astro_core_interface/astro_core_interface.dart';
 import 'package:astro_locator/astro_locator.dart';
-import 'package:astro_state_interface/astro_state_interface.dart';
-import 'package:json_types/json_types.dart';
+import 'package:astro_types/core_types.dart';
+import 'package:astro_types/json_types.dart';
+import 'package:astro_types/state_types.dart';
 
 import '../services/firebase_auth_service.dart';
 import '../state/user_state.dart';
