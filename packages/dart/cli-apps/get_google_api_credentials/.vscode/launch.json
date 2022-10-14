@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "get_credentials",
+      "request": "launch",
+      "type": "dart",
+      "program": "bin/get_credentials.dart"
+    },
+    {
+      "name": "renew_watch",
+      "request": "launch",
+      "type": "dart",
+      "program": "bin/renew_watch.dart"
+    }
+  ]
+}
