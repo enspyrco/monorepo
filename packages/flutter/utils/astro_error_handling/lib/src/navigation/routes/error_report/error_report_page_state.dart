@@ -1,7 +1,7 @@
 import 'package:astro_types/navigation_types.dart';
 import 'package:astro_types/state_types.dart';
 
-import '../../../astro_error_handling.dart';
+import '../../../state/models/error_report.dart';
 
 class ErrorReportPageState<T extends AstroState> with PageState, AstroState {
   ErrorReportPageState(this.report);
@@ -13,4 +13,11 @@ class ErrorReportPageState<T extends AstroState> with PageState, AstroState {
 
   @override
   toJson() => {'type': 'ErrorReportPageState'};
+
+  @override
+  bool operator ==(Object other) =>
+      other is ErrorReportPageState && other.report == report;
+
+  @override
+  int get hashCode => report.hashCode;
 }

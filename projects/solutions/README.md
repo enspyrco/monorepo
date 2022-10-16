@@ -6,7 +6,7 @@
 
 [![run-dart-on-discord-domain](https://raw.githubusercontent.com/enspyrco/monorepo/main/projects/solutions/run-dart-on-discord/domain.png)](./pull-in-articles-from-emails/README.md)
 
-[![run-dart-on-discord-sequence](https://raw.githubusercontent.com/enspyrco/monorepo/projects/solutions/main/run-dart-on-discord/sequence.png)](./pull-in-articles-from-emails/README.md)
+[![run-dart-on-discord-sequence](https://raw.githubusercontent.com/enspyrco/monorepo/main/projects/solutions/run-dart-on-discord/sequence.png)](./pull-in-articles-from-emails/README.md)
 
 ## pull-in-articles-from-emails [![Notion](https://raw.githubusercontent.com/enspyrco/monorepo/media/notion.png)](https://www.notion.so/enspyrco/pull-in-articles-from-emails-da8a4493db214c25919216e2ca65a3a3)
 

@@ -1,8 +1,8 @@
 import 'package:astro_types/state_types.dart';
 import 'package:flutter/material.dart';
 
-import '../../../astro_error_handling.dart';
-import '../widgets/error_report_screen.dart';
+import '../../../state/models/error_report.dart';
+import 'error_report_screen.dart';
 
 /// An [ErrorReportPage] is created from an [ErrorMessagePagePrecursor] which
 /// is kept in [AppState.navigation.stack], and passed in to the [Navigator]

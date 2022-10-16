@@ -25,9 +25,6 @@ class AstroInspectorScreen extends StatefulWidget {
   const AstroInspectorScreen(this._onMissionUpdate, {super.key});
 
   final Stream<JsonMap>? _onMissionUpdate;
-  // TODO delete
-  // final MissionControl<InspectorState> _missionControl =
-  //     DefaultMissionControl(state: InspectorState.initial);
 
   @override
   State<AstroInspectorScreen> createState() => _AstroInspectorScreenState();

@@ -1,3 +1,7 @@
 dependency_overrides:
   astro_types:
     path: ../../../flutter/utils/astro_types
+  astro:
+    path: ../../../flutter/utils/astro
+  astro_locator:
+    path: ../../../dart/utils/astro_locator

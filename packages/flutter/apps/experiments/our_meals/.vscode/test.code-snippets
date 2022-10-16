@@ -72,5 +72,18 @@
       "}"
     ],
     "description": "navigation: page for astro"
-  }
+  },
+  "equality overrides": {
+    "prefix": "astro_equality_overrides",
+    "body": [
+      "@override",
+      "bool operator ==(Object other) =>",
+      "\tother is ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} &&",
+      "\tother.$1 == $1;",
+      "",
+      "@override",
+      "int get hashCode => Object.hash($1);"
+    ],
+    "description": "equality overrides for astro"
+  },
 }
