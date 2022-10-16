@@ -3,7 +3,7 @@ import 'package:astro_types/core_types.dart';
 import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 
-import '../services/firebase_auth_service.dart';
+import '../../astro_auth.dart';
 
 class SignOut<T extends AstroState> extends AwayMission<T> {
   @override

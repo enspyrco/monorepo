@@ -10,5 +10,5 @@ void main() async {
 
   initializeAstro();
 
-  runApp(const AstroBase());
+  runApp(const MaterialApp(home: AstroBase()));
 }

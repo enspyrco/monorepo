@@ -7,7 +7,8 @@
     {
       "name": "vanilla",
       "request": "launch",
-      "type": "dart"
+      "type": "dart",
+      "program": "/${workspaceFolder}/lib/main.dart"
     },
     {
       "name": "in-app-inspector",

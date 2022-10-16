@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 export 'src/missions/push_route.dart';
 export 'src/missions/remove_current_route.dart';
 export 'src/transitions/easy_tween_slide_transition.dart';
+export 'src/widgets/pages_navigator.dart';
 
 /// A mixin used by app packages to add the required members to their AppState.
 mixin DefaultNavigationState {
