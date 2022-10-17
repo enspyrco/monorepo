@@ -36,3 +36,9 @@ dev_dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/astro_test_utils
+
+flutter:
+   fonts:
+    - family:  IconsFontFamily
+      fonts:
+       - asset: fonts/IconsFont.ttf

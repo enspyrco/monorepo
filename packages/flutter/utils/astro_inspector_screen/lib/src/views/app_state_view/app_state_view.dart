@@ -1,6 +1,7 @@
 import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
 
+import '../../icons/icons.dart' as icons;
 import '../../state/inspector_state.dart';
 import '../../state/viewmodels/app_state_view_view_model.dart';
 import 'state_tree/key_provider.dart';
@@ -83,7 +84,7 @@ class AppStateView extends StatelessWidget {
                 : Row(
                     children: [
                       Text(previousJson.toString(), style: oldStyle),
-                      const Icon(Icons.arrow_right_alt_rounded),
+                      icons.rightArrow,
                       Text(currentJson.toString(), style: newStyle)
                     ],
                   ),
