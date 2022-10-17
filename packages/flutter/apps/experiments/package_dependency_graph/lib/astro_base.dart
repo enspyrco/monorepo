@@ -12,7 +12,7 @@ import 'app/state/app_state.dart';
 import 'firebase_options.dart';
 import 'home/home_screen.dart';
 
-Future<void> initializeAstro() async {
+Future<void> astroInitialization() async {
   /// Setup FlutterFire
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
