@@ -5,12 +5,19 @@ import 'package:astro_inspector_screen/astro_inspector_screen.dart';
 import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/core_types.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:our_meals/home/home_screen.dart';
 
 import 'app/state/app_state.dart';
+import 'firebase_options.dart';
 
-void initializeAstro() {
+Future<void> astroInitialization() async {
+  /// Setup FlutterFire
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  /// MissionControl, AppState & SystemChecks
   var initialState = AppState.initial
       .copyWith(navigation: NavigationState(stack: [AuthGatePageState()]));
   final sendMissionUpdates = SendMissionUpdatesToInspector<AppState>();
@@ -18,6 +25,7 @@ void initializeAstro() {
       state: initialState, systemChecks: [sendMissionUpdates]));
   Locator.add<SendMissionUpdatesToInspector>(sendMissionUpdates);
 
+  /// Navigation
   Locator.add<PageGenerator>(PageGenerator({
     AuthGatePageState: (state) => const MaterialPage(
         child: AuthGateScreen<AppState>(child: HomeScreen())),
@@ -26,6 +34,7 @@ void initializeAstro() {
             (state as ErrorReportPageState).report)),
   }));
 
+  /// Individual plugin initialization
   astroAuthInit();
 }
 

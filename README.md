@@ -51,11 +51,11 @@ Three letter acronyms used in commit messages:
 - aci = astro_core_interface
 - aeh = astro_error_handling
 - aei = astro_error_handling_interface
+- ais = astro_inspector_screen
 - anv = astro_navigation
 - ast = astro
 - asi = astro_state_interface
 - alr = astro_locator
-- ais = astro_inspector_screen
 - atu = astro_test_utils
 - avs = Adventuverse (project)
 - avm = adventure_maker
@@ -76,6 +76,7 @@ Three letter acronyms used in commit messages:
 - lcr = locator
 - oml = our_meals
 - pae = process_articles_in_emails
+- pdg = package_dependency_graph
 - pdu = pdf_utils
 - rdd = redux_devtools_desktop
 - rdp = run_dart_code_in_pubsub_message

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../icons/icons.dart' as icons;
 import '../functions.dart';
 import '../primitives/tree_controller.dart';
 import '../primitives/tree_node.dart';
@@ -33,8 +34,8 @@ class _NodeWidgetState extends State<NodeWidget> {
     final icon = _isLeaf || _hasSingleLeafChild
         ? null
         : _isExpanded
-            ? Icons.arrow_drop_down
-            : Icons.arrow_right;
+            ? icons.downArrow
+            : icons.rightArrow;
 
     final onIconPressed = _isLeaf
         ? null
@@ -49,7 +50,7 @@ class _NodeWidgetState extends State<NodeWidget> {
           children: [
             IconButton(
               iconSize: widget.iconSize,
-              icon: Icon(icon),
+              icon: icon ?? const Icon(null),
               onPressed: onIconPressed,
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
