@@ -33,6 +33,7 @@ class RemoveErrorReport<S extends AstroState> extends LandingMission<S> {
         'name_': 'RemoveErrorReport',
         'type_': 'sync',
         'id_': hashCode,
-        'parent_': parent?.hashCode
+        'parent_': parent?.hashCode,
+        'state_': <String, dynamic>{}
       };
 }
