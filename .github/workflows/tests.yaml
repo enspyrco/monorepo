@@ -37,15 +37,27 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-      - name: "Install Flutter"
+
+      - name: Cache Flutter
+        id: cache-flutter
+        uses: actions/cache@v3
+        with:
+          path: $HOME/_flutter
+          key: ${{ runner.os }}-${{ hashFiles('.github/flutter_stable_version.txt') }}
+
+      - name: Install Flutter
+        if: steps.cache-flutter.outputs.cache-hit != 'true'
         run: |
           cd $HOME
           git clone https://github.com/flutter/flutter.git --depth 1 -b stable _flutter
           echo "$HOME/_flutter/bin" >> $GITHUB_PATH
           cd $GITHUB_WORKSPACE
+
       - run: flutter pub get
+
       - name: Run build_runner if required
         if: ${{ matrix.run_code_gen }}
         run: flutter pub run build_runner build
+      
       - run: flutter test
 
