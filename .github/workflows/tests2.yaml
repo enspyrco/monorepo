@@ -33,16 +33,16 @@ jobs:
     # container: enspyrco/ci-tools:stable
     defaults:
       run:
-        working-directory: /packages/${{ matrix.package_name }}
+        working-directory: ./packages/${{ matrix.package_name }}
     
     steps:
+      - uses: actions/checkout@v2
       - name: "Install Flutter"
         run: |
           cd $HOME
           git clone https://github.com/flutter/flutter.git --depth 1 -b stable _flutter
           echo "$HOME/_flutter/bin" >> $GITHUB_PATH
           cd $GITHUB_WORKSPACE
-      - uses: actions/checkout@v2
       - run: flutter pub get
       - name: Run build_runner if required
         if: ${{ matrix.run_code_gen }}
