@@ -42,7 +42,7 @@ jobs:
         id: cache-flutter
         uses: actions/cache@v3
         with:
-          path: $HOME/_flutter
+          path: ~/_flutter
           key: ${{ runner.os }}-${{ hashFiles('.github/flutter_stable_version.txt') }}
 
       - name: Install Flutter
