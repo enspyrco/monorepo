@@ -33,7 +33,7 @@ jobs:
     # container: enspyrco/ci-tools:stable
     defaults:
       run:
-        working-directory: ./packages/${{ matrix.package_name }}
+        working-directory: /packages/${{ matrix.package_name }}
     
     steps:
       - name: "Install Flutter"
