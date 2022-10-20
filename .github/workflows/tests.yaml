@@ -43,7 +43,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/_flutter
-          key: ${{ runner.os }}-${{ hashFiles('.github/flutter_stable_version.txt') }}
+          key: ${{ runner.os }}-${{ matrix.package_name }}-${{ hashFiles('.github/flutter_stable_version.txt') }}
 
       - name: Install Flutter
         if: steps.cache-flutter.outputs.cache-hit != 'true'
