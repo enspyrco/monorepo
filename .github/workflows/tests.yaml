@@ -14,7 +14,7 @@ jobs:
       - id: read_matrix
         run: |
           content=`jq -c . .github/matrix.json`
-          echo "json=$content" >> $GITHUB_OUTPUT
+          echo "json={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT   
 
   run_tests:
     name: Run Tests
