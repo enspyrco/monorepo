@@ -19,12 +19,18 @@ jobs:
           echo "json={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
       - run: echo ${{ steps.read-matrix.outputs.json }}
 
+  test_matrix_json:
+    name: Test Matrix JSON
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ needs.setup_matrix.outputs.matrix_json }}
+  
   run_tests:
     name: Run Tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ${{fromJson(needs.setup_matrix.outputs.matrix_json)}}
+        ${{ fromJson(needs.setup_matrix.outputs.matrix_json) }}
     
     # container: enspyrco/ci-tools:stable
     defaults:
