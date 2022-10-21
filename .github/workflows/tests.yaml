@@ -21,12 +21,14 @@ jobs:
 
   test_matrix_json:
     name: Test Matrix JSON
+    needs: setup_matrix
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ needs.setup_matrix.outputs.matrix_json }}
   
   run_tests:
     name: Run Tests
+    needs: setup_matrix
     runs-on: ubuntu-latest
     strategy:
       matrix:
