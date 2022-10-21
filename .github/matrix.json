@@ -1,46 +1,46 @@
 { 
-  "include" : [
+  \"include\" : [
     {
-      "package": "adventure_maker",
-      "path" : "flutter/apps/adventuring/adventure_maker",
-      "source_gen" : true,
-      "project_type": "flutter"
+      \"package\": \"adventure_maker\",
+      \"path\" : \"flutter/apps/adventuring/adventure_maker\",
+      \"source_gen\" : true,
+      \"project_type\": \"flutter\"
     },
     {
-      "package": "redfire",
-      "path" : "flutter/utils/redfire",
-      "source_gen" : false,
-      "project_type": "flutter"
+      \"package\": \"redfire\",
+      \"path\" : \"flutter/utils/redfire\",
+      \"source_gen\" : false,
+      \"project_type\": \"flutter\"
     },
     {
-      "package": "redfire_test",
-      "path" : "flutter/utils/redfire_test",
-      "source_gen" : false,
-      "project_type": "flutter"
+      \"package\": \"redfire_test\",
+      \"path\" : \"flutter/utils/redfire_test\",
+      \"source_gen\" : false,
+      \"project_type\": \"flutter\"
     },
     {
-      "package": "tech_world",
-      "path" : "flutter/apps/adventuring/tech_world",
-      "source_gen" : true,
-      "project_type": "flutter"
+      \"package\": \"tech_world\",
+      \"path\" : \"flutter/apps/adventuring/tech_world\",
+      \"source_gen\" : true,
+      \"project_type\": \"flutter\"
     },
     {
-      "package": "the_process",
-      "path" : "flutter/apps/adventuring/the_process",
-      "source_gen" : true,
-      "project_type": "flutter"
+      \"package\": \"the_process\",
+      \"path\" : \"flutter/apps/adventuring/the_process\",
+      \"source_gen\" : true,
+      \"project_type\": \"flutter\"
     },
     {
-      "package": "ws_game_server",
-      "path" : "dart/servers/ws_game_server",
-      "source_gen" : false,
-      "project_type": "dart"
+      \"package\": \"ws_game_server\",
+      \"path\" : \"dart/servers/ws_game_server\",
+      \"source_gen\" : false,
+      \"project_type\": \"dart\"
     },
     {
-      "package": "ws_game_server_types",
-      "path" : "dart/servers/ws_game_server_types",
-      "source_gen" : false,
-      "project_type": "dart"
+      \"package\": \"ws_game_server_types\",
+      \"path\" : \"dart/servers/ws_game_server_types\",
+      \"source_gen\" : false,
+      \"project_type\": \"dart\"
     }
   ]
 }
