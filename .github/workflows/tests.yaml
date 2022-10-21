@@ -13,8 +13,8 @@ jobs:
       - uses: actions/checkout@v3
       - id: read_matrix
         run: |
-          content=`jq '.' .github/matrix.json`
-          echo "::set-output name=json::$content"
+          content=$(cat .github/matrix.json)
+          echo "json=${content//'%'/'%25'}" >> $GITHUB_OUTPUT
 
   run_tests:
     name: Run Tests
