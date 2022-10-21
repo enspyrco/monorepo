@@ -18,13 +18,6 @@ jobs:
           content=`jq -c . .github/matrix.json`
           echo "json=$content" >> $GITHUB_OUTPUT
       - run: echo ${{ steps.read-matrix.outputs.json }}
-
-  test_matrix_json:
-    name: Test Matrix JSON
-    needs: setup_matrix
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo ${{ needs.setup_matrix.outputs.matrix_json }}
   
   run_tests:
     name: Run Tests
@@ -37,9 +30,11 @@ jobs:
     # container: enspyrco/ci-tools:stable
     defaults:
       run:
-        working-directory: ./packages/${{ matrix.package }}
+        working-directory: ./packages/${{ matrix.path }}
     
     steps:
+      - run: echo ${{ matrix }}
+
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
@@ -49,7 +44,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/_flutter
-          key: ${{ runner.os }}-${{ matrix.package_name }}-${{ hashFiles('.github/flutter_stable_version.txt') }}
+          key: ${{ runner.os }}-${{ matrix.package }}-${{ hashFiles('.github/flutter_stable_version.txt') }}
 
       - name: Install Flutter
         if: steps.cache-flutter.outputs.cache-hit != 'true'
@@ -64,7 +59,7 @@ jobs:
       - run: flutter pub get
 
       - name: Run build_runner if required
-        if: ${{ matrix.run_code_gen }}
+        if: ${{ matrix.source_gen }}
         run: flutter pub run build_runner build
       
       - run: flutter test
