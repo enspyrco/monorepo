@@ -6,14 +6,14 @@ on:
       - main
 
 jobs:
-  setup:
-    name: Setup
+  setup_matrix:
+    name: Setup Matrix
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - id: read_matrix
         run: |
-          content=$(cat .github/matrix.json)
+          content=`jq -c . .github/matrix.json`
           echo "json=$content" >> $GITHUB_OUTPUT
 
   run_tests:
