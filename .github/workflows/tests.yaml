@@ -10,6 +10,7 @@ jobs:
     name: Setup
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - id: read_matrix
         run: |
           content=`jq '.' .github/matrix.json`
