@@ -13,6 +13,8 @@ jobs:
       matrix_json: ${{ steps.read-matrix.outputs.json }}
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
       - id: read-matrix
         run: |
           content=`jq -c . .github/matrix.json`
@@ -34,10 +36,6 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
-      
-      - run: echo ${{ matrix }}
 
       - name: Cache Flutter
         id: cache-flutter
