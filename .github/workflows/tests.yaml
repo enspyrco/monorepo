@@ -9,19 +9,22 @@ jobs:
   setup_matrix:
     name: Setup Matrix
     runs-on: ubuntu-latest
+    outputs:
+      matrix_json: ${{ steps.read-matrix.outputs.json }}
     steps:
       - uses: actions/checkout@v3
-      - id: read_matrix
+      - id: read-matrix
         run: |
           content=`jq -c . .github/matrix.json`
-          echo "json={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT   
+          echo "json={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
+      - run: echo ${{ steps.read-matrix.outputs.json }}
 
   run_tests:
     name: Run Tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ${{fromJson(needs.read_matrix.outputs.json)}}
+        ${{fromJson(needs.setup_matrix.outputs.matrix_json)}}
     
     # container: enspyrco/ci-tools:stable
     defaults:
