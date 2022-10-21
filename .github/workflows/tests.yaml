@@ -33,11 +33,11 @@ jobs:
         working-directory: ./packages/${{ matrix.path }}
     
     steps:
-      - run: echo ${{ matrix }}
-
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
+      
+      - run: echo ${{ matrix }}
 
       - name: Cache Flutter
         id: cache-flutter
