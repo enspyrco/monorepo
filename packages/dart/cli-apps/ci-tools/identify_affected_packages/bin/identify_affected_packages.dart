@@ -33,7 +33,7 @@ void main(List<String> arguments) async {
   for (var packagePath in packagePaths) {
     bool found = false;
     for (var pathName in pathNames) {
-      if (path.isWithin(packagePath, pathName)) {
+      if (path.isWithin('packages/$packagePath', pathName)) {
         found = true;
         break;
       }
@@ -42,6 +42,8 @@ void main(List<String> arguments) async {
   }
 
   // write out the matrix file, minus the unaffected packages
-  var updatedJson = <String, dynamic>{'include': pathMap.values};
+  var updatedJson = <String, dynamic>{
+    'include': pathMap.values.where((e) => e != null).toList()
+  };
   matrixFile.writeAsStringSync(jsonEncode(updatedJson));
 }
