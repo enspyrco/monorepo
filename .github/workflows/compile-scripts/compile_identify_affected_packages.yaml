@@ -1,0 +1,26 @@
+name: Compile identify_affected_packages
+
+on:
+  push:
+    paths:
+      - 'packages/dart/cli-apps/ci-tools/identify_affected_packages/**'
+    branches:
+      - main
+
+jobs:
+  compile_dart:
+    name: Compile
+    runs-on: ubuntu-latest
+    container: dart:stable
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          cd packages/dart/cli-apps/ci-tools/identify_affected_packages
+          dart compile exe bin/identify_affected_packages.dart -o ~/.github/scripts/identify_affected_packages
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Save new identify_affected_packages"
+          git push
+
+    
