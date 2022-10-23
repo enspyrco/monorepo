@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "identify_affected_packages",
+      "type": "dart",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/identify_affected_packages.dart",
+      "cwd": "/Users/nick/git/orgs/enspyrco/monorepo",
+      "args": ["analyze"]
+    }
+  ]
+}
