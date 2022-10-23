@@ -17,7 +17,7 @@ jobs:
       - run: |
           cd packages/dart/cli-apps/ci-tools/identify_affected_packages
           dart pub get
-          dart compile exe bin/identify_affected_packages.dart -o ~/.github/scripts/identify_affected_packages
+          dart compile exe bin/identify_affected_packages.dart -o $GITHUB_WORKSPACE/.github/scripts/identify_affected_packages
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
