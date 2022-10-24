@@ -2,8 +2,8 @@ name: Compile identify_affected_packages
 
 on:
   push:
-    paths:
-      - 'packages/dart/cli-apps/ci-tools/identify_affected_packages/**'
+    # paths:
+    #   - 'packages/dart/cli-apps/ci-tools/identify_affected_packages/**'
     branches:
       - identify_affected_packages # main
 
@@ -28,6 +28,7 @@ jobs:
 
       - name: commit
         run: |
-          git add $GITHUB_WORKSPACE/.github/scripts/identify_affected_packages
-          git commit -m "chore(*): Update identify_affected_packages script"
-          git push origin main
+          git branch -b
+          # git add $GITHUB_WORKSPACE/.github/scripts/identify_affected_packages
+          # git commit -m "chore(*): Update identify_affected_packages script"
+          # git push origin main
