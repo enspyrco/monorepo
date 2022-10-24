@@ -1,11 +1,13 @@
 # identify_affected_packages
 
-*A Dart CLI app to identify which packages need testing during CI.*
+*A Dart script that identifies which packages need testing during CI.*
 
-The app reads in the set of all packages (saved in .github/matrix.json), calls
-git diff via Process.run to get the paths of the changed files, checks those
-paths against the set of all packages and writes out an adjusted matrix.json
-so that the tests still run in parallel.
+The script will:
+
+- read in the set of all packages, saved in `.github/matrix.json`
+- call `git diff` via `Process.run` to get the paths of changed files
+- check paths of changed files against the set of all packages
+- write out an adjusted `matrix.json` with only affected packages
 
 ## Compiling for CI
 
