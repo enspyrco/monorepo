@@ -15,20 +15,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: compile
-        run: |
-          cd packages/dart/cli-apps/ci-tools/identify_affected_packages
-          dart pub get
-          dart compile exe bin/identify_affected_packages.dart -o $GITHUB_WORKSPACE/.github/scripts/identify_affected_packages
-      
-      - name: setup git
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+      - run: git branch
 
-      - name: commit
-        run: |
-          git branch -b
-          # git add $GITHUB_WORKSPACE/.github/scripts/identify_affected_packages
-          # git commit -m "chore(*): Update identify_affected_packages script"
-          # git push origin main
+      # - name: compile
+      #   run: |
+      #     cd packages/dart/cli-apps/ci-tools/identify_affected_packages
+      #     dart pub get
+      #     dart compile exe bin/identify_affected_packages.dart -o $GITHUB_WORKSPACE/.github/scripts/identify_affected_packages
+      
+      # - name: setup git
+      #   run: |
+      #     git config user.name "GitHub Actions Bot"
+      #     git config user.email "<>"
+
+      # - name: commit
+      #   run: |
+      #     git add $GITHUB_WORKSPACE/.github/scripts/identify_affected_packages
+      #     git commit -m "chore(*): Update identify_affected_packages script"
+      #     git push origin main
