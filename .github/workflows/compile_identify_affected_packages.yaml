@@ -2,10 +2,8 @@ name: Compile identify_affected_packages
 
 on:
   push:
-    # paths:
-    #   - 'packages/dart/cli-apps/ci-tools/identify_affected_packages/**'
     branches:
-      - identify_affected_packages # main
+      - __compile__identify_affected_packages
 
 jobs:
   compile_dart:
