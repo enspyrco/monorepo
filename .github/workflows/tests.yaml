@@ -39,7 +39,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: echo needs.setup_matrix.outputs.matrix_json
+      - run: echo ${{ needs.setup_matrix.outputs.matrix_json }}
 
       - name: Cache Flutter
         id: cache-flutter
