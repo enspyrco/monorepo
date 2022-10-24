@@ -24,7 +24,7 @@ void main(List<String> arguments) async {
 
   if (result.exitCode != 0) {
     stderr.write(result.stderr);
-    exit(1);
+    exit(result.exitCode);
   }
 
   var pathNames = (result.stdout as String).split('\n');
