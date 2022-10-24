@@ -6,7 +6,7 @@
       "type": "dart",
       "request": "launch",
       "program": "${workspaceFolder}/bin/identify_affected_packages.dart",
-      "cwd": "/Users/nick/git/orgs/enspyrco/monorepo",
+      "cwd": "${workspaceFolder}/../../../../../",
     }
   ]
 }
