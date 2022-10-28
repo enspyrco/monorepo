@@ -1,0 +1,35 @@
+# Recommended lints for Flutter apps, packages, and plugins.
+
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - build/**
+    - lib/*.g.dart
+    - lib/*.freezed.dart
+    - lib/**/*.g.dart
+    - lib/**/*.freezed.dart
+    - lib/**/*.mocks.dart
+    - test/**/*.g.dart
+    - test/**/*.freezed.dart
+    - test/**/*.mocks.dart
+  language:
+    strict-casts: true
+    strict-raw-types: true
+
+linter:
+  rules:
+    - prefer_relative_imports
+
+# prefer_relative_imports
+# 
+# reason:
+#  - There are reasons for both package and relative imports
+#  - Effective Dart says relative: https://dart.dev/guides/language/effective-dart/usage#prefer-relative-import-paths
+#
+#
+# avoid_relative_lib_imports
+# reason:
+#  - Effective Dart says so: https://dart.dev/guides/language/effective-dart/usage#dont-allow-an-import-path-to-reach-into-or-out-of-lib
+#
+#
