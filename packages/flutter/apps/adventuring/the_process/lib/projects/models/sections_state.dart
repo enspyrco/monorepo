@@ -1,3 +1,4 @@
+import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 
 import 'section_model.dart';
@@ -29,8 +30,9 @@ class SectionsState with AstroState {
       );
 
   @override
-  toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  JsonMap toJson() => {
+        'newName': newName,
+        'list': list.map((e) => e.toJson()).toList(),
+        'creatingNewSection': creatingNewSection,
+      };
 }

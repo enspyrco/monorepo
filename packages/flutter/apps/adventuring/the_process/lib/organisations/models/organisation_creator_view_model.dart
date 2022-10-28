@@ -1,3 +1,4 @@
+import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 
 class OrganisationCreatorViewModel with AstroState {
@@ -18,11 +19,13 @@ class OrganisationCreatorViewModel with AstroState {
     bool? creating,
   }) =>
       OrganisationCreatorViewModel(
-          creating: creating ?? this.creating, name: name ?? this.name);
+        creating: creating ?? this.creating,
+        name: name ?? this.name,
+      );
 
   @override
-  toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  JsonMap toJson() => {
+        'creating': creating,
+        'name': name,
+      };
 }

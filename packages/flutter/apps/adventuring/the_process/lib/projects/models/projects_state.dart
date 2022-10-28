@@ -1,3 +1,4 @@
+import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 
 import 'project_state.dart';
@@ -22,8 +23,8 @@ class ProjectsState with AstroState {
       );
 
   @override
-  toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  JsonMap toJson() => {
+        'all': all.map((e) => e.toJson()).toList(),
+        'creating': creating,
+      };
 }

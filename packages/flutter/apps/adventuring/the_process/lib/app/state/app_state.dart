@@ -1,6 +1,7 @@
 import 'package:astro_auth/astro_auth.dart';
 import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_navigation/astro_navigation.dart';
+import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 import 'package:flutter/material.dart';
 import 'package:the_process/projects/models/sections_state.dart';
@@ -75,8 +76,12 @@ class AppState
       );
 
   @override
-  toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  JsonMap toJson() => {
+        'navigation': navigation.toJson(),
+        'auth': auth.toJson(),
+        'error': error.toJson(),
+        'organisations': organisations.toJson(),
+        'sections': sections.toJson(),
+        'projects': projects.toJson(),
+      };
 }

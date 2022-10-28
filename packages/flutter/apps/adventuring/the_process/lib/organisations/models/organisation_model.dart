@@ -1,3 +1,4 @@
+import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 
 class OrganisationModel with AstroState {
@@ -51,8 +52,11 @@ class OrganisationModel with AstroState {
       );
 
   @override
-  toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  JsonMap toJson() => {
+        'id': id,
+        'name': name,
+        'ownerIds': [...ownerIds],
+        'adminIds': [...adminIds],
+        'memberIds': [...memberIds],
+      };
 }

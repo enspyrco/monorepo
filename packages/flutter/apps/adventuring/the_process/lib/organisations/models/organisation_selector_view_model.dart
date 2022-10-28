@@ -25,8 +25,8 @@ class OrganisationSelectorViewModel with AstroState {
       );
 
   @override
-  toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  toJson() => {
+        'selected': selected?.toJson(),
+        'all': all.map((OrganisationModel e) => e.toJson).toList(),
+      };
 }
