@@ -4,13 +4,13 @@
       "name": "vanilla",
       "request": "launch",
       "type": "dart",
-      // "program": "/${workspaceFolder}/lib/main.dart"
+      "program": "${workspaceFolder:the_process}/lib/main.dart"
     },
     {
       "name": "in-app-inspector",
       "request": "launch",
       "type": "dart",
-      // "program": "/${workspaceFolder}/lib/main.dart",
+      "program": "${workspaceFolder:the_process}/lib/main.dart",
       "toolArgs": [
         "--dart-define",
         "IN-APP-ASTRO-INSPECTOR=true"
@@ -20,6 +20,7 @@
       "name": "devtools-inspector",
       "request": "launch",
       "type": "dart",
+      "program": "${workspaceFolder:the_process}/lib/main.dart",
       "toolArgs": [
         "--dart-define",
         "DEVTOOLS-ASTRO-INSPECTOR=true"
