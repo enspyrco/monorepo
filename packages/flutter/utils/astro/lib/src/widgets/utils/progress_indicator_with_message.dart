@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Just a [CircularProgressIndicator] and a message in a column.
 class ProgressIndicatorWithMessage extends StatelessWidget {
-  const ProgressIndicatorWithMessage({required this.message, super.key});
+  const ProgressIndicatorWithMessage(this.message, {super.key});
 
   final String message;
 

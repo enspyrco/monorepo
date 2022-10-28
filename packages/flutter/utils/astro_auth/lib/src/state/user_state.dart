@@ -1,3 +1,4 @@
+import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 
 enum SignedInState {
@@ -72,7 +73,7 @@ class AuthState extends AstroState {
   AuthState copyWith({UserState? user}) => AuthState(user: user ?? this.user);
 
   @override
-  toJson() => {'user': user.toJson()};
+  JsonMap toJson() => {'user': user.toJson()};
 
   @override
   bool operator ==(Object other) => other is AuthState && other.user == user;

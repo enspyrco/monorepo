@@ -17,7 +17,7 @@ class AuthGateScreen<S extends AstroState> extends StatelessWidget {
       builder: ((context, signedInState) {
         switch (signedInState) {
           case SignedInState.checking:
-            return ProgressIndicatorWithMessage(message: 'Checking...');
+            return ProgressIndicatorWithMessage('Checking...');
           case SignedInState.notSignedIn:
             return SignInScreen<S>();
           case SignedInState.signedIn:

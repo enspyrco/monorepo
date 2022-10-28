@@ -2,6 +2,7 @@ library astro_navigation;
 
 import 'package:astro_types/navigation_types.dart';
 import 'package:astro_types/state_types.dart';
+import 'package:astro_types/json_types.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class NavigationState extends AstroState {
   }
 
   @override
-  Map<String, dynamic> toJson() {
+  JsonMap toJson() {
     return {'stack': stack.map((e) => (e as AstroState).toJson()).toList()};
   }
 

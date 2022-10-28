@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_auth: ^3.4.0
+  firebase_auth: ^4.0.2
   sign_in_with_apple: ^4.1.0
   crypto: ^3.0.2
   astro_locator:
