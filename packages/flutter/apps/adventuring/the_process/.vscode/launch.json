@@ -1,21 +1,28 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
   "configurations": [
     {
-      "name": "the_process",
+      "name": "vanilla",
       "request": "launch",
-      "type": "dart"
+      "type": "dart",
+      // "program": "/${workspaceFolder}/lib/main.dart"
     },
     {
-      "name": "the_process (devtools)",
+      "name": "in-app-inspector",
+      "request": "launch",
+      "type": "dart",
+      // "program": "/${workspaceFolder}/lib/main.dart",
+      "toolArgs": [
+        "--dart-define",
+        "IN-APP-ASTRO-INSPECTOR=true"
+      ]
+    },
+    {
+      "name": "devtools-inspector",
       "request": "launch",
       "type": "dart",
       "toolArgs": [
         "--dart-define",
-        "REDUX_DEVTOOLS=true"
+        "DEVTOOLS-ASTRO-INSPECTOR=true"
       ]
     }
   ]
