@@ -1,13 +1,13 @@
 {
   "away mission": {
-    "prefix": "astro_away_mission",
+    "prefix": "astro_mission(away)",
     "body": [
       "import 'package:astro_types/core_types.dart';",
       "",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} extends AwayMission<AppState> {",
       "",
       "\t@override",
-      "\tFuture<void> flightPlan(AwayMissionControl<AppState> missionControl) async {",
+      "\tFuture<void> flightPlan(MissionControl<AppState> missionControl) async {",
       "\t\tvar service = locate<>();",
       "\t}",
       "",
@@ -19,7 +19,7 @@
     "description": "away mission for astro"
   },
   "landing mission": {
-    "prefix": "astro_landing_mission",
+    "prefix": "astro_mission(landing)",
     "body": [
       "import 'package:astro_types/core_types.dart';",
       "",
