@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class EasyTweenSlideTransition extends StatelessWidget {
-  const EasyTweenSlideTransition(
+class BasicTweenSlideTransition extends StatelessWidget {
+  const BasicTweenSlideTransition(
       {required this.animation, required this.child, super.key});
 
   final Widget child;

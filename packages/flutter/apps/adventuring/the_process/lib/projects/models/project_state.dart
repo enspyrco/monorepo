@@ -1,4 +1,6 @@
+import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 
 class ProjectState with AstroState {
   ProjectState({
@@ -32,11 +34,21 @@ class ProjectState with AstroState {
   factory ProjectState.fromJson(Map<String, dynamic> json) => ProjectState(
         id: json['id'],
         name: json['name'],
-        ownerIds: json['ownerIds'],
-        adminIds: json['adminIds'],
-        memberIds: json['memberIds'],
-        organisationIds: json['organisationIds'],
-        sectionIds: json['sectionIds'],
+        ownerIds: {...json['ownerIds']},
+        adminIds: {...json['adminIds']},
+        memberIds: {...json['memberIds']},
+        organisationIds: {...json['organisationIds']},
+        sectionIds: {...json['sectionIds']},
+      );
+
+  factory ProjectState.fromDocument(Document doc) => ProjectState(
+        id: doc.id,
+        name: doc.fields['name'],
+        ownerIds: {...doc.fields['ownerIds']},
+        adminIds: {...doc.fields['adminIds']},
+        memberIds: {...doc.fields['memberIds']},
+        organisationIds: {...doc.fields['organisationIds']},
+        sectionIds: {...doc.fields['sectionIds']},
       );
 
   @override
@@ -60,8 +72,13 @@ class ProjectState with AstroState {
       );
 
   @override
-  toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  JsonMap toJson() => <String, dynamic>{
+        'id': id,
+        'name': name,
+        'ownerIds': <String>[...ownerIds],
+        'adminIds': <String>[...adminIds],
+        'memberIds': <String>[...memberIds],
+        'organisationIds': <String>[...organisationIds],
+        'sectionIds': <String>[...sectionIds],
+      };
 }

@@ -1,5 +1,6 @@
 import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 
 class OrganisationModel with AstroState {
   OrganisationModel({
@@ -42,21 +43,29 @@ class OrganisationModel with AstroState {
         memberIds: memberIds ?? this.memberIds,
       );
 
+  factory OrganisationModel.fromDocument(Document doc) => OrganisationModel(
+        id: doc.id,
+        name: doc.fields['name'],
+        ownerIds: <String>{...doc.fields['ownerIds']},
+        adminIds: <String>{...doc.fields['adminIds']},
+        memberIds: <String>{...doc.fields['memberIds']},
+      );
+
   factory OrganisationModel.fromJson(Map<String, dynamic> json) =>
       OrganisationModel(
         id: json['id'],
         name: json['name'],
-        ownerIds: json['ownerIds'],
-        adminIds: json['adminIds'],
-        memberIds: json['memberIds'],
+        ownerIds: <String>{...json['ownerIds']},
+        adminIds: <String>{...json['adminIds']},
+        memberIds: <String>{...json['memberIds']},
       );
 
   @override
   JsonMap toJson() => {
         'id': id,
         'name': name,
-        'ownerIds': [...ownerIds],
-        'adminIds': [...adminIds],
-        'memberIds': [...memberIds],
+        'ownerIds': <String>[...ownerIds],
+        'adminIds': <String>[...adminIds],
+        'memberIds': <String>[...memberIds],
       };
 }

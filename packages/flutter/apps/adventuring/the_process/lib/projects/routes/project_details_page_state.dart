@@ -6,5 +6,5 @@ class ProjectDetailsPageState<T extends AstroState> with PageState, AstroState {
   ProjectDetailsPageState<T> copyWith() => this;
 
   @override
-  toJson() => {'type': 'ProjectDetailsPageStatePageState'};
+  toJson() => {'type': 'ProjectDetailsPageState'};
 }

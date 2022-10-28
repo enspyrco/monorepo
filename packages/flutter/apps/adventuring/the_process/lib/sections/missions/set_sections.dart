@@ -19,6 +19,7 @@ class SetSections extends LandingMission<AppState> {
         'name_': 'SetSection',
         'type_': 'sync',
         'id_': hashCode,
-        'parent_': parent?.hashCode
+        'parent_': parent?.hashCode,
+        'state_': {'list': _list.map((e) => e.toJson()).toList()},
       };
 }

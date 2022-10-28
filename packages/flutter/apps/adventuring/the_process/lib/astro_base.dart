@@ -6,6 +6,8 @@ import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firestore_service_flutterfire/firestore_service_flutterfire.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 import 'package:flutter/material.dart';
 
 import 'app/state/app_state.dart';
@@ -21,7 +23,7 @@ Future<void> astroInitialization() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  /// MissionControl, AppState & SystemChecks
+  ///
   var initialState = AppState.initial
       .copyWith(navigation: NavigationState(stack: [AuthGatePageState()]));
 
@@ -37,6 +39,7 @@ Future<void> astroInitialization() async {
   /// Create our MissionControl and add to the Locator
   Locator.add<MissionControl<AppState>>(DefaultMissionControl<AppState>(
       state: initialState, systemChecks: systemChecks));
+  Locator.add<FirestoreService>(FirestoreServiceFlutterfire());
 
   /// Setup navigation by adding a [PageGenerator] to the [Locator], that will be
   /// used to turn a [PageState] from [AppState.navigation.stack] into a [Page]

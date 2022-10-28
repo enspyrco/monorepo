@@ -33,10 +33,9 @@ class TapProjects extends AwayMission<AppState> {
     // ... and direct the stream to the store.
     _subscription = changes.listen((documents) {
       var models = documents
-          .map<ProjectState>(
-              (document) => ProjectState.fromJson(document.fields))
+          .map<ProjectState>((document) => ProjectState.fromDocument(document))
           .toSet();
-      missionControl.land(SetProjects(projects: models));
+      missionControl.land(SetProjects(models));
     }, onError: (error) => throw error);
   }
 
@@ -46,5 +45,9 @@ class TapProjects extends AwayMission<AppState> {
         'type_': 'async',
         'id_': hashCode,
         'parent_': parent?.hashCode,
+        'state_': {
+          'organisationId': _organisationId,
+          'turnOff': _turnOff,
+        },
       };
 }

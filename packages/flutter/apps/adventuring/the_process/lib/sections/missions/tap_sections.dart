@@ -38,6 +38,7 @@ class TapSections extends AwayMission<AppState> {
         'name_': 'TapSections',
         'type_': 'async',
         'id_': hashCode,
-        'parent_': parent?.hashCode
+        'parent_': parent?.hashCode,
+        'state_': {'turnOff': _turnOff},
       };
 }

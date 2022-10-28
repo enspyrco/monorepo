@@ -22,6 +22,6 @@ class SetSelectedOrganisation extends LandingMission<AppState> {
         'type_': 'sync',
         'id_': hashCode,
         'parent_': parent?.hashCode,
-        'state_': organisation?.toJson()
+        'state_': <String, dynamic>{'organisation': organisation?.toJson()}
       };
 }

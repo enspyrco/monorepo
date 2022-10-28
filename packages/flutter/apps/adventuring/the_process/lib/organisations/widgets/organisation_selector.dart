@@ -1,6 +1,7 @@
 import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
 import 'package:the_process/build_context_extensions.dart';
+import 'package:the_process/organisations/missions/tap_organisations.dart';
 
 import '../../app/state/app_state.dart';
 import '../../projects/missions/tap_projects.dart';
@@ -14,6 +15,9 @@ class OrganisationSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OnStateChangeBuilder<AppState, OrganisationSelectorViewModel>(
+        onInit: (missionControl) => missionControl.launch(TapOrganisations()),
+        onDispose: (missionControl) =>
+            missionControl.launch(TapOrganisations(turnOff: true)),
         transformer: (state) => state.organisations.selector,
         builder: (context, selector) {
           return DropdownButton<OrganisationModel>(

@@ -23,15 +23,15 @@ class TapOrganisations extends AwayMission<AppState> {
     await _subscription?.cancel();
     if (_turnOff) return;
 
-    // ... otherwise tap the database at the appropriate location...
+    // Tap into the database at the appropriate location
     var service = locate<FirestoreService>();
     final organisationsChanges = service.tapIntoCollection(at: 'organisations');
 
-    // ... and direct the stream to the store.
+    // Direct the stream of changes to the store.
     _subscription = organisationsChanges.listen((documents) {
       var organisations = documents
           .map<OrganisationModel>(
-              (document) => OrganisationModel.fromJson(document.fields))
+              (document) => OrganisationModel.fromDocument(document))
           .toSet();
 
       // Find any added organisatons.
@@ -63,6 +63,7 @@ class TapOrganisations extends AwayMission<AppState> {
         'name_': 'TapOrganisations',
         'type_': 'async',
         'id_': hashCode,
-        'parent_': parent?.hashCode
+        'parent_': parent?.hashCode,
+        'state_': {'turnOff': _turnOff},
       };
 }
