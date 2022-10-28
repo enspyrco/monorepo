@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../models/section_model.dart';
-import 'buttons/section_folder_button.dart';
-import 'buttons/use_case_document_button.dart';
 
 class SectionsListItem extends StatelessWidget {
   final SectionModel _section;
@@ -29,12 +27,6 @@ class SectionsListItem extends StatelessWidget {
                   style: const TextStyle(fontSize: 20),
                 ),
               ),
-              Row(
-                children: [
-                  UseCaseDocumentButton(_section.useCasesDocId),
-                  SectionFolderButton(_section.folderId),
-                ],
-              )
             ],
           ),
         ),

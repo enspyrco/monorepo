@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:redfire/widgets.dart';
 
-import '../app_state.dart';
 import '../organisations/widgets/organisation_selector.dart';
 import '../projects/widgets/grid-view/projects_grid.dart';
 import 'logo_icon.dart';
@@ -50,12 +48,12 @@ class _BasicAppBarState extends State<BasicAppBar> {
               LogoIcon(),
               Spacer(),
               NotificationsButton(),
-              AvatarMenuButton<AppState>(
-                options: {
-                  MenuOptionPreset.accountDetails,
-                  MenuOptionPreset.signOut
-                },
-              ),
+              // AvatarMenuButton<AppState>(
+              //   options: {
+              //     MenuOptionPreset.accountDetails,
+              //     MenuOptionPreset.signOut
+              //   },
+              // ),
             ],
           ),
         ),

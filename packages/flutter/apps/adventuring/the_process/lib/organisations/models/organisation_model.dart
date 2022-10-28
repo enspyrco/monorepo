@@ -1,35 +1,58 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/state_types.dart';
 
-part 'organisation_model.freezed.dart';
-part 'organisation_model.g.dart';
-
-@freezed
-class OrganisationModel with _$OrganisationModel, ReduxState {
-  static const String className = 'OrganisationModel';
-
-  const OrganisationModel._();
-  factory OrganisationModel({
+class OrganisationModel with AstroState {
+  OrganisationModel({
     // A unique id, current implementation is the firestore document id
-    required String id,
-    required String name,
-    required ISet<String> ownerIds,
-    required ISet<String> adminIds,
-    required ISet<String> memberIds,
-  }) = _Organisation;
+    required this.id,
+    required this.name,
+    required this.ownerIds,
+    required this.adminIds,
+    required this.memberIds,
+  });
 
-  factory OrganisationModel.fromJson(JsonMap json) =>
-      _$OrganisationModelFromJson(json);
+  final String id;
+  final String name;
+  final Set<String> ownerIds;
+  final Set<String> adminIds;
+  final Set<String> memberIds;
 
-  factory OrganisationModel.init({required String name}) => OrganisationModel(
+  factory OrganisationModel.initWith({required String name}) =>
+      OrganisationModel(
         id: '', // temporary value indicating not saved to DB yet
         name: name,
-        ownerIds: ISet(),
-        adminIds: ISet(),
-        memberIds: ISet(),
+        ownerIds: Set(),
+        adminIds: Set(),
+        memberIds: Set(),
       );
 
   @override
-  String get typeName => className;
+  OrganisationModel copyWith({
+    String? id,
+    String? name,
+    Set<String>? ownerIds,
+    Set<String>? adminIds,
+    Set<String>? memberIds,
+  }) =>
+      OrganisationModel(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        ownerIds: ownerIds ?? this.ownerIds,
+        adminIds: adminIds ?? this.adminIds,
+        memberIds: memberIds ?? this.memberIds,
+      );
+
+  factory OrganisationModel.fromJson(Map<String, dynamic> json) =>
+      OrganisationModel(
+        id: json['id'],
+        name: json['name'],
+        ownerIds: json['ownerIds'],
+        adminIds: json['adminIds'],
+        memberIds: json['memberIds'],
+      );
+
+  @override
+  toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
 }

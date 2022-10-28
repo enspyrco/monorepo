@@ -1,11 +1,9 @@
+import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redfire/widgets.dart';
-
-import '../../../app_state.dart';
-import '../../../sections/actions/tap_sections_action.dart';
-import '../../models/sections_v_m.dart';
+import '../../../app/state/app_state.dart';
+import '../../../sections/missions/tap_sections.dart';
+import '../../models/sections_state.dart';
 import 'new_section_item.dart';
 import 'sections_list_view.dart';
 
@@ -13,13 +11,12 @@ class SectionsView extends StatelessWidget {
   const SectionsView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, SectionsVM?>(
-      onInit: (store) => store.dispatch(const TapSectionsAction()),
-      distinct: true,
-      converter: (store) => store.state.sections,
+    return OnStateChangeBuilder<AppState, SectionsState?>(
+      onInit: (missionControl) => missionControl.launch(TapSections()),
+      transformer: (state) => state.sections,
       builder: (context, vm) {
         if (vm == null || vm.creatingNewSection) {
-          return const WaitingIndicator('Creating...');
+          return const ProgressIndicatorWithMessage('Creating...');
         }
         return Column(
           children: [

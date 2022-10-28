@@ -1,8 +1,7 @@
+import 'package:astro/astro.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:redfire/widgets.dart';
-import 'package:redfire_test/redfire_test.dart';
-import 'package:the_process/app_state.dart';
+import 'package:the_process/app/state/app_state.dart';
 import 'package:the_process/projects/models/section_model.dart';
 import 'package:the_process/projects/widgets/project-detail/new_section_item.dart';
 import 'package:the_process/projects/widgets/project-detail/sections_view.dart';
@@ -16,7 +15,8 @@ void main() {
         (widgetTester) async {
       // Setup the harness and check it is in the initial state.
       final harness = WidgetTestHarness.withFakeStore(
-          initialState: AppState.init(), widgetUnderTest: const SectionsView());
+          initialState: AppState.initial,
+          widgetUnderTest: const SectionsView());
       expect(harness.state.sections.creatingNewSection, false);
       expect(harness.state.sections.list, BuiltList<SectionModel>());
 
@@ -24,7 +24,7 @@ void main() {
       await widgetTester.pumpWidget(harness.widget);
 
       final newSectionItem = find.byType(NewSectionItem);
-      final waitingIndicator = find.byType(WaitingIndicator);
+      final waitingIndicator = find.byType(ProgressIndicatorWithMessage);
 
       expect(newSectionItem, findsOneWidget);
       expect(waitingIndicator, findsNothing);
@@ -34,7 +34,7 @@ void main() {
         'should show waiting indicator given creatingNewSection is true',
         (widgetTester) async {
       final appState =
-          AppState.init().copyWith.sections(creatingNewSection: true);
+          AppState.initial.copyWith.sections(creatingNewSection: true);
 
       // Setup the harness and check it is in the initial state.
       final harness = WidgetTestHarness.withFakeStore(
@@ -46,7 +46,7 @@ void main() {
       await widgetTester.pumpWidget(harness.widget);
 
       final newSectionItem = find.byType(NewSectionItem);
-      final waitingIndicator = find.byType(WaitingIndicator);
+      final waitingIndicator = find.byType(ProgressIndicatorWithMessage);
 
       expect(newSectionItem, findsNothing);
       expect(waitingIndicator, findsOneWidget);

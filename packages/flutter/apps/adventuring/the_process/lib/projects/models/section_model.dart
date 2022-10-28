@@ -1,16 +1,37 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/state_types.dart';
 
-part 'section_model.freezed.dart';
-part 'section_model.g.dart';
+class SectionModel with AstroState {
+  SectionModel({
+    required this.name,
+    required this.folderId,
+    required this.useCasesDocId,
+  });
 
-@freezed
-class SectionModel with _$SectionModel {
-  factory SectionModel({
-    required String name,
-    required String folderId,
-    required String useCasesDocId,
-  }) = _SectionModel;
+  final String name;
+  final String folderId;
+  final String useCasesDocId;
 
-  factory SectionModel.fromJson(JsonMap json) => _$SectionModelFromJson(json);
+  @override
+  SectionModel copyWith({
+    String? name,
+    String? folderId,
+    String? useCasesDocId,
+  }) =>
+      SectionModel(
+        name: name ?? this.name,
+        folderId: folderId ?? this.folderId,
+        useCasesDocId: useCasesDocId ?? this.useCasesDocId,
+      );
+
+  factory SectionModel.fromJson(Map<String, dynamic> json) => SectionModel(
+        name: json['json'],
+        folderId: json['folderId'],
+        useCasesDocId: json['useCasesDocId'],
+      );
+
+  @override
+  toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
 }

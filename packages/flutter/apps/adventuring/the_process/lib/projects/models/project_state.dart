@@ -1,37 +1,67 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/state_types.dart';
 
-part 'project_state.freezed.dart';
-part 'project_state.g.dart';
+class ProjectState with AstroState {
+  ProjectState({
+    required this.id,
+    required this.name,
+    required this.ownerIds,
+    required this.adminIds,
+    required this.memberIds,
+    required this.organisationIds,
+    required this.sectionIds,
+  });
 
-@freezed
-class ProjectState with _$ProjectState, ReduxState {
-  static const String className = 'ProjectState';
+  final String id;
+  final String name;
+  final Set<String> ownerIds;
+  final Set<String> adminIds;
+  final Set<String> memberIds;
+  final Set<String> organisationIds;
+  final Set<String> sectionIds;
 
-  const ProjectState._();
-  const factory ProjectState({
-    required String id,
-    required String name,
-    required ISet<String> ownerIds,
-    required ISet<String> adminIds,
-    required ISet<String> memberIds,
-    required ISet<String> organisationIds,
-    required ISet<String> sectionIds,
-  }) = _ProjectState;
-
-  factory ProjectState.fromJson(JsonMap json) => _$ProjectStateFromJson(json);
-
-  factory ProjectState.init({required String name}) => ProjectState(
+  factory ProjectState.initWith({required String name}) => ProjectState(
         id: '',
         name: name,
-        ownerIds: ISet(),
-        adminIds: ISet(),
-        memberIds: ISet(),
-        organisationIds: ISet(),
-        sectionIds: ISet(),
+        ownerIds: Set(),
+        adminIds: Set(),
+        memberIds: Set(),
+        organisationIds: Set(),
+        sectionIds: Set(),
+      );
+
+  factory ProjectState.fromJson(Map<String, dynamic> json) => ProjectState(
+        id: json['id'],
+        name: json['name'],
+        ownerIds: json['ownerIds'],
+        adminIds: json['adminIds'],
+        memberIds: json['memberIds'],
+        organisationIds: json['organisationIds'],
+        sectionIds: json['sectionIds'],
       );
 
   @override
-  String get typeName => className;
+  ProjectState copyWith({
+    String? id,
+    String? name,
+    Set<String>? ownerIds,
+    Set<String>? adminIds,
+    Set<String>? memberIds,
+    Set<String>? organisationIds,
+    Set<String>? sectionIds,
+  }) =>
+      ProjectState(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        ownerIds: ownerIds ?? this.ownerIds,
+        adminIds: adminIds ?? this.adminIds,
+        memberIds: memberIds ?? this.memberIds,
+        organisationIds: organisationIds ?? this.organisationIds,
+        sectionIds: sectionIds ?? this.sectionIds,
+      );
+
+  @override
+  toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
 }

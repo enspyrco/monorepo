@@ -1,29 +1,32 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/state_types.dart';
 
 import 'organisation_model.dart';
 
-part 'organisation_selector_view_model.freezed.dart';
-part 'organisation_selector_view_model.g.dart';
+class OrganisationSelectorViewModel with AstroState {
+  OrganisationSelectorViewModel({
+    this.selected,
+    required this.all,
+  });
 
-@freezed
-class OrganisationSelectorViewModel
-    with _$OrganisationSelectorViewModel, ReduxState {
-  static const String className = 'OrganisationSelectorViewModel';
+  final OrganisationModel? selected;
+  final Set<OrganisationModel> all;
 
-  const OrganisationSelectorViewModel._();
-  factory OrganisationSelectorViewModel({
-    OrganisationModel? selected,
-    required ISet<OrganisationModel> all,
-  }) = _OrganisationSelectorViewModel;
-
-  factory OrganisationSelectorViewModel.init() =>
-      OrganisationSelectorViewModel(all: ISet());
-
-  factory OrganisationSelectorViewModel.fromJson(JsonMap json) =>
-      _$OrganisationSelectorViewModelFromJson(json);
+  static OrganisationSelectorViewModel get initial =>
+      OrganisationSelectorViewModel(all: Set());
 
   @override
-  String get typeName => className;
+  OrganisationSelectorViewModel copyWith({
+    OrganisationModel? selected,
+    Set<OrganisationModel>? all,
+  }) =>
+      OrganisationSelectorViewModel(
+        selected: selected ?? this.selected,
+        all: all ?? this.all,
+      );
+
+  @override
+  toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
 }

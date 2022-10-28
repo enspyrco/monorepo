@@ -10,24 +10,44 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # redfire
-  redfire:
+  # astro
+  astro:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redfire
+      path: packages/flutter/utils/astro
+  astro_types:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_types
+  astro_locator:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/utils/astro_locator
+  astro_inspector_screen:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_inspector_screen
+  astro_auth:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_auth
+  astro_error_handling:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_error_handling
+  astro_navigation:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_navigation
+  # firestore
+  firestore_service_flutterfire:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/flutterfire/firestore_service_flutterfire
   firestore_service_interface:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/dart/interfaces/firestore_service_interface
-
-  # redux
-  redux:
-  flutter_redux:
-  
-  # redux - app state
-  freezed_annotation:
-  json_annotation: ^4.6.0
-  fast_immutable_collections: ^7.1.2
 
   # utils 
   uuid: ^3.0.5
@@ -39,21 +59,6 @@ dev_dependencies:
     sdk: flutter
   test: ^1.19.5
   mockito: ^5.0.17
-  
-  # redfire
-  redfire_lints:
-    git:
-      url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redfire_lints
-  redfire_test:
-    git:
-      url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redfire_test
-  
-  # code gen
-  build_runner:
-  freezed:
-  json_serializable:
 
 flutter:
   uses-material-design: true # we use material icons for dropdowns etc.
