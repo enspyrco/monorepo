@@ -25,13 +25,18 @@ Future<void> astroInitialization() async {
   var initialState = AppState.initial
       .copyWith(navigation: NavigationState(stack: [AuthGatePageState()]));
 
-  /// Create a SystemCheck that sends mission updates to the Inspector
-  final sendMissionUpdates = SendMissionUpdatesToInspector<AppState>();
-  Locator.add<SendMissionUpdatesToInspector>(sendMissionUpdates);
+  var systemChecks = <SystemCheck>[];
+
+  if (const bool.fromEnvironment('IN-APP-ASTRO-INSPECTOR')) {
+    /// Create a SystemCheck that sends mission updates to the Inspector
+    final sendMissionUpdates = SendMissionUpdatesToInspector<AppState>();
+    Locator.add<SendMissionUpdatesToInspector>(sendMissionUpdates);
+    systemChecks.add(sendMissionUpdates);
+  }
 
   /// Create our MissionControl and add to the Locator
   Locator.add<MissionControl<AppState>>(DefaultMissionControl<AppState>(
-      state: initialState, systemChecks: [sendMissionUpdates]));
+      state: initialState, systemChecks: systemChecks));
 
   /// Setup navigation by adding a [PageGenerator] to the [Locator], that will be
   /// used to turn a [PageState] from [AppState.navigation.stack] into a [Page]
