@@ -27,7 +27,7 @@ void main() {
 
       expect(newSectionItem, findsOneWidget);
       expect(waitingIndicator, findsNothing);
-    });
+    }, skip: true); // While we sort our Sections and how they will work
 
     testWidgets(
         'should show waiting indicator given creatingNewSection is true',
@@ -51,6 +51,6 @@ void main() {
 
       expect(newSectionItem, findsNothing);
       expect(waitingIndicator, findsOneWidget);
-    });
+    }, skip: true); // While we sort our Sections and how they will work
   });
 }

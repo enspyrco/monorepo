@@ -26,7 +26,7 @@ void main() {
     await tester.enterText(textField, 'a');
 
     expect(harness.recordedMissions, contains(UpdateNewSectionVM(name: 'a')));
-  });
+  }, skip: true); // While we sort our Sections and how they will work
 
   testWidgets('NewSectionItem dispatches CreateSection on submit',
       (WidgetTester tester) async {
@@ -47,5 +47,5 @@ void main() {
     await tester.tap(button);
 
     expect(harness.recordedMissions, contains(CreateSection()));
-  });
+  }, skip: true); // While we sort our Sections and how they will work
 }
