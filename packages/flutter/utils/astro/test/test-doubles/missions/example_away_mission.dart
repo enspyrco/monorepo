@@ -10,10 +10,5 @@ class ExampleAwayMission<S extends AstroState> extends AwayMission<S> {
   }
 
   @override
-  toJson() => {
-        'name_': 'ExampleAwayMission',
-        'type_': 'async',
-        'id_': hashCode,
-        'parent_': parent?.hashCode
-      };
+  toJson() => {'name_': 'ExampleAwayMission', 'state_': {}};
 }

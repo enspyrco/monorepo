@@ -16,9 +16,6 @@ class UpdateUserState<T extends AstroState> extends LandingMission<T> {
   @override
   toJson() => {
         'name_': 'Update User State',
-        'type_': 'sync',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
         'state_': <String, dynamic>{'user': user.toJson()}
       };
 }

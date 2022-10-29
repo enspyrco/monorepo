@@ -12,10 +12,5 @@ class AddErrorReport<S extends AstroState> extends LandingMission<S> {
   }
 
   @override
-  toJson() => {
-        'name_': 'UpdatingLandingMission',
-        'type_': 'sync',
-        'id_': hashCode,
-        'parent_': parent?.hashCode
-      };
+  toJson() => {'name_': 'UpdatingLandingMission', 'state_': {}};
 }

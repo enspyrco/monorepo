@@ -29,10 +29,7 @@ class AddMissionUpdate extends LandingMission<InspectorState> {
 
   @override
   toJson() => {
-        'name_': 'AddMissionUpdate',
-        'type_': 'sync',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
+        'name_': 'Add Mission Update',
         'state_': {'event': eventJson}
       };
 }

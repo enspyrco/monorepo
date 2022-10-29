@@ -18,9 +18,6 @@ class SelectMission extends LandingMission<InspectorState> {
   @override
   toJson() => {
         'name_': 'SelectMission',
-        'type_': 'sync',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
         'state_': {'index': index}
       };
 }

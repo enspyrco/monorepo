@@ -35,9 +35,6 @@ class SignInWithFirebase<T extends AstroState> extends AwayMission<T> {
   @override
   JsonMap toJson() => {
         'name_': 'Sign In With Firebase',
-        'type_': 'async',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
         'state_': <String, dynamic>{'idToken': idToken, 'rawNonce': rawNonce}
       };
 }

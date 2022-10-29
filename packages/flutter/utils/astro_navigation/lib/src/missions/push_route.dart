@@ -20,9 +20,6 @@ class PushRoute<S extends AstroState> extends LandingMission<S> {
   @override
   toJson() => {
         'name_': 'PushRoute',
-        'type_': 'sync',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
         'state_': {'pageState': (pageState as AstroState).toJson()}
       };
 }
