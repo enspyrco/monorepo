@@ -1,11 +1,11 @@
 import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
-import 'package:the_process/build_context_extensions.dart';
-import 'package:the_process/organisations/missions/tap_organisations.dart';
 
 import '../../app/state/app_state.dart';
+import '../../build_context_extensions.dart';
 import '../../projects/missions/tap_projects.dart';
 import '../missions/set_selected_organisation.dart';
+import '../missions/tap_organisations.dart';
 import '../models/organisation_model.dart';
 import '../models/organisation_selector_view_model.dart';
 

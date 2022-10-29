@@ -30,7 +30,7 @@ class TapSections extends AwayMission<AppState> {
           list: documents
               .map((document) => SectionModel.fromJson(document.fields))
               .toList()));
-    }, onError: (error) => throw error);
+    }, onError: (Object error) => throw error);
   }
 
   @override

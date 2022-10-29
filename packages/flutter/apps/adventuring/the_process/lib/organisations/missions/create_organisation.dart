@@ -25,7 +25,7 @@ class CreateOrganisation extends AwayMission<AppState> {
       await service.createDocument(
           at: 'organisations', from: organisation.toJson());
     } catch (error) {
-      throw error;
+      rethrow;
     } finally {
       missionControl.land(UpdateOrganisationsPage(creating: false));
     }

@@ -1,3 +1,5 @@
+// ignore_for_file: not_iterable_spread
+
 import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 import 'package:firestore_service_interface/firestore_service_interface.dart';
@@ -22,9 +24,9 @@ class OrganisationModel with AstroState {
       OrganisationModel(
         id: '', // temporary value indicating not saved to DB yet
         name: name,
-        ownerIds: Set(),
-        adminIds: Set(),
-        memberIds: Set(),
+        ownerIds: <String>{},
+        adminIds: <String>{},
+        memberIds: <String>{},
       );
 
   @override
@@ -45,7 +47,7 @@ class OrganisationModel with AstroState {
 
   factory OrganisationModel.fromDocument(Document doc) => OrganisationModel(
         id: doc.id,
-        name: doc.fields['name'],
+        name: doc.fields['name'] as String,
         ownerIds: <String>{...doc.fields['ownerIds']},
         adminIds: <String>{...doc.fields['adminIds']},
         memberIds: <String>{...doc.fields['memberIds']},
@@ -53,8 +55,8 @@ class OrganisationModel with AstroState {
 
   factory OrganisationModel.fromJson(Map<String, dynamic> json) =>
       OrganisationModel(
-        id: json['id'],
-        name: json['name'],
+        id: json['id'] as String,
+        name: json['name'] as String,
         ownerIds: <String>{...json['ownerIds']},
         adminIds: <String>{...json['adminIds']},
         memberIds: <String>{...json['memberIds']},

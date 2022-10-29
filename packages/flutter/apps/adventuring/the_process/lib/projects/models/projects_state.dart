@@ -13,7 +13,7 @@ class ProjectsState with AstroState {
   final bool creating;
 
   static ProjectsState get initial =>
-      ProjectsState(all: Set(), creating: false);
+      ProjectsState(all: <ProjectState>{}, creating: false);
 
   @override
   ProjectsState copyWith({Set<ProjectState>? all, bool? creating}) =>

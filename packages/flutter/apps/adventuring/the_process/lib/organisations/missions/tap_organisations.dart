@@ -55,7 +55,7 @@ class TapOrganisations extends AwayMission<AppState> {
       missionControl.land(SetOrganisations(organisations));
       missionControl.land(SetSelectedOrganisation(nextSelected));
       missionControl.launch(TapProjects(organisationId: nextSelected?.id));
-    }, onError: (error) => throw error);
+    }, onError: (Object error) => throw error);
   }
 
   @override

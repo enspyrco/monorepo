@@ -28,7 +28,7 @@ class CreateProject extends AwayMission<AppState> {
 
       await service.createDocument(at: 'projects', from: project.toJson());
     } catch (error) {
-      throw error;
+      rethrow;
     } finally {
       missionControl.land(UpdateProjectsView(creating: false));
     }

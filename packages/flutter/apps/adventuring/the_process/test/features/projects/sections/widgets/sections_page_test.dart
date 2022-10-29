@@ -1,6 +1,5 @@
 import 'package:astro/astro.dart';
 import 'package:astro_test_utils/astro_widgets_test_utils.dart';
-import 'package:built_collection/built_collection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:the_process/app/state/app_state.dart';
 import 'package:the_process/projects/models/section_model.dart';
@@ -18,7 +17,7 @@ void main() {
       final harness = WidgetTestHarness(
           initialState: AppState.initial, child: const SectionsView());
       expect(harness.state.sections.creatingNewSection, false);
-      expect(harness.state.sections.list, BuiltList<SectionModel>());
+      expect(harness.state.sections.list, <SectionModel>[]);
 
       // Build the widget tree.
       await widgetTester.pumpWidget(harness.widget);
@@ -42,7 +41,7 @@ void main() {
       final harness = WidgetTestHarness(
           initialState: appState, child: const SectionsView());
       expect(harness.state.sections.creatingNewSection, true);
-      expect(harness.state.sections.list, BuiltList<SectionModel>());
+      expect(harness.state.sections.list, <SectionModel>[]);
 
       // Build the widget tree.
       await widgetTester.pumpWidget(harness.widget);

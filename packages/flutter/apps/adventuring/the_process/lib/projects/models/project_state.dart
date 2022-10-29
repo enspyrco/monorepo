@@ -1,3 +1,5 @@
+// ignore_for_file: not_iterable_spread
+
 import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 import 'package:firestore_service_interface/firestore_service_interface.dart';
@@ -24,31 +26,31 @@ class ProjectState with AstroState {
   factory ProjectState.initWith({required String name}) => ProjectState(
         id: '',
         name: name,
-        ownerIds: Set(),
-        adminIds: Set(),
-        memberIds: Set(),
-        organisationIds: Set(),
-        sectionIds: Set(),
+        ownerIds: <String>{},
+        adminIds: <String>{},
+        memberIds: <String>{},
+        organisationIds: <String>{},
+        sectionIds: <String>{},
       );
 
   factory ProjectState.fromJson(Map<String, dynamic> json) => ProjectState(
-        id: json['id'],
-        name: json['name'],
-        ownerIds: {...json['ownerIds']},
-        adminIds: {...json['adminIds']},
-        memberIds: {...json['memberIds']},
-        organisationIds: {...json['organisationIds']},
-        sectionIds: {...json['sectionIds']},
+        id: json['id'] as String,
+        name: json['name'] as String,
+        ownerIds: <String>{...json['ownerIds']},
+        adminIds: <String>{...json['adminIds']},
+        memberIds: <String>{...json['memberIds']},
+        organisationIds: <String>{...json['organisationIds']},
+        sectionIds: <String>{...json['sectionIds']},
       );
 
   factory ProjectState.fromDocument(Document doc) => ProjectState(
         id: doc.id,
-        name: doc.fields['name'],
-        ownerIds: {...doc.fields['ownerIds']},
-        adminIds: {...doc.fields['adminIds']},
-        memberIds: {...doc.fields['memberIds']},
-        organisationIds: {...doc.fields['organisationIds']},
-        sectionIds: {...doc.fields['sectionIds']},
+        name: doc.fields['name'] as String,
+        ownerIds: <String>{...doc.fields['ownerIds']},
+        adminIds: <String>{...doc.fields['adminIds']},
+        memberIds: <String>{...doc.fields['memberIds']},
+        organisationIds: <String>{...doc.fields['organisationIds']},
+        sectionIds: <String>{...doc.fields['sectionIds']},
       );
 
   @override

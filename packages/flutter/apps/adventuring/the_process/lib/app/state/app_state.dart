@@ -4,10 +4,10 @@ import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 import 'package:flutter/material.dart';
-import 'package:the_process/projects/models/sections_state.dart';
 
 import '../../organisations/models/organisations_state.dart';
 import '../../projects/models/projects_state.dart';
+import '../../projects/models/sections_state.dart';
 import '../../teams/models/team_member.dart';
 
 @immutable

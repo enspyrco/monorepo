@@ -53,6 +53,8 @@ dependencies:
   # utils 
   uuid: ^3.0.5
   http: ^0.13.4
+  collection: ^1.16.0
+  firebase_core: ^2.1.1
 
 dev_dependencies:
   flutter_test:

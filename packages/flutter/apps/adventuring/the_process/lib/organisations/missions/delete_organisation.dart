@@ -18,7 +18,7 @@ class DeleteOrganisation extends AwayMission<AppState> {
 
       await service.deleteDocument(at: 'organisations/${selected.id}');
     } catch (error) {
-      throw error;
+      rethrow;
     } finally {
       missionControl.land(UpdateOrganisationsPage(deleting: false));
     }

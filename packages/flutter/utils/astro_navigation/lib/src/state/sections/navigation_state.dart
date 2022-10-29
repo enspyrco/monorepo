@@ -9,7 +9,7 @@ class NavigationState extends AstroState {
 
   final List<PageState> stack;
 
-  static get initial => NavigationState(stack: const []);
+  static NavigationState get initial => NavigationState(stack: const []);
 
   @override
   NavigationState copyWith({List<PageState>? stack}) {

@@ -12,7 +12,7 @@ class OrganisationSelectorViewModel with AstroState {
   final Set<OrganisationModel> all;
 
   static OrganisationSelectorViewModel get initial =>
-      OrganisationSelectorViewModel(all: Set());
+      OrganisationSelectorViewModel(all: <OrganisationModel>{});
 
   @override
   OrganisationSelectorViewModel copyWith({

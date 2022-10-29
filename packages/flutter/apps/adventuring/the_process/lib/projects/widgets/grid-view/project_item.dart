@@ -1,9 +1,9 @@
 import 'package:astro_navigation/astro_navigation.dart';
 import 'package:flutter/material.dart';
-import 'package:the_process/build_context_extensions.dart';
-import 'package:the_process/projects/routes/project_details_page_state.dart';
 
+import '../../../build_context_extensions.dart';
 import '../../models/project_state.dart';
+import '../../routes/project_details_page_state.dart';
 
 class ProjectItem extends StatelessWidget {
   const ProjectItem(this.project, {Key? key}) : super(key: key);

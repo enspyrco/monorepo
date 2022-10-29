@@ -1,4 +1,5 @@
 import 'package:astro_types/core_types.dart';
+import 'package:astro_types/json_types.dart';
 
 import '../../app/state/app_state.dart';
 import '../../projects/models/section_model.dart';
@@ -15,7 +16,9 @@ class SetSections extends LandingMission<AppState> {
   }
 
   factory SetSections.fromJson(Map<String, dynamic> json) => SetSections(
-      list: json['list'].map((e) => SectionModel.fromJson(e)).toList());
+      list: (json['list'] as List<JsonMap>)
+          .map<SectionModel>((e) => SectionModel.fromJson(e))
+          .toList());
 
   @override
   toJson() => {

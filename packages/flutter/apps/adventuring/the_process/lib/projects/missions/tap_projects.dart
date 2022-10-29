@@ -36,7 +36,7 @@ class TapProjects extends AwayMission<AppState> {
           .map<ProjectState>((document) => ProjectState.fromDocument(document))
           .toSet();
       missionControl.land(SetProjects(models));
-    }, onError: (error) => throw error);
+    }, onError: (Object error) => throw error);
   }
 
   @override

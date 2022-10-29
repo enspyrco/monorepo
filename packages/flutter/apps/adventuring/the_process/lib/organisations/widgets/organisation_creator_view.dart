@@ -1,8 +1,8 @@
 import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
-import 'package:the_process/build_context_extensions.dart';
 
 import '../../app/state/app_state.dart';
+import '../../build_context_extensions.dart';
 import '../missions/create_organisation.dart';
 import '../models/organisation_model.dart';
 

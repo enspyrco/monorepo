@@ -24,9 +24,9 @@ class SectionModel with AstroState {
       );
 
   factory SectionModel.fromJson(Map<String, dynamic> json) => SectionModel(
-        name: json['json'],
-        folderId: json['folderId'],
-        useCasesDocId: json['useCasesDocId'],
+        name: json['json'] as String,
+        folderId: json['folderId'] as String,
+        useCasesDocId: json['useCasesDocId'] as String,
       );
 
   @override

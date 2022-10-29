@@ -49,7 +49,7 @@ Future<void> astroInitialization() async {
   /// that the [Navigator] will use to display a screen.
   Locator.add<PageGenerator>(PageGenerator({
     AuthGatePageState: (state) => const MaterialPage(
-        key: const ValueKey(AuthGatePageState),
+        key: ValueKey(AuthGatePageState),
         child: AuthGateScreen<AppState>(child: HomeScreen())),
     ErrorReportPageState: (state) => MaterialPage(
         key: const ValueKey(ErrorReportPageState),
