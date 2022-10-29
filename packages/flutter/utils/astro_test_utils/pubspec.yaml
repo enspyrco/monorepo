@@ -18,7 +18,10 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/astro_types
-
+  astro_locator:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/utils/astro_locator
 
 dev_dependencies:
   flutter_test:
