@@ -10,5 +10,5 @@ class RemoveAll extends LandingMission<InspectorState> {
       state.copyWith(selectedIndex: null, missionUpdates: []);
 
   @override
-  toJson() => {'name_': 'RemoveAll', 'state_': {}};
+  toJson() => {'name_': 'RemoveAll', 'state_': <String, dynamic>{}};
 }

@@ -13,5 +13,5 @@ class RemoveCurrentRoute<S extends AstroState> extends LandingMission<S> {
   }
 
   @override
-  toJson() => {'name_': 'RemoveCurrentRoute', 'state_': {}};
+  toJson() => {'name_': 'RemoveCurrentRoute', 'state_': <String, dynamic>{}};
 }

@@ -21,5 +21,5 @@ class CreateSection extends AwayMission<AppState> {
   }
 
   @override
-  toJson() => {'name_': 'CreateSection', 'state_': {}};
+  toJson() => {'name_': 'CreateSection', 'state_': <String, dynamic>{}};
 }

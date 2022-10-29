@@ -9,13 +9,13 @@ import 'select_mission.dart';
 /// The incoming json is assumed to have the form:
 /// `{ mission: {id_ : <id>, ... }`
 class AddMissionUpdate extends LandingMission<InspectorState> {
-  AddMissionUpdate(this._eventJson);
+  AddMissionUpdate(this._missionUpdateJson);
 
-  final JsonMap _eventJson;
+  final JsonMap _missionUpdateJson;
 
-  int get missionId => _eventJson['mission']['id_'];
+  int get missionId => _missionUpdateJson['mission']['id_'];
 
-  JsonMap get eventJson => JsonMap.unmodifiable(_eventJson);
+  JsonMap get eventJson => JsonMap.unmodifiable(_missionUpdateJson);
 
   @override
   InspectorState landingInstructions(state) {

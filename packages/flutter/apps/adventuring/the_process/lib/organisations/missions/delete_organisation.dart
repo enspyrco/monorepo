@@ -25,5 +25,5 @@ class DeleteOrganisation extends AwayMission<AppState> {
   }
 
   @override
-  toJson() => {'name_': 'DeleteOrganisation', 'state_': {}};
+  toJson() => {'name_': 'DeleteOrganisation', 'state_': <String, dynamic>{}};
 }
