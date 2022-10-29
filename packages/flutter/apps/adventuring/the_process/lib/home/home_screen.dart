@@ -1,5 +1,7 @@
+import 'package:astro_auth/astro_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../app/state/app_state.dart';
 import '../organisations/widgets/organisation_selector.dart';
 import '../projects/widgets/grid-view/projects_grid.dart';
 import 'logo_icon.dart';
@@ -44,16 +46,13 @@ class _BasicAppBarState extends State<BasicAppBar> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
-            children: const <Widget>[
+            children: <Widget>[
               LogoIcon(),
               Spacer(),
               NotificationsButton(),
-              // AvatarMenuButton<AppState>(
-              //   options: {
-              //     MenuOptionPreset.accountDetails,
-              //     MenuOptionPreset.signOut
-              //   },
-              // ),
+              AvatarMenuButton<AppState>(
+                options: {MenuOption('Sign Out', SignOut<AppState>())},
+              ),
             ],
           ),
         ),
