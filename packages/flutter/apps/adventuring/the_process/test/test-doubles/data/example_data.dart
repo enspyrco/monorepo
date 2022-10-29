@@ -1,4 +1,4 @@
-import 'package:redfire/types.dart';
+import 'package:astro_types/json_types.dart';
 
 JsonMap storeProjectSectionsActionJson = <String, dynamic>{
   'list': [

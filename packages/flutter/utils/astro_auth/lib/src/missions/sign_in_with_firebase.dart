@@ -26,7 +26,7 @@ class SignInWithFirebase<T extends AstroState> extends AwayMission<T> {
     var state = UserState(
         signedIn: SignedInState.signedIn,
         displayName: user.displayName,
-        photoUrl: user.photoURL,
+        photoURL: user.photoURL,
         uid: user.uid);
 
     missionControl.land(UpdateUserState<T>(state));
@@ -35,9 +35,6 @@ class SignInWithFirebase<T extends AstroState> extends AwayMission<T> {
   @override
   JsonMap toJson() => {
         'name_': 'Sign In With Firebase',
-        'type_': 'async',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
         'state_': <String, dynamic>{'idToken': idToken, 'rawNonce': rawNonce}
       };
 }

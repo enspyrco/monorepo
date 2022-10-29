@@ -37,11 +37,6 @@ class SignInWithApple<T extends AstroState> extends AwayMission<T> {
   }
 
   @override
-  JsonMap toJson() => {
-        'name_': 'Sign In With Apple',
-        'type_': 'async',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
-        'state_': <String, dynamic>{}
-      };
+  JsonMap toJson() =>
+      {'name_': 'Sign In With Apple', 'state_': <String, dynamic>{}};
 }

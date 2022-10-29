@@ -1,8 +1,7 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
-import '../../../app_state.dart';
+import '../../../app/state/app_state.dart';
 import '../../models/project_state.dart';
 import 'new_project_item.dart';
 import 'project_item.dart';
@@ -12,9 +11,8 @@ class ProjectsGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, ISet<ProjectState>>(
-        distinct: true,
-        converter: (store) => store.state.projects.all,
+    return OnStateChangeBuilder<AppState, Set<ProjectState>>(
+        transformer: (state) => state.projects.all,
         builder: (context, projects) {
           return GridView.count(
             shrinkWrap: true,

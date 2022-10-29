@@ -1,9 +1,9 @@
+import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
-import '../../app_state.dart';
-import '../../utils/build_context_extensions.dart';
-import '../actions/create_organisation_action.dart';
+import '../../app/state/app_state.dart';
+import '../../build_context_extensions.dart';
+import '../missions/create_organisation.dart';
 import '../models/organisation_model.dart';
 
 class OrganisationCreatorView extends StatefulWidget {
@@ -19,9 +19,8 @@ class _OrganisationCreatorViewState extends State<OrganisationCreatorView> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, bool>(
-        distinct: true,
-        converter: (store) => store.state.organisations.creator.creating,
+    return OnStateChangeBuilder<AppState, bool>(
+        transformer: (state) => state.organisations.creator.creating,
         builder: (context, creating) {
           if (!creating) _controller.text = '';
           return SizedBox(
@@ -46,8 +45,8 @@ class _OrganisationCreatorViewState extends State<OrganisationCreatorView> {
                       )
                     : IconButton(
                         icon: const Icon(Icons.add),
-                        onPressed: () => context.dispatch(
-                            CreateOrganisationAction(OrganisationModel.init(
+                        onPressed: () => context.launch(CreateOrganisation(
+                            OrganisationModel.initWith(
                                 name: _controller.text))),
                         hoverColor: Colors.transparent,
                         splashRadius: 20,

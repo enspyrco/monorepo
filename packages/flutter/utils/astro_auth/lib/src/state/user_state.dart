@@ -1,3 +1,4 @@
+import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 
 enum SignedInState {
@@ -16,7 +17,7 @@ class UserState with AstroState {
     required this.signedIn,
     this.uid,
     this.displayName,
-    this.photoUrl,
+    this.photoURL,
   });
 
   static UserState get initial => UserState(signedIn: SignedInState.checking);
@@ -24,7 +25,7 @@ class UserState with AstroState {
   final SignedInState signedIn;
   final String? uid;
   final String? displayName;
-  final String? photoUrl;
+  final String? photoURL;
 
   @override
   UserState copyWith({
@@ -37,7 +38,7 @@ class UserState with AstroState {
       signedIn: signedIn ?? this.signedIn,
       uid: uid ?? this.uid,
       displayName: displayName ?? this.displayName,
-      photoUrl: photoUrl ?? this.photoUrl,
+      photoURL: photoUrl ?? photoURL,
     );
   }
 
@@ -46,7 +47,7 @@ class UserState with AstroState {
         'signedIn': signedIn.name,
         'uid': uid,
         'displayName': displayName,
-        'photoUrl': photoUrl,
+        'photoUrl': photoURL,
       };
 
   @override
@@ -55,10 +56,10 @@ class UserState with AstroState {
       other.signedIn == signedIn &&
       other.uid == uid &&
       other.displayName == displayName &&
-      other.photoUrl == photoUrl;
+      other.photoURL == photoURL;
 
   @override
-  int get hashCode => Object.hash(signedIn, uid, displayName, photoUrl);
+  int get hashCode => Object.hash(signedIn, uid, displayName, photoURL);
 }
 
 class AuthState extends AstroState {
@@ -72,7 +73,7 @@ class AuthState extends AstroState {
   AuthState copyWith({UserState? user}) => AuthState(user: user ?? this.user);
 
   @override
-  toJson() => {'user': user.toJson()};
+  JsonMap toJson() => {'user': user.toJson()};
 
   @override
   bool operator ==(Object other) => other is AuthState && other.user == user;

@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 
 import 'src/views/main_view.dart';
 
+export 'src/missions/parenting_mission_control.dart';
 export 'src/state/inspector_state.dart';
 export 'src/system-checks/send_mission_updates_to_inspector.dart';
 
@@ -35,7 +36,7 @@ class _AstroInspectorScreenState extends State<AstroInspectorScreen> {
   void initState() {
     super.initState();
     Locator.add<MissionControl<InspectorState>>(
-        DefaultMissionControl(state: InspectorState.initial));
+        DefaultMissionControl<InspectorState>(state: InspectorState.initial));
   }
 
   @override

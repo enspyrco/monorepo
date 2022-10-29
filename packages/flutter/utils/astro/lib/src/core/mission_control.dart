@@ -1,9 +1,11 @@
 import 'dart:async';
 
-import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/error_handling_types.dart';
 import 'package:astro_types/state_types.dart';
+
+typedef WrappedMissionControlCtr = MissionControl<S>
+    Function<S extends AstroState>(MissionControl<S>, AwayMission<S>);
 
 /// Pass in [systemChecks] to run logic on every [Mission], before
 /// [AwayMission.flightPlan] is called and after
@@ -12,20 +14,34 @@ import 'package:astro_types/state_types.dart';
 /// Make sure [onStateChangeController] is broadcast type as UI components will
 /// listen for a time at random intervals and only want the state changes while
 /// they are listening.
-class DefaultMissionControl<T extends AstroState> implements MissionControl<T> {
+///
+/// The [errorHandlers] parameter takes an object of type [ErrorHandlers] which
+/// will be act on anything that gets thrown while executing
+/// [LandingMission.landingInstructions] or [AwayMission.flightPlan]. If no
+/// object is passed, the Throwable is just rethrown, keeping the same stack
+/// trace which is very useful in debugging.
+class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
   DefaultMissionControl({
-    required T state,
-    ErrorHandlers<T>? errorHandlers,
-    StreamController<T>? onStateChangeController,
+    required S state,
+    ErrorHandlers<S>? errorHandlers,
+    StreamController<S>? onStateChangeController,
     List<SystemCheck>? systemChecks,
+    WrappedMissionControlCtr? missionControlCtr,
   })  : _state = state,
-        _errorHandlers = errorHandlers ?? DefaultErrorHandlers<T>(),
-        _systemChecks = systemChecks;
-  T _state;
-  final ErrorHandlers _errorHandlers;
+        _errorHandlers = errorHandlers,
+        _systemChecks = systemChecks,
+        _missionControlCtr = missionControlCtr;
+  S _state;
+  final ErrorHandlers? _errorHandlers;
 
-  final StreamController<T> _onStateChangeController =
-      StreamController<T>.broadcast();
+  /// This member is a constructor for creating special MissionControl objects,
+  /// allowing for different behaviour under different circumstances - eg.
+  /// when the Inspector is being used, extra information (such as the parent
+  /// mission) can be added by the special MissionControl
+  final WrappedMissionControlCtr? _missionControlCtr;
+
+  final StreamController<S> _onStateChangeController =
+      StreamController<S>.broadcast();
 
   /// [SystemCheck]s are called on every mission, before [AwayMission.flightPlan]
   /// is called and after [LandingMission.landingInstructions] is called.
@@ -33,19 +49,20 @@ class DefaultMissionControl<T extends AstroState> implements MissionControl<T> {
 
   /// Returns the current state tree of the application.
   @override
-  T get state => _state;
+  S get state => _state;
 
   /// Landing a [LandingMission] is the only way to upate the state held in
   /// MissionControl, so any data, whether from UI events, network callbacks, or other
   /// sources such as WebSockets needs to eventually be landed (ie. call land on
   /// [LandingMission] that described the desired state change).
   @override
-  void land(LandingMission<T> mission) {
+  void land(LandingMission<S> mission) {
     try {
       _state = mission.landingInstructions(_state);
     } catch (thrown, trace) {
-      _state = _errorHandlers.handleLandingError(
-          thrown: thrown, trace: trace, mission: mission, state: _state) as T;
+      if (_errorHandlers == null) rethrow;
+      _state = _errorHandlers!.handleLandingError(
+          thrown: thrown, trace: trace, mission: mission, state: _state) as S;
     }
 
     // emit the new state for any listeners (eg. StateStreamBuilder widgets)
@@ -58,14 +75,19 @@ class DefaultMissionControl<T extends AstroState> implements MissionControl<T> {
   /// an [AwayMission]. If the desired end result is changing the app state,
   /// the [AwayMission] should land a [LandingMission] when it is complete.
   @override
-  Future<void> launch(AwayMission<T> mission) async {
+  Future<void> launch(AwayMission<S> mission) async {
     _systemChecks?.forEach((fn) => fn.call(this, mission));
 
     try {
-      await mission.flightPlan(ParentingMissionControl(this, mission));
+      if (_missionControlCtr != null) {
+        await mission.flightPlan(_missionControlCtr!(this, mission));
+      } else {
+        await mission.flightPlan(this);
+      }
     } catch (thrown, trace) {
-      _state = _errorHandlers.handleLaunchError(
-          thrown: thrown, trace: trace, mission: mission, state: _state) as T;
+      if (_errorHandlers == null) rethrow;
+      _state = _errorHandlers!.handleLaunchError(
+          thrown: thrown, trace: trace, mission: mission, state: _state) as S;
 
       // emit the new state for any listeners (eg. StateStreamBuilder widgets)
       _onStateChangeController.add(_state);
@@ -73,35 +95,5 @@ class DefaultMissionControl<T extends AstroState> implements MissionControl<T> {
   }
 
   @override
-  Stream<T> get onStateChange => _onStateChangeController.stream;
-}
-
-/// An [AwayMissionControl] object is created by [MissionControl] on each call
-/// to [AwayMision.flightPlan] for the purpose of allowing land/launch calls
-/// inside `flightPlan` to automatically set the parent.
-///
-/// The call to `launch` & `land` is just passed on to [MissionControl.launch] &
-/// [MissionControl.land], while setting the `parent` member of the mission.
-class ParentingMissionControl<T extends AstroState>
-    implements MissionControl<T> {
-  ParentingMissionControl(
-      MissionControl<T> missionControl, AwayMission<T> currentMission)
-      : _missionControl = missionControl,
-        _currentMission = currentMission;
-  final MissionControl<T> _missionControl;
-  final AwayMission<T> _currentMission;
-
-  @override
-  void land(LandingMission<T> mission) =>
-      _missionControl.land(mission..parent = _currentMission);
-
-  @override
-  Future<void> launch(AwayMission<T> mission) =>
-      _missionControl.launch(mission..parent = _currentMission);
-
-  @override
-  Stream<T> get onStateChange => _missionControl.onStateChange;
-
-  @override
-  T get state => _missionControl.state;
+  Stream<S> get onStateChange => _onStateChangeController.stream;
 }

@@ -1,10 +1,11 @@
+import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
-import '../../app_state.dart';
-import '../../projects/actions/tap_projects_action.dart';
-import '../../utils/build_context_extensions.dart';
-import '../actions/set_selected_organisation_action.dart';
+import '../../app/state/app_state.dart';
+import '../../build_context_extensions.dart';
+import '../../projects/missions/tap_projects.dart';
+import '../missions/set_selected_organisation.dart';
+import '../missions/tap_organisations.dart';
 import '../models/organisation_model.dart';
 import '../models/organisation_selector_view_model.dart';
 
@@ -13,9 +14,11 @@ class OrganisationSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, OrganisationSelectorViewModel>(
-        distinct: true,
-        converter: (store) => store.state.organisations.selector,
+    return OnStateChangeBuilder<AppState, OrganisationSelectorViewModel>(
+        onInit: (missionControl) => missionControl.launch(TapOrganisations()),
+        onDispose: (missionControl) =>
+            missionControl.launch(TapOrganisations(turnOff: true)),
+        transformer: (state) => state.organisations.selector,
         builder: (context, selector) {
           return DropdownButton<OrganisationModel>(
             value: selector.selected,
@@ -29,9 +32,8 @@ class OrganisationSelector extends StatelessWidget {
             ),
             onChanged: (OrganisationModel? selected) {
               if (selected != null) {
-                context.dispatch(SetSelectedOrganisationAction(selected));
-                context
-                    .dispatch(TapProjectsAction(organisationId: selected.id));
+                context.land(SetSelectedOrganisation(selected));
+                context.launch(TapProjects(organisationId: selected.id));
               }
             },
             items: selector.all.map<DropdownMenuItem<OrganisationModel>>(

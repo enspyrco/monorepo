@@ -33,11 +33,11 @@ class _MainViewState extends State<MainView> {
     super.initState();
 
     if (widget._onMissionUpdate != null) {
-      _subscription = widget._onMissionUpdate!.listen((event) {
-        if (event['type'] == 'astro:mission_update') {
+      _subscription = widget._onMissionUpdate!.listen((update) {
+        if (update['type'] == 'astro:mission_update') {
           locate<MissionControl<InspectorState>>()
-              .land(AddMissionUpdate(event['data']));
-        } else if (event['type'] == 'astro:remove_all') {
+              .land(AddMissionUpdate(update['data']));
+        } else if (update['type'] == 'astro:remove_all') {
           locate<MissionControl<InspectorState>>().land(RemoveAll());
         }
       });

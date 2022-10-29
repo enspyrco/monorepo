@@ -23,14 +23,14 @@ class MissionsHistoryView extends StatelessWidget {
                   return ListView.builder(
                       itemCount: missionUpdates.length,
                       itemBuilder: (context, index) {
-                        final actionData = missionUpdates[index]['mission'];
-                        if (actionData == null) {
+                        final missionData = missionUpdates[index]['mission'];
+                        if (missionData == null) {
                           return Container();
                         }
                         return MissionsHistoryItem(
-                          missionName: actionData['name_'],
-                          missionType: actionData['type_'],
-                          missionState: actionData['state_'],
+                          missionName: missionData['name_'],
+                          missionType: missionData['type_'],
+                          missionState: missionData['state_'],
                           index: index,
                         );
                       });

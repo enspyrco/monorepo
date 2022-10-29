@@ -62,6 +62,7 @@ Three letter acronyms used in commit messages:
 - ccv = coding-challenge-verifier
 - dvr = domain_visualiser
 - dip = discord_interaction_to_pubsub_message
+- enl = enspyr_lints
 - flr = flireator
 - fai = firebase_auth_service_interface
 - fsg = firestore_service_googleapis
@@ -83,7 +84,6 @@ Three letter acronyms used in commit messages:
 - rdp = run_dart_code_in_pubsub_message
 - rfr = redfire
 - rft = redfire_test
-- rfl = redfire_lints
 - rsd = resourganizer_desktop
 - twr = tech_world
 - tpr = the_process

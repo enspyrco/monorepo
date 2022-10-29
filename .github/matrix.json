@@ -7,18 +7,6 @@
       "project_type": "flutter"
     },
     {
-      "package": "redfire",
-      "path" : "flutter/utils/redfire",
-      "source_gen" : false,
-      "project_type": "flutter"
-    },
-    {
-      "package": "redfire_test",
-      "path" : "flutter/utils/redfire_test",
-      "source_gen" : false,
-      "project_type": "flutter"
-    },
-    {
       "package": "tech_world",
       "path" : "flutter/apps/adventuring/tech_world",
       "source_gen" : true,
@@ -27,7 +15,7 @@
     {
       "package": "the_process",
       "path" : "flutter/apps/adventuring/the_process",
-      "source_gen" : true,
+      "source_gen" : false,
       "project_type": "flutter"
     },
     {

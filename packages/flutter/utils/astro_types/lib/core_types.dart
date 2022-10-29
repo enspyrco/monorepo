@@ -6,7 +6,6 @@ import 'state_types.dart';
 /// All missions must extend either [AwayMission] or [LandingMission], which
 /// both inherit from [Mission].
 abstract class Mission {
-  AwayMission? parent;
   JsonMap toJson();
 }
 

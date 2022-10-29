@@ -1,20 +1,19 @@
+import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
-import '../../../app_state.dart';
-import '../../../utils/build_context_extensions.dart';
-import '../../actions/create_project_action.dart';
-import '../../actions/update_projects_view_action.dart';
+import '../../../app/state/app_state.dart';
+import '../../../build_context_extensions.dart';
+import '../../missions/create_project.dart';
 import '../../models/project_state.dart';
+import '../../models/update_projects_view.dart';
 
 class NewProjectItem extends StatelessWidget {
   const NewProjectItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, bool>(
-        distinct: true,
-        converter: (store) => store.state.projects.creating,
+    return OnStateChangeBuilder<AppState, bool>(
+        transformer: (state) => state.projects.creating,
         builder: (context, creating) {
           return Padding(
             padding: const EdgeInsets.all(25.0),
@@ -28,8 +27,8 @@ class NewProjectItem extends StatelessWidget {
                   ? const CreateProjectForm()
                   : InkWell(
                       splashColor: Colors.blue.withAlpha(30),
-                      onTap: () => context.dispatch(
-                          const UpdateProjectsViewAction(creating: true)),
+                      onTap: () =>
+                          context.land(UpdateProjectsView(creating: true)),
                       child: Center(
                           child: Text('+',
                               style: Theme.of(context).textTheme.headline5)),
@@ -116,15 +115,15 @@ class ButtonsRow extends StatelessWidget {
       children: [
         OutlinedButton(
           onPressed: () {
-            context.dispatch(const UpdateProjectsViewAction(creating: false));
+            context.land(UpdateProjectsView(creating: false));
           },
           child: const Text('Cancel'),
         ),
         OutlinedButton(
           onPressed: () {
             if (_formKey.currentState!.validate()) {
-              context.dispatch(CreateProjectAction(
-                  ProjectState.init(name: _controller.text)));
+              context.launch(
+                  CreateProject(ProjectState.initWith(name: _controller.text)));
             }
           },
           child: const Text('OK'),

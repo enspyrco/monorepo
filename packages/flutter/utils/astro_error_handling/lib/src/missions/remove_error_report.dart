@@ -29,11 +29,5 @@ class RemoveErrorReport<S extends AstroState> extends LandingMission<S> {
   }
 
   @override
-  toJson() => {
-        'name_': 'RemoveErrorReport',
-        'type_': 'sync',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
-        'state_': <String, dynamic>{}
-      };
+  toJson() => {'name_': 'RemoveErrorReport', 'state_': <String, dynamic>{}};
 }

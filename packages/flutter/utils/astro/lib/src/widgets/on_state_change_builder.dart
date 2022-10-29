@@ -10,8 +10,8 @@ import 'exceptions/transform_failure_exception.dart';
 class OnStateChangeBuilder<S extends AstroState, VM> extends StatelessWidget {
   final VM Function(S state) transformer;
   final Widget Function(BuildContext context, VM vm) builder;
-  final void Function(MissionControl<S>)? onInit;
-  final void Function(MissionControl<S>)? onDispose;
+  final void Function(MissionControl<S> missionControl)? onInit;
+  final void Function(MissionControl<S> missionControl)? onDispose;
 
   const OnStateChangeBuilder({
     Key? key,

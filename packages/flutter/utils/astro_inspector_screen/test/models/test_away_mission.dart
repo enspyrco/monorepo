@@ -7,10 +7,5 @@ class TestAwayMission extends AwayMission<InspectorState> {
       MissionControl<InspectorState> missionControl) async {}
 
   @override
-  toJson() => {
-        'name_': 'TestAwayMission',
-        'type_': 'async',
-        'id_': hashCode,
-        'parent_': parent?.hashCode
-      };
+  toJson() => {'name_': 'TestAwayMission', 'state_': {}};
 }

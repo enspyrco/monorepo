@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  setup_matrix:
-    name: Setup Matrix
+  setup-matrix:
+    # name: Setup Matrix
     runs-on: ubuntu-latest
     outputs:
       matrix_json: ${{ steps.read-matrix.outputs.json }}
@@ -22,14 +22,14 @@ jobs:
           echo "json=$content" >> $GITHUB_OUTPUT
       - run: echo ${{ steps.read-matrix.outputs.json }}
   
-  run_tests:
-    if: needs.setup_matrix.outputs.matrix_json.include[0] != null # only run if matrix is non-empty
-    name: Run Tests
-    needs: setup_matrix
+  run-tests:
+    # if: needs.setup-matrix.outputs.matrix_json.include[0] != null # only run if matrix is non-empty
+    # name: Run Tests
+    needs: setup-matrix
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ${{ fromJson(needs.setup_matrix.outputs.matrix_json) }}
+        ${{ fromJson(needs.setup-matrix.outputs.matrix_json) }}
     
     # container: enspyrco/ci-tools:stable
     defaults:
@@ -39,7 +39,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: echo ${{ needs.setup_matrix.outputs.matrix_json }}
+      - run: echo ${{ needs.setup-matrix.outputs.matrix_json }}
 
       - name: Cache Flutter
         id: cache-flutter

@@ -1,26 +1,31 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/json_types.dart';
+import 'package:astro_types/state_types.dart';
 
-part 'organisation_creator_view_model.freezed.dart';
-part 'organisation_creator_view_model.g.dart';
+class OrganisationCreatorViewModel with AstroState {
+  OrganisationCreatorViewModel({
+    this.name = '',
+    this.creating = false,
+  });
 
-@freezed
-class OrganisationCreatorViewModel
-    with _$OrganisationCreatorViewModel, ReduxState {
-  static const String className = 'OrganisationCreatorViewModel';
+  /// The organisaiton name
+  final String name;
 
-  const OrganisationCreatorViewModel._();
-  factory OrganisationCreatorViewModel({
-    /// The organisaiton name
-    @Default('') String name,
-
-    /// Are we currently creating a new organisation?
-    @Default(false) bool creating,
-  }) = _OrganisationCreatorViewModel;
-
-  factory OrganisationCreatorViewModel.fromJson(JsonMap json) =>
-      _$OrganisationCreatorViewModelFromJson(json);
+  /// Are we currently creating a new organisation?
+  final bool creating;
 
   @override
-  String get typeName => className;
+  OrganisationCreatorViewModel copyWith({
+    String? name,
+    bool? creating,
+  }) =>
+      OrganisationCreatorViewModel(
+        creating: creating ?? this.creating,
+        name: name ?? this.name,
+      );
+
+  @override
+  JsonMap toJson() => {
+        'creating': creating,
+        'name': name,
+      };
 }

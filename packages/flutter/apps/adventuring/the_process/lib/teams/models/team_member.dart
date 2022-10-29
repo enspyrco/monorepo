@@ -1,18 +1,29 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/state_types.dart';
 
-part 'team_member.freezed.dart';
-part 'team_member.g.dart';
+class TeamMember with AstroState {
+  TeamMember({
+    required this.uid,
+    required this.firstName,
+    required this.lastName,
+    required this.displayName,
+    required this.photoURL,
+  });
 
-@freezed
-class TeamMember with _$TeamMember {
-  factory TeamMember({
-    required String uid,
-    required String firstName,
-    required String lastName,
-    required String displayName,
-    required String photoURL,
-  }) = _TeamMember;
+  final String uid;
+  final String firstName;
+  final String lastName;
+  final String displayName;
+  final String photoURL;
 
-  factory TeamMember.fromJson(JsonMap json) => _$TeamMemberFromJson(json);
+  @override
+  AstroState copyWith() {
+    // TODO: implement copyWith
+    throw UnimplementedError();
+  }
+
+  @override
+  toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
 }

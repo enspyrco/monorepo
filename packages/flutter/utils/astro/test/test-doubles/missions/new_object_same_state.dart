@@ -8,10 +8,5 @@ class NewObjectSameState<S extends AstroState> extends LandingMission<S> {
   }
 
   @override
-  toJson() => {
-        'name_': 'NoUpdateLandingMission',
-        'type_': 'sync',
-        'id_': hashCode,
-        'parent_': parent?.hashCode
-      };
+  toJson() => {'name_': 'NoUpdateLandingMission', 'state_': {}};
 }
