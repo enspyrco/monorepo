@@ -9,6 +9,6 @@ extension UserExtension on User? {
             (this == null) ? SignedInState.notSignedIn : SignedInState.signedIn,
         uid: this?.uid,
         displayName: this?.displayName,
-        photoUrl: this?.photoURL);
+        photoURL: this?.photoURL);
   }
 }

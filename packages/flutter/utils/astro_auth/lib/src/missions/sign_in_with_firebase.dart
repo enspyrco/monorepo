@@ -26,7 +26,7 @@ class SignInWithFirebase<T extends AstroState> extends AwayMission<T> {
     var state = UserState(
         signedIn: SignedInState.signedIn,
         displayName: user.displayName,
-        photoUrl: user.photoURL,
+        photoURL: user.photoURL,
         uid: user.uid);
 
     missionControl.land(UpdateUserState<T>(state));
