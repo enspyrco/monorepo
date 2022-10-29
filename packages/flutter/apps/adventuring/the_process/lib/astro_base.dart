@@ -38,7 +38,10 @@ Future<void> astroInitialization() async {
 
   /// Create our MissionControl and add to the Locator
   Locator.add<MissionControl<AppState>>(DefaultMissionControl<AppState>(
-      state: initialState, systemChecks: systemChecks));
+      state: initialState,
+      errorHandlers: DefaultErrorHandlers<AppState>(),
+      systemChecks: systemChecks,
+      missionControlCtr: ParentingMissionControl.new));
   Locator.add<FirestoreService>(FirestoreServiceFlutterfire());
 
   /// Setup navigation by adding a [PageGenerator] to the [Locator], that will be
