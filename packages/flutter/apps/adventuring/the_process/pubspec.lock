@@ -71,6 +71,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  astro_test_utils:
+    dependency: "direct dev"
+    description:
+      path: "../../../utils/astro_test_utils"
+      relative: true
+    source: path
+    version: "0.0.1"
   astro_types:
     dependency: "direct main"
     description:

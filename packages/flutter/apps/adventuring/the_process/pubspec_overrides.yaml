@@ -17,3 +17,5 @@ dependency_overrides:
     path: ../../../utils/flutterfire/firestore_service_flutterfire
   firestore_service_interface:
     path: ../../../../dart/interfaces/firestore_service_interface
+  astro_test_utils:
+    path: ../../../utils/astro_test_utils

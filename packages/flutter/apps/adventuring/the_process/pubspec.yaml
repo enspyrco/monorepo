@@ -39,6 +39,7 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/astro_navigation
+  
   # firestore
   firestore_service_flutterfire:
     git:
@@ -59,6 +60,10 @@ dev_dependencies:
     sdk: flutter
   test: ^1.19.5
   mockito: ^5.0.17
+  astro_test_utils:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_test_utils
 
 flutter:
   uses-material-design: true # we use material icons for dropdowns etc.
