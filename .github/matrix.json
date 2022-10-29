@@ -15,7 +15,7 @@
     {
       "package": "the_process",
       "path" : "flutter/apps/adventuring/the_process",
-      "source_gen" : true,
+      "source_gen" : false,
       "project_type": "flutter"
     },
     {
