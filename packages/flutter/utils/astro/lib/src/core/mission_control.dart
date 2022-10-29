@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/error_handling_types.dart';
 import 'package:astro_types/state_types.dart';
@@ -15,6 +14,12 @@ typedef WrappedMissionControlCtr = MissionControl<S>
 /// Make sure [onStateChangeController] is broadcast type as UI components will
 /// listen for a time at random intervals and only want the state changes while
 /// they are listening.
+///
+/// The [errorHandlers] parameter takes an object of type [ErrorHandlers] which
+/// will be act on anything that gets thrown while executing
+/// [LandingMission.landingInstructions] or [AwayMission.flightPlan]. If no
+/// object is passed, the Throwable is just rethrown, keeping the same stack
+/// trace which is very useful in debugging.
 class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
   DefaultMissionControl({
     required S state,
@@ -23,11 +28,11 @@ class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
     List<SystemCheck>? systemChecks,
     WrappedMissionControlCtr? missionControlCtr,
   })  : _state = state,
-        _errorHandlers = errorHandlers ?? DefaultErrorHandlers<S>(),
+        _errorHandlers = errorHandlers,
         _systemChecks = systemChecks,
         _missionControlCtr = missionControlCtr;
   S _state;
-  final ErrorHandlers _errorHandlers;
+  final ErrorHandlers? _errorHandlers;
 
   /// This member is a constructor for creating special MissionControl objects,
   /// allowing for different behaviour under different circumstances - eg.
@@ -55,7 +60,8 @@ class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
     try {
       _state = mission.landingInstructions(_state);
     } catch (thrown, trace) {
-      _state = _errorHandlers.handleLandingError(
+      if (_errorHandlers == null) rethrow;
+      _state = _errorHandlers!.handleLandingError(
           thrown: thrown, trace: trace, mission: mission, state: _state) as S;
     }
 
@@ -79,7 +85,8 @@ class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
         await mission.flightPlan(this);
       }
     } catch (thrown, trace) {
-      _state = _errorHandlers.handleLaunchError(
+      if (_errorHandlers == null) rethrow;
+      _state = _errorHandlers!.handleLaunchError(
           thrown: thrown, trace: trace, mission: mission, state: _state) as S;
 
       // emit the new state for any listeners (eg. StateStreamBuilder widgets)
