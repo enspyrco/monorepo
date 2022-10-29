@@ -197,6 +197,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.4"
+  enspyr_lints:
+    dependency: "direct dev"
+    description:
+      path: "packages/flutter/utils/enspyr_lints"
+      ref: HEAD
+      resolved-ref: a6c99ca0fbcd86c9e5e1209e54b6e0a4019293c5
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "1.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -279,6 +288,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_lints:
+    dependency: transitive
+    description:
+      name: flutter_lints
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -354,6 +370,13 @@ packages:
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
+  lints:
+    dependency: transitive
+    description:
+      name: lints
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   logging:
     dependency: transitive
     description:

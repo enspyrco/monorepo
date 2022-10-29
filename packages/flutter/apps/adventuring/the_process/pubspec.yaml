@@ -55,7 +55,6 @@ dependencies:
   http: ^0.13.4
 
 dev_dependencies:
-  # general testing
   flutter_test:
     sdk: flutter
   test: ^1.19.5
@@ -64,6 +63,10 @@ dev_dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/astro_test_utils
+  enspyr_lints:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/enspyr_lints
 
 flutter:
   uses-material-design: true # we use material icons for dropdowns etc.
