@@ -32,11 +32,5 @@ class CreateOrganisation extends AwayMission<AppState> {
   }
 
   @override
-  toJson() => {
-        'name_': 'CreateOrganisation',
-        'type_': 'async',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
-        'state_': _organisation.toJson()
-      };
+  toJson() => {'name_': 'CreateOrganisation', 'state_': _organisation.toJson()};
 }

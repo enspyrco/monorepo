@@ -17,9 +17,6 @@ class UpdateProjectsView extends LandingMission<AppState> {
   @override
   toJson() => {
         'name_': 'UpdateProjectsView',
-        'type_': 'sync',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
         'state_': {'creating': _creating},
       };
 }

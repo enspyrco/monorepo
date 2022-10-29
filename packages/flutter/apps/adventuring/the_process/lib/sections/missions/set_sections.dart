@@ -14,12 +14,12 @@ class SetSections extends LandingMission<AppState> {
     return state.copyWith(sections: newSections);
   }
 
+  factory SetSections.fromJson(Map<String, dynamic> json) => SetSections(
+      list: json['list'].map((e) => SectionModel.fromJson(e)).toList());
+
   @override
   toJson() => {
         'name_': 'SetSection',
-        'type_': 'sync',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
         'state_': {'list': _list.map((e) => e.toJson()).toList()},
       };
 }

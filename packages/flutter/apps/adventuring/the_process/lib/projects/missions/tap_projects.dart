@@ -42,9 +42,6 @@ class TapProjects extends AwayMission<AppState> {
   @override
   toJson() => {
         'name_': 'TapProjects',
-        'type_': 'async',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
         'state_': {
           'organisationId': _organisationId,
           'turnOff': _turnOff,

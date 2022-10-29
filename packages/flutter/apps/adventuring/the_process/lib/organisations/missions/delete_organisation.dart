@@ -25,10 +25,5 @@ class DeleteOrganisation extends AwayMission<AppState> {
   }
 
   @override
-  toJson() => {
-        'name_': 'DeleteOrganisation',
-        'type_': 'async',
-        'id_': hashCode,
-        'parent_': parent?.hashCode
-      };
+  toJson() => {'name_': 'DeleteOrganisation', 'state_': {}};
 }

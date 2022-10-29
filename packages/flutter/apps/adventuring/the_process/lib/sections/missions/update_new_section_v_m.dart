@@ -17,8 +17,6 @@ class UpdateNewSectionVM extends LandingMission<AppState> {
   @override
   toJson() => {
         'name_': 'UpdateNewSectionVM',
-        'type_': 'sync',
-        'id_': hashCode,
-        'parent_': parent?.hashCode
+        'state_': {'name': _name}
       };
 }

@@ -21,10 +21,5 @@ class CreateSection extends AwayMission<AppState> {
   }
 
   @override
-  toJson() => {
-        'name_': 'CreateSection',
-        'type_': 'async',
-        'id_': hashCode,
-        'parent_': parent?.hashCode
-      };
+  toJson() => {'name_': 'CreateSection', 'state_': {}};
 }

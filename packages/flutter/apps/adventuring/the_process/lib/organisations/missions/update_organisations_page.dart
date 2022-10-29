@@ -23,9 +23,6 @@ class UpdateOrganisationsPage extends LandingMission<AppState> {
   @override
   toJson() => {
         'name_': 'UpdateOrganisationsPage',
-        'type_': 'sync',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
         'state_': {'creating': creating, 'deleting': deleting}
       };
 }

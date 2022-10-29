@@ -37,9 +37,6 @@ class CreateProject extends AwayMission<AppState> {
   @override
   toJson() => {
         'name_': 'CreateProject',
-        'type_': 'async',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
         'state_': _project.toJson(),
       };
 }

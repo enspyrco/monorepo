@@ -20,9 +20,6 @@ class SetOrganisations extends LandingMission<AppState> {
   @override
   toJson() => {
         'name_': 'SetOrganisations',
-        'type_': 'sync',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
         'state_': {
           'organisations': [for (var org in _organisations) org.toJson()]
         }

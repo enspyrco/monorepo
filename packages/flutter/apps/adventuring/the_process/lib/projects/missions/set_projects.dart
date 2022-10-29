@@ -17,9 +17,6 @@ class SetProjects extends LandingMission<AppState> {
   @override
   toJson() => {
         'name_': 'SetProjects',
-        'type_': 'sync',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
         'state_': {
           'projects': [for (var project in _projects) project.toJson()]
         },

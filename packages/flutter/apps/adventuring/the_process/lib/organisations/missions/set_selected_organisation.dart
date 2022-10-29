@@ -19,9 +19,6 @@ class SetSelectedOrganisation extends LandingMission<AppState> {
   @override
   toJson() => {
         'name_': 'SetSelectedOrganisation',
-        'type_': 'sync',
-        'id_': hashCode,
-        'parent_': parent?.hashCode,
         'state_': <String, dynamic>{'organisation': organisation?.toJson()}
       };
 }
