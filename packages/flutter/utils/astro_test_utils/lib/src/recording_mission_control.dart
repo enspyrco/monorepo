@@ -12,6 +12,9 @@ class RecordingMissionControl<T extends AstroState>
   late final MissionControl<T> _missionControl;
   final RecordMissions<T> _recordedMissions = RecordMissions<T>();
 
+  bool recorded(Mission mission) =>
+      _recordedMissions.missions.contains(mission);
+
   @override
   void land(LandingMission<T> mission) => _missionControl.land(mission);
 

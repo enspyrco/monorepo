@@ -1,6 +1,8 @@
+import 'package:astro_test_utils/astro_widgets_test_utils.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:the_process/app/state/app_state.dart';
 import 'package:the_process/projects/models/project_state.dart';
+import 'package:the_process/projects/models/projects_state.dart';
 import 'package:the_process/projects/widgets/grid-view/new_project_item.dart';
 import 'package:the_process/projects/widgets/grid-view/project_item.dart';
 import 'package:the_process/projects/widgets/grid-view/projects_grid.dart';
@@ -10,11 +12,12 @@ void main() {
     var projectA = ProjectState.initWith(name: 'a');
     var projectB = ProjectState.initWith(name: 'b');
     var projectC = ProjectState.initWith(name: 'c');
-    AppState initialState = AppState.initial.copyWith
-        .projects(all: ISet([projectA, projectB, projectC]));
+    AppState initialState = AppState.initial.copyWith(
+        projects: ProjectsState(
+            all: {projectA, projectB, projectC}, creating: false));
 
-    final harness = WidgetTestHarness<AppState>.withFakeStore(
-        initialState: initialState, widgetUnderTest: const ProjectsGrid());
+    final harness = WidgetTestHarness<AppState>(
+        initialState: initialState, child: const ProjectsGrid());
 
     await tester.pumpWidget(harness.widget);
 
