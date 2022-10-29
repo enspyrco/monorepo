@@ -18,6 +18,8 @@ class SendMissionUpdatesToInspector<T extends AstroState>
       'data': {
         'state': missionControl.state.toJson(),
         'mission': mission.toJson()
+          ..['id_'] = mission.hashCode
+          ..['type_'] = mission is AwayMission ? 'async' : 'sync'
       },
       'type': 'astro:mission_update',
     });
