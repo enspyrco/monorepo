@@ -22,6 +22,7 @@ jobs:
       - run: echo ${{ steps.read-matrix.outputs.json }}
   
   run-tests:
+    if: needs.setup-matrix.outputs.matrix_json.include[0] != null # only run if matrix is non-empty
     needs: setup-matrix
     runs-on: ubuntu-latest
     strategy:
