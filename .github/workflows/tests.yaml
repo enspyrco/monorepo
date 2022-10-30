@@ -7,7 +7,6 @@ on:
 
 jobs:
   setup-matrix:
-    # name: Setup Matrix
     runs-on: ubuntu-latest
     outputs:
       matrix_json: ${{ steps.read-matrix.outputs.json }}
@@ -23,8 +22,6 @@ jobs:
       - run: echo ${{ steps.read-matrix.outputs.json }}
   
   run-tests:
-    # if: needs.setup-matrix.outputs.matrix_json.include[0] != null # only run if matrix is non-empty
-    # name: Run Tests
     needs: setup-matrix
     runs-on: ubuntu-latest
     strategy:
@@ -65,3 +62,9 @@ jobs:
         run: flutter pub run build_runner build
       
       - run: flutter test
+
+  tests-complete:
+    runs-on: ubuntu-latest
+    needs: run-tests
+    steps:
+      - run: echo Done!
