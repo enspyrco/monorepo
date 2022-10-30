@@ -70,7 +70,7 @@ jobs:
     needs: run-tests
     steps:
       - run: |
-          result="${{ needs.build.run-tests }}"
+          result="${{ needs.run-tests.result }}"
           echo $result
           if [[ $result == "success" || $result == "skipped" ]]; then
             exit 0
