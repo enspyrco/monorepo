@@ -12,12 +12,12 @@ import '../../teams/models/team_member.dart';
 
 @immutable
 class AppState
-    with
+    implements
         AstroState,
         DefaultNavigationState,
         DefaultErrorHandlingState,
         DefaultAuthState {
-  AppState({
+  const AppState({
     required this.navigation,
     required this.auth,
     required this.error,

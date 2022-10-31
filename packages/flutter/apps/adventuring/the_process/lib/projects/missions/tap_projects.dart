@@ -11,7 +11,7 @@ import 'set_projects.dart';
 StreamSubscription<List<Document>>? _subscription;
 
 class TapProjects extends AwayMission<AppState> {
-  TapProjects({required String? organisationId, bool turnOff = false})
+  const TapProjects({required String? organisationId, bool turnOff = false})
       : _organisationId = organisationId,
         _turnOff = turnOff;
 

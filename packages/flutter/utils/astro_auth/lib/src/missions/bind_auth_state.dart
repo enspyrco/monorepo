@@ -12,6 +12,8 @@ import 'update_user_state.dart';
 StreamSubscription<UserState>? _subscription;
 
 class BindAuthState<T extends AstroState> extends AwayMission<T> {
+  const BindAuthState();
+
   @override
   Future<void> flightPlan(MissionControl<T> missionControl) async {
     var service = locate<FirebaseAuthService>();

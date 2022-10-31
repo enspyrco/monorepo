@@ -5,9 +5,9 @@ import '../../app/state/app_state.dart';
 import '../../projects/models/section_model.dart';
 
 class SetSections extends LandingMission<AppState> {
-  SetSections({required List<SectionModel> list}) : _list = list;
+  const SetSections({required List<SectionModel> list}) : _list = list;
 
-  List<SectionModel> _list;
+  final List<SectionModel> _list;
 
   @override
   AppState landingInstructions(AppState state) {

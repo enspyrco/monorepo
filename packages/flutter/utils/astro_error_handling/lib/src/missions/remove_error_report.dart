@@ -5,7 +5,7 @@ import 'package:astro_types/state_types.dart';
 import '../../astro_error_handling.dart';
 
 class RemoveErrorReport<S extends AstroState> extends LandingMission<S> {
-  RemoveErrorReport(this.report);
+  const RemoveErrorReport(this.report);
 
   final ErrorReport report;
 

@@ -1,1 +1,1 @@
-mixin PageState {}
+abstract class PageState {}

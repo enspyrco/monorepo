@@ -9,7 +9,7 @@ void main() {
       final initialState = AppState.initial;
       expect(initialState.sections.newName, '');
 
-      final mission = UpdateNewSectionVM(name: 'testy');
+      const mission = UpdateNewSectionVM(name: 'testy');
 
       final newState = mission.landingInstructions(initialState);
 

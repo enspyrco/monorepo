@@ -3,7 +3,7 @@ import 'package:astro_types/core_types.dart';
 import '../../app/state/app_state.dart';
 
 class UpdateNewSectionVM extends LandingMission<AppState> {
-  UpdateNewSectionVM({String? name}) : _name = name;
+  const UpdateNewSectionVM({String? name}) : _name = name;
 
   final String? _name;
 

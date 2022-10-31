@@ -4,7 +4,7 @@ import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/state_types.dart';
 
 class AppState
-    with
+    implements
         AstroState,
         DefaultErrorHandlingState,
         DefaultAuthState,

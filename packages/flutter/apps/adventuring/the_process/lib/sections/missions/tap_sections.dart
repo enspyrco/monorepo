@@ -11,7 +11,7 @@ import 'set_sections.dart';
 StreamSubscription<List<Document>>? _subscription;
 
 class TapSections extends AwayMission<AppState> {
-  TapSections({bool turnOff = false}) : _turnOff = turnOff;
+  const TapSections({bool turnOff = false}) : _turnOff = turnOff;
 
   final bool _turnOff;
 

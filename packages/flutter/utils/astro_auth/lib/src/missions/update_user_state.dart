@@ -4,7 +4,7 @@ import 'package:astro_types/state_types.dart';
 import '../state/user_state.dart';
 
 class UpdateUserState<T extends AstroState> extends LandingMission<T> {
-  UpdateUserState(this.user);
+  const UpdateUserState(this.user);
 
   final UserState user;
 

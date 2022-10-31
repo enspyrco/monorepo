@@ -60,13 +60,13 @@ void main() {
         missionControl.onStateChange,
         emitsInOrder([
           ExampleAppState(
-              error: ErrorHandlingState(
+              error: const ErrorHandlingState(
                   reports: [ErrorReport(message: 'message')])),
           ExampleAppState(
-              error: ErrorHandlingState(
+              error: const ErrorHandlingState(
                   reports: [ErrorReport(message: 'message')])),
           ExampleAppState(
-              error: ErrorHandlingState(reports: [
+              error: const ErrorHandlingState(reports: [
             ErrorReport(message: 'message'),
             ErrorReport(message: 'message')
           ]))

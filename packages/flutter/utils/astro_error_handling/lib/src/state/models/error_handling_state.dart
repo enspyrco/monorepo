@@ -3,10 +3,11 @@ import 'package:flutter/foundation.dart';
 
 import 'error_report.dart';
 
-class ErrorHandlingState with AstroState {
-  ErrorHandlingState({required this.reports});
+class ErrorHandlingState implements AstroState {
+  const ErrorHandlingState({required this.reports});
 
-  static ErrorHandlingState get initial => ErrorHandlingState(reports: []);
+  static ErrorHandlingState get initial =>
+      const ErrorHandlingState(reports: []);
 
   final List<ErrorReport> reports;
 

@@ -1,7 +1,7 @@
 import 'package:astro_types/state_types.dart';
 
-class TeamMember with AstroState {
-  TeamMember({
+class TeamMember implements AstroState {
+  const TeamMember({
     required this.uid,
     required this.firstName,
     required this.lastName,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../build_context_extensions.dart';
+import '../../../shared/extensions/build_context_extensions.dart';
 import '../../missions/create_project.dart';
 import '../../models/project_state.dart';
 import '../../models/update_projects_view.dart';
@@ -59,7 +59,7 @@ class CreateProjectFormState extends State<CreateProjectForm> {
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    context.land(UpdateProjectsView(creating: false));
+                    context.land(const UpdateProjectsView(creating: false));
                   },
                   child: const Text('Cancel'),
                 ),

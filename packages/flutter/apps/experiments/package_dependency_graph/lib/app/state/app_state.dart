@@ -4,12 +4,13 @@ import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/state_types.dart';
 
 class AppState
-    with
+    implements
         AstroState,
         DefaultErrorHandlingState,
         DefaultAuthState,
         DefaultNavigationState {
-  AppState({required this.error, required this.auth, required this.navigation});
+  const AppState(
+      {required this.error, required this.auth, required this.navigation});
 
   static AppState get initial => AppState(
       error: ErrorHandlingState.initial,

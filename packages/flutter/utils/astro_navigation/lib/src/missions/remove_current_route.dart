@@ -4,6 +4,8 @@ import 'package:astro_types/state_types.dart';
 import '../state/sections/navigation_state.dart';
 
 class RemoveCurrentRoute<S extends AstroState> extends LandingMission<S> {
+  const RemoveCurrentRoute();
+
   @override
   S landingInstructions(S state) {
     NavigationState navigation = (state as dynamic).navigation;

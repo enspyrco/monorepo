@@ -3,8 +3,8 @@ import 'package:astro_types/state_types.dart';
 
 import 'section_model.dart';
 
-class SectionsState with AstroState {
-  SectionsState({
+class SectionsState implements AstroState {
+  const SectionsState({
     required this.newName,
     required this.list,
     required this.creatingNewSection,
@@ -14,7 +14,7 @@ class SectionsState with AstroState {
   final List<SectionModel> list;
   final bool creatingNewSection;
 
-  static SectionsState get initial => SectionsState(
+  static SectionsState get initial => const SectionsState(
       list: <SectionModel>[], newName: '', creatingNewSection: false);
 
   @override

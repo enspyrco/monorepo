@@ -2,7 +2,7 @@ import 'package:astro_types/state_types.dart';
 
 import 'core_types.dart';
 
-mixin ErrorHandlers<S extends AstroState> {
+abstract class ErrorHandlers<S extends AstroState> {
   AstroState handleLaunchError(
       {required Object thrown,
       required StackTrace trace,

@@ -15,8 +15,8 @@ import 'firebase_options.dart';
 import 'home/home_screen.dart';
 import 'organisations/routes/manage_organisations_page_state.dart';
 import 'organisations/routes/manage_organisations_screen.dart';
-import 'projects/routes/project_details_page_state.dart';
-import 'projects/routes/project_details_screen.dart';
+import 'projects/routes/project_details/project_details_page_state.dart';
+import 'projects/routes/project_details/project_details_screen.dart';
 
 Future<void> astroInitialization() async {
   /// Setup FlutterFire
@@ -24,8 +24,8 @@ Future<void> astroInitialization() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   ///
-  var initialState = AppState.initial
-      .copyWith(navigation: NavigationState(stack: [AuthGatePageState()]));
+  var initialState = AppState.initial.copyWith(
+      navigation: const NavigationState(stack: [AuthGatePageState()]));
 
   var systemChecks = <SystemCheck>[];
 
@@ -87,7 +87,7 @@ class AstroBase extends StatelessWidget {
           flex: 1,
           child: PagesNavigator<AppState>(
             onInit: (missionControl) =>
-                missionControl.launch(BindAuthState<AppState>()),
+                missionControl.launch(const BindAuthState<AppState>()),
           ),
         ),
       ],

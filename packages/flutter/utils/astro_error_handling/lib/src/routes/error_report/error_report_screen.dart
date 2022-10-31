@@ -3,8 +3,8 @@ import 'package:astro_types/core_types.dart';
 import 'package:astro_types/state_types.dart';
 import 'package:flutter/material.dart';
 
-import '../../../missions/remove_error_report.dart';
-import '../../../state/models/error_report.dart';
+import '../../missions/remove_error_report.dart';
+import '../../state/models/error_report.dart';
 
 /// The [ErrorReportView] is used for alerting a user when an error was thrown.
 class ErrorReportScreen<T extends AstroState> extends StatelessWidget {

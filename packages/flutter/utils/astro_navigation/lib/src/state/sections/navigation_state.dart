@@ -5,11 +5,11 @@ import 'package:flutter/foundation.dart';
 
 /// Part of the DefaultNavigationState - includes the stack of PageState objects.
 class NavigationState extends AstroState {
-  NavigationState({required this.stack});
+  const NavigationState({required this.stack});
 
   final List<PageState> stack;
 
-  static NavigationState get initial => NavigationState(stack: const []);
+  static NavigationState get initial => const NavigationState(stack: []);
 
   @override
   NavigationState copyWith({List<PageState>? stack}) {

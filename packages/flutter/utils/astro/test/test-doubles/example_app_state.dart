@@ -1,7 +1,7 @@
 import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_types/state_types.dart';
 
-class ExampleAppState with AstroState, DefaultErrorHandlingState {
+class ExampleAppState implements AstroState, DefaultErrorHandlingState {
   ExampleAppState({required this.error});
 
   static ExampleAppState get initial =>

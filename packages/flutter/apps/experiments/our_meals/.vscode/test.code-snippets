@@ -1,10 +1,11 @@
 {
-  "away mission": {
+  "astro away mission": {
     "prefix": "astro_mission(away)",
     "body": [
       "import 'package:astro_types/core_types.dart';",
       "",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} extends AwayMission<AppState> {",
+      "\tconst ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}();",
       "",
       "\t@override",
       "\tFuture<void> flightPlan(MissionControl<AppState> missionControl) async {",
@@ -12,48 +13,39 @@
       "\t}",
       "",
       "\t@override",
-      "\ttoJson() => {'name_': '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}', 'type_': 'async', 'id_': hashCode, 'parent_': parent?.hashCode};",
+      "\ttoJson() => {'name_': '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}', 'state_': };",
       "",
       "}",
     ],
     "description": "away mission for astro"
   },
-  "landing mission": {
+  "astro landing mission": {
     "prefix": "astro_mission(landing)",
     "body": [
       "import 'package:astro_types/core_types.dart';",
       "",
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} extends LandingMission<AppState> {",
-      "",
-      "@override",
-      "AppState landingInstructions(AppState state) {}",
+      "\tconst ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}();",
       "",
       "\t@override",
-      "\ttoJson() => {'name_': '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}', 'type_': 'sync', 'id_': hashCode, 'parent_': parent?.hashCode};",
+      "\tAppState landingInstructions(AppState state) {",
+      "\t\treturn state.",
+      "\t}",
+      "",
+      "\t@override",
+      "\ttoJson() => {'name_': '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}', 'state_': };",
       "",
       "}"
     ],
     "description": "landing mission for astro"
   },
-  "navigation page state": {
-    "prefix": "astro_nav_page_state",
+  "astro route - page": {
+    "prefix": "astro_route(page)",
     "body": [
-      "import 'package:astro_types/navigation_types.dart';",
+      "import 'package:astro_navigation/astro_navigation.dart';",
       "import 'package:astro_types/state_types.dart';",
+      "import 'package:flutter/material.dart';",
       "",
-      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageState<T extends AstroState> with PageState, AstroState {",
-      "\t@override",
-      "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageState<T> copyWith() => this;",
-      "",
-      "\t@override",
-      "\ttoJson() => {'type': '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageState'};",
-      "}"
-    ],
-    "description": "navigation: page state for astro"
-  },
-  "navigation page": {
-    "prefix": "astro_nav_page",
-    "body": [
       "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page<T extends AstroState> extends MaterialPage {",
       "\tconst ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Page({super.child = const ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Screen()});",
       "",
@@ -62,7 +54,7 @@
       "\t\treturn PageRouteBuilder(",
       "\t\t\tsettings: this,",
       "\t\t\tpageBuilder: (context, inAnimation, outAnimation) {",
-      "\t\t\t\treturn EasyTweenSlideTransition(",
+      "\t\t\t\treturn BasicTweenSlideTransition(",
       "\t\t\t\t\tanimation: inAnimation,",
       "\t\t\t\t\tchild: ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}Screen<T>(),",
       "\t\t\t\t);",
@@ -73,8 +65,26 @@
     ],
     "description": "navigation: page for astro"
   },
-  "equality overrides": {
-    "prefix": "astro_equality_overrides",
+  "astro route - page state": {
+    "prefix": "astro_route(page_state)",
+    "body": [
+      "import 'package:astro_types/navigation_types.dart';",
+      "import 'package:astro_types/state_types.dart';",
+      "",
+      "class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageState<T extends AstroState> implements PageState, AstroState {",
+      "\tconst ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageState();",
+      "",
+      "\t@override",
+      "\t${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageState<T> copyWith() => this;",
+      "",
+      "\t@override",
+      "\ttoJson() => {'type': '${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}PageState'};",
+      "}"
+    ],
+    "description": "navigation: page state for astro"
+  },
+  "astro override equality": {
+    "prefix": "astro_override_equality",
     "body": [
       "@override",
       "bool operator ==(Object other) =>",
@@ -84,6 +94,6 @@
       "@override",
       "int get hashCode => Object.hash($1);"
     ],
-    "description": "equality overrides for astro"
+    "description": "override an object's equality for astro"
   },
 }

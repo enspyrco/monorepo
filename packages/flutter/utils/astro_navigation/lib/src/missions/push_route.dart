@@ -5,7 +5,7 @@ import 'package:astro_types/state_types.dart';
 import '../state/sections/navigation_state.dart';
 
 class PushRoute<S extends AstroState> extends LandingMission<S> {
-  PushRoute(this.pageState);
+  const PushRoute(this.pageState);
 
   final PageState pageState;
 

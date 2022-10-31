@@ -16,8 +16,8 @@ export 'src/widgets/pages_navigator.dart';
 /// widget to turn [AppState.navigator.stack] into a [List<MaterialPage>] to
 /// pass into the navigator.
 class PageGenerator {
-  PageGenerator(Map<Type, MaterialPage Function(PageState)>? map)
-      : _map = map ?? {};
+  const PageGenerator(Map<Type, MaterialPage Function(PageState)> map)
+      : _map = map;
 
   final Map<Type, MaterialPage Function(PageState)> _map;
 

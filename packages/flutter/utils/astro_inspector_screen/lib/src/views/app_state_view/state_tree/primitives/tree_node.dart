@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 class TreeNode {
   TreeNode(this.children, {required this.key, Widget? content})
-      : content = content ?? Container(width: 0, height: 0);
+      : content = content ?? const SizedBox(width: 0, height: 0);
 
   final Key key;
   final List<TreeNode> children;

@@ -19,11 +19,12 @@ void main() {
 
       var missionControl = RecordingMissionControl<AppState>(state: state);
 
-      final mission = CreateSection();
+      const mission = CreateSection();
       await mission.flightPlan(missionControl);
 
       expect(
-          missionControl.recorded(UpdateSectionsVM(creatingNewSection: true)),
+          missionControl
+              .recorded(const UpdateSectionsVM(creatingNewSection: true)),
           true);
     });
   },

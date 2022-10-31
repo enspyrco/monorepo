@@ -12,7 +12,7 @@ class SectionsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OnStateChangeBuilder<AppState, SectionsState?>(
-      onInit: (missionControl) => missionControl.launch(TapSections()),
+      onInit: (missionControl) => missionControl.launch(const TapSections()),
       transformer: (state) => state.sections,
       builder: (context, vm) {
         if (vm == null || vm.creatingNewSection) {

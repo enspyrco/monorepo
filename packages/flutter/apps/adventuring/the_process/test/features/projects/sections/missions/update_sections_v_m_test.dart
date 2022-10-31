@@ -9,7 +9,7 @@ void main() {
       final initialState = AppState.initial;
       expect(initialState.sections.creatingNewSection, false);
 
-      final mission = UpdateSectionsVM(creatingNewSection: true);
+      const mission = UpdateSectionsVM(creatingNewSection: true);
 
       final newState = mission.landingInstructions(initialState);
 

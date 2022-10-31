@@ -2,8 +2,8 @@ import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 
 /// Class for carrying basic error information for display to the user.
-class ErrorReport with AstroState {
-  ErrorReport({required this.message, this.trace});
+class ErrorReport implements AstroState {
+  const ErrorReport({required this.message, this.trace});
 
   final String message;
   final String? trace;

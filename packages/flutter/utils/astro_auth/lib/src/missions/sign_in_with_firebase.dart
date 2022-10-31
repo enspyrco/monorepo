@@ -9,7 +9,7 @@ import '../state/user_state.dart';
 import 'update_user_state.dart';
 
 class SignInWithFirebase<T extends AstroState> extends AwayMission<T> {
-  SignInWithFirebase({required this.idToken, required this.rawNonce});
+  const SignInWithFirebase({required this.idToken, required this.rawNonce});
 
   final String idToken;
   final String rawNonce;

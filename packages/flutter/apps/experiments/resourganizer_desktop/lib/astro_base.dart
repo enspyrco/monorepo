@@ -17,15 +17,29 @@ Future<void> astroInitialization() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  /// MissionControl, AppState & SystemChecks
-  var initialState = AppState.initial
-      .copyWith(navigation: NavigationState(stack: [AuthGatePageState()]));
-  final sendMissionUpdates = SendMissionUpdatesToInspector<AppState>();
-  Locator.add<MissionControl<AppState>>(DefaultMissionControl<AppState>(
-      state: initialState, systemChecks: [sendMissionUpdates]));
-  Locator.add<SendMissionUpdatesToInspector>(sendMissionUpdates);
+  ///
+  var initialState = AppState.initial.copyWith(
+      navigation: const NavigationState(stack: [AuthGatePageState()]));
 
-  /// Navigation
+  var systemChecks = <SystemCheck>[];
+
+  if (const bool.fromEnvironment('IN-APP-ASTRO-INSPECTOR')) {
+    /// Create a SystemCheck that sends mission updates to the Inspector
+    final sendMissionUpdates = SendMissionUpdatesToInspector<AppState>();
+    Locator.add<SendMissionUpdatesToInspector>(sendMissionUpdates);
+    systemChecks.add(sendMissionUpdates);
+  }
+
+  /// Create our MissionControl and add to the Locator
+  Locator.add<MissionControl<AppState>>(DefaultMissionControl<AppState>(
+      state: initialState,
+      errorHandlers: DefaultErrorHandlers<AppState>(),
+      systemChecks: systemChecks,
+      missionControlCtr: ParentingMissionControl.new));
+
+  /// Setup navigation by adding a [PageGenerator] to the [Locator], that will be
+  /// used to turn a [PageState] from [AppState.navigation.stack] into a [Page]
+  /// that the [Navigator] will use to display a screen.
   Locator.add<PageGenerator>(PageGenerator({
     AuthGatePageState: (state) => const MaterialPage(
         child: AuthGateScreen<AppState>(child: ExampleDragTarget())),
@@ -34,7 +48,7 @@ Future<void> astroInitialization() async {
             (state as ErrorReportPageState).report)),
   }));
 
-  /// Individual plugin initialization
+  /// Perform individual plugin initialization
   astroAuthInit();
 }
 
@@ -57,7 +71,7 @@ class AstroBase extends StatelessWidget {
           flex: 1,
           child: PagesNavigator<AppState>(
             onInit: (missionControl) =>
-                missionControl.launch(BindAuthState<AppState>()),
+                missionControl.launch(const BindAuthState<AppState>()),
           ),
         ),
       ],

@@ -7,6 +7,8 @@ import 'update_sections_v_m.dart';
 final http.Client _client = http.Client();
 
 class CreateSection extends AwayMission<AppState> {
+  const CreateSection();
+
   @override
   Future<void> flightPlan(MissionControl<AppState> missionControl) async {
     final queryParameters = {'name': missionControl.state.sections.newName};
@@ -17,7 +19,7 @@ class CreateSection extends AwayMission<AppState> {
       throw '${response.statusCode} : ${response.reasonPhrase}';
     }
 
-    missionControl.land(UpdateSectionsVM(creatingNewSection: true));
+    missionControl.land(const UpdateSectionsVM(creatingNewSection: true));
   }
 
   @override
