@@ -4,7 +4,12 @@
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Create Missions:
+
+- A LandingMission to update the AppState via synchrnous pure functions
+- An AwayMission to perform side effects asynchronously
+
+Launch AwayMissions and LandingMissions with MissionControl.
 
 ## Getting started
 
