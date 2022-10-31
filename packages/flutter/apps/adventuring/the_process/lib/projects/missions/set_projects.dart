@@ -4,7 +4,7 @@ import '../../app/state/app_state.dart';
 import '../models/project_state.dart';
 
 class SetProjects extends LandingMission<AppState> {
-  SetProjects(Set<ProjectState> projects) : _projects = projects;
+  const SetProjects(Set<ProjectState> projects) : _projects = projects;
 
   final Set<ProjectState> _projects;
 

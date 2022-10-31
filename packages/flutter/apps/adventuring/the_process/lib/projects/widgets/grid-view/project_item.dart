@@ -1,9 +1,9 @@
 import 'package:astro_navigation/astro_navigation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../build_context_extensions.dart';
+import '../../../shared/extensions/build_context_extensions.dart';
 import '../../models/project_state.dart';
-import '../../routes/project_details_page_state.dart';
+import '../../routes/project_details/project_details_page_state.dart';
 
 class ProjectItem extends StatelessWidget {
   const ProjectItem(this.project, {Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class ProjectItem extends StatelessWidget {
         ),
         child: InkWell(
           splashColor: Colors.blue.withAlpha(30),
-          onTap: () => context.land(PushRoute(ProjectDetailsPageState())),
+          onTap: () => context.land(const PushRoute(ProjectDetailsPageState())),
           child: Center(
               child: Text(project.name,
                   style: Theme.of(context).textTheme.headline5)),

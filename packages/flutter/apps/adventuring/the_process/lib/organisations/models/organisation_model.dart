@@ -4,8 +4,8 @@ import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 import 'package:firestore_service_interface/firestore_service_interface.dart';
 
-class OrganisationModel with AstroState {
-  OrganisationModel({
+class OrganisationModel implements AstroState {
+  const OrganisationModel({
     // A unique id, current implementation is the firestore document id
     required this.id,
     required this.name,

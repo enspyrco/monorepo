@@ -6,6 +6,8 @@ import 'package:astro_types/state_types.dart';
 import '../../astro_auth.dart';
 
 class SignOut<T extends AstroState> extends AwayMission<T> {
+  const SignOut();
+
   @override
   Future<void> flightPlan(MissionControl<T> missionControl) async {
     var service = locate<FirebaseAuthService>();

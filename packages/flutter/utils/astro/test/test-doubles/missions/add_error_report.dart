@@ -6,7 +6,7 @@ class AddErrorReport<S extends AstroState> extends LandingMission<S> {
   @override
   S landingInstructions(S state) {
     return (state as dynamic).copyWith(reports: [
-      ErrorReport(message: 'message'),
+      const ErrorReport(message: 'message'),
       ...(state as dynamic).reports as List<ErrorReport>
     ]) as S;
   }

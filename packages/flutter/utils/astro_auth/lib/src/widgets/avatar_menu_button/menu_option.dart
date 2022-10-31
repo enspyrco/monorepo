@@ -4,7 +4,7 @@ import 'package:astro_types/state_types.dart';
 import 'package:flutter/widgets.dart';
 
 class MenuOption {
-  MenuOption(this.name, this.mission);
+  const MenuOption(this.name, this.mission);
 
   final String name;
   final Mission mission;

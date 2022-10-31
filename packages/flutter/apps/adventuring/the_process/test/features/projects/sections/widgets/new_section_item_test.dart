@@ -25,7 +25,8 @@ void main() {
 
     await tester.enterText(textField, 'a');
 
-    expect(harness.recordedMissions, contains(UpdateNewSectionVM(name: 'a')));
+    expect(harness.recordedMissions,
+        contains(const UpdateNewSectionVM(name: 'a')));
   }, skip: true); // While we sort our Sections and how they will work
 
   testWidgets('NewSectionItem dispatches CreateSection on submit',
@@ -46,6 +47,6 @@ void main() {
 
     await tester.tap(button);
 
-    expect(harness.recordedMissions, contains(CreateSection()));
+    expect(harness.recordedMissions, contains(const CreateSection()));
   }, skip: true); // While we sort our Sections and how they will work
 }

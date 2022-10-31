@@ -4,8 +4,8 @@ import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 import 'package:firestore_service_interface/firestore_service_interface.dart';
 
-class ProjectState with AstroState {
-  ProjectState({
+class ProjectState implements AstroState {
+  const ProjectState({
     required this.id,
     required this.name,
     required this.ownerIds,

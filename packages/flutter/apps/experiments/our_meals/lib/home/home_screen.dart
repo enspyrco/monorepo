@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
     return TextButton(
       child: const Text('Home Screen'),
       onPressed: () {
-        locate<MissionControl<AppState>>().launch(SignOut<AppState>());
+        locate<MissionControl<AppState>>().launch(const SignOut<AppState>());
       },
     );
   }

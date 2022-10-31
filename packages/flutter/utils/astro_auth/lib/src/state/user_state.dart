@@ -12,7 +12,7 @@ enum SignedInState {
   final bool disableButton;
 }
 
-class UserState with AstroState {
+class UserState implements AstroState {
   UserState({
     required this.signedIn,
     this.uid,

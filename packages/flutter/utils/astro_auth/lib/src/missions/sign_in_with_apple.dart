@@ -7,6 +7,8 @@ import '../utils/nonce.dart';
 import 'sign_in_with_firebase.dart';
 
 class SignInWithApple<T extends AstroState> extends AwayMission<T> {
+  SignInWithApple();
+
   /// From: `somewhere I can't remember now...`
   /// To prevent replay attacks with the credential returned from Apple, we
   /// include a nonce in the credential request. When signing in with

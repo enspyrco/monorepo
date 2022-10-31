@@ -5,6 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('NavigationState json encodes', () {
-    expect(jsonEncode(NavigationState(stack: const [])), isA<String>());
+    expect(jsonEncode(const NavigationState(stack: [])), isA<String>());
   });
 }

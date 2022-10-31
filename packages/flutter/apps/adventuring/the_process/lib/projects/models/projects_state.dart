@@ -3,8 +3,8 @@ import 'package:astro_types/state_types.dart';
 
 import 'project_state.dart';
 
-class ProjectsState with AstroState {
-  ProjectsState({
+class ProjectsState implements AstroState {
+  const ProjectsState({
     required this.all,
     required this.creating,
   });
@@ -13,7 +13,7 @@ class ProjectsState with AstroState {
   final bool creating;
 
   static ProjectsState get initial =>
-      ProjectsState(all: <ProjectState>{}, creating: false);
+      const ProjectsState(all: <ProjectState>{}, creating: false);
 
   @override
   ProjectsState copyWith({Set<ProjectState>? all, bool? creating}) =>

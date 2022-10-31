@@ -31,17 +31,17 @@ void main() {
 
     expect(find.text('builds: 0, SignedInState.checking'), findsOneWidget);
 
-    missionControl.land(PushRoute<AppState>(SignInPageState()));
+    missionControl.land(const PushRoute<AppState>(SignInPageState()));
     await tester.pump();
 
     expect(find.text('builds: 1, SignedInState.checking'), findsOneWidget);
 
-    missionControl.land(PushRoute<AppState>(HomePageState()));
+    missionControl.land(const PushRoute<AppState>(HomePageState()));
     await tester.pump();
 
     expect(find.text('builds: 1, reports: 1'), findsOneWidget);
 
-    missionControl.land(PushRoute<AppState>(HomePageState()));
+    missionControl.land(const PushRoute<AppState>(HomePageState()));
     // notes on why we add a duration are below
     await tester.pump(const Duration(microseconds: 1));
     expect(find.text('builds: 2, reports: 2'), findsOneWidget);

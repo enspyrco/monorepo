@@ -2,8 +2,8 @@ import 'package:astro_types/state_types.dart';
 
 import 'organisation_model.dart';
 
-class OrganisationSelectorViewModel with AstroState {
-  OrganisationSelectorViewModel({
+class OrganisationSelectorViewModel implements AstroState {
+  const OrganisationSelectorViewModel({
     this.selected,
     required this.all,
   });
@@ -12,7 +12,7 @@ class OrganisationSelectorViewModel with AstroState {
   final Set<OrganisationModel> all;
 
   static OrganisationSelectorViewModel get initial =>
-      OrganisationSelectorViewModel(all: <OrganisationModel>{});
+      const OrganisationSelectorViewModel(all: <OrganisationModel>{});
 
   @override
   OrganisationSelectorViewModel copyWith({

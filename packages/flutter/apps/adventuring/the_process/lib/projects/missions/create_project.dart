@@ -8,7 +8,7 @@ import '../models/project_state.dart';
 import '../models/update_projects_view.dart';
 
 class CreateProject extends AwayMission<AppState> {
-  CreateProject(ProjectState project) : _project = project;
+  const CreateProject(ProjectState project) : _project = project;
 
   final ProjectState _project;
 
@@ -30,7 +30,7 @@ class CreateProject extends AwayMission<AppState> {
     } catch (error) {
       rethrow;
     } finally {
-      missionControl.land(UpdateProjectsView(creating: false));
+      missionControl.land(const UpdateProjectsView(creating: false));
     }
   }
 

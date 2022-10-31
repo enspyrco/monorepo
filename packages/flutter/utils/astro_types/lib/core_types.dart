@@ -6,14 +6,17 @@ import 'state_types.dart';
 /// All missions must extend either [AwayMission] or [LandingMission], which
 /// both inherit from [Mission].
 abstract class Mission {
+  const Mission();
   JsonMap toJson();
 }
 
 abstract class LandingMission<T extends AstroState> extends Mission {
+  const LandingMission();
   T landingInstructions(T state);
 }
 
 abstract class AwayMission<T extends AstroState> extends Mission {
+  const AwayMission();
   Future<void> flightPlan(MissionControl<T> missionControl);
 }
 

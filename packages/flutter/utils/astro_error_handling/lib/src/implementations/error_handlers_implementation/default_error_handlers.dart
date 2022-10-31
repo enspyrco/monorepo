@@ -1,16 +1,16 @@
-import 'package:astro_error_handling/src/navigation/routes/error_report/error_report_page_state.dart';
+import 'package:astro_error_handling/src/routes/error_report/error_report_page_state.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/error_handling_types.dart';
 import 'package:astro_types/navigation_types.dart';
 import 'package:astro_types/state_types.dart';
 
-import '../state/interfaces/default_error_handling_state.dart';
-import '../state/models/error_report.dart';
+import '../../interfaces/default_error_handling_state.dart';
+import '../../state/models/error_report.dart';
 
 /// TODO: We need a type for [state] that has [copyWith(reports: ...]
 /// and as [extends AstroState]
 ///
-class DefaultErrorHandlers<S extends AstroState> with ErrorHandlers<S> {
+class DefaultErrorHandlers<S extends AstroState> implements ErrorHandlers<S> {
   @override
   S handleLandingError(
       {required Object thrown,

@@ -1,7 +1,7 @@
 import 'package:astro_types/state_types.dart';
 
-class SectionModel with AstroState {
-  SectionModel({
+class SectionModel implements AstroState {
+  const SectionModel({
     required this.name,
     required this.folderId,
     required this.useCasesDocId,

@@ -1,7 +1,7 @@
 import 'package:astro_types/state_types.dart';
 import 'package:flutter/material.dart';
 
-import '../../../state/models/error_report.dart';
+import '../../state/models/error_report.dart';
 import 'error_report_screen.dart';
 
 /// An [ErrorReportPage] is created from an [ErrorMessagePagePrecursor] which

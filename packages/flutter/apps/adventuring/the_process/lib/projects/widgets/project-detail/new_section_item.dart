@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../build_context_extensions.dart';
 import '../../../sections/missions/create_section.dart';
 import '../../../sections/missions/update_new_section_v_m.dart';
+import '../../../shared/extensions/build_context_extensions.dart';
 
 class NewSectionItem extends StatelessWidget {
   const NewSectionItem({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class NewSectionItem extends StatelessWidget {
           suffixIcon: Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: FloatingActionButton(
-              onPressed: () => context.launch(CreateSection()),
+              onPressed: () => context.launch(const CreateSection()),
               backgroundColor: Colors.blue,
               foregroundColor: Colors.white,
               mini: true,

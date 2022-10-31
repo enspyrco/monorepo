@@ -4,8 +4,8 @@ import 'package:astro_types/state_types.dart';
 import 'organisation_creator_view_model.dart';
 import 'organisation_selector_view_model.dart';
 
-class OrganisationsState with AstroState {
-  OrganisationsState({
+class OrganisationsState implements AstroState {
+  const OrganisationsState({
     required this.creator,
     required this.selector,
     required this.deleting,
@@ -16,7 +16,7 @@ class OrganisationsState with AstroState {
   final bool deleting;
 
   static OrganisationsState get initial => OrganisationsState(
-      creator: OrganisationCreatorViewModel(),
+      creator: const OrganisationCreatorViewModel(),
       selector: OrganisationSelectorViewModel.initial,
       deleting: false);
 

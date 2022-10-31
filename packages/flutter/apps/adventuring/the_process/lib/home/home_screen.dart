@@ -46,7 +46,7 @@ class _BasicAppBarState extends State<BasicAppBar> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
-            children: <Widget>[
+            children: const <Widget>[
               LogoIcon(),
               Spacer(),
               NotificationsButton(),

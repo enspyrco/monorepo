@@ -1,8 +1,8 @@
 import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 
-class OrganisationCreatorViewModel with AstroState {
-  OrganisationCreatorViewModel({
+class OrganisationCreatorViewModel implements AstroState {
+  const OrganisationCreatorViewModel({
     this.name = '',
     this.creating = false,
   });

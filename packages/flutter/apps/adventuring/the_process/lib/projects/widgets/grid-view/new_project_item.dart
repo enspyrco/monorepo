@@ -2,7 +2,7 @@ import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/state/app_state.dart';
-import '../../../build_context_extensions.dart';
+import '../../../shared/extensions/build_context_extensions.dart';
 import '../../missions/create_project.dart';
 import '../../models/project_state.dart';
 import '../../models/update_projects_view.dart';
@@ -27,8 +27,8 @@ class NewProjectItem extends StatelessWidget {
                   ? const CreateProjectForm()
                   : InkWell(
                       splashColor: Colors.blue.withAlpha(30),
-                      onTap: () =>
-                          context.land(UpdateProjectsView(creating: true)),
+                      onTap: () => context
+                          .land(const UpdateProjectsView(creating: true)),
                       child: Center(
                           child: Text('+',
                               style: Theme.of(context).textTheme.headline5)),
@@ -115,7 +115,7 @@ class ButtonsRow extends StatelessWidget {
       children: [
         OutlinedButton(
           onPressed: () {
-            context.land(UpdateProjectsView(creating: false));
+            context.land(const UpdateProjectsView(creating: false));
           },
           child: const Text('Cancel'),
         ),

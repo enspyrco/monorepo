@@ -7,7 +7,7 @@ import '../enums/lineage_shape.dart';
 
 /// The AppState for astro, named differently as the [AstroInspectorScreen] is
 /// for visualising the AppState of apps.
-class InspectorState with AstroState, DefaultErrorHandlingState {
+class InspectorState implements AstroState, DefaultErrorHandlingState {
   InspectorState(
       {required this.error,
       required this.missionUpdates,
