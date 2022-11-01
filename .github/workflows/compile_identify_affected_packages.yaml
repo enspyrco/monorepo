@@ -28,5 +28,5 @@ jobs:
         run: |
           git add $GITHUB_WORKSPACE/.github/scripts/identify_affected_packages
           git commit -m "chore(*): Update identify_affected_packages script"
-          git push origin identify_affected_packages
+          git push origin __compile__identify_affected_packages
           # main
