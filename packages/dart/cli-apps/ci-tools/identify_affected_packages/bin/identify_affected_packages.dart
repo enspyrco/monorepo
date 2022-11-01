@@ -29,6 +29,8 @@ void main(List<String> arguments) async {
 
   var pathNames = (result.stdout as String).split('\n');
 
+  stdout.writeln('${pathNames.length} paths are being analyzed...\n\n');
+
   // remove packages that are not affected by the changes
   for (var packagePath in packagePaths) {
     bool found = false;
