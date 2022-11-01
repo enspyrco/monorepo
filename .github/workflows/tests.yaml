@@ -19,7 +19,12 @@ jobs:
         run: |
           content=`jq -c . .github/matrix.json`
           echo "json=$content" >> $GITHUB_OUTPUT
-      - run: echo ${{ steps.read-matrix.outputs.json }}
+      - name: num-affected
+        env:
+          packages: ${{ steps.read-matrix.outputs.json }}
+        run: |
+          echo $packages
+          echo $packages | jq '. | length'
   
   run-tests:
     if: needs.setup-matrix.outputs.matrix_json.include[0] != null # only run if matrix is non-empty
