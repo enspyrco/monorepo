@@ -9,20 +9,20 @@ jobs:
   setup-matrix:
     runs-on: ubuntu-latest
     outputs:
-      matrix_json: ${{ steps.read-matrix.outputs.json }}
-      matrix-size: ${{ steps.num-affected.outputs.num }}
+      matrix-json: ${{ steps.save-new-matrix.outputs.json }}
+      matrix-size: ${{ steps.save-num-affected.outputs.num }}
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
       - run: .github/scripts/identify_affected_packages
-      - id: read-matrix
+      - id: save-new-matrix
         run: |
           content=`jq -c . .github/matrix.json`
           echo "json=$content" >> $GITHUB_OUTPUT
-      - id: num-affected
+      - id: save-num-affected
         env:
-          packages: ${{ steps.read-matrix.outputs.json }}
+          packages: ${{ steps.save-new-matrix.outputs.json }}
         run: |
           echo $packages
           echo "num=$packages | jq '.include | length'" >> $GITHUB_OUTPUT
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ${{ fromJson(needs.setup-matrix.outputs.matrix_json) }}
+        ${{ fromJson(needs.setup-matrix.outputs.matrix-json) }}
     
     # container: enspyrco/ci-tools:stable
     defaults:
@@ -43,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: echo ${{ needs.setup-matrix.outputs.matrix_json }}
+      - run: echo ${{ needs.setup-matrix.outputs.matrix-json }}
 
       - name: Cache Flutter
         id: cache-flutter
