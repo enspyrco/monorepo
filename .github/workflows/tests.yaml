@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix_json: ${{ steps.read-matrix.outputs.json }}
+      matrix-size: ${{ steps.num-affected.outputs.num }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -19,15 +20,15 @@ jobs:
         run: |
           content=`jq -c . .github/matrix.json`
           echo "json=$content" >> $GITHUB_OUTPUT
-      - name: num-affected
+      - id: num-affected
         env:
           packages: ${{ steps.read-matrix.outputs.json }}
         run: |
           echo $packages
-          echo $packages | jq '.include | length'
+          echo "num=$packages | jq '.include | length'" >> $GITHUB_OUTPUT
   
   run-tests:
-    if: needs.setup-matrix.outputs.matrix_json.include[0] != null # only run if matrix is non-empty
+    if: needs.matrix-size.outputs.num > 0 # only run if matrix is non-empty
     needs: setup-matrix
     runs-on: ubuntu-latest
     strategy:
