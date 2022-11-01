@@ -28,7 +28,7 @@ jobs:
           echo "num=$packages | jq '.include | length'" >> $GITHUB_OUTPUT
   
   run-tests:
-    if: needs.matrix-size.outputs.num > 0 # only run if matrix is non-empty
+    if: needs.setup-matrix.outputs.matrix-size.num > 0 # only run if matrix is non-empty
     needs: setup-matrix
     runs-on: ubuntu-latest
     strategy:
