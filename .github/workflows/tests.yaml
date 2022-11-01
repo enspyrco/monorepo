@@ -9,25 +9,31 @@ jobs:
   setup-matrix:
     runs-on: ubuntu-latest
     outputs:
-      matrix_json: ${{ steps.read-matrix.outputs.json }}
+      matrix-json: ${{ steps.save-new-matrix.outputs.json }}
+      matrix-size: ${{ steps.save-num-affected.outputs.num }}
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
       - run: .github/scripts/identify_affected_packages
-      - id: read-matrix
+      - id: save-new-matrix
         run: |
           content=`jq -c . .github/matrix.json`
           echo "json=$content" >> $GITHUB_OUTPUT
-      - run: echo ${{ steps.read-matrix.outputs.json }}
+      - id: save-num-affected
+        env:
+          packages: ${{ steps.save-new-matrix.outputs.json }}
+        run: |
+          echo $packages
+          echo "num=$packages | jq '.include | length'" >> $GITHUB_OUTPUT
   
   run-tests:
-    if: needs.setup-matrix.outputs.matrix_json.include[0] != null # only run if matrix is non-empty
+    if: ${{ needs.setup-matrix.outputs.matrix-size.num }} > 0 # only run if matrix is non-empty
     needs: setup-matrix
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ${{ fromJson(needs.setup-matrix.outputs.matrix_json) }}
+        ${{ fromJson(needs.setup-matrix.outputs.matrix-json) }}
     
     # container: enspyrco/ci-tools:stable
     defaults:
@@ -37,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: echo ${{ needs.setup-matrix.outputs.matrix_json }}
+      - run: echo ${{ needs.setup-matrix.outputs.matrix-json }}
 
       - name: Cache Flutter
         id: cache-flutter
@@ -64,7 +70,7 @@ jobs:
       
       - run: flutter test
 
-  tests-result:
+  run-tests-result:
     if: ${{ always() }}
     runs-on: ubuntu-latest
     needs: run-tests

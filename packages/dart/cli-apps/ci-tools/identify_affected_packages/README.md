@@ -33,3 +33,12 @@ as the identify_affected_packages script will also be run in a Linux runner.
 
 5. Pull down the change made by CI (ie. the updated script)
 6. PR the branch on to main
+
+## Testing locally
+
+- Open the project folder with VS Code (so .vscode is at the top level)
+- Run the "identify_affected_packages" launch.config
+- Observe the output in the Debug Console
+
+> Note: this will save over the .github/matrix.json file in the monorepo so remember
+> not to commit the change.

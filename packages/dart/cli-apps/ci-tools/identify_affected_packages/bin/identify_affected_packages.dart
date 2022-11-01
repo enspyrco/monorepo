@@ -33,13 +33,16 @@ void main(List<String> arguments) async {
 
   // remove packages that are not affected by the changes
   for (final packagePath in monorepoPackagePaths) {
+    stdout.writeln('--${path.split(packagePath).last}--');
     bool found = false;
     for (final changed in changedFilePaths) {
-      stdout.write(packagePath);
       if (path.isWithin('packages/$packagePath', changed)) {
-        stdout.writeln('is within $packagePath');
+        stdout.writeln(
+            '----> $changed is within [--${path.split(packagePath).last}--]');
         found = true;
         break;
+      } else {
+        stdout.writeln(changed);
       }
     }
     if (!found) pathMap[packagePath] = null;
@@ -51,5 +54,5 @@ void main(List<String> arguments) async {
   };
   matrixFile.writeAsStringSync(jsonEncode(updatedJson));
 
-  stdout.writeln('\n\noutput: $matrixFile\n\n');
+  stdout.writeln('\n\noutput: ${jsonEncode(updatedJson)}\n\n');
 }
