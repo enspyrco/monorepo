@@ -37,7 +37,7 @@ android/app/google-services.json
 
 ## lints
 
-Optionally: use the [redfire_lints].
+Optionally: use the [enspyr_lints].
 
 ## snippets
 
@@ -141,4 +141,4 @@ We can look into better ways around this if it is problematic.
 [advice from build_runner]: https://pub.dev/packages/build_runner#source-control
 [many opinions]: https://stackoverflow.com/questions/56110386/should-i-commit-generated-code-in-flutter-dart-to-vcs
 [video_player]: https://github.com/flutter/plugins/blob/master/packages/video_player/video_player_platform_interface/lib/messages.dart
-[redfire_lints]: ../../../../redfire_lints/README.md
+[enspyr_lints]: ../../../../enspyr_lints/README.md
