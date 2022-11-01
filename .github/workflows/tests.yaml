@@ -24,7 +24,7 @@ jobs:
           packages: ${{ steps.read-matrix.outputs.json }}
         run: |
           echo $packages
-          echo $packages | jq '. | length'
+          echo $packages | jq '.include | length'
   
   run-tests:
     if: needs.setup-matrix.outputs.matrix_json.include[0] != null # only run if matrix is non-empty
