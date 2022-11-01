@@ -10,7 +10,7 @@ void main(List<String> arguments) async {
   var decodedJson = jsonDecode(jsonString) as Map<String, dynamic>;
   List<Map<String, dynamic>> packagesJson =
       (decodedJson['include'] as List<dynamic>).cast<Map<String, dynamic>>();
-  List<String> packagePaths =
+  List<String> monorepoPackagePaths =
       packagesJson.map((e) => e['path'] as String).toList();
   Map<String, dynamic> pathMap = {for (var e in packagesJson) e['path']: e};
 
@@ -27,13 +27,17 @@ void main(List<String> arguments) async {
     exit(result.exitCode);
   }
 
-  var pathNames = (result.stdout as String).split('\n');
+  final changedFilePaths = (result.stdout as String).split('\n');
+
+  stdout.writeln('${changedFilePaths.length} files were changed...\n\n');
 
   // remove packages that are not affected by the changes
-  for (var packagePath in packagePaths) {
+  for (final packagePath in monorepoPackagePaths) {
     bool found = false;
-    for (var pathName in pathNames) {
-      if (path.isWithin('packages/$packagePath', pathName)) {
+    for (final changed in changedFilePaths) {
+      stdout.write(packagePath);
+      if (path.isWithin('packages/$packagePath', changed)) {
+        stdout.writeln('is within $packagePath');
         found = true;
         break;
       }
@@ -46,4 +50,6 @@ void main(List<String> arguments) async {
     'include': pathMap.values.where((e) => e != null).toList()
   };
   matrixFile.writeAsStringSync(jsonEncode(updatedJson));
+
+  stdout.writeln('\n\noutput: $matrixFile\n\n');
 }
