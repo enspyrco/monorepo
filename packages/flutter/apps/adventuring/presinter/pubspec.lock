@@ -645,10 +645,10 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
-  redfire_lints:
+  enspyr_lints:
     dependency: "direct dev"
     description:
-      path: "../../../utils/redfire_lints"
+      path: "../../../utils/enspyr_lints"
       relative: true
     source: path
     version: "1.0.0"

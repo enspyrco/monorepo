@@ -25,10 +25,10 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/redfire
-  redfire_lints:
+  enspyr_lints:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redfire_lints  
+      path: packages/flutter/utils/enspyr_lints  
 
 dev_dependencies:
   flutter_test:

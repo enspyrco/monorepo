@@ -37,10 +37,10 @@ dev_dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/redfire_test
-  redfire_lints:
+  enspyr_lints:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redfire_lints
+      path: packages/flutter/utils/enspyr_lints
   build_runner:
   freezed:
   json_serializable: ^6.0.1
