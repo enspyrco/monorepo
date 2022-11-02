@@ -1,5 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/json_types.dart';
 
 import '../../adventures/models/adventure_model.dart';
 import '../../challenges/models/challenge_model.dart';
@@ -25,13 +24,8 @@ abstract class AdventureNode {
   bool isChallenge() => typeName == ChallengeModel.className;
   bool isTask() => typeName == TaskModel.className;
   bool isStep() => typeName == StepModel.className;
-}
 
-class AdventureNodeConverter implements JsonConverter<AdventureNode, JsonMap> {
-  const AdventureNodeConverter();
-
-  @override
-  AdventureNode fromJson(JsonMap json) {
+  factory AdventureNode.fromJson(JsonMap json) {
     if (json['type'] == AdventureModel.className) {
       return AdventureModel.fromJson(json);
     }
@@ -41,11 +35,17 @@ class AdventureNodeConverter implements JsonConverter<AdventureNode, JsonMap> {
 
     throw Exception('No entry for \'type\' ${json['type']}');
   }
-
-  @override
-  JsonMap toJson(AdventureNode data) {
-    final json = data.toJson();
-    json['type'] = data.typeName;
-    return json;
-  }
 }
+
+// class AdventureNodeConverter implements JsonConverter<AdventureNode, JsonMap> {
+//   const AdventureNodeConverter();
+
+
+
+//   @override
+//   JsonMap toJson(AdventureNode data) {
+//     final json = data.toJson();
+//     json['type'] = data.typeName;
+//     return json;
+//   }
+// }

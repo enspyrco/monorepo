@@ -1,24 +1,32 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/json_types.dart';
+import 'package:astro_types/state_types.dart';
 
 import 'task_model.dart';
 
-part 'tasks_state.freezed.dart';
-part 'tasks_state.g.dart';
+class TasksState implements AstroState {
+  TasksState({this.selected, required this.all});
 
-@freezed
-class TasksState with _$TasksState, ReduxState {
-  static const String className = 'TasksState';
+  final TaskModel? selected;
+  final Set<TaskModel> all;
 
-  const TasksState._();
-  const factory TasksState(
-      {TaskModel? selected, required ISet<TaskModel> all}) = _TasksState;
+  factory TasksState.fromJson(JsonMap json) => TasksState(
+      all: (json['all'] as List)
+          .map((e) => TaskModel.fromJson(e as JsonMap))
+          .toSet(),
+      selected: TaskModel.fromJson(json['selected'] as JsonMap));
 
-  factory TasksState.fromJson(JsonMap json) => _$TasksStateFromJson(json);
-
-  factory TasksState.init() => TasksState(all: ISet());
+  static TasksState get initial => TasksState(all: <TaskModel>{});
 
   @override
-  String get typeName => className;
+  TasksState copyWith({
+    TaskModel? selected,
+    Set<TaskModel>? all,
+  }) =>
+      TasksState(selected: selected ?? this.selected, all: all ?? this.all);
+
+  @override
+  toJson() => {
+        'selected': selected?.toJson() ?? <String, dynamic>{},
+        'all': all.map((e) => e.toJson()),
+      };
 }

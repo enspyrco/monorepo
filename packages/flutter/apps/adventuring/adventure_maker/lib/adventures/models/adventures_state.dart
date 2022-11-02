@@ -1,26 +1,27 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/json_types.dart';
+import 'package:astro_types/state_types.dart';
 
 import 'adventure_model.dart';
 
-part 'adventures_state.freezed.dart';
-part 'adventures_state.g.dart';
+class AdventuresState implements AstroState {
+  const AdventuresState({this.selected, required this.all});
 
-@freezed
-class AdventuresState with _$AdventuresState, ReduxState {
-  static const String className = 'AdventuresState';
+  final AdventureModel? selected;
+  final Set<AdventureModel> all;
 
-  const AdventuresState._();
-  const factory AdventuresState(
-      {AdventureModel? selected,
-      required ISet<AdventureModel> all}) = _AdventuresState;
-
-  factory AdventuresState.fromJson(JsonMap json) =>
-      _$AdventuresStateFromJson(json);
-
-  factory AdventuresState.init() => AdventuresState(all: ISet());
+  static AdventuresState get initial => const AdventuresState(all: {});
 
   @override
-  String get typeName => className;
+  AdventuresState copyWith({
+    AdventureModel? selected,
+    Set<AdventureModel>? all,
+  }) =>
+      AdventuresState(
+          all: all ?? this.all, selected: selected ?? this.selected);
+
+  @override
+  JsonMap toJson() => {
+        'selected': selected?.toJson() ?? <String, dynamic>{},
+        'all': all.map((e) => e.toJson()).toList(),
+      };
 }

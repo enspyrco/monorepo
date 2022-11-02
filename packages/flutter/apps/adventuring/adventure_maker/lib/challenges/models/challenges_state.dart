@@ -1,26 +1,33 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/json_types.dart';
+import 'package:astro_types/state_types.dart';
 
 import 'challenge_model.dart';
 
-part 'challenges_state.freezed.dart';
-part 'challenges_state.g.dart';
+class ChallengesState implements AstroState {
+  ChallengesState({this.selected, required this.all});
 
-@freezed
-class ChallengesState with _$ChallengesState, ReduxState {
-  static const String className = 'ChallengesState';
+  final ChallengeModel? selected;
+  final Set<ChallengeModel> all;
 
-  const ChallengesState._();
-  const factory ChallengesState(
-      {ChallengeModel? selected,
-      required ISet<ChallengeModel> all}) = _ChallengesState;
+  factory ChallengesState.fromJson(JsonMap json) => ChallengesState(
+      all: (json['all'] as List)
+          .map((e) => ChallengeModel.fromJson(e as JsonMap))
+          .toSet());
 
-  factory ChallengesState.fromJson(JsonMap json) =>
-      _$ChallengesStateFromJson(json);
-
-  factory ChallengesState.init() => ChallengesState(all: ISet());
+  static ChallengesState get initial =>
+      ChallengesState(all: <ChallengeModel>{});
 
   @override
-  String get typeName => className;
+  ChallengesState copyWith({
+    ChallengeModel? selected,
+    Set<ChallengeModel>? all,
+  }) =>
+      ChallengesState(
+          all: all ?? this.all, selected: selected ?? this.selected);
+
+  @override
+  JsonMap toJson() => {
+        'selected': selected?.toJson(),
+        'all': [...all.map((e) => e.toJson())],
+      };
 }
