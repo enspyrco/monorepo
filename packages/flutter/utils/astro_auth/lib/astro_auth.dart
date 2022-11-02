@@ -10,5 +10,6 @@ export 'src/routes/sign-in/sign_in_screen.dart';
 export 'src/services/firebase_auth_service.dart';
 export 'src/state/user_state.dart';
 export 'src/utils/app_init.dart';
+export 'src/utils/on_signed_in_missions.dart';
 export 'src/widgets/avatar_menu_button/avatar_menu_button.dart';
 export 'src/widgets/avatar_menu_button/menu_option.dart';
