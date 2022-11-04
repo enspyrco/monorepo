@@ -1,23 +1,39 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/json_types.dart';
+import 'package:astro_types/state_types.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 
 import '../../shared/models/adventure_node.dart';
 
-part 'task_model.freezed.dart';
-part 'task_model.g.dart';
-
-@freezed
-class TaskModel with _$TaskModel, ReduxState, AdventureNode {
+class TaskModel with AdventureNode implements AstroState {
   static const String className = 'TaskModel';
 
-  const TaskModel._();
-  const factory TaskModel({
-    String? id,
-    required String name,
-  }) = _TaskModel;
-
-  factory TaskModel.fromJson(JsonMap json) => _$TaskModelFromJson(json);
+  const TaskModel({
+    this.id,
+    required this.name,
+  });
 
   @override
-  String get typeName => className;
+  final String name;
+  @override
+  String get typeName => 'TaskModel';
+
+  final String? id;
+
+  factory TaskModel.fromDocument(Document doc) =>
+      TaskModel(id: doc.id, name: doc.fields['name'] as String);
+
+  factory TaskModel.fromJson(JsonMap json) =>
+      TaskModel(id: json['id'] as String, name: json['name'] as String);
+
+  @override
+  AstroState copyWith() {
+    // TODO: implement copyWith
+    throw UnimplementedError();
+  }
+
+  @override
+  JsonMap toJson() => {
+        'name': name,
+        'type': typeName,
+      };
 }

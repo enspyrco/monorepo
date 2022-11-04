@@ -1,23 +1,37 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/json_types.dart';
+import 'package:astro_types/state_types.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 
 import '../../shared/models/adventure_node.dart';
 
-part 'adventure_model.freezed.dart';
-part 'adventure_model.g.dart';
-
-@freezed
-class AdventureModel with _$AdventureModel, ReduxState, AdventureNode {
+class AdventureModel with AdventureNode implements AstroState {
   static const String className = 'AdventureModel';
+  const AdventureModel({
+    this.id,
+    required this.name,
+  });
 
-  const AdventureModel._();
-  const factory AdventureModel({
-    String? id,
-    required String name,
-  }) = _AdventureModel;
+  final String? id;
+  @override
+  final String name;
+
+  @override
+  AstroState copyWith() {
+    // TODO: implement copyWith
+    throw UnimplementedError();
+  }
+
+  factory AdventureModel.fromDocument(Document doc) =>
+      AdventureModel(id: doc.id, name: doc.fields['name'] as String);
 
   factory AdventureModel.fromJson(JsonMap json) =>
-      _$AdventureModelFromJson(json);
+      AdventureModel(id: json['id'] as String?, name: json['name'] as String);
+
+  @override
+  JsonMap toJson() => {
+        'id': id,
+        'name': name,
+      };
 
   @override
   String get typeName => className;

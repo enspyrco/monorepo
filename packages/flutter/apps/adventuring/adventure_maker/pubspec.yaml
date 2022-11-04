@@ -4,44 +4,68 @@ publish_to: 'none'
 version: 0.0.1
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  
-  redfire:
+
+  # astro
+  astro:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redfire
+      path: packages/flutter/utils/astro
+  astro_types:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_types
+  astro_locator:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/utils/astro_locator
+  astro_inspector_screen:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_inspector_screen
+  astro_auth:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_auth
+  astro_error_handling:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_error_handling
+  astro_navigation:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_navigation
+  
+  # firestore
   firestore_service_interface:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/dart/interfaces/firestore_service_interface
-  freezed_annotation:
-  json_annotation: ^4.6.0
-  redux:
-  flutter_redux:
-  fast_immutable_collections:
+  firestore_service_flutterfire:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/flutterfire/firestore_service_interface
+  
+  collection: ^1.16.0
+  firebase_core: ^2.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  test:
-  mockito:
+  test: ^1.21.4
 
   enspyr_lints:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/enspyr_lints
-  redfire_test:
+  astro_test_utils:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redfire_test
-
-  build_runner:
-  freezed:
-  json_serializable: 
+      path: packages/flutter/utils/astro_test_utils
 
 flutter:
   uses-material-design: true

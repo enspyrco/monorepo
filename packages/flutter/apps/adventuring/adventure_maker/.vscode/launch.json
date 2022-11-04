@@ -1,10 +1,30 @@
 {
-  "version": "0.2.0",
   "configurations": [
     {
-      "name": "adventure_maker",
+      "name": "vanilla",
       "request": "launch",
-      "type": "dart"
+      "type": "dart",
+      "program": "${workspaceFolder:adventure_maker}/lib/main.dart"
+    },
+    {
+      "name": "in-app-inspector",
+      "request": "launch",
+      "type": "dart",
+      "program": "${workspaceFolder:adventure_maker}/lib/main.dart",
+      "toolArgs": [
+        "--dart-define",
+        "IN-APP-ASTRO-INSPECTOR=true"
+      ]
+    },
+    {
+      "name": "devtools-inspector",
+      "request": "launch",
+      "type": "dart",
+      "program": "${workspaceFolder:adventure_maker}/lib/main.dart",
+      "toolArgs": [
+        "--dart-define",
+        "DEVTOOLS-ASTRO-INSPECTOR=true"
+      ]
     }
   ]
 }

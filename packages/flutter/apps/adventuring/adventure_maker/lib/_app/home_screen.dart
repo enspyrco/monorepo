@@ -1,24 +1,24 @@
+import 'package:astro_auth/astro_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:redfire/widgets.dart';
 
-import '../../adventures/models/adventure_model.dart';
-import '../../app_state.dart';
-import '../../challenges/models/challenge_model.dart';
-import '../../shared/models/drop_down_model.dart';
-import '../../shared/pages/new_item_dialog.dart';
-import '../../shared/widgets/adventure_nodes_drop_down.dart';
-import '../../steps/models/step_model.dart';
-import '../../tasks/models/task_model.dart';
+import '../adventures/models/adventure_model.dart';
+import '../challenges/models/challenge_model.dart';
+import '../shared/models/drop_down_model.dart';
+import '../shared/pages/new_item_dialog.dart';
+import '../shared/widgets/adventure_nodes_drop_down.dart';
+import '../steps/models/step_model.dart';
+import '../tasks/models/task_model.dart';
+import 'state/app_state.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   bool showingDialog = false;
 
   /// Add a handler to [HardwareKeyboard] to handle Cmd-N.
@@ -48,10 +48,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         actions: const [
           AvatarMenuButton<AppState>(
-            options: {
-              MenuOptionPreset.accountDetails,
-              MenuOptionPreset.signOut
-            },
+            options: {MenuOption('Sign Out', SignOut<AppState>())},
           )
         ],
         bottom: PreferredSize(
@@ -60,22 +57,20 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 AdventureNodesDropDown<AdventureModel>(
-                  converter: (store) => DropDownModel<AdventureModel>(
-                      store.state.adventures.selected,
-                      store.state.adventures.all),
+                  transformer: (state) => DropDownModel<AdventureModel>(
+                      state.adventures.selected, state.adventures.all),
                 ),
                 AdventureNodesDropDown<ChallengeModel>(
-                  converter: (store) => DropDownModel<ChallengeModel>(
-                      store.state.challenges.selected,
-                      store.state.challenges.all),
+                  transformer: (state) => DropDownModel<ChallengeModel>(
+                      state.challenges.selected, state.challenges.all),
                 ),
                 AdventureNodesDropDown<TaskModel>(
-                  converter: (store) => DropDownModel<TaskModel>(
-                      store.state.tasks.selected, store.state.tasks.all),
+                  transformer: (state) => DropDownModel<TaskModel>(
+                      state.tasks.selected, state.tasks.all),
                 ),
                 AdventureNodesDropDown<StepModel>(
-                  converter: (store) => DropDownModel<StepModel>(
-                      store.state.steps.selected, store.state.steps.all),
+                  transformer: (state) => DropDownModel<StepModel>(
+                      state.steps.selected, state.steps.all),
                 ),
               ],
             )),

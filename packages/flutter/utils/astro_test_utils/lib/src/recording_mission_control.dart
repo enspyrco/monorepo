@@ -9,6 +9,7 @@ class RecordingMissionControl<T extends AstroState>
     _missionControl = DefaultMissionControl<T>(
         state: state, systemChecks: [_recordedMissions]);
   }
+
   late final MissionControl<T> _missionControl;
   final RecordMissions<T> _recordedMissions = RecordMissions<T>();
 

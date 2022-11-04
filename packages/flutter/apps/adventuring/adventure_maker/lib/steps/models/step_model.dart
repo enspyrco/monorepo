@@ -1,20 +1,37 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/json_types.dart';
+import 'package:astro_types/state_types.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 
 import '../../shared/models/adventure_node.dart';
 
-part 'step_model.freezed.dart';
-part 'step_model.g.dart';
-
-@freezed
-class StepModel with _$StepModel, ReduxState, AdventureNode {
+class StepModel with AdventureNode implements AstroState {
   static const String className = 'StepModel';
 
-  const StepModel._();
-  const factory StepModel({String? id, required String name}) = _StepModel;
-
-  factory StepModel.fromJson(JsonMap json) => _$StepModelFromJson(json);
+  const StepModel({this.id, required this.name});
 
   @override
-  String get typeName => className;
+  String get typeName => 'StepModel';
+  @override
+  final String name;
+
+  final String? id;
+
+  factory StepModel.fromDocument(Document doc) =>
+      StepModel(name: doc.fields['name'] as String, id: doc.id);
+
+  factory StepModel.fromJson(JsonMap json) =>
+      StepModel(name: json['name'] as String, id: json['id'] as String?);
+
+  @override
+  StepModel copyWith({
+    String? name,
+    String? id,
+  }) =>
+      StepModel(name: name ?? this.name, id: id ?? this.id);
+
+  @override
+  JsonMap toJson() => {
+        'name': name,
+        'id': id,
+      };
 }

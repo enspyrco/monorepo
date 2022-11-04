@@ -1,13 +1,12 @@
+import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_redux/flutter_redux.dart';
-
+import '../../_app/state/app_state.dart';
 import '../../adventures/models/adventure_model.dart';
-import '../../app_state.dart';
 import '../../challenges/models/challenge_model.dart';
-import '../actions/create_adventure_node_action.dart';
 import '../extensions/build_context_extension.dart';
+import '../missions/create_adventure_node.dart';
 import '../models/adventure_node.dart';
 import '../models/drop_down_model.dart';
 import '../widgets/adventure_nodes_drop_down.dart';
@@ -30,7 +29,7 @@ Future<void> showNewItemDialog(BuildContext context) async {
             TextButton(
               child: const Text('OK'),
               onPressed: () {
-                context.dispatch(CreateAdventureNodeAction(controller.text));
+                context.launch(CreateAdventureNode(controller.text));
                 Navigator.of(context).pop();
               },
             ),
@@ -49,13 +48,12 @@ class NewItemDialogContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, AdventureNode?>(
-        distinct: true,
+    return OnStateChangeBuilder<AppState, AdventureNode?>(
         // Get the 'last' selection, ie. furtherst from the root of the tree.
-        converter: (store) => (store.state.steps.selected ??
-            store.state.tasks.selected ??
-            store.state.challenges.selected ??
-            store.state.adventures.selected) as AdventureNode?,
+        transformer: (state) => (state.steps.selected ??
+            state.tasks.selected ??
+            state.challenges.selected ??
+            state.adventures.selected) as AdventureNode?,
         builder: (context, lastSelection) {
           var seenEnter = false; // only perform dispatch on Enter once
           return SingleChildScrollView(
@@ -66,8 +64,7 @@ class NewItemDialogContent extends StatelessWidget {
                   if (!seenEnter &&
                       event.physicalKey == PhysicalKeyboardKey.enter) {
                     seenEnter = true;
-                    context
-                        .dispatch(CreateAdventureNodeAction(controller.text));
+                    context.launch(CreateAdventureNode(controller.text));
                     Navigator.of(context).pop();
                     return KeyEventResult.handled;
                   }
@@ -94,9 +91,8 @@ class NewItemDialogContent extends StatelessWidget {
                             color: Colors.blue.shade900, fontSize: 12)),
                     Center(
                       child: AdventureNodesDropDown<AdventureModel>(
-                        converter: (store) => DropDownModel<AdventureModel>(
-                            store.state.adventures.selected,
-                            store.state.adventures.all),
+                        transformer: (state) => DropDownModel<AdventureModel>(
+                            state.adventures.selected, state.adventures.all),
                       ),
                     )
                   ]),
@@ -111,9 +107,8 @@ class NewItemDialogContent extends StatelessWidget {
                               color: Colors.green.shade900, fontSize: 12)),
                       Center(
                         child: AdventureNodesDropDown<ChallengeModel>(
-                          converter: (store) => DropDownModel<ChallengeModel>(
-                              store.state.challenges.selected,
-                              store.state.challenges.all),
+                          transformer: (state) => DropDownModel<ChallengeModel>(
+                              state.challenges.selected, state.challenges.all),
                         ),
                       )
                     ]),

@@ -1,24 +1,33 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/json_types.dart';
+import 'package:astro_types/state_types.dart';
 
 import 'step_model.dart';
 
-part 'steps_state.freezed.dart';
-part 'steps_state.g.dart';
+class StepsState implements AstroState {
+  StepsState({this.selected, required this.all});
 
-@freezed
-class StepsState with _$StepsState, ReduxState {
-  static const String className = 'StepsState';
+  final StepModel? selected;
+  final Set<StepModel> all;
 
-  const StepsState._();
-  const factory StepsState(
-      {StepModel? selected, required ISet<StepModel> all}) = _StepsState;
+  factory StepsState.fromJson(JsonMap json) => StepsState(
+          selected: StepModel.fromJson(json['selected'] as JsonMap),
+          all: {
+            ...(json['all'] as List)
+                .map((e) => StepModel.fromJson(e as JsonMap))
+          });
 
-  factory StepsState.fromJson(JsonMap json) => _$StepsStateFromJson(json);
-
-  factory StepsState.init() => StepsState(all: ISet());
+  static StepsState get initial => StepsState(all: <StepModel>{});
 
   @override
-  String get typeName => className;
+  StepsState copyWith({
+    StepModel? selected,
+    Set<StepModel>? all,
+  }) =>
+      StepsState(all: all ?? this.all, selected: selected ?? this.selected);
+
+  @override
+  JsonMap toJson() => {
+        'selected': selected?.toJson(),
+        'all': [...all.map((e) => e.toJson())],
+      };
 }
