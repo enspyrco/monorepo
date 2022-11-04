@@ -31,7 +31,7 @@ class AppState
   final NavigationState navigation;
 
   @override
-  final AuthState auth;
+  final DefaultAuthState auth;
 
   @override
   final ErrorHandlingState error;
@@ -53,7 +53,7 @@ class AppState
         sections: SectionsState.initial,
         organisations: OrganisationsState.initial,
         navigation: NavigationState.initial,
-        auth: AuthState.initial,
+        auth: DefaultAuthState.initial,
         error: ErrorHandlingState.initial,
       );
 
@@ -61,7 +61,7 @@ class AppState
   AppState copyWith({
     NavigationState? navigation,
     ErrorHandlingState? error,
-    AuthState? auth,
+    DefaultAuthState? auth,
     OrganisationsState? organisations,
     SectionsState? sections,
     ProjectsState? projects,
