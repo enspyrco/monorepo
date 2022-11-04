@@ -3,7 +3,7 @@
     {
       "package": "adventure_maker",
       "path" : "flutter/apps/adventuring/adventure_maker",
-      "source_gen" : true,
+      "source_gen" : false,
       "project_type": "flutter"
     },
     {
