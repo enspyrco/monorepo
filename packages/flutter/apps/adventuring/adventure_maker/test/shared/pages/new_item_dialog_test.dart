@@ -20,8 +20,9 @@ void main() {
 
       // Test harness.
       var harness = WidgetTestHarness<AppState>(
-          initialState: AppState.initial,
-          child: NewItemDialogContent(TextEditingController()));
+        initialState: AppState.initial,
+        innerWidget: NewItemDialogContent(TextEditingController()),
+      );
 
       await tester.pumpWidget(harness.widget);
 

@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 
 import 'system-checks/record_missions.dart';
 
-/// A test harness for wrapping a widget under test that provides the functionality
-/// that a test may want in order to interact with the widget or check for
+/// A test harness for wrapping a "widget under test" that provides the
+/// functionality that a test may need to interact with the widget or check for
 /// expected values and behaviour.
 ///
-/// The `widget` getter returns the `child` wrapped in a [Scaffold] then
-/// a [MaterialApp] then a [MissionControlProvider].
+/// The `widget` getter returns the `innerWidget` wrapped in a [Scaffold] then
+/// a [MaterialApp].
 ///
 /// We will continue to extend the class with more getters for different
 /// mini-widget-trees that will be useful as wrappers around `child`.
@@ -24,10 +24,10 @@ import 'system-checks/record_missions.dart';
 class WidgetTestHarness<T extends AstroState> {
   WidgetTestHarness({
     required T initialState,
-    required Widget child,
+    required Widget innerWidget,
     List<SystemCheck>? systemChecks,
     bool addToLocator = true,
-  }) : _widgetUnderTest = child {
+  }) : _widgetUnderTest = innerWidget {
     _missionControl = DefaultMissionControl<T>(
         state: initialState, systemChecks: [...?systemChecks, _recorded]);
     if (addToLocator) Locator.add<MissionControl<T>>(_missionControl);

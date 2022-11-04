@@ -25,7 +25,7 @@ void main() {
 
     var harness = WidgetTestHarness(
       initialState: InspectorState.initial,
-      child: widgetUnderTest,
+      innerWidget: widgetUnderTest,
     );
 
     await tester.pumpWidget(harness.widget);
