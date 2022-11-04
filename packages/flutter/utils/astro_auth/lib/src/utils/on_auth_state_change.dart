@@ -1,8 +1,8 @@
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/state_types.dart';
 
-class OnAuthStateChangeMissions<S extends AstroState> {
-  OnAuthStateChangeMissions({
+class OnAuthStateChange<S extends AstroState> {
+  OnAuthStateChange({
     List<AwayMission<S>>? launchOnSignedIn,
     List<LandingMission<S>>? landOnSignedIn,
     List<AwayMission<S>>? launchOnSignedOut,

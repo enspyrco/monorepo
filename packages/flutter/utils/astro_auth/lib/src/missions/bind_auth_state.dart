@@ -7,7 +7,7 @@ import 'package:astro_types/state_types.dart';
 
 import '../services/firebase_auth_service.dart';
 import '../state/user_state.dart';
-import '../utils/on_signed_in_missions.dart';
+import '../utils/on_auth_state_change.dart';
 import 'update_user_state.dart';
 
 StreamSubscription<UserState>? _subscription;
@@ -28,19 +28,19 @@ class BindAuthState<T extends AstroState> extends AwayMission<T> {
       ///
       /// [AwayMission]s, which are async, are launched before [LandingMission]s
       /// so the [AwayMission]s aren't held up by the [LandingMission]s.
-      final onAuthStateChangedMissions = locate<OnAuthStateChangeMissions<T>>();
+      final authStateChangeMissions = locate<OnAuthStateChange<T>>();
       if (user.signedIn == SignedInState.signedIn) {
-        for (var mission in onAuthStateChangedMissions.launchOnSignedIn) {
+        for (var mission in authStateChangeMissions.launchOnSignedIn) {
           missionControl.launch(mission);
         }
-        for (var mission in onAuthStateChangedMissions.landOnSignedIn) {
+        for (var mission in authStateChangeMissions.landOnSignedIn) {
           missionControl.land(mission);
         }
       } else if (user.signedIn == SignedInState.notSignedIn) {
-        for (var mission in onAuthStateChangedMissions.launchOnSignedOut) {
+        for (var mission in authStateChangeMissions.launchOnSignedOut) {
           missionControl.launch(mission);
         }
-        for (var mission in onAuthStateChangedMissions.landOnSignedOut) {
+        for (var mission in authStateChangeMissions.landOnSignedOut) {
           missionControl.land(mission);
         }
       }

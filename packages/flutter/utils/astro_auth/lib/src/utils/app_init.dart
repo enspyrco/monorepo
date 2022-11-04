@@ -11,7 +11,7 @@ void astroAuthInit<S extends AstroState>({
   List<LandingMission<S>>? landOnSignedOut,
 }) async {
   Locator.add<FirebaseAuthService>(FirebaseAuthService());
-  Locator.add<OnAuthStateChangeMissions<S>>(OnAuthStateChangeMissions<S>(
+  Locator.add<OnAuthStateChange<S>>(OnAuthStateChange<S>(
     launchOnSignedIn: launchOnSignedIn,
     landOnSignedIn: landOnSignedIn,
     launchOnSignedOut: launchOnSignedOut,
