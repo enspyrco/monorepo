@@ -24,31 +24,31 @@ class SelectAdventureNode extends AwayMission<AppState> {
     missionControl.land(SetAdventureNodeSelection(selection));
 
     if (selection.isAdventure()) {
-      var jsonList = await service.getDocuments(
+      var documentsList = await service.getDocuments(
           at: 'projects/adventure-maker/challenges',
           where: 'parentIds',
           arrayContains: (selection as AdventureModel).id);
-      missionControl.land(SetAdventureNodes(jsonList.toChallenges()));
+      missionControl.land(SetAdventureNodes(documentsList.toChallenges()));
 
       return;
     }
 
     if (selection.isChallenge()) {
-      var jsonList = await service.getDocuments(
+      var documentsList = await service.getDocuments(
           at: 'projects/adventure-maker/tasks',
           where: 'parentIds',
           arrayContains: (selection as ChallengeModel).id);
-      missionControl.land(SetAdventureNodes(jsonList.toTasks()));
+      missionControl.land(SetAdventureNodes(documentsList.toTasks()));
 
       return;
     }
 
     if (selection.isTask()) {
-      var jsonList = await service.getDocuments(
+      var documentsList = await service.getDocuments(
           at: 'projects/adventure-maker/steps',
           where: 'parentIds',
           arrayContains: (selection as TaskModel).id);
-      missionControl.land(SetAdventureNodes(jsonList.toSteps()));
+      missionControl.land(SetAdventureNodes(documentsList.toSteps()));
 
       return;
     }

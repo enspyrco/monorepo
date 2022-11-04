@@ -1,80 +1,80 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:test/test.dart';
-
+import 'package:adventure_maker/_app/state/app_state.dart';
 import 'package:adventure_maker/adventures/models/adventure_model.dart';
-import 'package:adventure_maker/app_state.dart';
 import 'package:adventure_maker/challenges/models/challenge_model.dart';
-import 'package:adventure_maker/shared/actions/set_adventure_nodes_action.dart';
-import 'package:adventure_maker/shared/reducers/set_adventure_nodes_reducer.dart';
+import 'package:adventure_maker/shared/missions/set_adventure_nodes.dart';
 import 'package:adventure_maker/steps/models/step_model.dart';
 import 'package:adventure_maker/tasks/models/task_model.dart';
+import 'package:test/test.dart';
 
 void main() {
-  group('SetAdventureNodesReducer', () {
+  group('SetAdventureNodes', () {
     test('correctly sets the nodes of a given type', () {
       ///////////////////////////////////////////////////
       /// adventures
       ///////////////////////////////////////////////////
       var adventure = const AdventureModel(id: 'id', name: 'name');
-      var adventures = ISet([adventure]);
-      var action = SetAdventureNodesAction(adventures);
-      var state = AppState.init();
+      var adventures = {adventure};
+      var mission = SetAdventureNodes(adventures);
+      var state = AppState.initial;
 
       expect(state.adventures.selected, null);
       expect(state.adventures.all, <AdventureModel>{});
 
-      var newState = SetAdventureNodesReducer().reducer(state, action);
+      state = mission.landingInstructions(state);
 
       expect(state.adventures.selected, null);
-      expect(newState.adventures.all, adventures);
+      expect(state.adventures.all, adventures);
 
       ///////////////////////////////////////////////////
       /// challenges
       ///////////////////////////////////////////////////
       var challenge = const ChallengeModel(id: 'id', name: 'name');
-      var challenges = ISet([challenge]);
-      action = SetAdventureNodesAction(challenges);
-      state = state.copyWith.adventures(selected: adventure);
+      var challenges = {challenge};
+      mission = SetAdventureNodes(challenges);
+      state = state.copyWith(
+          adventures: state.adventures.copyWith(selected: adventure));
 
       expect(state.challenges.selected, null);
       expect(state.challenges.all, <ChallengeModel>{});
 
-      newState = SetAdventureNodesReducer().reducer(state, action);
+      state = mission.landingInstructions(state);
 
       expect(state.challenges.selected, null);
-      expect(newState.challenges.all, challenges);
+      expect(state.challenges.all, challenges);
 
       ///////////////////////////////////////////////////
       /// tasks
       ///////////////////////////////////////////////////
       var task = const TaskModel(id: 'id', name: 'name');
-      var tasks = ISet([task]);
-      action = SetAdventureNodesAction(tasks);
-      state = state.copyWith.challenges(selected: challenge);
+      var tasks = {task};
+      mission = SetAdventureNodes(tasks);
+
+      state = state.copyWith(
+          challenges: state.challenges.copyWith(selected: challenge));
 
       expect(state.tasks.selected, null);
       expect(state.tasks.all, <TaskModel>{});
 
-      newState = SetAdventureNodesReducer().reducer(state, action);
+      state = mission.landingInstructions(state);
 
       expect(state.tasks.selected, null);
-      expect(newState.tasks.all, tasks);
+      expect(state.tasks.all, tasks);
 
       ///////////////////////////////////////////////////
       /// steps
       ///////////////////////////////////////////////////
       var step = const StepModel(id: 'id', name: 'name');
-      var steps = ISet(<StepModel>[step]);
-      action = SetAdventureNodesAction(steps);
-      state = state.copyWith.tasks(selected: task);
+      var steps = {step};
+      mission = SetAdventureNodes(steps);
+      state = state.copyWith(tasks: state.tasks.copyWith(selected: task));
 
       expect(state.steps.selected, null);
       expect(state.steps.all, <StepModel>{});
 
-      newState = SetAdventureNodesReducer().reducer(state, action);
+      state = mission.landingInstructions(state);
 
       expect(state.steps.selected, null);
-      expect(newState.steps.all, steps);
+      expect(state.steps.all, steps);
     });
   });
 }

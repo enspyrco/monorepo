@@ -7,7 +7,7 @@ import '../../shared/models/adventure_node.dart';
 class TaskModel with AdventureNode implements AstroState {
   static const String className = 'TaskModel';
 
-  TaskModel({
+  const TaskModel({
     this.id,
     required this.name,
   });
