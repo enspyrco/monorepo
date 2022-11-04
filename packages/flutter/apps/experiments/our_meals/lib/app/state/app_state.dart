@@ -8,7 +8,7 @@ class AppState
         AstroState,
         DefaultNavigationState,
         DefaultErrorHandlingState,
-        DefaultAuthState {
+        AppStateAuth {
   AppState({required this.navigation, required this.auth, required this.error});
 
   static AppState get initial => AppState(

@@ -7,7 +7,7 @@ class AppState
     implements
         AstroState,
         DefaultErrorHandlingState,
-        DefaultAuthState,
+        AppStateAuth,
         DefaultNavigationState {
   AppState({required this.error, required this.auth, required this.navigation});
 

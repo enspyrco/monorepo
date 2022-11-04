@@ -1,5 +1,6 @@
 import 'package:astro/astro.dart';
 import 'package:astro_auth/astro_auth.dart';
+import 'package:astro_types/auth_types.dart';
 import 'package:astro_types/state_types.dart';
 import 'package:flutter/material.dart';
 

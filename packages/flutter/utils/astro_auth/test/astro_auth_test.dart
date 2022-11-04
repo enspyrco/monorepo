@@ -1,4 +1,4 @@
-import 'package:astro_auth/src/state/user_state.dart';
+import 'package:astro_types/auth_types.dart';
 import 'package:test/test.dart';
 
 void main() {

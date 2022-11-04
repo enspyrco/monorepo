@@ -16,7 +16,7 @@ class AppState
         AstroState,
         DefaultNavigationState,
         DefaultErrorHandlingState,
-        DefaultAuthState {
+        AppStateAuth {
   const AppState({
     required this.navigation,
     required this.auth,

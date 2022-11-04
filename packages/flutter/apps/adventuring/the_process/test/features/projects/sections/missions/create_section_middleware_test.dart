@@ -11,7 +11,7 @@ void main() {
         () async {
       var initialState = AppState.initial;
 
-      var aUserState = UserState(signedIn: SignedInState.checking);
+      var aUserState = DefaultUserState(signedIn: SignedInState.checking);
 
       var state = initialState.copyWith(
           auth: initialState.auth.copyWith(user: aUserState),

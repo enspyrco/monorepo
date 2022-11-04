@@ -15,7 +15,7 @@ class AppState
         AstroState,
         DefaultNavigationState,
         DefaultErrorHandlingState,
-        DefaultAuthState {
+        AppStateAuth {
   const AppState({
     required this.navigation,
     required this.auth,
@@ -39,7 +39,7 @@ class AppState
 
   static AppState get initial => AppState(
         navigation: NavigationState.initial,
-        auth: AuthState.initial,
+        auth: DefaultAuthState.initial,
         error: ErrorHandlingState.initial,
 
         // settings: Settings.init(),
@@ -55,7 +55,7 @@ class AppState
   AppState copyWith({
     NavigationState? navigation,
     ErrorHandlingState? error,
-    AuthState? auth,
+    DefaultAuthState? auth,
     AdventuresState? adventures,
     ChallengesState? challenges,
     TasksState? tasks,
@@ -86,7 +86,7 @@ class AppState
   final NavigationState navigation;
 
   @override
-  final AuthState auth;
+  final DefaultAuthState auth;
 
   @override
   final ErrorHandlingState error;
