@@ -1,6 +1,5 @@
 library astro_auth;
 
-export 'src/interfaces/app_state_auth.dart';
 export 'src/missions/bind_auth_state.dart';
 export 'src/missions/sign_out.dart';
 export 'src/routes/auth-gate/auth_gate_page_state.dart';

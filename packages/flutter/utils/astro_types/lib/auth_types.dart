@@ -1,3 +1,7 @@
+abstract class AppStateAuth {
+  abstract final AuthState auth;
+}
+
 abstract class AuthState {
   abstract final UserState user;
 }
