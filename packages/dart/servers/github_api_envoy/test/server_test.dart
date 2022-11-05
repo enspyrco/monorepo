@@ -34,7 +34,9 @@ void main() {
         ServiceAccountCredentials.fromJson(serviceAccountCredentialsJson);
     var httpClient = await clientViaServiceAccount(
         serviceAccountCredentials, [SecretManagerApi.cloudPlatformScope]);
-  });
+  },
+      skip:
+          true); // Not sure what happened to mobbing-on-discord-7ad4cd6e7835.json
 
   test('Create JWT for authenticated call to GitHub API', () async {
     var builder = JWTBuilder()
@@ -59,7 +61,9 @@ void main() {
     //   ..issuer = '173221'; // set claims you wish to validate
     // Set<String> errors = validator.validate(decodedToken);
     // print(errors); // (empty list)
-  });
+  },
+      skip:
+          true); // Not sure what happened to: adventures-in.2022-02-16.private-key.pem
 
   test('Echo', () async {
     final response = await get(Uri.parse(local + '/echo/hello'));

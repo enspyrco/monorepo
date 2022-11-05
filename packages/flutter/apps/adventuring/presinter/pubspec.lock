@@ -192,6 +192,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  enspyr_lints:
+    dependency: "direct dev"
+    description:
+      path: "../../../utils/enspyr_lints"
+      relative: true
+    source: path
+    version: "1.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -338,7 +345,7 @@ packages:
       name: flutter_lints
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "2.0.1"
   flutter_localizations:
     dependency: transitive
     description: flutter
@@ -525,7 +532,7 @@ packages:
       name: lints
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "2.0.1"
   logging:
     dependency: transitive
     description:
@@ -645,13 +652,6 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
-  enspyr_lints:
-    dependency: "direct dev"
-    description:
-      path: "../../../utils/enspyr_lints"
-      relative: true
-    source: path
-    version: "1.0.0"
   redfire_test:
     dependency: "direct dev"
     description:
