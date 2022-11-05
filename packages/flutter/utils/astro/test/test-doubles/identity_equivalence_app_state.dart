@@ -1,18 +1,18 @@
 import 'package:astro_error_handling/astro_error_handling.dart';
+import 'package:astro_types/error_handling_types.dart';
 import 'package:astro_types/state_types.dart';
 
-class IdentityEquivalenceAppState
-    implements AstroState, DefaultErrorHandlingState {
+class IdentityEquivalenceAppState implements AstroState, AppStateErrorHandling {
   IdentityEquivalenceAppState({required this.error});
 
   static IdentityEquivalenceAppState get initial =>
-      IdentityEquivalenceAppState(error: ErrorHandlingState.initial);
+      IdentityEquivalenceAppState(error: DefaultErrorHandlingState.initial);
 
   @override
-  final ErrorHandlingState error;
+  final DefaultErrorHandlingState error;
 
   @override
-  IdentityEquivalenceAppState copyWith({ErrorHandlingState? error}) {
+  IdentityEquivalenceAppState copyWith({DefaultErrorHandlingState? error}) {
     return IdentityEquivalenceAppState(error: error ?? this.error);
   }
 

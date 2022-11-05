@@ -1,8 +1,8 @@
 import 'package:astro/astro.dart';
+import 'package:astro_types/auth_types.dart';
 import 'package:astro_types/state_types.dart';
 import 'package:flutter/material.dart';
 
-import '../../state/user_state.dart';
 import '../sign-in/sign_in_screen.dart';
 
 class AuthGateScreen<S extends AstroState> extends StatelessWidget {

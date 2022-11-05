@@ -4,7 +4,6 @@ import 'package:astro_types/error_handling_types.dart';
 import 'package:astro_types/navigation_types.dart';
 import 'package:astro_types/state_types.dart';
 
-import '../../interfaces/default_error_handling_state.dart';
 import '../../state/models/error_report.dart';
 
 /// TODO: We need a type for [state] that has [copyWith(reports: ...]
@@ -17,19 +16,17 @@ class DefaultErrorHandlers<S extends AstroState> implements ErrorHandlers<S> {
       required StackTrace trace,
       required LandingMission mission,
       required S state}) {
-    var report = ErrorReport(
+    var report = DefaultErrorReport(
         message: 'Landing $mission, resulted in $thrown', trace: '$trace');
     // we don't have the app state type here so cast to dynamic to acess
     // the error member then cast to the known type
-    var reports = (state as DefaultErrorHandlingState).error.reports;
+    var reports = (state as AppStateErrorHandling).error.reports;
     var newReports = [report, ...reports];
     var stack = (state as dynamic).navigation.stack as List<PageState>;
     var newStack = [ErrorReportPageState(report), ...stack];
 
     /// Sections
-    var newError = (state as DefaultErrorHandlingState)
-        .error
-        .copyWith(reports: newReports);
+    var newError = (state as dynamic).error.copyWith(reports: newReports);
     var newNavigation = (state as dynamic).navigation.copyWith(stack: newStack);
 
     return (state as dynamic)
@@ -42,19 +39,17 @@ class DefaultErrorHandlers<S extends AstroState> implements ErrorHandlers<S> {
       required StackTrace trace,
       required AwayMission mission,
       required S state}) {
-    var report = ErrorReport(
+    var report = DefaultErrorReport(
         message: 'Launching $mission, resulted in $thrown', trace: '$trace');
     // we don't have the app state type here so cast to dynamic to acess
     // the error member then cast to the known type
-    var reports = (state as DefaultErrorHandlingState).error.reports;
+    var reports = (state as AppStateErrorHandling).error.reports;
     var newReports = [report, ...reports];
     var stack = (state as dynamic).navigation.stack as List<PageState>;
     var newStack = [ErrorReportPageState(report), ...stack];
 
     /// Sections
-    var newError = (state as DefaultErrorHandlingState)
-        .error
-        .copyWith(reports: newReports);
+    var newError = (state as dynamic).error.copyWith(reports: newReports);
     var newNavigation = (state as dynamic).navigation.copyWith(stack: newStack);
 
     return (state as dynamic)

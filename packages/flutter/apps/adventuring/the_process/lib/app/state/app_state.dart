@@ -1,6 +1,8 @@
 import 'package:astro_auth/astro_auth.dart';
 import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_navigation/astro_navigation.dart';
+import 'package:astro_types/auth_types.dart';
+import 'package:astro_types/error_handling_types.dart';
 import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +17,8 @@ class AppState
     implements
         AstroState,
         DefaultNavigationState,
-        DefaultErrorHandlingState,
-        DefaultAuthState {
+        AppStateErrorHandling,
+        AppStateAuth {
   const AppState({
     required this.navigation,
     required this.auth,
@@ -31,10 +33,10 @@ class AppState
   final NavigationState navigation;
 
   @override
-  final AuthState auth;
+  final DefaultAuthState auth;
 
   @override
-  final ErrorHandlingState error;
+  final DefaultErrorHandlingState error;
 
   /// Organisations
   final OrganisationsState organisations;
@@ -53,15 +55,15 @@ class AppState
         sections: SectionsState.initial,
         organisations: OrganisationsState.initial,
         navigation: NavigationState.initial,
-        auth: AuthState.initial,
-        error: ErrorHandlingState.initial,
+        auth: DefaultAuthState.initial,
+        error: DefaultErrorHandlingState.initial,
       );
 
   @override
   AppState copyWith({
     NavigationState? navigation,
-    ErrorHandlingState? error,
-    AuthState? auth,
+    DefaultErrorHandlingState? error,
+    DefaultAuthState? auth,
     OrganisationsState? organisations,
     SectionsState? sections,
     ProjectsState? projects,

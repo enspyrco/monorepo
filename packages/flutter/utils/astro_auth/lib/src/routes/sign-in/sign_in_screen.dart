@@ -1,12 +1,12 @@
 import 'package:astro/astro.dart';
 import 'package:astro_locator/astro_locator.dart';
+import 'package:astro_types/auth_types.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/state_types.dart';
 import 'package:flutter/material.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as plugin;
 
 import '../../missions/sign_in_with_apple.dart';
-import '../../state/user_state.dart';
 
 class SignInScreen<T extends AstroState> extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);

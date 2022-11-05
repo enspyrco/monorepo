@@ -10,7 +10,7 @@ import 'error_report_screen.dart';
 class ErrorReportPage<T extends AstroState> extends MaterialPage {
   const ErrorReportPage(this.report, {super.child = const SizedBox()});
 
-  final ErrorReport report;
+  final DefaultErrorReport report;
 
   @override
   Route createRoute(BuildContext context) {

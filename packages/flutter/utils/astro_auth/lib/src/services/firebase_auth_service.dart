@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../extensions/user_extension.dart';
-import '../state/user_state.dart';
+import '../state/default_user_state.dart';
 import '../utils/types.dart';
 
 class FirebaseAuthService {
@@ -23,7 +23,7 @@ class FirebaseAuthService {
     return await _plugin.signInWithCredential(oauthCredential);
   }
 
-  Stream<UserState> tapIntoAuthState() {
+  Stream<DefaultUserState> tapIntoAuthState() {
     return _plugin.authStateChanges().map((user) => user.toState());
   }
 

@@ -17,7 +17,9 @@ void main() {
             all: {projectA, projectB, projectC}, creating: false));
 
     final harness = WidgetTestHarness<AppState>(
-        initialState: initialState, child: const ProjectsGrid());
+      initialState: initialState,
+      innerWidget: const ProjectsGrid(),
+    );
 
     await tester.pumpWidget(harness.widget);
 

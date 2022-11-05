@@ -1,40 +1,34 @@
-import 'package:astro_types/json_types.dart';
+import 'package:astro_types/auth_types.dart';
 import 'package:astro_types/state_types.dart';
 
-enum SignedInState {
-  checking(true),
-  notSignedIn(false),
-  signingIn(true),
-  signedIn(true);
-
-  const SignedInState(this.disableButton);
-
-  final bool disableButton;
-}
-
-class UserState implements AstroState {
-  UserState({
+class DefaultUserState implements UserState, AstroState {
+  DefaultUserState({
     required this.signedIn,
     this.uid,
     this.displayName,
     this.photoURL,
   });
 
-  static UserState get initial => UserState(signedIn: SignedInState.checking);
+  static DefaultUserState get initial =>
+      DefaultUserState(signedIn: SignedInState.checking);
 
+  @override
   final SignedInState signedIn;
+  @override
   final String? uid;
+  @override
   final String? displayName;
+  @override
   final String? photoURL;
 
   @override
-  UserState copyWith({
+  DefaultUserState copyWith({
     SignedInState? signedIn,
     String? uid,
     String? displayName,
     String? photoUrl,
   }) {
-    return UserState(
+    return DefaultUserState(
       signedIn: signedIn ?? this.signedIn,
       uid: uid ?? this.uid,
       displayName: displayName ?? this.displayName,
@@ -52,7 +46,7 @@ class UserState implements AstroState {
 
   @override
   bool operator ==(Object other) =>
-      other is UserState &&
+      other is DefaultUserState &&
       other.signedIn == signedIn &&
       other.uid == uid &&
       other.displayName == displayName &&
@@ -60,24 +54,4 @@ class UserState implements AstroState {
 
   @override
   int get hashCode => Object.hash(signedIn, uid, displayName, photoURL);
-}
-
-class AuthState extends AstroState {
-  AuthState({required this.user});
-
-  static AuthState get initial => AuthState(user: UserState.initial);
-
-  final UserState user;
-
-  @override
-  AuthState copyWith({UserState? user}) => AuthState(user: user ?? this.user);
-
-  @override
-  JsonMap toJson() => {'user': user.toJson()};
-
-  @override
-  bool operator ==(Object other) => other is AuthState && other.user == user;
-
-  @override
-  int get hashCode => user.hashCode;
 }
