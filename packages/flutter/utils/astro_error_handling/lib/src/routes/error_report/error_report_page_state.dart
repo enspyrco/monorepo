@@ -7,7 +7,7 @@ class ErrorReportPageState<T extends AstroState>
     implements PageState, AstroState {
   const ErrorReportPageState(this.report);
 
-  final ErrorReport report;
+  final DefaultErrorReport report;
 
   @override
   ErrorReportPageState<T> copyWith() => this;

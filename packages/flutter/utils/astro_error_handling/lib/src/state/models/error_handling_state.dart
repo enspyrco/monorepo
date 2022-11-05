@@ -1,19 +1,21 @@
+import 'package:astro_types/error_handling_types.dart';
 import 'package:astro_types/state_types.dart';
 import 'package:flutter/foundation.dart';
 
 import 'error_report.dart';
 
-class ErrorHandlingState implements AstroState {
-  const ErrorHandlingState({required this.reports});
+class DefaultErrorHandlingState implements ErrorHandlingState, AstroState {
+  const DefaultErrorHandlingState({required this.reports});
 
-  static ErrorHandlingState get initial =>
-      const ErrorHandlingState(reports: []);
-
-  final List<ErrorReport> reports;
+  static DefaultErrorHandlingState get initial =>
+      const DefaultErrorHandlingState(reports: []);
 
   @override
-  ErrorHandlingState copyWith({List<ErrorReport>? reports}) =>
-      ErrorHandlingState(reports: reports ?? this.reports);
+  final List<DefaultErrorReport> reports;
+
+  @override
+  DefaultErrorHandlingState copyWith({List<DefaultErrorReport>? reports}) =>
+      DefaultErrorHandlingState(reports: reports ?? this.reports);
 
   @override
   toJson() => {'reports': reports.map((e) => e.toJson()).toList()};

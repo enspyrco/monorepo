@@ -1,17 +1,18 @@
 import 'package:astro_error_handling/astro_error_handling.dart';
+import 'package:astro_types/error_handling_types.dart';
 import 'package:astro_types/state_types.dart';
 
-class ExampleAppState implements AstroState, DefaultErrorHandlingState {
+class ExampleAppState implements AstroState, AppStateErrorHandling {
   ExampleAppState({required this.error});
 
   static ExampleAppState get initial =>
-      ExampleAppState(error: ErrorHandlingState.initial);
+      ExampleAppState(error: DefaultErrorHandlingState.initial);
 
   @override
-  final ErrorHandlingState error;
+  final DefaultErrorHandlingState error;
 
   @override
-  ExampleAppState copyWith({ErrorHandlingState? error}) {
+  ExampleAppState copyWith({DefaultErrorHandlingState? error}) {
     return ExampleAppState(error: error ?? this.error);
   }
 

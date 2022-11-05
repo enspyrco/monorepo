@@ -5,10 +5,12 @@ import 'package:astro_types/state_types.dart';
 class AddErrorReport<S extends AstroState> extends LandingMission<S> {
   @override
   S landingInstructions(S state) {
-    return (state as dynamic).copyWith(reports: [
-      const ErrorReport(message: 'message'),
-      ...(state as dynamic).reports as List<ErrorReport>
-    ]) as S;
+    var newState = (state as dynamic).copyWith(
+        error: (state as dynamic).error.copyWith(reports: [
+      const DefaultErrorReport(message: 'message'),
+      ...(state as dynamic).error.reports as List<DefaultErrorReport>
+    ]));
+    return newState as S;
   }
 
   @override

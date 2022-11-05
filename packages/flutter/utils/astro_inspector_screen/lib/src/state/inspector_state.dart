@@ -1,4 +1,5 @@
 import 'package:astro_error_handling/astro_error_handling.dart';
+import 'package:astro_types/error_handling_types.dart';
 import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 import 'package:collection/collection.dart';
@@ -7,7 +8,7 @@ import '../enums/lineage_shape.dart';
 
 /// The AppState for astro, named differently as the [AstroInspectorScreen] is
 /// for visualising the AppState of apps.
-class InspectorState implements AstroState, DefaultErrorHandlingState {
+class InspectorState implements AstroState, AppStateErrorHandling {
   InspectorState(
       {required this.error,
       required this.missionUpdates,
@@ -16,7 +17,7 @@ class InspectorState implements AstroState, DefaultErrorHandlingState {
       required this.indexFor});
 
   static InspectorState get initial => InspectorState(
-        error: ErrorHandlingState.initial,
+        error: DefaultErrorHandlingState.initial,
         missionUpdates: UnmodifiableListView([]),
         selectedIndex: null,
         lineageFor: UnmodifiableMapView({}),
@@ -26,7 +27,7 @@ class InspectorState implements AstroState, DefaultErrorHandlingState {
   /// If there are errors (eg. decoding invalid json) we save an error message
   /// that the screen will display
   @override
-  final ErrorHandlingState error;
+  final DefaultErrorHandlingState error;
 
   /// The list of mission updates, added to each time [MissionControl.launch] or
   /// [MissionControl.land] is called
@@ -53,7 +54,7 @@ class InspectorState implements AstroState, DefaultErrorHandlingState {
 
   @override
   InspectorState copyWith(
-      {ErrorHandlingState? error,
+      {DefaultErrorHandlingState? error,
       List<JsonMap>? missionUpdates,
       int? selectedIndex,
       Map<int, LineageShape>? lineageFor,

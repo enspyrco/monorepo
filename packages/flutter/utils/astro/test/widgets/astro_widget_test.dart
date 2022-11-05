@@ -1,7 +1,7 @@
 import 'package:astro/astro.dart';
-import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_types/core_types.dart';
+import 'package:astro_types/error_handling_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

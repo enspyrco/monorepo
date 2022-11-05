@@ -10,7 +10,7 @@ import '../../state/models/error_report.dart';
 class ErrorReportScreen<T extends AstroState> extends StatelessWidget {
   const ErrorReportScreen(this.report, {Key? key}) : super(key: key);
 
-  final ErrorReport report;
+  final DefaultErrorReport report;
 
   @override
   Widget build(BuildContext context) {
