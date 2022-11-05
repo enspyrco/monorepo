@@ -25,11 +25,13 @@ class WidgetTestHarness<T extends AstroState> {
   WidgetTestHarness({
     required T initialState,
     required Widget innerWidget,
+    MissionControl<T>? missionControl,
     List<SystemCheck>? systemChecks,
     bool addToLocator = true,
   }) : _widgetUnderTest = innerWidget {
-    _missionControl = DefaultMissionControl<T>(
-        state: initialState, systemChecks: [...?systemChecks, _recorded]);
+    _missionControl = missionControl ??
+        DefaultMissionControl<T>(
+            state: initialState, systemChecks: [...?systemChecks, _recorded]);
     if (addToLocator) Locator.add<MissionControl<T>>(_missionControl);
   }
 
