@@ -35,10 +35,16 @@ void main() {
     /// We could just add appropriate initial state but I think it is clearer
     /// and a better test to start missions to setup the state.
 
+    final testMission = TestAwayMission();
+
     /// Setup the [InspectorState] as if the inspected app launched a [TestAwayMission]
+    /// The json injected into [AddMissionUpate] is created by the
+    /// [SendMissionUpdatesToInspector] system check.
     harness.land(AddMissionUpdate({
       'state': InspectorState.initial.toJson(),
       'mission': TestAwayMission().toJson()
+        ..['id_'] = testMission.hashCode
+        ..['type_'] = 'async'
     }));
 
     await tester.tap(find.byType(MissionsHistoryItem));
