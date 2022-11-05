@@ -5,7 +5,7 @@ void main() {
   test('AppState serializes appropriately', () {
     var state = AppState.initial;
     var json = state.toJson();
-    expect(json['reports'], equals([]));
+    expect(json['reports'], isNull);
   });
 
   test('AppState equivalence is state based', () {
