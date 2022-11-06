@@ -1,20 +1,17 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:tech_world/app_state.dart';
-import 'package:tech_world/redux/actions/set_other_player_ids_action.dart';
-import 'package:tech_world/redux/reducers/set_other_player_ids_reducer.dart';
+import 'package:tech_world/app/state/app_state.dart';
+import 'package:tech_world/networking/missions/set_other_player_ids.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('SetOtherPlayerIdsReducer', () {
     test('should update otherPlayerIds', () {
-      const testIds = ISetConst({'1', '2'});
+      const testIds = {'1', '2'};
 
-      final initialState = AppState.init();
-      expect(initialState.auth.userData, null);
+      final initialState = AppState.initial;
+      expect(initialState.auth.user, null);
 
-      final reducer = SetOtherPlayerIdsReducer();
-      final newState =
-          reducer.reducer(initialState, const SetOtherPlayerIdsAction(testIds));
+      const mission = SetOtherPlayerIds(testIds);
+      var newState = mission.landingInstructions(initialState);
 
       expect(newState.game.otherPlayerIds, testIds);
     });

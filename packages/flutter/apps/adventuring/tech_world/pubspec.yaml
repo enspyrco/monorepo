@@ -4,39 +4,67 @@ publish_to: 'none'
 version: 0.0.1
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  a_star_algorithm:
-  flame: 1.0.0-releasecandidate.16
-  vector_math: 
+  web_socket_channel: ^2.2.0
   ws_game_server_types:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/dart/servers/ws_game_server_types
-  web_socket_channel:
   
-  #######################
-  # redfire dependencies
-  #######################
-  freezed_annotation:
-  json_annotation: ^4.5.0
-  redfire:
+  a_star_algorithm: ^0.3.0
+  flame: ^1.4.0
+  vector_math: ^2.1.2
+  
+  # astro
+  astro:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redfire
+      path: packages/flutter/utils/astro
+  astro_types:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_types
+  astro_locator:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/utils/astro_locator
+  astro_inspector_screen:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_inspector_screen
+  astro_auth:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_auth
+  astro_error_handling:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_error_handling
+  astro_navigation:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_navigation
+  
+  # firestore
   firestore_service_interface:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/dart/interfaces/firestore_service_interface
-  redux:
-  flutter_redux:
-  fast_immutable_collections:
-  url_launcher: ^6.0.12
-  flutter_markdown: ^0.6.8
+  firestore_service_flutterfire:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/flutterfire/firestore_service_flutterfire
+  
+  collection: ^1.16.0
+  firebase_core: ^2.1.1
+  flutter_markdown: ^0.6.13
+  url_launcher: ^6.1.6
+  fast_immutable_collections: ^8.0.0
 
 dev_dependencies:
   flutter_test:
@@ -46,13 +74,10 @@ dev_dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/enspyr_lints
-  redfire_test:
+  astro_test_utils:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redfire_test
-  build_runner:
-  freezed:
-  json_serializable: ^6.2.0
+      path: packages/flutter/utils/astro_test_utils
 
 flutter:
   uses-material-design: true

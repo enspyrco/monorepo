@@ -56,3 +56,6 @@ app.*.map.json
 
 # Firebase config file
 lib/firebase_options.dart
+macos/firebase_app_id_file.json
+ios/firebase_app_id_file.json
+android/app/google-services.json

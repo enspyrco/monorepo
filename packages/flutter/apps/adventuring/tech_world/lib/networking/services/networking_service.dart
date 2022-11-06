@@ -1,37 +1,39 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:redfire/types.dart' hide JsonMap;
+import 'package:astro_types/core_types.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:ws_game_server_types/ws_game_server_types.dart';
 
+import '../../app/state/app_state.dart';
 import '../../shared/constants.dart' as constants;
-import '../actions/set_other_player_ids_action.dart';
-import '../actions/set_player_path_action.dart';
+import '../missions/set_other_player_ids.dart';
+import '../missions/set_player_path.dart';
 
 const _uriString = constants.usCentral1;
 
 /// The core of th [NetworkingService] is a websocket connected to a CloudRun
 /// instance.
 ///
-/// Incoming events are [_identify]'d, converted to actions and pushed into the
-/// stream controlled by [_actionsStreamController].  A middleware ensures the
-/// actions are dispatched to the [Store].
+/// Incoming events are [_identify]'d, converted to missions and pushed into the
+/// stream controlled by [_missionsStreamController].  A middleware ensures the
+/// missions are dispatched to the [Store].
 class NetworkingService {
   /// The userId is set in [connect]
   String? _userId;
   int _departureTime = 0;
   WebSocketChannel? _webSocket;
-  StreamSubscription? _serverSubscription;
+  StreamSubscription<dynamic>? _serverSubscription;
 
   late Stream<dynamic> _serverStream;
   late Sink<dynamic> _serverSink;
 
   /// Controls the stream that is used
-  final StreamController<ReduxAction> _actionsStreamController =
-      StreamController<ReduxAction>.broadcast();
+  final StreamController<LandingMission<AppState>> _missionsStreamController =
+      StreamController<LandingMission<AppState>>.broadcast();
 
-  Stream<ReduxAction> get actionsStream => _actionsStreamController.stream;
+  Stream<LandingMission<AppState>> get missionsStream =>
+      _missionsStreamController.stream;
 
   // Create a websocket connected to the server and attach callbacks.
   void connect(String uid) {
@@ -41,9 +43,9 @@ class NetworkingService {
     _serverStream = _webSocket!.stream;
     _serverSink = _webSocket!.sink;
 
-    // Listen to the websocket, identify events & add actions to a stream
+    // Listen to the websocket, identify events & add missions to a stream
     _serverSubscription = _serverStream.listen(
-      (dynamic data) => _actionsStreamController
+      (dynamic data) => _missionsStreamController
           .add(_identify(jsonDecode(data as String) as JsonMap)),
       onError: (dynamic err) =>
           print('${DateTime.now()} > CONNECTION ERROR: $err'),
@@ -65,23 +67,23 @@ class NetworkingService {
     _serverSink.add(jsonString);
   }
 
-  ReduxAction _identify(JsonMap json) {
+  LandingMission<AppState> _identify(JsonMap json) {
     print('identifying: $json');
     // Check the type of data in the event and respond appropriately.
     if (json['type'] == 'other_player_ids') {
       final otherPlayers = OtherPlayerIdsMessage.fromJson(json);
-      return SetOtherPlayerIdsAction(otherPlayers.ids);
+      return SetOtherPlayerIds(otherPlayers.ids.toSet());
     } else {
       final message = PlayerPathMessage.fromJson(json);
       if (message.userId == _userId) {
         print('ws: ${DateTime.now().millisecondsSinceEpoch - _departureTime}');
       }
-      return SetPlayerPathAction(message);
+      return SetPlayerPath(message);
     }
   }
 
   Future<void> disconnect() async {
-    // await _actionsStreamController.close();
+    // await _missionsStreamController.close();
     await _serverSubscription?.cancel();
     if (_webSocket != null) {
       _serverSink.close();

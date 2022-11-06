@@ -1,19 +1,19 @@
+import 'package:astro/astro.dart';
+import 'package:astro_auth/astro_auth.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redfire/widgets.dart';
 
-import '../../app_state.dart';
-import '../../challenges/actions/dismiss_challenge_action.dart';
-import '../../challenges/actions/start_challenge_action.dart';
-import '../../challenges/enums/challenge_enum.dart';
-import '../../challenges/models/challenge_model.dart';
-import '../../challenges/widgets/challenge_stepper.dart';
-import '../../game/tech_world_game.dart';
-import '../../utils/extensions/build_context_extensions.dart';
+import '../challenges/enums/challenge_enum.dart';
+import '../challenges/missions/dismiss_challenge.dart';
+import '../challenges/missions/start_challenge.dart';
+import '../challenges/models/challenge_model.dart';
+import '../challenges/widgets/challenge_stepper.dart';
+import '../game/tech_world_game.dart';
+import '../utils/extensions/build_context_extensions.dart';
+import 'state/app_state.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({required TechWorldGame game, Key? key})
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({required TechWorldGame game, Key? key})
       : _game = game,
         super(key: key);
 
@@ -21,9 +21,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, ChallengeModel?>(
-      distinct: true,
-      converter: (store) => store.state.challenge,
+    return OnStateChangeBuilder<AppState, ChallengeModel?>(
+      transformer: (state) => state.challenge,
       builder: (context, challenge) {
         return Scaffold(
           appBar: AppBar(
@@ -33,10 +32,7 @@ class HomePage extends StatelessWidget {
               else
                 const DismissChallengeButton(),
               const AvatarMenuButton<AppState>(
-                options: {
-                  MenuOptionPreset.accountDetails,
-                  MenuOptionPreset.signOut
-                },
+                options: {MenuOption('Sign Out', SignOut<AppState>())},
               ),
             ],
           ),
@@ -59,8 +55,8 @@ class StartChallengeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton.small(
       child: const Text('+'),
-      onPressed: () => context.dispatch(
-        const StartChallengeAction(ChallengeEnum.fixRepo),
+      onPressed: () => context.land(
+        const StartChallenge(challengeType: ChallengeEnum.fixRepo),
       ),
     );
   }
@@ -73,9 +69,7 @@ class DismissChallengeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton.small(
       child: const Text('X'),
-      onPressed: () => context.dispatch(
-        const DismissChallengeAction(),
-      ),
+      onPressed: () => context.land(const DismissChallenge()),
     );
   }
 }

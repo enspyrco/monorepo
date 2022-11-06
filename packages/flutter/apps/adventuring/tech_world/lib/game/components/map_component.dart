@@ -1,5 +1,4 @@
 import 'package:a_star_algorithm/a_star_algorithm.dart';
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +10,11 @@ import '../../utils/extensions/vector2_extension.dart';
 import '../background/barriers.dart';
 
 class MapComponent extends Component {
-  MapComponent({Barriers? barriers}) : _barriers = barriers ?? Barriers() {
+  MapComponent({Barriers? barriers})
+      : _barriers = barriers ?? const Barriers() {
     _barrierOffsets = _barriers.toOffsets();
     // Convert the unit sized barriers to Rects of size 64
-    _barrierRects = _barriers.positions
+    _barrierRects = Barriers.positions
         .map((position) => Rect.fromPoints(
             Offset(position.x * constants.squareSize,
                 position.y * constants.squareSize),
@@ -39,7 +39,7 @@ class MapComponent extends Component {
   //
   // The AStar algorithm works backwards so starts at the 'end' ie the clicked
   // location.
-  IList<Vector2> createPath({required Vector2 start, required Vector2 end}) {
+  List<Vector2> createPath({required Vector2 start, required Vector2 end}) {
     _pathLocations = AStar(
       rows: 10,
       columns: 10,
@@ -52,7 +52,7 @@ class MapComponent extends Component {
 
     return _pathLocations
         .map<Vector2>((offset) => (offset).toVector2() * 64)
-        .toIList();
+        .toList();
   }
 
   @override

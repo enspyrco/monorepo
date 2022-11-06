@@ -1,5 +1,5 @@
+import 'package:astro_types/core_types.dart';
 import 'package:flutter/material.dart';
-import 'package:redfire/types.dart';
 
 import '../models/challenge_task_model.dart';
 
@@ -10,6 +10,6 @@ class ChallengeStep extends Step {
 
   final ChallengeTaskModel _task;
 
-  ReduxAction? get startAction => _task.startAction;
-  ReduxAction? get endAction => _task.endAction;
+  Mission? get startMission => _task.startMission;
+  Mission? get endMission => _task.endMission;
 }

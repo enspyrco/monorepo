@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:redfire/actions.dart';
 
 import '../../utils/extensions/build_context_extensions.dart';
+import '../missions/launch_url.dart';
 
 class TaskDescriptionView extends StatelessWidget {
   const TaskDescriptionView({required this.markdown, Key? key})
@@ -18,7 +18,7 @@ class TaskDescriptionView extends StatelessWidget {
           Markdown(
             data: markdown,
             onTapLink: (_, href, __) =>
-                context.dispatch(LaunchUrlAction(url: href ?? '')),
+                context.launch(LaunchUrl(url: href ?? '')),
           ),
           Positioned(
               right: 0.0,

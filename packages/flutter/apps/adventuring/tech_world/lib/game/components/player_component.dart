@@ -1,11 +1,8 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/services.dart';
 
 import '../../shared/direction_enum.dart';
-import '../../utils/effects/move_character_effect.dart';
-import '../../utils/extensions/direction_enum_extension.dart';
 import '../../utils/input.dart';
 
 typedef Position = Vector2;
@@ -20,7 +17,7 @@ class PlayerComponent extends SpriteAnimationGroupComponent<DirectionEnum> {
             animations: animations,
             current: DirectionEnum.down);
 
-  MoveCharacterEffect? _moveEffect;
+  // MoveCharacterEffect? _moveEffect;
 
   // Static async create method so we can load sprite animations.
   static Future<PlayerComponent> create(String path,
@@ -46,27 +43,27 @@ class PlayerComponent extends SpriteAnimationGroupComponent<DirectionEnum> {
   void moveInDirection(RawKeyEvent event) {
     if (event is RawKeyDownEvent) {
       current = Input.directionFrom(event);
-      add(MoveCharacterEffect(
-        path: [current.vector],
-        speed: 200.0,
-        startingDirection: current ?? DirectionEnum.down,
-        onDirectionChange: (direction) => current = direction,
-      ));
+      // add(MoveCharacterEffect(
+      //   path: [current.vector],
+      //   speed: 200.0,
+      //   startingDirection: current ?? DirectionEnum.down,
+      //   onDirectionChange: (direction) => current = direction,
+      // ));
     }
   }
 
-  void moveOnPath({required double speed, required IList<Vector2> points}) {
-    if (_moveEffect != null) remove(_moveEffect!);
+  // void moveOnPath({required double speed, required List<Vector2> points}) {
+  //   if (_moveEffect != null) remove(_moveEffect!);
 
-    _moveEffect = MoveCharacterEffect(
-      path: points.toList(),
-      speed: speed,
-      startingDirection: current ?? DirectionEnum.down,
-      onDirectionChange: (direction) => current = direction,
-    );
+  //   _moveEffect = MoveCharacterEffect(
+  //     path: points.toList(),
+  //     speed: speed,
+  //     startingDirection: current ?? DirectionEnum.down,
+  //     onDirectionChange: (direction) => current = direction,
+  //   );
 
-    add(_moveEffect!);
-  }
+  //   add(_moveEffect!);
+  // }
 
   @override
   void update(double dt) => super.update(dt);

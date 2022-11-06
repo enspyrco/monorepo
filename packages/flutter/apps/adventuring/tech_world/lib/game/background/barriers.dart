@@ -1,19 +1,13 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/state_types.dart';
 import 'package:ws_game_server_types/ws_game_server_types.dart';
 
-part 'barriers.freezed.dart';
-part 'barriers.g.dart';
+class Barriers implements AstroState {
+  const Barriers();
 
-@freezed
-class Barriers with _$Barriers, ReduxState {
-  static const String className = 'Barriers';
+  /// TODO: make the fromJson do something once we figure out how Barriers will work.
+  factory Barriers.fromJson(Map<String, dynamic> json) => const Barriers();
 
-  Barriers._();
-  factory Barriers() = _Barriers;
-
-  final IList<Double2> positions = const [
+  static const List<Double2> positions = [
     Double2(5, 2),
     Double2(5, 3),
     Double2(5, 4),
@@ -34,11 +28,17 @@ class Barriers with _$Barriers, ReduxState {
     Double2(1, 6),
     Double2(1, 7),
     Double2(1, 8),
-  ].lock;
-
-  factory Barriers.fromJson(Map<String, Object?> json) =>
-      _$BarriersFromJson(json);
+  ];
 
   @override
-  String get typeName => className;
+  AstroState copyWith() {
+    // TODO: implement copyWith
+    throw UnimplementedError();
+  }
+
+  @override
+  toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
 }

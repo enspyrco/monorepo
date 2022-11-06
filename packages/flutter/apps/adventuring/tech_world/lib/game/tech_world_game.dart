@@ -1,14 +1,14 @@
 import 'dart:async';
 
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ws_game_server_types/ws_game_server_types.dart';
 
-import '../app_state.dart';
-import '../utils/extensions/i_list_of_double2s_extension.dart';
-import '../utils/extensions/i_list_of_vector2s_extension.dart';
+import '../app/state/app_state.dart';
+import '../utils/extensions/list_of_vector2s_extension.dart';
 import 'components/map_component.dart';
 import 'components/player_component.dart';
 
@@ -24,7 +24,7 @@ class TechWorldGame extends FlameGame with KeyboardEvents, TapDetector {
 
   // We listen to each state change & check the parts we care about.
   final Stream<AppState> _appStateChanges;
-  var _oldState = AppState.init();
+  var _oldState = AppState.initial;
 
   // A sink is passed in that we can use to send messages to the server.
   final Sink<ServerMessage> _serverSink;
@@ -47,8 +47,8 @@ class TechWorldGame extends FlameGame with KeyboardEvents, TapDetector {
 
     // TODO: add try/catch blocks and onError callback
     _appStateChanges.listen((state) {
-      if (_userId != state.auth.userData?.uid) {
-        _userId = state.auth.userData?.uid;
+      if (_userId != state.auth.user.uid) {
+        _userId = state.auth.user.uid;
       }
 
       if (_oldState.game.otherPlayerIds != state.game.otherPlayerIds) {
@@ -75,15 +75,14 @@ class TechWorldGame extends FlameGame with KeyboardEvents, TapDetector {
 
       if (_oldState.game.playerPaths != state.game.playerPaths) {
         // get the set of ids corresponding to new player paths
-        var newPaths = state.game.playerPaths
-            .toEntryISet()
-            .difference(_oldState.game.playerPaths.toEntryISet());
+        var newPaths = {...state.game.playerPaths.entries}
+            .difference({..._oldState.game.playerPaths.entries});
         // add movement effects to all relevant player components
-        for (var path in newPaths) {
-          _otherPlayers[path.key]!.moveOnPath(
-              points: state.game.playerPaths[path.key]!.toVector2s(),
-              speed: 300);
-        }
+        // for (var path in newPaths) {
+        //   _otherPlayers[path.key]!.moveOnPath(
+        //       points: state.game.playerPaths[path.key]!.toVector2s(),
+        //       speed: 300);
+        // }
       }
 
       _oldState = state;
@@ -114,9 +113,9 @@ class TechWorldGame extends FlameGame with KeyboardEvents, TapDetector {
 
     departureTime = DateTime.now().millisecondsSinceEpoch;
     _serverSink.add(PlayerPathMessage(
-        userId: _userId!, points: bigPathLocations.toDouble2s()));
+        userId: _userId!, points: bigPathLocations.toDouble2s().toIList()));
 
-    _player!.moveOnPath(points: bigPathLocations, speed: 300);
+    // _player!.moveOnPath(points: bigPathLocations, speed: 300);
   }
 
   @override
