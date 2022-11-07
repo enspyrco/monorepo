@@ -17,7 +17,8 @@ class RemoveErrorReport<S extends AstroState> extends LandingMission<S> {
     var stack = (state as dynamic).navigation.stack as List<PageState>;
 
     /// Create new state
-    var newReports = [...error.reports]..remove(report);
+    var newReports =
+        ([...error.reports]..remove(report)).cast<DefaultErrorReport>();
     var newStack = [...stack]..remove(ErrorReportPageState(report));
 
     /// Update sections
