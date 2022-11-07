@@ -26,7 +26,8 @@ class CreateProject extends AwayMission<AppState> {
 
       var service = locate<FirestoreService>();
 
-      await service.createDocument(at: 'projects', from: project.toJson());
+      await service.createDocument(
+          at: 'projects/the-process/projects', from: project.toJson());
     } catch (error) {
       rethrow;
     } finally {

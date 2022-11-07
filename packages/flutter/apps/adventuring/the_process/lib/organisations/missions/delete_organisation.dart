@@ -16,7 +16,8 @@ class DeleteOrganisation extends AwayMission<AppState> {
 
       var service = locate<FirestoreService>();
 
-      await service.deleteDocument(at: 'organisations/${selected.id}');
+      await service.deleteDocument(
+          at: 'projects/the-process/organisations/${selected.id}');
     } catch (error) {
       rethrow;
     } finally {

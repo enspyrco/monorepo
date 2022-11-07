@@ -23,7 +23,8 @@ class CreateOrganisation extends AwayMission<AppState> {
 
     try {
       await service.createDocument(
-          at: 'organisations', from: organisation.toJson());
+          at: 'projects/the-process/organisations',
+          from: organisation.toJson());
     } catch (error) {
       rethrow;
     } finally {

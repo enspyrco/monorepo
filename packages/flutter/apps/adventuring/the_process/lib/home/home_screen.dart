@@ -1,7 +1,9 @@
 import 'package:astro_auth/astro_auth.dart';
+import 'package:astro_navigation/astro_navigation.dart';
 import 'package:flutter/material.dart';
 
 import '../app/state/app_state.dart';
+import '../organisations/routes/manage_organisations_page_state.dart';
 import '../organisations/widgets/organisation_selector.dart';
 import '../projects/widgets/grid-view/projects_grid.dart';
 import 'logo_icon.dart';
@@ -51,7 +53,11 @@ class _BasicAppBarState extends State<BasicAppBar> {
               Spacer(),
               NotificationsButton(),
               AvatarMenuButton<AppState>(
-                options: {MenuOption('Sign Out', SignOut<AppState>())},
+                options: {
+                  MenuOption('Sign Out', SignOut<AppState>()),
+                  MenuOption('Manage Organisations',
+                      PushRoute<AppState>(ManageOrganisationsPageState())),
+                },
               ),
             ],
           ),
