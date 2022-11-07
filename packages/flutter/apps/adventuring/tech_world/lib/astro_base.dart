@@ -27,7 +27,7 @@ Future<void> astroInitialization() async {
 
   ///
   var initialState = AppState.initial.copyWith(
-      navigation: const NavigationState(stack: [AuthGatePageState()]));
+      navigation: const DefaultNavigationState(stack: [AuthGatePageState()]));
 
   var systemChecks = <SystemCheck>[];
 

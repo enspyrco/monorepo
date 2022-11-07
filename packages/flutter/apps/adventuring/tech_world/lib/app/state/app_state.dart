@@ -3,6 +3,7 @@ import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/auth_types.dart';
 import 'package:astro_types/error_handling_types.dart';
+import 'package:astro_types/navigation_types.dart';
 import 'package:astro_types/state_types.dart';
 
 import '../../challenges/models/challenge_model.dart';
@@ -11,7 +12,7 @@ import '../../game/game_state.dart';
 class AppState
     implements
         AstroState,
-        DefaultNavigationState,
+        AppStateNavigation,
         AppStateErrorHandling,
         AppStateAuth {
   AppState({
@@ -29,7 +30,7 @@ class AppState
   @override
   final DefaultErrorHandlingState error;
   @override
-  final NavigationState navigation;
+  final DefaultNavigationState navigation;
 
   // final Settings settings;
   // final ProfileData? profile;
@@ -40,14 +41,14 @@ class AppState
   static AppState get initial => AppState(
         auth: DefaultAuthState.initial,
         error: DefaultErrorHandlingState.initial,
-        navigation: NavigationState.initial,
+        navigation: DefaultNavigationState.initial,
         // settings: Settings.initial,
         game: GameState.initial,
       );
 
   @override
   AppState copyWith({
-    NavigationState? navigation,
+    DefaultNavigationState? navigation,
     DefaultErrorHandlingState? error,
     DefaultAuthState? auth,
     GameState? game,

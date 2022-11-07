@@ -3,6 +3,7 @@ import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/auth_types.dart';
 import 'package:astro_types/error_handling_types.dart';
+import 'package:astro_types/navigation_types.dart';
 import 'package:astro_types/state_types.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +16,8 @@ import '../../tasks/models/tasks_state.dart';
 class AppState
     implements
         AstroState,
-        DefaultNavigationState,
         AppStateErrorHandling,
+        AppStateNavigation,
         AppStateAuth {
   const AppState({
     required this.navigation,
@@ -35,7 +36,7 @@ class AppState
   });
 
   @override
-  final NavigationState navigation;
+  final DefaultNavigationState navigation;
 
   @override
   final DefaultAuthState auth;
@@ -49,7 +50,7 @@ class AppState
   final StepsState steps;
 
   static AppState get initial => AppState(
-        navigation: NavigationState.initial,
+        navigation: DefaultNavigationState.initial,
         auth: DefaultAuthState.initial,
         error: DefaultErrorHandlingState.initial,
 
@@ -64,7 +65,7 @@ class AppState
 
   @override
   AppState copyWith({
-    NavigationState? navigation,
+    DefaultNavigationState? navigation,
     DefaultErrorHandlingState? error,
     DefaultAuthState? auth,
     AdventuresState? adventures,

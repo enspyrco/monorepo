@@ -3,7 +3,6 @@ library astro_navigation;
 import 'package:astro_types/navigation_types.dart';
 import 'package:flutter/material.dart';
 
-export 'src/interfaces/default_navigation_state.dart';
 export 'src/missions/push_route.dart';
 export 'src/missions/remove_current_route.dart';
 export 'src/state/sections/navigation_state.dart';

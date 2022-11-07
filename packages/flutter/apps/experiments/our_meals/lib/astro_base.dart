@@ -19,7 +19,7 @@ Future<void> astroInitialization() async {
 
   ///
   var initialState = AppState.initial.copyWith(
-      navigation: const NavigationState(stack: [AuthGatePageState()]));
+      navigation: const DefaultNavigationState(stack: [AuthGatePageState()]));
 
   var systemChecks = <SystemCheck>[];
 
@@ -49,7 +49,7 @@ Future<void> astroInitialization() async {
   }));
 
   /// Perform individual plugin initialization
-  astroAuthInit();
+  astroAuthInit<AppState>();
 }
 
 class AstroBase extends StatelessWidget {

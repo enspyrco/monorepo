@@ -8,9 +8,9 @@ import 'package:astro_types/state_types.dart';
 class AppState
     implements
         AstroState,
+        AppStateNavigation,
         AppStateErrorHandling,
-        AppStateAuth,
-        DefaultNavigationState {
+        AppStateAuth {
   AppState({required this.error, required this.auth, required this.navigation});
 
   static AppState get initial => AppState(
@@ -25,13 +25,13 @@ class AppState
   final DefaultErrorHandlingState error;
 
   @override
-  final NavigationState navigation;
+  final DefaultNavigationState navigation;
 
   @override
   AppState copyWith({
     DefaultErrorHandlingState? error,
     DefaultAuthState? auth,
-    NavigationState? navigation,
+    DefaultNavigationState? navigation,
   }) {
     return AppState(
       error: error ?? this.error,

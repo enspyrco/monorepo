@@ -3,24 +3,25 @@ import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/auth_types.dart';
 import 'package:astro_types/error_handling_types.dart';
+import 'package:astro_types/navigation_types.dart';
 import 'package:astro_types/state_types.dart';
 
 class AppState
     implements
         AstroState,
-        DefaultNavigationState,
+        AppStateNavigation,
         AppStateErrorHandling,
         AppStateAuth {
   AppState({required this.navigation, required this.auth, required this.error});
 
   static AppState get initial => AppState(
-        navigation: NavigationState.initial,
+        navigation: DefaultNavigationState.initial,
         auth: DefaultAuthState.initial,
         error: DefaultErrorHandlingState.initial,
       );
 
   @override
-  final NavigationState navigation;
+  final DefaultNavigationState navigation;
 
   @override
   final DefaultAuthState auth;
@@ -30,7 +31,7 @@ class AppState
 
   @override
   AppState copyWith(
-      {NavigationState? navigation,
+      {DefaultNavigationState? navigation,
       DefaultErrorHandlingState? error,
       DefaultAuthState? auth}) {
     return AppState(
