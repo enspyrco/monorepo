@@ -1,27 +1,48 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/core_types.dart';
+import 'package:astro_types/state_types.dart';
 
-part 'challenge_task_model.freezed.dart';
-part 'challenge_task_model.g.dart';
+class ChallengeTaskModel implements AstroState {
+  const ChallengeTaskModel({
+    required this.title,
+    required this.description,
+    this.complete,
+    this.startMission,
+    this.endMission,
+  });
 
-@freezed
-class ChallengeTaskModel with _$ChallengeTaskModel, ReduxState {
-  static const String className = 'ChallengeTaskModel';
+  final String title;
+  final String description;
 
-  const ChallengeTaskModel._();
-  const factory ChallengeTaskModel({
-    required String title,
-    required String description,
-
-    /// null = not started, false = in progress, true = complete
-    bool? complete,
-    @ReduxActionConverter() ReduxAction? startAction,
-    @ReduxActionConverter() ReduxAction? endAction,
-  }) = _ChallengeTaskModel;
-
-  factory ChallengeTaskModel.fromJson(JsonMap json) =>
-      _$ChallengeTaskModelFromJson(json);
+  /// null = not started, false = in progress, true = complete
+  final bool? complete;
+  final Mission? startMission;
+  final Mission? endMission;
 
   @override
-  String get typeName => className;
+  ChallengeTaskModel copyWith({
+    String? title,
+    String? description,
+    bool? complete,
+    Mission? startMission,
+    Mission? endMission,
+  }) =>
+      ChallengeTaskModel(
+        title: title ?? this.title,
+        description: description ?? this.description,
+        complete: complete ?? this.complete,
+        startMission: startMission ?? startMission,
+        endMission: endMission ?? endMission,
+      );
+
+  @override
+  toJson() => {
+        'title': title,
+        'description': description,
+        'complete': complete,
+        // TODO: do better than dynamic invocation - maybe we need another
+        // type... DefaultMission? And use Default across the board to mean
+        // has copyWith and toJson ?
+        'startMission': (startMission as dynamic).toJson(),
+        'endMission': (endMission as dynamic).toJson(),
+      };
 }

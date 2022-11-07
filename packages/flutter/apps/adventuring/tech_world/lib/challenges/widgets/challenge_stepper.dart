@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../models/challenge_model.dart';
-import 'task_descritpion_view.dart';
+import 'task_description_view.dart';
 
 class ChallengeStepper extends StatefulWidget {
-  const ChallengeStepper(@ChallengeModelConverter() ChallengeModel challenge,
-      {Key? key})
+  const ChallengeStepper(ChallengeModel challenge, {Key? key})
       : _challenge = challenge,
         super(key: key);
 

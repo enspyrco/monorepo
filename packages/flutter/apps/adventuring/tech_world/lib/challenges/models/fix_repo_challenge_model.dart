@@ -1,22 +1,26 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/json_types.dart';
+import 'package:astro_types/state_types.dart';
 
 import 'challenge_model.dart';
 import 'challenge_task_model.dart';
 
-part 'fix_repo_challenge_model.freezed.dart';
-part 'fix_repo_challenge_model.g.dart';
+class FixRepoChallengeModel with ChallengeModel implements AstroState {
+  const FixRepoChallengeModel({required this.repoUrl, required this.tasks});
 
-@freezed
-class FixRepoChallengeModel
-    with _$FixRepoChallengeModel, ChallengeModel, ReduxState {
-  const FixRepoChallengeModel._();
-  const factory FixRepoChallengeModel(
-      {required String repoUrl,
-      required List<ChallengeTaskModel> tasks}) = _FixRepoChallengeModel;
+  final String repoUrl;
+  @override
+  final List<ChallengeTaskModel> tasks;
 
-  factory FixRepoChallengeModel.fromJson(JsonMap json) =>
-      _$FixRepoChallengeModelFromJson(json);
+  @override
+  FixRepoChallengeModel copyWith({
+    String? repoUrl,
+    List<ChallengeTaskModel>? tasks,
+  }) =>
+      FixRepoChallengeModel(
+          repoUrl: repoUrl ?? this.repoUrl, tasks: tasks ?? this.tasks);
+
+  @override
+  JsonMap toJson() => {};
 
   @override
   String get typeName => 'FixRepoChallengeModel';

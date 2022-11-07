@@ -51,6 +51,11 @@ class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
   @override
   S get state => _state;
 
+  /// A stream of the app state changes - the design of astro intends that your
+  /// app would not need to use this stream directly but we expose it for edge
+  /// cases.
+  Stream<S> get stateChanges => _onStateChangeController.stream;
+
   /// Landing a [LandingMission] is the only way to upate the state held in
   /// MissionControl, so any data, whether from UI events, network callbacks, or other
   /// sources such as WebSockets needs to eventually be landed (ie. call land on

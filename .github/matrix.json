@@ -9,7 +9,7 @@
     {
       "package": "tech_world",
       "path" : "flutter/apps/adventuring/tech_world",
-      "source_gen" : true,
+      "source_gen" : false,
       "project_type": "flutter"
     },
     {

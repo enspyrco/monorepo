@@ -1,32 +1,41 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:redfire/types.dart';
+import 'package:astro_types/state_types.dart';
 import 'package:ws_game_server_types/ws_game_server_types.dart';
 
 import 'background/barriers.dart';
 
-part 'game_state.freezed.dart';
-part 'game_state.g.dart';
+class GameState implements AstroState {
+  GameState({
+    required this.barriers,
+    required this.otherPlayerIds,
+    required this.playerPaths,
+  });
 
-@freezed
-class GameState with _$GameState, ReduxState {
-  static const String className = 'GameState';
+  final Barriers barriers;
+  final Set<String> otherPlayerIds;
+  final Map<String, List<Double2>> playerPaths;
 
-  const GameState._();
-  factory GameState(
-      {required Barriers barriers,
-      required ISet<String> otherPlayerIds,
-      required IMap<String, IList<Double2>> playerPaths}) = _GameState;
-
-  factory GameState.init() => GameState(
-        barriers: Barriers(),
-        otherPlayerIds: ISet(const {}),
-        playerPaths: IMap<String, IList<Double2>>(),
+  static GameState get initial => GameState(
+        barriers: const Barriers(),
+        otherPlayerIds: <String>{},
+        playerPaths: <String, List<Double2>>{},
       );
 
-  factory GameState.fromJson(Map<String, Object?> json) =>
-      _$GameStateFromJson(json);
+  @override
+  GameState copyWith({
+    Barriers? barriers,
+    Set<String>? otherPlayerIds,
+    Map<String, List<Double2>>? playerPaths,
+  }) =>
+      GameState(
+        barriers: barriers ?? this.barriers,
+        otherPlayerIds: otherPlayerIds ?? this.otherPlayerIds,
+        playerPaths: playerPaths ?? this.playerPaths,
+      );
 
   @override
-  String get typeName => className;
+  toJson() => {
+        'barriers': barriers.toJson(),
+        'otherPlayerIds': [...otherPlayerIds],
+        'playerPaths': playerPaths,
+      };
 }
