@@ -37,8 +37,7 @@ class Barriers implements AstroState {
   }
 
   @override
-  toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  toJson() => {
+        'positions': Barriers.positions,
+      };
 }

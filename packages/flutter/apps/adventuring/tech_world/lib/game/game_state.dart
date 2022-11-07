@@ -15,7 +15,7 @@ class GameState implements AstroState {
   final Map<String, List<Double2>> playerPaths;
 
   static GameState get initial => GameState(
-        barriers: Barriers(),
+        barriers: const Barriers(),
         otherPlayerIds: <String>{},
         playerPaths: <String, List<Double2>>{},
       );
@@ -33,8 +33,9 @@ class GameState implements AstroState {
       );
 
   @override
-  toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  toJson() => {
+        'barriers': barriers.toJson(),
+        'otherPlayerIds': [...otherPlayerIds],
+        'playerPaths': playerPaths,
+      };
 }

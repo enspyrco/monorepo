@@ -23,5 +23,8 @@ class StartChallenge extends LandingMission<AppState> {
   }
 
   @override
-  toJson() => {'name_': 'StartChallenge', 'state_': challengeType.toString()};
+  toJson() => {
+        'name_': 'StartChallenge',
+        'state_': {'challenge-type': challengeType.toString()}
+      };
 }
