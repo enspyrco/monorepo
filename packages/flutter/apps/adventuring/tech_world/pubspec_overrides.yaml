@@ -1,0 +1,21 @@
+dependency_overrides:
+  astro:
+    path: ../../../utils/astro
+  astro_types:
+    path: ../../../utils/astro_types
+  astro_locator:
+    path: ../../../../dart/utils/astro_locator
+  astro_inspector_screen:
+    path: ../../../utils/astro_inspector_screen
+  astro_auth:
+    path: ../../../utils/astro_auth
+  astro_error_handling:
+    path: ../../../utils/astro_error_handling
+  astro_navigation:
+    path: ../../../utils/astro_navigation
+  firestore_service_flutterfire:
+    path: ../../../utils/flutterfire/firestore_service_flutterfire
+  firestore_service_interface:
+    path: ../../../../dart/interfaces/firestore_service_interface
+  astro_test_utils:
+    path: ../../../utils/astro_test_utils

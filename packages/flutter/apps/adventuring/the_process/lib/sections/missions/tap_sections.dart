@@ -24,8 +24,9 @@ class TapSections extends AwayMission<AppState> {
 
     // Convert json from the database to an action that handles the data,
     // storing in the app state.
-    _subscription =
-        service.tapIntoCollection(at: 'sections').listen((documents) {
+    _subscription = service
+        .tapIntoCollection(at: 'projects/the-process/sections')
+        .listen((documents) {
       missionControl.land(SetSections(
           list: documents
               .map((document) => SectionModel.fromJson(document.fields))

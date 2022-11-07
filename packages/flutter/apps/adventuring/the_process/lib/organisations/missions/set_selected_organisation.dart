@@ -10,8 +10,9 @@ class SetSelectedOrganisation extends LandingMission<AppState> {
 
   @override
   AppState landingInstructions(AppState state) {
-    var newSelector =
-        state.organisations.selector.copyWith(selected: organisation);
+    var newSelector = (organisation == null)
+        ? state.organisations.selector.copyWithDeselect()
+        : state.organisations.selector.copyWith(selected: organisation);
     var newOrganisations = state.organisations.copyWith(selector: newSelector);
     return state.copyWith(organisations: newOrganisations);
   }

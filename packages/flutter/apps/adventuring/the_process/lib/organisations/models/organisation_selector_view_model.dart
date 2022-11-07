@@ -24,6 +24,14 @@ class OrganisationSelectorViewModel implements AstroState {
         all: all ?? this.all,
       );
 
+  OrganisationSelectorViewModel copyWithDeselect({
+    Set<OrganisationModel>? all,
+  }) =>
+      OrganisationSelectorViewModel(
+        selected: null,
+        all: all ?? this.all,
+      );
+
   @override
   toJson() => {
         'selected': selected?.toJson(),

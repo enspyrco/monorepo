@@ -70,4 +70,14 @@ class OrganisationModel implements AstroState {
         'adminIds': <String>[...adminIds],
         'memberIds': <String>[...memberIds],
       };
+
+  @override
+  bool operator ==(Object other) =>
+      other is OrganisationModel && other.id == id;
+
+  @override
+  int get hashCode => id.hashCode;
+
+  @override
+  String toString() => 'OrganisationModel, id: $id';
 }

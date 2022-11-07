@@ -20,7 +20,8 @@ class DefaultErrorHandlers<S extends AstroState> implements ErrorHandlers<S> {
         message: 'Landing $mission, resulted in $thrown', trace: '$trace');
     // we don't have the app state type here so cast to dynamic to acess
     // the error member then cast to the known type
-    var reports = (state as AppStateErrorHandling).error.reports;
+    var reports = (state as AppStateErrorHandling).error.reports
+        as List<DefaultErrorReport>;
     var newReports = [report, ...reports];
     var stack = (state as dynamic).navigation.stack as List<PageState>;
     var newStack = [ErrorReportPageState(report), ...stack];

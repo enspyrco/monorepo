@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:firestore_service_interface/firestore_service_interface.dart';
@@ -26,7 +27,7 @@ class TapProjects extends AwayMission<AppState> {
     // tap the database at the appropriate location...
     var service = locate<FirestoreService>();
     final changes = service.tapIntoCollection(
-        at: 'projects',
+        at: 'projects/the-process/projects',
         where: 'organisationIds',
         arrayContains: _organisationId);
 
@@ -36,7 +37,9 @@ class TapProjects extends AwayMission<AppState> {
           .map<ProjectState>((document) => ProjectState.fromDocument(document))
           .toSet();
       missionControl.land(SetProjects(models));
-    }, onError: (Object error) => throw error);
+    },
+        onError: (Object error, StackTrace trace) =>
+            CreateErrorReport(error, trace));
   }
 
   @override

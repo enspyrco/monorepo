@@ -49,7 +49,7 @@ Future<void> astroInitialization() async {
   }));
 
   /// Perform individual plugin initialization
-  astroAuthInit();
+  astroAuthInit<AppState>();
 }
 
 class AstroBase extends StatelessWidget {

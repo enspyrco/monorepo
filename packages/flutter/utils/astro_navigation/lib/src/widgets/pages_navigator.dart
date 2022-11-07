@@ -18,8 +18,7 @@ class PagesNavigator<S extends AstroState> extends StatelessWidget {
   Widget build(BuildContext context) {
     return OnStateChangeBuilder<S, List<PageState>>(
         onInit: onInit,
-        transformer: (state) =>
-            (state as DefaultNavigationState).navigation.stack,
+        transformer: (state) => (state as AppStateNavigation).navigation.stack,
         builder: (context, stack) {
           var generator = locate<PageGenerator>();
           return Navigator(
