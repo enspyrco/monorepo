@@ -3,6 +3,7 @@ import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/auth_types.dart';
 import 'package:astro_types/error_handling_types.dart';
+import 'package:astro_types/navigation_types.dart';
 import 'package:astro_types/state_types.dart';
 
 class AppState
@@ -16,7 +17,7 @@ class AppState
   static AppState get initial => AppState(
       error: DefaultErrorHandlingState.initial,
       auth: DefaultAuthState.initial,
-      navigation: NavigationState.initial);
+      navigation: DefaultNavigationState.initial);
 
   @override
   final DefaultAuthState auth;

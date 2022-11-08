@@ -7,14 +7,16 @@ class RecordingMissionControl<T extends AstroState>
     implements MissionControl<T> {
   RecordingMissionControl({required T state}) {
     _missionControl = DefaultMissionControl<T>(
-        state: state, systemChecks: [_recordedMissions]);
+        state: state,
+        systemChecks: DefaultSystemChecks()
+          ..preLaunch.add(_missionRecorder)
+          ..postLand.add(_missionRecorder));
   }
 
   late final MissionControl<T> _missionControl;
-  final RecordMissions<T> _recordedMissions = RecordMissions<T>();
+  final RecordMissions<T> _missionRecorder = RecordMissions<T>();
 
-  bool recorded(Mission mission) =>
-      _recordedMissions.missions.contains(mission);
+  bool recorded(Mission mission) => _missionRecorder.missions.contains(mission);
 
   @override
   void land(LandingMission<T> mission) => _missionControl.land(mission);

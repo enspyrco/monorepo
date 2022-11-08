@@ -1,6 +1,9 @@
 library astro_types;
 
+import 'package:flutter/material.dart';
+
 import 'json_types.dart';
+import 'navigation_types.dart';
 import 'state_types.dart';
 
 /// All missions must extend either [AwayMission] or [LandingMission], which
@@ -49,3 +52,21 @@ abstract class SystemCheck<S extends AstroState> {
 }
 
 abstract class AstroProvider<S extends AstroState> {}
+
+abstract class SystemChecks {
+  abstract final List<SystemCheck> preLaunch;
+  abstract final List<SystemCheck> postLaunch;
+  abstract final List<SystemCheck> preLand;
+  abstract final List<SystemCheck> postLand;
+}
+
+/// We setup navigation by adding a [PageGenerator] to the [Locator], that will be
+/// used to turn a [PageState] from [AppState.navigation.stack] into a [Page]
+/// that the [Navigator] will use to display a screen.
+abstract class PageGenerator {
+  void add(
+      {required Type type,
+      required MaterialPage Function(PageState) generator});
+
+  MaterialPage applyTo(PageState state);
+}

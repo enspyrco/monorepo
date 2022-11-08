@@ -76,7 +76,7 @@ packages:
     description:
       path: "packages/flutter/utils/astro_test_utils"
       ref: HEAD
-      resolved-ref: "6310edc9878584828ac5cf402ee7db98298d02b8"
+      resolved-ref: "31d0b4a18f88de83f5b2aa95378308b765895ef9"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
@@ -218,7 +218,7 @@ packages:
     description:
       path: "packages/dart/interfaces/firestore_service_interface"
       ref: HEAD
-      resolved-ref: "6310edc9878584828ac5cf402ee7db98298d02b8"
+      resolved-ref: "31d0b4a18f88de83f5b2aa95378308b765895ef9"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
@@ -298,7 +298,7 @@ packages:
     description:
       path: "packages/dart/utils/json_types"
       ref: HEAD
-      resolved-ref: "6310edc9878584828ac5cf402ee7db98298d02b8"
+      resolved-ref: "31d0b4a18f88de83f5b2aa95378308b765895ef9"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"

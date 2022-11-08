@@ -26,24 +26,27 @@ class WidgetTestHarness<T extends AstroState> {
     required T initialState,
     required Widget innerWidget,
     MissionControl<T>? missionControl,
-    List<SystemCheck>? systemChecks,
+    SystemChecks? systemChecks,
     bool addToLocator = true,
   }) : _widgetUnderTest = innerWidget {
     _missionControl = missionControl ??
         DefaultMissionControl<T>(
-            state: initialState, systemChecks: [...?systemChecks, _recorded]);
+            state: initialState,
+            systemChecks: systemChecks
+              ?..postLand.add(_recordMissions)
+              ..preLaunch.add(_recordMissions));
     if (addToLocator) Locator.add<MissionControl<T>>(_missionControl);
   }
 
   late final MissionControl<T> _missionControl;
   final Widget _widgetUnderTest;
-  final _recorded = RecordMissions<T>();
+  final _recordMissions = RecordMissions<T>();
 
   Widget get widget => MaterialApp(home: Scaffold(body: _widgetUnderTest));
 
   T get state => _missionControl.state;
 
-  List<Mission> get recordedMissions => _recorded.missions;
+  List<Mission> get recordedMissions => _recordMissions.missions;
 
   void launch(AwayMission<T> mission) => _missionControl.launch(mission);
   void land(LandingMission<T> mission) => _missionControl.land(mission);

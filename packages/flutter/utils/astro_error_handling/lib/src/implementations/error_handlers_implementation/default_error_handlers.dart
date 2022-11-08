@@ -40,20 +40,23 @@ class DefaultErrorHandlers<S extends AstroState> implements ErrorHandlers<S> {
       required StackTrace trace,
       required AwayMission mission,
       required S state}) {
-    var report = DefaultErrorReport(
+    final dynamicState = state as dynamic;
+    final report = DefaultErrorReport(
         message: 'Launching $mission, resulted in $thrown', trace: '$trace');
     // we don't have the app state type here so cast to dynamic to acess
     // the error member then cast to the known type
-    var reports = (state as AppStateErrorHandling).error.reports;
-    var newReports = [report, ...reports];
-    var stack = (state as dynamic).navigation.stack as List<PageState>;
-    var newStack = [ErrorReportPageState(report), ...stack];
+    List<DefaultErrorReport> reports = dynamicState.error.reports;
+    List<DefaultErrorReport> newReports = [report, ...reports];
+    List<PageState> stack = dynamicState.navigation.stack;
+    List<PageState> newStack = [ErrorReportPageState(report), ...stack];
 
     /// Sections
-    var newError = (state as dynamic).error.copyWith(reports: newReports);
-    var newNavigation = (state as dynamic).navigation.copyWith(stack: newStack);
+    ErrorHandlingState newError =
+        dynamicState.error.copyWith(reports: newReports);
+    NavigationState newNavigation =
+        dynamicState.navigation.copyWith(stack: newStack);
 
-    return (state as dynamic)
-        .copyWith(error: newError, navigation: newNavigation) as S;
+    return dynamicState.copyWith(error: newError, navigation: newNavigation)
+        as S;
   }
 }
