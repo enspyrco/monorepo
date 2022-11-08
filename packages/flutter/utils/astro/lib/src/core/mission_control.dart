@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:astro/src/core/system_checks.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/error_handling_types.dart';
 import 'package:astro_types/state_types.dart';
@@ -25,11 +26,11 @@ class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
     required S state,
     ErrorHandlers<S>? errorHandlers,
     StreamController<S>? onStateChangeController,
-    List<SystemCheck>? systemChecks,
+    SystemChecks? systemChecks,
     WrappedMissionControlCtr? missionControlCtr,
   })  : _state = state,
         _errorHandlers = errorHandlers,
-        _systemChecks = systemChecks,
+        _systemChecks = systemChecks ?? DefaultSystemChecks(),
         _missionControlCtr = missionControlCtr;
   S _state;
   final ErrorHandlers? _errorHandlers;
@@ -45,7 +46,7 @@ class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
 
   /// [SystemCheck]s are called on every mission, before [AwayMission.flightPlan]
   /// is called and after [LandingMission.landingInstructions] is called.
-  final List<SystemCheck>? _systemChecks;
+  final SystemChecks _systemChecks;
 
   /// Returns the current state tree of the application.
   @override
@@ -62,6 +63,10 @@ class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
   /// [LandingMission] that described the desired state change).
   @override
   void land(LandingMission<S> mission) {
+    for (final systemCheck in _systemChecks.preLand) {
+      systemCheck(this, mission);
+    }
+
     try {
       _state = mission.landingInstructions(_state);
     } catch (thrown, trace) {
@@ -73,7 +78,9 @@ class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
     // emit the new state for any listeners (eg. StateStreamBuilder widgets)
     _onStateChangeController.add(_state);
 
-    _systemChecks?.forEach((fn) => fn.call(this, mission));
+    for (final systemCheck in _systemChecks.postLand) {
+      systemCheck(this, mission);
+    }
   }
 
   /// Creation or retrieval of data that is asynchronous must be performed via
@@ -81,13 +88,18 @@ class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
   /// the [AwayMission] should land a [LandingMission] when it is complete.
   @override
   Future<void> launch(AwayMission<S> mission) async {
-    _systemChecks?.forEach((fn) => fn.call(this, mission));
+    for (final systemCheck in _systemChecks.preLaunch) {
+      systemCheck(this, mission);
+    }
 
     try {
       if (_missionControlCtr != null) {
         await mission.flightPlan(_missionControlCtr!(this, mission));
       } else {
         await mission.flightPlan(this);
+      }
+      for (final systemCheck in _systemChecks.postLaunch) {
+        systemCheck(this, mission);
       }
     } catch (thrown, trace) {
       if (_errorHandlers == null) rethrow;

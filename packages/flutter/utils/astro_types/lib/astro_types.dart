@@ -1,1 +1,0 @@
-library astro_types;

@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 
 import 'src/views/main_view.dart';
 
+export 'initialize_astro_inspector.dart';
 export 'src/missions/parenting_mission_control.dart';
 export 'src/state/inspector_state.dart';
 export 'src/system-checks/send_mission_updates_to_inspector.dart';

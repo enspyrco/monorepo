@@ -22,6 +22,7 @@ class OrganisationSelector extends StatelessWidget {
         builder: (context, selector) {
           return DropdownButton<OrganisationModel>(
             value: selector.selected,
+            focusColor: Colors.transparent,
             icon: const Icon(Icons.arrow_drop_down),
             iconSize: 24,
             elevation: 16,

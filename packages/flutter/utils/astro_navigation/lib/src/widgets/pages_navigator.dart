@@ -32,7 +32,7 @@ class PagesNavigator<S extends AstroState> extends StatelessWidget {
                 }
 
                 if (route.isCurrent) {
-                  locate<MissionControl<S>>().land(const RemoveCurrentRoute());
+                  locate<MissionControl<S>>().land(RemoveCurrentRoute<S>());
                 }
 
                 return true;

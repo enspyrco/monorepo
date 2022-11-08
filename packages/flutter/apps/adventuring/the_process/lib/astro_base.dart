@@ -23,49 +23,52 @@ Future<void> astroInitialization() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  ///
-  var initialState = AppState.initial.copyWith(
-      navigation: const DefaultNavigationState(stack: [AuthGatePageState()]));
+  /// Setup Locator so plugins can add SystemChecks & Routes, configure the AppState, etc.
+  Locator.add<SystemChecks>(DefaultSystemChecks());
+  Locator.add<PageGenerator>(DefaultPageGenerator());
+  Locator.add<AppState>(AppState.initial);
 
-  var systemChecks = <SystemCheck>[];
+  /// Perform any final initialization by the app such as setting up routes.
+  initializeTheProcess();
 
-  if (const bool.fromEnvironment('IN-APP-ASTRO-INSPECTOR')) {
-    /// Create a SystemCheck that sends mission updates to the Inspector
-    final sendMissionUpdates = SendMissionUpdatesToInspector<AppState>();
-    Locator.add<SendMissionUpdatesToInspector>(sendMissionUpdates);
-    systemChecks.add(sendMissionUpdates);
-  }
-
-  /// Create our MissionControl and add to the Locator
+  /// Finally, create our MissionControl and add to the Locator.
   Locator.add<MissionControl<AppState>>(DefaultMissionControl<AppState>(
-      state: initialState,
+      state: locate<AppState>(),
       errorHandlers: DefaultErrorHandlers<AppState>(),
-      systemChecks: systemChecks,
+      systemChecks: locate<SystemChecks>(),
       missionControlCtr: ParentingMissionControl.new));
+}
+
+void initializeTheProcess() {
+  /// Perform individual plugin initialization.
+  initializeErrorHandling<AppState>();
+  initializeAuthPlugin<AppState>(initialScreen: const HomeScreen());
+  initializeAstroInspector<AppState>();
+  initializeNavigationPlugin<AppState>();
+
+  /// Add services used in away missions.
   Locator.add<FirestoreService>(FirestoreServiceFlutterfire());
 
-  /// Setup navigation by adding a [PageGenerator] to the [Locator], that will be
-  /// used to turn a [PageState] from [AppState.navigation.stack] into a [Page]
-  /// that the [Navigator] will use to display a screen.
-  Locator.add<PageGenerator>(PageGenerator({
-    AuthGatePageState: (state) => const MaterialPage(
-        key: ValueKey(AuthGatePageState),
-        child: AuthGateScreen<AppState>(child: HomeScreen())),
-    ErrorReportPageState: (state) => MaterialPage(
-        key: const ValueKey(ErrorReportPageState),
-        child: ErrorReportScreen<AppState>(
-            (state as ErrorReportPageState).report)),
-    ManageOrganisationsPageState: (state) => MaterialPage(
-        key: const ValueKey(ManageOrganisationsPageState),
-        child:
-            ManageOrganisationsScreen(state as ManageOrganisationsPageState)),
-    ProjectDetailsPageState: (state) => MaterialPage(
-        key: const ValueKey(ProjectDetailsPageState),
-        child: ProjectDetailsScreen(state as ProjectDetailsPageState)),
-  }));
-
-  /// Perform individual plugin initialization
-  astroAuthInit<AppState>();
+  /// Add page generators for [ManageOrganisations] & [ProjectDetails].
+  /// The page generators are applied when a PageState is found in
+  /// [AppState.navigation.stack], turning a PageState into a Page, which
+  /// the Navigator turns into a Route, that includes the Screen we use when
+  /// composing the PageState (see examples below).
+  final generator = locate<PageGenerator>();
+  generator.add(
+    type: ManageOrganisationsPageState,
+    generator: (state) => MaterialPage(
+      key: const ValueKey(ManageOrganisationsPageState),
+      child: ManageOrganisationsScreen(state as ManageOrganisationsPageState),
+    ),
+  );
+  generator.add(
+    type: ProjectDetailsPageState,
+    generator: (state) => MaterialPage(
+      key: const ValueKey(ProjectDetailsPageState),
+      child: ProjectDetailsScreen(state as ProjectDetailsPageState),
+    ),
+  );
 }
 
 class AstroBase extends StatelessWidget {
