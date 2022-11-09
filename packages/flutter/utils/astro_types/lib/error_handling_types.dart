@@ -13,17 +13,20 @@ abstract class ErrorHandlingState {
 abstract class ErrorReport {
   abstract final String message;
   abstract final String? trace;
+  abstract final Map<String, String>? details;
 }
 
 abstract class ErrorHandlers<S extends AstroState> {
-  AstroState handleLaunchError(
-      {required Object thrown,
-      required StackTrace trace,
-      required AwayMission mission,
-      required S state});
-  AstroState handleLandingError(
-      {required Object thrown,
-      required StackTrace trace,
-      required LandingMission mission,
-      required S state});
+  void handleLaunchError({
+    required Object thrown,
+    required StackTrace trace,
+    required AwayMission mission,
+    required MissionControl missionControl,
+  });
+  void handleLandingError({
+    required Object thrown,
+    required StackTrace trace,
+    required LandingMission mission,
+    required MissionControl missionControl,
+  });
 }

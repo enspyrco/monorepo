@@ -6,37 +6,47 @@ import 'package:astro_types/state_types.dart';
 import '../../astro_error_handling.dart';
 
 class CreateErrorReport<S extends AstroState> extends LandingMission<S> {
-  const CreateErrorReport(this.error, this.trace);
+  const CreateErrorReport(this.error, this.trace, {this.details});
 
   final Object error;
   final StackTrace trace;
+  final Map<String, String>? details;
 
   @override
   S landingInstructions(S state) {
-    var report = DefaultErrorReport(
-        message:
-            'An error occurred:\n\n$error\n\nThe stacktrace is:\n\n$trace');
-    // we don't have the app state type here so cast to dynamic to acess
+    String message = 'An error occurred:\n\n$error\n\n';
+    if (details != null) {
+      message += '${[
+        for (var entry in details!.entries) '${entry.key}: ${entry.value}'
+      ].join('\n')}\n\n';
+    }
+    message += 'The stacktrace is:\n\n$trace';
+    var report = DefaultErrorReport(message: message);
+    // we don't have the app state type here so we cast to dynamic to access
     // the error member then cast to the known type
-    var reports = (state as AppStateErrorHandling)
-        .error
-        .reports
-        .cast<DefaultErrorReport>();
-    var newReports = [report, ...reports];
-    var stack = (state as dynamic).navigation.stack as List<PageState>;
-    var newStack = [ErrorReportPageState(report), ...stack];
+    final dynamicState = state as dynamic;
+    List<DefaultErrorReport> newReports = [
+      report,
+      ...dynamicState.error.reports
+    ];
+    List<PageState> newStack = [
+      ErrorReportPageState(report),
+      ...dynamicState.navigation.stack
+    ];
 
     /// Sections
-    var newError = (state as dynamic).error.copyWith(reports: newReports);
-    var newNavigation = (state as dynamic).navigation.copyWith(stack: newStack);
+    ErrorHandlingState newError =
+        dynamicState.error.copyWith(reports: newReports);
+    NavigationState newNavigation =
+        dynamicState.navigation.copyWith(stack: newStack);
 
-    return (state as dynamic)
-        .copyWith(error: newError, navigation: newNavigation) as S;
+    return dynamicState.copyWith(error: newError, navigation: newNavigation)
+        as S;
   }
 
   @override
   toJson() => {
         'name_': 'CreateErrorReport',
-        'state_': {'error': '$error', 'trace': '$trace'}
+        'state_': {'error': '$error', 'trace': '$trace', 'details': details}
       };
 }
