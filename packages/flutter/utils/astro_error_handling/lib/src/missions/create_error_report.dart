@@ -22,8 +22,7 @@ class CreateErrorReport<S extends AstroState> extends LandingMission<S> {
     }
     message += 'The stacktrace is:\n\n$trace';
     var report = DefaultErrorReport(message: message);
-    // we don't have the app state type here so we cast to dynamic to access
-    // the error member then cast to the known type
+    // we don't have the AppState type here so we cast to dynamic & use dynamic invocation
     final dynamicState = state as dynamic;
     List<DefaultErrorReport> newReports = [
       report,

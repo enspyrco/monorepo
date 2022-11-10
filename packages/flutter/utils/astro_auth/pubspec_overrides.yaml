@@ -9,3 +9,5 @@ dependency_overrides:
     path: ../../../flutter/utils/astro_test_utils
   astro_types:
     path: ../../../flutter/utils/astro_types
+  astro_error_handling:
+    path: ../astro_error_handling

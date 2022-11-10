@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_inspector_screen/astro_inspector_screen.dart';
 import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_types/core_types.dart';
@@ -33,14 +34,20 @@ class _MainViewState extends State<MainView> {
     super.initState();
 
     if (widget._onMissionReport != null) {
-      _subscription = widget._onMissionReport!.listen((update) {
-        if (update['type'] == 'astro:mission_update') {
-          locate<MissionControl<InspectorState>>()
-              .land(AddMissionReport(update['data']));
-        } else if (update['type'] == 'astro:remove_all') {
-          locate<MissionControl<InspectorState>>().land(RemoveAll());
-        }
-      });
+      _subscription = widget._onMissionReport!.listen(
+        (update) {
+          if (update['type'] == 'astro:mission_update') {
+            locate<MissionControl<InspectorState>>()
+                .land(AddMissionReport(update['data']));
+          } else if (update['type'] == 'astro:remove_all') {
+            locate<MissionControl<InspectorState>>().land(RemoveAll());
+          }
+        },
+        onError: (Object error, StackTrace trace) =>
+            locate<MissionControl<InspectorState>>().land(
+          CreateErrorReport(error, trace),
+        ),
+      );
     }
   }
 
