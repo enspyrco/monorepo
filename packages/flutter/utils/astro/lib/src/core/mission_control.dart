@@ -71,8 +71,8 @@ class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
       _state = mission.landingInstructions(_state);
     } catch (thrown, trace) {
       if (_errorHandlers == null) rethrow;
-      _state = _errorHandlers!.handleLandingError(
-          thrown: thrown, trace: trace, mission: mission, state: _state) as S;
+      _errorHandlers!.handleLandingError(
+          thrown: thrown, trace: trace, mission: mission, missionControl: this);
     }
 
     // emit the new state for any listeners (eg. StateStreamBuilder widgets)
@@ -103,8 +103,8 @@ class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
       }
     } catch (thrown, trace) {
       if (_errorHandlers == null) rethrow;
-      _state = _errorHandlers!.handleLaunchError(
-          thrown: thrown, trace: trace, mission: mission, state: _state) as S;
+      _errorHandlers!.handleLaunchError(
+          thrown: thrown, trace: trace, mission: mission, missionControl: this);
 
       // emit the new state for any listeners (eg. StateStreamBuilder widgets)
       _onStateChangeController.add(_state);

@@ -11,14 +11,14 @@ import '../enums/lineage_shape.dart';
 class InspectorState implements AstroState, AppStateErrorHandling {
   InspectorState(
       {required this.error,
-      required this.missionUpdates,
+      required this.missionReports,
       required this.selectedIndex,
       required this.lineageFor,
       required this.indexFor});
 
   static InspectorState get initial => InspectorState(
         error: DefaultErrorHandlingState.initial,
-        missionUpdates: UnmodifiableListView([]),
+        missionReports: UnmodifiableListView([]),
         selectedIndex: null,
         lineageFor: UnmodifiableMapView({}),
         indexFor: UnmodifiableMapView({}),
@@ -31,7 +31,7 @@ class InspectorState implements AstroState, AppStateErrorHandling {
 
   /// The list of mission updates, added to each time [MissionControl.launch] or
   /// [MissionControl.land] is called
-  final List<JsonMap> missionUpdates;
+  final List<JsonMap> missionReports;
 
   /// [selectedIndex] is a nullable int, as 'nothing selected' is a valid state
   final int? selectedIndex;
@@ -44,24 +44,24 @@ class InspectorState implements AstroState, AppStateErrorHandling {
   final Map<int, LineageShape> lineageFor;
 
   /// Convenience getters to safely extract the current selected state and
-  /// previous state from the [missionUpdates]
+  /// previous state from the [missionReports]
   JsonMap get selectedState =>
-      (selectedIndex == null) ? {} : missionUpdates[selectedIndex!]['state'];
+      (selectedIndex == null) ? {} : missionReports[selectedIndex!]['state'];
   Map<String, dynamic> get previousState =>
       (selectedIndex == null || selectedIndex == 0)
           ? {}
-          : missionUpdates[selectedIndex! - 1]['state'];
+          : missionReports[selectedIndex! - 1]['state'];
 
   @override
   InspectorState copyWith(
       {DefaultErrorHandlingState? error,
-      List<JsonMap>? missionUpdates,
+      List<JsonMap>? missionReports,
       int? selectedIndex,
       Map<int, LineageShape>? lineageFor,
       Map<int, int>? indexFor}) {
     return InspectorState(
         error: error ?? this.error,
-        missionUpdates: missionUpdates ?? this.missionUpdates,
+        missionReports: missionReports ?? this.missionReports,
         selectedIndex: selectedIndex ?? this.selectedIndex,
         indexFor: indexFor ?? this.indexFor,
         lineageFor: lineageFor ?? this.lineageFor);
@@ -69,7 +69,7 @@ class InspectorState implements AstroState, AppStateErrorHandling {
 
   @override
   JsonMap toJson() => {
-        'missionUpdates': (missionUpdates.isEmpty) ? {} : missionUpdates.first,
+        'missionReports': (missionReports.isEmpty) ? {} : missionReports.first,
         'error': error,
         'selectedIndex': selectedIndex,
         'lineageForIndex': lineageFor,

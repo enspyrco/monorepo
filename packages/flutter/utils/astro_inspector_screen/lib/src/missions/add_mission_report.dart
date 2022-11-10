@@ -8,23 +8,23 @@ import 'select_mission.dart';
 /// Also sets the selected index to the new mission update.
 /// The incoming json is assumed to have the form:
 /// `{ mission: {id_ : <id>, ... }`
-class AddMissionUpdate extends LandingMission<InspectorState> {
-  AddMissionUpdate(this._missionUpdateJson);
+class AddMissionReport extends LandingMission<InspectorState> {
+  AddMissionReport(this._missionReportJson);
 
-  final JsonMap _missionUpdateJson;
+  final JsonMap _missionReportJson;
 
-  int get missionId => _missionUpdateJson['mission']['id_'];
+  int get missionId => _missionReportJson['mission']['id_'];
 
-  JsonMap get eventJson => JsonMap.unmodifiable(_missionUpdateJson);
+  JsonMap get eventJson => JsonMap.unmodifiable(_missionReportJson);
 
   @override
   InspectorState landingInstructions(state) {
     var newState = state.copyWith(
-        missionUpdates: [...state.missionUpdates, eventJson],
-        selectedIndex: state.missionUpdates.length,
-        indexFor: {...state.indexFor, missionId: state.missionUpdates.length});
+        missionReports: [...state.missionReports, eventJson],
+        selectedIndex: state.missionReports.length,
+        indexFor: {...state.indexFor, missionId: state.missionReports.length});
     return updateSelectedAndLineage(
-        newState, newState.missionUpdates.length - 1);
+        newState, newState.missionReports.length - 1);
   }
 
   @override

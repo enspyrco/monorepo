@@ -1,15 +1,15 @@
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/state_types.dart';
 
-import '../state/mission_update.dart';
+import '../state/mission_report.dart';
 
-class RecordMissionUpdates<T extends AstroState> extends SystemCheck<T> {
-  final List<MissionUpdate> updates = [];
+class RecordMissionReports<T extends AstroState> extends SystemCheck<T> {
+  final List<MissionReport> updates = [];
   final Map<Mission, T> stateForMission = {};
 
   @override
   void call(MissionControl<T> missionControl, Mission mission) async {
-    updates.add(MissionUpdate(mission, missionControl.state));
+    updates.add(MissionReport(mission, missionControl.state));
     stateForMission[mission] = missionControl.state;
   }
 

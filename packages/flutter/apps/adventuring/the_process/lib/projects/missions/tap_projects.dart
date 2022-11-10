@@ -32,14 +32,17 @@ class TapProjects extends AwayMission<AppState> {
         arrayContains: _organisationId);
 
     // ... and direct the stream to the store.
-    _subscription = changes.listen((documents) {
-      var models = documents
-          .map<ProjectState>((document) => ProjectState.fromDocument(document))
-          .toSet();
-      missionControl.land(SetProjects(models));
-    },
-        onError: (Object error, StackTrace trace) =>
-            CreateErrorReport(error, trace));
+    _subscription = changes.listen(
+      (documents) {
+        var models = documents
+            .map<ProjectState>(
+                (document) => ProjectState.fromDocument(document))
+            .toSet();
+        missionControl.land(SetProjects(models));
+      },
+      onError: (Object error, StackTrace trace) =>
+          CreateErrorReport(error, trace),
+    );
   }
 
   @override

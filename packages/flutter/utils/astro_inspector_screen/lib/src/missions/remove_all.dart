@@ -7,7 +7,7 @@ import '../state/inspector_state.dart';
 class RemoveAll extends LandingMission<InspectorState> {
   @override
   InspectorState landingInstructions(state) =>
-      state.copyWith(selectedIndex: null, missionUpdates: []);
+      state.copyWith(selectedIndex: null, missionReports: []);
 
   @override
   toJson() => {'name_': 'RemoveAll', 'state_': <String, dynamic>{}};

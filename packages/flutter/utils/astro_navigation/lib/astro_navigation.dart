@@ -23,9 +23,10 @@ class DefaultPageGenerator implements PageGenerator {
   final Map<Type, MaterialPage Function(PageState)> _map = {};
 
   @override
-  void add(
-          {required Type type,
-          required MaterialPage Function(PageState) generator}) =>
+  void add({
+    required Type type,
+    required MaterialPage Function(PageState) generator,
+  }) =>
       _map[type] = generator;
 
   @override

@@ -4,12 +4,14 @@ import 'package:astro_types/state_types.dart';
 
 /// Class for carrying basic error information for display to the user.
 class DefaultErrorReport implements ErrorReport, AstroState {
-  const DefaultErrorReport({required this.message, this.trace});
+  const DefaultErrorReport({required this.message, this.trace, this.details});
 
   @override
   final String message;
   @override
   final String? trace;
+  @override
+  final Map<String, String>? details;
 
   @override
   DefaultErrorReport copyWith({String? message, String? trace}) =>

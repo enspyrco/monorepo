@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:firestore_service_interface/firestore_service_interface.dart';
@@ -24,14 +25,18 @@ class TapSections extends AwayMission<AppState> {
 
     // Convert json from the database to an action that handles the data,
     // storing in the app state.
-    _subscription = service
-        .tapIntoCollection(at: 'projects/the-process/sections')
-        .listen((documents) {
-      missionControl.land(SetSections(
-          list: documents
-              .map((document) => SectionModel.fromJson(document.fields))
-              .toList()));
-    }, onError: (Object error) => throw error);
+    _subscription =
+        service.tapIntoCollection(at: 'projects/the-process/sections').listen(
+      (documents) {
+        missionControl.land(SetSections(
+            list: documents
+                .map((document) => SectionModel.fromJson(document.fields))
+                .toList()));
+      },
+      onError: (Object error, StackTrace trace) => missionControl.land(
+        CreateErrorReport(error, trace),
+      ),
+    );
   }
 
   @override

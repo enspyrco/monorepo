@@ -30,36 +30,39 @@ class TapOrganisations extends AwayMission<AppState> {
         service.tapIntoCollection(at: 'projects/the-process/organisations');
 
     // Direct the stream of changes to the store.
-    _subscription = organisationsChanges.listen((documents) {
-      var organisations = documents
-          .map<OrganisationModel>(
-              (document) => OrganisationModel.fromDocument(document))
-          .toSet();
+    _subscription = organisationsChanges.listen(
+      (documents) {
+        var organisations = documents
+            .map<OrganisationModel>(
+                (document) => OrganisationModel.fromDocument(document))
+            .toSet();
 
-      // Find any added organisatons.
-      var added = organisations
-          .difference(missionControl.state.organisations.selector.all)
-          .firstOrNull;
-      // Find any removed organisatons.
-      var removed = missionControl.state.organisations.selector.all
-          .difference(organisations)
-          .firstOrNull;
+        // Find any added organisatons.
+        var added = organisations
+            .difference(missionControl.state.organisations.selector.all)
+            .firstOrNull;
+        // Find any removed organisatons.
+        var removed = missionControl.state.organisations.selector.all
+            .difference(organisations)
+            .firstOrNull;
 
-      // If an organisation was removed, selected will be set to null.
-      // If org was added, it gets set as the selected org.
-      // Otherwise leave selected as it was.
-      OrganisationModel? nextSelected;
-      if (removed == null) {
-        nextSelected =
-            added ?? missionControl.state.organisations.selector.selected;
-      }
+        // If an organisation was removed, selected will be set to null.
+        // If org was added, it gets set as the selected org.
+        // Otherwise leave selected as it was.
+        OrganisationModel? nextSelected;
+        if (removed == null) {
+          nextSelected =
+              added ?? missionControl.state.organisations.selector.selected;
+        }
 
-      missionControl.land(SetOrganisations(organisations));
-      missionControl.land(SetSelectedOrganisation(nextSelected));
-      missionControl.launch(TapProjects(organisationId: nextSelected?.id));
-    },
-        onError: (Object error, StackTrace trace) =>
-            missionControl.land(CreateErrorReport(error, trace)));
+        missionControl.land(SetOrganisations(organisations));
+        missionControl.land(SetSelectedOrganisation(nextSelected));
+        missionControl.launch(TapProjects(organisationId: nextSelected?.id));
+      },
+      onError: (Object error, StackTrace trace) => missionControl.land(
+        CreateErrorReport(error, trace),
+      ),
+    );
   }
 
   @override
