@@ -6,7 +6,7 @@ import 'package:astro_types/core_types.dart';
 import 'package:astro_types/json_types.dart';
 import 'package:flutter/widgets.dart';
 
-import '../missions/add_mission_update.dart';
+import '../missions/add_mission_report.dart';
 import '../missions/remove_all.dart';
 import 'app_state_view/app_state_view.dart';
 import 'missions_history_view/missions_history_view.dart';
@@ -17,9 +17,9 @@ import 'missions_history_view/missions_history_view.dart';
 /// listens to the stream and starts an appropriate Mission (as we are also
 /// using astro for our state management) for each incoming event.
 class MainView extends StatefulWidget {
-  const MainView(this._onMissionUpdate, {super.key});
+  const MainView(this._onMissionReport, {super.key});
 
-  final Stream<JsonMap>? _onMissionUpdate;
+  final Stream<JsonMap>? _onMissionReport;
 
   @override
   State<MainView> createState() => _MainViewState();
@@ -32,11 +32,11 @@ class _MainViewState extends State<MainView> {
   void initState() {
     super.initState();
 
-    if (widget._onMissionUpdate != null) {
-      _subscription = widget._onMissionUpdate!.listen((update) {
+    if (widget._onMissionReport != null) {
+      _subscription = widget._onMissionReport!.listen((update) {
         if (update['type'] == 'astro:mission_update') {
           locate<MissionControl<InspectorState>>()
-              .land(AddMissionUpdate(update['data']));
+              .land(AddMissionReport(update['data']));
         } else if (update['type'] == 'astro:remove_all') {
           locate<MissionControl<InspectorState>>().land(RemoveAll());
         }
@@ -52,7 +52,7 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    return (widget._onMissionUpdate == null)
+    return (widget._onMissionReport == null)
         ? const Text('Not connected to app...')
         : Row(
             children: [

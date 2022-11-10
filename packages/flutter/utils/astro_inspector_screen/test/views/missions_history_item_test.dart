@@ -1,5 +1,5 @@
 import 'package:astro_inspector_screen/astro_inspector_screen.dart';
-import 'package:astro_inspector_screen/src/missions/add_mission_update.dart';
+import 'package:astro_inspector_screen/src/missions/add_mission_report.dart';
 import 'package:astro_inspector_screen/src/missions/select_mission.dart';
 import 'package:astro_inspector_screen/src/views/missions_history_view/missions_history_item.dart';
 import 'package:astro_test_utils/astro_widgets_test_utils.dart';
@@ -39,8 +39,8 @@ void main() {
 
     /// Setup the [InspectorState] as if the inspected app launched a [TestAwayMission]
     /// The json injected into [AddMissionUpate] is created by the
-    /// [SendMissionUpdatesToInspector] system check.
-    harness.land(AddMissionUpdate({
+    /// [SendMissionReportToInspector] system check.
+    harness.land(AddMissionReport({
       'state': InspectorState.initial.toJson(),
       'mission': TestAwayMission().toJson()
         ..['id_'] = testMission.hashCode

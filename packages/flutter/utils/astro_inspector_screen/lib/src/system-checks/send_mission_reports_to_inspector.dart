@@ -4,7 +4,7 @@ import 'package:astro_types/core_types.dart';
 import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
 
-class SendMissionUpdatesToInspector<T extends AstroState>
+class SendMissionReportsToInspector<T extends AstroState>
     extends SystemCheck<T> {
   final StreamController<JsonMap> _controller =
       StreamController<JsonMap>.broadcast();

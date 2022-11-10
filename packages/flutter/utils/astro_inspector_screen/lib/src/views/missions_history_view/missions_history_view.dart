@@ -18,12 +18,12 @@ class MissionsHistoryView extends StatelessWidget {
           child: SizedBox(
             width: 300,
             child: OnStateChangeBuilder<InspectorState, List<JsonMap>>(
-                transformer: (state) => state.missionUpdates,
-                builder: (context, missionUpdates) {
+                transformer: (state) => state.missionReports,
+                builder: (context, missionReports) {
                   return ListView.builder(
-                      itemCount: missionUpdates.length,
+                      itemCount: missionReports.length,
                       itemBuilder: (context, index) {
-                        final missionData = missionUpdates[index]['mission'];
+                        final missionData = missionReports[index]['mission'];
                         if (missionData == null) {
                           return Container();
                         }

@@ -83,7 +83,7 @@ class AstroBase extends StatelessWidget {
             flex: 1,
             child: Material(
               child: AstroInspectorScreen(
-                  locate<SendMissionUpdatesToInspector>().stream),
+                  locate<SendMissionReportsToInspector>().stream),
             ),
           ),
         Expanded(
