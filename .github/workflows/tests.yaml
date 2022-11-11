@@ -33,7 +33,7 @@ jobs:
     needs: setup-matrix
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ needs.setup-matrix.outputs.matrix-size.num }}
+      - run: echo ${{ needs.setup-matrix.outputs.matrix-size }}
   
   run-tests:
     if: ${{ needs.setup-matrix.outputs.matrix-size.num > 0 }} # only run if matrix is non-empty
