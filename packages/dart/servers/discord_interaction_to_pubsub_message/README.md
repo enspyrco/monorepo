@@ -7,6 +7,26 @@
 
 [Project Notes](https://www.notion.so/enspyrco/discord-interaction-to-pubsub-34cd5d2cad0849a5950c80860f0cb6ad)
 
+## Missing files
+
+> Note: this is my best attempt to get the file in working order but the result hasn't been checked yet
+
+`test/data/signature_test_data.dart` is gitignored as it contains sensitive data.
+
+The contents of the file needs to be something like:
+
+```dart
+const signature = '...';
+const timestamp = '...';
+final body = jsonDecode('''...''');
+```
+
+- We currently log this data in the handler function of `server.dart`, meaning the [Cloud Run logs for run-dart-code-on-discord](https://console.cloud.google.com/run/detail/us-central1/discord-interaction-to-pubsub-message/logs?project=run-dart-code-on-discord) include signature, timestamp & body
+  - the body isn't shown completely but we can get the full string by clicking the text then "Open in Logs Explorer"
+- if there are no logs to be found, go to the Discord Server and use /run to interact with the server
+
+[ ] let's get a working `signature_test_data.dart` file, save it somewhere secure then stop logging the signature
+
 ## Prototyping, testing & deploying
 
 - [Run & debug a shelf server locally]

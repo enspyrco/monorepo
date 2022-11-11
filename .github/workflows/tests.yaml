@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix-json: ${{ steps.save-new-matrix.outputs.json }}
-      matrix-size: ${{ steps.save-num-affected.outputs.num }}
+      matrix-size: ${{ steps.save-matrix-size.outputs.num }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -23,14 +23,14 @@ jobs:
           content=`jq -c . .github/matrix.json`
           echo "json=$content" >> $GITHUB_OUTPUT
       - name: save number affected as job output
-        id: matrix-size
+        id: save-matrix-size
         run: |
           num_affected=`jq '.include | length' .github/matrix.json`
           echo "$num_affected packages are affected"
           echo "num=$num_affected" >> $GITHUB_OUTPUT
 
   run-tests:
-    if: ${{ needs.setup-matrix.outputs.matrix-size.num > 0 }} # only run if matrix is non-empty
+    if: ${{ needs.setup-matrix.outputs.matrix-size > 0 }} # only run if matrix is non-empty
     needs: setup-matrix
     runs-on: ubuntu-latest
     strategy:

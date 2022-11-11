@@ -11,7 +11,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firestore_service_flutterfire/firestore_service_flutterfire.dart';
 import 'package:firestore_service_interface/firestore_service_interface.dart';
 import 'package:flutter/material.dart';
-import 'package:ws_game_server_types/ws_game_server_types.dart';
 
 import 'app/home_screen.dart';
 import 'app/state/app_state.dart';
@@ -25,59 +24,39 @@ Future<void> astroInitialization() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
+  /// Setup Locator so plugins can add SystemChecks & Routes, configure the AppState, etc.
+  Locator.add<SystemChecks>(DefaultSystemChecks());
+  Locator.add<PageGenerator>(DefaultPageGenerator());
+  Locator.add<AppState>(AppState.initial);
+
   ///
-  var initialState = AppState.initial.copyWith(
-      navigation: const DefaultNavigationState(stack: [AuthGatePageState()]));
-
-  var systemChecks = <SystemCheck>[];
-
-  if (const bool.fromEnvironment('IN-APP-ASTRO-INSPECTOR')) {
-    /// Create a SystemCheck that sends mission updates to the Inspector
-    final sendMissionUpdates = SendMissionUpdatesToInspector<AppState>();
-    Locator.add<SendMissionUpdatesToInspector>(sendMissionUpdates);
-    systemChecks.add(sendMissionUpdates);
-  }
-
-  /// Create our MissionControl and add to the Locator
-  var missionControl = DefaultMissionControl<AppState>(
-      state: initialState,
-      errorHandlers: DefaultErrorHandlers<AppState>(),
-      systemChecks: systemChecks,
-      missionControlCtr: ParentingMissionControl.new);
-  Locator.add<MissionControl<AppState>>(missionControl);
   Locator.add<FirestoreService>(FirestoreServiceFlutterfire());
   Locator.add<NetworkingService>(NetworkingService());
 
-  final serverController = StreamController<ServerMessage>();
-  // TODO: add try/catch blocks and onError callback
-  serverController.stream.listen((message) {
-    // print(message);
-    locate<NetworkingService>().publish(message);
-  });
-  // We create the store separately so we can pass the onChange stream into
-  // the TechWorldGame object.
-  // We created the store first then used redfire's AppWidget<AppState>(initializedStore: )
-  final game = TechWorldGame(
-      appStateChanges: missionControl.onStateChange,
-      serverSink: serverController.sink);
+  /// Perform any final initialization by the app such as setting up routes.
+  initializeApp();
 
-  /// Setup navigation by adding a [PageGenerator] to the [Locator], that will be
-  /// used to turn a [PageState] from [AppState.navigation.stack] into a [Page]
-  /// that the [Navigator] will use to display a screen.
-  Locator.add<PageGenerator>(PageGenerator({
-    AuthGatePageState: (state) => MaterialPage(
-        key: const ValueKey(AuthGatePageState),
-        child: AuthGateScreen<AppState>(child: HomeScreen(game: game))),
-    ErrorReportPageState: (state) => MaterialPage(
-        key: const ValueKey(ErrorReportPageState),
-        child: ErrorReportScreen<AppState>(
-            (state as ErrorReportPageState).report)),
-  }));
+  /// Finally, create our MissionControl and add to the Locator.
+  final missionControl = DefaultMissionControl<AppState>(
+      state: locate<AppState>(),
+      errorHandlers: DefaultErrorHandlers<AppState>(),
+      systemChecks: locate<SystemChecks>(),
+      missionControlCtr: ParentingMissionControl.new);
+  Locator.add<MissionControl<AppState>>(missionControl);
 
-  /// Perform individual plugin initialization
-  astroAuthInit<AppState>(
+  Locator.add<TechWorldGame>(
+      TechWorldGame(appStateChanges: missionControl.onStateChange));
+}
+
+void initializeApp() {
+  /// Perform individual plugin initialization.
+  initializeErrorHandling<AppState>();
+  initializeAuthPlugin<AppState>(
+      initialScreen: HomeScreen(),
       launchOnSignedIn: [const UpdateGameServerConnection()],
       launchOnSignedOut: [const UpdateGameServerConnection()]);
+  initializeAstroInspector<AppState>();
+  initializeNavigationPlugin<AppState>();
 }
 
 class AstroBase extends StatelessWidget {
@@ -92,7 +71,7 @@ class AstroBase extends StatelessWidget {
             flex: 1,
             child: Material(
               child: AstroInspectorScreen(
-                  locate<SendMissionUpdatesToInspector>().stream),
+                  locate<SendMissionReportsToInspector>().stream),
             ),
           ),
         Expanded(

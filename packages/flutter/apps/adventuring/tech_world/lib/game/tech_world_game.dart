@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:astro_locator/astro_locator.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:ws_game_server_types/ws_game_server_types.dart';
 
 import '../app/state/app_state.dart';
+import '../networking/services/networking_service.dart';
 import '../utils/extensions/list_of_vector2s_extension.dart';
 import 'components/map_component.dart';
 import 'components/player_component.dart';
@@ -16,18 +18,13 @@ bool _paused = false;
 int departureTime = 0;
 
 class TechWorldGame extends FlameGame with KeyboardEvents, TapDetector {
-  TechWorldGame(
-      {required Stream<AppState> appStateChanges,
-      required Sink<ServerMessage> serverSink})
-      : _appStateChanges = appStateChanges,
-        _serverSink = serverSink;
+  TechWorldGame({
+    required Stream<AppState> appStateChanges,
+  }) : _appStateChanges = appStateChanges;
 
   // We listen to each state change & check the parts we care about.
   final Stream<AppState> _appStateChanges;
   var _oldState = AppState.initial;
-
-  // A sink is passed in that we can use to send messages to the server.
-  final Sink<ServerMessage> _serverSink;
 
   // Components that are used to draw the scene.
   PlayerComponent? _player;
@@ -112,8 +109,9 @@ class TechWorldGame extends FlameGame with KeyboardEvents, TapDetector {
         _map.createPath(start: _player!.position, end: info.eventPosition.game);
 
     departureTime = DateTime.now().millisecondsSinceEpoch;
-    _serverSink.add(PlayerPathMessage(
-        userId: _userId!, points: bigPathLocations.toDouble2s().toIList()));
+    final message = PlayerPathMessage(
+        userId: _userId!, points: bigPathLocations.toDouble2s().toIList());
+    locate<NetworkingService>().publish(message);
 
     // _player!.moveOnPath(points: bigPathLocations, speed: 300);
   }
