@@ -29,6 +29,12 @@ jobs:
           echo "$num_affected packages are affected"
           echo "num=$num_affected" >> $GITHUB_OUTPUT
 
+  debug-setup-matrix:
+    needs: setup-matrix
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ needs.setup-matrix.outputs.matrix-size.num }}
+  
   run-tests:
     if: ${{ needs.setup-matrix.outputs.matrix-size.num > 0 }} # only run if matrix is non-empty
     needs: setup-matrix
