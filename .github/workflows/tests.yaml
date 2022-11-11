@@ -21,12 +21,10 @@ jobs:
           content=`jq -c . .github/matrix.json`
           echo "json=$content" >> $GITHUB_OUTPUT
       - id: save-num-affected
-        env:
-          packages: ${{ steps.save-new-matrix.outputs.json }}
         run: |
-          echo $packages
-          echo "num=$packages | jq '.include | length'" >> $GITHUB_OUTPUT
-      - run: echo ${{ steps.save-new-matrix.outputs.num }}
+          num_affected=`jq '.include | length' .github/matrix.json`
+          echo "$num_affected packages are affected"
+          echo "num=$num_affected" >> $GITHUB_OUTPUT
   
   run-tests:
     if: ${{ needs.setup-matrix.outputs.matrix-size.num }} > 0 # only run if matrix is non-empty
