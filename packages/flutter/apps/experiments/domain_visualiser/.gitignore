@@ -51,7 +51,7 @@ app.*.map.json
 **/*.mocks.dart
 
 # Firebase config file
-lib/utils/firebase_options.dart
+lib/firebase_options.dart
 
 # local settings
 .vscode/settings.json

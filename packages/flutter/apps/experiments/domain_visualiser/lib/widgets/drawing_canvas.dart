@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../actions/add_domain_object_action.dart';
-import '../actions/update_domain_object_action.dart';
+import '../missions/add_domain_object.dart';
+import '../missions/update_domain_object.dart';
 import '../models/class_box.dart';
 import '../utils/extensions/build_context_extensions.dart';
 import '../utils/extensions/class_box_extensions.dart';
@@ -37,7 +37,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> {
       if (departureTime != null) {
         _departureTimeOf.remove(box.id);
 
-        context.dispatch(UpdateDomainObjectAction(box.copyWith(
+        context.launch(UpdateDomainObject(box.copyWith(
             flightTime:
                 DateTime.now().millisecondsSinceEpoch - departureTime)));
       }
@@ -62,10 +62,10 @@ class _DrawingCanvasState extends State<DrawingCanvas> {
             },
             onPanEnd: (details) {
               // dispatch action to save class box
-              final newClassBox = _creatingRect!.toClassBox();
+              final newClassBox = _creatingRect!.toNewClassBox();
               _departureTimeOf[newClassBox.id] =
                   DateTime.now().millisecondsSinceEpoch;
-              context.dispatch(AddDomainObjectAction(newClassBox));
+              context.launch(AddDomainObject(newClassBox));
               _selectedClassBox = newClassBox;
               _creatingRect = null;
             }),

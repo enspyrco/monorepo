@@ -1,10 +1,9 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:astro/astro.dart';
+import 'package:astro_auth/astro_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redfire/widgets.dart';
 
-import '../actions/tap_domain_objects_action.dart';
-import '../app_state.dart';
+import '../app/state/app_state.dart';
+import '../missions/tap_domain_objects.dart';
 import '../models/class_box.dart';
 import 'drawing_canvas.dart';
 
@@ -23,8 +22,7 @@ class DrawingPage extends StatelessWidget {
               Material(
                 child: AvatarMenuButton<AppState>(
                   options: {
-                    MenuOptionPreset.accountDetails,
-                    MenuOptionPreset.signOut
+                    MenuOption('Sign Out', SignOut()),
                   },
                 ),
               ),
@@ -32,13 +30,12 @@ class DrawingPage extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: StoreConnector<AppState, ISet<ClassBox>>(
-              onInit: (store) => store.dispatch(const TapDomainObjectsAction()),
+          child: OnStateChangeBuilder<AppState, Set<ClassBox>>(
+              onInit: (store) => store.launch(const TapDomainObjects()),
               onDispose: (store) =>
-                  store.dispatch(const TapDomainObjectsAction(turnOff: true)),
-              distinct: true,
-              converter: (store) => store.state.classBoxes,
-              builder: (context, boxes) => DrawingCanvas(boxes.unlockView)),
+                  store.launch(const TapDomainObjects(turnOff: true)),
+              transformer: (state) => state.classBoxes,
+              builder: (context, boxes) => DrawingCanvas(boxes)),
         ),
       ],
     );
