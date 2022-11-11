@@ -26,6 +26,7 @@ jobs:
         run: |
           echo $packages
           echo "num=$packages | jq '.include | length'" >> $GITHUB_OUTPUT
+      - run: echo ${{ steps.save-new-matrix.outputs.num }}
   
   run-tests:
     if: ${{ needs.setup-matrix.outputs.matrix-size.num }} > 0 # only run if matrix is non-empty
