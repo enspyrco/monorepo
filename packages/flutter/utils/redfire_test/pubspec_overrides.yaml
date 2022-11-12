@@ -1,5 +1,0 @@
-dependency_overrides:  
-  redfire:
-    path: ../redfire
-  enspyr_lints:
-    path: ../enspyr_lints

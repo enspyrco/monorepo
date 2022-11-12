@@ -83,8 +83,6 @@ Three letter acronyms used in commit messages:
 - pdu = pdf_utils
 - rdd = redux_devtools_desktop
 - rdp = run_dart_code_in_pubsub_message
-- rfr = redfire
-- rft = redfire_test
 - rsd = resourganizer_desktop
 - twr = tech_world
 - tpr = the_process
