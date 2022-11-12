@@ -6,8 +6,3 @@ void main() async {
   await astroInitialization();
   runApp(const MaterialApp(home: AstroBase()));
 }
-
-// void main() => runApp(AppWidget<AppState>(
-//       pageTransforms: <dynamic>{},
-//       homePage: const HomePage(),
-//     ));
