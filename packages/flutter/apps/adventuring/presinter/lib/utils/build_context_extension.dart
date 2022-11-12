@@ -1,9 +1,15 @@
+import 'package:astro_locator/astro_locator.dart';
+import 'package:astro_types/core_types.dart';
 import 'package:flutter/widgets.dart';
-import 'package:redfire/types.dart';
-import 'package:redfire/utils.dart';
 
-import '../app/app_state.dart';
+import '../app/state/app_state.dart';
 
 extension BuildContextExtension on BuildContext {
-  dynamic dispatch(ReduxAction action) => dispatchWith<AppState>(action, this);
+  void land(LandingMission<AppState> mission) {
+    return locate<MissionControl<AppState>>().land(mission);
+  }
+
+  Future<void> launch(AwayMission<AppState> mission) {
+    return locate<MissionControl<AppState>>().launch(mission);
+  }
 }

@@ -10,35 +10,58 @@ dependencies:
   flutter:
     sdk: flutter
 
-  redfire:
+  # astro
+  astro:
     git:
       url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redfire
+      path: packages/flutter/utils/astro
+  astro_types:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_types
+  astro_locator:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/utils/astro_locator
+  astro_inspector_screen:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_inspector_screen
+  astro_auth:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_auth
+  astro_error_handling:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_error_handling
+  astro_navigation:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_navigation
   
-  firebase_auth: ^3.3.9
-  firebase_core: ^1.13.1
-  flutter_redux: ^0.10.0
+  # firestore
+  firestore_service_interface:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/interfaces/firestore_service_interface
+  firestore_service_flutterfire:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/flutterfire/firestore_service_flutterfire
   
-  redux: ^5.0.0  
-  fast_immutable_collections: ^7.4.0
-  flutterfire_ui:
+  collection: ^1.16.0
+  firebase_core: ^2.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   
-  redfire_test:
-    git:
-      url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/redfire_test
   enspyr_lints:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/enspyr_lints
-  
-  freezed: ^2.0.3+1
-  json_serializable: ^6.2.0
-  build_runner: ^2.1.11
-
-flutter:
-  uses-material-design: true
+  astro_test_utils:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_test_utils
