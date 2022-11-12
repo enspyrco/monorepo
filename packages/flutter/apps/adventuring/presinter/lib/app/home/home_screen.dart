@@ -1,7 +1,7 @@
+import 'package:astro_auth/astro_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:redfire/widgets.dart';
 
-import '../app/app_state.dart';
+import '../state/app_state.dart';
 import 'role_selector.dart';
 import 'sessions_view.dart';
 
@@ -18,8 +18,7 @@ class HomeScreen extends StatelessWidget {
           actions: const [
             AvatarMenuButton<AppState>(
               options: {
-                MenuOptionPreset.accountDetails,
-                MenuOptionPreset.signOut
+                MenuOption('Sign Out', SignOut()),
               },
             )
           ],

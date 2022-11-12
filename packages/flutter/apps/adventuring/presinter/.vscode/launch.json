@@ -1,32 +1,37 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
   "configurations": [
     {
-      "name": "presinter",
+      "name": "vanilla",
       "request": "launch",
-      "type": "dart"
+      "type": "dart",
+      "program": "${workspaceFolder:presinter}/lib/main.dart"
     },
     {
-      "name": "presinter (web)",
+      "name": "in-app-inspector",
+      "request": "launch",
+      "type": "dart",
+      "program": "${workspaceFolder:presinter}/lib/main.dart",
+      "toolArgs": [
+        "--dart-define",
+        "IN-APP-ASTRO-INSPECTOR=true"
+      ]
+    },
+    {
+      "name": "devtools-inspector",
+      "request": "launch",
+      "type": "dart",
+      "program": "${workspaceFolder:presinter}/lib/main.dart",
+      "toolArgs": [
+        "--dart-define",
+        "DEVTOOLS-ASTRO-INSPECTOR=true"
+      ]
+    },
+    {
+      "name": "web",
       "request": "launch",
       "type": "dart",
       "deviceId": "chrome",
       "args": ["--web-hostname", "localhost", "--web-port", "5000"]
     },
-    {
-      "name": "presinter (profile mode)",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "profile"
-    },
-    {
-      "name": "presinter (release mode)",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "release"
-    }
   ]
 }

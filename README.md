@@ -79,6 +79,7 @@ Three letter acronyms used in commit messages:
 - oml = our_meals
 - pae = process_articles_in_emails
 - pdg = package_dependency_graph
+- prs = presinter
 - pdu = pdf_utils
 - rdd = redux_devtools_desktop
 - rdp = run_dart_code_in_pubsub_message
