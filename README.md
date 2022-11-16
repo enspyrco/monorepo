@@ -65,6 +65,7 @@ Three letter acronyms used in commit messages:
 - enl = enspyr_lints
 - flr = flireator
 - fai = firebase_auth_service_interface
+- fof = flutter_opencv_ffi
 - fsg = firestore_service_googleapis
 - fsi = firestore_service_interface
 - fsf = firestore_service_flutterfire
