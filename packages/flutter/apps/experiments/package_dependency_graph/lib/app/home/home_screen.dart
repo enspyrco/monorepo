@@ -38,27 +38,52 @@ class _BasicAppBarState extends State<BasicAppBar> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
-            children: <Widget>[
-              OutlinedButton(
-                onPressed: () => showPicker(),
-                style: OutlinedButton.styleFrom(
-                    textStyle: const TextStyle(
-                      fontWeight: FontWeight.normal,
-                    ),
-                    side: const BorderSide(width: 2.0, color: Colors.black),
-                    backgroundColor: Colors.amberAccent),
-                child: const Text(
-                  'Select Package',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-              const Spacer(),
-              const AvatarMenuButton<AppState>(
+            children: const <Widget>[
+              SelectPackagesArea(),
+              Spacer(),
+              AvatarMenuButton<AppState>(
                 options: {
                   MenuOption('Sign Out', SignOut<AppState>()),
                 },
               ),
             ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class SelectPackagesArea extends StatefulWidget {
+  const SelectPackagesArea({super.key});
+
+  @override
+  State<SelectPackagesArea> createState() => _SelectPackagesAreaState();
+}
+
+class _SelectPackagesAreaState extends State<SelectPackagesArea> {
+  String buttonText = 'Select Packages';
+  String descriptionText = '';
+  Color buttonBackground = Colors.amberAccent;
+  Color buttonForeground = Colors.black;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text(descriptionText),
+        const SizedBox(width: 50),
+        OutlinedButton(
+          onPressed: () => showPicker(),
+          style: OutlinedButton.styleFrom(
+              textStyle: const TextStyle(
+                fontWeight: FontWeight.normal,
+              ),
+              side: BorderSide(width: 2.0, color: buttonForeground),
+              backgroundColor: buttonBackground),
+          child: Text(
+            buttonText,
+            style: TextStyle(color: buttonForeground),
           ),
         ),
       ],
@@ -73,7 +98,12 @@ class _BasicAppBarState extends State<BasicAppBar> {
 
     final XFile? xFile = await openFile(acceptedTypeGroups: [typeGroup]);
     if (xFile != null) {
-      var last = (p.split(xFile.path)..removeLast()).last;
+      setState(() {
+        descriptionText = (p.split(xFile.path)..removeLast()).last;
+        buttonText = 'edit';
+        buttonBackground = Colors.white;
+        buttonForeground = Colors.grey;
+      });
       var pubspecString = File(xFile.path).readAsStringSync();
       print(pubspecString);
     }
