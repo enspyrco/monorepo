@@ -8,9 +8,9 @@ import 'package:astro_types/core_types.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'app/home/home_screen.dart';
 import 'app/state/app_state.dart';
 import 'firebase_options.dart';
-import 'home/home_screen.dart';
 
 Future<void> astroInitialization() async {
   /// Setup FlutterFire
