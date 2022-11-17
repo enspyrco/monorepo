@@ -1,7 +1,7 @@
 import 'package:astro_auth/astro_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../state/app_state.dart';
+import '../../state/app_state.dart';
 import 'select_packages_area.dart';
 
 class BasicAppBar extends StatefulWidget implements PreferredSizeWidget {

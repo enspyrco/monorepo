@@ -41,6 +41,7 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/astro_navigation
+  yaml: ^3.1.1
 
 dev_dependencies:
   flutter_test:

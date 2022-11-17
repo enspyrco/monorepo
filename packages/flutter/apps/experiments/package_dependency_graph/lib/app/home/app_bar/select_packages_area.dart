@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
+import 'package:yaml/yaml.dart';
 
 class SelectPackagesArea extends StatefulWidget {
   const SelectPackagesArea({super.key});
@@ -21,7 +22,13 @@ class _SelectPackagesAreaState extends State<SelectPackagesArea> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(descriptionText),
+        Padding(
+          padding: const EdgeInsets.only(left: 18.0),
+          child: Text(
+            descriptionText,
+            style: const TextStyle(fontSize: 20),
+          ),
+        ),
         const SizedBox(width: 50),
         OutlinedButton(
           onPressed: () => showPicker(),
@@ -55,7 +62,8 @@ class _SelectPackagesAreaState extends State<SelectPackagesArea> {
         buttonForeground = Colors.grey;
       });
       var pubspecString = File(xFile.path).readAsStringSync();
-      print(pubspecString);
+      var doc = loadYaml(pubspecString);
+      print(doc['dependencies']);
     }
   }
 }
