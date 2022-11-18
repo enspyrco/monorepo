@@ -1,4 +1,6 @@
 PODS:
+  - file_selector_macos (0.0.1):
+    - FlutterMacOS
   - Firebase/Auth (10.0.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 10.0.0)
@@ -45,6 +47,7 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
+  - file_selector_macos (from `Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos`)
   - firebase_auth (from `Flutter/ephemeral/.symlinks/plugins/firebase_auth/macos`)
   - firebase_core (from `Flutter/ephemeral/.symlinks/plugins/firebase_core/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
@@ -61,6 +64,8 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  file_selector_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos
   firebase_auth:
     :path: Flutter/ephemeral/.symlinks/plugins/firebase_auth/macos
   firebase_core:
@@ -71,6 +76,7 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/sign_in_with_apple/macos
 
 SPEC CHECKSUMS:
+  file_selector_macos: f1b08a781e66103e3ba279fd5d4024a2478b3af6
   Firebase: 1b810f3d0c0532e27a48f1961f8c0400a668a2cf
   firebase_auth: 222427272a107d05ed68384a8168a6f22b55f45c
   firebase_core: 2ad407221995257e47215d9ae92467db0dd48ced
