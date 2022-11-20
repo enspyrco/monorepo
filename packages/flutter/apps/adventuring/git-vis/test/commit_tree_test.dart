@@ -6,7 +6,7 @@ import 'package:git_vis/git/object_database.dart';
 void main() {
   // TODO: mock the file system so we can test these functions
   test('get branches', () {
-    final odb = ObjectDatabase(projectDir: '');
+    final odb = ObjectDatabase('');
     var branches = odb.commitTree.branches;
     for (var branch in branches) {
       print(branch);
@@ -14,7 +14,7 @@ void main() {
   }, skip: true); // test is not finished yet
 
   test('walk', () {
-    final odb = ObjectDatabase(projectDir: '');
+    final odb = ObjectDatabase('');
 
     // get all branches, convert to a list of the hash values
     odb.readInBranches();

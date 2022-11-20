@@ -11,7 +11,7 @@ import 'git_objects/commit_tree.dart';
 /// technically accurate but the name is commonly used and provides a helpful
 /// mental model).
 class ObjectDatabase {
-  ObjectDatabase({required this.projectDir}) {
+  ObjectDatabase(this.projectDir) {
     var branches = readInBranches();
     _commitTree = CommitTree(branches: branches);
   }

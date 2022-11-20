@@ -7,7 +7,11 @@ import 'visual_objects/commit_tree_visual.dart';
 import 'visualisation_painter.dart';
 
 class VisualisationWidget extends StatefulWidget {
-  const VisualisationWidget({Key? key}) : super(key: key);
+  const VisualisationWidget(ObjectDatabase gitObjectDB, {Key? key})
+      : _gitObjectDB = gitObjectDB,
+        super(key: key);
+
+  final ObjectDatabase _gitObjectDB;
 
   @override
   State<VisualisationWidget> createState() => _VisualisationWidgetState();
@@ -18,10 +22,7 @@ class VisualisationWidget extends StatefulWidget {
 /// each tick and passed in to [_onTick].
 class _VisualisationWidgetState extends State<VisualisationWidget>
     with SingleTickerProviderStateMixin {
-  final ObjectDatabase gitObjectDB = ObjectDatabase(
-      projectDir:
-          '/Users/nick/Desktop/git-vis-test-repo'); // '/Users/nick/git/orgs/enspyrco/monorepo'
-
+  /// The visual part of the commit tree that is part of the object database.
   CommitTreeVisual? _treeVisual;
 
   /// A [Ticker] that calls [_onTick] on each tick.
@@ -36,10 +37,6 @@ class _VisualisationWidgetState extends State<VisualisationWidget>
   @override
   void initState() {
     super.initState();
-
-    gitObjectDB.readInBranches();
-    gitObjectDB.walkCommitTree();
-
     startSimulation();
   }
 
@@ -59,14 +56,15 @@ class _VisualisationWidgetState extends State<VisualisationWidget>
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      // Create the area visual - the space the tree lives in.
-      var area = AreaVisual(constraints.maxWidth, constraints.maxHeight,
-          const Color.fromARGB(170, 9, 116, 165));
-      _treeVisual = gitObjectDB.commitTree.createVisual(area);
+      // The area visual is the space the tree lives in - we need to create the
+      // area visual first so the tree visual knows the bounds of the area it
+      // has to work with.
+      var areaVisual = AreaVisual.from(constraints);
+      _treeVisual = widget._gitObjectDB.commitTree.createVisual(areaVisual);
 
       return CustomPaint(
         painter: VisualisationPainter(
-          area: area,
+          area: areaVisual,
           tree: _treeVisual!,
           notifiyRepaint: _tickNotifier,
         ),
