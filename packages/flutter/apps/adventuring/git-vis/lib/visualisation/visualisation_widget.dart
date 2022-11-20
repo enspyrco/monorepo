@@ -4,6 +4,7 @@ import '../git/git_objects/commit_tree.dart';
 import '../git/object_database.dart';
 import 'game_loop/game_loop.dart';
 import 'visual_objects/area_visual.dart';
+import 'visual_objects/commit_tree_visual.dart';
 import 'visualisation_painter.dart';
 
 class VisualisationWidget extends StatefulWidget {

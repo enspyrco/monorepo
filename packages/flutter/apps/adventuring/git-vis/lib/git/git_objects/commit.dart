@@ -3,8 +3,8 @@ import 'dart:ui';
 
 import 'package:git_vis/git/git_objects/author.dart';
 
-import '../../interfaces/visual_object.dart';
 import '../../visualisation/visual_objects/area_visual.dart';
+import '../../visualisation/visual_objects/commit_visual.dart';
 
 class Commit {
   ///
@@ -121,24 +121,5 @@ class CommitState {
     output += '    body: $body\n';
     output += '    pgp: $pgpSignature\n';
     return output;
-  }
-}
-
-class CommitVisual extends VisualObject {
-  CommitVisual(CommitState state, {Offset? initialPosition})
-      : _pos = initialPosition ?? const Offset(20, 20);
-
-  final _paint = Paint()..color = const Color(0xFF009AAA);
-  final _radius = 10.0;
-  Offset _pos;
-
-  Offset get pos => _pos;
-
-  @override
-  void paintOnto(Canvas canvas) => canvas.drawCircle(_pos, _radius, _paint);
-
-  @override
-  void moveForwardInTimeBy(double dt) {
-    _pos = Offset(_pos.dx, _pos.dy + dt * 10);
   }
 }

@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:ui';
 
-import '../../interfaces/visual_object.dart';
+import '../../utils/exceptions/file_missing_in_tree_walk.dart';
 import '../../visualisation/visual_objects/area_visual.dart';
+import '../../visualisation/visual_objects/commit_tree_visual.dart';
 import '../object_database.dart';
 import 'branch.dart';
 import 'commit.dart';
@@ -77,52 +77,4 @@ class CommitTreeState {
   CommitTreeState();
 
   final Map<String, CommitState> allCommitsMap = {};
-}
-
-class CommitTreeVisual extends VisualObject {
-  CommitTreeVisual({
-    required AreaVisual area,
-    required Set<Branch> branches,
-    required Set<Commit> commits,
-    required Set<Kinship> kinships,
-  })  : _area = area,
-        _branches = branches.map((e) => e.visual).toSet(),
-        _commitsMap = {
-          for (var commit in commits)
-            commit.state.hash: commit.createVisual(area)
-        } {
-    _kinships = kinships
-        .map((e) => e.createVisual(_commitsMap[e.state.child.hash]!,
-            _commitsMap[e.state.parent.hash]!))
-        .toSet();
-  }
-
-  final AreaVisual _area;
-  final Set<BranchVisual> _branches;
-  final Map<String, CommitVisual> _commitsMap;
-  late final Set<KinshipVisual> _kinships;
-
-  @override
-  void paintOnto(Canvas canvas) {
-    for (var commit in _commitsMap.values) {
-      commit.paintOnto(canvas);
-    }
-  }
-
-  /// [dt] is seconds since last update
-  @override
-  void moveForwardInTimeBy(double dt) {
-    for (var commit in _commitsMap.values) {
-      commit.moveForwardInTimeBy(dt);
-    }
-  }
-}
-
-class FileMissingInTreetWalk implements Exception {
-  FileMissingInTreetWalk(this.message);
-  final String message;
-
-  @override
-  String toString() =>
-      'While out on a tree walk there was a missing node: $message';
 }
