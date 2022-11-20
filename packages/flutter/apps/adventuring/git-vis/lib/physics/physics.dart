@@ -1,7 +1,7 @@
 // The Barycentric Method
 
-import 'visualisation/visual_objects/commit_visual.dart';
-import 'visualisation/visual_objects/kinship_visual.dart';
+import '../visualisation/visual_objects/commit_visual.dart';
+import '../visualisation/visual_objects/kinship_visual.dart';
 
 class Physics {
   Physics(
