@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-import '../git/git_objects/commit_tree.dart';
 import '../git/object_database.dart';
 import 'visual_objects/area_visual.dart';
 import 'visual_objects/commit_tree_visual.dart';
@@ -19,8 +18,11 @@ class VisualisationWidget extends StatefulWidget {
 /// each tick and passed in to [_onTick].
 class _VisualisationWidgetState extends State<VisualisationWidget>
     with SingleTickerProviderStateMixin {
-  final CommitTree _tree =
-      CommitTree.walkAndParse(branches: ObjectDatabase.getBranches());
+  final ObjectDatabase gitObjectDB = ObjectDatabase(
+      projectDir:
+          '/Users/nick/Desktop/git-vis-test-repo'); // '/Users/nick/git/orgs/enspyrco/monorepo'
+
+  CommitTreeVisual? _treeVisual;
 
   /// A [Ticker] that calls [_onTick] on each tick.
   late final Ticker _ticker = Ticker(_onTick);
@@ -31,12 +33,13 @@ class _VisualisationWidgetState extends State<VisualisationWidget>
   /// A [ValueNotifier] that we update every frame with the elapsed time.
   final _tickNotifier = ValueNotifier<double>(0);
 
-  ///
-  CommitTreeVisual? _treeVisual;
-
   @override
   void initState() {
     super.initState();
+
+    gitObjectDB.readInBranches();
+    gitObjectDB.walkCommitTree();
+
     startSimulation();
   }
 
@@ -49,6 +52,7 @@ class _VisualisationWidgetState extends State<VisualisationWidget>
         deltaDuration.inMicroseconds / Duration.microsecondsPerSecond;
 
     if (mounted) _treeVisual?.moveForwardInTimeBy(elapsed);
+
     _tickNotifier.value = elapsed;
   }
 
@@ -58,7 +62,7 @@ class _VisualisationWidgetState extends State<VisualisationWidget>
       // Create the area visual - the space the tree lives in.
       var area = AreaVisual(constraints.maxWidth, constraints.maxHeight,
           const Color.fromARGB(170, 9, 116, 165));
-      _treeVisual = _tree.createVisual(area);
+      _treeVisual = gitObjectDB.commitTree.createVisual(area);
 
       return CustomPaint(
         painter: VisualisationPainter(

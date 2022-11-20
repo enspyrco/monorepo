@@ -1,28 +1,26 @@
-import 'dart:convert';
-import 'dart:io';
-
-import '../../utils/exceptions/file_missing_in_tree_walk.dart';
 import '../../visualisation/visual_objects/area_visual.dart';
 import '../../visualisation/visual_objects/commit_tree_visual.dart';
-import '../object_database.dart';
 import 'branch.dart';
 import 'commit.dart';
 import 'kinship.dart';
 
+/// We walk the commit tree, re-creating the relevant structure and details
+/// in-memory as a CommitTree object.
 class CommitTree {
-  CommitTree.walkAndParse({required Set<Branch> branches})
+  CommitTree({required Set<Branch> branches})
       : _branches = branches,
-        _commits = {},
-        _kinships = {},
-        _state = CommitTreeState() {
-    // Walk the tree to build the data structure
-    var commitHashes = branches.map<String>((e) => e.state.commitHash).toSet();
-    walk(commitHashes);
-  }
+        _state = CommitTreeState();
 
+  /// Branches are stored as files in '.git/refs/heads/'.
+  /// The branch name is the name of the file.
+  /// The hash for the latest commit is the trimmed contents of the file.
   final Set<Branch> _branches;
-  final Set<Commit> _commits;
-  final Set<Kinship> _kinships;
+
+  ///
+  final Set<Commit> _commits = {};
+
+  ///
+  final Set<Kinship> _kinships = {};
 
   final CommitTreeState _state;
 
@@ -30,38 +28,8 @@ class CommitTree {
       area: area, branches: _branches, commits: _commits, kinships: _kinships);
 
   CommitTreeState get state => _state;
-
-  // Recursively walk the commit tree, creating a map of commitHash : CommitObject
-  void walk(Set<String> commitHashes) {
-    if (commitHashes.isEmpty) return;
-
-    for (var hash in commitHashes) {
-      if (_state.allCommitsMap[hash] == null) {
-        // use the commitHash to locate and open the file
-        var folderName = hash.substring(0, 2);
-        var fileName = hash.substring(2).trimRight();
-        var fileNameString = '$projectDir/.git/objects/$folderName/$fileName';
-        var file = File(fileNameString);
-
-        if (!file.existsSync()) {
-          throw FileMissingInTreetWalk(fileNameString);
-        }
-
-        // read, decompress & decode the contents of the file
-        var commitObjectBytes = file.readAsBytesSync();
-        var inflatedCommitObject = zlib.decode(commitObjectBytes);
-        var commitObjectString = utf8.decode(inflatedCommitObject);
-
-        // parse and store the commit object
-        var commit = Commit.from(hash, commitObjectString);
-        _commits.add(commit);
-        _state.allCommitsMap[hash] = commit.state;
-
-        // keep on walkin
-        walk(commit.state.parents);
-      }
-    }
-  }
+  Set<Branch> get branches => _branches;
+  Set<Commit> get commits => _commits;
 
   @override
   String toString() {
