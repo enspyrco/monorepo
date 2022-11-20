@@ -13,12 +13,12 @@ class AreaVisual extends VisualObject {
   Rect get rect => _rect;
 
   @override
-  void drawOnTo(Canvas canvas) {
+  void paintOnto(Canvas canvas) {
     canvas.drawRect(_rect, _paint);
   }
 
   @override
-  void update(double dt) {
+  void moveForwardInTimeBy(double dt) {
     // TODO: implement update
   }
 }

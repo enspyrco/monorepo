@@ -27,7 +27,7 @@ class _VisualisationWidgetState extends State<VisualisationWidget>
   }
 
   void update(double dt) {
-    if (mounted) _treeVisual?.update(dt);
+    if (mounted) _treeVisual?.moveForwardInTimeBy(dt);
   }
 
   @override

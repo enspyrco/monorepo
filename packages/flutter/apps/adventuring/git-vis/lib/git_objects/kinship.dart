@@ -36,12 +36,12 @@ class KinshipVisual extends VisualObject {
   final Offset _end;
 
   @override
-  void drawOnTo(Canvas canvas) {
+  void paintOnto(Canvas canvas) {
     // TODO: implement drawOnTo
   }
 
   @override
-  void update(double dt) {
+  void moveForwardInTimeBy(double dt) {
     // TODO: implement update
   }
 }

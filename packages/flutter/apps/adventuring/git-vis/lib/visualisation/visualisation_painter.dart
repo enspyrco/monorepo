@@ -18,9 +18,9 @@ class VisualisationPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // draw a background
-    _area.drawOnTo(canvas);
+    _area.paintOnto(canvas);
 
-    _tree.drawOnTo(canvas);
+    _tree.paintOnto(canvas);
   }
 
   @override

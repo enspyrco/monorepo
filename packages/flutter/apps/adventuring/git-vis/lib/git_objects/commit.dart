@@ -135,10 +135,10 @@ class CommitVisual extends VisualObject {
   Offset get pos => _pos;
 
   @override
-  void drawOnTo(Canvas canvas) => canvas.drawCircle(_pos, _radius, _paint);
+  void paintOnto(Canvas canvas) => canvas.drawCircle(_pos, _radius, _paint);
 
   @override
-  void update(double dt) {
+  void moveForwardInTimeBy(double dt) {
     _pos = Offset(_pos.dx, _pos.dy + dt * 10);
   }
 }

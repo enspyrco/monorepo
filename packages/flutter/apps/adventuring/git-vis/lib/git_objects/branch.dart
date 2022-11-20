@@ -36,12 +36,12 @@ class BranchVisual extends VisualObject {
   final String name;
 
   @override
-  void drawOnTo(Canvas canvas) {
+  void paintOnto(Canvas canvas) {
     // TODO: implement drawOnTo
   }
 
   @override
-  void update(double dt) {
+  void moveForwardInTimeBy(double dt) {
     // TODO: implement update
   }
 }
