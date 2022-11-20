@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import '../git_objects/branch.dart';
+import 'git_objects/branch.dart';
 
 // git-vis-test-repo is a local repo, pre-push (meaning not yet using pack-files)
 // const projectDir = '/Users/nick/Desktop/git-vis-test-repo';

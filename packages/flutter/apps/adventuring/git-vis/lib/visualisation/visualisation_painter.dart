@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../git_objects/commit_tree.dart';
-import 'area_visual.dart';
+import '../git/git_objects/commit_tree.dart';
+import 'visual_objects/area_visual.dart';
 
 class VisualisationPainter extends CustomPainter {
   VisualisationPainter(

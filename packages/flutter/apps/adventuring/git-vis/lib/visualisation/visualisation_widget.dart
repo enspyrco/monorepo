@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:git_vis/visualisation/visualisation_painter.dart';
 
+import '../git/git_objects/commit_tree.dart';
 import '../git/object_database.dart';
-import '../git_objects/commit_tree.dart';
-import 'area_visual.dart';
-import 'game_loop.dart';
+import 'game_loop/game_loop.dart';
+import 'visual_objects/area_visual.dart';
+import 'visualisation_painter.dart';
 
 class VisualisationWidget extends StatefulWidget {
   const VisualisationWidget({Key? key}) : super(key: key);

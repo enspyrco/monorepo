@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
-import '../git/object_database.dart';
-import '../visualisation/area_visual.dart';
-import '../visualisation/visual_object.dart';
+import '../../interfaces/visual_object.dart';
+import '../../visualisation/visual_objects/area_visual.dart';
+import '../object_database.dart';
 import 'branch.dart';
 import 'commit.dart';
 import 'kinship.dart';

@@ -1,10 +1,10 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:git_vis/git_objects/author.dart';
+import 'package:git_vis/git/git_objects/author.dart';
 
-import '../visualisation/area_visual.dart';
-import '../visualisation/visual_object.dart';
+import '../../interfaces/visual_object.dart';
+import '../../visualisation/visual_objects/area_visual.dart';
 
 class Commit {
   ///

@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:git_vis/visualisation/visual_object.dart';
+import 'package:git_vis/interfaces/visual_object.dart';
 
 class AreaVisual extends VisualObject {
   AreaVisual(double width, double height, Color color)

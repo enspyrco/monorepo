@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import '../visualisation/visual_object.dart';
+import '../../interfaces/visual_object.dart';
 
 class Branch {
   Branch(String name, String commitHash)
