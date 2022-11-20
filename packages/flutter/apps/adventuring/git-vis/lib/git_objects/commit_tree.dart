@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
+import '../git/object_database.dart';
 import '../visualisation/area_visual.dart';
 import '../visualisation/visual_object.dart';
 import 'branch.dart';
@@ -39,7 +40,12 @@ class CommitTree {
         // use the commitHash to locate and open the file
         var folderName = hash.substring(0, 2);
         var fileName = hash.substring(2).trimRight();
-        var file = File('.git/objects/$folderName/$fileName');
+        var fileNameString = '$projectDir/.git/objects/$folderName/$fileName';
+        var file = File(fileNameString);
+
+        if (!file.existsSync()) {
+          throw FileMissingInTreetWalk(fileNameString);
+        }
 
         // read, decompress & decode the contents of the file
         var commitObjectBytes = file.readAsBytesSync();
@@ -74,12 +80,12 @@ class CommitTreeState {
 }
 
 class CommitTreeVisual extends VisualObject {
-  CommitTreeVisual(
-      {required AreaVisual area,
-      required Set<Branch> branches,
-      required Set<Commit> commits,
-      required Set<Kinship> kinships})
-      : _area = area,
+  CommitTreeVisual({
+    required AreaVisual area,
+    required Set<Branch> branches,
+    required Set<Commit> commits,
+    required Set<Kinship> kinships,
+  })  : _area = area,
         _branches = branches.map((e) => e.visual).toSet(),
         _commitsMap = {
           for (var commit in commits)
@@ -97,17 +103,26 @@ class CommitTreeVisual extends VisualObject {
   late final Set<KinshipVisual> _kinships;
 
   @override
-  void drawOnTo(Canvas canvas) {
+  void paintOnto(Canvas canvas) {
     for (var commit in _commitsMap.values) {
-      commit.drawOnTo(canvas);
+      commit.paintOnto(canvas);
     }
   }
 
   /// [dt] is seconds since last update
   @override
-  void update(double dt) {
+  void moveForwardInTimeBy(double dt) {
     for (var commit in _commitsMap.values) {
-      commit.update(dt);
+      commit.moveForwardInTimeBy(dt);
     }
   }
+}
+
+class FileMissingInTreetWalk implements Exception {
+  FileMissingInTreetWalk(this.message);
+  final String message;
+
+  @override
+  String toString() =>
+      'While out on a tree walk there was a missing node: $message';
 }
