@@ -2,13 +2,18 @@ import 'dart:io';
 
 import '../git_objects/branch.dart';
 
+// git-vis-test-repo is a local repo, pre-push (meaning not yet using pack-files)
+// const projectDir = '/Users/nick/Desktop/git-vis-test-repo';
+const projectDir = '/Users/nick/git/orgs/enspyrco/monorepo';
+
 class ObjectDatabase {
   /// Branches are files in '.git/refs/heads/'.
-  /// The name is the name of the file.
+  /// The branch name is the name of the file.
   /// The commit hash is the trimmed contents of the file.
   static Set<Branch> getBranches() {
     var branches = <Branch>{};
-    var entities = Directory('.git/refs/heads/').listSync(followLinks: false);
+    var entities =
+        Directory('$projectDir/.git/refs/heads/').listSync(followLinks: false);
 
     for (var entity in entities) {
       if (entity is File) {
