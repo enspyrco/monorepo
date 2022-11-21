@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:git_vis/git/git_object_database.dart';
 import 'package:git_vis/git/git_objects/author.dart';
 import 'package:git_vis/git/git_objects/commit.dart';
-import 'package:git_vis/git/object_database.dart';
 
 void main() {
   // TODO: mock the file system so we can test these functions
   test('get branches', () {
-    final odb = ObjectDatabase('');
+    final odb = GitObjectDatabase('');
     var branches = odb.commitTree.branches;
     for (var branch in branches) {
       print(branch);
@@ -14,7 +14,7 @@ void main() {
   }, skip: true); // test is not finished yet
 
   test('walk', () {
-    final odb = ObjectDatabase('');
+    final odb = GitObjectDatabase('');
 
     // get all branches, convert to a list of the hash values
     odb.readInBranches();

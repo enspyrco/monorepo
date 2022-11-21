@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-import '../git/object_database.dart';
+import '../git/git_object_database.dart';
 import 'visual_objects/area_visual.dart';
 import 'visual_objects/commit_tree_visual.dart';
 import 'visualisation_painter.dart';
 
 class VisualisationWidget extends StatefulWidget {
-  const VisualisationWidget(ObjectDatabase gitObjectDB, {Key? key})
+  const VisualisationWidget(GitObjectDatabase gitObjectDB, {Key? key})
       : _gitObjectDB = gitObjectDB,
         super(key: key);
 
-  final ObjectDatabase _gitObjectDB;
+  final GitObjectDatabase _gitObjectDB;
 
   @override
   State<VisualisationWidget> createState() => _VisualisationWidgetState();

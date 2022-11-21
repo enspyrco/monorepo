@@ -10,8 +10,8 @@ import 'git_objects/commit_tree.dart';
 /// storage area for Git's internal objects (the term database is not
 /// technically accurate but the name is commonly used and provides a helpful
 /// mental model).
-class ObjectDatabase {
-  ObjectDatabase(this.projectDir) {
+class GitObjectDatabase {
+  GitObjectDatabase(this.projectDir) {
     var branches = readInBranches();
     _commitTree = CommitTree(branches: branches);
   }
