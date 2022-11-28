@@ -1,22 +1,16 @@
 PODS:
   - FlutterMacOS (1.0.0)
-  - libgit2dart (1.2.0):
-    - FlutterMacOS
 
 DEPENDENCIES:
   - FlutterMacOS (from `Flutter/ephemeral`)
-  - libgit2dart (from `Flutter/ephemeral/.symlinks/plugins/libgit2dart/macos`)
 
 EXTERNAL SOURCES:
   FlutterMacOS:
     :path: Flutter/ephemeral
-  libgit2dart:
-    :path: Flutter/ephemeral/.symlinks/plugins/libgit2dart/macos
 
 SPEC CHECKSUMS:
   FlutterMacOS: ae6af50a8ea7d6103d888583d46bd8328a7e9811
-  libgit2dart: 5aa3be7dcafa802cfb85244384b665267b03c53a
 
-PODFILE CHECKSUM: 6eac6b3292e5142cfc23bdeb71848a40ec51c14c
+PODFILE CHECKSUM: c032dd82f1cdc7272d9540518eb7082c644512b0
 
 COCOAPODS: 1.11.3
