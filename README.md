@@ -89,5 +89,6 @@ Three letter acronyms used in commit messages:
 - tpr = the_process
 - wgs = ws_game_server
 - wgt = ws_game_server_types
+- whs = whos_shout
 - &plus; = multiple repos
 - &ast; = monorepo, CI/CD, etc.
