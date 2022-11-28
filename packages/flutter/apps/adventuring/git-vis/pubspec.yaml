@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  libgit2dart: ^1.2.0
 
 dev_dependencies:
   flutter_test:
