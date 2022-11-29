@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../git_objects/commit_tree.dart';
-import 'area_visual.dart';
+import 'visual_objects/area_visual.dart';
+import 'visual_objects/commit_tree_visual.dart';
 
 class VisualisationPainter extends CustomPainter {
   VisualisationPainter(
@@ -18,9 +18,9 @@ class VisualisationPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // draw a background
-    _area.drawOnTo(canvas);
+    _area.paintOnto(canvas);
 
-    _tree.drawOnTo(canvas);
+    _tree.paintOnto(canvas);
   }
 
   @override

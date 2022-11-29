@@ -1,6 +1,5 @@
-import 'dart:ui';
-
-import '../visualisation/visual_object.dart';
+import '../../visualisation/visual_objects/commit_visual.dart';
+import '../../visualisation/visual_objects/kinship_visual.dart';
 import 'commit.dart';
 
 class Kinship {
@@ -25,23 +24,4 @@ class KinshipState {
 
   final CommitState child;
   final CommitState parent;
-}
-
-class KinshipVisual extends VisualObject {
-  KinshipVisual(Offset start, Offset end)
-      : _start = start,
-        _end = end;
-
-  final Offset _start;
-  final Offset _end;
-
-  @override
-  void drawOnTo(Canvas canvas) {
-    // TODO: implement drawOnTo
-  }
-
-  @override
-  void update(double dt) {
-    // TODO: implement update
-  }
 }

@@ -1,9 +1,7 @@
-import 'dart:ui';
-
-import '../visualisation/visual_object.dart';
+import '../../visualisation/visual_objects/branch_visual.dart';
 
 class Branch {
-  Branch(String name, String commitHash)
+  Branch({required String name, required String commitHash})
       : _state = BranchState(name, commitHash) {
     _visual = BranchVisual(state);
   }
@@ -15,9 +13,7 @@ class Branch {
   BranchVisual get visual => _visual;
 
   @override
-  String toString() {
-    return 'Branch, state: $_state';
-  }
+  String toString() => 'Branch, state: $_state';
 }
 
 class BranchState {
@@ -28,20 +24,4 @@ class BranchState {
 
   @override
   String toString() => 'name: $name, commitHash: $commitHash';
-}
-
-class BranchVisual extends VisualObject {
-  BranchVisual(BranchState state) : name = state.name;
-
-  final String name;
-
-  @override
-  void drawOnTo(Canvas canvas) {
-    // TODO: implement drawOnTo
-  }
-
-  @override
-  void update(double dt) {
-    // TODO: implement update
-  }
 }

@@ -1,25 +1,26 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:git_vis/git/object_database.dart';
-import 'package:git_vis/git_objects/author.dart';
-import 'package:git_vis/git_objects/commit.dart';
-import 'package:git_vis/git_objects/commit_tree.dart';
+import 'package:git_vis/git/git_object_database.dart';
+import 'package:git_vis/git/git_objects/author.dart';
+import 'package:git_vis/git/git_objects/commit.dart';
 
 void main() {
   // TODO: mock the file system so we can test these functions
   test('get branches', () {
-    var branches = ObjectDatabase.getBranches();
+    final odb = GitObjectDatabase('');
+    var branches = odb.commitTree.branches;
     for (var branch in branches) {
       print(branch);
     }
   }, skip: true); // test is not finished yet
 
   test('walk', () {
+    final odb = GitObjectDatabase('');
+
     // get all branches, convert to a list of the hash values
-    var branches = ObjectDatabase.getBranches();
+    odb.readInBranches();
+    odb.walkCommitTree();
 
-    var tree = CommitTree.walkAndParse(branches: branches);
-
-    print('$tree');
+    print('${odb.commitTree}');
   }, skip: true); // test is not finished yet
 
   test('commitObject1', () {
