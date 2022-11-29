@@ -1,0 +1,3 @@
+[submodule "packages/flutter/apps/adventuring/git_vis/libgit2"]
+	path = packages/flutter/apps/adventuring/git_vis/libgit2
+	url = git@github.com:libgit2/libgit2.git
