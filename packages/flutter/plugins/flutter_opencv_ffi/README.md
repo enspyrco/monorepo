@@ -4,9 +4,46 @@ A Flutter FFI plugin for [OpenCV](https://opencv.org).
 
 [Project Notes](https://www.notion.so/enspyrco/Flutter-OpenCV-FFI-b6781579b43c42289b5977c41c0f06a1)
 
+## Getting started (using the plugin)
+
+### Install
+
+Add to `pubspec.yaml`:
+
+```yaml
+dev:
+  flutter_opencv_ffi:
+    git: ...
+```
+
+## Getting started (developing the plugin)
+
+### Fetch submodules
+
+```sh
+git submodule update --init
+```
+
+The  two submodules are `opencv` (the open source computer vision library) and
+`opencv_contrib` (a repository for OpenCV's extra modules).
+
+### Build OpenCV
+
+#### MacOS
+
+Follow [OpenCV: Installation in MacOS](https://docs.opencv.org/4.x/d0/db2/tutorial_macos_install.html)
+
+> I had to add -DBUILD_ZLIB=OFF to get past build errors, as per [this issue](https://github.com/opencv/opencv/issues/21389)
+
+```sh
+mkdir build_opencv && cd build_opencv
+cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_EXAMPLES=ON -DBUILD_ZLIB=OFF ../opencv
+make -j7
+```
+
 ## Project stucture
 
-This template uses the following structure:
+This project uses the following structure:
 
 * `src`: Contains the native source code, and a CmakeFile.txt file for building
   that source code into a dynamic library.
