@@ -6,21 +6,21 @@ import 'visual_objects/area_visual.dart';
 import 'visual_objects/commit_tree_visual.dart';
 import 'visualisation_painter.dart';
 
-class VisualisationWidget extends StatefulWidget {
-  const VisualisationWidget(GitObjectDatabase gitObjectDB, {Key? key})
+class VisualisationScreen extends StatefulWidget {
+  const VisualisationScreen(GitObjectDatabase gitObjectDB, {Key? key})
       : _gitObjectDB = gitObjectDB,
         super(key: key);
 
   final GitObjectDatabase _gitObjectDB;
 
   @override
-  State<VisualisationWidget> createState() => _VisualisationWidgetState();
+  State<VisualisationScreen> createState() => _VisualisationScreenState();
 }
 
 /// We use a [Ticker] that calls [_onTick] on each frame.
 /// The value [elapsed], the time since the last frame (in seconds), is calculated
 /// each tick and passed in to [_onTick].
-class _VisualisationWidgetState extends State<VisualisationWidget>
+class _VisualisationScreenState extends State<VisualisationScreen>
     with SingleTickerProviderStateMixin {
   /// The visual part of the commit tree that is part of the object database.
   CommitTreeVisual? _treeVisual;

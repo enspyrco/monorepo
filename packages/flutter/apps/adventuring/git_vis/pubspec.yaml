@@ -11,11 +11,44 @@ dependencies:
     sdk: flutter
   ffi: ^2.0.1
 
+  # astro
+  astro:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro
+  astro_types:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_types
+  astro_locator:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/utils/astro_locator
+  astro_inspector_screen:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_inspector_screen
+  astro_error_handling:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_error_handling
+  astro_navigation:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_navigation
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
   ffigen: ^7.2.2
+  astro_test_utils:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_test_utils
+  enspyr_lints:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/enspyr_lints
 
 ffigen:
   output: "lib/git/native/bindings/libgit2_bindings.dart"
