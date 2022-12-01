@@ -1,4 +1,4 @@
-import '../../visualisation/visual_objects/branch_visual.dart';
+import '../../../visualisation/visual_objects/branch_visual.dart';
 
 class Branch {
   Branch({required String name, required String commitHash})

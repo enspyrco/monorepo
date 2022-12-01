@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import '../utils/exceptions/file_missing_in_tree_walk.dart';
+import '../../utils/exceptions/file_missing_in_tree_walk.dart';
 import 'git_objects/branch.dart';
 import 'git_objects/commit.dart';
 import 'git_objects/commit_tree.dart';

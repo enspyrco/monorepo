@@ -1,5 +1,5 @@
-import '../../visualisation/visual_objects/area_visual.dart';
-import '../../visualisation/visual_objects/commit_tree_visual.dart';
+import '../../../visualisation/visual_objects/area_visual.dart';
+import '../../../visualisation/visual_objects/commit_tree_visual.dart';
 import 'branch.dart';
 import 'commit.dart';
 import 'kinship.dart';
