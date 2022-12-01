@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-import '../../git/git_objects/branch.dart';
-import '../../git/git_objects/commit.dart';
-import '../../git/git_objects/kinship.dart';
+import '../../git/models/git_objects/branch.dart';
+import '../../git/models/git_objects/commit.dart';
+import '../../git/models/git_objects/kinship.dart';
 import '../../interfaces/visual_object.dart';
 import 'area_visual.dart';
 import 'branch_visual.dart';

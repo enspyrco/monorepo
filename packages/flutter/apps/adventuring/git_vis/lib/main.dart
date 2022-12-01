@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'git/git_object_database.dart';
-import 'services/git_service.dart';
+import 'git/models/git_object_database.dart';
+import 'git/services/git_service.dart';
 import 'visualisation/visualisation_widget.dart';
 
 void main() async {

@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../src/bindings/libgit2_bindings.dart';
+import '../native/bindings/libgit2_bindings.dart';
 
 class GitService {
   GitService({required String repoPath})

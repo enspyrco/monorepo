@@ -18,7 +18,7 @@ dev_dependencies:
   ffigen: ^7.2.2
 
 ffigen:
-  output: "lib/src/bindings/libgit2_bindings.dart"
+  output: "lib/git/native/bindings/libgit2_bindings.dart"
   headers:
     entry-points:
       - "libgit2/include/*.h"

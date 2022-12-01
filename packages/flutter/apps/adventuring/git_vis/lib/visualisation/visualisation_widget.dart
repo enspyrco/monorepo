@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-import '../git/git_object_database.dart';
+import '../git/models/git_object_database.dart';
 import 'visual_objects/area_visual.dart';
 import 'visual_objects/commit_tree_visual.dart';
 import 'visualisation_painter.dart';

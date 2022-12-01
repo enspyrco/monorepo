@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:git_vis/git/git_object_database.dart';
-import 'package:git_vis/git/git_objects/author.dart';
-import 'package:git_vis/git/git_objects/commit.dart';
+import 'package:git_vis/git/models/git_object_database.dart';
+import 'package:git_vis/git/models/git_objects/author.dart';
+import 'package:git_vis/git/models/git_objects/commit.dart';
 
 void main() {
   // TODO: mock the file system so we can test these functions
