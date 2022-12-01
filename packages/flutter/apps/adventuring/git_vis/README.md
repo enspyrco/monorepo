@@ -31,3 +31,11 @@ cmake ..
 cmake --build .
 cp ./libgit2.x.dylib ../../macos/Runner/Frameworks/libgit2.x.dylib
 ```
+
+Regenerate the bindings
+
+If ffigen is not setup, follow the setup instructions at [ffigen](https://pub.dev/packages/ffigen).
+
+```sh
+dart run ffigen
+```

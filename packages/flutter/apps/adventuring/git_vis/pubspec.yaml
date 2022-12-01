@@ -9,13 +9,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # libgit2dart: ^1.2.0
+  ffi: ^2.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_lints: ^1.0.0
+  ffigen: ^7.2.2
 
-flutter:
-  uses-material-design: true
+ffigen:
+  output: "lib/src/bindings/libgit2_bindings.dart"
+  headers:
+    entry-points:
+      - "libgit2/include/*.h"
+  name: "LibGit2"
+  description: "Bindings for libgit2"
