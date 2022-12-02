@@ -1,73 +1,166 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'dart:io';
+import 'dart:isolate';
 
-import 'package:flutter_opencv_ffi/flutter_opencv_ffi.dart' as flutter_opencv_ffi;
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_opencv_ffi/flutter_opencv_ffi.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+
+const title = 'Native OpenCV Example';
+
+late Directory tempDir;
+
+String get tempPath => '${tempDir.path}/temp.jpg';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  getTemporaryDirectory().then((dir) => tempDir = dir);
+
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  _MyAppState createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: title,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
-  late int sumResult;
-  late Future<int> sumAsyncResult;
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
 
   @override
-  void initState() {
-    super.initState();
-    sumResult = flutter_opencv_ffi.sum(1, 2);
-    sumAsyncResult = flutter_opencv_ffi.sumAsync(3, 4);
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final _picker = ImagePicker();
+
+  bool _isProcessed = false;
+  bool _isWorking = false;
+
+  void showVersion() {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final snackbar = SnackBar(
+      content: Text('OpenCV version: ${opencvVersion()}'),
+    );
+
+    scaffoldMessenger
+      ..removeCurrentSnackBar(reason: SnackBarClosedReason.dismiss)
+      ..showSnackBar(snackbar);
+  }
+
+  Future<String?> pickAnImage() async {
+    if (Platform.isIOS || Platform.isAndroid) {
+      return _picker
+          .pickImage(
+            source: ImageSource.gallery,
+            imageQuality: 100,
+          )
+          .then((v) => v?.path);
+    } else {
+      return FilePicker.platform
+          .pickFiles(
+            dialogTitle: 'Pick an image',
+            type: FileType.image,
+            allowMultiple: false,
+          )
+          .then((v) => v?.files.first.path);
+    }
+  }
+
+  Future<void> takeImageAndProcess() async {
+    final imagePath = await pickAnImage();
+
+    if (imagePath == null) {
+      return;
+    }
+
+    setState(() {
+      _isWorking = true;
+    });
+
+    // Creating a port for communication with isolate and arguments for entry point
+    final port = ReceivePort();
+    final args = ProcessImageArguments(imagePath, tempPath);
+
+    // Spawning an isolate
+    Isolate.spawn<ProcessImageArguments>(
+      processImage,
+      args,
+      onError: port.sendPort,
+      onExit: port.sendPort,
+    );
+
+    // Making a variable to store a subscription in
+    late StreamSubscription sub;
+
+    // Listening for messages on port
+    sub = port.listen((_) async {
+      // Cancel a subscription after message received called
+      await sub.cancel();
+
+      setState(() {
+        _isProcessed = true;
+        _isWorking = false;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    const textStyle = TextStyle(fontSize: 25);
-    const spacerSmall = SizedBox(height: 10);
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Native Packages'),
-        ),
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              children: [
-                const Text(
-                  'This calls a native function through FFI that is shipped as source in the package. '
-                  'The native code is built as part of the Flutter Runner build.',
-                  style: textStyle,
-                  textAlign: TextAlign.center,
-                ),
-                spacerSmall,
-                Text(
-                  'sum(1, 2) = $sumResult',
-                  style: textStyle,
-                  textAlign: TextAlign.center,
-                ),
-                spacerSmall,
-                FutureBuilder<int>(
-                  future: sumAsyncResult,
-                  builder: (BuildContext context, AsyncSnapshot<int> value) {
-                    final displayValue =
-                        (value.hasData) ? value.data : 'loading';
-                    return Text(
-                      'await sumAsync(3, 4) = $displayValue',
-                      style: textStyle,
-                      textAlign: TextAlign.center,
-                    );
-                  },
-                ),
+    return Scaffold(
+      appBar: AppBar(title: const Text(title)),
+      body: Stack(
+        children: <Widget>[
+          Center(
+            child: ListView(
+              shrinkWrap: true,
+              children: <Widget>[
+                if (_isProcessed && !_isWorking)
+                  ConstrainedBox(
+                    constraints:
+                        const BoxConstraints(maxWidth: 3000, maxHeight: 300),
+                    child: Image.file(
+                      File(tempPath),
+                      alignment: Alignment.center,
+                    ),
+                  ),
+                Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: showVersion,
+                      child: const Text('Show version'),
+                    ),
+                    ElevatedButton(
+                      onPressed: takeImageAndProcess,
+                      child: const Text('Process photo'),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
-        ),
+          if (_isWorking)
+            Positioned.fill(
+              child: Container(
+                color: Colors.black.withOpacity(.7),
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }

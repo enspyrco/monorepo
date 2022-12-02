@@ -31,3 +31,5 @@ build/
 
 # OpenCV Build
 build_opencv/
+build_opencv_macos/
+macos/opencv2.xcframework/
