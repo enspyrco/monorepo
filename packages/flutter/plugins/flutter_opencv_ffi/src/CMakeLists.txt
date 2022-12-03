@@ -1,17 +1,48 @@
-# The Flutter tooling requires that developers have CMake 3.10 or later
-# installed. You should not increase this version, as doing so will cause
-# the plugin to fail to compile for some customers of the plugin.
+project(flutter_opencv_ffi_library)
 cmake_minimum_required(VERSION 3.10)
 
-project(flutter_opencv_ffi_library VERSION 0.0.1 LANGUAGES C)
+########################
+### OpenCV
+########################
 
-add_library(flutter_opencv_ffi SHARED
-  "flutter_opencv_ffi.c"
+# Specifies the lib_opencv shared lib
+add_library(lib_opencv SHARED IMPORTED)
+# Defines the location of the opencv shared library.
+set_target_properties(lib_opencv PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../android/src/main/jniLibs/${ANDROID_ABI}/libopencv_java4.so)
+
+########################
+### NDK libs
+########################
+
+find_library( 
+  # Defines the name of the path variable that stores the location of the NDK library.
+  log-lib
+
+  # Specifies the name of the NDK library that CMake needs to locate.
+  log
 )
 
-set_target_properties(flutter_opencv_ffi PROPERTIES
-  PUBLIC_HEADER flutter_opencv_ffi.h
-  OUTPUT_NAME "flutter_opencv_ffi"
-)
+########################
+### C++ glue code
+########################
 
-target_compile_definitions(flutter_opencv_ffi PUBLIC DART_SHARED_LIB)
+# Specifies the flutter_opencv_ffi shared lib
+add_library(flutter_opencv_ffi SHARED flutter_opencv_ffi.cpp)
+
+# Includes the opencv headers in the src directory.
+target_include_directories(flutter_opencv_ffi PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+########################
+### Linking
+########################
+
+target_link_libraries(
+  # Specifies the target library.
+  flutter_opencv_ffi
+
+  # Links the target library to the opencv library.
+  lib_opencv 
+  
+  # Links the target library to the log library included in the NDK.
+  ${log-lib}
+)
