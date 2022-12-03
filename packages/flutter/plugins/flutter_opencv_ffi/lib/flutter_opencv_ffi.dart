@@ -17,7 +17,7 @@ typedef _ProcessImageFunc = void Function(ffi.Pointer<Utf8>, ffi.Pointer<Utf8>);
 // Getting a library that holds needed symbols
 ffi.DynamicLibrary _openDynamicLibrary() {
   if (Platform.isAndroid) {
-    return ffi.DynamicLibrary.open('libnative_opencv.so');
+    return ffi.DynamicLibrary.open('libflutter_opencv_ffi.so');
   } else if (Platform.isWindows) {
     return ffi.DynamicLibrary.open("native_opencv_windows_plugin.dll");
   }
