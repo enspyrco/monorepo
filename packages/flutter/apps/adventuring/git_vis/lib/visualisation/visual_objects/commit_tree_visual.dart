@@ -1,8 +1,6 @@
 import 'dart:ui';
 
-import '../../git/models/git_objects/branch.dart';
-import '../../git/models/git_objects/commit.dart';
-import '../../git/models/git_objects/kinship.dart';
+import '../../git/models/git_objects/commit_tree_state.dart';
 import '../../interfaces/visual_object.dart';
 import 'area_visual.dart';
 import 'branch_visual.dart';
@@ -11,23 +9,15 @@ import 'kinship_visual.dart';
 
 class CommitTreeVisual extends VisualObject {
   CommitTreeVisual({
-    required AreaVisual area,
-    required Set<Branch> branches,
-    required Set<Commit> commits,
-    required Set<Kinship> kinships,
-  })  : _area = area,
-        _branches = branches.map((e) => e.visual).toSet(),
-        _commitsMap = {
-          for (var commit in commits)
-            commit.state.hash: commit.createVisual(area)
-        } {
-    _kinships = kinships
-        .map((e) => e.createVisual(_commitsMap[e.state.child.hash]!,
-            _commitsMap[e.state.parent.hash]!))
-        .toSet();
-  }
+    required AreaVisual within,
+    required CommitTreeState state,
+  })  : _area = within,
+        _state = state,
+        _branches = {...state.branches.map(BranchVisual.new)},
+        _commitsMap = {};
 
   final AreaVisual _area;
+  final CommitTreeState _state;
   final Set<BranchVisual> _branches;
   final Map<String, CommitVisual> _commitsMap;
   late final Set<KinshipVisual> _kinships;

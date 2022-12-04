@@ -61,6 +61,10 @@ class GitService {
         .toDartString();
   }
 
+  CommitTreeState getCommitTree() {
+    _nativeLib.git_tree_walk(tree, mode, callback, payload)
+  }
+
   void dispose() {
     _nativeLib.git_repository_free(_repoPtrPtr.value);
   }
