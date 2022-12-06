@@ -3,7 +3,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import '../iterators/branches_iterator.dart';
-import '../libgit2_bindings.dart';
+import '../native_bindings/libgit2_bindings.dart';
 
 class GitService {
   GitService({String? repoPath})
