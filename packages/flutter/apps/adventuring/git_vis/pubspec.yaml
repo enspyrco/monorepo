@@ -55,7 +55,7 @@ ffigen:
   headers:
     entry-points:
       - "native/libgit2/include/*.h"
-      - "native/libgit2/src/libgit2/refs.h"
+      # - "native/libgit2/src/libgit2/refs.h"
   compiler-opts:
     - '-Wno-nullability-completeness'
     - '-Inative/libgit2/include'
