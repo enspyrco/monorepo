@@ -55,5 +55,8 @@ ffigen:
   headers:
     entry-points:
       - "native/libgit2/include/*.h"
+  compiler-opts:
+    - '-Wno-nullability-completeness'
+    - '-Inative/libgit2/include'
   name: "LibGit2"
   description: "Bindings for libgit2"
