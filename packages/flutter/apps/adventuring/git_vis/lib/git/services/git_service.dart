@@ -2,7 +2,8 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../../../native/libgit2_bindings.dart';
+import '../iterators/branches_iterator.dart';
+import '../libgit2_bindings.dart';
 
 class GitService {
   GitService({String? repoPath})
@@ -20,6 +21,7 @@ class GitService {
 
   final LibGit2 _nativeLib;
   late final Pointer<Pointer<git_repository>> _repoPtrPtr;
+  late final Pointer<git_repository> _repoPtr;
 
   String libgit2Version() {
     final majorPtr = calloc<Int>();
@@ -52,6 +54,8 @@ class GitService {
     }
 
     calloc.free(pathPtr);
+
+    _repoPtr = _repoPtrPtr.value;
   }
 
   String getRepoPath() {
@@ -61,11 +65,10 @@ class GitService {
         .toDartString();
   }
 
-  CommitTreeState getCommitTree() {
-    _nativeLib.git_tree_walk(tree, mode, callback, payload)
-  }
+  BranchesIterator createBranchesIterator() =>
+      BranchesIterator(_nativeLib, _repoPtr);
 
-  void dispose() {
+  void freeRepository() {
     _nativeLib.git_repository_free(_repoPtrPtr.value);
   }
 }

@@ -2,7 +2,7 @@ import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_types/core_types.dart';
 
 import '../../app/state/app_state.dart';
-import '../models/git_objects/commit_tree_state.dart';
+import '../iterators/branches_iterator.dart';
 import '../services/git_service.dart';
 
 class OpenGitRepository extends AwayMission<AppState> {
@@ -16,7 +16,7 @@ class OpenGitRepository extends AwayMission<AppState> {
 
     service.openRepository(_projectDirectory);
 
-    final CommitTreeState tree = service.getCommitTree();
+    final BranchesIterator iterator = service.createBranchesIterator();
   }
 
   @override
