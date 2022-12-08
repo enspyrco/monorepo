@@ -59,5 +59,11 @@ ffigen:
   compiler-opts:
     - '-Wno-nullability-completeness'
     - '-Inative/libgit2/include'
+  functions:
+    symbol-address:
+      include:
+        - git_reference_free
+        - git_repository_free
+        - git_branch_iterator_free
   name: "LibGit2"
   description: "Bindings for libgit2"

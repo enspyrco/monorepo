@@ -2,7 +2,6 @@ import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_types/core_types.dart';
 
 import '../../app/state/app_state.dart';
-import '../iterators/branches_iterator.dart';
 import '../services/git_service.dart';
 
 class OpenGitRepository extends AwayMission<AppState> {
@@ -16,12 +15,17 @@ class OpenGitRepository extends AwayMission<AppState> {
 
     service.openRepository(_projectDirectory);
 
-    final BranchesIterator iterator = service.createBranchesIterator();
+    // Also create a new branch iterator so we don't need a separate mission
+    service.createBranchIterator();
+
+    final ref1 = service.nextBranch();
+
+    final ref2 = service.nextBranch();
   }
 
   @override
   toJson() => {
-        'name_': 'SetupGit',
+        'name_': 'Open Git Repository',
         'state_': {'_projectDirectory': _projectDirectory},
       };
 }

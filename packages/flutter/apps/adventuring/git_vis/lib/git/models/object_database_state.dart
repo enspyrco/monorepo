@@ -18,8 +18,5 @@ class ObjectDatabaseState implements AstroState {
   }
 
   @override
-  toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  toJson() => {};
 }

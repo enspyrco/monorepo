@@ -34,6 +34,7 @@ Future<void> astroInitialization() async {
           const DefaultNavigationState(stack: [VisualisationPageState()]),
     ),
   );
+
   Locator.add<GitService>(GitService());
 
   /// Perform individual plugin initialization.
