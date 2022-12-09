@@ -18,2572 +18,6 @@ class LibGit2 {
           lookup)
       : _lookup = lookup;
 
-  late final ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Char>>> _tzname =
-      _lookup<ffi.Pointer<ffi.Pointer<ffi.Char>>>('tzname');
-
-  ffi.Pointer<ffi.Pointer<ffi.Char>> get tzname => _tzname.value;
-
-  set tzname(ffi.Pointer<ffi.Pointer<ffi.Char>> value) => _tzname.value = value;
-
-  late final ffi.Pointer<ffi.Int> _getdate_err =
-      _lookup<ffi.Int>('getdate_err');
-
-  int get getdate_err => _getdate_err.value;
-
-  set getdate_err(int value) => _getdate_err.value = value;
-
-  late final ffi.Pointer<ffi.Long> _timezone = _lookup<ffi.Long>('timezone');
-
-  int get timezone => _timezone.value;
-
-  set timezone(int value) => _timezone.value = value;
-
-  late final ffi.Pointer<ffi.Int> _daylight = _lookup<ffi.Int>('daylight');
-
-  int get daylight => _daylight.value;
-
-  set daylight(int value) => _daylight.value = value;
-
-  ffi.Pointer<ffi.Char> asctime(
-    ffi.Pointer<tm> arg0,
-  ) {
-    return _asctime(
-      arg0,
-    );
-  }
-
-  late final _asctimePtr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<tm>)>>(
-      'asctime');
-  late final _asctime =
-      _asctimePtr.asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<tm>)>();
-
-  int clock() {
-    return _clock();
-  }
-
-  late final _clockPtr =
-      _lookup<ffi.NativeFunction<clock_t Function()>>('clock');
-  late final _clock = _clockPtr.asFunction<int Function()>();
-
-  ffi.Pointer<ffi.Char> ctime(
-    ffi.Pointer<time_t> arg0,
-  ) {
-    return _ctime(
-      arg0,
-    );
-  }
-
-  late final _ctimePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<time_t>)>>('ctime');
-  late final _ctime = _ctimePtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<time_t>)>();
-
-  double difftime(
-    int arg0,
-    int arg1,
-  ) {
-    return _difftime(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _difftimePtr =
-      _lookup<ffi.NativeFunction<ffi.Double Function(time_t, time_t)>>(
-          'difftime');
-  late final _difftime = _difftimePtr.asFunction<double Function(int, int)>();
-
-  ffi.Pointer<tm> getdate(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _getdate(
-      arg0,
-    );
-  }
-
-  late final _getdatePtr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<tm> Function(ffi.Pointer<ffi.Char>)>>(
-      'getdate');
-  late final _getdate =
-      _getdatePtr.asFunction<ffi.Pointer<tm> Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<tm> gmtime(
-    ffi.Pointer<time_t> arg0,
-  ) {
-    return _gmtime(
-      arg0,
-    );
-  }
-
-  late final _gmtimePtr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>)>>(
-      'gmtime');
-  late final _gmtime =
-      _gmtimePtr.asFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>)>();
-
-  ffi.Pointer<tm> localtime(
-    ffi.Pointer<time_t> arg0,
-  ) {
-    return _localtime(
-      arg0,
-    );
-  }
-
-  late final _localtimePtr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>)>>(
-      'localtime');
-  late final _localtime =
-      _localtimePtr.asFunction<ffi.Pointer<tm> Function(ffi.Pointer<time_t>)>();
-
-  int mktime(
-    ffi.Pointer<tm> arg0,
-  ) {
-    return _mktime(
-      arg0,
-    );
-  }
-
-  late final _mktimePtr =
-      _lookup<ffi.NativeFunction<time_t Function(ffi.Pointer<tm>)>>('mktime');
-  late final _mktime = _mktimePtr.asFunction<int Function(ffi.Pointer<tm>)>();
-
-  int strftime(
-    ffi.Pointer<ffi.Char> arg0,
-    int arg1,
-    ffi.Pointer<ffi.Char> arg2,
-    ffi.Pointer<tm> arg3,
-  ) {
-    return _strftime(
-      arg0,
-      arg1,
-      arg2,
-      arg3,
-    );
-  }
-
-  late final _strftimePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Size,
-              ffi.Pointer<ffi.Char>, ffi.Pointer<tm>)>>('strftime');
-  late final _strftime = _strftimePtr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<tm>)>();
-
-  ffi.Pointer<ffi.Char> strptime(
-    ffi.Pointer<ffi.Char> arg0,
-    ffi.Pointer<ffi.Char> arg1,
-    ffi.Pointer<tm> arg2,
-  ) {
-    return _strptime(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _strptimePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>, ffi.Pointer<tm>)>>('strptime');
-  late final _strptime = _strptimePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, ffi.Pointer<tm>)>();
-
-  int time(
-    ffi.Pointer<time_t> arg0,
-  ) {
-    return _time(
-      arg0,
-    );
-  }
-
-  late final _timePtr =
-      _lookup<ffi.NativeFunction<time_t Function(ffi.Pointer<time_t>)>>('time');
-  late final _time = _timePtr.asFunction<int Function(ffi.Pointer<time_t>)>();
-
-  void tzset() {
-    return _tzset();
-  }
-
-  late final _tzsetPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('tzset');
-  late final _tzset = _tzsetPtr.asFunction<void Function()>();
-
-  ffi.Pointer<ffi.Char> asctime_r(
-    ffi.Pointer<tm> arg0,
-    ffi.Pointer<ffi.Char> arg1,
-  ) {
-    return _asctime_r(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _asctime_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<tm>, ffi.Pointer<ffi.Char>)>>('asctime_r');
-  late final _asctime_r = _asctime_rPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(ffi.Pointer<tm>, ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> ctime_r(
-    ffi.Pointer<time_t> arg0,
-    ffi.Pointer<ffi.Char> arg1,
-  ) {
-    return _ctime_r(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _ctime_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<time_t>, ffi.Pointer<ffi.Char>)>>('ctime_r');
-  late final _ctime_r = _ctime_rPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<time_t>, ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<tm> gmtime_r(
-    ffi.Pointer<time_t> arg0,
-    ffi.Pointer<tm> arg1,
-  ) {
-    return _gmtime_r(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _gmtime_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<tm> Function(
-              ffi.Pointer<time_t>, ffi.Pointer<tm>)>>('gmtime_r');
-  late final _gmtime_r = _gmtime_rPtr.asFunction<
-      ffi.Pointer<tm> Function(ffi.Pointer<time_t>, ffi.Pointer<tm>)>();
-
-  ffi.Pointer<tm> localtime_r(
-    ffi.Pointer<time_t> arg0,
-    ffi.Pointer<tm> arg1,
-  ) {
-    return _localtime_r(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _localtime_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<tm> Function(
-              ffi.Pointer<time_t>, ffi.Pointer<tm>)>>('localtime_r');
-  late final _localtime_r = _localtime_rPtr.asFunction<
-      ffi.Pointer<tm> Function(ffi.Pointer<time_t>, ffi.Pointer<tm>)>();
-
-  int posix2time(
-    int arg0,
-  ) {
-    return _posix2time(
-      arg0,
-    );
-  }
-
-  late final _posix2timePtr =
-      _lookup<ffi.NativeFunction<time_t Function(time_t)>>('posix2time');
-  late final _posix2time = _posix2timePtr.asFunction<int Function(int)>();
-
-  void tzsetwall() {
-    return _tzsetwall();
-  }
-
-  late final _tzsetwallPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('tzsetwall');
-  late final _tzsetwall = _tzsetwallPtr.asFunction<void Function()>();
-
-  int time2posix(
-    int arg0,
-  ) {
-    return _time2posix(
-      arg0,
-    );
-  }
-
-  late final _time2posixPtr =
-      _lookup<ffi.NativeFunction<time_t Function(time_t)>>('time2posix');
-  late final _time2posix = _time2posixPtr.asFunction<int Function(int)>();
-
-  int timelocal(
-    ffi.Pointer<tm> arg0,
-  ) {
-    return _timelocal(
-      arg0,
-    );
-  }
-
-  late final _timelocalPtr =
-      _lookup<ffi.NativeFunction<time_t Function(ffi.Pointer<tm>)>>(
-          'timelocal');
-  late final _timelocal =
-      _timelocalPtr.asFunction<int Function(ffi.Pointer<tm>)>();
-
-  int timegm(
-    ffi.Pointer<tm> arg0,
-  ) {
-    return _timegm(
-      arg0,
-    );
-  }
-
-  late final _timegmPtr =
-      _lookup<ffi.NativeFunction<time_t Function(ffi.Pointer<tm>)>>('timegm');
-  late final _timegm = _timegmPtr.asFunction<int Function(ffi.Pointer<tm>)>();
-
-  int nanosleep(
-    ffi.Pointer<timespec> __rqtp,
-    ffi.Pointer<timespec> __rmtp,
-  ) {
-    return _nanosleep(
-      __rqtp,
-      __rmtp,
-    );
-  }
-
-  late final _nanosleepPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<timespec>, ffi.Pointer<timespec>)>>('nanosleep');
-  late final _nanosleep = _nanosleepPtr
-      .asFunction<int Function(ffi.Pointer<timespec>, ffi.Pointer<timespec>)>();
-
-  int clock_getres(
-    int __clock_id,
-    ffi.Pointer<timespec> __res,
-  ) {
-    return _clock_getres(
-      __clock_id,
-      __res,
-    );
-  }
-
-  late final _clock_getresPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Int32, ffi.Pointer<timespec>)>>('clock_getres');
-  late final _clock_getres =
-      _clock_getresPtr.asFunction<int Function(int, ffi.Pointer<timespec>)>();
-
-  int clock_gettime(
-    int __clock_id,
-    ffi.Pointer<timespec> __tp,
-  ) {
-    return _clock_gettime(
-      __clock_id,
-      __tp,
-    );
-  }
-
-  late final _clock_gettimePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Int32, ffi.Pointer<timespec>)>>('clock_gettime');
-  late final _clock_gettime =
-      _clock_gettimePtr.asFunction<int Function(int, ffi.Pointer<timespec>)>();
-
-  int clock_gettime_nsec_np(
-    int __clock_id,
-  ) {
-    return _clock_gettime_nsec_np(
-      __clock_id,
-    );
-  }
-
-  late final _clock_gettime_nsec_npPtr =
-      _lookup<ffi.NativeFunction<__uint64_t Function(ffi.Int32)>>(
-          'clock_gettime_nsec_np');
-  late final _clock_gettime_nsec_np =
-      _clock_gettime_nsec_npPtr.asFunction<int Function(int)>();
-
-  int clock_settime(
-    int __clock_id,
-    ffi.Pointer<timespec> __tp,
-  ) {
-    return _clock_settime(
-      __clock_id,
-      __tp,
-    );
-  }
-
-  late final _clock_settimePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Int32, ffi.Pointer<timespec>)>>('clock_settime');
-  late final _clock_settime =
-      _clock_settimePtr.asFunction<int Function(int, ffi.Pointer<timespec>)>();
-
-  int timespec_get(
-    ffi.Pointer<timespec> ts,
-    int base,
-  ) {
-    return _timespec_get(
-      ts,
-      base,
-    );
-  }
-
-  late final _timespec_getPtr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<timespec>, ffi.Int)>>(
-      'timespec_get');
-  late final _timespec_get =
-      _timespec_getPtr.asFunction<int Function(ffi.Pointer<timespec>, int)>();
-
-  ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>> signal(
-    int arg0,
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>> arg1,
-  ) {
-    return _signal(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _signalPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>> Function(
-              ffi.Int,
-              ffi.Pointer<
-                  ffi.NativeFunction<ffi.Void Function(ffi.Int)>>)>>('signal');
-  late final _signal = _signalPtr.asFunction<
-      ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>> Function(
-          int, ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>)>();
-
-  int getpriority(
-    int arg0,
-    int arg1,
-  ) {
-    return _getpriority(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _getpriorityPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, id_t)>>(
-          'getpriority');
-  late final _getpriority =
-      _getpriorityPtr.asFunction<int Function(int, int)>();
-
-  int getiopolicy_np(
-    int arg0,
-    int arg1,
-  ) {
-    return _getiopolicy_np(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _getiopolicy_npPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>(
-          'getiopolicy_np');
-  late final _getiopolicy_np =
-      _getiopolicy_npPtr.asFunction<int Function(int, int)>();
-
-  int getrlimit(
-    int arg0,
-    ffi.Pointer<rlimit> arg1,
-  ) {
-    return _getrlimit(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _getrlimitPtr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<rlimit>)>>(
-      'getrlimit');
-  late final _getrlimit =
-      _getrlimitPtr.asFunction<int Function(int, ffi.Pointer<rlimit>)>();
-
-  int getrusage(
-    int arg0,
-    ffi.Pointer<rusage> arg1,
-  ) {
-    return _getrusage(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _getrusagePtr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<rusage>)>>(
-      'getrusage');
-  late final _getrusage =
-      _getrusagePtr.asFunction<int Function(int, ffi.Pointer<rusage>)>();
-
-  int setpriority(
-    int arg0,
-    int arg1,
-    int arg2,
-  ) {
-    return _setpriority(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _setpriorityPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, id_t, ffi.Int)>>(
-          'setpriority');
-  late final _setpriority =
-      _setpriorityPtr.asFunction<int Function(int, int, int)>();
-
-  int setiopolicy_np(
-    int arg0,
-    int arg1,
-    int arg2,
-  ) {
-    return _setiopolicy_np(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _setiopolicy_npPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int, ffi.Int)>>(
-          'setiopolicy_np');
-  late final _setiopolicy_np =
-      _setiopolicy_npPtr.asFunction<int Function(int, int, int)>();
-
-  int setrlimit(
-    int arg0,
-    ffi.Pointer<rlimit> arg1,
-  ) {
-    return _setrlimit(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _setrlimitPtr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<rlimit>)>>(
-      'setrlimit');
-  late final _setrlimit =
-      _setrlimitPtr.asFunction<int Function(int, ffi.Pointer<rlimit>)>();
-
-  int wait1(
-    ffi.Pointer<ffi.Int> arg0,
-  ) {
-    return _wait1(
-      arg0,
-    );
-  }
-
-  late final _wait1Ptr =
-      _lookup<ffi.NativeFunction<pid_t Function(ffi.Pointer<ffi.Int>)>>('wait');
-  late final _wait1 =
-      _wait1Ptr.asFunction<int Function(ffi.Pointer<ffi.Int>)>();
-
-  int waitpid(
-    int arg0,
-    ffi.Pointer<ffi.Int> arg1,
-    int arg2,
-  ) {
-    return _waitpid(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _waitpidPtr = _lookup<
-      ffi.NativeFunction<
-          pid_t Function(pid_t, ffi.Pointer<ffi.Int>, ffi.Int)>>('waitpid');
-  late final _waitpid =
-      _waitpidPtr.asFunction<int Function(int, ffi.Pointer<ffi.Int>, int)>();
-
-  int waitid(
-    int arg0,
-    int arg1,
-    ffi.Pointer<siginfo_t> arg2,
-    int arg3,
-  ) {
-    return _waitid(
-      arg0,
-      arg1,
-      arg2,
-      arg3,
-    );
-  }
-
-  late final _waitidPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int32, id_t, ffi.Pointer<siginfo_t>, ffi.Int)>>('waitid');
-  late final _waitid = _waitidPtr
-      .asFunction<int Function(int, int, ffi.Pointer<siginfo_t>, int)>();
-
-  int wait3(
-    ffi.Pointer<ffi.Int> arg0,
-    int arg1,
-    ffi.Pointer<rusage> arg2,
-  ) {
-    return _wait3(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _wait3Ptr = _lookup<
-      ffi.NativeFunction<
-          pid_t Function(
-              ffi.Pointer<ffi.Int>, ffi.Int, ffi.Pointer<rusage>)>>('wait3');
-  late final _wait3 = _wait3Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, int, ffi.Pointer<rusage>)>();
-
-  int wait4(
-    int arg0,
-    ffi.Pointer<ffi.Int> arg1,
-    int arg2,
-    ffi.Pointer<rusage> arg3,
-  ) {
-    return _wait4(
-      arg0,
-      arg1,
-      arg2,
-      arg3,
-    );
-  }
-
-  late final _wait4Ptr = _lookup<
-      ffi.NativeFunction<
-          pid_t Function(pid_t, ffi.Pointer<ffi.Int>, ffi.Int,
-              ffi.Pointer<rusage>)>>('wait4');
-  late final _wait4 = _wait4Ptr.asFunction<
-      int Function(int, ffi.Pointer<ffi.Int>, int, ffi.Pointer<rusage>)>();
-
-  ffi.Pointer<ffi.Void> alloca(
-    int arg0,
-  ) {
-    return _alloca(
-      arg0,
-    );
-  }
-
-  late final _allocaPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'alloca');
-  late final _alloca =
-      _allocaPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  late final ffi.Pointer<ffi.Int> ___mb_cur_max =
-      _lookup<ffi.Int>('__mb_cur_max');
-
-  int get __mb_cur_max => ___mb_cur_max.value;
-
-  set __mb_cur_max(int value) => ___mb_cur_max.value = value;
-
-  ffi.Pointer<ffi.Void> malloc(
-    int __size,
-  ) {
-    return _malloc(
-      __size,
-    );
-  }
-
-  late final _mallocPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'malloc');
-  late final _malloc =
-      _mallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> calloc(
-    int __count,
-    int __size,
-  ) {
-    return _calloc(
-      __count,
-      __size,
-    );
-  }
-
-  late final _callocPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
-  late final _calloc =
-      _callocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  void free(
-    ffi.Pointer<ffi.Void> arg0,
-  ) {
-    return _free(
-      arg0,
-    );
-  }
-
-  late final _freePtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'free');
-  late final _free =
-      _freePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
-
-  ffi.Pointer<ffi.Void> realloc(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __size,
-  ) {
-    return _realloc(
-      __ptr,
-      __size,
-    );
-  }
-
-  late final _reallocPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
-  late final _realloc = _reallocPtr
-      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  ffi.Pointer<ffi.Void> valloc(
-    int arg0,
-  ) {
-    return _valloc(
-      arg0,
-    );
-  }
-
-  late final _vallocPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'valloc');
-  late final _valloc =
-      _vallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> aligned_alloc(
-    int __alignment,
-    int __size,
-  ) {
-    return _aligned_alloc(
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _aligned_allocPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
-  late final _aligned_alloc =
-      _aligned_allocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  int posix_memalign(
-    ffi.Pointer<ffi.Pointer<ffi.Void>> __memptr,
-    int __alignment,
-    int __size,
-  ) {
-    return _posix_memalign(
-      __memptr,
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _posix_memalignPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
-              ffi.Size)>>('posix_memalign');
-  late final _posix_memalign = _posix_memalignPtr
-      .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
-
-  void abort() {
-    return _abort();
-  }
-
-  late final _abortPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('abort');
-  late final _abort = _abortPtr.asFunction<void Function()>();
-
-  int abs(
-    int arg0,
-  ) {
-    return _abs(
-      arg0,
-    );
-  }
-
-  late final _absPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('abs');
-  late final _abs = _absPtr.asFunction<int Function(int)>();
-
-  int atexit(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> arg0,
-  ) {
-    return _atexit(
-      arg0,
-    );
-  }
-
-  late final _atexitPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>('atexit');
-  late final _atexit = _atexitPtr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  double atof(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _atof(
-      arg0,
-    );
-  }
-
-  late final _atofPtr =
-      _lookup<ffi.NativeFunction<ffi.Double Function(ffi.Pointer<ffi.Char>)>>(
-          'atof');
-  late final _atof =
-      _atofPtr.asFunction<double Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoi(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _atoi(
-      arg0,
-    );
-  }
-
-  late final _atoiPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'atoi');
-  late final _atoi = _atoiPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atol(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _atol(
-      arg0,
-    );
-  }
-
-  late final _atolPtr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'atol');
-  late final _atol = _atolPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoll(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _atoll(
-      arg0,
-    );
-  }
-
-  late final _atollPtr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>)>>(
-          'atoll');
-  late final _atoll =
-      _atollPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Void> bsearch(
-    ffi.Pointer<ffi.Void> __key,
-    ffi.Pointer<ffi.Void> __base,
-    int __nel,
-    int __width,
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
-        __compar,
-  ) {
-    return _bsearch(
-      __key,
-      __base,
-      __nel,
-      __width,
-      __compar,
-    );
-  }
-
-  late final _bsearchPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>,
-              ffi.Pointer<ffi.Void>,
-              ffi.Size,
-              ffi.Size,
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Int Function(ffi.Pointer<ffi.Void>,
-                          ffi.Pointer<ffi.Void>)>>)>>('bsearch');
-  late final _bsearch = _bsearchPtr.asFunction<
-      ffi.Pointer<ffi.Void> Function(
-          ffi.Pointer<ffi.Void>,
-          ffi.Pointer<ffi.Void>,
-          int,
-          int,
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Int Function(
-                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
-
-  div_t div(
-    int arg0,
-    int arg1,
-  ) {
-    return _div(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _divPtr =
-      _lookup<ffi.NativeFunction<div_t Function(ffi.Int, ffi.Int)>>('div');
-  late final _div = _divPtr.asFunction<div_t Function(int, int)>();
-
-  void exit(
-    int arg0,
-  ) {
-    return _exit(
-      arg0,
-    );
-  }
-
-  late final _exitPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('exit');
-  late final _exit = _exitPtr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> getenv(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _getenv(
-      arg0,
-    );
-  }
-
-  late final _getenvPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('getenv');
-  late final _getenv = _getenvPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int labs(
-    int arg0,
-  ) {
-    return _labs(
-      arg0,
-    );
-  }
-
-  late final _labsPtr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Long)>>('labs');
-  late final _labs = _labsPtr.asFunction<int Function(int)>();
-
-  ldiv_t ldiv(
-    int arg0,
-    int arg1,
-  ) {
-    return _ldiv(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _ldivPtr =
-      _lookup<ffi.NativeFunction<ldiv_t Function(ffi.Long, ffi.Long)>>('ldiv');
-  late final _ldiv = _ldivPtr.asFunction<ldiv_t Function(int, int)>();
-
-  int llabs(
-    int arg0,
-  ) {
-    return _llabs(
-      arg0,
-    );
-  }
-
-  late final _llabsPtr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.LongLong)>>('llabs');
-  late final _llabs = _llabsPtr.asFunction<int Function(int)>();
-
-  lldiv_t lldiv(
-    int arg0,
-    int arg1,
-  ) {
-    return _lldiv(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _lldivPtr =
-      _lookup<ffi.NativeFunction<lldiv_t Function(ffi.LongLong, ffi.LongLong)>>(
-          'lldiv');
-  late final _lldiv = _lldivPtr.asFunction<lldiv_t Function(int, int)>();
-
-  int mblen(
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mblen(
-      __s,
-      __n,
-    );
-  }
-
-  late final _mblenPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
-  late final _mblen =
-      _mblenPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbstowcs(
-    ffi.Pointer<ffi.WChar> arg0,
-    ffi.Pointer<ffi.Char> arg1,
-    int arg2,
-  ) {
-    return _mbstowcs(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _mbstowcsPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbstowcs');
-  late final _mbstowcs = _mbstowcsPtr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int mbtowc(
-    ffi.Pointer<ffi.WChar> arg0,
-    ffi.Pointer<ffi.Char> arg1,
-    int arg2,
-  ) {
-    return _mbtowc(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _mbtowcPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbtowc');
-  late final _mbtowc = _mbtowcPtr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  void qsort(
-    ffi.Pointer<ffi.Void> __base,
-    int __nel,
-    int __width,
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
-        __compar,
-  ) {
-    return _qsort(
-      __base,
-      __nel,
-      __width,
-      __compar,
-    );
-  }
-
-  late final _qsortPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Void>,
-              ffi.Size,
-              ffi.Size,
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Int Function(ffi.Pointer<ffi.Void>,
-                          ffi.Pointer<ffi.Void>)>>)>>('qsort');
-  late final _qsort = _qsortPtr.asFunction<
-      void Function(
-          ffi.Pointer<ffi.Void>,
-          int,
-          int,
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Int Function(
-                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
-
-  int rand() {
-    return _rand();
-  }
-
-  late final _randPtr = _lookup<ffi.NativeFunction<ffi.Int Function()>>('rand');
-  late final _rand = _randPtr.asFunction<int Function()>();
-
-  void srand(
-    int arg0,
-  ) {
-    return _srand(
-      arg0,
-    );
-  }
-
-  late final _srandPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>('srand');
-  late final _srand = _srandPtr.asFunction<void Function(int)>();
-
-  double strtod(
-    ffi.Pointer<ffi.Char> arg0,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> arg1,
-  ) {
-    return _strtod(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _strtodPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtod');
-  late final _strtod = _strtodPtr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  double strtof(
-    ffi.Pointer<ffi.Char> arg0,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> arg1,
-  ) {
-    return _strtof(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _strtofPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Float Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtof');
-  late final _strtof = _strtofPtr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int strtol(
-    ffi.Pointer<ffi.Char> __str,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtol(
-      __str,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtolPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtol');
-  late final _strtol = _strtolPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoll(
-    ffi.Pointer<ffi.Char> __str,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoll(
-      __str,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtollPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoll');
-  late final _strtoll = _strtollPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoul(
-    ffi.Pointer<ffi.Char> __str,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoul(
-      __str,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoulPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoul');
-  late final _strtoul = _strtoulPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoull(
-    ffi.Pointer<ffi.Char> __str,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoull(
-      __str,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoullPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoull');
-  late final _strtoull = _strtoullPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int system(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _system(
-      arg0,
-    );
-  }
-
-  late final _systemPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'system');
-  late final _system =
-      _systemPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int wcstombs(
-    ffi.Pointer<ffi.Char> arg0,
-    ffi.Pointer<ffi.WChar> arg1,
-    int arg2,
-  ) {
-    return _wcstombs(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _wcstombsPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
-              ffi.Size)>>('wcstombs');
-  late final _wcstombs = _wcstombsPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
-
-  int wctomb(
-    ffi.Pointer<ffi.Char> arg0,
-    int arg1,
-  ) {
-    return _wctomb(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _wctombPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
-  late final _wctomb =
-      _wctombPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  void _Exit(
-    int arg0,
-  ) {
-    return __Exit(
-      arg0,
-    );
-  }
-
-  late final __ExitPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('_Exit');
-  late final __Exit = __ExitPtr.asFunction<void Function(int)>();
-
-  int a64l(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _a64l(
-      arg0,
-    );
-  }
-
-  late final _a64lPtr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'a64l');
-  late final _a64l = _a64lPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  double drand48() {
-    return _drand48();
-  }
-
-  late final _drand48Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function()>>('drand48');
-  late final _drand48 = _drand48Ptr.asFunction<double Function()>();
-
-  ffi.Pointer<ffi.Char> ecvt(
-    double arg0,
-    int arg1,
-    ffi.Pointer<ffi.Int> arg2,
-    ffi.Pointer<ffi.Int> arg3,
-  ) {
-    return _ecvt(
-      arg0,
-      arg1,
-      arg2,
-      arg3,
-    );
-  }
-
-  late final _ecvtPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('ecvt');
-  late final _ecvt = _ecvtPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  double erand48(
-    ffi.Pointer<ffi.UnsignedShort> arg0,
-  ) {
-    return _erand48(
-      arg0,
-    );
-  }
-
-  late final _erand48Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.UnsignedShort>)>>('erand48');
-  late final _erand48 =
-      _erand48Ptr.asFunction<double Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  ffi.Pointer<ffi.Char> fcvt(
-    double arg0,
-    int arg1,
-    ffi.Pointer<ffi.Int> arg2,
-    ffi.Pointer<ffi.Int> arg3,
-  ) {
-    return _fcvt(
-      arg0,
-      arg1,
-      arg2,
-      arg3,
-    );
-  }
-
-  late final _fcvtPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('fcvt');
-  late final _fcvt = _fcvtPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> gcvt(
-    double arg0,
-    int arg1,
-    ffi.Pointer<ffi.Char> arg2,
-  ) {
-    return _gcvt(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _gcvtPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Double, ffi.Int, ffi.Pointer<ffi.Char>)>>('gcvt');
-  late final _gcvt = _gcvtPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(double, int, ffi.Pointer<ffi.Char>)>();
-
-  int getsubopt(
-    ffi.Pointer<ffi.Pointer<ffi.Char>> arg0,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> arg1,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> arg2,
-  ) {
-    return _getsubopt(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _getsuboptPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('getsubopt');
-  late final _getsubopt = _getsuboptPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int grantpt(
-    int arg0,
-  ) {
-    return _grantpt(
-      arg0,
-    );
-  }
-
-  late final _grantptPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('grantpt');
-  late final _grantpt = _grantptPtr.asFunction<int Function(int)>();
-
-  ffi.Pointer<ffi.Char> initstate(
-    int arg0,
-    ffi.Pointer<ffi.Char> arg1,
-    int arg2,
-  ) {
-    return _initstate(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _initstatePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
-  late final _initstate = _initstatePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
-
-  int jrand48(
-    ffi.Pointer<ffi.UnsignedShort> arg0,
-  ) {
-    return _jrand48(
-      arg0,
-    );
-  }
-
-  late final _jrand48Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('jrand48');
-  late final _jrand48 =
-      _jrand48Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  ffi.Pointer<ffi.Char> l64a(
-    int arg0,
-  ) {
-    return _l64a(
-      arg0,
-    );
-  }
-
-  late final _l64aPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Long)>>(
-          'l64a');
-  late final _l64a = _l64aPtr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
-
-  void lcong48(
-    ffi.Pointer<ffi.UnsignedShort> arg0,
-  ) {
-    return _lcong48(
-      arg0,
-    );
-  }
-
-  late final _lcong48Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.UnsignedShort>)>>('lcong48');
-  late final _lcong48 =
-      _lcong48Ptr.asFunction<void Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int lrand48() {
-    return _lrand48();
-  }
-
-  late final _lrand48Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('lrand48');
-  late final _lrand48 = _lrand48Ptr.asFunction<int Function()>();
-
-  ffi.Pointer<ffi.Char> mktemp(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _mktemp(
-      arg0,
-    );
-  }
-
-  late final _mktempPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mktemp');
-  late final _mktemp = _mktempPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemp(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _mkstemp(
-      arg0,
-    );
-  }
-
-  late final _mkstempPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'mkstemp');
-  late final _mkstemp =
-      _mkstempPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int mrand48() {
-    return _mrand48();
-  }
-
-  late final _mrand48Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('mrand48');
-  late final _mrand48 = _mrand48Ptr.asFunction<int Function()>();
-
-  int nrand48(
-    ffi.Pointer<ffi.UnsignedShort> arg0,
-  ) {
-    return _nrand48(
-      arg0,
-    );
-  }
-
-  late final _nrand48Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('nrand48');
-  late final _nrand48 =
-      _nrand48Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int posix_openpt(
-    int arg0,
-  ) {
-    return _posix_openpt(
-      arg0,
-    );
-  }
-
-  late final _posix_openptPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('posix_openpt');
-  late final _posix_openpt = _posix_openptPtr.asFunction<int Function(int)>();
-
-  ffi.Pointer<ffi.Char> ptsname(
-    int arg0,
-  ) {
-    return _ptsname(
-      arg0,
-    );
-  }
-
-  late final _ptsnamePtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Int)>>(
-          'ptsname');
-  late final _ptsname =
-      _ptsnamePtr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
-
-  int ptsname_r(
-    int fildes,
-    ffi.Pointer<ffi.Char> buffer,
-    int buflen,
-  ) {
-    return _ptsname_r(
-      fildes,
-      buffer,
-      buflen,
-    );
-  }
-
-  late final _ptsname_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int, ffi.Pointer<ffi.Char>, ffi.Size)>>('ptsname_r');
-  late final _ptsname_r =
-      _ptsname_rPtr.asFunction<int Function(int, ffi.Pointer<ffi.Char>, int)>();
-
-  int putenv(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _putenv(
-      arg0,
-    );
-  }
-
-  late final _putenvPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'putenv');
-  late final _putenv =
-      _putenvPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int random() {
-    return _random();
-  }
-
-  late final _randomPtr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('random');
-  late final _random = _randomPtr.asFunction<int Function()>();
-
-  int rand_r(
-    ffi.Pointer<ffi.UnsignedInt> arg0,
-  ) {
-    return _rand_r(
-      arg0,
-    );
-  }
-
-  late final _rand_rPtr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.UnsignedInt>)>>(
-      'rand_r');
-  late final _rand_r =
-      _rand_rPtr.asFunction<int Function(ffi.Pointer<ffi.UnsignedInt>)>();
-
-  ffi.Pointer<ffi.Char> realpath(
-    ffi.Pointer<ffi.Char> arg0,
-    ffi.Pointer<ffi.Char> arg1,
-  ) {
-    return _realpath(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _realpathPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('realpath');
-  late final _realpath = _realpathPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.UnsignedShort> seed48(
-    ffi.Pointer<ffi.UnsignedShort> arg0,
-  ) {
-    return _seed48(
-      arg0,
-    );
-  }
-
-  late final _seed48Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.UnsignedShort> Function(
-              ffi.Pointer<ffi.UnsignedShort>)>>('seed48');
-  late final _seed48 = _seed48Ptr.asFunction<
-      ffi.Pointer<ffi.UnsignedShort> Function(
-          ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int setenv(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __value,
-    int __overwrite,
-  ) {
-    return _setenv(
-      __name,
-      __value,
-      __overwrite,
-    );
-  }
-
-  late final _setenvPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('setenv');
-  late final _setenv = _setenvPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  void setkey(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _setkey(
-      arg0,
-    );
-  }
-
-  late final _setkeyPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
-          'setkey');
-  late final _setkey =
-      _setkeyPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> setstate(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _setstate(
-      arg0,
-    );
-  }
-
-  late final _setstatePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('setstate');
-  late final _setstate = _setstatePtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  void srand48(
-    int arg0,
-  ) {
-    return _srand48(
-      arg0,
-    );
-  }
-
-  late final _srand48Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Long)>>('srand48');
-  late final _srand48 = _srand48Ptr.asFunction<void Function(int)>();
-
-  void srandom(
-    int arg0,
-  ) {
-    return _srandom(
-      arg0,
-    );
-  }
-
-  late final _srandomPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>(
-          'srandom');
-  late final _srandom = _srandomPtr.asFunction<void Function(int)>();
-
-  int unlockpt(
-    int arg0,
-  ) {
-    return _unlockpt(
-      arg0,
-    );
-  }
-
-  late final _unlockptPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('unlockpt');
-  late final _unlockpt = _unlockptPtr.asFunction<int Function(int)>();
-
-  int unsetenv(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _unsetenv(
-      arg0,
-    );
-  }
-
-  late final _unsetenvPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'unsetenv');
-  late final _unsetenv =
-      _unsetenvPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int arc4random() {
-    return _arc4random();
-  }
-
-  late final _arc4randomPtr =
-      _lookup<ffi.NativeFunction<ffi.Uint32 Function()>>('arc4random');
-  late final _arc4random = _arc4randomPtr.asFunction<int Function()>();
-
-  void arc4random_addrandom(
-    ffi.Pointer<ffi.UnsignedChar> arg0,
-    int arg1,
-  ) {
-    return _arc4random_addrandom(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _arc4random_addrandomPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.UnsignedChar>, ffi.Int)>>('arc4random_addrandom');
-  late final _arc4random_addrandom = _arc4random_addrandomPtr
-      .asFunction<void Function(ffi.Pointer<ffi.UnsignedChar>, int)>();
-
-  void arc4random_buf(
-    ffi.Pointer<ffi.Void> __buf,
-    int __nbytes,
-  ) {
-    return _arc4random_buf(
-      __buf,
-      __nbytes,
-    );
-  }
-
-  late final _arc4random_bufPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('arc4random_buf');
-  late final _arc4random_buf = _arc4random_bufPtr
-      .asFunction<void Function(ffi.Pointer<ffi.Void>, int)>();
-
-  void arc4random_stir() {
-    return _arc4random_stir();
-  }
-
-  late final _arc4random_stirPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('arc4random_stir');
-  late final _arc4random_stir =
-      _arc4random_stirPtr.asFunction<void Function()>();
-
-  int arc4random_uniform(
-    int __upper_bound,
-  ) {
-    return _arc4random_uniform(
-      __upper_bound,
-    );
-  }
-
-  late final _arc4random_uniformPtr =
-      _lookup<ffi.NativeFunction<ffi.Uint32 Function(ffi.Uint32)>>(
-          'arc4random_uniform');
-  late final _arc4random_uniform =
-      _arc4random_uniformPtr.asFunction<int Function(int)>();
-
-  ffi.Pointer<ffi.Char> cgetcap(
-    ffi.Pointer<ffi.Char> arg0,
-    ffi.Pointer<ffi.Char> arg1,
-    int arg2,
-  ) {
-    return _cgetcap(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _cgetcapPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>, ffi.Int)>>('cgetcap');
-  late final _cgetcap = _cgetcapPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  int cgetclose() {
-    return _cgetclose();
-  }
-
-  late final _cgetclosePtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('cgetclose');
-  late final _cgetclose = _cgetclosePtr.asFunction<int Function()>();
-
-  int cgetent(
-    ffi.Pointer<ffi.Pointer<ffi.Char>> arg0,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> arg1,
-    ffi.Pointer<ffi.Char> arg2,
-  ) {
-    return _cgetent(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _cgetentPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Char>)>>('cgetent');
-  late final _cgetent = _cgetentPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Char>)>();
-
-  int cgetfirst(
-    ffi.Pointer<ffi.Pointer<ffi.Char>> arg0,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> arg1,
-  ) {
-    return _cgetfirst(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _cgetfirstPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetfirst');
-  late final _cgetfirst = _cgetfirstPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int cgetmatch(
-    ffi.Pointer<ffi.Char> arg0,
-    ffi.Pointer<ffi.Char> arg1,
-  ) {
-    return _cgetmatch(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _cgetmatchPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('cgetmatch');
-  late final _cgetmatch = _cgetmatchPtr
-      .asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  int cgetnext(
-    ffi.Pointer<ffi.Pointer<ffi.Char>> arg0,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> arg1,
-  ) {
-    return _cgetnext(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _cgetnextPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetnext');
-  late final _cgetnext = _cgetnextPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int cgetnum(
-    ffi.Pointer<ffi.Char> arg0,
-    ffi.Pointer<ffi.Char> arg1,
-    ffi.Pointer<ffi.Long> arg2,
-  ) {
-    return _cgetnum(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _cgetnumPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Long>)>>('cgetnum');
-  late final _cgetnum = _cgetnumPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int cgetset(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _cgetset(
-      arg0,
-    );
-  }
-
-  late final _cgetsetPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'cgetset');
-  late final _cgetset =
-      _cgetsetPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int cgetstr(
-    ffi.Pointer<ffi.Char> arg0,
-    ffi.Pointer<ffi.Char> arg1,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> arg2,
-  ) {
-    return _cgetstr(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _cgetstrPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetstr');
-  late final _cgetstr = _cgetstrPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int cgetustr(
-    ffi.Pointer<ffi.Char> arg0,
-    ffi.Pointer<ffi.Char> arg1,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> arg2,
-  ) {
-    return _cgetustr(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final _cgetustrPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetustr');
-  late final _cgetustr = _cgetustrPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int daemon(
-    int arg0,
-    int arg1,
-  ) {
-    return _daemon(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _daemonPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>('daemon');
-  late final _daemon = _daemonPtr.asFunction<int Function(int, int)>();
-
-  ffi.Pointer<ffi.Char> devname(
-    int arg0,
-    int arg1,
-  ) {
-    return _devname(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _devnamePtr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(dev_t, mode_t)>>(
-      'devname');
-  late final _devname =
-      _devnamePtr.asFunction<ffi.Pointer<ffi.Char> Function(int, int)>();
-
-  ffi.Pointer<ffi.Char> devname_r(
-    int arg0,
-    int arg1,
-    ffi.Pointer<ffi.Char> buf,
-    int len,
-  ) {
-    return _devname_r(
-      arg0,
-      arg1,
-      buf,
-      len,
-    );
-  }
-
-  late final _devname_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              dev_t, mode_t, ffi.Pointer<ffi.Char>, ffi.Int)>>('devname_r');
-  late final _devname_r = _devname_rPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(int, int, ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> getbsize(
-    ffi.Pointer<ffi.Int> arg0,
-    ffi.Pointer<ffi.Long> arg1,
-  ) {
-    return _getbsize(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _getbsizePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Long>)>>('getbsize');
-  late final _getbsize = _getbsizePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Long>)>();
-
-  int getloadavg(
-    ffi.Pointer<ffi.Double> arg0,
-    int arg1,
-  ) {
-    return _getloadavg(
-      arg0,
-      arg1,
-    );
-  }
-
-  late final _getloadavgPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Double>, ffi.Int)>>('getloadavg');
-  late final _getloadavg =
-      _getloadavgPtr.asFunction<int Function(ffi.Pointer<ffi.Double>, int)>();
-
-  ffi.Pointer<ffi.Char> getprogname() {
-    return _getprogname();
-  }
-
-  late final _getprognamePtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
-          'getprogname');
-  late final _getprogname =
-      _getprognamePtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
-
-  void setprogname(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _setprogname(
-      arg0,
-    );
-  }
-
-  late final _setprognamePtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
-          'setprogname');
-  late final _setprogname =
-      _setprognamePtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
-
-  int heapsort(
-    ffi.Pointer<ffi.Void> __base,
-    int __nel,
-    int __width,
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
-        __compar,
-  ) {
-    return _heapsort(
-      __base,
-      __nel,
-      __width,
-      __compar,
-    );
-  }
-
-  late final _heapsortPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Void>,
-              ffi.Size,
-              ffi.Size,
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Int Function(ffi.Pointer<ffi.Void>,
-                          ffi.Pointer<ffi.Void>)>>)>>('heapsort');
-  late final _heapsort = _heapsortPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Void>,
-          int,
-          int,
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Int Function(
-                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
-
-  int mergesort(
-    ffi.Pointer<ffi.Void> __base,
-    int __nel,
-    int __width,
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
-        __compar,
-  ) {
-    return _mergesort(
-      __base,
-      __nel,
-      __width,
-      __compar,
-    );
-  }
-
-  late final _mergesortPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Void>,
-              ffi.Size,
-              ffi.Size,
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Int Function(ffi.Pointer<ffi.Void>,
-                          ffi.Pointer<ffi.Void>)>>)>>('mergesort');
-  late final _mergesort = _mergesortPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Void>,
-          int,
-          int,
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Int Function(
-                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
-
-  void psort(
-    ffi.Pointer<ffi.Void> __base,
-    int __nel,
-    int __width,
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
-        __compar,
-  ) {
-    return _psort(
-      __base,
-      __nel,
-      __width,
-      __compar,
-    );
-  }
-
-  late final _psortPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Void>,
-              ffi.Size,
-              ffi.Size,
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Int Function(ffi.Pointer<ffi.Void>,
-                          ffi.Pointer<ffi.Void>)>>)>>('psort');
-  late final _psort = _psortPtr.asFunction<
-      void Function(
-          ffi.Pointer<ffi.Void>,
-          int,
-          int,
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Int Function(
-                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
-
-  void psort_r(
-    ffi.Pointer<ffi.Void> __base,
-    int __nel,
-    int __width,
-    ffi.Pointer<ffi.Void> arg3,
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>,
-                    ffi.Pointer<ffi.Void>)>>
-        __compar,
-  ) {
-    return _psort_r(
-      __base,
-      __nel,
-      __width,
-      arg3,
-      __compar,
-    );
-  }
-
-  late final _psort_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Void>,
-              ffi.Size,
-              ffi.Size,
-              ffi.Pointer<ffi.Void>,
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Int Function(
-                          ffi.Pointer<ffi.Void>,
-                          ffi.Pointer<ffi.Void>,
-                          ffi.Pointer<ffi.Void>)>>)>>('psort_r');
-  late final _psort_r = _psort_rPtr.asFunction<
-      void Function(
-          ffi.Pointer<ffi.Void>,
-          int,
-          int,
-          ffi.Pointer<ffi.Void>,
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>,
-                      ffi.Pointer<ffi.Void>)>>)>();
-
-  void qsort_r(
-    ffi.Pointer<ffi.Void> __base,
-    int __nel,
-    int __width,
-    ffi.Pointer<ffi.Void> arg3,
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>,
-                    ffi.Pointer<ffi.Void>)>>
-        __compar,
-  ) {
-    return _qsort_r(
-      __base,
-      __nel,
-      __width,
-      arg3,
-      __compar,
-    );
-  }
-
-  late final _qsort_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Void>,
-              ffi.Size,
-              ffi.Size,
-              ffi.Pointer<ffi.Void>,
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Int Function(
-                          ffi.Pointer<ffi.Void>,
-                          ffi.Pointer<ffi.Void>,
-                          ffi.Pointer<ffi.Void>)>>)>>('qsort_r');
-  late final _qsort_r = _qsort_rPtr.asFunction<
-      void Function(
-          ffi.Pointer<ffi.Void>,
-          int,
-          int,
-          ffi.Pointer<ffi.Void>,
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>,
-                      ffi.Pointer<ffi.Void>)>>)>();
-
-  int radixsort(
-    ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>> __base,
-    int __nel,
-    ffi.Pointer<ffi.UnsignedChar> __table,
-    int __endbyte,
-  ) {
-    return _radixsort(
-      __base,
-      __nel,
-      __table,
-      __endbyte,
-    );
-  }
-
-  late final _radixsortPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, ffi.Int,
-              ffi.Pointer<ffi.UnsignedChar>, ffi.UnsignedInt)>>('radixsort');
-  late final _radixsort = _radixsortPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, int,
-          ffi.Pointer<ffi.UnsignedChar>, int)>();
-
-  int rpmatch(
-    ffi.Pointer<ffi.Char> arg0,
-  ) {
-    return _rpmatch(
-      arg0,
-    );
-  }
-
-  late final _rpmatchPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'rpmatch');
-  late final _rpmatch =
-      _rpmatchPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int sradixsort(
-    ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>> __base,
-    int __nel,
-    ffi.Pointer<ffi.UnsignedChar> __table,
-    int __endbyte,
-  ) {
-    return _sradixsort(
-      __base,
-      __nel,
-      __table,
-      __endbyte,
-    );
-  }
-
-  late final _sradixsortPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, ffi.Int,
-              ffi.Pointer<ffi.UnsignedChar>, ffi.UnsignedInt)>>('sradixsort');
-  late final _sradixsort = _sradixsortPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, int,
-          ffi.Pointer<ffi.UnsignedChar>, int)>();
-
-  void sranddev() {
-    return _sranddev();
-  }
-
-  late final _sranddevPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('sranddev');
-  late final _sranddev = _sranddevPtr.asFunction<void Function()>();
-
-  void srandomdev() {
-    return _srandomdev();
-  }
-
-  late final _srandomdevPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('srandomdev');
-  late final _srandomdev = _srandomdevPtr.asFunction<void Function()>();
-
-  ffi.Pointer<ffi.Void> reallocf(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __size,
-  ) {
-    return _reallocf(
-      __ptr,
-      __size,
-    );
-  }
-
-  late final _reallocfPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('reallocf');
-  late final _reallocf = _reallocfPtr
-      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  int strtonum(
-    ffi.Pointer<ffi.Char> __numstr,
-    int __minval,
-    int __maxval,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __errstrp,
-  ) {
-    return _strtonum(
-      __numstr,
-      __minval,
-      __maxval,
-      __errstrp,
-    );
-  }
-
-  late final _strtonumPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>, ffi.LongLong,
-              ffi.LongLong, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtonum');
-  late final _strtonum = _strtonumPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, int, int,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int strtoq(
-    ffi.Pointer<ffi.Char> __str,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoq(
-      __str,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoqPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoq');
-  late final _strtoq = _strtoqPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtouq(
-    ffi.Pointer<ffi.Char> __str,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtouq(
-      __str,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtouqPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtouq');
-  late final _strtouq = _strtouqPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  late final ffi.Pointer<ffi.Pointer<ffi.Char>> _suboptarg =
-      _lookup<ffi.Pointer<ffi.Char>>('suboptarg');
-
-  ffi.Pointer<ffi.Char> get suboptarg => _suboptarg.value;
-
-  set suboptarg(ffi.Pointer<ffi.Char> value) => _suboptarg.value = value;
-
-  int imaxabs(
-    int j,
-  ) {
-    return _imaxabs(
-      j,
-    );
-  }
-
-  late final _imaxabsPtr =
-      _lookup<ffi.NativeFunction<intmax_t Function(intmax_t)>>('imaxabs');
-  late final _imaxabs = _imaxabsPtr.asFunction<int Function(int)>();
-
-  imaxdiv_t imaxdiv(
-    int __numer,
-    int __denom,
-  ) {
-    return _imaxdiv(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _imaxdivPtr =
-      _lookup<ffi.NativeFunction<imaxdiv_t Function(intmax_t, intmax_t)>>(
-          'imaxdiv');
-  late final _imaxdiv = _imaxdivPtr.asFunction<imaxdiv_t Function(int, int)>();
-
-  int strtoimax(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoimax(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoimaxPtr = _lookup<
-      ffi.NativeFunction<
-          intmax_t Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoimax');
-  late final _strtoimax = _strtoimaxPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoumax(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoumax(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoumaxPtr = _lookup<
-      ffi.NativeFunction<
-          uintmax_t Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoumax');
-  late final _strtoumax = _strtoumaxPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int wcstoimax(
-    ffi.Pointer<ffi.WChar> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.WChar>> __endptr,
-    int __base,
-  ) {
-    return _wcstoimax(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _wcstoimaxPtr = _lookup<
-      ffi.NativeFunction<
-          intmax_t Function(ffi.Pointer<ffi.WChar>,
-              ffi.Pointer<ffi.Pointer<ffi.WChar>>, ffi.Int)>>('wcstoimax');
-  late final _wcstoimax = _wcstoimaxPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Pointer<ffi.WChar>>, int)>();
-
-  int wcstoumax(
-    ffi.Pointer<ffi.WChar> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.WChar>> __endptr,
-    int __base,
-  ) {
-    return _wcstoumax(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _wcstoumaxPtr = _lookup<
-      ffi.NativeFunction<
-          uintmax_t Function(ffi.Pointer<ffi.WChar>,
-              ffi.Pointer<ffi.Pointer<ffi.WChar>>, ffi.Int)>>('wcstoumax');
-  late final _wcstoumax = _wcstoumaxPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Pointer<ffi.WChar>>, int)>();
-
   /// Return the version of the libgit2 library
   /// being currently used.
   ///
@@ -2915,26 +349,6 @@ class LibGit2 {
   late final _git_libgit2_opts =
       _git_libgit2_optsPtr.asFunction<int Function(int)>();
 
-  int __darwin_check_fd_set_overflow(
-    int arg0,
-    ffi.Pointer<ffi.Void> arg1,
-    int arg2,
-  ) {
-    return ___darwin_check_fd_set_overflow(
-      arg0,
-      arg1,
-      arg2,
-    );
-  }
-
-  late final ___darwin_check_fd_set_overflowPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Void>,
-              ffi.Int)>>('__darwin_check_fd_set_overflow');
-  late final ___darwin_check_fd_set_overflow =
-      ___darwin_check_fd_set_overflowPtr
-          .asFunction<int Function(int, ffi.Pointer<ffi.Void>, int)>();
-
   /// Free the memory referred to by the git_buf.
   ///
   /// Note that this does not free the `git_buf` itself, just the memory
@@ -3004,7 +418,7 @@ class LibGit2 {
   late final _git_oid_fromstrnPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_oid>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('git_oid_fromstrn');
+              ffi.Int)>>('git_oid_fromstrn');
   late final _git_oid_fromstrn = _git_oid_fromstrnPtr.asFunction<
       int Function(ffi.Pointer<git_oid>, ffi.Pointer<ffi.Char>, int)>();
 
@@ -3074,7 +488,7 @@ class LibGit2 {
 
   late final _git_oid_nfmtPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size,
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int,
               ffi.Pointer<git_oid>)>>('git_oid_nfmt');
   late final _git_oid_nfmt = _git_oid_nfmtPtr.asFunction<
       int Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<git_oid>)>();
@@ -3164,7 +578,7 @@ class LibGit2 {
 
   late final _git_oid_tostrPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Size,
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, ffi.Int,
               ffi.Pointer<git_oid>)>>('git_oid_tostr');
   late final _git_oid_tostr = _git_oid_tostrPtr.asFunction<
       ffi.Pointer<ffi.Char> Function(
@@ -3258,7 +672,7 @@ class LibGit2 {
   late final _git_oid_ncmpPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_oid>,
-              ffi.Size)>>('git_oid_ncmp');
+              ffi.Int)>>('git_oid_ncmp');
   late final _git_oid_ncmp = _git_oid_ncmpPtr.asFunction<
       int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_oid>, int)>();
 
@@ -3345,7 +759,7 @@ class LibGit2 {
   }
 
   late final _git_oid_shorten_newPtr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<git_oid_shorten> Function(ffi.Size)>>(
+          ffi.NativeFunction<ffi.Pointer<git_oid_shorten> Function(ffi.Int)>>(
       'git_oid_shorten_new');
   late final _git_oid_shorten_new = _git_oid_shorten_newPtr
       .asFunction<ffi.Pointer<git_oid_shorten> Function(int)>();
@@ -4944,7 +2358,7 @@ class LibGit2 {
               ffi.Pointer<ffi.Pointer<git_object>>,
               ffi.Pointer<git_repository>,
               ffi.Pointer<git_oid>,
-              ffi.Size,
+              ffi.Int,
               ffi.Int32)>>('git_object_lookup_prefix');
   late final _git_object_lookup_prefix =
       _git_object_lookup_prefixPtr.asFunction<
@@ -5254,8 +2668,8 @@ class LibGit2 {
 
   late final _git_object_rawcontent_is_validPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>,
-              ffi.Size, ffi.Int32)>>('git_object_rawcontent_is_valid');
+          ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int,
+              ffi.Int32)>>('git_object_rawcontent_is_valid');
   late final _git_object_rawcontent_is_valid =
       _git_object_rawcontent_is_validPtr.asFunction<
           int Function(
@@ -5319,7 +2733,7 @@ class LibGit2 {
               ffi.Pointer<ffi.Pointer<git_tree>>,
               ffi.Pointer<git_repository>,
               ffi.Pointer<git_oid>,
-              ffi.Size)>>('git_tree_lookup_prefix');
+              ffi.Int)>>('git_tree_lookup_prefix');
   late final _git_tree_lookup_prefix = _git_tree_lookup_prefixPtr.asFunction<
       int Function(ffi.Pointer<ffi.Pointer<git_tree>>,
           ffi.Pointer<git_repository>, ffi.Pointer<git_oid>, int)>();
@@ -5396,7 +2810,7 @@ class LibGit2 {
   }
 
   late final _git_tree_entrycountPtr =
-      _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_tree>)>>(
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_tree>)>>(
           'git_tree_entrycount');
   late final _git_tree_entrycount =
       _git_tree_entrycountPtr.asFunction<int Function(ffi.Pointer<git_tree>)>();
@@ -5448,7 +2862,7 @@ class LibGit2 {
   late final _git_tree_entry_byindexPtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<git_tree_entry> Function(
-              ffi.Pointer<git_tree>, ffi.Size)>>('git_tree_entry_byindex');
+              ffi.Pointer<git_tree>, ffi.Int)>>('git_tree_entry_byindex');
   late final _git_tree_entry_byindex = _git_tree_entry_byindexPtr.asFunction<
       ffi.Pointer<git_tree_entry> Function(ffi.Pointer<git_tree>, int)>();
 
@@ -5775,7 +3189,7 @@ class LibGit2 {
   }
 
   late final _git_treebuilder_entrycountPtr = _lookup<
-          ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_treebuilder>)>>(
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_treebuilder>)>>(
       'git_treebuilder_entrycount');
   late final _git_treebuilder_entrycount = _git_treebuilder_entrycountPtr
       .asFunction<int Function(ffi.Pointer<git_treebuilder>)>();
@@ -6066,7 +3480,7 @@ class LibGit2 {
               ffi.Pointer<git_oid>,
               ffi.Pointer<git_repository>,
               ffi.Pointer<git_tree>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<git_tree_update>)>>('git_tree_create_updated');
   late final _git_tree_create_updated = _git_tree_create_updatedPtr.asFunction<
       int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_repository>,
@@ -7357,7 +4771,7 @@ class LibGit2 {
       ffi.NativeFunction<
           ffi.Int Function(
               ffi.Pointer<ffi.Char>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<ffi.Char>,
               ffi.UnsignedInt)>>('git_reference_normalize_name');
   late final _git_reference_normalize_name =
@@ -7871,7 +5285,7 @@ class LibGit2 {
   }
 
   late final _git_diff_num_deltasPtr =
-      _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_diff>)>>(
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_diff>)>>(
           'git_diff_num_deltas');
   late final _git_diff_num_deltas =
       _git_diff_num_deltasPtr.asFunction<int Function(ffi.Pointer<git_diff>)>();
@@ -7897,7 +5311,7 @@ class LibGit2 {
 
   late final _git_diff_num_deltas_of_typePtr = _lookup<
       ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<git_diff>,
+          ffi.Int Function(ffi.Pointer<git_diff>,
               ffi.Int32)>>('git_diff_num_deltas_of_type');
   late final _git_diff_num_deltas_of_type = _git_diff_num_deltas_of_typePtr
       .asFunction<int Function(ffi.Pointer<git_diff>, int)>();
@@ -7930,7 +5344,7 @@ class LibGit2 {
   late final _git_diff_get_deltaPtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<git_diff_delta> Function(
-              ffi.Pointer<git_diff>, ffi.Size)>>('git_diff_get_delta');
+              ffi.Pointer<git_diff>, ffi.Int)>>('git_diff_get_delta');
   late final _git_diff_get_delta = _git_diff_get_deltaPtr.asFunction<
       ffi.Pointer<git_diff_delta> Function(ffi.Pointer<git_diff>, int)>();
 
@@ -8224,7 +5638,7 @@ class LibGit2 {
               ffi.Pointer<git_blob>,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<git_diff_options>,
               git_diff_file_cb,
@@ -8299,10 +5713,10 @@ class LibGit2 {
       ffi.NativeFunction<
           ffi.Int Function(
               ffi.Pointer<ffi.Void>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Void>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<git_diff_options>,
               git_diff_file_cb,
@@ -8357,7 +5771,7 @@ class LibGit2 {
   late final _git_diff_from_bufferPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<ffi.Pointer<git_diff>>,
-              ffi.Pointer<ffi.Char>, ffi.Size)>>('git_diff_from_buffer');
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('git_diff_from_buffer');
   late final _git_diff_from_buffer = _git_diff_from_bufferPtr.asFunction<
       int Function(
           ffi.Pointer<ffi.Pointer<git_diff>>, ffi.Pointer<ffi.Char>, int)>();
@@ -8398,7 +5812,7 @@ class LibGit2 {
   }
 
   late final _git_diff_stats_files_changedPtr = _lookup<
-          ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_diff_stats>)>>(
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_diff_stats>)>>(
       'git_diff_stats_files_changed');
   late final _git_diff_stats_files_changed = _git_diff_stats_files_changedPtr
       .asFunction<int Function(ffi.Pointer<git_diff_stats>)>();
@@ -8416,7 +5830,7 @@ class LibGit2 {
   }
 
   late final _git_diff_stats_insertionsPtr = _lookup<
-          ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_diff_stats>)>>(
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_diff_stats>)>>(
       'git_diff_stats_insertions');
   late final _git_diff_stats_insertions = _git_diff_stats_insertionsPtr
       .asFunction<int Function(ffi.Pointer<git_diff_stats>)>();
@@ -8434,7 +5848,7 @@ class LibGit2 {
   }
 
   late final _git_diff_stats_deletionsPtr = _lookup<
-          ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_diff_stats>)>>(
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_diff_stats>)>>(
       'git_diff_stats_deletions');
   late final _git_diff_stats_deletions = _git_diff_stats_deletionsPtr
       .asFunction<int Function(ffi.Pointer<git_diff_stats>)>();
@@ -8463,7 +5877,7 @@ class LibGit2 {
   late final _git_diff_stats_to_bufPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_buf>, ffi.Pointer<git_diff_stats>,
-              ffi.Int32, ffi.Size)>>('git_diff_stats_to_buf');
+              ffi.Int32, ffi.Int)>>('git_diff_stats_to_buf');
   late final _git_diff_stats_to_buf = _git_diff_stats_to_bufPtr.asFunction<
       int Function(
           ffi.Pointer<git_buf>, ffi.Pointer<git_diff_stats>, int, int)>();
@@ -8704,7 +6118,7 @@ class LibGit2 {
           ffi.Int Function(
               ffi.Pointer<ffi.Pointer<ffi.Char>>,
               ffi.Pointer<git_repository>,
-              ffi.Uint32,
+              ffi.Int,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>>('git_attr_get');
   late final _git_attr_get = _git_attr_getPtr.asFunction<
@@ -8812,9 +6226,9 @@ class LibGit2 {
           ffi.Int Function(
               ffi.Pointer<ffi.Pointer<ffi.Char>>,
               ffi.Pointer<git_repository>,
-              ffi.Uint32,
+              ffi.Int,
               ffi.Pointer<ffi.Char>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('git_attr_get_many');
   late final _git_attr_get_many = _git_attr_get_manyPtr.asFunction<
       int Function(
@@ -8865,7 +6279,7 @@ class LibGit2 {
               ffi.Pointer<git_repository>,
               ffi.Pointer<git_attr_options>,
               ffi.Pointer<ffi.Char>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('git_attr_get_many_ext');
   late final _git_attr_get_many_ext = _git_attr_get_many_extPtr.asFunction<
       int Function(
@@ -8907,7 +6321,7 @@ class LibGit2 {
       ffi.NativeFunction<
           ffi.Int Function(
               ffi.Pointer<git_repository>,
-              ffi.Uint32,
+              ffi.Int,
               ffi.Pointer<ffi.Char>,
               git_attr_foreach_cb,
               ffi.Pointer<ffi.Void>)>>('git_attr_foreach');
@@ -9068,7 +6482,7 @@ class LibGit2 {
               ffi.Pointer<ffi.Pointer<git_blob>>,
               ffi.Pointer<git_repository>,
               ffi.Pointer<git_oid>,
-              ffi.Size)>>('git_blob_lookup_prefix');
+              ffi.Int)>>('git_blob_lookup_prefix');
   late final _git_blob_lookup_prefix = _git_blob_lookup_prefixPtr.asFunction<
       int Function(ffi.Pointer<ffi.Pointer<git_blob>>,
           ffi.Pointer<git_repository>, ffi.Pointer<git_oid>, int)>();
@@ -9401,7 +6815,7 @@ class LibGit2 {
   late final _git_blob_create_from_bufferPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_repository>,
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('git_blob_create_from_buffer');
+              ffi.Pointer<ffi.Void>, ffi.Int)>>('git_blob_create_from_buffer');
   late final _git_blob_create_from_buffer =
       _git_blob_create_from_bufferPtr.asFunction<
           int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_repository>,
@@ -9449,9 +6863,8 @@ class LibGit2 {
   }
 
   late final _git_blob_data_is_binaryPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Char>, ffi.Size)>>('git_blob_data_is_binary');
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
+      'git_blob_data_is_binary');
   late final _git_blob_data_is_binary = _git_blob_data_is_binaryPtr
       .asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
@@ -9517,7 +6930,7 @@ class LibGit2 {
   }
 
   late final _git_blame_get_hunk_countPtr =
-      _lookup<ffi.NativeFunction<ffi.Uint32 Function(ffi.Pointer<git_blame>)>>(
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_blame>)>>(
           'git_blame_get_hunk_count');
   late final _git_blame_get_hunk_count = _git_blame_get_hunk_countPtr
       .asFunction<int Function(ffi.Pointer<git_blame>)>();
@@ -9539,8 +6952,8 @@ class LibGit2 {
 
   late final _git_blame_get_hunk_byindexPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<git_blame_hunk> Function(ffi.Pointer<git_blame>,
-              ffi.Uint32)>>('git_blame_get_hunk_byindex');
+          ffi.Pointer<git_blame_hunk> Function(
+              ffi.Pointer<git_blame>, ffi.Int)>>('git_blame_get_hunk_byindex');
   late final _git_blame_get_hunk_byindex =
       _git_blame_get_hunk_byindexPtr.asFunction<
           ffi.Pointer<git_blame_hunk> Function(ffi.Pointer<git_blame>, int)>();
@@ -9563,7 +6976,7 @@ class LibGit2 {
   late final _git_blame_get_hunk_bylinePtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<git_blame_hunk> Function(
-              ffi.Pointer<git_blame>, ffi.Size)>>('git_blame_get_hunk_byline');
+              ffi.Pointer<git_blame>, ffi.Int)>>('git_blame_get_hunk_byline');
   late final _git_blame_get_hunk_byline =
       _git_blame_get_hunk_bylinePtr.asFunction<
           ffi.Pointer<git_blame_hunk> Function(ffi.Pointer<git_blame>, int)>();
@@ -9640,7 +7053,7 @@ class LibGit2 {
               ffi.Pointer<ffi.Pointer<git_blame>>,
               ffi.Pointer<git_blame>,
               ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('git_blame_buffer');
+              ffi.Int)>>('git_blame_buffer');
   late final _git_blame_buffer = _git_blame_bufferPtr.asFunction<
       int Function(ffi.Pointer<ffi.Pointer<git_blame>>, ffi.Pointer<git_blame>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -10456,7 +7869,7 @@ class LibGit2 {
           ffi.Int Function(
               ffi.Pointer<git_indexer>,
               ffi.Pointer<ffi.Void>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<git_indexer_progress>)>>('git_indexer_append');
   late final _git_indexer_append = _git_indexer_appendPtr.asFunction<
       int Function(ffi.Pointer<git_indexer>, ffi.Pointer<ffi.Void>, int,
@@ -10932,7 +8345,7 @@ class LibGit2 {
   }
 
   late final _git_index_entrycountPtr =
-      _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_index>)>>(
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_index>)>>(
           'git_index_entrycount');
   late final _git_index_entrycount = _git_index_entrycountPtr
       .asFunction<int Function(ffi.Pointer<git_index>)>();
@@ -10980,7 +8393,7 @@ class LibGit2 {
   late final _git_index_get_byindexPtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<git_index_entry> Function(
-              ffi.Pointer<git_index>, ffi.Size)>>('git_index_get_byindex');
+              ffi.Pointer<git_index>, ffi.Int)>>('git_index_get_byindex');
   late final _git_index_get_byindex = _git_index_get_byindexPtr.asFunction<
       ffi.Pointer<git_index_entry> Function(ffi.Pointer<git_index>, int)>();
 
@@ -11279,7 +8692,7 @@ class LibGit2 {
   late final _git_index_add_from_bufferPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_index>, ffi.Pointer<git_index_entry>,
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('git_index_add_from_buffer');
+              ffi.Pointer<ffi.Void>, ffi.Int)>>('git_index_add_from_buffer');
   late final _git_index_add_from_buffer =
       _git_index_add_from_bufferPtr.asFunction<
           int Function(ffi.Pointer<git_index>, ffi.Pointer<git_index_entry>,
@@ -11478,7 +8891,7 @@ class LibGit2 {
   /// @param path path to search
   /// @return 0 or an error code
   int git_index_find(
-    ffi.Pointer<ffi.Size> at_pos,
+    ffi.Pointer<ffi.Int> at_pos,
     ffi.Pointer<git_index> index,
     ffi.Pointer<ffi.Char> path,
   ) {
@@ -11491,10 +8904,10 @@ class LibGit2 {
 
   late final _git_index_findPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Size>, ffi.Pointer<git_index>,
+          ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<git_index>,
               ffi.Pointer<ffi.Char>)>>('git_index_find');
   late final _git_index_find = _git_index_findPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Size>, ffi.Pointer<git_index>,
+      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<git_index>,
           ffi.Pointer<ffi.Char>)>();
 
   /// Find the first position of any entries matching a prefix. To find the first position
@@ -11505,7 +8918,7 @@ class LibGit2 {
   /// @param prefix the prefix to search for
   /// @return 0 or an error code
   int git_index_find_prefix(
-    ffi.Pointer<ffi.Size> at_pos,
+    ffi.Pointer<ffi.Int> at_pos,
     ffi.Pointer<git_index> index,
     ffi.Pointer<ffi.Char> prefix,
   ) {
@@ -11518,10 +8931,10 @@ class LibGit2 {
 
   late final _git_index_find_prefixPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Size>, ffi.Pointer<git_index>,
+          ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<git_index>,
               ffi.Pointer<ffi.Char>)>>('git_index_find_prefix');
   late final _git_index_find_prefix = _git_index_find_prefixPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Size>, ffi.Pointer<git_index>,
+      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<git_index>,
           ffi.Pointer<ffi.Char>)>();
 
   /// Add or update index entries to represent a conflict.  Any staged
@@ -11855,7 +9268,7 @@ class LibGit2 {
               ffi.Pointer<ffi.Int32>,
               ffi.Pointer<git_repository>,
               ffi.Pointer<ffi.Pointer<git_annotated_commit>>,
-              ffi.Size)>>('git_merge_analysis');
+              ffi.Int)>>('git_merge_analysis');
   late final _git_merge_analysis = _git_merge_analysisPtr.asFunction<
       int Function(
           ffi.Pointer<ffi.Int32>,
@@ -11900,7 +9313,7 @@ class LibGit2 {
               ffi.Pointer<git_repository>,
               ffi.Pointer<git_reference>,
               ffi.Pointer<ffi.Pointer<git_annotated_commit>>,
-              ffi.Size)>>('git_merge_analysis_for_ref');
+              ffi.Int)>>('git_merge_analysis_for_ref');
   late final _git_merge_analysis_for_ref =
       _git_merge_analysis_for_refPtr.asFunction<
           int Function(
@@ -11996,7 +9409,7 @@ class LibGit2 {
   late final _git_merge_base_manyPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_repository>,
-              ffi.Size, ffi.Pointer<git_oid>)>>('git_merge_base_many');
+              ffi.Int, ffi.Pointer<git_oid>)>>('git_merge_base_many');
   late final _git_merge_base_many = _git_merge_base_manyPtr.asFunction<
       int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_repository>, int,
           ffi.Pointer<git_oid>)>();
@@ -12027,7 +9440,7 @@ class LibGit2 {
           ffi.Int Function(
               ffi.Pointer<git_oidarray>,
               ffi.Pointer<git_repository>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<git_oid>)>>('git_merge_bases_many');
   late final _git_merge_bases_many = _git_merge_bases_manyPtr.asFunction<
       int Function(ffi.Pointer<git_oidarray>, ffi.Pointer<git_repository>, int,
@@ -12057,7 +9470,7 @@ class LibGit2 {
   late final _git_merge_base_octopusPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_repository>,
-              ffi.Size, ffi.Pointer<git_oid>)>>('git_merge_base_octopus');
+              ffi.Int, ffi.Pointer<git_oid>)>>('git_merge_base_octopus');
   late final _git_merge_base_octopus = _git_merge_base_octopusPtr.asFunction<
       int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_repository>, int,
           ffi.Pointer<git_oid>)>();
@@ -12308,7 +9721,7 @@ class LibGit2 {
           ffi.Int Function(
               ffi.Pointer<git_repository>,
               ffi.Pointer<ffi.Pointer<git_annotated_commit>>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<git_merge_options>,
               ffi.Pointer<git_checkout_options>)>>('git_merge');
   late final _git_merge = _git_mergePtr.asFunction<
@@ -12970,7 +10383,7 @@ class LibGit2 {
               ffi.Pointer<ffi.Pointer<git_credential>>,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
-              ffi.Size,
+              ffi.Int,
               git_credential_sign_cb,
               ffi.Pointer<ffi.Void>)>>('git_credential_ssh_custom_new');
   late final _git_credential_ssh_custom_new =
@@ -13321,7 +10734,7 @@ class LibGit2 {
   }
 
   late final _git_packbuilder_object_countPtr = _lookup<
-          ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_packbuilder>)>>(
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_packbuilder>)>>(
       'git_packbuilder_object_count');
   late final _git_packbuilder_object_count = _git_packbuilder_object_countPtr
       .asFunction<int Function(ffi.Pointer<git_packbuilder>)>();
@@ -13339,7 +10752,7 @@ class LibGit2 {
   }
 
   late final _git_packbuilder_writtenPtr = _lookup<
-          ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_packbuilder>)>>(
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_packbuilder>)>>(
       'git_packbuilder_written');
   late final _git_packbuilder_written = _git_packbuilder_writtenPtr
       .asFunction<int Function(ffi.Pointer<git_packbuilder>)>();
@@ -13988,7 +11401,7 @@ class LibGit2 {
   }
 
   late final _git_remote_refspec_countPtr =
-      _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_remote>)>>(
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_remote>)>>(
           'git_remote_refspec_count');
   late final _git_remote_refspec_count = _git_remote_refspec_countPtr
       .asFunction<int Function(ffi.Pointer<git_remote>)>();
@@ -14011,7 +11424,7 @@ class LibGit2 {
   late final _git_remote_get_refspecPtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<git_refspec> Function(
-              ffi.Pointer<git_remote>, ffi.Size)>>('git_remote_get_refspec');
+              ffi.Pointer<git_remote>, ffi.Int)>>('git_remote_get_refspec');
   late final _git_remote_get_refspec = _git_remote_get_refspecPtr.asFunction<
       ffi.Pointer<git_refspec> Function(ffi.Pointer<git_remote>, int)>();
 
@@ -14035,7 +11448,7 @@ class LibGit2 {
   /// @return 0 on success, or an error code
   int git_remote_ls(
     ffi.Pointer<ffi.Pointer<ffi.Pointer<git_remote_head>>> out,
-    ffi.Pointer<ffi.Size> size,
+    ffi.Pointer<ffi.Int> size,
     ffi.Pointer<git_remote> remote,
   ) {
     return _git_remote_ls(
@@ -14049,11 +11462,11 @@ class LibGit2 {
       ffi.NativeFunction<
           ffi.Int Function(
               ffi.Pointer<ffi.Pointer<ffi.Pointer<git_remote_head>>>,
-              ffi.Pointer<ffi.Size>,
+              ffi.Pointer<ffi.Int>,
               ffi.Pointer<git_remote>)>>('git_remote_ls');
   late final _git_remote_ls = _git_remote_lsPtr.asFunction<
       int Function(ffi.Pointer<ffi.Pointer<ffi.Pointer<git_remote_head>>>,
-          ffi.Pointer<ffi.Size>, ffi.Pointer<git_remote>)>();
+          ffi.Pointer<ffi.Int>, ffi.Pointer<git_remote>)>();
 
   /// Check whether the remote is connected
   ///
@@ -14892,7 +12305,7 @@ class LibGit2 {
               ffi.Pointer<ffi.Pointer<git_commit>>,
               ffi.Pointer<git_repository>,
               ffi.Pointer<git_oid>,
-              ffi.Size)>>('git_commit_lookup_prefix');
+              ffi.Int)>>('git_commit_lookup_prefix');
   late final _git_commit_lookup_prefix =
       _git_commit_lookup_prefixPtr.asFunction<
           int Function(ffi.Pointer<ffi.Pointer<git_commit>>,
@@ -15530,7 +12943,7 @@ class LibGit2 {
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<git_tree>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<ffi.Pointer<git_commit>>)>>('git_commit_create');
   late final _git_commit_create = _git_commit_createPtr.asFunction<
       int Function(
@@ -15592,7 +13005,7 @@ class LibGit2 {
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<git_tree>,
-              ffi.Size)>>('git_commit_create_v');
+              ffi.Int)>>('git_commit_create_v');
   late final _git_commit_create_v = _git_commit_create_vPtr.asFunction<
       int Function(
           ffi.Pointer<git_oid>,
@@ -15735,7 +13148,7 @@ class LibGit2 {
                   ffi.Pointer<ffi.Char>,
                   ffi.Pointer<ffi.Char>,
                   ffi.Pointer<git_tree>,
-                  ffi.Size,
+                  ffi.Int,
                   ffi.Pointer<ffi.Pointer<git_commit>>)>>(
       'git_commit_create_buffer');
   late final _git_commit_create_buffer =
@@ -16216,7 +13629,7 @@ class LibGit2 {
   /// @param name the variable's name
   /// @return 0 or an error code
   int git_config_get_int32(
-    ffi.Pointer<ffi.Int32> out,
+    ffi.Pointer<ffi.Int> out,
     ffi.Pointer<git_config> cfg,
     ffi.Pointer<ffi.Char> name,
   ) {
@@ -16229,10 +13642,10 @@ class LibGit2 {
 
   late final _git_config_get_int32Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Int32>, ffi.Pointer<git_config>,
+          ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<git_config>,
               ffi.Pointer<ffi.Char>)>>('git_config_get_int32');
   late final _git_config_get_int32 = _git_config_get_int32Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int32>, ffi.Pointer<git_config>,
+      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<git_config>,
           ffi.Pointer<ffi.Char>)>();
 
   /// Get the value of a long integer config variable.
@@ -16246,7 +13659,7 @@ class LibGit2 {
   /// @param name the variable's name
   /// @return 0 or an error code
   int git_config_get_int64(
-    ffi.Pointer<ffi.Int64> out,
+    ffi.Pointer<ffi.Int> out,
     ffi.Pointer<git_config> cfg,
     ffi.Pointer<ffi.Char> name,
   ) {
@@ -16259,10 +13672,10 @@ class LibGit2 {
 
   late final _git_config_get_int64Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Int64>, ffi.Pointer<git_config>,
+          ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<git_config>,
               ffi.Pointer<ffi.Char>)>>('git_config_get_int64');
   late final _git_config_get_int64 = _git_config_get_int64Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int64>, ffi.Pointer<git_config>,
+      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<git_config>,
           ffi.Pointer<ffi.Char>)>();
 
   /// Get the value of a boolean config variable.
@@ -16556,7 +13969,7 @@ class LibGit2 {
   late final _git_config_set_int32Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_config>, ffi.Pointer<ffi.Char>,
-              ffi.Int32)>>('git_config_set_int32');
+              ffi.Int)>>('git_config_set_int32');
   late final _git_config_set_int32 = _git_config_set_int32Ptr.asFunction<
       int Function(ffi.Pointer<git_config>, ffi.Pointer<ffi.Char>, int)>();
 
@@ -16582,7 +13995,7 @@ class LibGit2 {
   late final _git_config_set_int64Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_config>, ffi.Pointer<ffi.Char>,
-              ffi.Int64)>>('git_config_set_int64');
+              ffi.Int)>>('git_config_set_int64');
   late final _git_config_set_int64 = _git_config_set_int64Ptr.asFunction<
       int Function(ffi.Pointer<git_config>, ffi.Pointer<ffi.Char>, int)>();
 
@@ -16924,7 +14337,7 @@ class LibGit2 {
               ffi.Pointer<git_config>,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<git_configmap>,
-              ffi.Size)>>('git_config_get_mapped');
+              ffi.Int)>>('git_config_get_mapped');
   late final _git_config_get_mapped = _git_config_get_mappedPtr.asFunction<
       int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<git_config>,
           ffi.Pointer<ffi.Char>, ffi.Pointer<git_configmap>, int)>();
@@ -16953,7 +14366,7 @@ class LibGit2 {
   late final _git_config_lookup_map_valuePtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<git_configmap>,
-              ffi.Size, ffi.Pointer<ffi.Char>)>>('git_config_lookup_map_value');
+              ffi.Int, ffi.Pointer<ffi.Char>)>>('git_config_lookup_map_value');
   late final _git_config_lookup_map_value =
       _git_config_lookup_map_valuePtr.asFunction<
           int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<git_configmap>, int,
@@ -16995,7 +14408,7 @@ class LibGit2 {
   /// @param value value to parse
   /// @return 0 or an error code.
   int git_config_parse_int32(
-    ffi.Pointer<ffi.Int32> out,
+    ffi.Pointer<ffi.Int> out,
     ffi.Pointer<ffi.Char> value,
   ) {
     return _git_config_parse_int32(
@@ -17006,10 +14419,10 @@ class LibGit2 {
 
   late final _git_config_parse_int32Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Int32>,
+          ffi.Int Function(ffi.Pointer<ffi.Int>,
               ffi.Pointer<ffi.Char>)>>('git_config_parse_int32');
-  late final _git_config_parse_int32 = _git_config_parse_int32Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int32>, ffi.Pointer<ffi.Char>)>();
+  late final _git_config_parse_int32 = _git_config_parse_int32Ptr
+      .asFunction<int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>)>();
 
   /// Parse a string value as an int64.
   ///
@@ -17021,7 +14434,7 @@ class LibGit2 {
   /// @param value value to parse
   /// @return 0 or an error code.
   int git_config_parse_int64(
-    ffi.Pointer<ffi.Int64> out,
+    ffi.Pointer<ffi.Int> out,
     ffi.Pointer<ffi.Char> value,
   ) {
     return _git_config_parse_int64(
@@ -17032,10 +14445,10 @@ class LibGit2 {
 
   late final _git_config_parse_int64Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Int64>,
+          ffi.Int Function(ffi.Pointer<ffi.Int>,
               ffi.Pointer<ffi.Char>)>>('git_config_parse_int64');
-  late final _git_config_parse_int64 = _git_config_parse_int64Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int64>, ffi.Pointer<ffi.Char>)>();
+  late final _git_config_parse_int64 = _git_config_parse_int64Ptr
+      .asFunction<int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>)>();
 
   /// Parse a string value as a path.
   ///
@@ -17442,7 +14855,7 @@ class LibGit2 {
               ffi.Pointer<git_blob>,
               ffi.Pointer<ffi.Char>,
               ffi.Int32,
-              ffi.Uint32)>>('git_filter_list_load');
+              ffi.Int)>>('git_filter_list_load');
   late final _git_filter_list_load = _git_filter_list_loadPtr.asFunction<
       int Function(
           ffi.Pointer<ffi.Pointer<git_filter_list>>,
@@ -17557,7 +14970,7 @@ class LibGit2 {
               ffi.Pointer<git_buf>,
               ffi.Pointer<git_filter_list>,
               ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('git_filter_list_apply_to_buffer');
+              ffi.Int)>>('git_filter_list_apply_to_buffer');
   late final _git_filter_list_apply_to_buffer =
       _git_filter_list_apply_to_bufferPtr.asFunction<
           int Function(ffi.Pointer<git_buf>, ffi.Pointer<git_filter_list>,
@@ -17650,7 +15063,7 @@ class LibGit2 {
           ffi.Int Function(
               ffi.Pointer<git_filter_list>,
               ffi.Pointer<ffi.Char>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<git_writestream>)>>('git_filter_list_stream_buffer');
   late final _git_filter_list_stream_buffer =
       _git_filter_list_stream_bufferPtr.asFunction<
@@ -17932,7 +15345,7 @@ class LibGit2 {
   }
 
   late final _git_rebase_operation_entrycountPtr =
-      _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_rebase>)>>(
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_rebase>)>>(
           'git_rebase_operation_entrycount');
   late final _git_rebase_operation_entrycount =
       _git_rebase_operation_entrycountPtr
@@ -17954,7 +15367,7 @@ class LibGit2 {
   }
 
   late final _git_rebase_operation_currentPtr =
-      _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_rebase>)>>(
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_rebase>)>>(
           'git_rebase_operation_current');
   late final _git_rebase_operation_current = _git_rebase_operation_currentPtr
       .asFunction<int Function(ffi.Pointer<git_rebase>)>();
@@ -17977,7 +15390,7 @@ class LibGit2 {
   late final _git_rebase_operation_byindexPtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<git_rebase_operation> Function(ffi.Pointer<git_rebase>,
-              ffi.Size)>>('git_rebase_operation_byindex');
+              ffi.Int)>>('git_rebase_operation_byindex');
   late final _git_rebase_operation_byindex =
       _git_rebase_operation_byindexPtr.asFunction<
           ffi.Pointer<git_rebase_operation> Function(
@@ -18433,7 +15846,7 @@ class LibGit2 {
               ffi.Pointer<git_repository>,
               ffi.Pointer<git_signature>,
               ffi.Pointer<ffi.Char>,
-              ffi.Uint32)>>('git_stash_save');
+              ffi.Int)>>('git_stash_save');
   late final _git_stash_save = _git_stash_savePtr.asFunction<
       int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_repository>,
           ffi.Pointer<git_signature>, ffi.Pointer<ffi.Char>, int)>();
@@ -18501,7 +15914,7 @@ class LibGit2 {
 
   late final _git_stash_applyPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<git_repository>, ffi.Size,
+          ffi.Int Function(ffi.Pointer<git_repository>, ffi.Int,
               ffi.Pointer<git_stash_apply_options>)>>('git_stash_apply');
   late final _git_stash_apply = _git_stash_applyPtr.asFunction<
       int Function(ffi.Pointer<git_repository>, int,
@@ -18561,7 +15974,7 @@ class LibGit2 {
   late final _git_stash_dropPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Pointer<git_repository>, ffi.Size)>>('git_stash_drop');
+              ffi.Pointer<git_repository>, ffi.Int)>>('git_stash_drop');
   late final _git_stash_drop = _git_stash_dropPtr
       .asFunction<int Function(ffi.Pointer<git_repository>, int)>();
 
@@ -18589,7 +16002,7 @@ class LibGit2 {
 
   late final _git_stash_popPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<git_repository>, ffi.Size,
+          ffi.Int Function(ffi.Pointer<git_repository>, ffi.Int,
               ffi.Pointer<git_stash_apply_options>)>>('git_stash_pop');
   late final _git_stash_pop = _git_stash_popPtr.asFunction<
       int Function(ffi.Pointer<git_repository>, int,
@@ -18790,7 +16203,7 @@ class LibGit2 {
   }
 
   late final _git_status_list_entrycountPtr = _lookup<
-          ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_status_list>)>>(
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_status_list>)>>(
       'git_status_list_entrycount');
   late final _git_status_list_entrycount = _git_status_list_entrycountPtr
       .asFunction<int Function(ffi.Pointer<git_status_list>)>();
@@ -18815,7 +16228,7 @@ class LibGit2 {
   late final _git_status_byindexPtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<git_status_entry> Function(
-              ffi.Pointer<git_status_list>, ffi.Size)>>('git_status_byindex');
+              ffi.Pointer<git_status_list>, ffi.Int)>>('git_status_byindex');
   late final _git_status_byindex = _git_status_byindexPtr.asFunction<
       ffi.Pointer<git_status_entry> Function(
           ffi.Pointer<git_status_list>, int)>();
@@ -20354,7 +17767,7 @@ class LibGit2 {
   late final _git_blob_create_frombufferPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_repository>,
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('git_blob_create_frombuffer');
+              ffi.Pointer<ffi.Void>, ffi.Int)>>('git_blob_create_frombuffer');
   late final _git_blob_create_frombuffer =
       _git_blob_create_frombufferPtr.asFunction<
           int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_repository>,
@@ -20497,7 +17910,7 @@ class LibGit2 {
   }
 
   late final _git_buf_growPtr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_buf>, ffi.Size)>>(
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_buf>, ffi.Int)>>(
       'git_buf_grow');
   late final _git_buf_grow =
       _git_buf_growPtr.asFunction<int Function(ffi.Pointer<git_buf>, int)>();
@@ -20523,7 +17936,7 @@ class LibGit2 {
   late final _git_buf_setPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_buf>, ffi.Pointer<ffi.Void>,
-              ffi.Size)>>('git_buf_set');
+              ffi.Int)>>('git_buf_set');
   late final _git_buf_set = _git_buf_setPtr.asFunction<
       int Function(ffi.Pointer<git_buf>, ffi.Pointer<ffi.Void>, int)>();
 
@@ -20640,9 +18053,9 @@ class LibGit2 {
               ffi.Pointer<git_buf>,
               ffi.Pointer<git_repository>,
               ffi.Pointer<git_commit>,
-              ffi.Size,
-              ffi.Size,
-              ffi.Uint32,
+              ffi.Int,
+              ffi.Int,
+              ffi.Int,
               ffi.Pointer<git_diff_options>)>>('git_diff_commit_as_email');
   late final _git_diff_commit_as_email =
       _git_diff_commit_as_emailPtr.asFunction<
@@ -20773,7 +18186,7 @@ class LibGit2 {
   late final _git_index_add_frombufferPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_index>, ffi.Pointer<git_index_entry>,
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('git_index_add_frombuffer');
+              ffi.Pointer<ffi.Void>, ffi.Int)>>('git_index_add_frombuffer');
   late final _git_index_add_frombuffer =
       _git_index_add_frombufferPtr.asFunction<
           int Function(ffi.Pointer<git_index>, ffi.Pointer<git_index_entry>,
@@ -20798,7 +18211,7 @@ class LibGit2 {
   }
 
   late final _git_object__sizePtr =
-      _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Int32)>>(
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int32)>>(
           'git_object__size');
   late final _git_object__size =
       _git_object__sizePtr.asFunction<int Function(int)>();
@@ -21108,7 +18521,7 @@ class LibGit2 {
               ffi.Pointer<ffi.Pointer<git_credential>>,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
-              ffi.Size,
+              ffi.Int,
               git_credential_sign_cb,
               ffi.Pointer<ffi.Void>)>>('git_cred_ssh_custom_new');
   late final _git_cred_ssh_custom_new = _git_cred_ssh_custom_newPtr.asFunction<
@@ -21707,8 +19120,8 @@ class LibGit2 {
               ffi.Int Function(
                   ffi.Pointer<git_buf>,
                   ffi.Pointer<git_diff>,
-                  ffi.Size,
-                  ffi.Size,
+                  ffi.Int,
+                  ffi.Int,
                   ffi.Pointer<git_oid>,
                   ffi.Pointer<ffi.Char>,
                   ffi.Pointer<ffi.Char>,
@@ -21807,8 +19220,8 @@ class LibGit2 {
   /// @param upstream the commit for upstream
   /// @return 0 or an error code.
   int git_graph_ahead_behind(
-    ffi.Pointer<ffi.Size> ahead,
-    ffi.Pointer<ffi.Size> behind,
+    ffi.Pointer<ffi.Int> ahead,
+    ffi.Pointer<ffi.Int> behind,
     ffi.Pointer<git_repository> repo,
     ffi.Pointer<git_oid> local,
     ffi.Pointer<git_oid> upstream,
@@ -21825,15 +19238,15 @@ class LibGit2 {
   late final _git_graph_ahead_behindPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Pointer<ffi.Size>,
-              ffi.Pointer<ffi.Size>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
               ffi.Pointer<git_repository>,
               ffi.Pointer<git_oid>,
               ffi.Pointer<git_oid>)>>('git_graph_ahead_behind');
   late final _git_graph_ahead_behind = _git_graph_ahead_behindPtr.asFunction<
       int Function(
-          ffi.Pointer<ffi.Size>,
-          ffi.Pointer<ffi.Size>,
+          ffi.Pointer<ffi.Int>,
+          ffi.Pointer<ffi.Int>,
           ffi.Pointer<git_repository>,
           ffi.Pointer<git_oid>,
           ffi.Pointer<git_oid>)>();
@@ -21894,7 +19307,7 @@ class LibGit2 {
   late final _git_graph_reachable_from_anyPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_repository>, ffi.Pointer<git_oid>,
-              ffi.Pointer<git_oid>, ffi.Size)>>('git_graph_reachable_from_any');
+              ffi.Pointer<git_oid>, ffi.Int)>>('git_graph_reachable_from_any');
   late final _git_graph_reachable_from_any =
       _git_graph_reachable_from_anyPtr.asFunction<
           int Function(ffi.Pointer<git_repository>, ffi.Pointer<git_oid>,
@@ -22097,7 +19510,7 @@ class LibGit2 {
   late final _git_mailmap_from_bufferPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<ffi.Pointer<git_mailmap>>,
-              ffi.Pointer<ffi.Char>, ffi.Size)>>('git_mailmap_from_buffer');
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('git_mailmap_from_buffer');
   late final _git_mailmap_from_buffer = _git_mailmap_from_bufferPtr.asFunction<
       int Function(
           ffi.Pointer<ffi.Pointer<git_mailmap>>, ffi.Pointer<ffi.Char>, int)>();
@@ -22996,7 +20409,7 @@ class LibGit2 {
               ffi.Pointer<ffi.Pointer<git_odb_object>>,
               ffi.Pointer<git_odb>,
               ffi.Pointer<git_oid>,
-              ffi.Size)>>('git_odb_read_prefix');
+              ffi.Int)>>('git_odb_read_prefix');
   late final _git_odb_read_prefix = _git_odb_read_prefixPtr.asFunction<
       int Function(ffi.Pointer<ffi.Pointer<git_odb_object>>,
           ffi.Pointer<git_odb>, ffi.Pointer<git_oid>, int)>();
@@ -23017,7 +20430,7 @@ class LibGit2 {
   /// @return 0 if the object was read, GIT_ENOTFOUND if the object is not
   /// in the database.
   int git_odb_read_header(
-    ffi.Pointer<ffi.Size> len_out,
+    ffi.Pointer<ffi.Int> len_out,
     ffi.Pointer<ffi.Int32> type_out,
     ffi.Pointer<git_odb> db,
     ffi.Pointer<git_oid> id,
@@ -23033,12 +20446,12 @@ class LibGit2 {
   late final _git_odb_read_headerPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Pointer<ffi.Size>,
+              ffi.Pointer<ffi.Int>,
               ffi.Pointer<ffi.Int32>,
               ffi.Pointer<git_odb>,
               ffi.Pointer<git_oid>)>>('git_odb_read_header');
   late final _git_odb_read_header = _git_odb_read_headerPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Size>, ffi.Pointer<ffi.Int32>,
+      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int32>,
           ffi.Pointer<git_odb>, ffi.Pointer<git_oid>)>();
 
   /// Determine if the given object can be found in the object database.
@@ -23115,7 +20528,7 @@ class LibGit2 {
   late final _git_odb_exists_prefixPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_odb>,
-              ffi.Pointer<git_oid>, ffi.Size)>>('git_odb_exists_prefix');
+              ffi.Pointer<git_oid>, ffi.Int)>>('git_odb_exists_prefix');
   late final _git_odb_exists_prefix = _git_odb_exists_prefixPtr.asFunction<
       int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_odb>,
           ffi.Pointer<git_oid>, int)>();
@@ -23152,7 +20565,7 @@ class LibGit2 {
   late final _git_odb_expand_idsPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_odb>, ffi.Pointer<git_odb_expand_id>,
-              ffi.Size)>>('git_odb_expand_ids');
+              ffi.Int)>>('git_odb_expand_ids');
   late final _git_odb_expand_ids = _git_odb_expand_idsPtr.asFunction<
       int Function(
           ffi.Pointer<git_odb>, ffi.Pointer<git_odb_expand_id>, int)>();
@@ -23253,7 +20666,7 @@ class LibGit2 {
   late final _git_odb_writePtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_odb>,
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Int32)>>('git_odb_write');
+              ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int32)>>('git_odb_write');
   late final _git_odb_write = _git_odb_writePtr.asFunction<
       int Function(ffi.Pointer<git_oid>, ffi.Pointer<git_odb>,
           ffi.Pointer<ffi.Void>, int, int)>();
@@ -23326,7 +20739,7 @@ class LibGit2 {
   late final _git_odb_stream_writePtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_odb_stream>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('git_odb_stream_write');
+              ffi.Int)>>('git_odb_stream_write');
   late final _git_odb_stream_write = _git_odb_stream_writePtr.asFunction<
       int Function(ffi.Pointer<git_odb_stream>, ffi.Pointer<ffi.Char>, int)>();
 
@@ -23382,7 +20795,7 @@ class LibGit2 {
   late final _git_odb_stream_readPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_odb_stream>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('git_odb_stream_read');
+              ffi.Int)>>('git_odb_stream_read');
   late final _git_odb_stream_read = _git_odb_stream_readPtr.asFunction<
       int Function(ffi.Pointer<git_odb_stream>, ffi.Pointer<ffi.Char>, int)>();
 
@@ -23429,7 +20842,7 @@ class LibGit2 {
   /// @return 0 if the stream was created, error code otherwise
   int git_odb_open_rstream(
     ffi.Pointer<ffi.Pointer<git_odb_stream>> out,
-    ffi.Pointer<ffi.Size> len,
+    ffi.Pointer<ffi.Int> len,
     ffi.Pointer<ffi.Int32> type,
     ffi.Pointer<git_odb> db,
     ffi.Pointer<git_oid> oid,
@@ -23447,14 +20860,14 @@ class LibGit2 {
       ffi.NativeFunction<
           ffi.Int Function(
               ffi.Pointer<ffi.Pointer<git_odb_stream>>,
-              ffi.Pointer<ffi.Size>,
+              ffi.Pointer<ffi.Int>,
               ffi.Pointer<ffi.Int32>,
               ffi.Pointer<git_odb>,
               ffi.Pointer<git_oid>)>>('git_odb_open_rstream');
   late final _git_odb_open_rstream = _git_odb_open_rstreamPtr.asFunction<
       int Function(
           ffi.Pointer<ffi.Pointer<git_odb_stream>>,
-          ffi.Pointer<ffi.Size>,
+          ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Int32>,
           ffi.Pointer<git_odb>,
           ffi.Pointer<git_oid>)>();
@@ -23545,8 +20958,8 @@ class LibGit2 {
 
   late final _git_odb_hashPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<git_oid>, ffi.Pointer<ffi.Void>,
-              ffi.Size, ffi.Int32)>>('git_odb_hash');
+          ffi.Int Function(ffi.Pointer<git_oid>, ffi.Pointer<ffi.Void>, ffi.Int,
+              ffi.Int32)>>('git_odb_hash');
   late final _git_odb_hash = _git_odb_hashPtr.asFunction<
       int Function(ffi.Pointer<git_oid>, ffi.Pointer<ffi.Void>, int, int)>();
 
@@ -23678,7 +21091,7 @@ class LibGit2 {
   }
 
   late final _git_odb_object_sizePtr = _lookup<
-          ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_odb_object>)>>(
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_odb_object>)>>(
       'git_odb_object_size');
   late final _git_odb_object_size = _git_odb_object_sizePtr
       .asFunction<int Function(ffi.Pointer<git_odb_object>)>();
@@ -23780,7 +21193,7 @@ class LibGit2 {
   }
 
   late final _git_odb_num_backendsPtr =
-      _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_odb>)>>(
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_odb>)>>(
           'git_odb_num_backends');
   late final _git_odb_num_backends =
       _git_odb_num_backendsPtr.asFunction<int Function(ffi.Pointer<git_odb>)>();
@@ -23806,7 +21219,7 @@ class LibGit2 {
   late final _git_odb_get_backendPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<ffi.Pointer<git_odb_backend>>,
-              ffi.Pointer<git_odb>, ffi.Size)>>('git_odb_get_backend');
+              ffi.Pointer<git_odb>, ffi.Int)>>('git_odb_get_backend');
   late final _git_odb_get_backend = _git_odb_get_backendPtr.asFunction<
       int Function(ffi.Pointer<ffi.Pointer<git_odb_backend>>,
           ffi.Pointer<git_odb>, int)>();
@@ -23975,7 +21388,7 @@ class LibGit2 {
   late final _git_patch_from_diffPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<ffi.Pointer<git_patch>>,
-              ffi.Pointer<git_diff>, ffi.Size)>>('git_patch_from_diff');
+              ffi.Pointer<git_diff>, ffi.Int)>>('git_patch_from_diff');
   late final _git_patch_from_diff = _git_patch_from_diffPtr.asFunction<
       int Function(
           ffi.Pointer<ffi.Pointer<git_patch>>, ffi.Pointer<git_diff>, int)>();
@@ -24072,7 +21485,7 @@ class LibGit2 {
                   ffi.Pointer<git_blob>,
                   ffi.Pointer<ffi.Char>,
                   ffi.Pointer<ffi.Void>,
-                  ffi.Size,
+                  ffi.Int,
                   ffi.Pointer<ffi.Char>,
                   ffi.Pointer<git_diff_options>)>>(
       'git_patch_from_blob_and_buffer');
@@ -24130,10 +21543,10 @@ class LibGit2 {
           ffi.Int Function(
               ffi.Pointer<ffi.Pointer<git_patch>>,
               ffi.Pointer<ffi.Void>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Void>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<git_diff_options>)>>('git_patch_from_buffers');
   late final _git_patch_from_buffers = _git_patch_from_buffersPtr.asFunction<
@@ -24197,7 +21610,7 @@ class LibGit2 {
   }
 
   late final _git_patch_num_hunksPtr =
-      _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_patch>)>>(
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_patch>)>>(
           'git_patch_num_hunks');
   late final _git_patch_num_hunks = _git_patch_num_hunksPtr
       .asFunction<int Function(ffi.Pointer<git_patch>)>();
@@ -24217,9 +21630,9 @@ class LibGit2 {
   /// @param patch The git_patch object
   /// @return 0 on success, <0 on error
   int git_patch_line_stats(
-    ffi.Pointer<ffi.Size> total_context,
-    ffi.Pointer<ffi.Size> total_additions,
-    ffi.Pointer<ffi.Size> total_deletions,
+    ffi.Pointer<ffi.Int> total_context,
+    ffi.Pointer<ffi.Int> total_additions,
+    ffi.Pointer<ffi.Int> total_deletions,
     ffi.Pointer<git_patch> patch,
   ) {
     return _git_patch_line_stats(
@@ -24233,13 +21646,13 @@ class LibGit2 {
   late final _git_patch_line_statsPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Pointer<ffi.Size>,
-              ffi.Pointer<ffi.Size>,
-              ffi.Pointer<ffi.Size>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
               ffi.Pointer<git_patch>)>>('git_patch_line_stats');
   late final _git_patch_line_stats = _git_patch_line_statsPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Size>, ffi.Pointer<ffi.Size>,
-          ffi.Pointer<ffi.Size>, ffi.Pointer<git_patch>)>();
+      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
+          ffi.Pointer<ffi.Int>, ffi.Pointer<git_patch>)>();
 
   /// Get the information about a hunk in a patch
   ///
@@ -24254,7 +21667,7 @@ class LibGit2 {
   /// @return 0 on success, GIT_ENOTFOUND if hunk_idx out of range, <0 on error
   int git_patch_get_hunk(
     ffi.Pointer<ffi.Pointer<git_diff_hunk>> out,
-    ffi.Pointer<ffi.Size> lines_in_hunk,
+    ffi.Pointer<ffi.Int> lines_in_hunk,
     ffi.Pointer<git_patch> patch,
     int hunk_idx,
   ) {
@@ -24270,12 +21683,12 @@ class LibGit2 {
       ffi.NativeFunction<
           ffi.Int Function(
               ffi.Pointer<ffi.Pointer<git_diff_hunk>>,
-              ffi.Pointer<ffi.Size>,
+              ffi.Pointer<ffi.Int>,
               ffi.Pointer<git_patch>,
-              ffi.Size)>>('git_patch_get_hunk');
+              ffi.Int)>>('git_patch_get_hunk');
   late final _git_patch_get_hunk = _git_patch_get_hunkPtr.asFunction<
       int Function(ffi.Pointer<ffi.Pointer<git_diff_hunk>>,
-          ffi.Pointer<ffi.Size>, ffi.Pointer<git_patch>, int)>();
+          ffi.Pointer<ffi.Int>, ffi.Pointer<git_patch>, int)>();
 
   /// Get the number of lines in a hunk.
   ///
@@ -24294,8 +21707,8 @@ class LibGit2 {
 
   late final _git_patch_num_lines_in_hunkPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<git_patch>,
-              ffi.Size)>>('git_patch_num_lines_in_hunk');
+          ffi.Int Function(
+              ffi.Pointer<git_patch>, ffi.Int)>>('git_patch_num_lines_in_hunk');
   late final _git_patch_num_lines_in_hunk = _git_patch_num_lines_in_hunkPtr
       .asFunction<int Function(ffi.Pointer<git_patch>, int)>();
 
@@ -24330,8 +21743,8 @@ class LibGit2 {
           ffi.Int Function(
               ffi.Pointer<ffi.Pointer<git_diff_line>>,
               ffi.Pointer<git_patch>,
-              ffi.Size,
-              ffi.Size)>>('git_patch_get_line_in_hunk');
+              ffi.Int,
+              ffi.Int)>>('git_patch_get_line_in_hunk');
   late final _git_patch_get_line_in_hunk =
       _git_patch_get_line_in_hunkPtr.asFunction<
           int Function(ffi.Pointer<ffi.Pointer<git_diff_line>>,
@@ -24367,7 +21780,7 @@ class LibGit2 {
 
   late final _git_patch_sizePtr = _lookup<
       ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<git_patch>, ffi.Int, ffi.Int,
+          ffi.Int Function(ffi.Pointer<git_patch>, ffi.Int, ffi.Int,
               ffi.Int)>>('git_patch_size');
   late final _git_patch_size = _git_patch_sizePtr
       .asFunction<int Function(ffi.Pointer<git_patch>, int, int, int)>();
@@ -24489,7 +21902,7 @@ class LibGit2 {
 
   late final _git_pathspec_matches_pathPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<git_pathspec>, ffi.Uint32,
+          ffi.Int Function(ffi.Pointer<git_pathspec>, ffi.Int,
               ffi.Pointer<ffi.Char>)>>('git_pathspec_matches_path');
   late final _git_pathspec_matches_path =
       _git_pathspec_matches_pathPtr.asFunction<
@@ -24535,7 +21948,7 @@ class LibGit2 {
           ffi.Int Function(
               ffi.Pointer<ffi.Pointer<git_pathspec_match_list>>,
               ffi.Pointer<git_repository>,
-              ffi.Uint32,
+              ffi.Int,
               ffi.Pointer<git_pathspec>)>>('git_pathspec_match_workdir');
   late final _git_pathspec_match_workdir =
       _git_pathspec_match_workdirPtr.asFunction<
@@ -24582,7 +21995,7 @@ class LibGit2 {
           ffi.Int Function(
               ffi.Pointer<ffi.Pointer<git_pathspec_match_list>>,
               ffi.Pointer<git_index>,
-              ffi.Uint32,
+              ffi.Int,
               ffi.Pointer<git_pathspec>)>>('git_pathspec_match_index');
   late final _git_pathspec_match_index =
       _git_pathspec_match_indexPtr.asFunction<
@@ -24624,7 +22037,7 @@ class LibGit2 {
           ffi.Int Function(
               ffi.Pointer<ffi.Pointer<git_pathspec_match_list>>,
               ffi.Pointer<git_tree>,
-              ffi.Uint32,
+              ffi.Int,
               ffi.Pointer<git_pathspec>)>>('git_pathspec_match_tree');
   late final _git_pathspec_match_tree = _git_pathspec_match_treePtr.asFunction<
       int Function(ffi.Pointer<ffi.Pointer<git_pathspec_match_list>>,
@@ -24665,7 +22078,7 @@ class LibGit2 {
           ffi.Int Function(
               ffi.Pointer<ffi.Pointer<git_pathspec_match_list>>,
               ffi.Pointer<git_diff>,
-              ffi.Uint32,
+              ffi.Int,
               ffi.Pointer<git_pathspec>)>>('git_pathspec_match_diff');
   late final _git_pathspec_match_diff = _git_pathspec_match_diffPtr.asFunction<
       int Function(ffi.Pointer<ffi.Pointer<git_pathspec_match_list>>,
@@ -24703,7 +22116,7 @@ class LibGit2 {
 
   late final _git_pathspec_match_list_entrycountPtr = _lookup<
           ffi.NativeFunction<
-              ffi.Size Function(ffi.Pointer<git_pathspec_match_list>)>>(
+              ffi.Int Function(ffi.Pointer<git_pathspec_match_list>)>>(
       'git_pathspec_match_list_entrycount');
   late final _git_pathspec_match_list_entrycount =
       _git_pathspec_match_list_entrycountPtr
@@ -24730,7 +22143,7 @@ class LibGit2 {
   late final _git_pathspec_match_list_entryPtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<git_pathspec_match_list>,
-              ffi.Size)>>('git_pathspec_match_list_entry');
+              ffi.Int)>>('git_pathspec_match_list_entry');
   late final _git_pathspec_match_list_entry =
       _git_pathspec_match_list_entryPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(
@@ -24758,7 +22171,7 @@ class LibGit2 {
       ffi.NativeFunction<
           ffi.Pointer<git_diff_delta> Function(
               ffi.Pointer<git_pathspec_match_list>,
-              ffi.Size)>>('git_pathspec_match_list_diff_entry');
+              ffi.Int)>>('git_pathspec_match_list_diff_entry');
   late final _git_pathspec_match_list_diff_entry =
       _git_pathspec_match_list_diff_entryPtr.asFunction<
           ffi.Pointer<git_diff_delta> Function(
@@ -24781,7 +22194,7 @@ class LibGit2 {
 
   late final _git_pathspec_match_list_failed_entrycountPtr = _lookup<
           ffi.NativeFunction<
-              ffi.Size Function(ffi.Pointer<git_pathspec_match_list>)>>(
+              ffi.Int Function(ffi.Pointer<git_pathspec_match_list>)>>(
       'git_pathspec_match_list_failed_entrycount');
   late final _git_pathspec_match_list_failed_entrycount =
       _git_pathspec_match_list_failed_entrycountPtr
@@ -24807,7 +22220,7 @@ class LibGit2 {
   late final _git_pathspec_match_list_failed_entryPtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<git_pathspec_match_list>,
-              ffi.Size)>>('git_pathspec_match_list_failed_entry');
+              ffi.Int)>>('git_pathspec_match_list_failed_entry');
   late final _git_pathspec_match_list_failed_entry =
       _git_pathspec_match_list_failed_entryPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(
@@ -25059,7 +22472,7 @@ class LibGit2 {
   }
 
   late final _git_reflog_entrycountPtr =
-      _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Pointer<git_reflog>)>>(
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_reflog>)>>(
           'git_reflog_entrycount');
   late final _git_reflog_entrycount = _git_reflog_entrycountPtr
       .asFunction<int Function(ffi.Pointer<git_reflog>)>();
@@ -25086,7 +22499,7 @@ class LibGit2 {
   late final _git_reflog_entry_byindexPtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<git_reflog_entry> Function(
-              ffi.Pointer<git_reflog>, ffi.Size)>>('git_reflog_entry_byindex');
+              ffi.Pointer<git_reflog>, ffi.Int)>>('git_reflog_entry_byindex');
   late final _git_reflog_entry_byindex =
       _git_reflog_entry_byindexPtr.asFunction<
           ffi.Pointer<git_reflog_entry> Function(
@@ -25122,7 +22535,7 @@ class LibGit2 {
   late final _git_reflog_dropPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Pointer<git_reflog>, ffi.Size, ffi.Int)>>('git_reflog_drop');
+              ffi.Pointer<git_reflog>, ffi.Int, ffi.Int)>>('git_reflog_drop');
   late final _git_reflog_drop = _git_reflog_dropPtr
       .asFunction<int Function(ffi.Pointer<git_reflog>, int, int)>();
 
@@ -26014,7 +23427,7 @@ class LibGit2 {
               ffi.Pointer<ffi.Pointer<git_tag>>,
               ffi.Pointer<git_repository>,
               ffi.Pointer<git_oid>,
-              ffi.Size)>>('git_tag_lookup_prefix');
+              ffi.Int)>>('git_tag_lookup_prefix');
   late final _git_tag_lookup_prefix = _git_tag_lookup_prefixPtr.asFunction<
       int Function(ffi.Pointer<ffi.Pointer<git_tag>>,
           ffi.Pointer<git_repository>, ffi.Pointer<git_oid>, int)>();
@@ -26861,1188 +24274,6 @@ class _SymbolAddresses {
       get git_branch_iterator_free => _library._git_branch_iterator_freePtr;
 }
 
-class __mbstate_t extends ffi.Union {
-  @ffi.Array.multi([128])
-  external ffi.Array<ffi.Char> __mbstate8;
-
-  @ffi.LongLong()
-  external int _mbstateL;
-}
-
-class __darwin_pthread_handler_rec extends ffi.Struct {
-  external ffi
-          .Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>
-      __routine;
-
-  external ffi.Pointer<ffi.Void> __arg;
-
-  external ffi.Pointer<__darwin_pthread_handler_rec> __next;
-}
-
-class _opaque_pthread_attr_t extends ffi.Struct {
-  @ffi.Long()
-  external int __sig;
-
-  @ffi.Array.multi([56])
-  external ffi.Array<ffi.Char> __opaque;
-}
-
-class _opaque_pthread_cond_t extends ffi.Struct {
-  @ffi.Long()
-  external int __sig;
-
-  @ffi.Array.multi([40])
-  external ffi.Array<ffi.Char> __opaque;
-}
-
-class _opaque_pthread_condattr_t extends ffi.Struct {
-  @ffi.Long()
-  external int __sig;
-
-  @ffi.Array.multi([8])
-  external ffi.Array<ffi.Char> __opaque;
-}
-
-class _opaque_pthread_mutex_t extends ffi.Struct {
-  @ffi.Long()
-  external int __sig;
-
-  @ffi.Array.multi([56])
-  external ffi.Array<ffi.Char> __opaque;
-}
-
-class _opaque_pthread_mutexattr_t extends ffi.Struct {
-  @ffi.Long()
-  external int __sig;
-
-  @ffi.Array.multi([8])
-  external ffi.Array<ffi.Char> __opaque;
-}
-
-class _opaque_pthread_once_t extends ffi.Struct {
-  @ffi.Long()
-  external int __sig;
-
-  @ffi.Array.multi([8])
-  external ffi.Array<ffi.Char> __opaque;
-}
-
-class _opaque_pthread_rwlock_t extends ffi.Struct {
-  @ffi.Long()
-  external int __sig;
-
-  @ffi.Array.multi([192])
-  external ffi.Array<ffi.Char> __opaque;
-}
-
-class _opaque_pthread_rwlockattr_t extends ffi.Struct {
-  @ffi.Long()
-  external int __sig;
-
-  @ffi.Array.multi([16])
-  external ffi.Array<ffi.Char> __opaque;
-}
-
-class _opaque_pthread_t extends ffi.Struct {
-  @ffi.Long()
-  external int __sig;
-
-  external ffi.Pointer<__darwin_pthread_handler_rec> __cleanup_stack;
-
-  @ffi.Array.multi([8176])
-  external ffi.Array<ffi.Char> __opaque;
-}
-
-class timespec extends ffi.Struct {
-  @__darwin_time_t()
-  external int tv_sec;
-
-  @ffi.Long()
-  external int tv_nsec;
-}
-
-typedef __darwin_time_t = ffi.Long;
-
-class tm extends ffi.Struct {
-  @ffi.Int()
-  external int tm_sec;
-
-  @ffi.Int()
-  external int tm_min;
-
-  @ffi.Int()
-  external int tm_hour;
-
-  @ffi.Int()
-  external int tm_mday;
-
-  @ffi.Int()
-  external int tm_mon;
-
-  @ffi.Int()
-  external int tm_year;
-
-  @ffi.Int()
-  external int tm_wday;
-
-  @ffi.Int()
-  external int tm_yday;
-
-  @ffi.Int()
-  external int tm_isdst;
-
-  @ffi.Long()
-  external int tm_gmtoff;
-
-  external ffi.Pointer<ffi.Char> tm_zone;
-}
-
-typedef clock_t = __darwin_clock_t;
-typedef __darwin_clock_t = ffi.UnsignedLong;
-typedef time_t = __darwin_time_t;
-
-abstract class clockid_t {
-  static const int _CLOCK_REALTIME = 0;
-  static const int _CLOCK_MONOTONIC = 6;
-  static const int _CLOCK_MONOTONIC_RAW = 4;
-  static const int _CLOCK_MONOTONIC_RAW_APPROX = 5;
-  static const int _CLOCK_UPTIME_RAW = 8;
-  static const int _CLOCK_UPTIME_RAW_APPROX = 9;
-  static const int _CLOCK_PROCESS_CPUTIME_ID = 12;
-  static const int _CLOCK_THREAD_CPUTIME_ID = 16;
-}
-
-typedef __uint64_t = ffi.UnsignedLongLong;
-
-abstract class idtype_t {
-  static const int P_ALL = 0;
-  static const int P_PID = 1;
-  static const int P_PGID = 2;
-}
-
-class __darwin_arm_exception_state extends ffi.Struct {
-  @__uint32_t()
-  external int __exception;
-
-  @__uint32_t()
-  external int __fsr;
-
-  @__uint32_t()
-  external int __far;
-}
-
-typedef __uint32_t = ffi.UnsignedInt;
-
-class __darwin_arm_exception_state64 extends ffi.Struct {
-  @__uint64_t()
-  external int __far;
-
-  @__uint32_t()
-  external int __esr;
-
-  @__uint32_t()
-  external int __exception;
-}
-
-class __darwin_arm_thread_state extends ffi.Struct {
-  @ffi.Array.multi([13])
-  external ffi.Array<__uint32_t> __r;
-
-  @__uint32_t()
-  external int __sp;
-
-  @__uint32_t()
-  external int __lr;
-
-  @__uint32_t()
-  external int __pc;
-
-  @__uint32_t()
-  external int __cpsr;
-}
-
-class __darwin_arm_thread_state64 extends ffi.Struct {
-  @ffi.Array.multi([29])
-  external ffi.Array<__uint64_t> __x;
-
-  @__uint64_t()
-  external int __fp;
-
-  @__uint64_t()
-  external int __lr;
-
-  @__uint64_t()
-  external int __sp;
-
-  @__uint64_t()
-  external int __pc;
-
-  @__uint32_t()
-  external int __cpsr;
-
-  @__uint32_t()
-  external int __pad;
-}
-
-class __darwin_arm_vfp_state extends ffi.Struct {
-  @ffi.Array.multi([64])
-  external ffi.Array<__uint32_t> __r;
-
-  @__uint32_t()
-  external int __fpscr;
-}
-
-class __darwin_arm_neon_state64 extends ffi.Opaque {}
-
-class __darwin_arm_neon_state extends ffi.Opaque {}
-
-class __arm_pagein_state extends ffi.Struct {
-  @ffi.Int()
-  external int __pagein_error;
-}
-
-class __arm_legacy_debug_state extends ffi.Struct {
-  @ffi.Array.multi([16])
-  external ffi.Array<__uint32_t> __bvr;
-
-  @ffi.Array.multi([16])
-  external ffi.Array<__uint32_t> __bcr;
-
-  @ffi.Array.multi([16])
-  external ffi.Array<__uint32_t> __wvr;
-
-  @ffi.Array.multi([16])
-  external ffi.Array<__uint32_t> __wcr;
-}
-
-class __darwin_arm_debug_state32 extends ffi.Struct {
-  @ffi.Array.multi([16])
-  external ffi.Array<__uint32_t> __bvr;
-
-  @ffi.Array.multi([16])
-  external ffi.Array<__uint32_t> __bcr;
-
-  @ffi.Array.multi([16])
-  external ffi.Array<__uint32_t> __wvr;
-
-  @ffi.Array.multi([16])
-  external ffi.Array<__uint32_t> __wcr;
-
-  @__uint64_t()
-  external int __mdscr_el1;
-}
-
-class __darwin_arm_debug_state64 extends ffi.Struct {
-  @ffi.Array.multi([16])
-  external ffi.Array<__uint64_t> __bvr;
-
-  @ffi.Array.multi([16])
-  external ffi.Array<__uint64_t> __bcr;
-
-  @ffi.Array.multi([16])
-  external ffi.Array<__uint64_t> __wvr;
-
-  @ffi.Array.multi([16])
-  external ffi.Array<__uint64_t> __wcr;
-
-  @__uint64_t()
-  external int __mdscr_el1;
-}
-
-class __darwin_arm_cpmu_state64 extends ffi.Struct {
-  @ffi.Array.multi([16])
-  external ffi.Array<__uint64_t> __ctrs;
-}
-
-class __darwin_mcontext32 extends ffi.Struct {
-  external __darwin_arm_exception_state __es;
-
-  external __darwin_arm_thread_state __ss;
-
-  external __darwin_arm_vfp_state __fs;
-}
-
-class __darwin_mcontext64 extends ffi.Opaque {}
-
-class __darwin_sigaltstack extends ffi.Struct {
-  external ffi.Pointer<ffi.Void> ss_sp;
-
-  @__darwin_size_t()
-  external int ss_size;
-
-  @ffi.Int()
-  external int ss_flags;
-}
-
-typedef __darwin_size_t = ffi.UnsignedLong;
-
-class __darwin_ucontext extends ffi.Struct {
-  @ffi.Int()
-  external int uc_onstack;
-
-  @__darwin_sigset_t()
-  external int uc_sigmask;
-
-  external __darwin_sigaltstack uc_stack;
-
-  external ffi.Pointer<__darwin_ucontext> uc_link;
-
-  @__darwin_size_t()
-  external int uc_mcsize;
-
-  external ffi.Pointer<__darwin_mcontext64> uc_mcontext;
-}
-
-typedef __darwin_sigset_t = __uint32_t;
-
-class sigval extends ffi.Union {
-  @ffi.Int()
-  external int sival_int;
-
-  external ffi.Pointer<ffi.Void> sival_ptr;
-}
-
-class sigevent extends ffi.Struct {
-  @ffi.Int()
-  external int sigev_notify;
-
-  @ffi.Int()
-  external int sigev_signo;
-
-  external sigval sigev_value;
-
-  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(sigval)>>
-      sigev_notify_function;
-
-  external ffi.Pointer<pthread_attr_t> sigev_notify_attributes;
-}
-
-typedef pthread_attr_t = __darwin_pthread_attr_t;
-typedef __darwin_pthread_attr_t = _opaque_pthread_attr_t;
-
-class __siginfo extends ffi.Struct {
-  @ffi.Int()
-  external int si_signo;
-
-  @ffi.Int()
-  external int si_errno;
-
-  @ffi.Int()
-  external int si_code;
-
-  @pid_t()
-  external int si_pid;
-
-  @uid_t()
-  external int si_uid;
-
-  @ffi.Int()
-  external int si_status;
-
-  external ffi.Pointer<ffi.Void> si_addr;
-
-  external sigval si_value;
-
-  @ffi.Long()
-  external int si_band;
-
-  @ffi.Array.multi([7])
-  external ffi.Array<ffi.UnsignedLong> __pad;
-}
-
-typedef pid_t = __darwin_pid_t;
-typedef __darwin_pid_t = __int32_t;
-typedef __int32_t = ffi.Int;
-typedef uid_t = __darwin_uid_t;
-typedef __darwin_uid_t = __uint32_t;
-
-class __sigaction_u extends ffi.Union {
-  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>
-      __sa_handler;
-
-  external ffi.Pointer<
-          ffi.NativeFunction<
-              ffi.Void Function(
-                  ffi.Int, ffi.Pointer<__siginfo>, ffi.Pointer<ffi.Void>)>>
-      __sa_sigaction;
-}
-
-class __sigaction extends ffi.Struct {
-  external __sigaction_u __sigaction_u1;
-
-  external ffi.Pointer<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int,
-              ffi.Pointer<siginfo_t>, ffi.Pointer<ffi.Void>)>> sa_tramp;
-
-  @sigset_t()
-  external int sa_mask;
-
-  @ffi.Int()
-  external int sa_flags;
-}
-
-typedef siginfo_t = __siginfo;
-typedef sigset_t = __darwin_sigset_t;
-
-class sigaction extends ffi.Struct {
-  external __sigaction_u __sigaction_u1;
-
-  @sigset_t()
-  external int sa_mask;
-
-  @ffi.Int()
-  external int sa_flags;
-}
-
-class sigvec extends ffi.Struct {
-  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>
-      sv_handler;
-
-  @ffi.Int()
-  external int sv_mask;
-
-  @ffi.Int()
-  external int sv_flags;
-}
-
-class sigstack extends ffi.Struct {
-  external ffi.Pointer<ffi.Char> ss_sp;
-
-  @ffi.Int()
-  external int ss_onstack;
-}
-
-class timeval extends ffi.Struct {
-  @__darwin_time_t()
-  external int tv_sec;
-
-  @__darwin_suseconds_t()
-  external int tv_usec;
-}
-
-typedef __darwin_suseconds_t = __int32_t;
-
-class rusage extends ffi.Struct {
-  external timeval ru_utime;
-
-  external timeval ru_stime;
-
-  @ffi.Long()
-  external int ru_maxrss;
-
-  @ffi.Long()
-  external int ru_ixrss;
-
-  @ffi.Long()
-  external int ru_idrss;
-
-  @ffi.Long()
-  external int ru_isrss;
-
-  @ffi.Long()
-  external int ru_minflt;
-
-  @ffi.Long()
-  external int ru_majflt;
-
-  @ffi.Long()
-  external int ru_nswap;
-
-  @ffi.Long()
-  external int ru_inblock;
-
-  @ffi.Long()
-  external int ru_oublock;
-
-  @ffi.Long()
-  external int ru_msgsnd;
-
-  @ffi.Long()
-  external int ru_msgrcv;
-
-  @ffi.Long()
-  external int ru_nsignals;
-
-  @ffi.Long()
-  external int ru_nvcsw;
-
-  @ffi.Long()
-  external int ru_nivcsw;
-}
-
-class rusage_info_v0 extends ffi.Struct {
-  @ffi.Array.multi([16])
-  external ffi.Array<ffi.Uint8> ri_uuid;
-
-  @ffi.Uint64()
-  external int ri_user_time;
-
-  @ffi.Uint64()
-  external int ri_system_time;
-
-  @ffi.Uint64()
-  external int ri_pkg_idle_wkups;
-
-  @ffi.Uint64()
-  external int ri_interrupt_wkups;
-
-  @ffi.Uint64()
-  external int ri_pageins;
-
-  @ffi.Uint64()
-  external int ri_wired_size;
-
-  @ffi.Uint64()
-  external int ri_resident_size;
-
-  @ffi.Uint64()
-  external int ri_phys_footprint;
-
-  @ffi.Uint64()
-  external int ri_proc_start_abstime;
-
-  @ffi.Uint64()
-  external int ri_proc_exit_abstime;
-}
-
-class rusage_info_v1 extends ffi.Struct {
-  @ffi.Array.multi([16])
-  external ffi.Array<ffi.Uint8> ri_uuid;
-
-  @ffi.Uint64()
-  external int ri_user_time;
-
-  @ffi.Uint64()
-  external int ri_system_time;
-
-  @ffi.Uint64()
-  external int ri_pkg_idle_wkups;
-
-  @ffi.Uint64()
-  external int ri_interrupt_wkups;
-
-  @ffi.Uint64()
-  external int ri_pageins;
-
-  @ffi.Uint64()
-  external int ri_wired_size;
-
-  @ffi.Uint64()
-  external int ri_resident_size;
-
-  @ffi.Uint64()
-  external int ri_phys_footprint;
-
-  @ffi.Uint64()
-  external int ri_proc_start_abstime;
-
-  @ffi.Uint64()
-  external int ri_proc_exit_abstime;
-
-  @ffi.Uint64()
-  external int ri_child_user_time;
-
-  @ffi.Uint64()
-  external int ri_child_system_time;
-
-  @ffi.Uint64()
-  external int ri_child_pkg_idle_wkups;
-
-  @ffi.Uint64()
-  external int ri_child_interrupt_wkups;
-
-  @ffi.Uint64()
-  external int ri_child_pageins;
-
-  @ffi.Uint64()
-  external int ri_child_elapsed_abstime;
-}
-
-class rusage_info_v2 extends ffi.Struct {
-  @ffi.Array.multi([16])
-  external ffi.Array<ffi.Uint8> ri_uuid;
-
-  @ffi.Uint64()
-  external int ri_user_time;
-
-  @ffi.Uint64()
-  external int ri_system_time;
-
-  @ffi.Uint64()
-  external int ri_pkg_idle_wkups;
-
-  @ffi.Uint64()
-  external int ri_interrupt_wkups;
-
-  @ffi.Uint64()
-  external int ri_pageins;
-
-  @ffi.Uint64()
-  external int ri_wired_size;
-
-  @ffi.Uint64()
-  external int ri_resident_size;
-
-  @ffi.Uint64()
-  external int ri_phys_footprint;
-
-  @ffi.Uint64()
-  external int ri_proc_start_abstime;
-
-  @ffi.Uint64()
-  external int ri_proc_exit_abstime;
-
-  @ffi.Uint64()
-  external int ri_child_user_time;
-
-  @ffi.Uint64()
-  external int ri_child_system_time;
-
-  @ffi.Uint64()
-  external int ri_child_pkg_idle_wkups;
-
-  @ffi.Uint64()
-  external int ri_child_interrupt_wkups;
-
-  @ffi.Uint64()
-  external int ri_child_pageins;
-
-  @ffi.Uint64()
-  external int ri_child_elapsed_abstime;
-
-  @ffi.Uint64()
-  external int ri_diskio_bytesread;
-
-  @ffi.Uint64()
-  external int ri_diskio_byteswritten;
-}
-
-class rusage_info_v3 extends ffi.Struct {
-  @ffi.Array.multi([16])
-  external ffi.Array<ffi.Uint8> ri_uuid;
-
-  @ffi.Uint64()
-  external int ri_user_time;
-
-  @ffi.Uint64()
-  external int ri_system_time;
-
-  @ffi.Uint64()
-  external int ri_pkg_idle_wkups;
-
-  @ffi.Uint64()
-  external int ri_interrupt_wkups;
-
-  @ffi.Uint64()
-  external int ri_pageins;
-
-  @ffi.Uint64()
-  external int ri_wired_size;
-
-  @ffi.Uint64()
-  external int ri_resident_size;
-
-  @ffi.Uint64()
-  external int ri_phys_footprint;
-
-  @ffi.Uint64()
-  external int ri_proc_start_abstime;
-
-  @ffi.Uint64()
-  external int ri_proc_exit_abstime;
-
-  @ffi.Uint64()
-  external int ri_child_user_time;
-
-  @ffi.Uint64()
-  external int ri_child_system_time;
-
-  @ffi.Uint64()
-  external int ri_child_pkg_idle_wkups;
-
-  @ffi.Uint64()
-  external int ri_child_interrupt_wkups;
-
-  @ffi.Uint64()
-  external int ri_child_pageins;
-
-  @ffi.Uint64()
-  external int ri_child_elapsed_abstime;
-
-  @ffi.Uint64()
-  external int ri_diskio_bytesread;
-
-  @ffi.Uint64()
-  external int ri_diskio_byteswritten;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_default;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_maintenance;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_background;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_utility;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_legacy;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_user_initiated;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_user_interactive;
-
-  @ffi.Uint64()
-  external int ri_billed_system_time;
-
-  @ffi.Uint64()
-  external int ri_serviced_system_time;
-}
-
-class rusage_info_v4 extends ffi.Struct {
-  @ffi.Array.multi([16])
-  external ffi.Array<ffi.Uint8> ri_uuid;
-
-  @ffi.Uint64()
-  external int ri_user_time;
-
-  @ffi.Uint64()
-  external int ri_system_time;
-
-  @ffi.Uint64()
-  external int ri_pkg_idle_wkups;
-
-  @ffi.Uint64()
-  external int ri_interrupt_wkups;
-
-  @ffi.Uint64()
-  external int ri_pageins;
-
-  @ffi.Uint64()
-  external int ri_wired_size;
-
-  @ffi.Uint64()
-  external int ri_resident_size;
-
-  @ffi.Uint64()
-  external int ri_phys_footprint;
-
-  @ffi.Uint64()
-  external int ri_proc_start_abstime;
-
-  @ffi.Uint64()
-  external int ri_proc_exit_abstime;
-
-  @ffi.Uint64()
-  external int ri_child_user_time;
-
-  @ffi.Uint64()
-  external int ri_child_system_time;
-
-  @ffi.Uint64()
-  external int ri_child_pkg_idle_wkups;
-
-  @ffi.Uint64()
-  external int ri_child_interrupt_wkups;
-
-  @ffi.Uint64()
-  external int ri_child_pageins;
-
-  @ffi.Uint64()
-  external int ri_child_elapsed_abstime;
-
-  @ffi.Uint64()
-  external int ri_diskio_bytesread;
-
-  @ffi.Uint64()
-  external int ri_diskio_byteswritten;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_default;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_maintenance;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_background;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_utility;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_legacy;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_user_initiated;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_user_interactive;
-
-  @ffi.Uint64()
-  external int ri_billed_system_time;
-
-  @ffi.Uint64()
-  external int ri_serviced_system_time;
-
-  @ffi.Uint64()
-  external int ri_logical_writes;
-
-  @ffi.Uint64()
-  external int ri_lifetime_max_phys_footprint;
-
-  @ffi.Uint64()
-  external int ri_instructions;
-
-  @ffi.Uint64()
-  external int ri_cycles;
-
-  @ffi.Uint64()
-  external int ri_billed_energy;
-
-  @ffi.Uint64()
-  external int ri_serviced_energy;
-
-  @ffi.Uint64()
-  external int ri_interval_max_phys_footprint;
-
-  @ffi.Uint64()
-  external int ri_runnable_time;
-}
-
-class rusage_info_v5 extends ffi.Struct {
-  @ffi.Array.multi([16])
-  external ffi.Array<ffi.Uint8> ri_uuid;
-
-  @ffi.Uint64()
-  external int ri_user_time;
-
-  @ffi.Uint64()
-  external int ri_system_time;
-
-  @ffi.Uint64()
-  external int ri_pkg_idle_wkups;
-
-  @ffi.Uint64()
-  external int ri_interrupt_wkups;
-
-  @ffi.Uint64()
-  external int ri_pageins;
-
-  @ffi.Uint64()
-  external int ri_wired_size;
-
-  @ffi.Uint64()
-  external int ri_resident_size;
-
-  @ffi.Uint64()
-  external int ri_phys_footprint;
-
-  @ffi.Uint64()
-  external int ri_proc_start_abstime;
-
-  @ffi.Uint64()
-  external int ri_proc_exit_abstime;
-
-  @ffi.Uint64()
-  external int ri_child_user_time;
-
-  @ffi.Uint64()
-  external int ri_child_system_time;
-
-  @ffi.Uint64()
-  external int ri_child_pkg_idle_wkups;
-
-  @ffi.Uint64()
-  external int ri_child_interrupt_wkups;
-
-  @ffi.Uint64()
-  external int ri_child_pageins;
-
-  @ffi.Uint64()
-  external int ri_child_elapsed_abstime;
-
-  @ffi.Uint64()
-  external int ri_diskio_bytesread;
-
-  @ffi.Uint64()
-  external int ri_diskio_byteswritten;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_default;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_maintenance;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_background;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_utility;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_legacy;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_user_initiated;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_user_interactive;
-
-  @ffi.Uint64()
-  external int ri_billed_system_time;
-
-  @ffi.Uint64()
-  external int ri_serviced_system_time;
-
-  @ffi.Uint64()
-  external int ri_logical_writes;
-
-  @ffi.Uint64()
-  external int ri_lifetime_max_phys_footprint;
-
-  @ffi.Uint64()
-  external int ri_instructions;
-
-  @ffi.Uint64()
-  external int ri_cycles;
-
-  @ffi.Uint64()
-  external int ri_billed_energy;
-
-  @ffi.Uint64()
-  external int ri_serviced_energy;
-
-  @ffi.Uint64()
-  external int ri_interval_max_phys_footprint;
-
-  @ffi.Uint64()
-  external int ri_runnable_time;
-
-  @ffi.Uint64()
-  external int ri_flags;
-}
-
-class rusage_info_v6 extends ffi.Struct {
-  @ffi.Array.multi([16])
-  external ffi.Array<ffi.Uint8> ri_uuid;
-
-  @ffi.Uint64()
-  external int ri_user_time;
-
-  @ffi.Uint64()
-  external int ri_system_time;
-
-  @ffi.Uint64()
-  external int ri_pkg_idle_wkups;
-
-  @ffi.Uint64()
-  external int ri_interrupt_wkups;
-
-  @ffi.Uint64()
-  external int ri_pageins;
-
-  @ffi.Uint64()
-  external int ri_wired_size;
-
-  @ffi.Uint64()
-  external int ri_resident_size;
-
-  @ffi.Uint64()
-  external int ri_phys_footprint;
-
-  @ffi.Uint64()
-  external int ri_proc_start_abstime;
-
-  @ffi.Uint64()
-  external int ri_proc_exit_abstime;
-
-  @ffi.Uint64()
-  external int ri_child_user_time;
-
-  @ffi.Uint64()
-  external int ri_child_system_time;
-
-  @ffi.Uint64()
-  external int ri_child_pkg_idle_wkups;
-
-  @ffi.Uint64()
-  external int ri_child_interrupt_wkups;
-
-  @ffi.Uint64()
-  external int ri_child_pageins;
-
-  @ffi.Uint64()
-  external int ri_child_elapsed_abstime;
-
-  @ffi.Uint64()
-  external int ri_diskio_bytesread;
-
-  @ffi.Uint64()
-  external int ri_diskio_byteswritten;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_default;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_maintenance;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_background;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_utility;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_legacy;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_user_initiated;
-
-  @ffi.Uint64()
-  external int ri_cpu_time_qos_user_interactive;
-
-  @ffi.Uint64()
-  external int ri_billed_system_time;
-
-  @ffi.Uint64()
-  external int ri_serviced_system_time;
-
-  @ffi.Uint64()
-  external int ri_logical_writes;
-
-  @ffi.Uint64()
-  external int ri_lifetime_max_phys_footprint;
-
-  @ffi.Uint64()
-  external int ri_instructions;
-
-  @ffi.Uint64()
-  external int ri_cycles;
-
-  @ffi.Uint64()
-  external int ri_billed_energy;
-
-  @ffi.Uint64()
-  external int ri_serviced_energy;
-
-  @ffi.Uint64()
-  external int ri_interval_max_phys_footprint;
-
-  @ffi.Uint64()
-  external int ri_runnable_time;
-
-  @ffi.Uint64()
-  external int ri_flags;
-
-  @ffi.Uint64()
-  external int ri_user_ptime;
-
-  @ffi.Uint64()
-  external int ri_system_ptime;
-
-  @ffi.Uint64()
-  external int ri_pinstructions;
-
-  @ffi.Uint64()
-  external int ri_pcycles;
-
-  @ffi.Uint64()
-  external int ri_energy_nj;
-
-  @ffi.Uint64()
-  external int ri_penergy_nj;
-
-  @ffi.Array.multi([14])
-  external ffi.Array<ffi.Uint64> ri_reserved;
-}
-
-class rlimit extends ffi.Struct {
-  @rlim_t()
-  external int rlim_cur;
-
-  @rlim_t()
-  external int rlim_max;
-}
-
-typedef rlim_t = __uint64_t;
-
-class proc_rlimit_control_wakeupmon extends ffi.Struct {
-  @ffi.Uint32()
-  external int wm_flags;
-
-  @ffi.Int32()
-  external int wm_rate;
-}
-
-typedef id_t = __darwin_id_t;
-typedef __darwin_id_t = __uint32_t;
-
-@ffi.Packed(1)
-class _OSUnalignedU16 extends ffi.Struct {
-  @ffi.Uint16()
-  external int __val;
-}
-
-@ffi.Packed(1)
-class _OSUnalignedU32 extends ffi.Struct {
-  @ffi.Uint32()
-  external int __val;
-}
-
-@ffi.Packed(1)
-class _OSUnalignedU64 extends ffi.Struct {
-  @ffi.Uint64()
-  external int __val;
-}
-
-class wait extends ffi.Opaque {}
-
-class div_t extends ffi.Struct {
-  @ffi.Int()
-  external int quot;
-
-  @ffi.Int()
-  external int rem;
-}
-
-class ldiv_t extends ffi.Struct {
-  @ffi.Long()
-  external int quot;
-
-  @ffi.Long()
-  external int rem;
-}
-
-class lldiv_t extends ffi.Struct {
-  @ffi.LongLong()
-  external int quot;
-
-  @ffi.LongLong()
-  external int rem;
-}
-
-typedef dev_t = __darwin_dev_t;
-typedef __darwin_dev_t = __int32_t;
-typedef mode_t = __darwin_mode_t;
-typedef __darwin_mode_t = __uint16_t;
-typedef __uint16_t = ffi.UnsignedShort;
-typedef intmax_t = ffi.Long;
-
-class imaxdiv_t extends ffi.Struct {
-  @intmax_t()
-  external int quot;
-
-  @intmax_t()
-  external int rem;
-}
-
-typedef uintmax_t = ffi.UnsignedLong;
-
 /// Combinations of these values describe the features with which libgit2
 /// was compiled
 abstract class git_feature_t {
@@ -28109,10 +24340,17 @@ abstract class git_libgit2_opt_t {
   static const int GIT_OPT_SET_OWNER_VALIDATION = 36;
 }
 
-class fd_set extends ffi.Struct {
-  @ffi.Array.multi([32])
-  external ffi.Array<__int32_t> fds_bits;
-}
+/// A data buffer for exporting data from libgit2
+///
+/// Sometimes libgit2 wants to return an allocated data buffer to the
+/// caller and have the caller take responsibility for freeing that memory.
+/// To make ownership clear in these cases, libgit2 uses  `git_buf` to
+/// return this data.  Callers should use `git_buf_dispose()` to release
+/// the memory when they are done.
+///
+/// A `git_buf` contains a pointer to a NUL-terminated C string, and
+/// the length of the string (not including the NUL terminator).
+typedef git_buf = UnnamedStruct1;
 
 /// A data buffer for exporting data from libgit2
 ///
@@ -28124,7 +24362,7 @@ class fd_set extends ffi.Struct {
 ///
 /// A `git_buf` contains a pointer to a NUL-terminated C string, and
 /// the length of the string (not including the NUL terminator).
-class git_buf extends ffi.Struct {
+class UnnamedStruct1 extends ffi.Struct {
   /// The buffer contents.  `ptr` points to the start of the buffer
   /// being returned.  The buffer's length (in bytes) is specified
   /// by the `size` member of the structure, and contains a NUL
@@ -28132,12 +24370,12 @@ class git_buf extends ffi.Struct {
   external ffi.Pointer<ffi.Char> ptr;
 
   /// This field is reserved and unused.
-  @ffi.Size()
+  @ffi.Int()
   external int reserved;
 
   /// The length (in bytes) of the buffer pointed to by `ptr`,
   /// not including a NUL terminator.
-  @ffi.Size()
+  @ffi.Int()
   external int size;
 }
 
@@ -28212,14 +24450,16 @@ class git_odb_stream extends ffi.Struct {
   external int received_bytes;
 
   external ffi.Pointer<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<git_odb_stream>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>> read;
+          ffi.NativeFunction<
+              ffi.Int Function(
+                  ffi.Pointer<git_odb_stream>, ffi.Pointer<ffi.Char>, ffi.Int)>>
+      read;
 
   external ffi.Pointer<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<git_odb_stream>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>> write;
+          ffi.NativeFunction<
+              ffi.Int Function(
+                  ffi.Pointer<git_odb_stream>, ffi.Pointer<ffi.Char>, ffi.Int)>>
+      write;
 
   external ffi.Pointer<
           ffi.NativeFunction<
@@ -28232,7 +24472,7 @@ class git_odb_stream extends ffi.Struct {
 }
 
 /// The maximum size of an object
-typedef git_object_size_t = ffi.Uint64;
+typedef git_object_size_t = ffi.Int;
 
 /// A stream to write a pack file to the ODB
 class git_odb_writepack extends ffi.Struct {
@@ -28243,7 +24483,7 @@ class git_odb_writepack extends ffi.Struct {
           ffi.Int Function(
               ffi.Pointer<git_odb_writepack>,
               ffi.Pointer<ffi.Void>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<git_indexer_progress>)>> append;
 
   external ffi.Pointer<
@@ -28286,7 +24526,7 @@ class git_indexer_progress extends ffi.Struct {
   external int indexed_deltas;
 
   /// size of the packfile received up to now
-  @ffi.Size()
+  @ffi.Int()
   external int received_bytes;
 }
 
@@ -28353,7 +24593,7 @@ class git_time extends ffi.Struct {
   external int sign;
 }
 
-typedef git_time_t = ffi.Int64;
+typedef git_time_t = ffi.Int;
 
 /// An action signature (e.g. for committers, taggers, etc)
 class git_signature extends ffi.Struct {
@@ -28671,14 +24911,13 @@ typedef git_indexer_progress_cb = ffi.Pointer<
 /// Packbuilder progress notification function
 typedef git_packbuilder_progress = ffi.Pointer<
     ffi.NativeFunction<
-        ffi.Int Function(
-            ffi.Int, ffi.Uint32, ffi.Uint32, ffi.Pointer<ffi.Void>)>>;
+        ffi.Int Function(ffi.Int, ffi.Int, ffi.Int, ffi.Pointer<ffi.Void>)>>;
 
 /// Push network progress notification function
 typedef git_push_transfer_progress_cb = ffi.Pointer<
     ffi.NativeFunction<
-        ffi.Int Function(ffi.UnsignedInt, ffi.UnsignedInt, ffi.Size,
-            ffi.Pointer<ffi.Void>)>>;
+        ffi.Int Function(
+            ffi.UnsignedInt, ffi.UnsignedInt, ffi.Int, ffi.Pointer<ffi.Void>)>>;
 
 /// Callback used to inform of the update status from the remote.
 ///
@@ -28703,7 +24942,7 @@ typedef git_push_update_reference_cb = ffi.Pointer<
 /// @param payload Payload provided by the caller
 typedef git_push_negotiation = ffi.Pointer<
     ffi.NativeFunction<
-        ffi.Int Function(ffi.Pointer<ffi.Pointer<git_push_update>>, ffi.Size,
+        ffi.Int Function(ffi.Pointer<ffi.Pointer<git_push_update>>, ffi.Int,
             ffi.Pointer<ffi.Void>)>>;
 
 /// Represents an update which will be performed on the remote during push
@@ -28851,7 +25090,7 @@ class git_writestream extends ffi.Struct {
   external ffi.Pointer<
       ffi.NativeFunction<
           ffi.Int Function(ffi.Pointer<git_writestream>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>> write;
+              ffi.Int)>> write;
 
   external ffi.Pointer<
       ffi.NativeFunction<ffi.Int Function(ffi.Pointer<git_writestream>)>> close;
@@ -28963,17 +25202,23 @@ abstract class git_repository_init_mode_t {
 ///
 /// This contains extra options for `git_repository_init_ext` that enable
 /// additional initialization features.
-class git_repository_init_options extends ffi.Struct {
+typedef git_repository_init_options = UnnamedStruct2;
+
+/// Extended options structure for `git_repository_init_ext`.
+///
+/// This contains extra options for `git_repository_init_ext` that enable
+/// additional initialization features.
+class UnnamedStruct2 extends ffi.Struct {
   @ffi.UnsignedInt()
   external int version;
 
   /// Combination of GIT_REPOSITORY_INIT flags above.
-  @ffi.Uint32()
+  @ffi.Int()
   external int flags;
 
   /// Set to one of the standard GIT_REPOSITORY_INIT_SHARED_... constants
   /// above, or to a custom value that you would like.
-  @ffi.Uint32()
+  @ffi.Int()
   external int mode;
 
   /// The path to the working dir or NULL for default (i.e. repo_path parent
@@ -29119,7 +25364,7 @@ class git_tree_update extends ffi.Struct {
 class git_strarray extends ffi.Struct {
   external ffi.Pointer<ffi.Pointer<ffi.Char>> strings;
 
-  @ffi.Size()
+  @ffi.Int()
   external int count;
 }
 
@@ -29370,41 +25615,92 @@ abstract class git_delta_t {
   static const int GIT_DELTA_CONFLICTED = 10;
 }
 
-/// Description of one side of a delta.
+/// Structure describing options about how the diff should be executed.
 ///
-/// Although this is called a "file", it could represent a file, a symbolic
-/// link, a submodule commit id, or even a tree (although that only if you
-/// are tracking type changes or ignored/untracked directories).
-class git_diff_file extends ffi.Struct {
-  /// The `git_oid` of the item.  If the entry represents an
-  /// absent side of a diff (e.g. the `old_file` of a `GIT_DELTA_ADDED` delta),
-  /// then the oid will be zeroes.
-  external git_oid id;
+/// Setting all values of the structure to zero will yield the default
+/// values.  Similarly, passing NULL for the options structure will
+/// give the defaults.  The default values are marked below.
+typedef git_diff_options = UnnamedStruct3;
 
-  /// The NUL-terminated path to the entry relative to the working
-  /// directory of the repository.
-  external ffi.Pointer<ffi.Char> path;
+/// Structure describing options about how the diff should be executed.
+///
+/// Setting all values of the structure to zero will yield the default
+/// values.  Similarly, passing NULL for the options structure will
+/// give the defaults.  The default values are marked below.
+class UnnamedStruct3 extends ffi.Struct {
+  /// < version for the struct
+  @ffi.UnsignedInt()
+  external int version;
 
-  /// The size of the entry in bytes.
-  @git_object_size_t()
-  external int size;
-
-  /// A combination of the `git_diff_flag_t` types
-  @ffi.Uint32()
+  /// A combination of `git_diff_option_t` values above.
+  /// Defaults to GIT_DIFF_NORMAL
+  @ffi.Int()
   external int flags;
 
-  /// Roughly, the stat() `st_mode` value for the item.  This will
-  /// be restricted to one of the `git_filemode_t` values.
-  @ffi.Uint16()
-  external int mode;
+  /// Overrides the submodule ignore setting for all submodules in the diff.
+  @ffi.Int32()
+  external int ignore_submodules;
 
-  /// Represents the known length of the `id` field, when
-  /// converted to a hex string.  It is generally `GIT_OID_SHA1_HEXSIZE`, unless this
-  /// delta was created from reading a patch file, in which case it may be
-  /// abbreviated to something reasonable, like 7 characters.
-  @ffi.Uint16()
+  /// An array of paths / fnmatch patterns to constrain diff.
+  /// All paths are included by default.
+  external git_strarray pathspec;
+
+  /// An optional callback function, notifying the consumer of changes to
+  /// the diff as new deltas are added.
+  external git_diff_notify_cb notify_cb;
+
+  /// An optional callback function, notifying the consumer of which files
+  /// are being examined as the diff is generated.
+  external git_diff_progress_cb progress_cb;
+
+  /// The payload to pass to the callback functions.
+  external ffi.Pointer<ffi.Void> payload;
+
+  /// The number of unchanged lines that define the boundary of a hunk
+  /// (and to display before and after). Defaults to 3.
+  @ffi.Int()
+  external int context_lines;
+
+  /// The maximum number of unchanged lines between hunk boundaries before
+  /// the hunks will be merged into one. Defaults to 0.
+  @ffi.Int()
+  external int interhunk_lines;
+
+  /// The abbreviation length to use when formatting object ids.
+  /// Defaults to the value of 'core.abbrev' from the config, or 7 if unset.
+  @ffi.Int()
   external int id_abbrev;
+
+  /// A size (in bytes) above which a blob will be marked as binary
+  /// automatically; pass a negative value to disable.
+  /// Defaults to 512MB.
+  @git_off_t()
+  external int max_size;
+
+  /// The virtual "directory" prefix for old file names in hunk headers.
+  /// Default is "a".
+  external ffi.Pointer<ffi.Char> old_prefix;
+
+  /// The virtual "directory" prefix for new file names in hunk headers.
+  /// Defaults to "b".
+  external ffi.Pointer<ffi.Char> new_prefix;
 }
+
+/// Diff notification callback function.
+///
+/// The callback will be called for each file, just before the `git_diff_delta`
+/// gets inserted into the diff.
+///
+/// When the callback:
+/// - returns < 0, the diff process will be aborted.
+/// - returns > 0, the delta will not be inserted into the diff, but the
+/// diff process continues.
+/// - returns 0, the delta is inserted into the diff, and the diff process
+/// continues.
+typedef git_diff_notify_cb = ffi.Pointer<
+    ffi.NativeFunction<
+        ffi.Int Function(ffi.Pointer<git_diff>, ffi.Pointer<git_diff_delta>,
+            ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Void>)>>;
 
 /// Description of changes to one entry.
 ///
@@ -29444,20 +25740,60 @@ class git_diff_file extends ffi.Struct {
 /// records may have a non-zero similarity score if the self-similarity is
 /// below the split threshold.  To display this value like core Git, invert
 /// the score (a la `printf("M%03d", 100 - delta->similarity)`).
-class git_diff_delta extends ffi.Struct {
+typedef git_diff_delta = UnnamedStruct4;
+
+/// Description of changes to one entry.
+///
+/// A `delta` is a file pair with an old and new revision.  The old version
+/// may be absent if the file was just created and the new version may be
+/// absent if the file was deleted.  A diff is mostly just a list of deltas.
+///
+/// When iterating over a diff, this will be passed to most callbacks and
+/// you can use the contents to understand exactly what has changed.
+///
+/// The `old_file` represents the "from" side of the diff and the `new_file`
+/// represents to "to" side of the diff.  What those means depend on the
+/// function that was used to generate the diff and will be documented below.
+/// You can also use the `GIT_DIFF_REVERSE` flag to flip it around.
+///
+/// Although the two sides of the delta are named "old_file" and "new_file",
+/// they actually may correspond to entries that represent a file, a symbolic
+/// link, a submodule commit id, or even a tree (if you are tracking type
+/// changes or ignored/untracked directories).
+///
+/// Under some circumstances, in the name of efficiency, not all fields will
+/// be filled in, but we generally try to fill in as much as possible.  One
+/// example is that the "flags" field may not have either the `BINARY` or the
+/// `NOT_BINARY` flag set to avoid examining file contents if you do not pass
+/// in hunk and/or line callbacks to the diff foreach iteration function.  It
+/// will just use the git attributes for those files.
+///
+/// The similarity score is zero unless you call `git_diff_find_similar()`
+/// which does a similarity analysis of files in the diff.  Use that
+/// function to do rename and copy detection, and to split heavily modified
+/// files in add/delete pairs.  After that call, deltas with a status of
+/// GIT_DELTA_RENAMED or GIT_DELTA_COPIED will have a similarity score
+/// between 0 and 100 indicating how similar the old and new sides are.
+///
+/// If you ask `git_diff_find_similar` to find heavily modified files to
+/// break, but to not *actually* break the records, then GIT_DELTA_MODIFIED
+/// records may have a non-zero similarity score if the self-similarity is
+/// below the split threshold.  To display this value like core Git, invert
+/// the score (a la `printf("M%03d", 100 - delta->similarity)`).
+class UnnamedStruct4 extends ffi.Struct {
   @ffi.Int32()
   external int status;
 
   /// < git_diff_flag_t values
-  @ffi.Uint32()
+  @ffi.Int()
   external int flags;
 
   /// < for RENAMED and COPIED, value 0-100
-  @ffi.Uint16()
+  @ffi.Int()
   external int similarity;
 
   /// < number of files in this delta
-  @ffi.Uint16()
+  @ffi.Int()
   external int nfiles;
 
   external git_diff_file old_file;
@@ -29465,85 +25801,48 @@ class git_diff_delta extends ffi.Struct {
   external git_diff_file new_file;
 }
 
-/// Structure describing options about how the diff should be executed.
+/// Description of one side of a delta.
 ///
-/// Setting all values of the structure to zero will yield the default
-/// values.  Similarly, passing NULL for the options structure will
-/// give the defaults.  The default values are marked below.
-class git_diff_options extends ffi.Struct {
-  /// < version for the struct
-  @ffi.UnsignedInt()
-  external int version;
+/// Although this is called a "file", it could represent a file, a symbolic
+/// link, a submodule commit id, or even a tree (although that only if you
+/// are tracking type changes or ignored/untracked directories).
+typedef git_diff_file = UnnamedStruct5;
 
-  /// A combination of `git_diff_option_t` values above.
-  /// Defaults to GIT_DIFF_NORMAL
-  @ffi.Uint32()
+/// Description of one side of a delta.
+///
+/// Although this is called a "file", it could represent a file, a symbolic
+/// link, a submodule commit id, or even a tree (although that only if you
+/// are tracking type changes or ignored/untracked directories).
+class UnnamedStruct5 extends ffi.Struct {
+  /// The `git_oid` of the item.  If the entry represents an
+  /// absent side of a diff (e.g. the `old_file` of a `GIT_DELTA_ADDED` delta),
+  /// then the oid will be zeroes.
+  external git_oid id;
+
+  /// The NUL-terminated path to the entry relative to the working
+  /// directory of the repository.
+  external ffi.Pointer<ffi.Char> path;
+
+  /// The size of the entry in bytes.
+  @git_object_size_t()
+  external int size;
+
+  /// A combination of the `git_diff_flag_t` types
+  @ffi.Int()
   external int flags;
 
-  /// Overrides the submodule ignore setting for all submodules in the diff.
-  @ffi.Int32()
-  external int ignore_submodules;
+  /// Roughly, the stat() `st_mode` value for the item.  This will
+  /// be restricted to one of the `git_filemode_t` values.
+  @ffi.Int()
+  external int mode;
 
-  /// An array of paths / fnmatch patterns to constrain diff.
-  /// All paths are included by default.
-  external git_strarray pathspec;
-
-  /// An optional callback function, notifying the consumer of changes to
-  /// the diff as new deltas are added.
-  external git_diff_notify_cb notify_cb;
-
-  /// An optional callback function, notifying the consumer of which files
-  /// are being examined as the diff is generated.
-  external git_diff_progress_cb progress_cb;
-
-  /// The payload to pass to the callback functions.
-  external ffi.Pointer<ffi.Void> payload;
-
-  /// The number of unchanged lines that define the boundary of a hunk
-  /// (and to display before and after). Defaults to 3.
-  @ffi.Uint32()
-  external int context_lines;
-
-  /// The maximum number of unchanged lines between hunk boundaries before
-  /// the hunks will be merged into one. Defaults to 0.
-  @ffi.Uint32()
-  external int interhunk_lines;
-
-  /// The abbreviation length to use when formatting object ids.
-  /// Defaults to the value of 'core.abbrev' from the config, or 7 if unset.
-  @ffi.Uint16()
+  /// Represents the known length of the `id` field, when
+  /// converted to a hex string.  It is generally `GIT_OID_SHA1_HEXSIZE`, unless this
+  /// delta was created from reading a patch file, in which case it may be
+  /// abbreviated to something reasonable, like 7 characters.
+  @ffi.Int()
   external int id_abbrev;
-
-  /// A size (in bytes) above which a blob will be marked as binary
-  /// automatically; pass a negative value to disable.
-  /// Defaults to 512MB.
-  @git_off_t()
-  external int max_size;
-
-  /// The virtual "directory" prefix for old file names in hunk headers.
-  /// Default is "a".
-  external ffi.Pointer<ffi.Char> old_prefix;
-
-  /// The virtual "directory" prefix for new file names in hunk headers.
-  /// Defaults to "b".
-  external ffi.Pointer<ffi.Char> new_prefix;
 }
-
-/// Diff notification callback function.
-///
-/// The callback will be called for each file, just before the `git_diff_delta`
-/// gets inserted into the diff.
-///
-/// When the callback:
-/// - returns < 0, the diff process will be aborted.
-/// - returns > 0, the delta will not be inserted into the diff, but the
-/// diff process continues.
-/// - returns 0, the delta is inserted into the diff, and the diff process
-/// continues.
-typedef git_diff_notify_cb = ffi.Pointer<
-    ffi.NativeFunction<
-        ffi.Int Function(ffi.Pointer<git_diff>, ffi.Pointer<git_diff_delta>,
-            ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Void>)>>;
 
 /// Diff progress callback.
 ///
@@ -29557,7 +25856,7 @@ typedef git_diff_progress_cb = ffi.Pointer<
     ffi.NativeFunction<
         ffi.Int Function(ffi.Pointer<git_diff>, ffi.Pointer<ffi.Char>,
             ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Void>)>>;
-typedef git_off_t = ffi.Int64;
+typedef git_off_t = ffi.Int;
 
 /// When producing a binary diff, the binary data returned will be
 /// either the deflated full ("literal") contents of the file, or
@@ -29572,80 +25871,6 @@ abstract class git_diff_binary_t {
 
   /// The binary data is the delta from one side to the other.
   static const int GIT_DIFF_BINARY_DELTA = 2;
-}
-
-/// The contents of one of the files in a binary diff.
-class git_diff_binary_file extends ffi.Struct {
-  /// The type of binary data for this file.
-  @ffi.Int32()
-  external int type;
-
-  /// The binary data, deflated.
-  external ffi.Pointer<ffi.Char> data;
-
-  /// The length of the binary data.
-  @ffi.Size()
-  external int datalen;
-
-  /// The length of the binary data after inflation.
-  @ffi.Size()
-  external int inflatedlen;
-}
-
-/// Structure describing the binary contents of a diff.
-///
-/// A `binary` file / delta is a file (or pair) for which no text diffs
-/// should be generated. A diff can contain delta entries that are
-/// binary, but no diff content will be output for those files. There is
-/// a base heuristic for binary detection and you can further tune the
-/// behavior with git attributes or diff flags and option settings.
-class git_diff_binary extends ffi.Struct {
-  /// Whether there is data in this binary structure or not.
-  ///
-  /// If this is `1`, then this was produced and included binary content.
-  /// If this is `0` then this was generated knowing only that a binary
-  /// file changed but without providing the data, probably from a patch
-  /// that said `Binary files a/file.txt and b/file.txt differ`.
-  @ffi.UnsignedInt()
-  external int contains_data;
-
-  /// < The contents of the old file.
-  external git_diff_binary_file old_file;
-
-  /// < The contents of the new file.
-  external git_diff_binary_file new_file;
-}
-
-/// Structure describing a hunk of a diff.
-///
-/// A `hunk` is a span of modified lines in a delta along with some stable
-/// surrounding context. You can configure the amount of context and other
-/// properties of how hunks are generated. Each hunk also comes with a
-/// header that described where it starts and ends in both the old and new
-/// versions in the delta.
-class git_diff_hunk extends ffi.Struct {
-  /// < Starting line number in old_file
-  @ffi.Int()
-  external int old_start;
-
-  /// < Number of lines in old_file
-  @ffi.Int()
-  external int old_lines;
-
-  /// < Starting line number in new_file
-  @ffi.Int()
-  external int new_start;
-
-  /// < Number of lines in new_file
-  @ffi.Int()
-  external int new_lines;
-
-  /// < Number of bytes in header text
-  @ffi.Size()
-  external int header_len;
-
-  @ffi.Array.multi([128])
-  external ffi.Array<ffi.Char> header;
 }
 
 /// Line origin constants.
@@ -29673,44 +25898,6 @@ abstract class git_diff_line_t {
 
   /// < For "Binary files x and y differ"
   static const int GIT_DIFF_LINE_BINARY = 66;
-}
-
-/// Structure describing a line (or data span) of a diff.
-///
-/// A `line` is a range of characters inside a hunk.  It could be a context
-/// line (i.e. in both old and new versions), an added line (i.e. only in
-/// the new version), or a removed line (i.e. only in the old version).
-/// Unfortunately, we don't know anything about the encoding of data in the
-/// file being diffed, so we cannot tell you much about the line content.
-/// Line data will not be NUL-byte terminated, however, because it will be
-/// just a span of bytes inside the larger file.
-class git_diff_line extends ffi.Struct {
-  /// < A git_diff_line_t value
-  @ffi.Char()
-  external int origin;
-
-  /// < Line number in old file or -1 for added line
-  @ffi.Int()
-  external int old_lineno;
-
-  /// < Line number in new file or -1 for deleted line
-  @ffi.Int()
-  external int new_lineno;
-
-  /// < Number of newline characters in content
-  @ffi.Int()
-  external int num_lines;
-
-  /// < Number of bytes of data
-  @ffi.Size()
-  external int content_len;
-
-  /// < Offset in the original file to the content
-  @git_off_t()
-  external int content_offset;
-
-  /// < Pointer to diff text, not NUL-byte terminated
-  external ffi.Pointer<ffi.Char> content;
 }
 
 /// Flags to control the behavior of diff rename/copy detection.
@@ -29801,7 +25988,7 @@ class git_diff_similarity_metric extends ffi.Struct {
               ffi.Pointer<ffi.Pointer<ffi.Void>>,
               ffi.Pointer<git_diff_file>,
               ffi.Pointer<ffi.Char>,
-              ffi.Size,
+              ffi.Int,
               ffi.Pointer<ffi.Void>)>> buffer_signature;
 
   external ffi.Pointer<
@@ -29820,34 +26007,39 @@ class git_diff_similarity_metric extends ffi.Struct {
 /// Control behavior of rename and copy detection
 ///
 /// These options mostly mimic parameters that can be passed to git-diff.
-class git_diff_find_options extends ffi.Struct {
+typedef git_diff_find_options = UnnamedStruct6;
+
+/// Control behavior of rename and copy detection
+///
+/// These options mostly mimic parameters that can be passed to git-diff.
+class UnnamedStruct6 extends ffi.Struct {
   @ffi.UnsignedInt()
   external int version;
 
   /// Combination of git_diff_find_t values (default GIT_DIFF_FIND_BY_CONFIG).
   /// NOTE: if you don't explicitly set this, `diff.renames` could be set
   /// to false, resulting in `git_diff_find_similar` doing nothing.
-  @ffi.Uint32()
+  @ffi.Int()
   external int flags;
 
   /// Threshold above which similar files will be considered renames.
   /// This is equivalent to the -M option. Defaults to 50.
-  @ffi.Uint16()
+  @ffi.Int()
   external int rename_threshold;
 
   /// Threshold below which similar files will be eligible to be a rename source.
   /// This is equivalent to the first part of the -B option. Defaults to 50.
-  @ffi.Uint16()
+  @ffi.Int()
   external int rename_from_rewrite_threshold;
 
   /// Threshold above which similar files will be considered copies.
   /// This is equivalent to the -C option. Defaults to 50.
-  @ffi.Uint16()
+  @ffi.Int()
   external int copy_threshold;
 
   /// Threshold below which similar files will be split into a delete/add pair.
   /// This is equivalent to the last part of the -B option. Defaults to 60.
-  @ffi.Uint16()
+  @ffi.Int()
   external int break_rewrite_threshold;
 
   /// Maximum number of matches to consider for a particular file.
@@ -29855,7 +26047,7 @@ class git_diff_find_options extends ffi.Struct {
   /// This is a little different from the `-l` option from Git because we
   /// will still process up to this many matches before abandoning the search.
   /// Defaults to 1000.
-  @ffi.Size()
+  @ffi.Int()
   external int rename_limit;
 
   /// The `metric` option allows you to plug in a custom similarity metric.
@@ -29886,11 +26078,106 @@ typedef git_diff_binary_cb = ffi.Pointer<
         ffi.Int Function(ffi.Pointer<git_diff_delta>,
             ffi.Pointer<git_diff_binary>, ffi.Pointer<ffi.Void>)>>;
 
+/// Structure describing the binary contents of a diff.
+///
+/// A `binary` file / delta is a file (or pair) for which no text diffs
+/// should be generated. A diff can contain delta entries that are
+/// binary, but no diff content will be output for those files. There is
+/// a base heuristic for binary detection and you can further tune the
+/// behavior with git attributes or diff flags and option settings.
+typedef git_diff_binary = UnnamedStruct7;
+
+/// Structure describing the binary contents of a diff.
+///
+/// A `binary` file / delta is a file (or pair) for which no text diffs
+/// should be generated. A diff can contain delta entries that are
+/// binary, but no diff content will be output for those files. There is
+/// a base heuristic for binary detection and you can further tune the
+/// behavior with git attributes or diff flags and option settings.
+class UnnamedStruct7 extends ffi.Struct {
+  /// Whether there is data in this binary structure or not.
+  ///
+  /// If this is `1`, then this was produced and included binary content.
+  /// If this is `0` then this was generated knowing only that a binary
+  /// file changed but without providing the data, probably from a patch
+  /// that said `Binary files a/file.txt and b/file.txt differ`.
+  @ffi.UnsignedInt()
+  external int contains_data;
+
+  /// < The contents of the old file.
+  external git_diff_binary_file old_file;
+
+  /// < The contents of the new file.
+  external git_diff_binary_file new_file;
+}
+
+/// The contents of one of the files in a binary diff.
+typedef git_diff_binary_file = UnnamedStruct8;
+
+/// The contents of one of the files in a binary diff.
+class UnnamedStruct8 extends ffi.Struct {
+  /// The type of binary data for this file.
+  @ffi.Int32()
+  external int type;
+
+  /// The binary data, deflated.
+  external ffi.Pointer<ffi.Char> data;
+
+  /// The length of the binary data.
+  @ffi.Int()
+  external int datalen;
+
+  /// The length of the binary data after inflation.
+  @ffi.Int()
+  external int inflatedlen;
+}
+
 /// When iterating over a diff, callback that will be made per hunk.
 typedef git_diff_hunk_cb = ffi.Pointer<
     ffi.NativeFunction<
         ffi.Int Function(ffi.Pointer<git_diff_delta>,
             ffi.Pointer<git_diff_hunk>, ffi.Pointer<ffi.Void>)>>;
+
+/// Structure describing a hunk of a diff.
+///
+/// A `hunk` is a span of modified lines in a delta along with some stable
+/// surrounding context. You can configure the amount of context and other
+/// properties of how hunks are generated. Each hunk also comes with a
+/// header that described where it starts and ends in both the old and new
+/// versions in the delta.
+typedef git_diff_hunk = UnnamedStruct9;
+
+/// Structure describing a hunk of a diff.
+///
+/// A `hunk` is a span of modified lines in a delta along with some stable
+/// surrounding context. You can configure the amount of context and other
+/// properties of how hunks are generated. Each hunk also comes with a
+/// header that described where it starts and ends in both the old and new
+/// versions in the delta.
+class UnnamedStruct9 extends ffi.Struct {
+  /// < Starting line number in old_file
+  @ffi.Int()
+  external int old_start;
+
+  /// < Number of lines in old_file
+  @ffi.Int()
+  external int old_lines;
+
+  /// < Starting line number in new_file
+  @ffi.Int()
+  external int new_start;
+
+  /// < Number of lines in new_file
+  @ffi.Int()
+  external int new_lines;
+
+  /// < Number of bytes in header text
+  @ffi.Int()
+  external int header_len;
+
+  @ffi.Array.multi([128])
+  external ffi.Array<ffi.Char> header;
+}
 
 /// When iterating over a diff, callback that will be made per text diff
 /// line. In this context, the provided range will be NULL.
@@ -29905,6 +26192,55 @@ typedef git_diff_line_cb = ffi.Pointer<
             ffi.Pointer<git_diff_hunk>,
             ffi.Pointer<git_diff_line>,
             ffi.Pointer<ffi.Void>)>>;
+
+/// Structure describing a line (or data span) of a diff.
+///
+/// A `line` is a range of characters inside a hunk.  It could be a context
+/// line (i.e. in both old and new versions), an added line (i.e. only in
+/// the new version), or a removed line (i.e. only in the old version).
+/// Unfortunately, we don't know anything about the encoding of data in the
+/// file being diffed, so we cannot tell you much about the line content.
+/// Line data will not be NUL-byte terminated, however, because it will be
+/// just a span of bytes inside the larger file.
+typedef git_diff_line = UnnamedStruct10;
+
+/// Structure describing a line (or data span) of a diff.
+///
+/// A `line` is a range of characters inside a hunk.  It could be a context
+/// line (i.e. in both old and new versions), an added line (i.e. only in
+/// the new version), or a removed line (i.e. only in the old version).
+/// Unfortunately, we don't know anything about the encoding of data in the
+/// file being diffed, so we cannot tell you much about the line content.
+/// Line data will not be NUL-byte terminated, however, because it will be
+/// just a span of bytes inside the larger file.
+class UnnamedStruct10 extends ffi.Struct {
+  /// < A git_diff_line_t value
+  @ffi.Char()
+  external int origin;
+
+  /// < Line number in old file or -1 for added line
+  @ffi.Int()
+  external int old_lineno;
+
+  /// < Line number in new file or -1 for deleted line
+  @ffi.Int()
+  external int new_lineno;
+
+  /// < Number of newline characters in content
+  @ffi.Int()
+  external int num_lines;
+
+  /// < Number of bytes of data
+  @ffi.Int()
+  external int content_len;
+
+  /// < Offset in the original file to the content
+  @git_off_t()
+  external int content_offset;
+
+  /// < Pointer to diff text, not NUL-byte terminated
+  external ffi.Pointer<ffi.Char> content;
+}
 
 /// Possible output formats for diff data
 abstract class git_diff_format_t {
@@ -30107,12 +26443,18 @@ abstract class git_blob_filter_flag_t {
 ///
 /// Initialize with `GIT_BLOB_FILTER_OPTIONS_INIT`. Alternatively, you can
 /// use `git_blob_filter_options_init`.
-class git_blob_filter_options extends ffi.Struct {
+typedef git_blob_filter_options = UnnamedStruct11;
+
+/// The options used when applying filter options to a file.
+///
+/// Initialize with `GIT_BLOB_FILTER_OPTIONS_INIT`. Alternatively, you can
+/// use `git_blob_filter_options_init`.
+class UnnamedStruct11 extends ffi.Struct {
   @ffi.Int()
   external int version;
 
   /// Flags to control the filtering process, see `git_blob_filter_flag_t` above
-  @ffi.Uint32()
+  @ffi.Int()
   external int flags;
 
   external ffi.Pointer<git_oid> commit_id;
@@ -30173,7 +26515,7 @@ class git_blame_options extends ffi.Struct {
   external int version;
 
   /// A combination of `git_blame_flag_t`
-  @ffi.Uint32()
+  @ffi.Int()
   external int flags;
 
   /// The lower bound on the number of alphanumeric characters that
@@ -30183,7 +26525,7 @@ class git_blame_options extends ffi.Struct {
   ///
   /// This value only takes effect if any of the `GIT_BLAME_TRACK_COPIES_*`
   /// flags are specified.
-  @ffi.Uint16()
+  @ffi.Int()
   external int min_match_characters;
 
   /// The id of the newest commit to consider. The default is HEAD.
@@ -30195,19 +26537,19 @@ class git_blame_options extends ffi.Struct {
 
   /// The first line in the file to blame.
   /// The default is 1 (line numbers start with 1).
-  @ffi.Size()
+  @ffi.Int()
   external int min_line;
 
   /// The last line in the file to blame.
   /// The default is the last line of the file.
-  @ffi.Size()
+  @ffi.Int()
   external int max_line;
 }
 
 /// Structure that represents a blame hunk.
 class git_blame_hunk extends ffi.Struct {
   /// The number of lines in this hunk.
-  @ffi.Size()
+  @ffi.Int()
   external int lines_in_hunk;
 
   /// The OID of the commit where this line was last changed.
@@ -30215,7 +26557,7 @@ class git_blame_hunk extends ffi.Struct {
 
   /// The 1-based line number where this hunk begins, in the final version
   /// of the file.
-  @ffi.Size()
+  @ffi.Int()
   external int final_start_line_number;
 
   /// The author of `final_commit_id`. If `GIT_BLAME_USE_MAILMAP` has been
@@ -30233,7 +26575,7 @@ class git_blame_hunk extends ffi.Struct {
 
   /// The 1-based line number where this hunk begins in the file named by
   /// `orig_path` in the commit specified by `orig_commit_id`.
-  @ffi.Size()
+  @ffi.Int()
   external int orig_start_line_number;
 
   /// The author of `orig_commit_id`. If `GIT_BLAME_USE_MAILMAP` has been
@@ -30286,52 +26628,6 @@ abstract class git_cert_ssh_raw_type_t {
 
   /// The raw key is a ED25519 key.
   static const int GIT_CERT_SSH_RAW_TYPE_KEY_ED25519 = 6;
-}
-
-/// Hostkey information taken from libssh2
-class git_cert_hostkey extends ffi.Struct {
-  /// < The parent cert
-  external git_cert parent;
-
-  /// A bitmask containing the available fields.
-  @ffi.Int32()
-  external int type;
-
-  @ffi.Array.multi([16])
-  external ffi.Array<ffi.UnsignedChar> hash_md5;
-
-  @ffi.Array.multi([20])
-  external ffi.Array<ffi.UnsignedChar> hash_sha1;
-
-  @ffi.Array.multi([32])
-  external ffi.Array<ffi.UnsignedChar> hash_sha256;
-
-  /// Raw hostkey type. If `type` has `GIT_CERT_SSH_RAW` set, this will
-  /// have the type of the raw hostkey.
-  @ffi.Int32()
-  external int raw_type;
-
-  /// Pointer to the raw hostkey. If `type` has `GIT_CERT_SSH_RAW` set,
-  /// this will have the raw contents of the hostkey.
-  external ffi.Pointer<ffi.Char> hostkey;
-
-  /// Raw hostkey length. If `type` has `GIT_CERT_SSH_RAW` set, this will
-  /// have the length of the raw contents of the hostkey.
-  @ffi.Size()
-  external int hostkey_len;
-}
-
-/// X.509 certificate information
-class git_cert_x509 extends ffi.Struct {
-  /// < The parent cert
-  external git_cert parent;
-
-  /// Pointer to the X.509 certificate data
-  external ffi.Pointer<ffi.Void> data;
-
-  /// Length of the memory block pointed to by `data`.
-  @ffi.Size()
-  external int len;
 }
 
 /// Checkout behavior flags
@@ -30533,18 +26829,6 @@ abstract class git_checkout_notify_t {
   static const int GIT_CHECKOUT_NOTIFY_ALL = 65535;
 }
 
-/// Checkout performance-reporting structure
-class git_checkout_perfdata extends ffi.Struct {
-  @ffi.Size()
-  external int mkdir_calls;
-
-  @ffi.Size()
-  external int stat_calls;
-
-  @ffi.Size()
-  external int chmod_calls;
-}
-
 /// Checkout options structure
 ///
 /// Initialize with `GIT_CHECKOUT_OPTIONS_INIT`. Alternatively, you can
@@ -30644,7 +26928,7 @@ typedef git_checkout_notify_cb = ffi.Pointer<
 typedef git_checkout_progress_cb = ffi.Pointer<
     ffi.NativeFunction<
         ffi.Void Function(
-            ffi.Pointer<ffi.Char>, ffi.Size, ffi.Size, ffi.Pointer<ffi.Void>)>>;
+            ffi.Pointer<ffi.Char>, ffi.Int, ffi.Int, ffi.Pointer<ffi.Void>)>>;
 
 /// Checkout perfdata notification function
 typedef git_checkout_perfdata_cb = ffi.Pointer<
@@ -30652,11 +26936,26 @@ typedef git_checkout_perfdata_cb = ffi.Pointer<
         ffi.Void Function(
             ffi.Pointer<git_checkout_perfdata>, ffi.Pointer<ffi.Void>)>>;
 
+/// Checkout performance-reporting structure
+typedef git_checkout_perfdata = UnnamedStruct12;
+
+/// Checkout performance-reporting structure
+class UnnamedStruct12 extends ffi.Struct {
+  @ffi.Int()
+  external int mkdir_calls;
+
+  @ffi.Int()
+  external int stat_calls;
+
+  @ffi.Int()
+  external int chmod_calls;
+}
+
 /// Array of object ids
 class git_oidarray extends ffi.Struct {
   external ffi.Pointer<git_oid> ids;
 
-  @ffi.Size()
+  @ffi.Int()
   external int count;
 }
 
@@ -30676,15 +26975,6 @@ class git_indexer_options extends ffi.Struct {
   /// Do connectivity checks for the received pack
   @ffi.UnsignedChar()
   external int verify;
-}
-
-/// Time structure used in a git index entry
-class git_index_time extends ffi.Struct {
-  @ffi.Int32()
-  external int seconds;
-
-  @ffi.Uint32()
-  external int nanoseconds;
 }
 
 /// In-memory representation of a file entry in the index.
@@ -30711,33 +27001,45 @@ class git_index_entry extends ffi.Struct {
 
   external git_index_time mtime;
 
-  @ffi.Uint32()
+  @ffi.Int()
   external int dev;
 
-  @ffi.Uint32()
+  @ffi.Int()
   external int ino;
 
-  @ffi.Uint32()
+  @ffi.Int()
   external int mode;
 
-  @ffi.Uint32()
+  @ffi.Int()
   external int uid;
 
-  @ffi.Uint32()
+  @ffi.Int()
   external int gid;
 
-  @ffi.Uint32()
+  @ffi.Int()
   external int file_size;
 
   external git_oid id;
 
-  @ffi.Uint16()
+  @ffi.Int()
   external int flags;
 
-  @ffi.Uint16()
+  @ffi.Int()
   external int flags_extended;
 
   external ffi.Pointer<ffi.Char> path;
+}
+
+/// Time structure used in a git index entry
+typedef git_index_time = UnnamedStruct13;
+
+/// Time structure used in a git index entry
+class UnnamedStruct13 extends ffi.Struct {
+  @ffi.Int()
+  external int seconds;
+
+  @ffi.Int()
+  external int nanoseconds;
 }
 
 /// Flags for index entries
@@ -30813,7 +27115,12 @@ typedef git_index_matched_path_cb = ffi.Pointer<
 /// The file inputs to `git_merge_file`.  Callers should populate the
 /// `git_merge_file_input` structure with descriptions of the files in
 /// each side of the conflict for use in producing the merge file.
-class git_merge_file_input extends ffi.Struct {
+typedef git_merge_file_input = UnnamedStruct14;
+
+/// The file inputs to `git_merge_file`.  Callers should populate the
+/// `git_merge_file_input` structure with descriptions of the files in
+/// each side of the conflict for use in producing the merge file.
+class UnnamedStruct14 extends ffi.Struct {
   @ffi.UnsignedInt()
   external int version;
 
@@ -30821,7 +27128,7 @@ class git_merge_file_input extends ffi.Struct {
   external ffi.Pointer<ffi.Char> ptr;
 
   /// Size of the contents pointed to in `ptr`.
-  @ffi.Size()
+  @ffi.Int()
   external int size;
 
   /// File name of the conflicted file, or `NULL` to not merge the path.
@@ -30926,7 +27233,10 @@ abstract class git_merge_file_flag_t {
 }
 
 /// Options for merging a file
-class git_merge_file_options extends ffi.Struct {
+typedef git_merge_file_options = UnnamedStruct15;
+
+/// Options for merging a file
+class UnnamedStruct15 extends ffi.Struct {
   @ffi.UnsignedInt()
   external int version;
 
@@ -30947,7 +27257,7 @@ class git_merge_file_options extends ffi.Struct {
   external int favor;
 
   /// see `git_merge_file_flag_t` above
-  @ffi.Uint32()
+  @ffi.Int()
   external int flags;
 
   /// The size of conflict markers (eg, "<<<<<<<").  Default is
@@ -30956,36 +27266,16 @@ class git_merge_file_options extends ffi.Struct {
   external int marker_size;
 }
 
-/// Information about file-level merging
-class git_merge_file_result extends ffi.Struct {
-  /// True if the output was automerged, false if the output contains
-  /// conflict markers.
-  @ffi.UnsignedInt()
-  external int automergeable;
-
-  /// The path that the resultant merge file should use, or NULL if a
-  /// filename conflict would occur.
-  external ffi.Pointer<ffi.Char> path;
-
-  /// The mode that the resultant merge file should use.
-  @ffi.UnsignedInt()
-  external int mode;
-
-  /// The contents of the merge.
-  external ffi.Pointer<ffi.Char> ptr;
-
-  /// The length of the merge contents.
-  @ffi.Size()
-  external int len;
-}
+/// Merging options
+typedef git_merge_options = UnnamedStruct16;
 
 /// Merging options
-class git_merge_options extends ffi.Struct {
+class UnnamedStruct16 extends ffi.Struct {
   @ffi.UnsignedInt()
   external int version;
 
   /// See `git_merge_flag_t` above
-  @ffi.Uint32()
+  @ffi.Int()
   external int flags;
 
   /// Similarity to consider a file renamed (default 50).  If
@@ -31024,7 +27314,7 @@ class git_merge_options extends ffi.Struct {
   external int file_favor;
 
   /// see `git_merge_file_flag_t` above
-  @ffi.Uint32()
+  @ffi.Int()
   external int file_flags;
 }
 
@@ -31067,8 +27357,37 @@ abstract class git_merge_preference_t {
   static const int GIT_MERGE_PREFERENCE_FASTFORWARD_ONLY = 2;
 }
 
+/// Information about file-level merging
+typedef git_merge_file_result = UnnamedStruct17;
+
+/// Information about file-level merging
+class UnnamedStruct17 extends ffi.Struct {
+  /// True if the output was automerged, false if the output contains
+  /// conflict markers.
+  @ffi.UnsignedInt()
+  external int automergeable;
+
+  /// The path that the resultant merge file should use, or NULL if a
+  /// filename conflict would occur.
+  external ffi.Pointer<ffi.Char> path;
+
+  /// The mode that the resultant merge file should use.
+  @ffi.UnsignedInt()
+  external int mode;
+
+  /// The contents of the merge.
+  external ffi.Pointer<ffi.Char> ptr;
+
+  /// The length of the merge contents.
+  @ffi.Int()
+  external int len;
+}
+
 /// Cherry-pick options
-class git_cherrypick_options extends ffi.Struct {
+typedef git_cherrypick_options = UnnamedStruct18;
+
+/// Cherry-pick options
+class UnnamedStruct18 extends ffi.Struct {
   @ffi.UnsignedInt()
   external int version;
 
@@ -31178,7 +27497,7 @@ class git_credential_ssh_custom extends ffi.Struct {
   external ffi.Pointer<ffi.Char> publickey;
 
   /// < Length of the public key
-  @ffi.Size()
+  @ffi.Int()
   external int publickey_len;
 
   /// Callback used to sign the data.
@@ -31193,9 +27512,9 @@ typedef git_credential_sign_cb = ffi.Pointer<
         ffi.Int Function(
             ffi.Pointer<LIBSSH2_SESSION>,
             ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>,
-            ffi.Pointer<ffi.Size>,
+            ffi.Pointer<ffi.Int>,
             ffi.Pointer<ffi.UnsignedChar>,
-            ffi.Size,
+            ffi.Int,
             ffi.Pointer<ffi.Pointer<ffi.Void>>)>>;
 typedef LIBSSH2_SESSION = _LIBSSH2_SESSION;
 
@@ -31218,7 +27537,7 @@ abstract class git_packbuilder_stage_t {
 typedef git_packbuilder_foreach_cb = ffi.Pointer<
     ffi.NativeFunction<
         ffi.Int Function(
-            ffi.Pointer<ffi.Void>, ffi.Size, ffi.Pointer<ffi.Void>)>>;
+            ffi.Pointer<ffi.Void>, ffi.Int, ffi.Pointer<ffi.Void>)>>;
 
 /// The type of proxy to use.
 abstract class git_proxy_t {
@@ -31353,7 +27672,15 @@ abstract class git_remote_autotag_option_t {
 /// correctly set the `version` field.  E.g.
 ///
 /// git_fetch_options opts = GIT_FETCH_OPTIONS_INIT;
-class git_fetch_options extends ffi.Struct {
+typedef git_fetch_options = UnnamedStruct19;
+
+/// Fetch options structure.
+///
+/// Zero out for defaults.  Initialize with `GIT_FETCH_OPTIONS_INIT` macro to
+/// correctly set the `version` field.  E.g.
+///
+/// git_fetch_options opts = GIT_FETCH_OPTIONS_INIT;
+class UnnamedStruct19 extends ffi.Struct {
   @ffi.Int()
   external int version;
 
@@ -31391,7 +27718,10 @@ class git_fetch_options extends ffi.Struct {
 }
 
 /// Controls the behavior of a git_push object.
-class git_push_options extends ffi.Struct {
+typedef git_push_options = UnnamedStruct20;
+
+/// Controls the behavior of a git_push object.
+class UnnamedStruct20 extends ffi.Struct {
   @ffi.UnsignedInt()
   external int version;
 
@@ -31424,7 +27754,13 @@ class git_push_options extends ffi.Struct {
 ///
 /// Initialize with `GIT_REMOTE_CREATE_OPTIONS_INIT`. Alternatively, you can
 /// use `git_remote_create_options_init`.
-class git_remote_connect_options extends ffi.Struct {
+typedef git_remote_connect_options = UnnamedStruct21;
+
+/// Remote creation options structure
+///
+/// Initialize with `GIT_REMOTE_CREATE_OPTIONS_INIT`. Alternatively, you can
+/// use `git_remote_create_options_init`.
+class UnnamedStruct21 extends ffi.Struct {
   @ffi.UnsignedInt()
   external int version;
 
@@ -31888,13 +28224,20 @@ abstract class git_filter_flag_t {
   static const int GIT_FILTER_ATTRIBUTES_FROM_COMMIT = 8;
 }
 
+class git_filter extends ffi.Opaque {}
+
+class git_filter_list extends ffi.Opaque {}
+
 /// Filtering options
-class git_filter_options extends ffi.Struct {
+typedef git_filter_options = UnnamedStruct22;
+
+/// Filtering options
+class UnnamedStruct22 extends ffi.Struct {
   @ffi.UnsignedInt()
   external int version;
 
   /// See `git_filter_flag_t` above
-  @ffi.Uint32()
+  @ffi.Int()
   external int flags;
 
   external ffi.Pointer<git_oid> commit_id;
@@ -31904,14 +28247,60 @@ class git_filter_options extends ffi.Struct {
   external git_oid attr_commit_id;
 }
 
-class git_filter extends ffi.Opaque {}
+/// Type of rebase operation in-progress after calling `git_rebase_next`.
+abstract class git_rebase_operation_t {
+  /// The given commit is to be cherry-picked.  The client should commit
+  /// the changes and continue if there are no conflicts.
+  static const int GIT_REBASE_OPERATION_PICK = 0;
 
-class git_filter_list extends ffi.Opaque {}
+  /// The given commit is to be cherry-picked, but the client should prompt
+  /// the user to provide an updated commit message.
+  static const int GIT_REBASE_OPERATION_REWORD = 1;
+
+  /// The given commit is to be cherry-picked, but the client should stop
+  /// to allow the user to edit the changes before committing them.
+  static const int GIT_REBASE_OPERATION_EDIT = 2;
+
+  /// The given commit is to be squashed into the previous commit.  The
+  /// commit message will be merged with the previous message.
+  static const int GIT_REBASE_OPERATION_SQUASH = 3;
+
+  /// The given commit is to be squashed into the previous commit.  The
+  /// commit message from this commit will be discarded.
+  static const int GIT_REBASE_OPERATION_FIXUP = 4;
+
+  /// No commit will be cherry-picked.  The client should run the given
+  /// command and (if successful) continue.
+  static const int GIT_REBASE_OPERATION_EXEC = 5;
+}
+
+/// A rebase operation
+///
+/// Describes a single instruction/operation to be performed during the
+/// rebase.
+class git_rebase_operation extends ffi.Struct {
+  /// The type of rebase operation.
+  @ffi.Int32()
+  external int type;
+
+  /// The commit ID being cherry-picked.  This will be populated for
+  /// all operations except those of type `GIT_REBASE_OPERATION_EXEC`.
+  external git_oid id;
+
+  /// The executable the user has requested be run.  This will only
+  /// be populated for operations of type `GIT_REBASE_OPERATION_EXEC`.
+  external ffi.Pointer<ffi.Char> exec;
+}
 
 /// Rebase options
 ///
 /// Use to tell the rebase machinery how to operate.
-class git_rebase_options extends ffi.Struct {
+typedef git_rebase_options = UnnamedStruct23;
+
+/// Rebase options
+///
+/// Use to tell the rebase machinery how to operate.
+class UnnamedStruct23 extends ffi.Struct {
   @ffi.UnsignedInt()
   external int version;
 
@@ -32015,54 +28404,9 @@ typedef git_commit_create_cb = ffi.Pointer<
             ffi.Pointer<ffi.Char>,
             ffi.Pointer<ffi.Char>,
             ffi.Pointer<git_tree>,
-            ffi.Size,
+            ffi.Int,
             ffi.Pointer<ffi.Pointer<git_commit>>,
             ffi.Pointer<ffi.Void>)>>;
-
-/// Type of rebase operation in-progress after calling `git_rebase_next`.
-abstract class git_rebase_operation_t {
-  /// The given commit is to be cherry-picked.  The client should commit
-  /// the changes and continue if there are no conflicts.
-  static const int GIT_REBASE_OPERATION_PICK = 0;
-
-  /// The given commit is to be cherry-picked, but the client should prompt
-  /// the user to provide an updated commit message.
-  static const int GIT_REBASE_OPERATION_REWORD = 1;
-
-  /// The given commit is to be cherry-picked, but the client should stop
-  /// to allow the user to edit the changes before committing them.
-  static const int GIT_REBASE_OPERATION_EDIT = 2;
-
-  /// The given commit is to be squashed into the previous commit.  The
-  /// commit message will be merged with the previous message.
-  static const int GIT_REBASE_OPERATION_SQUASH = 3;
-
-  /// The given commit is to be squashed into the previous commit.  The
-  /// commit message from this commit will be discarded.
-  static const int GIT_REBASE_OPERATION_FIXUP = 4;
-
-  /// No commit will be cherry-picked.  The client should run the given
-  /// command and (if successful) continue.
-  static const int GIT_REBASE_OPERATION_EXEC = 5;
-}
-
-/// A rebase operation
-///
-/// Describes a single instruction/operation to be performed during the
-/// rebase.
-class git_rebase_operation extends ffi.Struct {
-  /// The type of rebase operation.
-  @ffi.Int32()
-  external int type;
-
-  /// The commit ID being cherry-picked.  This will be populated for
-  /// all operations except those of type `GIT_REBASE_OPERATION_EXEC`.
-  external git_oid id;
-
-  /// The executable the user has requested be run.  This will only
-  /// be populated for operations of type `GIT_REBASE_OPERATION_EXEC`.
-  external ffi.Pointer<ffi.Char> exec;
-}
 
 /// Available tracing levels.  When tracing is set to a particular level,
 /// callers will be provided tracing at the given level and all lower levels.
@@ -32094,7 +28438,10 @@ typedef git_trace_cb = ffi.Pointer<
     ffi.NativeFunction<ffi.Void Function(ffi.Int32, ffi.Pointer<ffi.Char>)>>;
 
 /// Options for revert
-class git_revert_options extends ffi.Struct {
+typedef git_revert_options = UnnamedStruct24;
+
+/// Options for revert
+class UnnamedStruct24 extends ffi.Struct {
   @ffi.UnsignedInt()
   external int version;
 
@@ -32194,7 +28541,7 @@ class git_stash_apply_options extends ffi.Struct {
   external int version;
 
   /// See `git_stash_apply_flags`, above.
-  @ffi.Uint32()
+  @ffi.Int()
   external int flags;
 
   /// Options to use when writing files to the working directory.
@@ -32223,7 +28570,7 @@ typedef git_stash_apply_progress_cb = ffi.Pointer<
 /// @return 0 to continue iterating or non-zero to stop.
 typedef git_stash_cb = ffi.Pointer<
     ffi.NativeFunction<
-        ffi.Int Function(ffi.Size, ffi.Pointer<ffi.Char>, ffi.Pointer<git_oid>,
+        ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Char>, ffi.Pointer<git_oid>,
             ffi.Pointer<ffi.Void>)>>;
 
 /// Status flags for a single file.
@@ -32357,7 +28704,13 @@ abstract class git_status_opt_t {
 ///
 /// Initialize with `GIT_STATUS_OPTIONS_INIT`. Alternatively, you can
 /// use `git_status_options_init`.
-class git_status_options extends ffi.Struct {
+typedef git_status_options = UnnamedStruct25;
+
+/// Options to control how `git_status_foreach_ext()` will issue callbacks.
+///
+/// Initialize with `GIT_STATUS_OPTIONS_INIT`. Alternatively, you can
+/// use `git_status_options_init`.
+class UnnamedStruct25 extends ffi.Struct {
   /// The struct version; pass `GIT_STATUS_OPTIONS_VERSION`.
   @ffi.UnsignedInt()
   external int version;
@@ -32387,7 +28740,7 @@ class git_status_options extends ffi.Struct {
 
   /// Threshold above which similar files will be considered renames.
   /// This is equivalent to the -M option. Defaults to 50.
-  @ffi.Uint16()
+  @ffi.Int()
   external int rename_threshold;
 }
 
@@ -32555,7 +28908,7 @@ class git_worktree_prune_options extends ffi.Struct {
   external int version;
 
   /// A combination of `git_worktree_prune_t`
-  @ffi.Uint32()
+  @ffi.Int()
   external int flags;
 }
 
@@ -32576,20 +28929,23 @@ abstract class git_diff_format_email_flags_t {
 }
 
 /// Options for controlling the formatting of the generated e-mail.
-class git_diff_format_email_options extends ffi.Struct {
+typedef git_diff_format_email_options = UnnamedStruct26;
+
+/// Options for controlling the formatting of the generated e-mail.
+class UnnamedStruct26 extends ffi.Struct {
   @ffi.UnsignedInt()
   external int version;
 
   /// see `git_diff_format_email_flags_t` above
-  @ffi.Uint32()
+  @ffi.Int()
   external int flags;
 
   /// This patch number
-  @ffi.Size()
+  @ffi.Int()
   external int patch_no;
 
   /// Total number of patches in this series
-  @ffi.Size()
+  @ffi.Int()
   external int total_patches;
 
   /// id to use for the commit
@@ -32622,12 +28978,15 @@ abstract class git_email_create_flags_t {
 }
 
 /// Options for controlling the formatting of the generated e-mail.
-class git_email_create_options extends ffi.Struct {
+typedef git_email_create_options = UnnamedStruct27;
+
+/// Options for controlling the formatting of the generated e-mail.
+class UnnamedStruct27 extends ffi.Struct {
   @ffi.UnsignedInt()
   external int version;
 
   /// see `git_email_create_flags_t` above
-  @ffi.Uint32()
+  @ffi.Int()
   external int flags;
 
   /// Options to use when creating diffs
@@ -32644,11 +29003,11 @@ class git_email_create_options extends ffi.Struct {
 
   /// The starting patch number; this cannot be 0.  By default,
   /// this is 1.
-  @ffi.Size()
+  @ffi.Int()
   external int start_number;
 
   /// The "re-roll" number.  By default, there is no re-roll.
-  @ffi.Size()
+  @ffi.Int()
   external int reroll_number;
 }
 
@@ -32663,10 +29022,16 @@ class git_message_trailer extends ffi.Struct {
 ///
 /// Struct members under the private comment are private, subject to change
 /// and should not be used by callers.
-class git_message_trailer_array extends ffi.Struct {
+typedef git_message_trailer_array = UnnamedStruct28;
+
+/// Represents an array of git message trailers.
+///
+/// Struct members under the private comment are private, subject to change
+/// and should not be used by callers.
+class UnnamedStruct28 extends ffi.Struct {
   external ffi.Pointer<git_message_trailer> trailers;
 
-  @ffi.Size()
+  @ffi.Int()
   external int count;
 
   external ffi.Pointer<ffi.Char> _trailer_block;
@@ -32733,38 +29098,6 @@ typedef git_odb_foreach_cb = ffi.Pointer<
 
 abstract class git_odb_backend_loose_flag_t {
   static const int GIT_ODB_BACKEND_LOOSE_FSYNC = 1;
-}
-
-/// Options for configuring a loose object backend.
-class git_odb_backend_loose_options extends ffi.Struct {
-  /// < version for the struct
-  @ffi.UnsignedInt()
-  external int version;
-
-  /// A combination of the `git_odb_backend_loose_flag_t` types.
-  @ffi.Uint32()
-  external int flags;
-
-  /// zlib compression level to use (0-9), where 1 is the fastest
-  /// at the expense of larger files, and 9 produces the best
-  /// compression at the expense of speed.  0 indicates that no
-  /// compression should be performed.  -1 is the default (currently
-  /// optimizing for speed).
-  @ffi.Int()
-  external int compression_level;
-
-  /// Permissions to use creating a directory or 0 for defaults
-  @ffi.UnsignedInt()
-  external int dir_mode;
-
-  /// Permissions to use creating a file or 0 for defaults
-  @ffi.UnsignedInt()
-  external int file_mode;
-
-  /// Type of object IDs to use for this object database, or
-  /// 0 for default (currently SHA1).
-  @ffi.Int32()
-  external int oid_type;
 }
 
 /// Streaming mode
@@ -32872,1379 +29205,9 @@ typedef git_tag_foreach_cb = ffi.Pointer<
         ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<git_oid>,
             ffi.Pointer<ffi.Void>)>>;
 
-const int __DARWIN_ONLY_64_BIT_INO_T = 1;
-
-const int __DARWIN_ONLY_UNIX_CONFORMANCE = 1;
-
-const int __DARWIN_ONLY_VERS_1050 = 1;
-
-const int __DARWIN_UNIX03 = 1;
-
-const int __DARWIN_64_BIT_INO_T = 1;
-
-const int __DARWIN_VERS_1050 = 1;
-
-const int __DARWIN_NON_CANCELABLE = 0;
-
-const String __DARWIN_SUF_EXTSN = '\$DARWIN_EXTSN';
-
-const int __DARWIN_C_ANSI = 4096;
-
-const int __DARWIN_C_FULL = 900000;
-
-const int __DARWIN_C_LEVEL = 900000;
-
-const int __STDC_WANT_LIB_EXT1__ = 1;
-
-const int __DARWIN_NO_LONG_LONG = 0;
-
-const int _DARWIN_FEATURE_64_BIT_INODE = 1;
-
-const int _DARWIN_FEATURE_ONLY_64_BIT_INODE = 1;
-
-const int _DARWIN_FEATURE_ONLY_VERS_1050 = 1;
-
-const int _DARWIN_FEATURE_ONLY_UNIX_CONFORMANCE = 1;
-
-const int _DARWIN_FEATURE_UNIX_CONFORMANCE = 3;
-
-const int __has_ptrcheck = 0;
-
-const int __DARWIN_NULL = 0;
-
-const int __PTHREAD_SIZE__ = 8176;
-
-const int __PTHREAD_ATTR_SIZE__ = 56;
-
-const int __PTHREAD_MUTEXATTR_SIZE__ = 8;
-
-const int __PTHREAD_MUTEX_SIZE__ = 56;
-
-const int __PTHREAD_CONDATTR_SIZE__ = 8;
-
-const int __PTHREAD_COND_SIZE__ = 40;
-
-const int __PTHREAD_ONCE_SIZE__ = 8;
-
-const int __PTHREAD_RWLOCK_SIZE__ = 192;
-
-const int __PTHREAD_RWLOCKATTR_SIZE__ = 16;
-
-const int __DARWIN_WCHAR_MAX = 2147483647;
-
-const int __DARWIN_WCHAR_MIN = -2147483648;
-
-const int _FORTIFY_SOURCE = 2;
-
-const int __API_TO_BE_DEPRECATED = 100000;
-
-const int __API_TO_BE_DEPRECATED_MACOS = 100000;
-
-const int __API_TO_BE_DEPRECATED_IOS = 100000;
-
-const int __API_TO_BE_DEPRECATED_TVOS = 100000;
-
-const int __API_TO_BE_DEPRECATED_WATCHOS = 100000;
-
-const int __API_TO_BE_DEPRECATED_MACCATALYST = 100000;
-
-const int __API_TO_BE_DEPRECATED_DRIVERKIT = 100000;
-
-const int __MAC_10_0 = 1000;
-
-const int __MAC_10_1 = 1010;
-
-const int __MAC_10_2 = 1020;
-
-const int __MAC_10_3 = 1030;
-
-const int __MAC_10_4 = 1040;
-
-const int __MAC_10_5 = 1050;
-
-const int __MAC_10_6 = 1060;
-
-const int __MAC_10_7 = 1070;
-
-const int __MAC_10_8 = 1080;
-
-const int __MAC_10_9 = 1090;
-
-const int __MAC_10_10 = 101000;
-
-const int __MAC_10_10_2 = 101002;
-
-const int __MAC_10_10_3 = 101003;
-
-const int __MAC_10_11 = 101100;
-
-const int __MAC_10_11_2 = 101102;
-
-const int __MAC_10_11_3 = 101103;
-
-const int __MAC_10_11_4 = 101104;
-
-const int __MAC_10_12 = 101200;
-
-const int __MAC_10_12_1 = 101201;
-
-const int __MAC_10_12_2 = 101202;
-
-const int __MAC_10_12_4 = 101204;
-
-const int __MAC_10_13 = 101300;
-
-const int __MAC_10_13_1 = 101301;
-
-const int __MAC_10_13_2 = 101302;
-
-const int __MAC_10_13_4 = 101304;
-
-const int __MAC_10_14 = 101400;
-
-const int __MAC_10_14_1 = 101401;
-
-const int __MAC_10_14_4 = 101404;
-
-const int __MAC_10_14_6 = 101406;
-
-const int __MAC_10_15 = 101500;
-
-const int __MAC_10_15_1 = 101501;
-
-const int __MAC_10_15_4 = 101504;
-
-const int __MAC_10_16 = 101600;
-
-const int __MAC_11_0 = 110000;
-
-const int __MAC_11_1 = 110100;
-
-const int __MAC_11_3 = 110300;
-
-const int __MAC_11_4 = 110400;
-
-const int __MAC_11_5 = 110500;
-
-const int __MAC_11_6 = 110600;
-
-const int __MAC_12_0 = 120000;
-
-const int __MAC_12_1 = 120100;
-
-const int __MAC_12_2 = 120200;
-
-const int __MAC_12_3 = 120300;
-
-const int __MAC_13_0 = 130000;
-
-const int __IPHONE_2_0 = 20000;
-
-const int __IPHONE_2_1 = 20100;
-
-const int __IPHONE_2_2 = 20200;
-
-const int __IPHONE_3_0 = 30000;
-
-const int __IPHONE_3_1 = 30100;
-
-const int __IPHONE_3_2 = 30200;
-
-const int __IPHONE_4_0 = 40000;
-
-const int __IPHONE_4_1 = 40100;
-
-const int __IPHONE_4_2 = 40200;
-
-const int __IPHONE_4_3 = 40300;
-
-const int __IPHONE_5_0 = 50000;
-
-const int __IPHONE_5_1 = 50100;
-
-const int __IPHONE_6_0 = 60000;
-
-const int __IPHONE_6_1 = 60100;
-
-const int __IPHONE_7_0 = 70000;
-
-const int __IPHONE_7_1 = 70100;
-
-const int __IPHONE_8_0 = 80000;
-
-const int __IPHONE_8_1 = 80100;
-
-const int __IPHONE_8_2 = 80200;
-
-const int __IPHONE_8_3 = 80300;
-
-const int __IPHONE_8_4 = 80400;
-
-const int __IPHONE_9_0 = 90000;
-
-const int __IPHONE_9_1 = 90100;
-
-const int __IPHONE_9_2 = 90200;
-
-const int __IPHONE_9_3 = 90300;
-
-const int __IPHONE_10_0 = 100000;
-
-const int __IPHONE_10_1 = 100100;
-
-const int __IPHONE_10_2 = 100200;
-
-const int __IPHONE_10_3 = 100300;
-
-const int __IPHONE_11_0 = 110000;
-
-const int __IPHONE_11_1 = 110100;
-
-const int __IPHONE_11_2 = 110200;
-
-const int __IPHONE_11_3 = 110300;
-
-const int __IPHONE_11_4 = 110400;
-
-const int __IPHONE_12_0 = 120000;
-
-const int __IPHONE_12_1 = 120100;
-
-const int __IPHONE_12_2 = 120200;
-
-const int __IPHONE_12_3 = 120300;
-
-const int __IPHONE_12_4 = 120400;
-
-const int __IPHONE_13_0 = 130000;
-
-const int __IPHONE_13_1 = 130100;
-
-const int __IPHONE_13_2 = 130200;
-
-const int __IPHONE_13_3 = 130300;
-
-const int __IPHONE_13_4 = 130400;
-
-const int __IPHONE_13_5 = 130500;
-
-const int __IPHONE_13_6 = 130600;
-
-const int __IPHONE_13_7 = 130700;
-
-const int __IPHONE_14_0 = 140000;
-
-const int __IPHONE_14_1 = 140100;
-
-const int __IPHONE_14_2 = 140200;
-
-const int __IPHONE_14_3 = 140300;
-
-const int __IPHONE_14_5 = 140500;
-
-const int __IPHONE_14_6 = 140600;
-
-const int __IPHONE_14_7 = 140700;
-
-const int __IPHONE_14_8 = 140800;
-
-const int __IPHONE_15_0 = 150000;
-
-const int __IPHONE_15_1 = 150100;
-
-const int __IPHONE_15_2 = 150200;
-
-const int __IPHONE_15_3 = 150300;
-
-const int __IPHONE_15_4 = 150400;
-
-const int __IPHONE_16_0 = 160000;
-
-const int __IPHONE_16_1 = 160100;
-
-const int __TVOS_9_0 = 90000;
-
-const int __TVOS_9_1 = 90100;
-
-const int __TVOS_9_2 = 90200;
-
-const int __TVOS_10_0 = 100000;
-
-const int __TVOS_10_0_1 = 100001;
-
-const int __TVOS_10_1 = 100100;
-
-const int __TVOS_10_2 = 100200;
-
-const int __TVOS_11_0 = 110000;
-
-const int __TVOS_11_1 = 110100;
-
-const int __TVOS_11_2 = 110200;
-
-const int __TVOS_11_3 = 110300;
-
-const int __TVOS_11_4 = 110400;
-
-const int __TVOS_12_0 = 120000;
-
-const int __TVOS_12_1 = 120100;
-
-const int __TVOS_12_2 = 120200;
-
-const int __TVOS_12_3 = 120300;
-
-const int __TVOS_12_4 = 120400;
-
-const int __TVOS_13_0 = 130000;
-
-const int __TVOS_13_2 = 130200;
-
-const int __TVOS_13_3 = 130300;
-
-const int __TVOS_13_4 = 130400;
-
-const int __TVOS_14_0 = 140000;
-
-const int __TVOS_14_1 = 140100;
-
-const int __TVOS_14_2 = 140200;
-
-const int __TVOS_14_3 = 140300;
-
-const int __TVOS_14_5 = 140500;
-
-const int __TVOS_14_6 = 140600;
-
-const int __TVOS_14_7 = 140700;
-
-const int __TVOS_15_0 = 150000;
-
-const int __TVOS_15_1 = 150100;
-
-const int __TVOS_15_2 = 150200;
-
-const int __TVOS_15_3 = 150300;
-
-const int __TVOS_15_4 = 150400;
-
-const int __TVOS_16_0 = 160000;
-
-const int __TVOS_16_1 = 160100;
-
-const int __WATCHOS_1_0 = 10000;
-
-const int __WATCHOS_2_0 = 20000;
-
-const int __WATCHOS_2_1 = 20100;
-
-const int __WATCHOS_2_2 = 20200;
-
-const int __WATCHOS_3_0 = 30000;
-
-const int __WATCHOS_3_1 = 30100;
-
-const int __WATCHOS_3_1_1 = 30101;
-
-const int __WATCHOS_3_2 = 30200;
-
-const int __WATCHOS_4_0 = 40000;
-
-const int __WATCHOS_4_1 = 40100;
-
-const int __WATCHOS_4_2 = 40200;
-
-const int __WATCHOS_4_3 = 40300;
-
-const int __WATCHOS_5_0 = 50000;
-
-const int __WATCHOS_5_1 = 50100;
-
-const int __WATCHOS_5_2 = 50200;
-
-const int __WATCHOS_5_3 = 50300;
-
-const int __WATCHOS_6_0 = 60000;
-
-const int __WATCHOS_6_1 = 60100;
-
-const int __WATCHOS_6_2 = 60200;
-
-const int __WATCHOS_7_0 = 70000;
-
-const int __WATCHOS_7_1 = 70100;
-
-const int __WATCHOS_7_2 = 70200;
-
-const int __WATCHOS_7_3 = 70300;
-
-const int __WATCHOS_7_4 = 70400;
-
-const int __WATCHOS_7_5 = 70500;
-
-const int __WATCHOS_7_6 = 70600;
-
-const int __WATCHOS_8_0 = 80000;
-
-const int __WATCHOS_8_1 = 80100;
-
-const int __WATCHOS_8_3 = 80300;
-
-const int __WATCHOS_8_4 = 80400;
-
-const int __WATCHOS_8_5 = 80500;
-
-const int __WATCHOS_9_0 = 90000;
-
-const int __WATCHOS_9_1 = 90100;
-
-const int MAC_OS_X_VERSION_10_0 = 1000;
-
-const int MAC_OS_X_VERSION_10_1 = 1010;
-
-const int MAC_OS_X_VERSION_10_2 = 1020;
-
-const int MAC_OS_X_VERSION_10_3 = 1030;
-
-const int MAC_OS_X_VERSION_10_4 = 1040;
-
-const int MAC_OS_X_VERSION_10_5 = 1050;
-
-const int MAC_OS_X_VERSION_10_6 = 1060;
-
-const int MAC_OS_X_VERSION_10_7 = 1070;
-
-const int MAC_OS_X_VERSION_10_8 = 1080;
-
-const int MAC_OS_X_VERSION_10_9 = 1090;
-
-const int MAC_OS_X_VERSION_10_10 = 101000;
-
-const int MAC_OS_X_VERSION_10_10_2 = 101002;
-
-const int MAC_OS_X_VERSION_10_10_3 = 101003;
-
-const int MAC_OS_X_VERSION_10_11 = 101100;
-
-const int MAC_OS_X_VERSION_10_11_2 = 101102;
-
-const int MAC_OS_X_VERSION_10_11_3 = 101103;
-
-const int MAC_OS_X_VERSION_10_11_4 = 101104;
-
-const int MAC_OS_X_VERSION_10_12 = 101200;
-
-const int MAC_OS_X_VERSION_10_12_1 = 101201;
-
-const int MAC_OS_X_VERSION_10_12_2 = 101202;
-
-const int MAC_OS_X_VERSION_10_12_4 = 101204;
-
-const int MAC_OS_X_VERSION_10_13 = 101300;
-
-const int MAC_OS_X_VERSION_10_13_1 = 101301;
-
-const int MAC_OS_X_VERSION_10_13_2 = 101302;
-
-const int MAC_OS_X_VERSION_10_13_4 = 101304;
-
-const int MAC_OS_X_VERSION_10_14 = 101400;
-
-const int MAC_OS_X_VERSION_10_14_1 = 101401;
-
-const int MAC_OS_X_VERSION_10_14_4 = 101404;
-
-const int MAC_OS_X_VERSION_10_14_6 = 101406;
-
-const int MAC_OS_X_VERSION_10_15 = 101500;
-
-const int MAC_OS_X_VERSION_10_15_1 = 101501;
-
-const int MAC_OS_X_VERSION_10_16 = 101600;
-
-const int MAC_OS_VERSION_11_0 = 110000;
-
-const int MAC_OS_VERSION_12_0 = 120000;
-
-const int MAC_OS_VERSION_13_0 = 130000;
-
-const int __DRIVERKIT_19_0 = 190000;
-
-const int __DRIVERKIT_20_0 = 200000;
-
-const int __DRIVERKIT_21_0 = 210000;
-
-const int __MAC_OS_X_VERSION_MIN_REQUIRED = 130000;
-
-const int __MAC_OS_X_VERSION_MAX_ALLOWED = 130000;
-
-const int __ENABLE_LEGACY_MAC_AVAILABILITY = 1;
-
-const int NULL = 0;
-
-const int TIME_UTC = 1;
-
-const int __DARWIN_NSIG = 32;
-
-const int NSIG = 32;
-
-const int _ARM_SIGNAL_ = 1;
-
-const int SIGHUP = 1;
-
-const int SIGINT = 2;
-
-const int SIGQUIT = 3;
-
-const int SIGILL = 4;
-
-const int SIGTRAP = 5;
-
-const int SIGABRT = 6;
-
-const int SIGIOT = 6;
-
-const int SIGEMT = 7;
-
-const int SIGFPE = 8;
-
-const int SIGKILL = 9;
-
-const int SIGBUS = 10;
-
-const int SIGSEGV = 11;
-
-const int SIGSYS = 12;
-
-const int SIGPIPE = 13;
-
-const int SIGALRM = 14;
-
-const int SIGTERM = 15;
-
-const int SIGURG = 16;
-
-const int SIGSTOP = 17;
-
-const int SIGTSTP = 18;
-
-const int SIGCONT = 19;
-
-const int SIGCHLD = 20;
-
-const int SIGTTIN = 21;
-
-const int SIGTTOU = 22;
-
-const int SIGIO = 23;
-
-const int SIGXCPU = 24;
-
-const int SIGXFSZ = 25;
-
-const int SIGVTALRM = 26;
-
-const int SIGPROF = 27;
-
-const int SIGWINCH = 28;
-
-const int SIGINFO = 29;
-
-const int SIGUSR1 = 30;
-
-const int SIGUSR2 = 31;
-
-const int __DARWIN_OPAQUE_ARM_THREAD_STATE64 = 0;
-
-const int SIGEV_NONE = 0;
-
-const int SIGEV_SIGNAL = 1;
-
-const int SIGEV_THREAD = 3;
-
-const int ILL_NOOP = 0;
-
-const int ILL_ILLOPC = 1;
-
-const int ILL_ILLTRP = 2;
-
-const int ILL_PRVOPC = 3;
-
-const int ILL_ILLOPN = 4;
-
-const int ILL_ILLADR = 5;
-
-const int ILL_PRVREG = 6;
-
-const int ILL_COPROC = 7;
-
-const int ILL_BADSTK = 8;
-
-const int FPE_NOOP = 0;
-
-const int FPE_FLTDIV = 1;
-
-const int FPE_FLTOVF = 2;
-
-const int FPE_FLTUND = 3;
-
-const int FPE_FLTRES = 4;
-
-const int FPE_FLTINV = 5;
-
-const int FPE_FLTSUB = 6;
-
-const int FPE_INTDIV = 7;
-
-const int FPE_INTOVF = 8;
-
-const int SEGV_NOOP = 0;
-
-const int SEGV_MAPERR = 1;
-
-const int SEGV_ACCERR = 2;
-
-const int BUS_NOOP = 0;
-
-const int BUS_ADRALN = 1;
-
-const int BUS_ADRERR = 2;
-
-const int BUS_OBJERR = 3;
-
-const int TRAP_BRKPT = 1;
-
-const int TRAP_TRACE = 2;
-
-const int CLD_NOOP = 0;
-
-const int CLD_EXITED = 1;
-
-const int CLD_KILLED = 2;
-
-const int CLD_DUMPED = 3;
-
-const int CLD_TRAPPED = 4;
-
-const int CLD_STOPPED = 5;
-
-const int CLD_CONTINUED = 6;
-
-const int POLL_IN = 1;
-
-const int POLL_OUT = 2;
-
-const int POLL_MSG = 3;
-
-const int POLL_ERR = 4;
-
-const int POLL_PRI = 5;
-
-const int POLL_HUP = 6;
-
-const int SA_ONSTACK = 1;
-
-const int SA_RESTART = 2;
-
-const int SA_RESETHAND = 4;
-
-const int SA_NOCLDSTOP = 8;
-
-const int SA_NODEFER = 16;
-
-const int SA_NOCLDWAIT = 32;
-
-const int SA_SIGINFO = 64;
-
-const int SA_USERTRAMP = 256;
-
-const int SA_64REGSET = 512;
-
-const int SA_USERSPACE_MASK = 127;
-
-const int SIG_BLOCK = 1;
-
-const int SIG_UNBLOCK = 2;
-
-const int SIG_SETMASK = 3;
-
-const int SI_USER = 65537;
-
-const int SI_QUEUE = 65538;
-
-const int SI_TIMER = 65539;
-
-const int SI_ASYNCIO = 65540;
-
-const int SI_MESGQ = 65541;
-
-const int SS_ONSTACK = 1;
-
-const int SS_DISABLE = 4;
-
-const int MINSIGSTKSZ = 32768;
-
-const int SIGSTKSZ = 131072;
-
-const int SV_ONSTACK = 1;
-
-const int SV_INTERRUPT = 2;
-
-const int SV_RESETHAND = 4;
-
-const int SV_NODEFER = 16;
-
-const int SV_NOCLDSTOP = 8;
-
-const int SV_SIGINFO = 64;
-
-const int __WORDSIZE = 64;
-
-const int INT8_MAX = 127;
-
-const int INT16_MAX = 32767;
-
-const int INT32_MAX = 2147483647;
-
-const int INT64_MAX = 9223372036854775807;
-
-const int INT8_MIN = -128;
-
-const int INT16_MIN = -32768;
-
-const int INT32_MIN = -2147483648;
-
-const int INT64_MIN = -9223372036854775808;
-
-const int UINT8_MAX = 255;
-
-const int UINT16_MAX = 65535;
-
-const int UINT32_MAX = 4294967295;
-
-const int UINT64_MAX = -1;
-
-const int INT_LEAST8_MIN = -128;
-
-const int INT_LEAST16_MIN = -32768;
-
-const int INT_LEAST32_MIN = -2147483648;
-
-const int INT_LEAST64_MIN = -9223372036854775808;
-
-const int INT_LEAST8_MAX = 127;
-
-const int INT_LEAST16_MAX = 32767;
-
-const int INT_LEAST32_MAX = 2147483647;
-
-const int INT_LEAST64_MAX = 9223372036854775807;
-
-const int UINT_LEAST8_MAX = 255;
-
-const int UINT_LEAST16_MAX = 65535;
-
-const int UINT_LEAST32_MAX = 4294967295;
-
-const int UINT_LEAST64_MAX = -1;
-
-const int INT_FAST8_MIN = -128;
-
-const int INT_FAST16_MIN = -32768;
-
-const int INT_FAST32_MIN = -2147483648;
-
-const int INT_FAST64_MIN = -9223372036854775808;
-
-const int INT_FAST8_MAX = 127;
-
-const int INT_FAST16_MAX = 32767;
-
-const int INT_FAST32_MAX = 2147483647;
-
-const int INT_FAST64_MAX = 9223372036854775807;
-
-const int UINT_FAST8_MAX = 255;
-
-const int UINT_FAST16_MAX = 65535;
-
-const int UINT_FAST32_MAX = 4294967295;
-
-const int UINT_FAST64_MAX = -1;
-
-const int INTPTR_MAX = 9223372036854775807;
-
-const int INTPTR_MIN = -9223372036854775808;
-
-const int UINTPTR_MAX = -1;
-
-const int INTMAX_MAX = 9223372036854775807;
-
-const int UINTMAX_MAX = -1;
-
-const int INTMAX_MIN = -9223372036854775808;
-
-const int PTRDIFF_MIN = -9223372036854775808;
-
-const int PTRDIFF_MAX = 9223372036854775807;
-
-const int SIZE_MAX = -1;
-
-const int RSIZE_MAX = 9223372036854775807;
-
-const int WCHAR_MAX = 2147483647;
-
-const int WCHAR_MIN = -2147483648;
-
-const int WINT_MIN = -2147483648;
-
-const int WINT_MAX = 2147483647;
-
-const int SIG_ATOMIC_MIN = -2147483648;
-
-const int SIG_ATOMIC_MAX = 2147483647;
-
-const int PRIO_PROCESS = 0;
-
-const int PRIO_PGRP = 1;
-
-const int PRIO_USER = 2;
-
-const int PRIO_DARWIN_THREAD = 3;
-
-const int PRIO_DARWIN_PROCESS = 4;
-
-const int PRIO_MIN = -20;
-
-const int PRIO_MAX = 20;
-
-const int PRIO_DARWIN_BG = 4096;
-
-const int PRIO_DARWIN_NONUI = 4097;
-
-const int RUSAGE_SELF = 0;
-
-const int RUSAGE_CHILDREN = -1;
-
-const int RUSAGE_INFO_V0 = 0;
-
-const int RUSAGE_INFO_V1 = 1;
-
-const int RUSAGE_INFO_V2 = 2;
-
-const int RUSAGE_INFO_V3 = 3;
-
-const int RUSAGE_INFO_V4 = 4;
-
-const int RUSAGE_INFO_V5 = 5;
-
-const int RUSAGE_INFO_V6 = 6;
-
-const int RUSAGE_INFO_CURRENT = 6;
-
-const int RU_PROC_RUNS_RESLIDE = 1;
-
-const int RLIMIT_CPU = 0;
-
-const int RLIMIT_FSIZE = 1;
-
-const int RLIMIT_DATA = 2;
-
-const int RLIMIT_STACK = 3;
-
-const int RLIMIT_CORE = 4;
-
-const int RLIMIT_AS = 5;
-
-const int RLIMIT_RSS = 5;
-
-const int RLIMIT_MEMLOCK = 6;
-
-const int RLIMIT_NPROC = 7;
-
-const int RLIMIT_NOFILE = 8;
-
-const int RLIM_NLIMITS = 9;
-
-const int _RLIMIT_POSIX_FLAG = 4096;
-
-const int RLIMIT_WAKEUPS_MONITOR = 1;
-
-const int RLIMIT_CPU_USAGE_MONITOR = 2;
-
-const int RLIMIT_THREAD_CPULIMITS = 3;
-
-const int RLIMIT_FOOTPRINT_INTERVAL = 4;
-
-const int WAKEMON_ENABLE = 1;
-
-const int WAKEMON_DISABLE = 2;
-
-const int WAKEMON_GET_PARAMS = 4;
-
-const int WAKEMON_SET_DEFAULTS = 8;
-
-const int WAKEMON_MAKE_FATAL = 16;
-
-const int CPUMON_MAKE_FATAL = 4096;
-
-const int FOOTPRINT_INTERVAL_RESET = 1;
-
-const int IOPOL_TYPE_DISK = 0;
-
-const int IOPOL_TYPE_VFS_ATIME_UPDATES = 2;
-
-const int IOPOL_TYPE_VFS_MATERIALIZE_DATALESS_FILES = 3;
-
-const int IOPOL_TYPE_VFS_STATFS_NO_DATA_VOLUME = 4;
-
-const int IOPOL_TYPE_VFS_TRIGGER_RESOLVE = 5;
-
-const int IOPOL_TYPE_VFS_IGNORE_CONTENT_PROTECTION = 6;
-
-const int IOPOL_TYPE_VFS_IGNORE_PERMISSIONS = 7;
-
-const int IOPOL_TYPE_VFS_SKIP_MTIME_UPDATE = 8;
-
-const int IOPOL_TYPE_VFS_ALLOW_LOW_SPACE_WRITES = 9;
-
-const int IOPOL_TYPE_VFS_DISALLOW_RW_FOR_O_EVTONLY = 10;
-
-const int IOPOL_SCOPE_PROCESS = 0;
-
-const int IOPOL_SCOPE_THREAD = 1;
-
-const int IOPOL_SCOPE_DARWIN_BG = 2;
-
-const int IOPOL_DEFAULT = 0;
-
-const int IOPOL_IMPORTANT = 1;
-
-const int IOPOL_PASSIVE = 2;
-
-const int IOPOL_THROTTLE = 3;
-
-const int IOPOL_UTILITY = 4;
-
-const int IOPOL_STANDARD = 5;
-
-const int IOPOL_APPLICATION = 5;
-
-const int IOPOL_NORMAL = 1;
-
-const int IOPOL_ATIME_UPDATES_DEFAULT = 0;
-
-const int IOPOL_ATIME_UPDATES_OFF = 1;
-
-const int IOPOL_MATERIALIZE_DATALESS_FILES_DEFAULT = 0;
-
-const int IOPOL_MATERIALIZE_DATALESS_FILES_OFF = 1;
-
-const int IOPOL_MATERIALIZE_DATALESS_FILES_ON = 2;
-
-const int IOPOL_VFS_STATFS_NO_DATA_VOLUME_DEFAULT = 0;
-
-const int IOPOL_VFS_STATFS_FORCE_NO_DATA_VOLUME = 1;
-
-const int IOPOL_VFS_TRIGGER_RESOLVE_DEFAULT = 0;
-
-const int IOPOL_VFS_TRIGGER_RESOLVE_OFF = 1;
-
-const int IOPOL_VFS_CONTENT_PROTECTION_DEFAULT = 0;
-
-const int IOPOL_VFS_CONTENT_PROTECTION_IGNORE = 1;
-
-const int IOPOL_VFS_IGNORE_PERMISSIONS_OFF = 0;
-
-const int IOPOL_VFS_IGNORE_PERMISSIONS_ON = 1;
-
-const int IOPOL_VFS_SKIP_MTIME_UPDATE_OFF = 0;
-
-const int IOPOL_VFS_SKIP_MTIME_UPDATE_ON = 1;
-
-const int IOPOL_VFS_ALLOW_LOW_SPACE_WRITES_OFF = 0;
-
-const int IOPOL_VFS_ALLOW_LOW_SPACE_WRITES_ON = 1;
-
-const int IOPOL_VFS_DISALLOW_RW_FOR_O_EVTONLY_DEFAULT = 0;
-
-const int IOPOL_VFS_DISALLOW_RW_FOR_O_EVTONLY_ON = 1;
-
-const int WNOHANG = 1;
-
-const int WUNTRACED = 2;
-
-const int WCOREFLAG = 128;
-
-const int _WSTOPPED = 127;
-
-const int WEXITED = 4;
-
-const int WSTOPPED = 8;
-
-const int WCONTINUED = 16;
-
-const int WNOWAIT = 32;
-
-const int WAIT_ANY = -1;
-
-const int WAIT_MYPGRP = 0;
-
-const int _QUAD_HIGHWORD = 1;
-
-const int _QUAD_LOWWORD = 0;
-
-const int __DARWIN_LITTLE_ENDIAN = 1234;
-
-const int __DARWIN_BIG_ENDIAN = 4321;
-
-const int __DARWIN_PDP_ENDIAN = 3412;
-
-const int __DARWIN_BYTE_ORDER = 1234;
-
-const int LITTLE_ENDIAN = 1234;
-
-const int BIG_ENDIAN = 4321;
-
-const int PDP_ENDIAN = 3412;
-
-const int BYTE_ORDER = 1234;
-
-const int EXIT_FAILURE = 1;
-
-const int EXIT_SUCCESS = 0;
-
-const int RAND_MAX = 2147483647;
-
-const String __PRI_8_LENGTH_MODIFIER__ = 'hh';
-
-const String __PRI_64_LENGTH_MODIFIER__ = 'll';
-
-const String __SCN_64_LENGTH_MODIFIER__ = 'll';
-
-const String __PRI_MAX_LENGTH_MODIFIER__ = 'j';
-
-const String __SCN_MAX_LENGTH_MODIFIER__ = 'j';
-
-const String PRId8 = 'hhd';
-
-const String PRIi8 = 'hhi';
-
-const String PRIo8 = 'hho';
-
-const String PRIu8 = 'hhu';
-
-const String PRIx8 = 'hhx';
-
-const String PRIX8 = 'hhX';
-
-const String PRId16 = 'hd';
-
-const String PRIi16 = 'hi';
-
-const String PRIo16 = 'ho';
-
-const String PRIu16 = 'hu';
-
-const String PRIx16 = 'hx';
-
-const String PRIX16 = 'hX';
-
-const String PRId32 = 'd';
-
-const String PRIi32 = 'i';
-
-const String PRIo32 = 'o';
-
-const String PRIu32 = 'u';
-
-const String PRIx32 = 'x';
-
-const String PRIX32 = 'X';
-
-const String PRId64 = 'lld';
-
-const String PRIi64 = 'lli';
-
-const String PRIo64 = 'llo';
-
-const String PRIu64 = 'llu';
-
-const String PRIx64 = 'llx';
-
-const String PRIX64 = 'llX';
-
-const String PRIdLEAST8 = 'hhd';
-
-const String PRIiLEAST8 = 'hhi';
-
-const String PRIoLEAST8 = 'hho';
-
-const String PRIuLEAST8 = 'hhu';
-
-const String PRIxLEAST8 = 'hhx';
-
-const String PRIXLEAST8 = 'hhX';
-
-const String PRIdLEAST16 = 'hd';
-
-const String PRIiLEAST16 = 'hi';
-
-const String PRIoLEAST16 = 'ho';
-
-const String PRIuLEAST16 = 'hu';
-
-const String PRIxLEAST16 = 'hx';
-
-const String PRIXLEAST16 = 'hX';
-
-const String PRIdLEAST32 = 'd';
-
-const String PRIiLEAST32 = 'i';
-
-const String PRIoLEAST32 = 'o';
-
-const String PRIuLEAST32 = 'u';
-
-const String PRIxLEAST32 = 'x';
-
-const String PRIXLEAST32 = 'X';
-
-const String PRIdLEAST64 = 'lld';
-
-const String PRIiLEAST64 = 'lli';
-
-const String PRIoLEAST64 = 'llo';
-
-const String PRIuLEAST64 = 'llu';
-
-const String PRIxLEAST64 = 'llx';
-
-const String PRIXLEAST64 = 'llX';
-
-const String PRIdFAST8 = 'hhd';
-
-const String PRIiFAST8 = 'hhi';
-
-const String PRIoFAST8 = 'hho';
-
-const String PRIuFAST8 = 'hhu';
-
-const String PRIxFAST8 = 'hhx';
-
-const String PRIXFAST8 = 'hhX';
-
-const String PRIdFAST16 = 'hd';
-
-const String PRIiFAST16 = 'hi';
-
-const String PRIoFAST16 = 'ho';
-
-const String PRIuFAST16 = 'hu';
-
-const String PRIxFAST16 = 'hx';
-
-const String PRIXFAST16 = 'hX';
-
-const String PRIdFAST32 = 'd';
-
-const String PRIiFAST32 = 'i';
-
-const String PRIoFAST32 = 'o';
-
-const String PRIuFAST32 = 'u';
-
-const String PRIxFAST32 = 'x';
-
-const String PRIXFAST32 = 'X';
-
-const String PRIdFAST64 = 'lld';
-
-const String PRIiFAST64 = 'lli';
-
-const String PRIoFAST64 = 'llo';
-
-const String PRIuFAST64 = 'llu';
-
-const String PRIxFAST64 = 'llx';
-
-const String PRIXFAST64 = 'llX';
-
-const String PRIdPTR = 'ld';
-
-const String PRIiPTR = 'li';
-
-const String PRIoPTR = 'lo';
-
-const String PRIuPTR = 'lu';
-
-const String PRIxPTR = 'lx';
-
-const String PRIXPTR = 'lX';
-
-const String PRIdMAX = 'jd';
-
-const String PRIiMAX = 'ji';
-
-const String PRIoMAX = 'jo';
-
-const String PRIuMAX = 'ju';
-
-const String PRIxMAX = 'jx';
-
-const String PRIXMAX = 'jX';
-
-const String SCNd8 = 'hhd';
-
-const String SCNi8 = 'hhi';
-
-const String SCNo8 = 'hho';
-
-const String SCNu8 = 'hhu';
-
-const String SCNx8 = 'hhx';
-
-const String SCNd16 = 'hd';
-
-const String SCNi16 = 'hi';
-
-const String SCNo16 = 'ho';
-
-const String SCNu16 = 'hu';
-
-const String SCNx16 = 'hx';
-
-const String SCNd32 = 'd';
-
-const String SCNi32 = 'i';
-
-const String SCNo32 = 'o';
-
-const String SCNu32 = 'u';
-
-const String SCNx32 = 'x';
-
-const String SCNd64 = 'lld';
-
-const String SCNi64 = 'lli';
-
-const String SCNo64 = 'llo';
-
-const String SCNu64 = 'llu';
-
-const String SCNx64 = 'llx';
-
-const String SCNdLEAST8 = 'hhd';
-
-const String SCNiLEAST8 = 'hhi';
-
-const String SCNoLEAST8 = 'hho';
-
-const String SCNuLEAST8 = 'hhu';
-
-const String SCNxLEAST8 = 'hhx';
-
-const String SCNdLEAST16 = 'hd';
-
-const String SCNiLEAST16 = 'hi';
-
-const String SCNoLEAST16 = 'ho';
-
-const String SCNuLEAST16 = 'hu';
-
-const String SCNxLEAST16 = 'hx';
-
-const String SCNdLEAST32 = 'd';
-
-const String SCNiLEAST32 = 'i';
-
-const String SCNoLEAST32 = 'o';
-
-const String SCNuLEAST32 = 'u';
-
-const String SCNxLEAST32 = 'x';
-
-const String SCNdLEAST64 = 'lld';
-
-const String SCNiLEAST64 = 'lli';
-
-const String SCNoLEAST64 = 'llo';
-
-const String SCNuLEAST64 = 'llu';
-
-const String SCNxLEAST64 = 'llx';
-
-const String SCNdFAST8 = 'hhd';
-
-const String SCNiFAST8 = 'hhi';
-
-const String SCNoFAST8 = 'hho';
-
-const String SCNuFAST8 = 'hhu';
-
-const String SCNxFAST8 = 'hhx';
-
-const String SCNdFAST16 = 'hd';
-
-const String SCNiFAST16 = 'hi';
-
-const String SCNoFAST16 = 'ho';
-
-const String SCNuFAST16 = 'hu';
-
-const String SCNxFAST16 = 'hx';
-
-const String SCNdFAST32 = 'd';
-
-const String SCNiFAST32 = 'i';
-
-const String SCNoFAST32 = 'o';
-
-const String SCNuFAST32 = 'u';
-
-const String SCNxFAST32 = 'x';
-
-const String SCNdFAST64 = 'lld';
-
-const String SCNiFAST64 = 'lli';
-
-const String SCNoFAST64 = 'llo';
-
-const String SCNuFAST64 = 'llu';
-
-const String SCNxFAST64 = 'llx';
-
-const String SCNdPTR = 'ld';
-
-const String SCNiPTR = 'li';
-
-const String SCNoPTR = 'lo';
-
-const String SCNuPTR = 'lu';
-
-const String SCNxPTR = 'lx';
-
-const String SCNdMAX = 'jd';
-
-const String SCNiMAX = 'ji';
-
-const String SCNoMAX = 'jo';
-
-const String SCNuMAX = 'ju';
-
-const String SCNxMAX = 'jx';
-
 const int GIT_PATH_LIST_SEPARATOR = 58;
 
 const int GIT_PATH_MAX = 4096;
-
-const int __DARWIN_FD_SETSIZE = 1024;
-
-const int __DARWIN_NBBY = 8;
-
-const int NBBY = 8;
-
-const int FD_SETSIZE = 1024;
 
 const int GIT_OID_SHA1_SIZE = 20;
 
@@ -34259,8 +29222,6 @@ const int GIT_OID_MAX_HEXSIZE = 40;
 const int GIT_OID_MINPREFIXLEN = 4;
 
 const int GIT_REPOSITORY_INIT_OPTIONS_VERSION = 1;
-
-const int GIT_OBJECT_SIZE_MAX = -1;
 
 const int GIT_DIFF_OPTIONS_VERSION = 1;
 
@@ -34337,8 +29298,6 @@ const int GIT_DESCRIBE_FORMAT_OPTIONS_VERSION = 1;
 const int GIT_FILTER_OPTIONS_VERSION = 1;
 
 const int GIT_REBASE_OPTIONS_VERSION = 1;
-
-const int GIT_REBASE_NO_OPERATION = -1;
 
 const int GIT_REVERT_OPTIONS_VERSION = 1;
 

@@ -59,6 +59,9 @@ ffigen:
   compiler-opts:
     - '-Wno-nullability-completeness'
     - '-Inative/libgit2/include'
+  compiler-opts-automatic:
+    macos:
+      include-c-standard-library: false
   functions:
     symbol-address:
       include:
