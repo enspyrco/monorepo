@@ -1,17 +1,15 @@
+import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-import '../git/models/git_object_database.dart';
+import '../app/state/app_state.dart';
+import '../git/models/git_objects/commit_tree_state.dart';
 import 'visual_objects/area_visual.dart';
 import 'visual_objects/commit_tree_visual.dart';
 import 'visualisation_painter.dart';
 
 class VisualisationScreen extends StatefulWidget {
-  const VisualisationScreen(GitObjectDatabase gitObjectDB, {Key? key})
-      : _gitObjectDB = gitObjectDB,
-        super(key: key);
-
-  final GitObjectDatabase _gitObjectDB;
+  const VisualisationScreen({Key? key}) : super(key: key);
 
   @override
   State<VisualisationScreen> createState() => _VisualisationScreenState();
@@ -55,21 +53,25 @@ class _VisualisationScreenState extends State<VisualisationScreen>
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      // The area visual is the space the tree lives in - we need to create the
-      // area visual first so the tree visual knows the bounds of the area it
-      // has to work with.
-      var areaVisual = AreaVisual.from(constraints);
-      _treeVisual = widget._gitObjectDB.commitTree.createVisual(areaVisual);
+    return OnStateChangeBuilder<AppState, CommitTreeState>(
+        transformer: (state) => state.odb.commitTree,
+        builder: (context, commitTree) {
+          return LayoutBuilder(builder: (context, constraints) {
+            // The area visual is the space the tree lives in - we need to create the
+            // area visual first so the tree visual knows the bounds of the area it
+            // has to work with.
+            final area = AreaVisual.from(constraints);
+            _treeVisual = CommitTreeVisual(state: commitTree, within: area);
 
-      return CustomPaint(
-        painter: VisualisationPainter(
-          area: areaVisual,
-          tree: _treeVisual!,
-          notifiyRepaint: _tickNotifier,
-        ),
-      );
-    });
+            return CustomPaint(
+              painter: VisualisationPainter(
+                area: area,
+                tree: _treeVisual!,
+                notifiyRepaint: _tickNotifier,
+              ),
+            );
+          });
+        });
   }
 
   void startSimulation() {

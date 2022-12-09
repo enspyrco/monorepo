@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import '../../git/models/git_objects/commit.dart';
+import '../../git/models/git_objects/commit_state.dart';
 import '../../interfaces/visual_object.dart';
 
 class CommitVisual extends VisualObject {

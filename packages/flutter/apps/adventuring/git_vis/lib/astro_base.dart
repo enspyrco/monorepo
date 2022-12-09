@@ -5,11 +5,10 @@ import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:flutter/material.dart';
-import 'package:git_vis/app/missions/open_git_repository.dart';
+import 'package:git_vis/git/missions/open_git_repository.dart';
 import 'package:git_vis/visualisation/visualisation_screen.dart';
 
 import 'app/state/app_state.dart';
-import 'git/models/git_object_database.dart';
 import 'git/services/git_service.dart';
 import 'visualisation/visualisation_page_state.dart';
 
@@ -22,10 +21,8 @@ Future<void> astroInitialization() async {
     DefaultPageGenerator()
       ..add(
         type: VisualisationPageState,
-        generator: (state) => MaterialPage(
-          child: VisualisationScreen(
-            GitObjectDatabase('/Users/nick/git/orgs/enspyrco/monorepo'),
-          ),
+        generator: (state) => const MaterialPage(
+          child: VisualisationScreen(),
         ),
       ),
   );
@@ -37,6 +34,7 @@ Future<void> astroInitialization() async {
           const DefaultNavigationState(stack: [VisualisationPageState()]),
     ),
   );
+
   Locator.add<GitService>(GitService());
 
   /// Perform individual plugin initialization.

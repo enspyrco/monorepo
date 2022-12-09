@@ -10,9 +10,7 @@ We are using [libgit2](https://libgit2.org/) with [FFI](https://dart.dev/guides/
 
 ### Get the submodule
 
-We have a copy of libgit2 in the repo as a submodule, located in `git_vis/libgit2`
-
-If the folder is empty, enter:
+We have a copy of libgit2 as a submodule, located in `git_vis/libgit2`. If the folder is empty, enter:
 
 ```sh
 git submodule init
@@ -26,6 +24,7 @@ To update the libgit2 binary used in git_vis, first update the submodule with a 
 - Follow [libgit2/README > Build](https://github.com/libgit2/libgit2#building)
 
 ```sh
+cd native
 mkdir build && cd build
 cmake ..
 cmake --build .

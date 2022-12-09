@@ -51,9 +51,19 @@ dev_dependencies:
       path: packages/flutter/utils/enspyr_lints
 
 ffigen:
-  output: "lib/git/native/bindings/libgit2_bindings.dart"
+  output: "lib/git/native_bindings/libgit2_bindings.dart"
   headers:
     entry-points:
-      - "libgit2/include/*.h"
+      - "native/libgit2/include/*.h"
+      # - "native/libgit2/src/libgit2/refs.h"
+  compiler-opts:
+    - '-Wno-nullability-completeness'
+    - '-Inative/libgit2/include'
+  functions:
+    symbol-address:
+      include:
+        - git_reference_free
+        - git_repository_free
+        - git_branch_iterator_free
   name: "LibGit2"
   description: "Bindings for libgit2"

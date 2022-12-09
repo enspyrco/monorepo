@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import '../../git/models/git_objects/branch.dart';
+import '../../git/models/git_objects/branch_state.dart';
 import '../../interfaces/visual_object.dart';
 
 class BranchVisual extends VisualObject {

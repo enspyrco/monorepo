@@ -26843,6 +26843,22 @@ class LibGit2 {
       'git_transaction_free');
   late final _git_transaction_free = _git_transaction_freePtr
       .asFunction<void Function(ffi.Pointer<git_transaction>)>();
+
+  late final addresses = _SymbolAddresses(this);
+}
+
+class _SymbolAddresses {
+  final LibGit2 _library;
+  _SymbolAddresses(this._library);
+  ffi.Pointer<
+          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<git_repository>)>>
+      get git_repository_free => _library._git_repository_freePtr;
+  ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<git_reference>)>>
+      get git_reference_free => _library._git_reference_freePtr;
+  ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<git_branch_iterator>)>>
+      get git_branch_iterator_free => _library._git_branch_iterator_freePtr;
 }
 
 class __mbstate_t extends ffi.Union {
