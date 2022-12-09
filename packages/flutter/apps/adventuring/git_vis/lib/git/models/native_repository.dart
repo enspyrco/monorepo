@@ -2,10 +2,13 @@ import 'dart:ffi';
 
 import 'package:astro_locator/astro_locator.dart';
 import 'package:ffi/ffi.dart';
+import 'package:git_vis/git/extensions/extensions.dart';
 import 'package:git_vis/git/native_bindings/libgit2_bindings.dart';
 
+import '../errors/native_error.dart';
+
 class NativeRepository implements Finalizable {
-  NativeRepository._(this._nativePointer);
+  NativeRepository._(this._nativePointer) : _nativeLib = locate<LibGit2>();
 
   factory NativeRepository.create(String repoPath) {
     Pointer<Char> pathPtr = repoPath.toNativeUtf8().cast<Char>();
@@ -26,6 +29,8 @@ class NativeRepository implements Finalizable {
 
     return repository;
   }
+
+  final LibGit2 _nativeLib;
 
   /// The native resource, should be closed exactly once.
   final Pointer<git_repository> _nativePointer;
@@ -48,12 +53,31 @@ class NativeRepository implements Finalizable {
         .toDartString();
   }
 
-  /// Free the memory for this reference
+  /// Fill a list with the names of references that can be found in the repository.
+  List<String> listReferences() {
+    final array = calloc<git_strarray>();
+    final result = _nativeLib.git_reference_list(array, _nativePointer);
+    final refNames = <String>[];
+
+    if (result < 0) {
+      throw NativeError(_nativeLib.git_error_last());
+    } else {
+      for (var i = 0; i < array.ref.count; i++) {
+        refNames.add(array.ref.strings.elementAt(i).value.toDartString());
+      }
+    }
+
+    calloc.free(array);
+
+    return refNames;
+  }
+
+  /// Free the memory for this repository object.
   void free() {
     if (_freed) return;
 
     _freed = true;
     _finalizer.detach(this);
-    locate<LibGit2>().git_repository_free(_nativePointer);
+    _nativeLib.git_repository_free(_nativePointer);
   }
 }

@@ -14,13 +14,6 @@ class OpenGitRepository extends AwayMission<AppState> {
     final GitService service = locate<GitService>();
 
     service.openRepository(_projectDirectory);
-
-    // Also create a new branch iterator so we don't need a separate mission
-    service.createBranchIterator();
-
-    final ref1 = service.nextBranch();
-
-    final ref2 = service.nextBranch();
   }
 
   @override
