@@ -13,8 +13,7 @@ void main() {
       version: '^3.1.1',
       type: DependencyType.regular);
 
-  test(
-      'ParserService correctly parses pubspec into a list of Dependency objects.',
+  test('ParserService correctly parses pubspec into a Package object.',
       () async {
     final service = ParserService();
 
