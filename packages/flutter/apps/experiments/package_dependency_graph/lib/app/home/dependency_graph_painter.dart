@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../state/dependency.dart';
+import '../../shared/models/dependency.dart';
 
 class DependencyGraphPainter extends CustomPainter {
   const DependencyGraphPainter(this.dependencies);

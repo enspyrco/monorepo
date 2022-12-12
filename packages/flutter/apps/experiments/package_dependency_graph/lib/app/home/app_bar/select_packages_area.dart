@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:package_dependency_graph/shared/extensions/build_context_extensions.dart';
 
-import '../../state/dependency.dart';
+import '../../../shared/models/dependency.dart';
 import '../missions/select_packages.dart';
 
 class SelectPackagesArea extends StatefulWidget {
@@ -19,16 +19,16 @@ class _SelectPackagesAreaState extends State<SelectPackagesArea> {
   Color buttonBackground = Colors.amberAccent;
   Color buttonForeground = Colors.black;
 
-  /// Set button state based on whether we have selected dependencies or not
-  // setState(() {
-  //   descriptionText = (p.split(xFile.path)..removeLast()).last;
-  //   buttonText = 'edit';
-  //   buttonBackground = Colors.white;
-  //   buttonForeground = Colors.grey;
-  // });
-
   @override
   Widget build(BuildContext context) {
+    // if we have selected a package, change the UI
+    if (widget.dependencies.isNotEmpty) {
+      descriptionText = widget.dependencies.first.name;
+      buttonText = 'edit';
+      buttonBackground = Colors.white;
+      buttonForeground = Colors.grey;
+    }
+
     return Row(
       children: [
         Padding(

@@ -3,8 +3,8 @@ import 'package:astro_types/core_types.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:package_dependency_graph/app/home/missions/update_dependencies_state.dart';
 
+import '../../../shared/models/dependency.dart';
 import '../../state/app_state.dart';
-import '../../state/dependency.dart';
 import '../services/file_selector_service.dart';
 import '../services/parser_service.dart';
 

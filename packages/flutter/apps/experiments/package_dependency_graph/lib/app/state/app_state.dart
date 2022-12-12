@@ -6,7 +6,7 @@ import 'package:astro_types/error_handling_types.dart';
 import 'package:astro_types/navigation_types.dart';
 import 'package:astro_types/state_types.dart';
 
-import 'dependency.dart';
+import '../../shared/models/dependency.dart';
 
 class AppState
     implements

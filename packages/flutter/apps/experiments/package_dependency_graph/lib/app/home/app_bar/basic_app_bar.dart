@@ -1,8 +1,8 @@
 import 'package:astro_auth/astro_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../../shared/models/dependency.dart';
 import '../../state/app_state.dart';
-import '../../state/dependency.dart';
 import 'select_packages_area.dart';
 
 class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {

@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:package_dependency_graph/app/home/services/parser_service.dart';
-import 'package:package_dependency_graph/app/state/dependency.dart';
-import 'package:package_dependency_graph/app/state/dependency_type.dart';
+import 'package:package_dependency_graph/shared/models/dependency.dart';
+import 'package:package_dependency_graph/shared/models/dependency_type.dart';
 
 void main() {
   // this dependency is present in the pubspec file that we parse in the test

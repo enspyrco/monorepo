@@ -1,6 +1,6 @@
 import 'package:astro_types/core_types.dart';
-import 'package:package_dependency_graph/app/state/dependency.dart';
 
+import '../../../shared/models/dependency.dart';
 import '../../state/app_state.dart';
 
 class UpdateDependenciesState extends LandingMission<AppState> {

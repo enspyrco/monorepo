@@ -1,7 +1,7 @@
 import 'package:yaml/yaml.dart';
 
-import '../../state/dependency.dart';
-import '../../state/dependency_type.dart';
+import '../../../shared/models/dependency.dart';
+import '../../../shared/models/dependency_type.dart';
 
 class ParserService {
   List<Dependency> parsePubspec(String fileContents) {
