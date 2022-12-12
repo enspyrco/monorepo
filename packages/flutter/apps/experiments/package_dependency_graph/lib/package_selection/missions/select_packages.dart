@@ -19,8 +19,6 @@ class SelectPackages extends AwayMission<AppState> {
     final Package package = locate<ParserService>().parsePubspec(path);
 
     missionControl.land(AddPackageToState(package));
-
-    print(path);
   }
 
   @override
