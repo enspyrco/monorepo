@@ -14,9 +14,14 @@ class ErrorReportScreen<T extends AstroState> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String message = report.message;
+    if (report.trace != null && report.settings.showStackTrace) {
+      message += '\n\nThe stacktrace is:\n\n${report.trace}';
+    }
+
     return AlertDialog(
-      title: const Text('Whoops'),
-      content: SingleChildScrollView(child: Text(report.message)),
+      title: Text(report.settings.reportTitle),
+      content: SingleChildScrollView(child: Text(message)),
       actions: [
         OutlinedButton(
             onPressed: () =>

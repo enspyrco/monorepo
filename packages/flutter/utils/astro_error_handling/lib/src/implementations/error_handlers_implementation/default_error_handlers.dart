@@ -11,21 +11,23 @@ class DefaultErrorHandlers<S extends AstroState> implements ErrorHandlers<S> {
   void handleLandingError({
     required Object thrown,
     required StackTrace trace,
+    required ErrorReportSettings reportSettings,
     required LandingMission mission,
     required MissionControl missionControl,
   }) {
     missionControl.land(CreateErrorReport<S>(thrown, trace,
-        details: {'While landing': '$mission'}));
+        settings: reportSettings, details: {'While landing': '$mission'}));
   }
 
   @override
   void handleLaunchError({
     required Object thrown,
     required StackTrace trace,
+    required ErrorReportSettings reportSettings,
     required AwayMission mission,
     required MissionControl missionControl,
   }) {
     missionControl.land(CreateErrorReport<S>(thrown, trace,
-        details: {'While launching': '$mission'}));
+        settings: reportSettings, details: {'While launching': '$mission'}));
   }
 }
