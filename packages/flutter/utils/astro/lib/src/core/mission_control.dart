@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:astro/src/core/system_checks.dart';
+import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/error_handling_types.dart';
 import 'package:astro_types/state_types.dart';
@@ -8,9 +9,8 @@ import 'package:astro_types/state_types.dart';
 typedef WrappedMissionControlCtr = MissionControl<S>
     Function<S extends AstroState>(MissionControl<S>, AwayMission<S>);
 
-/// Pass in [systemChecks] to run logic on every [Mission], before
-/// [AwayMission.flightPlan] is called and after
-/// [LandingMission.landingInstructions] is called.
+/// Pass in [systemChecks] to run logic on every [Mission], before or after
+/// [AwayMission.flightPlan] and/or [LandingMission.landingInstructions] are called.
 ///
 /// Make sure [onStateChangeController] is broadcast type as UI components will
 /// listen for a time at random intervals and only want the state changes while
@@ -72,7 +72,14 @@ class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
     } catch (thrown, trace) {
       if (_errorHandlers == null) rethrow;
       _errorHandlers!.handleLandingError(
-          thrown: thrown, trace: trace, mission: mission, missionControl: this);
+        thrown: thrown,
+        trace: trace,
+        reportSettings: (thrown is AstroException)
+            ? thrown.reportSettings
+            : ErrorReportSettings.fullReport,
+        mission: mission,
+        missionControl: this,
+      );
     }
 
     // emit the new state for any listeners (eg. StateStreamBuilder widgets)
@@ -104,7 +111,14 @@ class DefaultMissionControl<S extends AstroState> implements MissionControl<S> {
     } catch (thrown, trace) {
       if (_errorHandlers == null) rethrow;
       _errorHandlers!.handleLaunchError(
-          thrown: thrown, trace: trace, mission: mission, missionControl: this);
+        thrown: thrown,
+        trace: trace,
+        reportSettings: (thrown is AstroException)
+            ? thrown.reportSettings
+            : ErrorReportSettings.fullReport,
+        mission: mission,
+        missionControl: this,
+      );
 
       // emit the new state for any listeners (eg. StateStreamBuilder widgets)
       _onStateChangeController.add(_state);
