@@ -24,12 +24,12 @@ void main() {
 
     await tester.pumpWidget(harness.widget);
 
-    expect(harness.state.dependencies, isEmpty);
+    expect(harness.state.packages, isEmpty);
 
     await tester.tap(find.byType(OutlinedButton));
 
     await tester.pumpAndSettle();
 
-    expect(harness.state.dependencies, isNotEmpty);
+    expect(harness.state.packages, isNotEmpty);
   });
 }

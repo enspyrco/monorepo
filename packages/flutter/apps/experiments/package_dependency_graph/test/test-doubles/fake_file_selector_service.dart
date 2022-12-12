@@ -10,4 +10,7 @@ class FakeFileSelectorService implements FileSelectorService {
   Future<XFile?> openYaml() {
     return Future.value(yamlFile ?? XFile('test/test-data/pubspec.yaml'));
   }
+
+  @override
+  Future<String?> openDirectory() => Future.value('path');
 }

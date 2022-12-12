@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:package_dependency_graph/app/home/services/parser_service.dart';
 import 'package:package_dependency_graph/shared/models/dependency.dart';
 import 'package:package_dependency_graph/shared/models/dependency_type.dart';
+import 'package:package_dependency_graph/shared/models/package.dart';
 
 void main() {
   // this dependency is present in the pubspec file that we parse in the test
@@ -21,9 +22,10 @@ void main() {
     File file = File('test/test-data/pubspec.yaml');
     String fileContents = file.readAsStringSync();
 
-    List<Dependency> depsList = service.parsePubspec(fileContents);
+    Package package = service.parsePubspec(fileContents);
+    Set<Dependency> deps = package.dependencies;
 
-    expect(depsList, isNotEmpty);
-    expect(depsList, contains(yamlDep));
+    expect(deps, isNotEmpty);
+    expect(deps, contains(yamlDep));
   });
 }

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
-import '../../shared/models/dependency.dart';
+import 'package:package_dependency_graph/shared/models/package.dart';
 
 class DependencyGraphPainter extends CustomPainter {
-  const DependencyGraphPainter(this.dependencies);
+  const DependencyGraphPainter(this.packages);
 
-  final List<Dependency> dependencies;
+  final Set<Package> packages;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -17,11 +16,11 @@ class DependencyGraphPainter extends CustomPainter {
       fontSize: 30,
     );
 
-    for (int i = 0; i < dependencies.length; i++) {
+    for (int i = 0; i < packages.length; i++) {
       canvas.drawCircle(Offset(200, 200 + 50 * i.toDouble()), 10, depsPaint);
 
       TextPainter(
-          text: TextSpan(text: dependencies[i].name, style: textStyle),
+          text: TextSpan(text: packages.elementAt(i).name, style: textStyle),
           textDirection: TextDirection.ltr)
         ..layout()
         ..paint(canvas, Offset(220, 180 + 50 * i.toDouble()));

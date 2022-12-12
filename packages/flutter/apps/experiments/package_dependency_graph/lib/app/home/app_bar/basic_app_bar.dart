@@ -1,14 +1,14 @@
 import 'package:astro_auth/astro_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../../../shared/models/dependency.dart';
+import '../../../shared/models/package.dart';
 import '../../state/app_state.dart';
 import 'select_packages_area.dart';
 
 class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const BasicAppBar({required this.dependencies, Key? key}) : super(key: key);
+  const BasicAppBar({required this.packages, Key? key}) : super(key: key);
 
-  final List<Dependency> dependencies;
+  final Set<Package> packages;
 
   @override
   Size get preferredSize => const Size.fromHeight(80.0);
@@ -23,7 +23,7 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             children: <Widget>[
               SelectPackagesArea(
-                dependencies: dependencies,
+                packages: packages,
               ),
               const Spacer(),
               const AvatarMenuButton<AppState>(

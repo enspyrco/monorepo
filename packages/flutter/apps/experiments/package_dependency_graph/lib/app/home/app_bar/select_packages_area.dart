@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:package_dependency_graph/shared/extensions/build_context_extensions.dart';
 
-import '../../../shared/models/dependency.dart';
+import '../../../shared/models/package.dart';
 import '../missions/select_packages.dart';
 
 class SelectPackagesArea extends StatefulWidget {
-  const SelectPackagesArea({required this.dependencies, super.key});
+  const SelectPackagesArea({required this.packages, super.key});
 
-  final List<Dependency> dependencies;
+  final Set<Package> packages;
 
   @override
   State<SelectPackagesArea> createState() => _SelectPackagesAreaState();
@@ -22,8 +22,8 @@ class _SelectPackagesAreaState extends State<SelectPackagesArea> {
   @override
   Widget build(BuildContext context) {
     // if we have selected a package, change the UI
-    if (widget.dependencies.isNotEmpty) {
-      descriptionText = widget.dependencies.first.name;
+    if (widget.packages.isNotEmpty) {
+      descriptionText = widget.packages.first.name;
       buttonText = 'edit';
       buttonBackground = Colors.white;
       buttonForeground = Colors.grey;

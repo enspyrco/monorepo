@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 
 import 'app/home/home_screen.dart';
 import 'app/home/services/file_selector_service.dart';
+import 'app/home/services/parser_service.dart';
 import 'app/state/app_state.dart';
 import 'firebase_options.dart';
 
@@ -27,8 +28,10 @@ Future<void> astroInitialization() async {
   /// that the [Navigator] will use to display a screen.
   Locator.add<PageGenerator>(DefaultPageGenerator());
   Locator.add<FileSelectorService>(FileSelectorService());
+  Locator.add<ParserService>(ParserService());
 
   /// Perform individual plugin initialization
+  initializeErrorHandling<AppState>();
   initializeAuthPlugin<AppState>(initialScreen: const HomeScreen());
   initializeAstroInspector<AppState>();
   initializeNavigationPlugin<AppState>();
