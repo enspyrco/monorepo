@@ -31,7 +31,7 @@ class SelectPackages extends AwayMission<AppState> {
       depsList.add(
         Dependency(
             name: entry.key,
-            version: entry.value,
+            version: '${entry.value}',
             type: DependencyType.regular),
       );
     }
@@ -40,7 +40,7 @@ class SelectPackages extends AwayMission<AppState> {
       depsList.add(
         Dependency(
           name: entry.key,
-          version: entry.value,
+          version: '${entry.value}',
           type: DependencyType.dev,
         ),
       );
