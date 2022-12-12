@@ -17,6 +17,9 @@ void main() {
       innerWidget: const HomeScreen(),
     );
 
+    // Configure the Locator so it will provide a FakeFileSelectorService when asked
+    // for a FileSelectorService, automatically selecting a preset file and
+    // skipping the user input step.
     Locator.add<FileSelectorService>(FakeFileSelectorService());
 
     await tester.pumpWidget(harness.widget);

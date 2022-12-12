@@ -1,15 +1,12 @@
-import 'dart:io';
-
 import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:package_dependency_graph/app/home/missions/update_dependencies_state.dart';
-import 'package:package_dependency_graph/app/state/dependency.dart';
-import 'package:package_dependency_graph/app/state/dependency_type.dart';
-import 'package:yaml/yaml.dart';
 
 import '../../state/app_state.dart';
+import '../../state/dependency.dart';
 import '../services/file_selector_service.dart';
+import '../services/parser_service.dart';
 
 class SelectPackages extends AwayMission<AppState> {
   const SelectPackages();
@@ -18,33 +15,12 @@ class SelectPackages extends AwayMission<AppState> {
   Future<void> flightPlan(MissionControl<AppState> missionControl) async {
     final XFile? xFile = await locate<FileSelectorService>().openYaml();
 
-    if (xFile == null) return;
+    if (xFile == null) return; // Not selecting a file is a valid interaction.
 
-    String contents = File(xFile.path).readAsStringSync();
+    final String fileContents = await xFile.readAsString();
 
-    dynamic yaml = loadYaml(contents);
-    YamlMap deps = yaml['dependencies'];
-    YamlMap devDeps = yaml['dev_dependencies'];
-
-    final List<Dependency> depsList = [];
-    for (final entry in deps.entries) {
-      depsList.add(
-        Dependency(
-            name: entry.key,
-            version: '${entry.value}',
-            type: DependencyType.regular),
-      );
-    }
-
-    for (final entry in devDeps.entries) {
-      depsList.add(
-        Dependency(
-          name: entry.key,
-          version: '${entry.value}',
-          type: DependencyType.dev,
-        ),
-      );
-    }
+    final List<Dependency> depsList =
+        locate<ParserService>().parsePubspec(fileContents);
 
     missionControl.land(UpdateDependenciesState(dependencies: depsList));
   }
