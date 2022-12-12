@@ -1,11 +1,11 @@
 import 'dart:io';
 
+import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../shared/models/dependency.dart';
 import '../../shared/models/dependency_type.dart';
 import '../../shared/models/package.dart';
-import '../exceptions/non_package_folder_exception.dart';
 
 class ParserService {
   Package parsePubspec(String path) {
@@ -13,7 +13,11 @@ class ParserService {
     try {
       fileContents = File('$path/pubspec.yaml').readAsStringSync();
     } on FileSystemException {
-      throw NonPackageFolderException(path: path, showStackTrace: false);
+      throw AstroInfoException(
+          message:
+              'The folder you selected does not contain a pubspec.yaml file.\n\n'
+              'You selected: $path\n\n'
+              'Please select a folder containing a pubspec.yaml');
     }
 
     dynamic yaml = loadYaml(fileContents);
