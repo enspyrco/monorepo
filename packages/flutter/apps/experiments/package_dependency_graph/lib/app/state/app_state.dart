@@ -6,19 +6,27 @@ import 'package:astro_types/error_handling_types.dart';
 import 'package:astro_types/navigation_types.dart';
 import 'package:astro_types/state_types.dart';
 
+import 'dependency.dart';
+
 class AppState
     implements
         AstroState,
         AppStateNavigation,
         AppStateErrorHandling,
         AppStateAuth {
-  const AppState(
-      {required this.error, required this.auth, required this.navigation});
+  const AppState({
+    required this.error,
+    required this.auth,
+    required this.navigation,
+    required this.dependencies,
+  });
 
   static AppState get initial => AppState(
-      error: DefaultErrorHandlingState.initial,
-      auth: DefaultAuthState.initial,
-      navigation: DefaultNavigationState.initial);
+        error: DefaultErrorHandlingState.initial,
+        auth: DefaultAuthState.initial,
+        navigation: DefaultNavigationState.initial,
+        dependencies: [],
+      );
 
   @override
   final DefaultAuthState auth;
@@ -29,16 +37,20 @@ class AppState
   @override
   final DefaultNavigationState navigation;
 
+  final List<Dependency> dependencies;
+
   @override
   AppState copyWith({
     DefaultErrorHandlingState? error,
     DefaultAuthState? auth,
     DefaultNavigationState? navigation,
+    List<Dependency>? dependencies,
   }) {
     return AppState(
       error: error ?? this.error,
       auth: auth ?? this.auth,
       navigation: navigation ?? this.navigation,
+      dependencies: dependencies ?? this.dependencies,
     );
   }
 
@@ -47,5 +59,6 @@ class AppState
         'auth': auth.toJson(),
         'error': error.toJson(),
         'navigation': navigation.toJson(),
+        'dependencies': dependencies,
       };
 }

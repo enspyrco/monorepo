@@ -1,0 +1,1 @@
+enum DependencyType { regular, dev }

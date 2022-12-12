@@ -1,6 +1,9 @@
+import 'package:astro/astro.dart';
 import 'package:flutter/material.dart';
 import 'package:package_dependency_graph/app/home/dependency_graph_painter.dart';
 
+import '../state/app_state.dart';
+import '../state/dependency.dart';
 import 'app_bar/basic_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,21 +11,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: BasicAppBar(),
-      body: CustomPaint(
-        painter: DependencyGraphPainter(),
-        child: Center(
-          child: Text(
-            'Once upon a time...',
-            style: TextStyle(
-              fontSize: 40.0,
-              fontWeight: FontWeight.w900,
-              color: Color(0xFFFFFFFF),
-            ),
+    return OnStateChangeBuilder<AppState, List<Dependency>>(
+      transformer: (state) => state.dependencies,
+      builder: (context, dependencies) {
+        return Scaffold(
+          appBar: BasicAppBar(dependencies: dependencies),
+          body: CustomPaint(
+            painter: DependencyGraphPainter(dependencies),
+            child: Container(),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
