@@ -9,10 +9,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'app/home/home_screen.dart';
-import 'app/home/services/file_selector_service.dart';
-import 'app/home/services/parser_service.dart';
 import 'app/state/app_state.dart';
 import 'firebase_options.dart';
+import 'package_selection/services/file_selector_service.dart';
+import 'package_selection/services/parser_service.dart';
 
 Future<void> astroInitialization() async {
   /// Setup FlutterFire

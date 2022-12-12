@@ -1,7 +1,7 @@
 import 'package:astro_types/core_types.dart';
 
-import '../../../shared/models/package.dart';
-import '../../state/app_state.dart';
+import '../../app/state/app_state.dart';
+import '../../shared/models/package.dart';
 
 class AddPackageToState extends LandingMission<AppState> {
   const AddPackageToState(this.package);

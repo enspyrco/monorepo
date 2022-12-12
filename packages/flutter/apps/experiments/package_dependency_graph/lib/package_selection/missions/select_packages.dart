@@ -1,8 +1,8 @@
 import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_types/core_types.dart';
 
-import '../../../shared/models/package.dart';
-import '../../state/app_state.dart';
+import '../../app/state/app_state.dart';
+import '../../shared/models/package.dart';
 import '../services/file_selector_service.dart';
 import '../services/parser_service.dart';
 import 'add_package_to_state.dart';

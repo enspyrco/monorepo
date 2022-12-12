@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:yaml/yaml.dart';
 
-import '../../../shared/models/dependency.dart';
-import '../../../shared/models/dependency_type.dart';
-import '../../../shared/models/package.dart';
+import '../../shared/models/dependency.dart';
+import '../../shared/models/dependency_type.dart';
+import '../../shared/models/package.dart';
 
 class ParserService {
   Package parsePubspec(String path) {

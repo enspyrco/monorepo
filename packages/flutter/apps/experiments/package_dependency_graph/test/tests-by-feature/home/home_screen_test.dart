@@ -3,8 +3,8 @@ import 'package:astro_test_utils/astro_widgets_test_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:package_dependency_graph/app/home/home_screen.dart';
-import 'package:package_dependency_graph/app/home/services/file_selector_service.dart';
 import 'package:package_dependency_graph/app/state/app_state.dart';
+import 'package:package_dependency_graph/package_selection/services/file_selector_service.dart';
 
 import '../../test-doubles/fake_file_selector_service.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:package_dependency_graph/shared/extensions/build_context_extensions.dart';
 
+import '../../../package_selection/missions/select_packages.dart';
 import '../../../shared/models/package.dart';
-import '../missions/select_packages.dart';
 
 class SelectPackagesArea extends StatefulWidget {
   const SelectPackagesArea({required this.packages, super.key});

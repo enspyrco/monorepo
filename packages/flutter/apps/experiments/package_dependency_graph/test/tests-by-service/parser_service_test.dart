@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:package_dependency_graph/app/home/services/parser_service.dart';
+import 'package:package_dependency_graph/package_selection/services/parser_service.dart';
 import 'package:package_dependency_graph/shared/models/dependency.dart';
 import 'package:package_dependency_graph/shared/models/dependency_type.dart';
 import 'package:package_dependency_graph/shared/models/package.dart';

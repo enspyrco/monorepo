@@ -1,5 +1,5 @@
 import 'package:file_selector/file_selector.dart';
-import 'package:package_dependency_graph/app/home/services/file_selector_service.dart';
+import 'package:package_dependency_graph/package_selection/services/file_selector_service.dart';
 
 class FakeFileSelectorService implements FileSelectorService {
   FakeFileSelectorService({this.yamlFile});
