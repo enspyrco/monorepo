@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:package_dependency_graph/app/home/missions/update_dependencies_state.dart';
@@ -8,47 +9,44 @@ import 'package:package_dependency_graph/app/state/dependency_type.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../state/app_state.dart';
+import '../services/file_selector_service.dart';
 
 class SelectPackages extends AwayMission<AppState> {
   const SelectPackages();
 
   @override
   Future<void> flightPlan(MissionControl<AppState> missionControl) async {
-    const typeGroup = XTypeGroup(
-      label: 'yaml',
-      extensions: ['yml', 'yaml'],
-    );
+    final XFile? xFile = await locate<FileSelectorService>().openYaml();
 
-    final XFile? xFile = await openFile(acceptedTypeGroups: [typeGroup]);
-    if (xFile != null) {
-      String contents = File(xFile.path).readAsStringSync();
+    if (xFile == null) return;
 
-      dynamic yaml = loadYaml(contents);
-      YamlMap deps = yaml['dependencies'];
-      YamlMap devDeps = yaml['dev_dependencies'];
+    String contents = File(xFile.path).readAsStringSync();
 
-      final List<Dependency> depsList = [];
-      for (final entry in deps.entries) {
-        depsList.add(
-          Dependency(
-              name: entry.key,
-              version: entry.value,
-              type: DependencyType.regular),
-        );
-      }
+    dynamic yaml = loadYaml(contents);
+    YamlMap deps = yaml['dependencies'];
+    YamlMap devDeps = yaml['dev_dependencies'];
 
-      for (final entry in devDeps.entries) {
-        depsList.add(
-          Dependency(
+    final List<Dependency> depsList = [];
+    for (final entry in deps.entries) {
+      depsList.add(
+        Dependency(
             name: entry.key,
             version: entry.value,
-            type: DependencyType.dev,
-          ),
-        );
-      }
-
-      missionControl.land(UpdateDependenciesState(dependencies: depsList));
+            type: DependencyType.regular),
+      );
     }
+
+    for (final entry in devDeps.entries) {
+      depsList.add(
+        Dependency(
+          name: entry.key,
+          version: entry.value,
+          type: DependencyType.dev,
+        ),
+      );
+    }
+
+    missionControl.land(UpdateDependenciesState(dependencies: depsList));
   }
 
   @override

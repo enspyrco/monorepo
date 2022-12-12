@@ -9,6 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'app/home/home_screen.dart';
+import 'app/home/services/file_selector_service.dart';
 import 'app/state/app_state.dart';
 import 'firebase_options.dart';
 
@@ -25,6 +26,7 @@ Future<void> astroInitialization() async {
   /// used to turn a [PageState] from [AppState.navigation.stack] into a [Page]
   /// that the [Navigator] will use to display a screen.
   Locator.add<PageGenerator>(DefaultPageGenerator());
+  Locator.add<FileSelectorService>(FileSelectorService());
 
   /// Perform individual plugin initialization
   initializeAuthPlugin<AppState>(initialScreen: const HomeScreen());

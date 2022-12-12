@@ -50,6 +50,15 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  astro_test_utils:
+    dependency: "direct dev"
+    description:
+      path: "packages/flutter/utils/astro_test_utils"
+      ref: HEAD
+      resolved-ref: "7c341c15ce8c3f724caba429e9ea113d647622d4"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.1"
   astro_types:
     dependency: "direct main"
     description:
@@ -218,6 +227,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
+  firestore_service_interface:
+    dependency: transitive
+    description:
+      path: "packages/dart/interfaces/firestore_service_interface"
+      ref: HEAD
+      resolved-ref: "7c341c15ce8c3f724caba429e9ea113d647622d4"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -268,6 +286,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
+  json_types:
+    dependency: transitive
+    description:
+      path: "packages/dart/utils/json_types"
+      ref: HEAD
+      resolved-ref: "7c341c15ce8c3f724caba429e9ea113d647622d4"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.1"
   lints:
     dependency: transitive
     description:

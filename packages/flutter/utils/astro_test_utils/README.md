@@ -2,6 +2,25 @@
 
 *Helper classes for testing apps that use `astro`.*
 
+Basic usage:
+
+```dart
+var harness = WidgetTestHarness<AppState>(
+  initialState: AppState.initial,
+  innerWidget: AWidgetUnderTest(),
+);
+
+await tester.pumpWidget(harness.widget);
+
+expect(somePrecondition, isAsExpected);
+
+harness.land(const AMission());
+
+await tester.pumpAndSettle();
+
+expect(harness.state.part, hasChangedAsWeExpect);
+```
+
 ## Features
 
 A TestHarness that wraps a widget under test in a StoreProvider.
