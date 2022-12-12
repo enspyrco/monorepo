@@ -1,12 +1,13 @@
-import 'dart:io';
-
-import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart' as p;
-import 'package:yaml/yaml.dart';
+import 'package:package_dependency_graph/shared/extensions/build_context_extensions.dart';
+
+import '../../../package_selection/missions/select_packages.dart';
+import '../../../shared/models/package.dart';
 
 class SelectPackagesArea extends StatefulWidget {
-  const SelectPackagesArea({super.key});
+  const SelectPackagesArea({required this.packages, super.key});
+
+  final Set<Package> packages;
 
   @override
   State<SelectPackagesArea> createState() => _SelectPackagesAreaState();
@@ -20,6 +21,14 @@ class _SelectPackagesAreaState extends State<SelectPackagesArea> {
 
   @override
   Widget build(BuildContext context) {
+    // if we have selected a package, change the UI
+    if (widget.packages.isNotEmpty) {
+      descriptionText = widget.packages.first.name;
+      buttonText = 'edit';
+      buttonBackground = Colors.white;
+      buttonForeground = Colors.grey;
+    }
+
     return Row(
       children: [
         Padding(
@@ -31,7 +40,7 @@ class _SelectPackagesAreaState extends State<SelectPackagesArea> {
         ),
         const SizedBox(width: 50),
         OutlinedButton(
-          onPressed: () => showPicker(),
+          onPressed: () => context.launch(const SelectPackages()),
           style: OutlinedButton.styleFrom(
               textStyle: const TextStyle(
                 fontWeight: FontWeight.normal,
@@ -45,25 +54,5 @@ class _SelectPackagesAreaState extends State<SelectPackagesArea> {
         ),
       ],
     );
-  }
-
-  void showPicker() async {
-    const typeGroup = XTypeGroup(
-      label: 'yaml',
-      extensions: ['yml', 'yaml'],
-    );
-
-    final XFile? xFile = await openFile(acceptedTypeGroups: [typeGroup]);
-    if (xFile != null) {
-      setState(() {
-        descriptionText = (p.split(xFile.path)..removeLast()).last;
-        buttonText = 'edit';
-        buttonBackground = Colors.white;
-        buttonForeground = Colors.grey;
-      });
-      var pubspecString = File(xFile.path).readAsStringSync();
-      var doc = loadYaml(pubspecString);
-      print(doc['dependencies']);
-    }
   }
 }

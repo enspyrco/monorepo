@@ -1,20 +1,18 @@
 import 'package:astro_auth/astro_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../../shared/models/package.dart';
 import '../../state/app_state.dart';
 import 'select_packages_area.dart';
 
-class BasicAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const BasicAppBar({Key? key}) : super(key: key);
+class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const BasicAppBar({required this.packages, Key? key}) : super(key: key);
 
-  @override
-  State<BasicAppBar> createState() => _BasicAppBarState();
+  final Set<Package> packages;
 
   @override
   Size get preferredSize => const Size.fromHeight(80.0);
-}
 
-class _BasicAppBarState extends State<BasicAppBar> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,10 +21,12 @@ class _BasicAppBarState extends State<BasicAppBar> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
-            children: const <Widget>[
-              SelectPackagesArea(),
-              Spacer(),
-              AvatarMenuButton<AppState>(
+            children: <Widget>[
+              SelectPackagesArea(
+                packages: packages,
+              ),
+              const Spacer(),
+              const AvatarMenuButton<AppState>(
                 options: {
                   MenuOption('Sign Out', SignOut<AppState>()),
                 },

@@ -1,0 +1,83 @@
+<mxfile host="65bd71144e">
+    <diagram id="A8TNJU9EFWF9sEYCN3hK" name="Page-1">
+        <mxGraphModel dx="829" dy="547" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Select Package&lt;br&gt;Button" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="90" width="100" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" style="edgeStyle=none;html=1;" parent="2" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="50" y="90" as="sourcePoint"/>
+                        <mxPoint x="170" y="90" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="150.5" y="90"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4" style="edgeStyle=none;html=1;" parent="1" source="3" target="2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="140" y="160"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="3" value="" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="100" width="20" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="taps" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="140" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Mission Control" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="90" width="100" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" style="edgeStyle=none;html=1;" edge="1" parent="7" target="18">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="55" y="250" as="sourcePoint"/>
+                        <mxPoint x="208.5" y="250" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="155.5" y="250"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" value="&lt;span style=&quot;font-family: &amp;#34;apple color emoji&amp;#34; , &amp;#34;segoe ui emoji&amp;#34; , &amp;#34;notocoloremoji&amp;#34; , &amp;#34;noto color emoji&amp;#34; , &amp;#34;segoe ui symbol&amp;#34; , &amp;#34;android emoji&amp;#34; , &amp;#34;emojisymbols&amp;#34; ; line-height: 1em ; font-size: 1em&quot;&gt;🚀&lt;/span&gt;Select Packages" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="180" y="160" width="120" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Parser Service" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                    <mxGeometry x="414" y="90" width="145" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="&lt;span style=&quot;font-family: &amp;#34;apple color emoji&amp;#34; , &amp;#34;segoe ui emoji&amp;#34; , &amp;#34;notocoloremoji&amp;#34; , &amp;#34;noto color emoji&amp;#34; , &amp;#34;segoe ui symbol&amp;#34; , &amp;#34;android emoji&amp;#34; , &amp;#34;emojisymbols&amp;#34; ; line-height: 1em ; font-size: 1em&quot;&gt;🛬&amp;nbsp;&lt;span style=&quot;text-align: left ; font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;Update&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;text-align: left ; font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;Dependencies&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;text-align: left ; font-family: &amp;#34;helvetica&amp;#34;&quot;&gt;State&lt;/span&gt;&lt;br&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="10">
+                    <mxGeometry x="-45" y="250" width="190" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" style="edgeStyle=none;html=1;" edge="1" parent="1" target="10">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="310" y="200" as="sourcePoint"/>
+                        <mxPoint x="459.5" y="200" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="410.5" y="200"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="12" value="parsePubspec()" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="180" width="100" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;" edge="1" parent="1" source="10" target="7">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="470" y="240" as="sourcePoint"/>
+                        <mxPoint x="380" y="240" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="450" y="240"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="14" value="List&amp;lt;Dependency&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="330" y="220" width="120" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="App State" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="90" width="100" height="300" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

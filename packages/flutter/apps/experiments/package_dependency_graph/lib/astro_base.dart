@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'app/home/home_screen.dart';
 import 'app/state/app_state.dart';
 import 'firebase_options.dart';
+import 'package_selection/services/file_selector_service.dart';
+import 'package_selection/services/parser_service.dart';
 
 Future<void> astroInitialization() async {
   /// Setup FlutterFire
@@ -25,8 +27,11 @@ Future<void> astroInitialization() async {
   /// used to turn a [PageState] from [AppState.navigation.stack] into a [Page]
   /// that the [Navigator] will use to display a screen.
   Locator.add<PageGenerator>(DefaultPageGenerator());
+  Locator.add<FileSelectorService>(FileSelectorService());
+  Locator.add<ParserService>(ParserService());
 
   /// Perform individual plugin initialization
+  initializeErrorHandling<AppState>();
   initializeAuthPlugin<AppState>(initialScreen: const HomeScreen());
   initializeAstroInspector<AppState>();
   initializeNavigationPlugin<AppState>();

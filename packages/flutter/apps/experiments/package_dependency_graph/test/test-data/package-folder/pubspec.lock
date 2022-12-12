@@ -11,44 +11,56 @@ packages:
   astro:
     dependency: "direct main"
     description:
-      path: "../../../utils/astro"
-      relative: true
-    source: path
+      path: "packages/flutter/utils/astro"
+      ref: HEAD
+      resolved-ref: "7c341c15ce8c3f724caba429e9ea113d647622d4"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   astro_auth:
     dependency: "direct main"
     description:
-      path: "../../../utils/astro_auth"
-      relative: true
-    source: path
+      path: "packages/flutter/utils/astro_auth"
+      ref: HEAD
+      resolved-ref: "7c341c15ce8c3f724caba429e9ea113d647622d4"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   astro_error_handling:
     dependency: "direct main"
     description:
-      path: "../../../utils/astro_error_handling"
-      relative: true
-    source: path
+      path: "packages/flutter/utils/astro_error_handling"
+      ref: HEAD
+      resolved-ref: "7c341c15ce8c3f724caba429e9ea113d647622d4"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   astro_inspector_screen:
     dependency: "direct main"
     description:
-      path: "../../../utils/astro_inspector_screen"
-      relative: true
-    source: path
+      path: "packages/flutter/utils/astro_inspector_screen"
+      ref: HEAD
+      resolved-ref: "7c341c15ce8c3f724caba429e9ea113d647622d4"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   astro_locator:
     dependency: "direct main"
     description:
-      path: "../../../../dart/utils/astro_locator"
-      relative: true
-    source: path
+      path: "packages/dart/utils/astro_locator"
+      ref: HEAD
+      resolved-ref: "7c341c15ce8c3f724caba429e9ea113d647622d4"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   astro_navigation:
     dependency: "direct main"
     description:
-      path: "../../../utils/astro_navigation"
-      relative: true
-    source: path
+      path: "packages/flutter/utils/astro_navigation"
+      ref: HEAD
+      resolved-ref: "7c341c15ce8c3f724caba429e9ea113d647622d4"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   astro_test_utils:
     dependency: "direct dev"
@@ -62,9 +74,11 @@ packages:
   astro_types:
     dependency: "direct main"
     description:
-      path: "../../../utils/astro_types"
-      relative: true
-    source: path
+      path: "packages/flutter/utils/astro_types"
+      ref: HEAD
+      resolved-ref: "7c341c15ce8c3f724caba429e9ea113d647622d4"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   async:
     dependency: transitive
