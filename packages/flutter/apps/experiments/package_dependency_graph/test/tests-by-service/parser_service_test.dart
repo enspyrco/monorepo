@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:astro_error_handling/astro_error_handling.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:package_dependency_graph/package_selection/services/parser_service.dart';
 import 'package:package_dependency_graph/shared/models/dependency.dart';
@@ -15,17 +14,29 @@ void main() {
       type: DependencyType.regular);
 
   test(
-      'ParserService correctly parses pubsepc files into a list of Dependency objects.',
+      'ParserService correctly parses pubspec into a list of Dependency objects.',
       () async {
     final service = ParserService();
 
-    File file = File('test/test-data/pubspec.yaml');
-    String fileContents = file.readAsStringSync();
-
-    Package package = service.parsePubspec(fileContents);
+    Package package = service.parsePubspec('test/test-data/package-folder');
     Set<Dependency> deps = package.dependencies;
 
     expect(deps, isNotEmpty);
     expect(deps, contains(yamlDep));
+  });
+
+  test(
+      'ParserService throws appropriate exception when input folder has no pubspec.',
+      () async {
+    final service = ParserService();
+
+    Object? e;
+    try {
+      service.parsePubspec('test/test-data/non-package-folder');
+    } catch (thrown) {
+      e = thrown;
+    }
+
+    expect(e, isA<AstroInfoException>());
   });
 }

@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:package_dependency_graph/app/home/home_screen.dart';
 import 'package:package_dependency_graph/app/state/app_state.dart';
 import 'package:package_dependency_graph/package_selection/services/file_selector_service.dart';
+import 'package:package_dependency_graph/package_selection/services/parser_service.dart';
 
 import '../../test-doubles/fake_file_selector_service.dart';
 
@@ -20,7 +21,9 @@ void main() {
     // Configure the Locator so it will provide a FakeFileSelectorService when asked
     // for a FileSelectorService, automatically selecting a preset file and
     // skipping the user input step.
-    Locator.add<FileSelectorService>(FakeFileSelectorService());
+    Locator.add<FileSelectorService>(
+        FakeFileSelectorService()..setPathToPackageFolder());
+    Locator.add<ParserService>(ParserService());
 
     await tester.pumpWidget(harness.widget);
 
