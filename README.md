@@ -48,7 +48,6 @@ Three letter acronyms used in commit messages:
 
 - acf - authorization code flow
 - aau = astro_auth
-- aci = astro_core_interface
 - aeh = astro_error_handling
 - aei = astro_error_handling_interface
 - ais = astro_inspector_screen
@@ -57,6 +56,7 @@ Three letter acronyms used in commit messages:
 - asi = astro_state_interface
 - alr = astro_locator
 - atu = astro_test_utils
+- aty = astro_types
 - avs = Adventuverse (project)
 - avm = adventure_maker
 - ccv = coding-challenge-verifier
