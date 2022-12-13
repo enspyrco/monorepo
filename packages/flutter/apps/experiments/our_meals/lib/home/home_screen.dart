@@ -1,6 +1,4 @@
 import 'package:astro_auth/astro_auth.dart';
-import 'package:astro_locator/astro_locator.dart';
-import 'package:astro_types/core_types.dart';
 import 'package:flutter/material.dart';
 
 import '../app/state/app_state.dart';
@@ -10,11 +8,51 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      child: const Text('Home Screen'),
-      onPressed: () {
-        locate<MissionControl<AppState>>().launch(const SignOut<AppState>());
-      },
+    return Scaffold(
+      appBar: const BasicAppBar(),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(onPressed: () {}, child: const Text('Button'))
+            ],
+          ),
+          const Center(child: Text('Home'))
+        ],
+      ),
+    );
+  }
+}
+
+class BasicAppBar extends StatefulWidget implements PreferredSizeWidget {
+  const BasicAppBar({Key? key}) : super(key: key);
+
+  @override
+  State<BasicAppBar> createState() => _BasicAppBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(80.0);
+}
+
+class _BasicAppBarState extends State<BasicAppBar> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: const <Widget>[
+              AvatarMenuButton<AppState>(
+                options: {MenuOption('Sign Out', SignOut<AppState>())},
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

@@ -6,6 +6,8 @@ import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firestore_service_flutterfire/firestore_service_flutterfire.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:our_meals/home/home_screen.dart';
 
@@ -39,6 +41,17 @@ void initializeApp() {
   initializeAuthPlugin<AppState>(initialScreen: const HomeScreen());
   initializeAstroInspector<AppState>();
   initializeNavigationPlugin<AppState>();
+
+  /// Add services used in away missions.
+  Locator.add<FirestoreService>(FirestoreServiceFlutterfire());
+
+  /// Add page generators for [ManageOrganisations] & [ProjectDetails].
+  /// The page generators are applied when a PageState is found in
+  /// [AppState.navigation.stack], turning a PageState into a Page, which
+  /// the Navigator turns into a Route, that includes the Screen we use when
+  /// composing the PageState (see examples below).
+  // final generator = locate<PageGenerator>();
+  // TODO: add page generators for pushing routes via state
 }
 
 class AstroBase extends StatelessWidget {
