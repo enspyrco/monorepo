@@ -9,7 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  # flutterfire
   firebase_core: ^2.1.1
+
+  # astro
   astro:
     git:
       url: https://github.com/enspyrco/monorepo.git
@@ -38,12 +42,25 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/astro_navigation
+  
+  # firestore
+  firestore_service_flutterfire:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/flutterfire/firestore_service_flutterfire
+  firestore_service_interface:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/interfaces/firestore_service_interface
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
   test: ^1.21.4
+  enspyr_lints:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/enspyr_lints
   astro_test_utils:
     git:
       url: https://github.com/enspyrco/monorepo.git
