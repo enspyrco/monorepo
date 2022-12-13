@@ -46,19 +46,20 @@ If you plan to work on several packages at once you will need to open the `monor
 
 Three letter acronyms used in commit messages:
 
-- acf - authorization code flow
 - aau = astro_auth
+- acf - authorization code flow
 - aeh = astro_error_handling
 - aei = astro_error_handling_interface
+- agn = astro_generator
 - ais = astro_inspector_screen
+- alr = astro_locator
 - anv = astro_navigation
 - ast = astro
 - asi = astro_state_interface
-- alr = astro_locator
 - atu = astro_test_utils
 - aty = astro_types
-- avs = Adventuverse (project)
 - avm = adventure_maker
+- avs = Adventuverse (project)
 - ccv = coding-challenge-verifier
 - dvr = domain_visualiser
 - dip = discord_interaction_to_pubsub_message
