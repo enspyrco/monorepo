@@ -1,12 +1,18 @@
 name: astro_generator
 description: Using Dart's package:build to generate Astro classes.
-version: 0.0.1
+publish_to: none
+version: 0.0.0-dev1
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
 
 dependencies: 
   build: ^2.3.1
+
+  astro_types:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_types
 
 dev_dependencies:
   test: ^1.22.1

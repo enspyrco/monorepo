@@ -1,5 +1,5 @@
 # Changelog
 
-## 0.0.0dev1
+## 0.0.0-dev1
 
 - Initial version.
