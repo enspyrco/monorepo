@@ -46,6 +46,7 @@ If you plan to work on several packages at once you will need to open the `monor
 
 Three letter acronyms used in commit messages:
 
+- aan = astro_annotations
 - aau = astro_auth
 - acf - authorization code flow
 - aeh = astro_error_handling
