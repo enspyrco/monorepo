@@ -1,4 +1,4 @@
-name: astro_generator
+name: astro_generators
 description: Using Dart's package:build to generate Astro classes.
 publish_to: none
 version: 0.0.0-dev1
@@ -8,6 +8,8 @@ environment:
 
 dependencies: 
   build: ^2.3.1
+  source_gen: ^1.2.6
+  analyzer: ^5.2.0
 
   astro_types:
     git:
@@ -16,10 +18,10 @@ dependencies:
 
 dev_dependencies:
   test: ^1.22.1
+  build_runner: ^2.3.2
   enspyr_lints:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/enspyr_lints
-  build_config: ^1.1.1
-  build_runner: ^2.3.2
+  
   
