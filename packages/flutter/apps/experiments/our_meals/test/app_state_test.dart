@@ -1,5 +1,5 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:our_meals/app/state/app_state.dart';
-import 'package:test/test.dart';
 
 void main() {
   test('AppState serializes appropriately', () {

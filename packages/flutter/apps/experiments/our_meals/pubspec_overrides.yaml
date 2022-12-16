@@ -3,6 +3,8 @@ dependency_overrides:
     path: ../../../utils/astro
   astro_types:
     path: ../../../utils/astro_types
+  astro_generators:
+    path: ../../../utils/astro_generators
   astro_locator:
     path: ../../../../dart/utils/astro_locator
   astro_inspector_screen:
