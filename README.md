@@ -56,6 +56,7 @@ Three letter acronyms used in commit messages:
 - anv = astro_navigation
 - ast = astro
 - asi = astro_state_interface
+- asn = astro_snippets
 - atu = astro_test_utils
 - aty = astro_types
 - avm = adventure_maker
