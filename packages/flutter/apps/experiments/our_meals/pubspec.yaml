@@ -4,14 +4,14 @@ publish_to: 'none'
 version: 0.0.1+1
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   
   # flutterfire
-  firebase_core: ^2.1.1
+  firebase_core: ^2.4.0
 
   # astro
   astro:
@@ -56,7 +56,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  test: ^1.21.4
+  build_runner: ^2.3.2
+  astro_generators:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_generators
   enspyr_lints:
     git:
       url: https://github.com/enspyrco/monorepo.git
