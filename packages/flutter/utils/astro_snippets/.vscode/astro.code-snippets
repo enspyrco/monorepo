@@ -83,17 +83,20 @@
     ],
     "description": "navigation: page state for astro"
   },
-  "astro override equality": {
-    "prefix": "astro_override_equality",
+  "astro state": {
+    "prefix": "astro_state",
     "body": [
-      "@override",
-      "bool operator ==(Object other) =>",
-      "\tother is ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} &&",
-      "\tother.$1 == $1;",
+      "import 'package:astro_types/astro_annotations.dart';",
+      "import 'package:astro_types/json_types.dart';",
+      "import 'package:astro_types/state_types.dart';",
       "",
-      "@override",
-      "int get hashCode => Object.hash($1);"
+      "part '${TM_FILENAME_BASE}.g.dart';",
+      "",
+      "@generateSubclass",
+      "abstract class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} implements AstroState {",
+      "\t$1",
+      "}",
     ],
-    "description": "override an object's equality for astro"
+    "description": "boilerplate for astro state class that will be completed by source gen"
   },
 }
