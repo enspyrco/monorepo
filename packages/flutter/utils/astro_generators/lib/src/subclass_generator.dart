@@ -82,6 +82,12 @@ void generateToString(ModelVisitor visitor, StringBuffer classBuffer) {
 }
 
 void generateHashCode(ModelVisitor visitor, StringBuffer classBuffer) {
+  if (visitor.fields.keys.length == 1) {
+    final String field = visitor.fields.keys.first;
+    classBuffer.writeln('@override\nint get hashCode => $field.hashCode;\n');
+    return;
+  }
+
   classBuffer.writeln('@override\nint get hashCode => Object.hash(');
 
   for (final fieldName in visitor.fields.keys) {
