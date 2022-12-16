@@ -1,0 +1,3 @@
+dependency_overrides:
+  astro_types:
+    path: ../astro_types
