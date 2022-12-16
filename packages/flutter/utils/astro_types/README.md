@@ -1,18 +1,24 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# astro_types
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+This package defines interfaces that are implemented in several astro packages.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+The purpose of the package is:
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+- achieve loose coupling by following the [Dependency Inversion Principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle)
+- provide annotations used by astro_generators and packages that use astro_generators for source gen
+
+## Public libraries
+
+Each dart file directly under `lib/` is a public library that any package using
+`astro_types` can import.
+
+### annotations
+
+We use Dart's `build` package to perform static metaprogramming in apps using `astro`.
+
+An app using astro adds `astro_generators` & `build_runner` as dev dependencies but
+annotations need to be added as a dependency (not a dev dependency) so they can be
+imported in the app code. So we put the annotations in a separate package (this package!)
 
 ## Features
 
