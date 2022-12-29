@@ -1,0 +1,16 @@
+name: identity_platform_service
+description: This Dart package interfaces with Identity Platform, Google's authentication service.
+version: 0.0.0
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+
+dependencies:
+  http: ^0.13.5
+
+dev_dependencies:
+  enspyr_lints:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/enspyr_lints
+  test: ^1.22.1

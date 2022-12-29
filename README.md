@@ -77,6 +77,7 @@ Three letter acronyms used in commit messages:
 - gla = gather_link_account
 - gls = gather_link_account_shelf
 - iap = identify_affected_packages
+- ips = identity_platform_service
 - jst = json_types
 - lcr = locator
 - oml = our_meals
