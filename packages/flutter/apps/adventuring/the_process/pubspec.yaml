@@ -59,8 +59,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  test: ^1.19.5
   mockito: ^5.0.17
+  build_runner: ^2.3.2
+  astro_generators:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_generators
   astro_test_utils:
     git:
       url: https://github.com/enspyrco/monorepo.git

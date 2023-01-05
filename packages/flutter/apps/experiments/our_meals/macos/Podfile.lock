@@ -616,7 +616,7 @@ PODS:
   - Firebase/Firestore (10.3.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 10.3.0)
-  - firebase_auth (4.2.0):
+  - firebase_auth (4.2.1):
     - Firebase/Auth (~> 10.3.0)
     - Firebase/CoreOnly (~> 10.3.0)
     - firebase_core
@@ -774,7 +774,7 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   cloud_firestore: 9d2cc3475f9f2f3cbb7099c8c17bc7e23fccfbf2
   Firebase: f92fc551ead69c94168d36c2b26188263860acd9
-  firebase_auth: 845851827499eb92e56bed878ff756ae75c0324e
+  firebase_auth: f964cc059335df5c911cf2132b6234019328e6db
   firebase_core: 7bd6c8dabdeba26600cf939a5f59b20e78156d7c
   FirebaseAuth: 0e415d29d846c1dce2fb641e46f35e9888d9bec6
   FirebaseCore: 988754646ab3bd4bdcb740f1bfe26b9f6c0d5f2a

@@ -12,7 +12,7 @@ void main() {
     var projectA = ProjectState.initWith(name: 'a');
     var projectB = ProjectState.initWith(name: 'b');
     var projectC = ProjectState.initWith(name: 'c');
-    AppState initialState = AppState.initial.copyWith(
+    AppState initialState = AppState.initialValue().copyWith(
         projects: ProjectsState(
             all: {projectA, projectB, projectC}, creating: false));
 

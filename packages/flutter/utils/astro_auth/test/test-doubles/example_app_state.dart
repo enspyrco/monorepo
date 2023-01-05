@@ -6,7 +6,7 @@ class ExampleAppState implements AstroState, AppStateAuth {
   ExampleAppState({required this.auth});
 
   static ExampleAppState get initial =>
-      ExampleAppState(auth: DefaultAuthState.initial);
+      ExampleAppState(auth: AstroAuth.initialState());
 
   @override
   final DefaultAuthState auth;

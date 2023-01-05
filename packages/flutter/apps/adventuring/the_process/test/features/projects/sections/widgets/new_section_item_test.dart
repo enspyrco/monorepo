@@ -11,7 +11,7 @@ void main() {
       (WidgetTester tester) async {
     // Setup the harness and check it is in the initial state.
     final harness = WidgetTestHarness(
-      initialState: AppState.initial,
+      initialState: AppState.initialValue(),
       innerWidget: const NewSectionItem(),
     );
     expect(harness.state.sections.newName, '');
@@ -35,7 +35,7 @@ void main() {
       (WidgetTester tester) async {
     // setup the harness and check it is in the initial state
     final harness = WidgetTestHarness(
-      initialState: AppState.initial,
+      initialState: AppState.initialValue(),
       innerWidget: const NewSectionItem(),
     );
     expect(harness.state.sections.newName, '');

@@ -22,7 +22,7 @@ Future<void> astroInitialization() async {
   /// Setup Locator so plugins can add SystemChecks & Routes, configure the AppState, etc.
   Locator.add<SystemChecks>(DefaultSystemChecks());
   Locator.add<PageGenerator>(DefaultPageGenerator());
-  Locator.add<AppState>(AppState.initial);
+  Locator.add<AppState>(AppState.initialValue());
 
   /// Perform any final initialization by the app such as setting up routes.
   initializeApp();

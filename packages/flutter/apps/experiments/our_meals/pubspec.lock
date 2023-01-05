@@ -83,7 +83,7 @@ packages:
     description:
       path: "packages/flutter/utils/astro_test_utils"
       ref: HEAD
-      resolved-ref: af930866f67563cb5780f3fa5433e5f59fa27322
+      resolved-ref: "1b633accd91d658991eb1eab17e1f5bd6a58d43a"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
@@ -142,7 +142,7 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.2"
+    version: "2.3.3"
   build_runner_core:
     dependency: transitive
     description:
@@ -246,7 +246,7 @@ packages:
     description:
       path: "packages/flutter/utils/enspyr_lints"
       ref: HEAD
-      resolved-ref: af930866f67563cb5780f3fa5433e5f59fa27322
+      resolved-ref: "1b633accd91d658991eb1eab17e1f5bd6a58d43a"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "1.0.0"
@@ -311,7 +311,7 @@ packages:
     description:
       path: "packages/flutter/utils/flutterfire/firestore_service_flutterfire"
       ref: HEAD
-      resolved-ref: af930866f67563cb5780f3fa5433e5f59fa27322
+      resolved-ref: "1b633accd91d658991eb1eab17e1f5bd6a58d43a"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
@@ -320,7 +320,7 @@ packages:
     description:
       path: "packages/dart/interfaces/firestore_service_interface"
       ref: HEAD
-      resolved-ref: af930866f67563cb5780f3fa5433e5f59fa27322
+      resolved-ref: "1b633accd91d658991eb1eab17e1f5bd6a58d43a"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
@@ -421,7 +421,7 @@ packages:
     description:
       path: "packages/dart/utils/json_types"
       ref: HEAD
-      resolved-ref: af930866f67563cb5780f3fa5433e5f59fa27322
+      resolved-ref: "1b633accd91d658991eb1eab17e1f5bd6a58d43a"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
