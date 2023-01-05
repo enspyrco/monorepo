@@ -8,7 +8,7 @@ builders:
   astro_generators:
     target: ":astro_generators"
     import: "package:astro_generators/astro_builder.dart"
-    builder_factories: ["generateSubclass"]
+    builder_factories: ["astroState"]
     build_extensions: { ".dart": [".g.dart"] }
     auto_apply: dependents
     build_to: cache

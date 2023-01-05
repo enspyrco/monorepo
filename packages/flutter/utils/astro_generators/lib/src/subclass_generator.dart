@@ -1,16 +1,20 @@
 import 'package:analyzer/dart/element/element.dart';
+import 'package:astro_generators/src/infos/field_info.dart';
 import 'package:astro_types/astro_annotations.dart';
 import 'package:build/build.dart' show BuildStep;
 import 'package:source_gen/source_gen.dart';
 
 import 'model_visitor.dart';
 
-class SubclassGenerator extends GeneratorForAnnotation<SubclassAnnotation> {
+class SubclassGenerator extends GeneratorForAnnotation<AstroStateAnnotation> {
   @override
   String generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
     final visitor = ModelVisitor();
     element.visitChildren(visitor);
+
+    final List<FieldInfo> allFields =
+        visitor.memberFields + visitor.inheritedFields;
 
     final className = 'Generated${visitor.className}';
 
@@ -20,22 +24,21 @@ class SubclassGenerator extends GeneratorForAnnotation<SubclassAnnotation> {
 
     classBuffer.writeln('$className({');
 
-    for (final fieldName in visitor.fields.keys) {
-      classBuffer.writeln('required this.$fieldName, ');
+    for (final field in allFields) {
+      classBuffer.writeln('required this.${field.name}, ');
     }
 
     classBuffer.writeln('});\n');
 
-    for (final fieldEntry in visitor.fields.entries) {
-      classBuffer
-          .writeln('@override\nfinal ${fieldEntry.value} ${fieldEntry.key};\n');
+    for (final field in allFields) {
+      classBuffer.writeln('@override\nfinal ${field.type} ${field.name};\n');
     }
 
-    generateCopyWith(className, visitor, classBuffer);
-    generateToJson(visitor, classBuffer);
-    generateToString(visitor, classBuffer);
-    generateHashCode(visitor, classBuffer);
-    generateEquivalenceOperator(className, visitor, classBuffer);
+    generateCopyWith(className, allFields, classBuffer);
+    generateToJson(allFields, classBuffer);
+    generateToString(allFields, classBuffer);
+    generateHashCode(allFields, classBuffer);
+    generateEquivalenceOperator(className, allFields, classBuffer);
 
     classBuffer.writeln('}');
 
@@ -44,68 +47,68 @@ class SubclassGenerator extends GeneratorForAnnotation<SubclassAnnotation> {
 }
 
 void generateCopyWith(
-    String className, ModelVisitor visitor, StringBuffer classBuffer) {
+    String className, List<FieldInfo> fields, StringBuffer classBuffer) {
   classBuffer.writeln('@override\n$className copyWith({');
 
-  for (final fieldEntry in visitor.fields.entries) {
-    classBuffer.writeln('${fieldEntry.value}? ${fieldEntry.key},');
+  for (final field in fields) {
+    classBuffer.writeln('${field.type}? ${field.name},');
   }
 
   classBuffer.writeln('}) => $className(');
 
-  for (final fieldEntry in visitor.fields.entries) {
-    classBuffer.writeln(
-        '${fieldEntry.key}: ${fieldEntry.key} ?? this.${fieldEntry.key},');
+  for (final field in fields) {
+    classBuffer.writeln('${field.name}: ${field.name} ?? this.${field.name},');
   }
 
   classBuffer.writeln(');\n');
 }
 
-void generateToJson(ModelVisitor visitor, StringBuffer classBuffer) {
-  classBuffer.writeln('@override\nJsonMap toJson() => {');
+void generateToJson(List<FieldInfo> fields, StringBuffer classBuffer) {
+  classBuffer.writeln('@override\nMap<String, Object?> toJson() => {');
 
-  for (final fieldName in visitor.fields.keys) {
-    classBuffer.writeln('\'$fieldName\': $fieldName, ');
+  for (final field in fields) {
+    classBuffer.writeln('\'${field.name}\': ${field.name}, ');
   }
 
   classBuffer.writeln('};\n');
 }
 
-void generateToString(ModelVisitor visitor, StringBuffer classBuffer) {
+void generateToString(List<FieldInfo> fields, StringBuffer classBuffer) {
   classBuffer.writeln('@override\nString toString() =>');
 
-  for (final fieldName in visitor.fields.keys) {
-    classBuffer.writeln('\'$fieldName: \$$fieldName, \'');
+  for (final field in fields) {
+    classBuffer.writeln('\'${field.name}: \$${field.name}, \'');
   }
 
   classBuffer.writeln(';\n');
 }
 
-void generateHashCode(ModelVisitor visitor, StringBuffer classBuffer) {
-  if (visitor.fields.keys.length == 1) {
-    final String field = visitor.fields.keys.first;
-    classBuffer.writeln('@override\nint get hashCode => $field.hashCode;\n');
+void generateHashCode(List<FieldInfo> fields, StringBuffer classBuffer) {
+  if (fields.length == 1) {
+    final FieldInfo field = fields.first;
+    classBuffer
+        .writeln('@override\nint get hashCode => ${field.name}.hashCode;\n');
     return;
   }
 
   classBuffer.writeln('@override\nint get hashCode => Object.hash(');
 
-  for (final fieldName in visitor.fields.keys) {
-    classBuffer.writeln('$fieldName, ');
+  for (final field in fields) {
+    classBuffer.writeln('${field.name}, ');
   }
 
   classBuffer.writeln(');\n');
 }
 
 void generateEquivalenceOperator(
-    String className, ModelVisitor visitor, StringBuffer classBuffer) {
+    String className, List<FieldInfo> fields, StringBuffer classBuffer) {
   classBuffer.writeln('@override\nbool operator==(Object other) => ');
   classBuffer.writeln('other is $className && ');
 
   int count = 0;
   String ending = ' && ';
-  for (final fieldName in visitor.fields.keys) {
-    if (++count == visitor.fields.keys.length) ending = ';';
-    classBuffer.writeln('$fieldName == other.$fieldName$ending');
+  for (final field in fields) {
+    if (++count == fields.length) ending = ';';
+    classBuffer.writeln('${field.name} == other.${field.name}$ending');
   }
 }
