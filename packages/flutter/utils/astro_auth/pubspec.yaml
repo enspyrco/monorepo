@@ -37,8 +37,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   lints: ^2.0.0
-  test: ^1.16.0
   astro_test_utils:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/flutter/utils/astro_test_utils
+  build_runner: ^2.3.2
+  astro_generators:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/astro_generators

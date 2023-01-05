@@ -3,6 +3,8 @@ dependency_overrides:
     path: ../../../dart/utils/astro_locator
   astro:
     path: ../../../flutter/utils/astro
+  astro_generators:
+    path: ../../../flutter/utils/astro_generators
   astro_navigation:
     path: ../../../flutter/utils/astro_navigation
   astro_test_utils:

@@ -1,7 +1,6 @@
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/state_types.dart';
 
-import '../state/default_auth_state.dart';
 import '../state/default_user_state.dart';
 
 class UpdateUserState<T extends AstroState> extends LandingMission<T> {
@@ -11,7 +10,8 @@ class UpdateUserState<T extends AstroState> extends LandingMission<T> {
 
   @override
   T landingInstructions(T state) {
-    return (state as dynamic).copyWith(auth: DefaultAuthState(user: user));
+    return (state as dynamic)
+        .copyWith(auth: (state as dynamic).auth.copyWith(user: user));
   }
 
   @override

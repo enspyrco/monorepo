@@ -12,7 +12,7 @@ void main() {
         (tester) async {
       // Setup an app state where checking is done and there was no signed in user found.
       final state = ExampleAppState.initial.copyWith(
-          auth: DefaultAuthState(
+          auth: AstroAuth.initialState().copyWith(
               user: DefaultUserState(signedIn: SignedInState.notSignedIn)));
 
       // Setup a harness with the initial state.
