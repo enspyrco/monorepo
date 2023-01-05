@@ -7,16 +7,17 @@ import 'package:the_process/sections/missions/create_section.dart';
 import 'package:the_process/sections/missions/update_sections_v_m.dart';
 
 void main() {
-  group('CreateProjectSectionMiddleware', () {
+  group('CreateSection', () {
     test('dispatches UpdateSectionsVM and calls DatabaseServce.createSection',
         () async {
-      var initialState = AppState.initial;
+      var initialState = AppState.initialValue();
 
       var aUserState = DefaultUserState(signedIn: SignedInState.checking);
 
       var state = initialState.copyWith(
-          auth: initialState.auth.copyWith(user: aUserState),
-          sections: initialState.sections.copyWith(newName: 'testy'));
+        auth: initialState.auth.copyWith(user: aUserState),
+        sections: initialState.sections.copyWith(newName: 'testy'),
+      );
 
       var missionControl = RecordingMissionControl<AppState>(state: state);
 

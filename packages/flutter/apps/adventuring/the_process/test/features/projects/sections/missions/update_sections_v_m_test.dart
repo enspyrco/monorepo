@@ -6,7 +6,7 @@ void main() {
   group('UpdateSectionsVMReducer', () {
     test('correctly updates creatingNewSection flag', () {
       // Setup app state and check expected values
-      final initialState = AppState.initial;
+      final initialState = AppState.initialValue();
       expect(initialState.sections.creatingNewSection, false);
 
       const mission = UpdateSectionsVM(creatingNewSection: true);
