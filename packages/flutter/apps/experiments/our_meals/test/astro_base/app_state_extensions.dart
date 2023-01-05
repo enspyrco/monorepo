@@ -11,8 +11,8 @@ import 'package:our_meals/app/state/app_state.dart';
 /// is a signed in user. A common use case is to avoid the [SignInScreen] that
 /// otherwise would build on app load.
 extension AppStateTestExtensions on AppState {
-  AppState get withFakeSignIn => copyWith(
-      auth: auth.copyWith(
-          user:
-              DefaultUserState(uid: 'uid', signedIn: SignedInState.signedIn)));
+  AppState get withFakeSignIn {
+    final fake = DefaultUserState(uid: 'uid', signedIn: SignedInState.signedIn);
+    return copyWith(auth: auth.copyWith(user: null));
+  }
 }
