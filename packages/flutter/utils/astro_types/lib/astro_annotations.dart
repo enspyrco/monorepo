@@ -1,5 +1,5 @@
-class SubclassAnnotation {
-  const SubclassAnnotation();
+class AstroStateAnnotation {
+  const AstroStateAnnotation();
 }
 
-const generateSubclass = SubclassAnnotation();
+const astroState = AstroStateAnnotation();
