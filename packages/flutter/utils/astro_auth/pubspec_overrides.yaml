@@ -13,3 +13,5 @@ dependency_overrides:
     path: ../../../flutter/utils/astro_types
   astro_error_handling:
     path: ../astro_error_handling
+  firebase_auth_service_interface:
+    path: ../../../dart/interfaces/firebase_auth_service_interface
