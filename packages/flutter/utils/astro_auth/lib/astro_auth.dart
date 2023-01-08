@@ -1,8 +1,7 @@
 library astro_auth;
 
+import 'package:firebase_auth_service_flutterfire/auth_state_flutterfire.dart';
 import 'package:firebase_auth_service_flutterfire/user_auth_state_flutterfire.dart';
-
-import 'src/state/default_auth_state.dart';
 
 export 'src/missions/bind_auth_state.dart';
 export 'src/missions/sign_out.dart';
@@ -17,6 +16,6 @@ export 'src/widgets/avatar_menu_button/menu_option.dart';
 
 /// Factory methods for creating AuthState objects
 class AstroAuth {
-  static GeneratedDefaultAuthState initialState() =>
-      GeneratedDefaultAuthState(user: UserAuthStateFlutterfire.initial);
+  static AuthStateFlutterfire initialState() =>
+      AuthStateFlutterfire(user: UserAuthStateFlutterfire());
 }

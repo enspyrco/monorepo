@@ -6,7 +6,7 @@ class ExampleAppState implements AstroState, AppStateAuth {
   ExampleAppState({required this.auth});
 
   static ExampleAppState get initial =>
-      ExampleAppState(auth: AuthStateFlutterfire.initial);
+      ExampleAppState(auth: AuthStateFlutterfire());
 
   @override
   final AuthStateFlutterfire auth;

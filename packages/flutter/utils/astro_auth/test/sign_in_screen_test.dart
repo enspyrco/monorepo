@@ -14,7 +14,7 @@ void main() {
         (tester) async {
       // Setup an app state where checking is done and there was no signed in user found.
       final state = AstroAuthAppState.initial.copyWith(
-          auth: AuthStateFlutterfire.initial.copyWith(
+          auth: AuthStateFlutterfire().copyWith(
               user: UserAuthStateFlutterfire(
                   signedIn: SignedInState.notSignedIn)));
 
