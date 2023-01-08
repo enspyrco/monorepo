@@ -71,6 +71,7 @@ Three letter acronyms used in commit messages:
 - fsf = firestore_service_flutterfire
 - fsg = firestore_service_googleapis
 - fsi = firestore_service_interface
+- fsr = firestore_service_grpc
 - gac = get_google_api_credentials
 - gae = github_api_envoy
 - gau = googleapis_utils
