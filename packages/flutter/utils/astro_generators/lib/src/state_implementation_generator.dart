@@ -6,14 +6,28 @@ import 'package:source_gen/source_gen.dart';
 
 import 'model_visitor.dart';
 
-class SubclassGenerator extends GeneratorForAnnotation<astroState> {
+/// The GeneratedImplementation annotation has optional parameters
+/// [classNamePrefix] & [classNameSuffix]. If both are empty we set the prefix
+/// to 'Generated' as otherwise the interface and implementation classes would
+/// have the same name, causing an error.
+///
+/// We remove any leading '_' on the incoming class name, which allows for a
+/// private class to be used to implement an external interface, so we don't
+/// get an extra class in the namespace that has no purpose.
+class StateImplementationGenerator
+    extends GeneratorForAnnotation<GeneratedImplementation> {
   @override
   String generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
-    final classNamePrefix =
-        annotation.read('classNamePrefix').literalValue as String;
     final classNameSuffix =
         annotation.read('classNameSuffix').literalValue as String;
+    // If neither prefix nor suffix were supplied, set prefix to 'Generated'
+    final originalClassNamePrefix =
+        annotation.read('classNamePrefix').literalValue as String;
+    final classNamePrefix =
+        (originalClassNamePrefix == '' && classNameSuffix == '')
+            ? 'Generated'
+            : originalClassNamePrefix;
 
     final visitor = ModelVisitor();
     element.visitChildren(visitor);
@@ -63,7 +77,8 @@ void generateCopyWith(
   classBuffer.writeln('@override\n$className copyWith({');
 
   for (final field in fields) {
-    classBuffer.writeln('${field.type}? ${field.name},');
+    final suffix = field.type.endsWith('?') ? '' : '?';
+    classBuffer.writeln('${field.type}$suffix ${field.name},');
   }
 
   classBuffer.writeln('}) => $className(');

@@ -13,7 +13,7 @@ import '../../projects/models/sections_state.dart';
 
 part 'app_state.g.dart';
 
-@astroState
+@GeneratedImplementation()
 abstract class AppState
     implements
         AstroState,
