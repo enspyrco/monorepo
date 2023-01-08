@@ -1,5 +1,3 @@
-import 'package:astro_types/auth_types.dart';
-
 import 'enums/provider_enum.dart';
 
 /// This interface is currently only used in atro_auth
