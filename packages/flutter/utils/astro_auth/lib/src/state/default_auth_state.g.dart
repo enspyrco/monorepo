@@ -12,11 +12,11 @@ class GeneratedDefaultAuthState implements DefaultAuthState {
   });
 
   @override
-  final UserState user;
+  final UserAuthState user;
 
   @override
   GeneratedDefaultAuthState copyWith({
-    UserState? user,
+    UserAuthState? user,
   }) =>
       GeneratedDefaultAuthState(
         user: user ?? this.user,

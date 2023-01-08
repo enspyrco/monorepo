@@ -1,18 +1,18 @@
-import 'package:astro_auth/astro_auth.dart';
 import 'package:astro_types/auth_types.dart';
 import 'package:astro_types/state_types.dart';
+import 'package:firebase_auth_service_flutterfire/auth_state_flutterfire.dart';
 
 class ExampleAppState implements AstroState, AppStateAuth {
   ExampleAppState({required this.auth});
 
   static ExampleAppState get initial =>
-      ExampleAppState(auth: AstroAuth.initialState());
+      ExampleAppState(auth: AuthStateFlutterfire.initial);
 
   @override
-  final DefaultAuthState auth;
+  final AuthStateFlutterfire auth;
 
   @override
-  ExampleAppState copyWith({DefaultAuthState? auth}) {
+  ExampleAppState copyWith({AuthStateFlutterfire? auth}) {
     return ExampleAppState(auth: auth ?? this.auth);
   }
 
