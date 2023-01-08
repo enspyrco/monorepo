@@ -2,11 +2,11 @@ import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
+import 'package:firebase_auth_service_interface/firebase_auth_service_interface.dart';
 
-import '../services/firebase_auth_service.dart';
-
-class SignInWithFirebase<T extends AstroState> extends AwayMission<T> {
-  const SignInWithFirebase({
+class SignInWithFirebaseWithAppleCredential<T extends AstroState>
+    extends AwayMission<T> {
+  const SignInWithFirebaseWithAppleCredential({
     required this.idToken,
     required this.rawNonce,
   });
@@ -20,7 +20,7 @@ class SignInWithFirebase<T extends AstroState> extends AwayMission<T> {
 
     /// We just sign in here, adding the user data to the app state happens where
     /// the "auth state changed" event is handled - in [BindAuthState.flightPlan]
-    await service.signInToFirebase(idToken, rawNonce);
+    await service.signInWithApple(idToken: idToken, rawNonce: rawNonce);
   }
 
   @override

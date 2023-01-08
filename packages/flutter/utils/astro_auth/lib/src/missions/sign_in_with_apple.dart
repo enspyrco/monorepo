@@ -4,7 +4,7 @@ import 'package:astro_types/state_types.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as plugin;
 
 import '../utils/nonce.dart';
-import 'sign_in_with_firebase.dart';
+import 'sign_in_with_firebase_with_apple_credential.dart';
 
 class SignInWithApple<T extends AstroState> extends AwayMission<T> {
   SignInWithApple();
@@ -34,8 +34,8 @@ class SignInWithApple<T extends AstroState> extends AwayMission<T> {
     var token = credential.identityToken ??
         (throw 'The credential.identityToken variable was null');
 
-    missionControl.launch(
-        SignInWithFirebase<T>(idToken: token, rawNonce: generateNonce()));
+    missionControl.launch(SignInWithFirebaseWithAppleCredential<T>(
+        idToken: token, rawNonce: generateNonce()));
   }
 
   @override
