@@ -244,7 +244,7 @@ packages:
     description:
       path: "packages/flutter/utils/enspyr_lints"
       ref: HEAD
-      resolved-ref: "01d15084c47cdd49d594f798d82b74e7b8090252"
+      resolved-ref: b309be240a752c78becf2cbd0b134269ac7a40f2
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "1.0.0"
@@ -288,10 +288,10 @@ packages:
     description:
       path: "packages/dart/interfaces/firebase_auth_service_interface"
       ref: HEAD
-      resolved-ref: "01d15084c47cdd49d594f798d82b74e7b8090252"
+      resolved-ref: b309be240a752c78becf2cbd0b134269ac7a40f2
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
-    version: "0.0.1"
+    version: "0.0.0"
   firebase_auth_web:
     dependency: transitive
     description:
@@ -438,7 +438,7 @@ packages:
     description:
       path: "packages/dart/utils/json_types"
       ref: HEAD
-      resolved-ref: "01d15084c47cdd49d594f798d82b74e7b8090252"
+      resolved-ref: b309be240a752c78becf2cbd0b134269ac7a40f2
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"

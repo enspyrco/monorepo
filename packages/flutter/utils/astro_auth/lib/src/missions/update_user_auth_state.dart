@@ -9,7 +9,8 @@ class UpdateUserAuthState<T extends AstroState> extends LandingMission<T> {
 
   @override
   T landingInstructions(T state) {
-    return (state as dynamic).copyWith(auth: user);
+    return (state as dynamic)
+        .copyWith(auth: (state as dynamic).auth.copyWith(user: user));
   }
 
   @override
