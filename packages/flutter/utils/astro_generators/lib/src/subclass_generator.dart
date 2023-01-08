@@ -6,23 +6,35 @@ import 'package:source_gen/source_gen.dart';
 
 import 'model_visitor.dart';
 
-class SubclassGenerator extends GeneratorForAnnotation<AstroStateAnnotation> {
+class SubclassGenerator extends GeneratorForAnnotation<astroState> {
   @override
   String generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
+    final classNamePrefix =
+        annotation.read('classNamePrefix').literalValue as String;
+    final classNameSuffix =
+        annotation.read('classNameSuffix').literalValue as String;
+
     final visitor = ModelVisitor();
     element.visitChildren(visitor);
 
     final List<FieldInfo> allFields =
         visitor.memberFields + visitor.inheritedFields;
 
-    final className = 'Generated${visitor.className}';
+    // The annotated class may be a private class in which case we remove the '_'
+    final sanitizedClassName = visitor.className[0] == '_'
+        ? visitor.className.substring(1)
+        : visitor.className;
+
+    final generatedClassName =
+        '$classNamePrefix$sanitizedClassName$classNameSuffix';
 
     final classBuffer = StringBuffer();
 
-    classBuffer.writeln('class $className implements ${visitor.className} {');
+    classBuffer
+        .writeln('class $generatedClassName implements $sanitizedClassName {');
 
-    classBuffer.writeln('$className({');
+    classBuffer.writeln('$generatedClassName({');
 
     for (final field in allFields) {
       classBuffer.writeln('required this.${field.name}, ');
@@ -34,11 +46,11 @@ class SubclassGenerator extends GeneratorForAnnotation<AstroStateAnnotation> {
       classBuffer.writeln('@override\nfinal ${field.type} ${field.name};\n');
     }
 
-    generateCopyWith(className, allFields, classBuffer);
+    generateCopyWith(generatedClassName, allFields, classBuffer);
     generateToJson(allFields, classBuffer);
     generateToString(allFields, classBuffer);
     generateHashCode(allFields, classBuffer);
-    generateEquivalenceOperator(className, allFields, classBuffer);
+    generateEquivalenceOperator(generatedClassName, allFields, classBuffer);
 
     classBuffer.writeln('}');
 
