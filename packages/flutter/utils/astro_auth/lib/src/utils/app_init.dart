@@ -2,6 +2,8 @@ import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/state_types.dart';
+import 'package:firebase_auth_service_flutterfire/firebase_auth_service_flutterfire.dart';
+import 'package:firebase_auth_service_interface/firebase_auth_service_interface.dart';
 import 'package:flutter/material.dart';
 
 import '../../astro_auth.dart';
@@ -34,5 +36,5 @@ void initializeAuthPlugin<S extends AstroState>({
           MaterialPage(child: AuthGateScreen<S>(child: initialScreen)));
 
   /// Create and add a FirebaseAuthService to the Locator
-  Locator.add<FirebaseAuthService>(FirebaseAuthService());
+  Locator.add<FirebaseAuthService>(FirebaseAuthServiceFlutterfire());
 }

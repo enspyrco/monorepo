@@ -9,7 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_auth: ^4.0.2
   sign_in_with_apple: ^4.1.0
   crypto: ^3.0.2
   astro_locator:
@@ -36,6 +35,10 @@ dependencies:
     git:
       url: https://github.com/enspyrco/monorepo.git
       path: packages/dart/interfaces/firebase_auth_service_interface
+  firebase_auth_service_flutterfire:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/flutter/utils/flutterfire/firebase_auth_service_flutterfire
 
 dev_dependencies:
   flutter_test:
