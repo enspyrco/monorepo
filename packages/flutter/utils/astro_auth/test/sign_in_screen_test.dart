@@ -4,7 +4,7 @@ import 'package:astro_types/auth_types.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
-import 'test-doubles/example_app_state.dart';
+import 'test-doubles/astro_auth_app_state.dart';
 
 void main() {
   group('SignInScreen', () {
@@ -16,9 +16,9 @@ void main() {
               user: DefaultUserState(signedIn: SignedInState.notSignedIn)));
 
       // Setup a harness with the initial state.
-      final harness = WidgetTestHarness<ExampleAppState>(
+      final harness = WidgetTestHarness<AstroAuthAppState>(
         initialState: state,
-        innerWidget: const SignInScreen<ExampleAppState>(),
+        innerWidget: const SignInScreen<AstroAuthAppState>(),
       );
 
       await tester.pumpWidget(harness.widget);

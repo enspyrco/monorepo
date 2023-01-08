@@ -2,8 +2,7 @@ import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
-
-import '../../astro_auth.dart';
+import 'package:firebase_auth_service_interface/firebase_auth_service_interface.dart';
 
 class SignOut<T extends AstroState> extends AwayMission<T> {
   const SignOut();
