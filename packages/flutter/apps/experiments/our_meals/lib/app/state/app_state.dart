@@ -9,7 +9,7 @@ import 'package:astro_types/state_types.dart';
 
 part 'app_state.g.dart';
 
-@astroState
+@GeneratedImplementation()
 abstract class AppState
     implements
         AstroState,

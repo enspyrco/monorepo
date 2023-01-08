@@ -12,7 +12,8 @@ import 'package:our_meals/app/state/app_state.dart';
 /// otherwise would build on app load.
 extension AppStateTestExtensions on AppState {
   AppState get withFakeSignIn {
-    final fake = DefaultUserState(uid: 'uid', signedIn: SignedInState.signedIn);
+    final fake =
+        UserStateTestDouble(uid: 'uid', signedIn: SignedInState.signedIn);
     return copyWith(auth: auth.copyWith(user: null));
   }
 }
