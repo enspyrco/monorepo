@@ -1,0 +1,6 @@
+dependency_overrides:
+  astro_types:
+    path: ../../../../flutter/utils/astro_types
+  firebase_auth_service_interface:
+    path: ../../../../dart/interfaces/firebase_auth_service_interface
+  
