@@ -50,14 +50,16 @@ class StateImplementationGenerator
 
     classBuffer.writeln('$generatedClassName({');
 
-    for (final field in allFields) {
-      classBuffer.writeln('required this.${field.name}, ');
+    for (final FieldInfo field in allFields) {
+      final prefix = field.hasNullableType ? '' : 'required ';
+      classBuffer.writeln('$prefix this.${field.name}, ');
     }
 
     classBuffer.writeln('});\n');
 
     for (final field in allFields) {
-      classBuffer.writeln('@override\nfinal ${field.type} ${field.name};\n');
+      classBuffer
+          .writeln('@override\nfinal ${field.typeName} ${field.name};\n');
     }
 
     generateCopyWith(generatedClassName, allFields, classBuffer);
@@ -77,8 +79,7 @@ void generateCopyWith(
   classBuffer.writeln('@override\n$className copyWith({');
 
   for (final field in fields) {
-    final suffix = field.type.endsWith('?') ? '' : '?';
-    classBuffer.writeln('${field.type}$suffix ${field.name},');
+    classBuffer.writeln('${field.typeNameWithoutNullability}? ${field.name},');
   }
 
   classBuffer.writeln('}) => $className(');
