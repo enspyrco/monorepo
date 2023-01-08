@@ -14,7 +14,7 @@ class FlutterfireAuthState implements AuthState, AstroState {
   final FlutterfireUserState user;
 
   @override
-  FlutterfireAuthState copyWith({FlutterfireUserState? user}) =>
+  FlutterfireAuthState copyWith({covariant FlutterfireUserState? user}) =>
       FlutterfireAuthState(user: user ?? this.user);
 
   @override
