@@ -26,7 +26,7 @@ class AppState
   });
 
   @override
-  final DefaultAuthState auth;
+  final AuthState auth;
   @override
   final DefaultErrorHandlingState error;
   @override
@@ -39,7 +39,7 @@ class AppState
   final ChallengeModel? challenge;
 
   static AppState get initial => AppState(
-        auth: DefaultAuthState.initial,
+        auth: AstroAuth.initialState(),
         error: DefaultErrorHandlingState.initial,
         navigation: DefaultNavigationState.initial,
         // settings: Settings.initial,
@@ -50,7 +50,7 @@ class AppState
   AppState copyWith({
     DefaultNavigationState? navigation,
     DefaultErrorHandlingState? error,
-    DefaultAuthState? auth,
+    AuthState? auth,
     GameState? game,
     ChallengeModel? challenge,
   }) =>
