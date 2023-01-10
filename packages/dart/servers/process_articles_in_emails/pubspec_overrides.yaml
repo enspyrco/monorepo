@@ -1,5 +1,5 @@
 dependency_overrides:
   firestore_service_googleapis:
-    path: ../../api-clients/firestore
+    path: ../../api-clients/firestore/firestore_service_googleapis
   json_types:
     path: ../../utils/json_types

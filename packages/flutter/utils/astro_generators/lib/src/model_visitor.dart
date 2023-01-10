@@ -1,6 +1,7 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/visitor.dart';
 
+import 'extensions/field_element_extension.dart';
 import 'infos/field_info.dart';
 import 'infos/interface_info.dart';
 
@@ -22,8 +23,7 @@ class ModelVisitor extends SimpleElementVisitor<void> {
 
   @override
   void visitFieldElement(FieldElement element) {
-    memberFields.add(
-        FieldInfo(element.type.toString().replaceFirst('*', ''), element.name));
+    memberFields.add(element.toFieldInfo());
   }
 }
 
@@ -37,5 +37,5 @@ extension InterfaceElementExtension on InterfaceElement {
 }
 
 extension FieldElementsListExtension on List<FieldElement> {
-  List<FieldInfo> toInfos() => [...map((e) => FieldInfo('${e.type}', e.name))];
+  List<FieldInfo> toInfos() => [...map((e) => e.toFieldInfo())];
 }

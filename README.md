@@ -67,10 +67,12 @@ Three letter acronyms used in commit messages:
 - enl = enspyr_lints
 - flr = flireator
 - fai = firebase_auth_service_interface
+- faf = firebase_auth_service_flutterfire
 - fof = flutter_opencv_ffi
 - fsf = firestore_service_flutterfire
 - fsg = firestore_service_googleapis
 - fsi = firestore_service_interface
+- fsr = firestore_service_grpc
 - gac = get_google_api_credentials
 - gae = github_api_envoy
 - gau = googleapis_utils

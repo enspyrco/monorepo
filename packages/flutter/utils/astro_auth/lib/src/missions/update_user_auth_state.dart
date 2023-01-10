@@ -1,11 +1,11 @@
+import 'package:astro_types/auth_types.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/state_types.dart';
-import 'package:firebase_auth_service_flutterfire/user_auth_state_flutterfire.dart';
 
-class UpdateUserState<T extends AstroState> extends LandingMission<T> {
-  const UpdateUserState(this.user);
+class UpdateUserAuthState<T extends AstroState> extends LandingMission<T> {
+  const UpdateUserAuthState(this.user);
 
-  final UserAuthStateFlutterfire user;
+  final UserAuthState user;
 
   @override
   T landingInstructions(T state) {

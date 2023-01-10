@@ -6,12 +6,12 @@ import 'package:astro_types/auth_types.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/json_types.dart';
 import 'package:astro_types/state_types.dart';
+import 'package:firebase_auth_service_interface/firebase_auth_service_interface.dart';
 
-import '../services/firebase_auth_service.dart';
 import '../utils/on_auth_state_change.dart';
-import 'update_user_state.dart';
+import 'update_user_auth_state.dart';
 
-StreamSubscription<UserState>? _subscription;
+StreamSubscription<UserAuthState>? _subscription;
 
 class BindAuthState<T extends AstroState> extends AwayMission<T> {
   const BindAuthState();
@@ -22,9 +22,9 @@ class BindAuthState<T extends AstroState> extends AwayMission<T> {
 
     _subscription?.cancel();
 
-    _subscription = service.tapIntoAuthState().listen(
+    _subscription = service.onAuthStateChange.listen(
       (user) {
-        missionControl.land(UpdateUserState<T>(user));
+        missionControl.land(UpdateUserAuthState<T>(user));
 
         /// Start any missions that were added to [OnAuthStateChangeMissions].
         ///

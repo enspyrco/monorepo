@@ -81,7 +81,7 @@ packages:
   firestore_service_googleapis:
     dependency: "direct main"
     description:
-      path: "../../api-clients/firestore"
+      path: "../../api-clients/firestore/firestore_service_googleapis"
       relative: true
     source: path
     version: "0.0.1"
