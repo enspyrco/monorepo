@@ -81,11 +81,9 @@ packages:
   astro_test_utils:
     dependency: "direct dev"
     description:
-      path: "packages/flutter/utils/astro_test_utils"
-      ref: HEAD
-      resolved-ref: b309be240a752c78becf2cbd0b134269ac7a40f2
-      url: "https://github.com/enspyrco/monorepo.git"
-    source: git
+      path: "../../../utils/astro_test_utils"
+      relative: true
+    source: path
     version: "0.0.1"
   astro_types:
     dependency: "direct main"
@@ -246,7 +244,7 @@ packages:
     description:
       path: "packages/flutter/utils/enspyr_lints"
       ref: HEAD
-      resolved-ref: b309be240a752c78becf2cbd0b134269ac7a40f2
+      resolved-ref: fa2998d218e4625b773bd4ab4a94d9759da125ea
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "1.0.0"
@@ -283,7 +281,7 @@ packages:
     description:
       path: "packages/flutter/utils/flutterfire/firebase_auth_service_flutterfire"
       ref: HEAD
-      resolved-ref: "89f62527cfe6002a8852313b2455539a50c08104"
+      resolved-ref: fa2998d218e4625b773bd4ab4a94d9759da125ea
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.0"
@@ -292,7 +290,7 @@ packages:
     description:
       path: "packages/dart/interfaces/firebase_auth_service_interface"
       ref: HEAD
-      resolved-ref: b309be240a752c78becf2cbd0b134269ac7a40f2
+      resolved-ref: fa2998d218e4625b773bd4ab4a94d9759da125ea
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.0"
@@ -329,7 +327,7 @@ packages:
     description:
       path: "packages/flutter/utils/flutterfire/firestore_service_flutterfire"
       ref: HEAD
-      resolved-ref: b309be240a752c78becf2cbd0b134269ac7a40f2
+      resolved-ref: fa2998d218e4625b773bd4ab4a94d9759da125ea
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
@@ -338,7 +336,7 @@ packages:
     description:
       path: "packages/dart/interfaces/firestore_service_interface"
       ref: HEAD
-      resolved-ref: b309be240a752c78becf2cbd0b134269ac7a40f2
+      resolved-ref: fa2998d218e4625b773bd4ab4a94d9759da125ea
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
@@ -439,7 +437,7 @@ packages:
     description:
       path: "packages/dart/utils/json_types"
       ref: HEAD
-      resolved-ref: b309be240a752c78becf2cbd0b134269ac7a40f2
+      resolved-ref: fa2998d218e4625b773bd4ab4a94d9759da125ea
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
