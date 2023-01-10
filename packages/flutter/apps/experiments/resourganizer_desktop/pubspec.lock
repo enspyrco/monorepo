@@ -148,6 +148,24 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.11.0"
+  firebase_auth_service_flutterfire:
+    dependency: transitive
+    description:
+      path: "packages/flutter/utils/flutterfire/firebase_auth_service_flutterfire"
+      ref: HEAD
+      resolved-ref: fa2998d218e4625b773bd4ab4a94d9759da125ea
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.0"
+  firebase_auth_service_interface:
+    dependency: transitive
+    description:
+      path: "packages/dart/interfaces/firebase_auth_service_interface"
+      ref: HEAD
+      resolved-ref: fa2998d218e4625b773bd4ab4a94d9759da125ea
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.0"
   firebase_auth_web:
     dependency: transitive
     description:
