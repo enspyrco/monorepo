@@ -281,9 +281,11 @@ packages:
   firebase_auth_service_flutterfire:
     dependency: transitive
     description:
-      path: "../../../utils/flutterfire/firebase_auth_service_flutterfire"
-      relative: true
-    source: path
+      path: "packages/flutter/utils/flutterfire/firebase_auth_service_flutterfire"
+      ref: HEAD
+      resolved-ref: "89f62527cfe6002a8852313b2455539a50c08104"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.0"
   firebase_auth_service_interface:
     dependency: transitive
