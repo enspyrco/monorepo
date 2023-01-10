@@ -5,8 +5,6 @@ import 'package:the_process/app/state/app_state.dart';
 import 'package:the_process/sections/missions/create_section.dart';
 import 'package:the_process/sections/missions/update_sections_v_m.dart';
 
-import '../../../../test-doubles/generated/user_auth_state.dart';
-
 void main() {
   group('CreateSection', () {
     test('dispatches UpdateSectionsVM and calls DatabaseServce.createSection',
