@@ -1,7 +1,6 @@
 import 'package:adventure_maker/_app/state/app_state.dart';
 import 'package:adventure_maker/adventures/models/adventure_model.dart';
 import 'package:adventure_maker/shared/missions/select_adventure_node.dart';
-import 'package:astro_auth/astro_auth.dart';
 import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_test_utils/astro_widgets_test_utils.dart';
 import 'package:astro_types/auth_types.dart';
@@ -17,7 +16,7 @@ void main() {
       var state = AppState.initial;
       var signedInAppState = state.copyWith(
           auth: state.auth.copyWith(
-              user: DefaultUserState(signedIn: SignedInState.signedIn)));
+              user: UserAuthStateTestDouble(signedIn: SignedInState.signedIn)));
       var missionControl = RecordingMissionControl(state: signedInAppState);
 
       // Provide stubbed service test-double.

@@ -39,7 +39,7 @@ class AppState
   final DefaultNavigationState navigation;
 
   @override
-  final DefaultAuthState auth;
+  final AuthState auth;
 
   @override
   final DefaultErrorHandlingState error;
@@ -51,7 +51,7 @@ class AppState
 
   static AppState get initial => AppState(
         navigation: DefaultNavigationState.initial,
-        auth: DefaultAuthState.initial,
+        auth: AstroAuth.initialState(),
         error: DefaultErrorHandlingState.initial,
 
         // settings: Settings.init(),
@@ -67,7 +67,7 @@ class AppState
   AppState copyWith({
     DefaultNavigationState? navigation,
     DefaultErrorHandlingState? error,
-    DefaultAuthState? auth,
+    AuthState? auth,
     AdventuresState? adventures,
     ChallengesState? challenges,
     TasksState? tasks,
