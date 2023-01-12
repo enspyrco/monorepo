@@ -1,3 +1,6 @@
+/// See: Astro Test Utils > AppState Test Doubles
+/// - https://www.notion.so/enspyrco/AppState-Test-Doubles-90620189e74e4173a29e8aa6c0d4fd3d
+
 import 'package:adventure_maker/_app/state/app_state.dart';
 import 'package:adventure_maker/adventures/models/adventures_state.dart';
 import 'package:adventure_maker/challenges/models/challenges_state.dart';
@@ -8,7 +11,7 @@ import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_test_utils/astro_widgets_test_utils.dart';
 import 'package:astro_types/auth_types.dart';
 
-AppState defaultAppState = AppState(
+AppState initialAppState = AppState(
   navigation: DefaultNavigationState.initial,
   auth: AuthStateTestDouble(
     user: UserAuthStateTestDouble(signedIn: SignedInState.checking),
