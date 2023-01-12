@@ -23,7 +23,39 @@ expect(harness.state.part, hasChangedAsWeExpect);
 
 ## Features
 
+### Test Harness
+
 A TestHarness that wraps a widget under test in a StoreProvider.
+
+## Conventions
+
+### App State Test Doubles
+
+Currently we (as users of astro_test_utils) create AppState test doubles
+in our apps, as the AppState type is not known to astro_test_utils.
+
+So, to provide the tests with an AppState that uses test double for its members,
+we add a file, eg. `test/test-doubles/state/app_state_test_doubles.dart`:
+
+```dart
+AppState initialAppState = GeneratedAppState(
+  navigation: DefaultNavigationState.initial,
+  auth: AuthStateTestDouble(
+    user: UserAuthStateTestDouble(signedIn: SignedInState.checking),
+  ),
+  error: DefaultErrorHandlingState.initial,
+);
+
+AppState signedInAppState = AppState(
+  navigation: DefaultNavigationState.initial,
+  auth: AuthStateTestDouble(
+    user: UserAuthStateTestDouble(signedIn: SignedInState.signedIn, uid: 'uid'),
+  ),
+  error: DefaultErrorHandlingState.initial,
+);
+```
+
+This will probably be replaced with a source gen solution in the future.
 
 ## Stubbing vs. Mocking
 

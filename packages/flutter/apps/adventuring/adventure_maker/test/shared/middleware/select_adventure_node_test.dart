@@ -5,7 +5,7 @@ import 'package:astro_test_utils/astro_widgets_test_utils.dart';
 import 'package:firestore_service_interface/firestore_service_interface.dart';
 import 'package:test/test.dart';
 
-import '../../state/app_state_test_doubles.dart';
+import '../../test-doubles/state/app_state_test_doubles.dart';
 
 void main() {
   group('SelectAdventureNodeMiddleware', () {
