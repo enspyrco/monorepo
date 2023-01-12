@@ -16,11 +16,11 @@ class AppState
 
   static AppState get initial => AppState(
       error: DefaultErrorHandlingState.initial,
-      auth: DefaultAuthState.initial,
+      auth: AstroAuth.initialState(),
       navigation: DefaultNavigationState.initial);
 
   @override
-  final DefaultAuthState auth;
+  final AuthState auth;
 
   @override
   final DefaultErrorHandlingState error;
@@ -31,7 +31,7 @@ class AppState
   @override
   AppState copyWith({
     DefaultErrorHandlingState? error,
-    DefaultAuthState? auth,
+    AuthState? auth,
     DefaultNavigationState? navigation,
   }) {
     return AppState(

@@ -6,6 +6,8 @@ import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_navigation/astro_navigation.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firestore_service_flutterfire/firestore_service_flutterfire.dart';
+import 'package:firestore_service_interface/firestore_service_interface.dart';
 import 'package:flutter/material.dart';
 
 import '_app/home_screen.dart';
@@ -42,6 +44,9 @@ void initializeApp() {
       launchOnSignedIn: [const ReadAdventures()]);
   initializeAstroInspector<AppState>();
   initializeNavigationPlugin<AppState>();
+
+  /// Add services used in away missions.
+  Locator.add<FirestoreService>(FirestoreServiceFlutterfire());
 }
 
 class AstroBase extends StatelessWidget {

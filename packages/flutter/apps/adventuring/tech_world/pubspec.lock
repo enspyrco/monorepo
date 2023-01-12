@@ -14,7 +14,7 @@ packages:
       name: _flutterfire_internals
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.7"
+    version: "1.0.12"
   a_star_algorithm:
     dependency: "direct main"
     description:
@@ -126,21 +126,21 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.4"
+    version: "4.3.1"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
       name: cloud_firestore_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.8.4"
+    version: "5.10.1"
   cloud_firestore_web:
     dependency: transitive
     description:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.4"
+    version: "3.2.1"
   collection:
     dependency: "direct main"
     description:
@@ -174,7 +174,7 @@ packages:
     description:
       path: "packages/flutter/utils/enspyr_lints"
       ref: HEAD
-      resolved-ref: "4d1896e3c43db117af8654c5ddbf4a53596dedad"
+      resolved-ref: fa2998d218e4625b773bd4ab4a94d9759da125ea
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "1.0.0"
@@ -191,7 +191,7 @@ packages:
       name: fast_immutable_collections
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "8.0.0"
+    version: "8.1.1"
   file:
     dependency: transitive
     description:
@@ -205,28 +205,46 @@ packages:
       name: firebase_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.1"
+    version: "4.2.5"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
       name: firebase_auth_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.11.1"
+    version: "6.11.7"
+  firebase_auth_service_flutterfire:
+    dependency: transitive
+    description:
+      path: "packages/flutter/utils/flutterfire/firebase_auth_service_flutterfire"
+      ref: HEAD
+      resolved-ref: fa2998d218e4625b773bd4ab4a94d9759da125ea
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.0"
+  firebase_auth_service_interface:
+    dependency: transitive
+    description:
+      path: "packages/dart/interfaces/firebase_auth_service_interface"
+      ref: HEAD
+      resolved-ref: fa2998d218e4625b773bd4ab4a94d9759da125ea
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.0"
   firebase_auth_web:
     dependency: transitive
     description:
       name: firebase_auth_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.1"
+    version: "5.2.4"
   firebase_core:
     dependency: "direct main"
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.4.1"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -240,7 +258,7 @@ packages:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.1.0"
   firestore_service_flutterfire:
     dependency: "direct main"
     description:
@@ -261,7 +279,7 @@ packages:
       name: flame
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.0"
+    version: "1.5.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -311,7 +329,7 @@ packages:
       name: glob
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   http_multi_server:
     dependency: transitive
     description:
@@ -359,7 +377,7 @@ packages:
     description:
       path: "packages/dart/utils/json_types"
       ref: HEAD
-      resolved-ref: "4d1896e3c43db117af8654c5ddbf4a53596dedad"
+      resolved-ref: fa2998d218e4625b773bd4ab4a94d9759da125ea
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
@@ -411,7 +429,7 @@ packages:
       name: mime
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   node_preamble:
     dependency: transitive
     description:
@@ -460,7 +478,7 @@ packages:
       name: pub_semver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.2"
+    version: "2.1.3"
   shelf:
     dependency: transitive
     description:
@@ -495,7 +513,7 @@ packages:
       name: sign_in_with_apple
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.0"
+    version: "4.3.0"
   sign_in_with_apple_platform_interface:
     dependency: transitive
     description:
@@ -598,14 +616,14 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.6"
+    version: "6.1.7"
   url_launcher_android:
     dependency: transitive
     description:
       name: url_launcher_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.21"
+    version: "6.0.22"
   url_launcher_ios:
     dependency: transitive
     description:
@@ -688,7 +706,7 @@ packages:
     description:
       path: "packages/dart/servers/ws_game_server_types"
       ref: HEAD
-      resolved-ref: "4d1896e3c43db117af8654c5ddbf4a53596dedad"
+      resolved-ref: fa2998d218e4625b773bd4ab4a94d9759da125ea
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"

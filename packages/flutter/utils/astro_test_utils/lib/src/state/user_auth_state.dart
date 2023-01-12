@@ -7,3 +7,5 @@ part 'user_auth_state.g.dart';
 
 @GeneratedImplementation(classNameSuffix: 'TestDouble')
 abstract class _UserAuthState implements UserAuthState {}
+
+// typedef UserAuthStateTD = UserAuthStateTestDouble;

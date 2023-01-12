@@ -15,3 +15,5 @@ dependency_overrides:
     path: ../../../utils/astro_error_handling
   astro_navigation:
     path: ../../../utils/astro_navigation
+  astro_test_utils:
+    path: ../../../utils/astro_test_utils
