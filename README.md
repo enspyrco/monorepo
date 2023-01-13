@@ -62,8 +62,9 @@ Three letter acronyms used in commit messages:
 - avm = adventure_maker
 - avs = Adventuverse (project)
 - ccv = coding-challenge-verifier
-- dvr = domain_visualiser
+- ddi = dragndrop_image_effects
 - dip = discord_interaction_to_pubsub_message
+- dvr = domain_visualiser
 - enl = enspyr_lints
 - flr = flireator
 - fai = firebase_auth_service_interface
