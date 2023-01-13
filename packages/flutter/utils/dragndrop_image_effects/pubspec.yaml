@@ -1,0 +1,19 @@
+name: dragndrop_image_effects
+description: Drag and drop images to apply selected effects.
+publish_to: 'none'
+version: 0.0.1
+
+environment:
+  sdk: ">=2.13.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  image: ^3.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+
+flutter:

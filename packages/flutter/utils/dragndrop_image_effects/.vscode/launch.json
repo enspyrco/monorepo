@@ -1,0 +1,9 @@
+{
+  "configurations": [
+    {
+      "name": "dragndrop_image_effects",
+      "request": "launch",
+      "type": "dart"
+    }
+  ]
+}
