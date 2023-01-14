@@ -7,3 +7,6 @@
 [submodule "packages/flutter/plugins/flutter_opencv_ffi/opencv_contrib"]
 	path = packages/flutter/plugins/flutter_opencv_ffi/opencv_contrib
 	url = https://github.com/opencv/opencv_contrib
+[submodule "packages/flutter/plugins/flutter_tflite_ffi/tensorflow"]
+	path = packages/flutter/plugins/flutter_tflite_ffi/tensorflow
+	url = https://github.com/tensorflow/tensorflow
