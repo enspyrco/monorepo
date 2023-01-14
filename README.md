@@ -91,8 +91,9 @@ Three letter acronyms used in commit messages:
 - rdd = redux_devtools_desktop
 - rdp = run_dart_code_in_pubsub_message
 - rsd = resourganizer_desktop
-- twr = tech_world
+- tfl = flutter_tflite_ffi
 - tpr = the_process
+- twr = tech_world
 - wgs = ws_game_server
 - wgt = ws_game_server_types
 - whs = whos_shout
