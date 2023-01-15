@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_opengl_texture/flutter_opengl_texture.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -16,35 +13,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _flutterOpenglTexturePlugin = FlutterOpenglTexture();
+  final _controller = FlutterOpenglTexture();
+  final _width = 200.0;
+  final _height = 200.0;
 
   @override
-  void initState() {
+  initState() {
     super.initState();
-    initPlatformState();
+
+    initializeController();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _flutterOpenglTexturePlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
+  @override
+  void dispose() {
+    _controller.dispose();
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
+    super.dispose();
   }
 
   @override
@@ -52,12 +36,23 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('OpenGL via Texture widget example'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: SizedBox(
+            width: _width,
+            height: _height,
+            child: _controller.isInitialized
+                ? Texture(textureId: _controller.textureId!)
+                : null,
+          ),
         ),
       ),
     );
+  }
+
+  Future<void> initializeController() async {
+    await _controller.initialize(_width, _height);
+    setState(() {});
   }
 }
