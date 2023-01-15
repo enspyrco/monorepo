@@ -70,6 +70,7 @@ Three letter acronyms used in commit messages:
 - fai = firebase_auth_service_interface
 - faf = firebase_auth_service_flutterfire
 - fof = flutter_opencv_ffi
+- fot = flutter_opengl_texture
 - fsf = firestore_service_flutterfire
 - fsg = firestore_service_googleapis
 - fsi = firestore_service_interface

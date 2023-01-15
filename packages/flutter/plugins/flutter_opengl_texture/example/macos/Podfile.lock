@@ -1,0 +1,22 @@
+PODS:
+  - flutter_opengl_texture (0.0.1):
+    - FlutterMacOS
+  - FlutterMacOS (1.0.0)
+
+DEPENDENCIES:
+  - flutter_opengl_texture (from `Flutter/ephemeral/.symlinks/plugins/flutter_opengl_texture/macos`)
+  - FlutterMacOS (from `Flutter/ephemeral`)
+
+EXTERNAL SOURCES:
+  flutter_opengl_texture:
+    :path: Flutter/ephemeral/.symlinks/plugins/flutter_opengl_texture/macos
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+
+SPEC CHECKSUMS:
+  flutter_opengl_texture: 7d034b8b6cca81ae000910d38fe769ef8fcb72ab
+  FlutterMacOS: ae6af50a8ea7d6103d888583d46bd8328a7e9811
+
+PODFILE CHECKSUM: 6eac6b3292e5142cfc23bdeb71848a40ec51c14c
+
+COCOAPODS: 1.11.3
