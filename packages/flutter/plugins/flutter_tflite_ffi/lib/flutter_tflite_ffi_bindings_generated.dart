@@ -26,44 +26,4909 @@ class FlutterTfliteFfiBindings {
           lookup)
       : _lookup = lookup;
 
-  /// A very short-lived native function.
-  ///
-  /// For very short-lived functions, it is fine to call them on the main isolate.
-  /// They will block the Dart execution while running the native function, so
-  /// only do this for native functions which are guaranteed to be short-lived.
-  int sum(
-    int a,
-    int b,
+  /// --------------------------------------------------------------------------
+  /// TF_Version returns a string describing version information of the
+  /// TensorFlow library. TensorFlow uses semantic versioning.
+  ffi.Pointer<ffi.Char> TF_Version() {
+    return _TF_Version();
+  }
+
+  late final _TF_VersionPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'TfLiteVersion');
+  late final _TF_Version =
+      _TF_VersionPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
+
+  /// Parsing a serialized TensorProto into a TF_Tensor.
+  void TF_TensorFromProto(
+    ffi.Pointer<ffi.Int> from,
+    ffi.Pointer<ffi.Int> to,
+    ffi.Pointer<ffi.Int> status,
   ) {
-    return _sum(
-      a,
-      b,
+    return _TF_TensorFromProto(
+      from,
+      to,
+      status,
     );
   }
 
-  late final _sumPtr =
-      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.IntPtr, ffi.IntPtr)>>(
-          'sum');
-  late final _sum = _sumPtr.asFunction<int Function(int, int)>();
+  late final _TF_TensorFromProtoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>>('TF_TensorFromProto');
+  late final _TF_TensorFromProto = _TF_TensorFromProtoPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
 
-  /// A longer lived native function, which occupies the thread calling it.
-  ///
-  /// Do not call these kind of native functions in the main isolate. They will
-  /// block Dart execution. This will cause dropped frames in Flutter applications.
-  /// Instead, call these native functions on a separate isolate.
-  int sum_long_running(
-    int a,
-    int b,
+  /// Return a new options object.
+  ffi.Pointer<TF_SessionOptions> TF_NewSessionOptions() {
+    return _TF_NewSessionOptions();
+  }
+
+  late final _TF_NewSessionOptionsPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<TF_SessionOptions> Function()>>(
+          'TF_NewSessionOptions');
+  late final _TF_NewSessionOptions = _TF_NewSessionOptionsPtr.asFunction<
+      ffi.Pointer<TF_SessionOptions> Function()>();
+
+  /// Set the target in TF_SessionOptions.options.
+  /// target can be empty, a single entry, or a comma separated list of entries.
+  /// Each entry is in one of the following formats :
+  /// "local"
+  /// ip:port
+  /// host:port
+  void TF_SetTarget(
+    ffi.Pointer<TF_SessionOptions> options,
+    ffi.Pointer<ffi.Char> target,
   ) {
-    return _sum_long_running(
-      a,
-      b,
+    return _TF_SetTarget(
+      options,
+      target,
     );
   }
 
-  late final _sum_long_runningPtr =
-      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.IntPtr, ffi.IntPtr)>>(
-          'sum_long_running');
-  late final _sum_long_running =
-      _sum_long_runningPtr.asFunction<int Function(int, int)>();
+  late final _TF_SetTargetPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_SessionOptions>,
+              ffi.Pointer<ffi.Char>)>>('TF_SetTarget');
+  late final _TF_SetTarget = _TF_SetTargetPtr.asFunction<
+      void Function(ffi.Pointer<TF_SessionOptions>, ffi.Pointer<ffi.Char>)>();
+
+  /// Set the config in TF_SessionOptions.options.
+  /// config should be a serialized tensorflow.ConfigProto proto.
+  /// If config was not parsed successfully as a ConfigProto, record the
+  /// error information in *status.
+  void TF_SetConfig(
+    ffi.Pointer<TF_SessionOptions> options,
+    ffi.Pointer<ffi.Void> proto,
+    int proto_len,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_SetConfig(
+      options,
+      proto,
+      proto_len,
+      status,
+    );
+  }
+
+  late final _TF_SetConfigPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_SessionOptions>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Pointer<ffi.Int>)>>('TF_SetConfig');
+  late final _TF_SetConfig = _TF_SetConfigPtr.asFunction<
+      void Function(ffi.Pointer<TF_SessionOptions>, ffi.Pointer<ffi.Void>, int,
+          ffi.Pointer<ffi.Int>)>();
+
+  /// Destroy an options object.
+  void TF_DeleteSessionOptions(
+    ffi.Pointer<TF_SessionOptions> arg0,
+  ) {
+    return _TF_DeleteSessionOptions(
+      arg0,
+    );
+  }
+
+  late final _TF_DeleteSessionOptionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_SessionOptions>)>>('TF_DeleteSessionOptions');
+  late final _TF_DeleteSessionOptions = _TF_DeleteSessionOptionsPtr.asFunction<
+      void Function(ffi.Pointer<TF_SessionOptions>)>();
+
+  /// Return a new graph object.
+  ffi.Pointer<TF_Graph> TF_NewGraph() {
+    return _TF_NewGraph();
+  }
+
+  late final _TF_NewGraphPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<TF_Graph> Function()>>(
+          'TF_NewGraph');
+  late final _TF_NewGraph =
+      _TF_NewGraphPtr.asFunction<ffi.Pointer<TF_Graph> Function()>();
+
+  /// Destroy an options object. Graph will be deleted once no more
+  /// TFSession's are referencing it.
+  void TF_DeleteGraph(
+    ffi.Pointer<TF_Graph> arg0,
+  ) {
+    return _TF_DeleteGraph(
+      arg0,
+    );
+  }
+
+  late final _TF_DeleteGraphPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<TF_Graph>)>>(
+          'TF_DeleteGraph');
+  late final _TF_DeleteGraph =
+      _TF_DeleteGraphPtr.asFunction<void Function(ffi.Pointer<TF_Graph>)>();
+
+  /// Sets the shape of the Tensor referenced by `output` in `graph` to
+  /// the shape described by `dims` and `num_dims`.
+  ///
+  /// If the number of dimensions is unknown, `num_dims` must be set to
+  /// -1 and `dims` can be null. If a dimension is unknown, the
+  /// corresponding entry in the `dims` array must be -1.
+  ///
+  /// This does not overwrite the existing shape associated with `output`,
+  /// but merges the input shape with the existing shape.  For example,
+  /// setting a shape of [-1, 2] with an existing shape [2, -1] would set
+  /// a final shape of [2, 2] based on shape merging semantics.
+  ///
+  /// Returns an error into `status` if:
+  /// * `output` is not in `graph`.
+  /// * An invalid shape is being set (e.g., the shape being set
+  /// is incompatible with the existing shape).
+  void TF_GraphSetTensorShape(
+    ffi.Pointer<TF_Graph> graph,
+    TF_Output output,
+    ffi.Pointer<ffi.Int64> dims,
+    int num_dims,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GraphSetTensorShape(
+      graph,
+      output,
+      dims,
+      num_dims,
+      status,
+    );
+  }
+
+  late final _TF_GraphSetTensorShapePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Graph>,
+              TF_Output,
+              ffi.Pointer<ffi.Int64>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_GraphSetTensorShape');
+  late final _TF_GraphSetTensorShape = _TF_GraphSetTensorShapePtr.asFunction<
+      void Function(ffi.Pointer<TF_Graph>, TF_Output, ffi.Pointer<ffi.Int64>,
+          int, ffi.Pointer<ffi.Int>)>();
+
+  /// Returns the number of dimensions of the Tensor referenced by `output`
+  /// in `graph`.
+  ///
+  /// If the number of dimensions in the shape is unknown, returns -1.
+  ///
+  /// Returns an error into `status` if:
+  /// * `output` is not in `graph`.
+  int TF_GraphGetTensorNumDims(
+    ffi.Pointer<TF_Graph> graph,
+    TF_Output output,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GraphGetTensorNumDims(
+      graph,
+      output,
+      status,
+    );
+  }
+
+  late final _TF_GraphGetTensorNumDimsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<TF_Graph>, TF_Output,
+              ffi.Pointer<ffi.Int>)>>('TF_GraphGetTensorNumDims');
+  late final _TF_GraphGetTensorNumDims =
+      _TF_GraphGetTensorNumDimsPtr.asFunction<
+          int Function(
+              ffi.Pointer<TF_Graph>, TF_Output, ffi.Pointer<ffi.Int>)>();
+
+  /// Returns the shape of the Tensor referenced by `output` in `graph`
+  /// into `dims`. `dims` must be an array large enough to hold `num_dims`
+  /// entries (e.g., the return value of TF_GraphGetTensorNumDims).
+  ///
+  /// If the number of dimensions in the shape is unknown or the shape is
+  /// a scalar, `dims` will remain untouched. Otherwise, each element of
+  /// `dims` will be set corresponding to the size of the dimension. An
+  /// unknown dimension is represented by `-1`.
+  ///
+  /// Returns an error into `status` if:
+  /// * `output` is not in `graph`.
+  /// * `num_dims` does not match the actual number of dimensions.
+  void TF_GraphGetTensorShape(
+    ffi.Pointer<TF_Graph> graph,
+    TF_Output output,
+    ffi.Pointer<ffi.Int64> dims,
+    int num_dims,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GraphGetTensorShape(
+      graph,
+      output,
+      dims,
+      num_dims,
+      status,
+    );
+  }
+
+  late final _TF_GraphGetTensorShapePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Graph>,
+              TF_Output,
+              ffi.Pointer<ffi.Int64>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_GraphGetTensorShape');
+  late final _TF_GraphGetTensorShape = _TF_GraphGetTensorShapePtr.asFunction<
+      void Function(ffi.Pointer<TF_Graph>, TF_Output, ffi.Pointer<ffi.Int64>,
+          int, ffi.Pointer<ffi.Int>)>();
+
+  /// Creates a new operation - see `TF_NewOperation` for more details.
+  ///
+  /// The lock for `graph` must be held when calling this function.
+  ///
+  /// Unless implementing advanced behavior, like custom gradient functions, you
+  /// most likely need to call `TF_NewOperation` instead.
+  ffi.Pointer<TF_OperationDescription> TF_NewOperationLocked(
+    ffi.Pointer<TF_Graph> graph,
+    ffi.Pointer<ffi.Char> op_type,
+    ffi.Pointer<ffi.Char> oper_name,
+  ) {
+    return _TF_NewOperationLocked(
+      graph,
+      op_type,
+      oper_name,
+    );
+  }
+
+  late final _TF_NewOperationLockedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_OperationDescription> Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('TF_NewOperationLocked');
+  late final _TF_NewOperationLocked = _TF_NewOperationLockedPtr.asFunction<
+      ffi.Pointer<TF_OperationDescription> Function(ffi.Pointer<TF_Graph>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  /// Operation will only be added to *graph when TF_FinishOperation() is
+  /// called (assuming TF_FinishOperation() does not return an error).
+  /// *graph must not be deleted until after TF_FinishOperation() is
+  /// called.
+  ffi.Pointer<TF_OperationDescription> TF_NewOperation(
+    ffi.Pointer<TF_Graph> graph,
+    ffi.Pointer<ffi.Char> op_type,
+    ffi.Pointer<ffi.Char> oper_name,
+  ) {
+    return _TF_NewOperation(
+      graph,
+      op_type,
+      oper_name,
+    );
+  }
+
+  late final _TF_NewOperationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_OperationDescription> Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('TF_NewOperation');
+  late final _TF_NewOperation = _TF_NewOperationPtr.asFunction<
+      ffi.Pointer<TF_OperationDescription> Function(ffi.Pointer<TF_Graph>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  /// Specify the device for `desc`.  Defaults to empty, meaning unconstrained.
+  void TF_SetDevice(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> device,
+  ) {
+    return _TF_SetDevice(
+      desc,
+      device,
+    );
+  }
+
+  late final _TF_SetDevicePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>)>>('TF_SetDevice');
+  late final _TF_SetDevice = _TF_SetDevicePtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>)>();
+
+  /// For inputs that take a single tensor.
+  void TF_AddInput(
+    ffi.Pointer<TF_OperationDescription> desc,
+    TF_Output input,
+  ) {
+    return _TF_AddInput(
+      desc,
+      input,
+    );
+  }
+
+  late final _TF_AddInputPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>, TF_Output)>>('TF_AddInput');
+  late final _TF_AddInput = _TF_AddInputPtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, TF_Output)>();
+
+  /// For inputs that take a list of tensors.
+  /// inputs must point to TF_Output[num_inputs].
+  void TF_AddInputList(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<TF_Output> inputs,
+    int num_inputs,
+  ) {
+    return _TF_AddInputList(
+      desc,
+      inputs,
+      num_inputs,
+    );
+  }
+
+  late final _TF_AddInputListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<TF_Output>, ffi.Int)>>('TF_AddInputList');
+  late final _TF_AddInputList = _TF_AddInputListPtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_OperationDescription>, ffi.Pointer<TF_Output>, int)>();
+
+  /// Call once per control input to `desc`.
+  void TF_AddControlInput(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<TF_Operation> input,
+  ) {
+    return _TF_AddControlInput(
+      desc,
+      input,
+    );
+  }
+
+  late final _TF_AddControlInputPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<TF_Operation>)>>('TF_AddControlInput');
+  late final _TF_AddControlInput = _TF_AddControlInputPtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_OperationDescription>, ffi.Pointer<TF_Operation>)>();
+
+  /// Request that `desc` be co-located on the device where `op`
+  /// is placed.
+  ///
+  /// Use of this is discouraged since the implementation of device placement is
+  /// subject to change. Primarily intended for internal libraries
+  void TF_ColocateWith(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<TF_Operation> op,
+  ) {
+    return _TF_ColocateWith(
+      desc,
+      op,
+    );
+  }
+
+  late final _TF_ColocateWithPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<TF_Operation>)>>('TF_ColocateWith');
+  late final _TF_ColocateWith = _TF_ColocateWithPtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_OperationDescription>, ffi.Pointer<TF_Operation>)>();
+
+  /// `value` must point to a string of length `length` bytes.
+  void TF_SetAttrString(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Void> value,
+    int length,
+  ) {
+    return _TF_SetAttrString(
+      desc,
+      attr_name,
+      value,
+      length,
+    );
+  }
+
+  late final _TF_SetAttrStringPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Size)>>('TF_SetAttrString');
+  late final _TF_SetAttrString = _TF_SetAttrStringPtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Void>, int)>();
+
+  /// `values` and `lengths` each must have lengths `num_values`.
+  /// `values[i]` must point to a string of length `lengths[i]` bytes.
+  void TF_SetAttrStringList(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Pointer<ffi.Void>> values,
+    ffi.Pointer<ffi.Size> lengths,
+    int num_values,
+  ) {
+    return _TF_SetAttrStringList(
+      desc,
+      attr_name,
+      values,
+      lengths,
+      num_values,
+    );
+  }
+
+  late final _TF_SetAttrStringListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Void>>,
+              ffi.Pointer<ffi.Size>,
+              ffi.Int)>>('TF_SetAttrStringList');
+  late final _TF_SetAttrStringList = _TF_SetAttrStringListPtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Pointer<ffi.Size>, int)>();
+
+  void TF_SetAttrInt(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    int value,
+  ) {
+    return _TF_SetAttrInt(
+      desc,
+      attr_name,
+      value,
+    );
+  }
+
+  late final _TF_SetAttrIntPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>, ffi.Int64)>>('TF_SetAttrInt');
+  late final _TF_SetAttrInt = _TF_SetAttrIntPtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>, int)>();
+
+  void TF_SetAttrIntList(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Int64> values,
+    int num_values,
+  ) {
+    return _TF_SetAttrIntList(
+      desc,
+      attr_name,
+      values,
+      num_values,
+    );
+  }
+
+  late final _TF_SetAttrIntListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int64>,
+              ffi.Int)>>('TF_SetAttrIntList');
+  late final _TF_SetAttrIntList = _TF_SetAttrIntListPtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Int64>, int)>();
+
+  void TF_SetAttrFloat(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    double value,
+  ) {
+    return _TF_SetAttrFloat(
+      desc,
+      attr_name,
+      value,
+    );
+  }
+
+  late final _TF_SetAttrFloatPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>, ffi.Float)>>('TF_SetAttrFloat');
+  late final _TF_SetAttrFloat = _TF_SetAttrFloatPtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>,
+          double)>();
+
+  void TF_SetAttrFloatList(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Float> values,
+    int num_values,
+  ) {
+    return _TF_SetAttrFloatList(
+      desc,
+      attr_name,
+      values,
+      num_values,
+    );
+  }
+
+  late final _TF_SetAttrFloatListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Float>,
+              ffi.Int)>>('TF_SetAttrFloatList');
+  late final _TF_SetAttrFloatList = _TF_SetAttrFloatListPtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Float>, int)>();
+
+  void TF_SetAttrBool(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    int value,
+  ) {
+    return _TF_SetAttrBool(
+      desc,
+      attr_name,
+      value,
+    );
+  }
+
+  late final _TF_SetAttrBoolPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>, ffi.UnsignedChar)>>('TF_SetAttrBool');
+  late final _TF_SetAttrBool = _TF_SetAttrBoolPtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>, int)>();
+
+  void TF_SetAttrBoolList(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.UnsignedChar> values,
+    int num_values,
+  ) {
+    return _TF_SetAttrBoolList(
+      desc,
+      attr_name,
+      values,
+      num_values,
+    );
+  }
+
+  late final _TF_SetAttrBoolListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.UnsignedChar>,
+              ffi.Int)>>('TF_SetAttrBoolList');
+  late final _TF_SetAttrBoolList = _TF_SetAttrBoolListPtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.UnsignedChar>, int)>();
+
+  void TF_SetAttrType(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    int value,
+  ) {
+    return _TF_SetAttrType(
+      desc,
+      attr_name,
+      value,
+    );
+  }
+
+  late final _TF_SetAttrTypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('TF_SetAttrType');
+  late final _TF_SetAttrType = _TF_SetAttrTypePtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>, int)>();
+
+  void TF_SetAttrTypeList(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Int> values,
+    int num_values,
+  ) {
+    return _TF_SetAttrTypeList(
+      desc,
+      attr_name,
+      values,
+      num_values,
+    );
+  }
+
+  late final _TF_SetAttrTypeListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Int)>>('TF_SetAttrTypeList');
+  late final _TF_SetAttrTypeList = _TF_SetAttrTypeListPtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Int>, int)>();
+
+  void TF_SetAttrPlaceholder(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Char> placeholder,
+  ) {
+    return _TF_SetAttrPlaceholder(
+      desc,
+      attr_name,
+      placeholder,
+    );
+  }
+
+  late final _TF_SetAttrPlaceholderPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('TF_SetAttrPlaceholder');
+  late final _TF_SetAttrPlaceholder = _TF_SetAttrPlaceholderPtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>)>();
+
+  /// Set a 'func' attribute to the specified name.
+  /// `value` must point to a string of length `length` bytes.
+  void TF_SetAttrFuncName(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Char> value,
+    int length,
+  ) {
+    return _TF_SetAttrFuncName(
+      desc,
+      attr_name,
+      value,
+      length,
+    );
+  }
+
+  late final _TF_SetAttrFuncNamePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('TF_SetAttrFuncName');
+  late final _TF_SetAttrFuncName = _TF_SetAttrFuncNamePtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, int)>();
+
+  /// Set `num_dims` to -1 to represent "unknown rank".  Otherwise,
+  /// `dims` points to an array of length `num_dims`.  `dims[i]` must be
+  /// >= -1, with -1 meaning "unknown dimension".
+  void TF_SetAttrShape(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Int64> dims,
+    int num_dims,
+  ) {
+    return _TF_SetAttrShape(
+      desc,
+      attr_name,
+      dims,
+      num_dims,
+    );
+  }
+
+  late final _TF_SetAttrShapePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int64>,
+              ffi.Int)>>('TF_SetAttrShape');
+  late final _TF_SetAttrShape = _TF_SetAttrShapePtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Int64>, int)>();
+
+  /// `dims` and `num_dims` must point to arrays of length `num_shapes`.
+  /// Set `num_dims[i]` to -1 to represent "unknown rank".  Otherwise,
+  /// `dims[i]` points to an array of length `num_dims[i]`.  `dims[i][j]`
+  /// must be >= -1, with -1 meaning "unknown dimension".
+  void TF_SetAttrShapeList(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Pointer<ffi.Int64>> dims,
+    ffi.Pointer<ffi.Int> num_dims,
+    int num_shapes,
+  ) {
+    return _TF_SetAttrShapeList(
+      desc,
+      attr_name,
+      dims,
+      num_dims,
+      num_shapes,
+    );
+  }
+
+  late final _TF_SetAttrShapeListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Int64>>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Int)>>('TF_SetAttrShapeList');
+  late final _TF_SetAttrShapeList = _TF_SetAttrShapeListPtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Pointer<ffi.Int64>>, ffi.Pointer<ffi.Int>, int)>();
+
+  /// `proto` must point to an array of `proto_len` bytes representing a
+  /// binary-serialized TensorShapeProto.
+  void TF_SetAttrTensorShapeProto(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Void> proto,
+    int proto_len,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_SetAttrTensorShapeProto(
+      desc,
+      attr_name,
+      proto,
+      proto_len,
+      status,
+    );
+  }
+
+  late final _TF_SetAttrTensorShapeProtoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Pointer<ffi.Int>)>>('TF_SetAttrTensorShapeProto');
+  late final _TF_SetAttrTensorShapeProto =
+      _TF_SetAttrTensorShapeProtoPtr.asFunction<
+          void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Void>,
+              int,
+              ffi.Pointer<ffi.Int>)>();
+
+  /// `protos` and `proto_lens` must point to arrays of length `num_shapes`.
+  /// `protos[i]` must point to an array of `proto_lens[i]` bytes
+  /// representing a binary-serialized TensorShapeProto.
+  void TF_SetAttrTensorShapeProtoList(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Pointer<ffi.Void>> protos,
+    ffi.Pointer<ffi.Size> proto_lens,
+    int num_shapes,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_SetAttrTensorShapeProtoList(
+      desc,
+      attr_name,
+      protos,
+      proto_lens,
+      num_shapes,
+      status,
+    );
+  }
+
+  late final _TF_SetAttrTensorShapeProtoListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Void>>,
+              ffi.Pointer<ffi.Size>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_SetAttrTensorShapeProtoList');
+  late final _TF_SetAttrTensorShapeProtoList =
+      _TF_SetAttrTensorShapeProtoListPtr.asFunction<
+          void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Void>>,
+              ffi.Pointer<ffi.Size>,
+              int,
+              ffi.Pointer<ffi.Int>)>();
+
+  void TF_SetAttrTensor(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Int> value,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_SetAttrTensor(
+      desc,
+      attr_name,
+      value,
+      status,
+    );
+  }
+
+  late final _TF_SetAttrTensorPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>>('TF_SetAttrTensor');
+  late final _TF_SetAttrTensor = _TF_SetAttrTensorPtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
+
+  void TF_SetAttrTensorList(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Pointer<ffi.Int>> values,
+    int num_values,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_SetAttrTensorList(
+      desc,
+      attr_name,
+      values,
+      num_values,
+      status,
+    );
+  }
+
+  late final _TF_SetAttrTensorListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_SetAttrTensorList');
+  late final _TF_SetAttrTensorList = _TF_SetAttrTensorListPtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Pointer<ffi.Int>>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// `proto` should point to a sequence of bytes of length `proto_len`
+  /// representing a binary serialization of an AttrValue protocol
+  /// buffer.
+  void TF_SetAttrValueProto(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Void> proto,
+    int proto_len,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_SetAttrValueProto(
+      desc,
+      attr_name,
+      proto,
+      proto_len,
+      status,
+    );
+  }
+
+  late final _TF_SetAttrValueProtoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Pointer<ffi.Int>)>>('TF_SetAttrValueProto');
+  late final _TF_SetAttrValueProto = _TF_SetAttrValueProtoPtr.asFunction<
+      void Function(ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Void>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Adds this operation to the graph - see `TF_FinishOperation` for more details.
+  ///
+  /// The lock for `graph` must be held when calling this function.
+  ///
+  /// Unless implementing advanced behavior, like custom gradient functions, you
+  /// most likely need to call `TF_FinishOperation` instead.
+  ffi.Pointer<TF_Operation> TF_FinishOperationLocked(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_FinishOperationLocked(
+      desc,
+      status,
+    );
+  }
+
+  late final _TF_FinishOperationLockedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_Operation> Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Int>)>>('TF_FinishOperationLocked');
+  late final _TF_FinishOperationLocked =
+      _TF_FinishOperationLockedPtr.asFunction<
+          ffi.Pointer<TF_Operation> Function(
+              ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Int>)>();
+
+  /// If this function succeeds:
+  /// * *status is set to an OK value,
+  /// * a TF_Operation is added to the graph,
+  /// * a non-null value pointing to the added operation is returned --
+  /// this value is valid until the underlying graph is deleted.
+  /// Otherwise:
+  /// * *status is set to a non-OK value,
+  /// * the graph is not modified,
+  /// * a null value is returned.
+  /// In either case, it deletes `desc`.
+  ffi.Pointer<TF_Operation> TF_FinishOperation(
+    ffi.Pointer<TF_OperationDescription> desc,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_FinishOperation(
+      desc,
+      status,
+    );
+  }
+
+  late final _TF_FinishOperationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_Operation> Function(
+              ffi.Pointer<TF_OperationDescription>,
+              ffi.Pointer<ffi.Int>)>>('TF_FinishOperation');
+  late final _TF_FinishOperation = _TF_FinishOperationPtr.asFunction<
+      ffi.Pointer<TF_Operation> Function(
+          ffi.Pointer<TF_OperationDescription>, ffi.Pointer<ffi.Int>)>();
+
+  /// TF_Operation functions.  Operations are immutable once created, so
+  /// these are all query functions.
+  ffi.Pointer<ffi.Char> TF_OperationName(
+    ffi.Pointer<TF_Operation> oper,
+  ) {
+    return _TF_OperationName(
+      oper,
+    );
+  }
+
+  late final _TF_OperationNamePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<TF_Operation>)>>('TF_OperationName');
+  late final _TF_OperationName = _TF_OperationNamePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<TF_Operation>)>();
+
+  ffi.Pointer<ffi.Char> TF_OperationOpType(
+    ffi.Pointer<TF_Operation> oper,
+  ) {
+    return _TF_OperationOpType(
+      oper,
+    );
+  }
+
+  late final _TF_OperationOpTypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<TF_Operation>)>>('TF_OperationOpType');
+  late final _TF_OperationOpType = _TF_OperationOpTypePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<TF_Operation>)>();
+
+  ffi.Pointer<ffi.Char> TF_OperationDevice(
+    ffi.Pointer<TF_Operation> oper,
+  ) {
+    return _TF_OperationDevice(
+      oper,
+    );
+  }
+
+  late final _TF_OperationDevicePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<TF_Operation>)>>('TF_OperationDevice');
+  late final _TF_OperationDevice = _TF_OperationDevicePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<TF_Operation>)>();
+
+  int TF_OperationNumOutputs(
+    ffi.Pointer<TF_Operation> oper,
+  ) {
+    return _TF_OperationNumOutputs(
+      oper,
+    );
+  }
+
+  late final _TF_OperationNumOutputsPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<TF_Operation>)>>(
+          'TF_OperationNumOutputs');
+  late final _TF_OperationNumOutputs = _TF_OperationNumOutputsPtr.asFunction<
+      int Function(ffi.Pointer<TF_Operation>)>();
+
+  int TF_OperationOutputType(
+    TF_Output oper_out,
+  ) {
+    return _TF_OperationOutputType(
+      oper_out,
+    );
+  }
+
+  late final _TF_OperationOutputTypePtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(TF_Output)>>(
+          'TF_OperationOutputType');
+  late final _TF_OperationOutputType =
+      _TF_OperationOutputTypePtr.asFunction<int Function(TF_Output)>();
+
+  int TF_OperationOutputListLength(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> arg_name,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationOutputListLength(
+      oper,
+      arg_name,
+      status,
+    );
+  }
+
+  late final _TF_OperationOutputListLengthPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationOutputListLength');
+  late final _TF_OperationOutputListLength =
+      _TF_OperationOutputListLengthPtr.asFunction<
+          int Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>)>();
+
+  int TF_OperationNumInputs(
+    ffi.Pointer<TF_Operation> oper,
+  ) {
+    return _TF_OperationNumInputs(
+      oper,
+    );
+  }
+
+  late final _TF_OperationNumInputsPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<TF_Operation>)>>(
+          'TF_OperationNumInputs');
+  late final _TF_OperationNumInputs = _TF_OperationNumInputsPtr.asFunction<
+      int Function(ffi.Pointer<TF_Operation>)>();
+
+  int TF_OperationInputType(
+    TF_Input oper_in,
+  ) {
+    return _TF_OperationInputType(
+      oper_in,
+    );
+  }
+
+  late final _TF_OperationInputTypePtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(TF_Input)>>(
+          'TF_OperationInputType');
+  late final _TF_OperationInputType =
+      _TF_OperationInputTypePtr.asFunction<int Function(TF_Input)>();
+
+  int TF_OperationInputListLength(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> arg_name,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationInputListLength(
+      oper,
+      arg_name,
+      status,
+    );
+  }
+
+  late final _TF_OperationInputListLengthPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationInputListLength');
+  late final _TF_OperationInputListLength =
+      _TF_OperationInputListLengthPtr.asFunction<
+          int Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>)>();
+
+  /// In this code:
+  /// TF_Output producer = TF_OperationInput(consumer);
+  /// There is an edge from producer.oper's output (given by
+  /// producer.index) to consumer.oper's input (given by consumer.index).
+  TF_Output TF_OperationInput(
+    TF_Input oper_in,
+  ) {
+    return _TF_OperationInput(
+      oper_in,
+    );
+  }
+
+  late final _TF_OperationInputPtr =
+      _lookup<ffi.NativeFunction<TF_Output Function(TF_Input)>>(
+          'TF_OperationInput');
+  late final _TF_OperationInput =
+      _TF_OperationInputPtr.asFunction<TF_Output Function(TF_Input)>();
+
+  /// Get list of all inputs of a specific operation.  `inputs` must point to
+  /// an array of length at least `max_inputs` (ideally set to
+  /// TF_OperationNumInputs(oper)).  Beware that a concurrent
+  /// modification of the graph can increase the number of inputs of
+  /// an operation.
+  void TF_OperationAllInputs(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<TF_Output> inputs,
+    int max_inputs,
+  ) {
+    return _TF_OperationAllInputs(
+      oper,
+      inputs,
+      max_inputs,
+    );
+  }
+
+  late final _TF_OperationAllInputsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<TF_Output>,
+              ffi.Int)>>('TF_OperationAllInputs');
+  late final _TF_OperationAllInputs = _TF_OperationAllInputsPtr.asFunction<
+      void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<TF_Output>, int)>();
+
+  /// Get the number of current consumers of a specific output of an
+  /// operation.  Note that this number can change when new operations
+  /// are added to the graph.
+  int TF_OperationOutputNumConsumers(
+    TF_Output oper_out,
+  ) {
+    return _TF_OperationOutputNumConsumers(
+      oper_out,
+    );
+  }
+
+  late final _TF_OperationOutputNumConsumersPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(TF_Output)>>(
+          'TF_OperationOutputNumConsumers');
+  late final _TF_OperationOutputNumConsumers =
+      _TF_OperationOutputNumConsumersPtr.asFunction<int Function(TF_Output)>();
+
+  /// Get list of all current consumers of a specific output of an
+  /// operation.  `consumers` must point to an array of length at least
+  /// `max_consumers` (ideally set to
+  /// TF_OperationOutputNumConsumers(oper_out)).  Beware that a concurrent
+  /// modification of the graph can increase the number of consumers of
+  /// an operation.  Returns the number of output consumers (should match
+  /// TF_OperationOutputNumConsumers(oper_out)).
+  int TF_OperationOutputConsumers(
+    TF_Output oper_out,
+    ffi.Pointer<TF_Input> consumers,
+    int max_consumers,
+  ) {
+    return _TF_OperationOutputConsumers(
+      oper_out,
+      consumers,
+      max_consumers,
+    );
+  }
+
+  late final _TF_OperationOutputConsumersPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(TF_Output, ffi.Pointer<TF_Input>,
+              ffi.Int)>>('TF_OperationOutputConsumers');
+  late final _TF_OperationOutputConsumers = _TF_OperationOutputConsumersPtr
+      .asFunction<int Function(TF_Output, ffi.Pointer<TF_Input>, int)>();
+
+  /// Get the number of control inputs to an operation.
+  int TF_OperationNumControlInputs(
+    ffi.Pointer<TF_Operation> oper,
+  ) {
+    return _TF_OperationNumControlInputs(
+      oper,
+    );
+  }
+
+  late final _TF_OperationNumControlInputsPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<TF_Operation>)>>(
+          'TF_OperationNumControlInputs');
+  late final _TF_OperationNumControlInputs = _TF_OperationNumControlInputsPtr
+      .asFunction<int Function(ffi.Pointer<TF_Operation>)>();
+
+  /// Get list of all control inputs to an operation.  `control_inputs` must
+  /// point to an array of length `max_control_inputs` (ideally set to
+  /// TF_OperationNumControlInputs(oper)).  Returns the number of control
+  /// inputs (should match TF_OperationNumControlInputs(oper)).
+  int TF_OperationGetControlInputs(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Pointer<TF_Operation>> control_inputs,
+    int max_control_inputs,
+  ) {
+    return _TF_OperationGetControlInputs(
+      oper,
+      control_inputs,
+      max_control_inputs,
+    );
+  }
+
+  late final _TF_OperationGetControlInputsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Pointer<TF_Operation>>,
+              ffi.Int)>>('TF_OperationGetControlInputs');
+  late final _TF_OperationGetControlInputs =
+      _TF_OperationGetControlInputsPtr.asFunction<
+          int Function(ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Pointer<TF_Operation>>, int)>();
+
+  /// Get the number of operations that have `*oper` as a control input.
+  /// Note that this number can change when new operations are added to
+  /// the graph.
+  int TF_OperationNumControlOutputs(
+    ffi.Pointer<TF_Operation> oper,
+  ) {
+    return _TF_OperationNumControlOutputs(
+      oper,
+    );
+  }
+
+  late final _TF_OperationNumControlOutputsPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<TF_Operation>)>>(
+          'TF_OperationNumControlOutputs');
+  late final _TF_OperationNumControlOutputs = _TF_OperationNumControlOutputsPtr
+      .asFunction<int Function(ffi.Pointer<TF_Operation>)>();
+
+  /// Get the list of operations that have `*oper` as a control input.
+  /// `control_outputs` must point to an array of length at least
+  /// `max_control_outputs` (ideally set to
+  /// TF_OperationNumControlOutputs(oper)). Beware that a concurrent
+  /// modification of the graph can increase the number of control
+  /// outputs.  Returns the number of control outputs (should match
+  /// TF_OperationNumControlOutputs(oper)).
+  int TF_OperationGetControlOutputs(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Pointer<TF_Operation>> control_outputs,
+    int max_control_outputs,
+  ) {
+    return _TF_OperationGetControlOutputs(
+      oper,
+      control_outputs,
+      max_control_outputs,
+    );
+  }
+
+  late final _TF_OperationGetControlOutputsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Pointer<TF_Operation>>,
+              ffi.Int)>>('TF_OperationGetControlOutputs');
+  late final _TF_OperationGetControlOutputs =
+      _TF_OperationGetControlOutputsPtr.asFunction<
+          int Function(ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Pointer<TF_Operation>>, int)>();
+
+  /// Returns metadata about the value of the attribute `attr_name` of `oper`.
+  TF_AttrMetadata TF_OperationGetAttrMetadata(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrMetadata(
+      oper,
+      attr_name,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrMetadataPtr = _lookup<
+      ffi.NativeFunction<
+          TF_AttrMetadata Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrMetadata');
+  late final _TF_OperationGetAttrMetadata =
+      _TF_OperationGetAttrMetadataPtr.asFunction<
+          TF_AttrMetadata Function(ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>)>();
+
+  /// Fills in `value` with the value of the attribute `attr_name`.  `value` must
+  /// point to an array of length at least `max_length` (ideally set to
+  /// TF_AttrMetadata.total_size from TF_OperationGetAttrMetadata(oper,
+  /// attr_name)).
+  void TF_OperationGetAttrString(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Void> value,
+    int max_length,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrString(
+      oper,
+      attr_name,
+      value,
+      max_length,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrStringPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrString');
+  late final _TF_OperationGetAttrString =
+      _TF_OperationGetAttrStringPtr.asFunction<
+          void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Void>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Get the list of strings in the value of the attribute `attr_name`.  Fills in
+  /// `values` and `lengths`, each of which must point to an array of length at
+  /// least `max_values`.
+  ///
+  /// The elements of values will point to addresses in `storage` which must be at
+  /// least `storage_size` bytes in length.  Ideally, max_values would be set to
+  /// TF_AttrMetadata.list_size and `storage` would be at least
+  /// TF_AttrMetadata.total_size, obtained from TF_OperationGetAttrMetadata(oper,
+  /// attr_name).
+  ///
+  /// Fails if storage_size is too small to hold the requested number of strings.
+  void TF_OperationGetAttrStringList(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Pointer<ffi.Void>> values,
+    ffi.Pointer<ffi.Size> lengths,
+    int max_values,
+    ffi.Pointer<ffi.Void> storage,
+    int storage_size,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrStringList(
+      oper,
+      attr_name,
+      values,
+      lengths,
+      max_values,
+      storage,
+      storage_size,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrStringListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Void>>,
+              ffi.Pointer<ffi.Size>,
+              ffi.Int,
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrStringList');
+  late final _TF_OperationGetAttrStringList =
+      _TF_OperationGetAttrStringListPtr.asFunction<
+          void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Void>>,
+              ffi.Pointer<ffi.Size>,
+              int,
+              ffi.Pointer<ffi.Void>,
+              int,
+              ffi.Pointer<ffi.Int>)>();
+
+  void TF_OperationGetAttrInt(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Int64> value,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrInt(
+      oper,
+      attr_name,
+      value,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrIntPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int64>,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrInt');
+  late final _TF_OperationGetAttrInt = _TF_OperationGetAttrIntPtr.asFunction<
+      void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Int64>, ffi.Pointer<ffi.Int>)>();
+
+  /// Fills in `values` with the value of the attribute `attr_name` of `oper`.
+  /// `values` must point to an array of length at least `max_values` (ideally set
+  /// TF_AttrMetadata.list_size from TF_OperationGetAttrMetadata(oper,
+  /// attr_name)).
+  void TF_OperationGetAttrIntList(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Int64> values,
+    int max_values,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrIntList(
+      oper,
+      attr_name,
+      values,
+      max_values,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrIntListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int64>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrIntList');
+  late final _TF_OperationGetAttrIntList =
+      _TF_OperationGetAttrIntListPtr.asFunction<
+          void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int64>, int, ffi.Pointer<ffi.Int>)>();
+
+  void TF_OperationGetAttrFloat(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Float> value,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrFloat(
+      oper,
+      attr_name,
+      value,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrFloatPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Float>,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrFloat');
+  late final _TF_OperationGetAttrFloat =
+      _TF_OperationGetAttrFloatPtr.asFunction<
+          void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Float>, ffi.Pointer<ffi.Int>)>();
+
+  /// Fills in `values` with the value of the attribute `attr_name` of `oper`.
+  /// `values` must point to an array of length at least `max_values` (ideally set
+  /// to TF_AttrMetadata.list_size from TF_OperationGetAttrMetadata(oper,
+  /// attr_name)).
+  void TF_OperationGetAttrFloatList(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Float> values,
+    int max_values,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrFloatList(
+      oper,
+      attr_name,
+      values,
+      max_values,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrFloatListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Float>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrFloatList');
+  late final _TF_OperationGetAttrFloatList =
+      _TF_OperationGetAttrFloatListPtr.asFunction<
+          void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Float>, int, ffi.Pointer<ffi.Int>)>();
+
+  void TF_OperationGetAttrBool(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.UnsignedChar> value,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrBool(
+      oper,
+      attr_name,
+      value,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrBoolPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.UnsignedChar>,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrBool');
+  late final _TF_OperationGetAttrBool = _TF_OperationGetAttrBoolPtr.asFunction<
+      void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.UnsignedChar>, ffi.Pointer<ffi.Int>)>();
+
+  /// Fills in `values` with the value of the attribute `attr_name` of `oper`.
+  /// `values` must point to an array of length at least `max_values` (ideally set
+  /// to TF_AttrMetadata.list_size from TF_OperationGetAttrMetadata(oper,
+  /// attr_name)).
+  void TF_OperationGetAttrBoolList(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.UnsignedChar> values,
+    int max_values,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrBoolList(
+      oper,
+      attr_name,
+      values,
+      max_values,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrBoolListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.UnsignedChar>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrBoolList');
+  late final _TF_OperationGetAttrBoolList =
+      _TF_OperationGetAttrBoolListPtr.asFunction<
+          void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.UnsignedChar>, int, ffi.Pointer<ffi.Int>)>();
+
+  void TF_OperationGetAttrType(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Int> value,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrType(
+      oper,
+      attr_name,
+      value,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrTypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrType');
+  late final _TF_OperationGetAttrType = _TF_OperationGetAttrTypePtr.asFunction<
+      void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
+
+  /// Fills in `values` with the value of the attribute `attr_name` of `oper`.
+  /// `values` must point to an array of length at least `max_values` (ideally set
+  /// to TF_AttrMetadata.list_size from TF_OperationGetAttrMetadata(oper,
+  /// attr_name)).
+  void TF_OperationGetAttrTypeList(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Int> values,
+    int max_values,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrTypeList(
+      oper,
+      attr_name,
+      values,
+      max_values,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrTypeListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrTypeList');
+  late final _TF_OperationGetAttrTypeList =
+      _TF_OperationGetAttrTypeListPtr.asFunction<
+          void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Fills in `value` with the value of the attribute `attr_name` of `oper`.
+  /// `values` must point to an array of length at least `num_dims` (ideally set to
+  /// TF_Attr_Meta.size from TF_OperationGetAttrMetadata(oper, attr_name)).
+  void TF_OperationGetAttrShape(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Int64> value,
+    int num_dims,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrShape(
+      oper,
+      attr_name,
+      value,
+      num_dims,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrShapePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int64>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrShape');
+  late final _TF_OperationGetAttrShape =
+      _TF_OperationGetAttrShapePtr.asFunction<
+          void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int64>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Fills in `dims` with the list of shapes in the attribute `attr_name` of
+  /// `oper` and `num_dims` with the corresponding number of dimensions. On return,
+  /// for every i where `num_dims[i]` > 0, `dims[i]` will be an array of
+  /// `num_dims[i]` elements. A value of -1 for `num_dims[i]` indicates that the
+  /// i-th shape in the list is unknown.
+  ///
+  /// The elements of `dims` will point to addresses in `storage` which must be
+  /// large enough to hold at least `storage_size` int64_ts.  Ideally, `num_shapes`
+  /// would be set to TF_AttrMetadata.list_size and `storage_size` would be set to
+  /// TF_AttrMetadata.total_size from TF_OperationGetAttrMetadata(oper,
+  /// attr_name).
+  ///
+  /// Fails if storage_size is insufficient to hold the requested shapes.
+  void TF_OperationGetAttrShapeList(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Pointer<ffi.Int64>> dims,
+    ffi.Pointer<ffi.Int> num_dims,
+    int num_shapes,
+    ffi.Pointer<ffi.Int64> storage,
+    int storage_size,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrShapeList(
+      oper,
+      attr_name,
+      dims,
+      num_dims,
+      num_shapes,
+      storage,
+      storage_size,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrShapeListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Int64>>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int64>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrShapeList');
+  late final _TF_OperationGetAttrShapeList =
+      _TF_OperationGetAttrShapeListPtr.asFunction<
+          void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Int64>>,
+              ffi.Pointer<ffi.Int>,
+              int,
+              ffi.Pointer<ffi.Int64>,
+              int,
+              ffi.Pointer<ffi.Int>)>();
+
+  /// Sets `value` to the binary-serialized TensorShapeProto of the value of
+  /// `attr_name` attribute of `oper`.
+  void TF_OperationGetAttrTensorShapeProto(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Int> value,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrTensorShapeProto(
+      oper,
+      attr_name,
+      value,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrTensorShapeProtoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrTensorShapeProto');
+  late final _TF_OperationGetAttrTensorShapeProto =
+      _TF_OperationGetAttrTensorShapeProtoPtr.asFunction<
+          void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
+
+  /// Fills in `values` with binary-serialized TensorShapeProto values of the
+  /// attribute `attr_name` of `oper`. `values` must point to an array of length at
+  /// least `num_values` (ideally set to TF_AttrMetadata.list_size from
+  /// TF_OperationGetAttrMetadata(oper, attr_name)).
+  void TF_OperationGetAttrTensorShapeProtoList(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Pointer<ffi.Int>> values,
+    int max_values,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrTensorShapeProtoList(
+      oper,
+      attr_name,
+      values,
+      max_values,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrTensorShapeProtoListPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<TF_Operation>,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Pointer<ffi.Pointer<ffi.Int>>,
+                  ffi.Int,
+                  ffi.Pointer<ffi.Int>)>>(
+      'TF_OperationGetAttrTensorShapeProtoList');
+  late final _TF_OperationGetAttrTensorShapeProtoList =
+      _TF_OperationGetAttrTensorShapeProtoListPtr.asFunction<
+          void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Gets the TF_Tensor valued attribute of `attr_name` of `oper`.
+  ///
+  /// Allocates a new TF_Tensor which the caller is expected to take
+  /// ownership of (and can deallocate using TF_DeleteTensor).
+  void TF_OperationGetAttrTensor(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Pointer<ffi.Int>> value,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrTensor(
+      oper,
+      attr_name,
+      value,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrTensorPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrTensor');
+  late final _TF_OperationGetAttrTensor =
+      _TF_OperationGetAttrTensorPtr.asFunction<
+          void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>, ffi.Pointer<ffi.Int>)>();
+
+  /// Fills in `values` with the TF_Tensor values of the attribute `attr_name` of
+  /// `oper`. `values` must point to an array of TF_Tensor* of length at least
+  /// `max_values` (ideally set to TF_AttrMetadata.list_size from
+  /// TF_OperationGetAttrMetadata(oper, attr_name)).
+  ///
+  /// The caller takes ownership of all the non-null TF_Tensor* entries in `values`
+  /// (which can be deleted using TF_DeleteTensor(values[i])).
+  void TF_OperationGetAttrTensorList(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Pointer<ffi.Int>> values,
+    int max_values,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrTensorList(
+      oper,
+      attr_name,
+      values,
+      max_values,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrTensorListPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrTensorList');
+  late final _TF_OperationGetAttrTensorList =
+      _TF_OperationGetAttrTensorListPtr.asFunction<
+          void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Sets `output_attr_value` to the binary-serialized AttrValue proto
+  /// representation of the value of the `attr_name` attr of `oper`.
+  void TF_OperationGetAttrValueProto(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Int> output_attr_value,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrValueProto(
+      oper,
+      attr_name,
+      output_attr_value,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrValueProtoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrValueProto');
+  late final _TF_OperationGetAttrValueProto =
+      _TF_OperationGetAttrValueProtoPtr.asFunction<
+          void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
+
+  /// Get the number of attributes the operation has.
+  int TF_OperationGetNumAttrs(
+    ffi.Pointer<TF_Operation> oper,
+  ) {
+    return _TF_OperationGetNumAttrs(
+      oper,
+    );
+  }
+
+  late final _TF_OperationGetNumAttrsPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<TF_Operation>)>>(
+          'TF_OperationGetNumAttrs');
+  late final _TF_OperationGetNumAttrs = _TF_OperationGetNumAttrsPtr.asFunction<
+      int Function(ffi.Pointer<TF_Operation>)>();
+
+  /// Get the length of the name of the ith attribute, or -1 if there is not an
+  /// ith attribute.
+  int TF_OperationGetAttrNameLength(
+    ffi.Pointer<TF_Operation> oper,
+    int i,
+  ) {
+    return _TF_OperationGetAttrNameLength(
+      oper,
+      i,
+    );
+  }
+
+  late final _TF_OperationGetAttrNameLengthPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<TF_Operation>,
+              ffi.Int)>>('TF_OperationGetAttrNameLength');
+  late final _TF_OperationGetAttrNameLength = _TF_OperationGetAttrNameLengthPtr
+      .asFunction<int Function(ffi.Pointer<TF_Operation>, int)>();
+
+  /// Get the name of the ith attribute.  output should have the size of
+  /// TF_OperationGetAttrNameLength(oper, i).
+  void TF_OperationGetAttrName(
+    ffi.Pointer<TF_Operation> oper,
+    int i,
+    ffi.Pointer<ffi.Char> output,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationGetAttrName(
+      oper,
+      i,
+      output,
+      status,
+    );
+  }
+
+  late final _TF_OperationGetAttrNamePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Operation>,
+              ffi.Int,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationGetAttrName');
+  late final _TF_OperationGetAttrName = _TF_OperationGetAttrNamePtr.asFunction<
+      void Function(ffi.Pointer<TF_Operation>, int, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Int>)>();
+
+  /// Returns the operation in the graph with `oper_name`. Returns nullptr if
+  /// no operation found.
+  ffi.Pointer<TF_Operation> TF_GraphOperationByName(
+    ffi.Pointer<TF_Graph> graph,
+    ffi.Pointer<ffi.Char> oper_name,
+  ) {
+    return _TF_GraphOperationByName(
+      graph,
+      oper_name,
+    );
+  }
+
+  late final _TF_GraphOperationByNamePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_Operation> Function(ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Char>)>>('TF_GraphOperationByName');
+  late final _TF_GraphOperationByName = _TF_GraphOperationByNamePtr.asFunction<
+      ffi.Pointer<TF_Operation> Function(
+          ffi.Pointer<TF_Graph>, ffi.Pointer<ffi.Char>)>();
+
+  /// Iterate through the operations of a graph.  To use:
+  /// size_t pos = 0;
+  /// TF_Operation* oper;
+  /// while ((oper = TF_GraphNextOperation(graph, &pos)) != nullptr) {
+  /// DoSomethingWithOperation(oper);
+  /// }
+  ffi.Pointer<TF_Operation> TF_GraphNextOperation(
+    ffi.Pointer<TF_Graph> graph,
+    ffi.Pointer<ffi.Size> pos,
+  ) {
+    return _TF_GraphNextOperation(
+      graph,
+      pos,
+    );
+  }
+
+  late final _TF_GraphNextOperationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_Operation> Function(ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Size>)>>('TF_GraphNextOperation');
+  late final _TF_GraphNextOperation = _TF_GraphNextOperationPtr.asFunction<
+      ffi.Pointer<TF_Operation> Function(
+          ffi.Pointer<TF_Graph>, ffi.Pointer<ffi.Size>)>();
+
+  /// Write out a serialized representation of `graph` (as a GraphDef protocol
+  /// message) to `output_graph_def` (allocated by TF_NewBuffer()).
+  /// `output_graph_def`'s underlying buffer will be freed when TF_DeleteBuffer()
+  /// is called.
+  ///
+  /// May fail on very large graphs in the future.
+  void TF_GraphToGraphDef(
+    ffi.Pointer<TF_Graph> graph,
+    ffi.Pointer<ffi.Int> output_graph_def,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GraphToGraphDef(
+      graph,
+      output_graph_def,
+      status,
+    );
+  }
+
+  late final _TF_GraphToGraphDefPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_Graph>, ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>>('TF_GraphToGraphDef');
+  late final _TF_GraphToGraphDef = _TF_GraphToGraphDefPtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_Graph>, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
+
+  /// Returns the serialized OpDef proto with name `op_name`, or a bad status if no
+  /// such op exists. This can return OpDefs of functions copied into the graph.
+  void TF_GraphGetOpDef(
+    ffi.Pointer<TF_Graph> graph,
+    ffi.Pointer<ffi.Char> op_name,
+    ffi.Pointer<ffi.Int> output_op_def,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GraphGetOpDef(
+      graph,
+      op_name,
+      output_op_def,
+      status,
+    );
+  }
+
+  late final _TF_GraphGetOpDefPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_Graph>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('TF_GraphGetOpDef');
+  late final _TF_GraphGetOpDef = _TF_GraphGetOpDefPtr.asFunction<
+      void Function(ffi.Pointer<TF_Graph>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
+
+  /// Returns the serialized VersionDef proto for this graph.
+  void TF_GraphVersions(
+    ffi.Pointer<TF_Graph> graph,
+    ffi.Pointer<ffi.Int> output_version_def,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GraphVersions(
+      graph,
+      output_version_def,
+      status,
+    );
+  }
+
+  late final _TF_GraphVersionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_Graph>, ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>>('TF_GraphVersions');
+  late final _TF_GraphVersions = _TF_GraphVersionsPtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_Graph>, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
+
+  ffi.Pointer<TF_ImportGraphDefOptions> TF_NewImportGraphDefOptions() {
+    return _TF_NewImportGraphDefOptions();
+  }
+
+  late final _TF_NewImportGraphDefOptionsPtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<TF_ImportGraphDefOptions> Function()>>(
+      'TF_NewImportGraphDefOptions');
+  late final _TF_NewImportGraphDefOptions = _TF_NewImportGraphDefOptionsPtr
+      .asFunction<ffi.Pointer<TF_ImportGraphDefOptions> Function()>();
+
+  void TF_DeleteImportGraphDefOptions(
+    ffi.Pointer<TF_ImportGraphDefOptions> opts,
+  ) {
+    return _TF_DeleteImportGraphDefOptions(
+      opts,
+    );
+  }
+
+  late final _TF_DeleteImportGraphDefOptionsPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<TF_ImportGraphDefOptions>)>>(
+      'TF_DeleteImportGraphDefOptions');
+  late final _TF_DeleteImportGraphDefOptions =
+      _TF_DeleteImportGraphDefOptionsPtr.asFunction<
+          void Function(ffi.Pointer<TF_ImportGraphDefOptions>)>();
+
+  /// Set the prefix to be prepended to the names of nodes in `graph_def` that will
+  /// be imported into `graph`. `prefix` is copied and has no lifetime
+  /// requirements.
+  void TF_ImportGraphDefOptionsSetPrefix(
+    ffi.Pointer<TF_ImportGraphDefOptions> opts,
+    ffi.Pointer<ffi.Char> prefix,
+  ) {
+    return _TF_ImportGraphDefOptionsSetPrefix(
+      opts,
+      prefix,
+    );
+  }
+
+  late final _TF_ImportGraphDefOptionsSetPrefixPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_ImportGraphDefOptions>,
+              ffi.Pointer<ffi.Char>)>>('TF_ImportGraphDefOptionsSetPrefix');
+  late final _TF_ImportGraphDefOptionsSetPrefix =
+      _TF_ImportGraphDefOptionsSetPrefixPtr.asFunction<
+          void Function(
+              ffi.Pointer<TF_ImportGraphDefOptions>, ffi.Pointer<ffi.Char>)>();
+
+  /// Set the execution device for nodes in `graph_def`.
+  /// Only applies to nodes where a device was not already explicitly specified.
+  /// `device` is copied and has no lifetime requirements.
+  void TF_ImportGraphDefOptionsSetDefaultDevice(
+    ffi.Pointer<TF_ImportGraphDefOptions> opts,
+    ffi.Pointer<ffi.Char> device,
+  ) {
+    return _TF_ImportGraphDefOptionsSetDefaultDevice(
+      opts,
+      device,
+    );
+  }
+
+  late final _TF_ImportGraphDefOptionsSetDefaultDevicePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<TF_ImportGraphDefOptions>,
+                  ffi.Pointer<ffi.Char>)>>(
+      'TF_ImportGraphDefOptionsSetDefaultDevice');
+  late final _TF_ImportGraphDefOptionsSetDefaultDevice =
+      _TF_ImportGraphDefOptionsSetDefaultDevicePtr.asFunction<
+          void Function(
+              ffi.Pointer<TF_ImportGraphDefOptions>, ffi.Pointer<ffi.Char>)>();
+
+  /// Set whether to uniquify imported operation names. If true, imported operation
+  /// names will be modified if their name already exists in the graph. If false,
+  /// conflicting names will be treated as an error. Note that this option has no
+  /// effect if a prefix is set, since the prefix will guarantee all names are
+  /// unique. Defaults to false.
+  void TF_ImportGraphDefOptionsSetUniquifyNames(
+    ffi.Pointer<TF_ImportGraphDefOptions> opts,
+    int uniquify_names,
+  ) {
+    return _TF_ImportGraphDefOptionsSetUniquifyNames(
+      opts,
+      uniquify_names,
+    );
+  }
+
+  late final _TF_ImportGraphDefOptionsSetUniquifyNamesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_ImportGraphDefOptions>,
+              ffi.UnsignedChar)>>('TF_ImportGraphDefOptionsSetUniquifyNames');
+  late final _TF_ImportGraphDefOptionsSetUniquifyNames =
+      _TF_ImportGraphDefOptionsSetUniquifyNamesPtr.asFunction<
+          void Function(ffi.Pointer<TF_ImportGraphDefOptions>, int)>();
+
+  /// If true, the specified prefix will be modified if it already exists as an
+  /// operation name or prefix in the graph. If false, a conflicting prefix will be
+  /// treated as an error. This option has no effect if no prefix is specified.
+  void TF_ImportGraphDefOptionsSetUniquifyPrefix(
+    ffi.Pointer<TF_ImportGraphDefOptions> opts,
+    int uniquify_prefix,
+  ) {
+    return _TF_ImportGraphDefOptionsSetUniquifyPrefix(
+      opts,
+      uniquify_prefix,
+    );
+  }
+
+  late final _TF_ImportGraphDefOptionsSetUniquifyPrefixPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_ImportGraphDefOptions>,
+              ffi.UnsignedChar)>>('TF_ImportGraphDefOptionsSetUniquifyPrefix');
+  late final _TF_ImportGraphDefOptionsSetUniquifyPrefix =
+      _TF_ImportGraphDefOptionsSetUniquifyPrefixPtr.asFunction<
+          void Function(ffi.Pointer<TF_ImportGraphDefOptions>, int)>();
+
+  /// Set any imported nodes with input `src_name:src_index` to have that input
+  /// replaced with `dst`. `src_name` refers to a node in the graph to be imported,
+  /// `dst` references a node already existing in the graph being imported into.
+  /// `src_name` is copied and has no lifetime requirements.
+  void TF_ImportGraphDefOptionsAddInputMapping(
+    ffi.Pointer<TF_ImportGraphDefOptions> opts,
+    ffi.Pointer<ffi.Char> src_name,
+    int src_index,
+    TF_Output dst,
+  ) {
+    return _TF_ImportGraphDefOptionsAddInputMapping(
+      opts,
+      src_name,
+      src_index,
+      dst,
+    );
+  }
+
+  late final _TF_ImportGraphDefOptionsAddInputMappingPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_ImportGraphDefOptions>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int,
+              TF_Output)>>('TF_ImportGraphDefOptionsAddInputMapping');
+  late final _TF_ImportGraphDefOptionsAddInputMapping =
+      _TF_ImportGraphDefOptionsAddInputMappingPtr.asFunction<
+          void Function(ffi.Pointer<TF_ImportGraphDefOptions>,
+              ffi.Pointer<ffi.Char>, int, TF_Output)>();
+
+  /// Set any imported nodes with control input `src_name` to have that input
+  /// replaced with `dst`. `src_name` refers to a node in the graph to be imported,
+  /// `dst` references an operation already existing in the graph being imported
+  /// into. `src_name` is copied and has no lifetime requirements.
+  void TF_ImportGraphDefOptionsRemapControlDependency(
+    ffi.Pointer<TF_ImportGraphDefOptions> opts,
+    ffi.Pointer<ffi.Char> src_name,
+    ffi.Pointer<TF_Operation> dst,
+  ) {
+    return _TF_ImportGraphDefOptionsRemapControlDependency(
+      opts,
+      src_name,
+      dst,
+    );
+  }
+
+  late final _TF_ImportGraphDefOptionsRemapControlDependencyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<TF_ImportGraphDefOptions>,
+                  ffi.Pointer<ffi.Char>, ffi.Pointer<TF_Operation>)>>(
+      'TF_ImportGraphDefOptionsRemapControlDependency');
+  late final _TF_ImportGraphDefOptionsRemapControlDependency =
+      _TF_ImportGraphDefOptionsRemapControlDependencyPtr.asFunction<
+          void Function(ffi.Pointer<TF_ImportGraphDefOptions>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<TF_Operation>)>();
+
+  /// Cause the imported graph to have a control dependency on `oper`. `oper`
+  /// should exist in the graph being imported into.
+  void TF_ImportGraphDefOptionsAddControlDependency(
+    ffi.Pointer<TF_ImportGraphDefOptions> opts,
+    ffi.Pointer<TF_Operation> oper,
+  ) {
+    return _TF_ImportGraphDefOptionsAddControlDependency(
+      opts,
+      oper,
+    );
+  }
+
+  late final _TF_ImportGraphDefOptionsAddControlDependencyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<TF_ImportGraphDefOptions>,
+                  ffi.Pointer<TF_Operation>)>>(
+      'TF_ImportGraphDefOptionsAddControlDependency');
+  late final _TF_ImportGraphDefOptionsAddControlDependency =
+      _TF_ImportGraphDefOptionsAddControlDependencyPtr.asFunction<
+          void Function(ffi.Pointer<TF_ImportGraphDefOptions>,
+              ffi.Pointer<TF_Operation>)>();
+
+  /// Add an output in `graph_def` to be returned via the `return_outputs` output
+  /// parameter of TF_GraphImportGraphDef(). If the output is remapped via an input
+  /// mapping, the corresponding existing tensor in `graph` will be returned.
+  /// `oper_name` is copied and has no lifetime requirements.
+  void TF_ImportGraphDefOptionsAddReturnOutput(
+    ffi.Pointer<TF_ImportGraphDefOptions> opts,
+    ffi.Pointer<ffi.Char> oper_name,
+    int index,
+  ) {
+    return _TF_ImportGraphDefOptionsAddReturnOutput(
+      opts,
+      oper_name,
+      index,
+    );
+  }
+
+  late final _TF_ImportGraphDefOptionsAddReturnOutputPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_ImportGraphDefOptions>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int)>>('TF_ImportGraphDefOptionsAddReturnOutput');
+  late final _TF_ImportGraphDefOptionsAddReturnOutput =
+      _TF_ImportGraphDefOptionsAddReturnOutputPtr.asFunction<
+          void Function(ffi.Pointer<TF_ImportGraphDefOptions>,
+              ffi.Pointer<ffi.Char>, int)>();
+
+  /// Returns the number of return outputs added via
+  /// TF_ImportGraphDefOptionsAddReturnOutput().
+  int TF_ImportGraphDefOptionsNumReturnOutputs(
+    ffi.Pointer<TF_ImportGraphDefOptions> opts,
+  ) {
+    return _TF_ImportGraphDefOptionsNumReturnOutputs(
+      opts,
+    );
+  }
+
+  late final _TF_ImportGraphDefOptionsNumReturnOutputsPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Int Function(ffi.Pointer<TF_ImportGraphDefOptions>)>>(
+      'TF_ImportGraphDefOptionsNumReturnOutputs');
+  late final _TF_ImportGraphDefOptionsNumReturnOutputs =
+      _TF_ImportGraphDefOptionsNumReturnOutputsPtr.asFunction<
+          int Function(ffi.Pointer<TF_ImportGraphDefOptions>)>();
+
+  /// Add an operation in `graph_def` to be returned via the `return_opers` output
+  /// parameter of TF_GraphImportGraphDef(). `oper_name` is copied and has no
+  /// lifetime requirements.
+  void TF_ImportGraphDefOptionsAddReturnOperation(
+    ffi.Pointer<TF_ImportGraphDefOptions> opts,
+    ffi.Pointer<ffi.Char> oper_name,
+  ) {
+    return _TF_ImportGraphDefOptionsAddReturnOperation(
+      opts,
+      oper_name,
+    );
+  }
+
+  late final _TF_ImportGraphDefOptionsAddReturnOperationPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<TF_ImportGraphDefOptions>,
+                  ffi.Pointer<ffi.Char>)>>(
+      'TF_ImportGraphDefOptionsAddReturnOperation');
+  late final _TF_ImportGraphDefOptionsAddReturnOperation =
+      _TF_ImportGraphDefOptionsAddReturnOperationPtr.asFunction<
+          void Function(
+              ffi.Pointer<TF_ImportGraphDefOptions>, ffi.Pointer<ffi.Char>)>();
+
+  /// Returns the number of return operations added via
+  /// TF_ImportGraphDefOptionsAddReturnOperation().
+  int TF_ImportGraphDefOptionsNumReturnOperations(
+    ffi.Pointer<TF_ImportGraphDefOptions> opts,
+  ) {
+    return _TF_ImportGraphDefOptionsNumReturnOperations(
+      opts,
+    );
+  }
+
+  late final _TF_ImportGraphDefOptionsNumReturnOperationsPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Int Function(ffi.Pointer<TF_ImportGraphDefOptions>)>>(
+      'TF_ImportGraphDefOptionsNumReturnOperations');
+  late final _TF_ImportGraphDefOptionsNumReturnOperations =
+      _TF_ImportGraphDefOptionsNumReturnOperationsPtr.asFunction<
+          int Function(ffi.Pointer<TF_ImportGraphDefOptions>)>();
+
+  /// Fetches the return outputs requested via
+  /// TF_ImportGraphDefOptionsAddReturnOutput(). The number of fetched outputs is
+  /// returned in `num_outputs`. The array of return outputs is returned in
+  /// `outputs`. `*outputs` is owned by and has the lifetime of `results`.
+  void TF_ImportGraphDefResultsReturnOutputs(
+    ffi.Pointer<TF_ImportGraphDefResults> results,
+    ffi.Pointer<ffi.Int> num_outputs,
+    ffi.Pointer<ffi.Pointer<TF_Output>> outputs,
+  ) {
+    return _TF_ImportGraphDefResultsReturnOutputs(
+      results,
+      num_outputs,
+      outputs,
+    );
+  }
+
+  late final _TF_ImportGraphDefResultsReturnOutputsPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<TF_ImportGraphDefResults>,
+                  ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Pointer<TF_Output>>)>>(
+      'TF_ImportGraphDefResultsReturnOutputs');
+  late final _TF_ImportGraphDefResultsReturnOutputs =
+      _TF_ImportGraphDefResultsReturnOutputsPtr.asFunction<
+          void Function(ffi.Pointer<TF_ImportGraphDefResults>,
+              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Pointer<TF_Output>>)>();
+
+  /// Fetches the return operations requested via
+  /// TF_ImportGraphDefOptionsAddReturnOperation(). The number of fetched
+  /// operations is returned in `num_opers`. The array of return operations is
+  /// returned in `opers`. `*opers` is owned by and has the lifetime of `results`.
+  void TF_ImportGraphDefResultsReturnOperations(
+    ffi.Pointer<TF_ImportGraphDefResults> results,
+    ffi.Pointer<ffi.Int> num_opers,
+    ffi.Pointer<ffi.Pointer<ffi.Pointer<TF_Operation>>> opers,
+  ) {
+    return _TF_ImportGraphDefResultsReturnOperations(
+      results,
+      num_opers,
+      opers,
+    );
+  }
+
+  late final _TF_ImportGraphDefResultsReturnOperationsPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<TF_ImportGraphDefResults>,
+                  ffi.Pointer<ffi.Int>,
+                  ffi.Pointer<ffi.Pointer<ffi.Pointer<TF_Operation>>>)>>(
+      'TF_ImportGraphDefResultsReturnOperations');
+  late final _TF_ImportGraphDefResultsReturnOperations =
+      _TF_ImportGraphDefResultsReturnOperationsPtr.asFunction<
+          void Function(
+              ffi.Pointer<TF_ImportGraphDefResults>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Pointer<ffi.Pointer<TF_Operation>>>)>();
+
+  /// Fetches any input mappings requested via
+  /// TF_ImportGraphDefOptionsAddInputMapping() that didn't appear in the GraphDef
+  /// and weren't used as input to any node in the imported graph def. The number
+  /// of fetched mappings is returned in `num_missing_unused_input_mappings`. The
+  /// array of each mapping's source node name is returned in `src_names`, and the
+  /// array of each mapping's source index is returned in `src_indexes`.
+  ///
+  /// `*src_names`, `*src_indexes`, and the memory backing each string in
+  /// `src_names` are owned by and have the lifetime of `results`.
+  void TF_ImportGraphDefResultsMissingUnusedInputMappings(
+    ffi.Pointer<TF_ImportGraphDefResults> results,
+    ffi.Pointer<ffi.Int> num_missing_unused_input_mappings,
+    ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Char>>> src_names,
+    ffi.Pointer<ffi.Pointer<ffi.Int>> src_indexes,
+  ) {
+    return _TF_ImportGraphDefResultsMissingUnusedInputMappings(
+      results,
+      num_missing_unused_input_mappings,
+      src_names,
+      src_indexes,
+    );
+  }
+
+  late final _TF_ImportGraphDefResultsMissingUnusedInputMappingsPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<TF_ImportGraphDefResults>,
+                  ffi.Pointer<ffi.Int>,
+                  ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Char>>>,
+                  ffi.Pointer<ffi.Pointer<ffi.Int>>)>>(
+      'TF_ImportGraphDefResultsMissingUnusedInputMappings');
+  late final _TF_ImportGraphDefResultsMissingUnusedInputMappings =
+      _TF_ImportGraphDefResultsMissingUnusedInputMappingsPtr.asFunction<
+          void Function(
+              ffi.Pointer<TF_ImportGraphDefResults>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Char>>>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>)>();
+
+  /// Deletes a results object returned by TF_GraphImportGraphDefWithResults().
+  void TF_DeleteImportGraphDefResults(
+    ffi.Pointer<TF_ImportGraphDefResults> results,
+  ) {
+    return _TF_DeleteImportGraphDefResults(
+      results,
+    );
+  }
+
+  late final _TF_DeleteImportGraphDefResultsPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<TF_ImportGraphDefResults>)>>(
+      'TF_DeleteImportGraphDefResults');
+  late final _TF_DeleteImportGraphDefResults =
+      _TF_DeleteImportGraphDefResultsPtr.asFunction<
+          void Function(ffi.Pointer<TF_ImportGraphDefResults>)>();
+
+  /// Import the graph serialized in `graph_def` into `graph`.  Returns nullptr and
+  /// a bad status on error. Otherwise, returns a populated
+  /// TF_ImportGraphDefResults instance. The returned instance must be deleted via
+  /// TF_DeleteImportGraphDefResults().
+  ffi.Pointer<TF_ImportGraphDefResults> TF_GraphImportGraphDefWithResults(
+    ffi.Pointer<TF_Graph> graph,
+    ffi.Pointer<ffi.Int> graph_def,
+    ffi.Pointer<TF_ImportGraphDefOptions> options,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GraphImportGraphDefWithResults(
+      graph,
+      graph_def,
+      options,
+      status,
+    );
+  }
+
+  late final _TF_GraphImportGraphDefWithResultsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_ImportGraphDefResults> Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<TF_ImportGraphDefOptions>,
+              ffi.Pointer<ffi.Int>)>>('TF_GraphImportGraphDefWithResults');
+  late final _TF_GraphImportGraphDefWithResults =
+      _TF_GraphImportGraphDefWithResultsPtr.asFunction<
+          ffi.Pointer<TF_ImportGraphDefResults> Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<TF_ImportGraphDefOptions>,
+              ffi.Pointer<ffi.Int>)>();
+
+  /// Import the graph serialized in `graph_def` into `graph`.
+  /// Convenience function for when only return outputs are needed.
+  ///
+  /// `num_return_outputs` must be the number of return outputs added (i.e. the
+  /// result of TF_ImportGraphDefOptionsNumReturnOutputs()).  If
+  /// `num_return_outputs` is non-zero, `return_outputs` must be of length
+  /// `num_return_outputs`. Otherwise it can be null.
+  void TF_GraphImportGraphDefWithReturnOutputs(
+    ffi.Pointer<TF_Graph> graph,
+    ffi.Pointer<ffi.Int> graph_def,
+    ffi.Pointer<TF_ImportGraphDefOptions> options,
+    ffi.Pointer<TF_Output> return_outputs,
+    int num_return_outputs,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GraphImportGraphDefWithReturnOutputs(
+      graph,
+      graph_def,
+      options,
+      return_outputs,
+      num_return_outputs,
+      status,
+    );
+  }
+
+  late final _TF_GraphImportGraphDefWithReturnOutputsPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<TF_Graph>,
+                  ffi.Pointer<ffi.Int>,
+                  ffi.Pointer<TF_ImportGraphDefOptions>,
+                  ffi.Pointer<TF_Output>,
+                  ffi.Int,
+                  ffi.Pointer<ffi.Int>)>>(
+      'TF_GraphImportGraphDefWithReturnOutputs');
+  late final _TF_GraphImportGraphDefWithReturnOutputs =
+      _TF_GraphImportGraphDefWithReturnOutputsPtr.asFunction<
+          void Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<TF_ImportGraphDefOptions>,
+              ffi.Pointer<TF_Output>,
+              int,
+              ffi.Pointer<ffi.Int>)>();
+
+  /// Import the graph serialized in `graph_def` into `graph`.
+  /// Convenience function for when no results are needed.
+  void TF_GraphImportGraphDef(
+    ffi.Pointer<TF_Graph> graph,
+    ffi.Pointer<ffi.Int> graph_def,
+    ffi.Pointer<TF_ImportGraphDefOptions> options,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GraphImportGraphDef(
+      graph,
+      graph_def,
+      options,
+      status,
+    );
+  }
+
+  late final _TF_GraphImportGraphDefPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<TF_ImportGraphDefOptions>,
+              ffi.Pointer<ffi.Int>)>>('TF_GraphImportGraphDef');
+  late final _TF_GraphImportGraphDef = _TF_GraphImportGraphDefPtr.asFunction<
+      void Function(ffi.Pointer<TF_Graph>, ffi.Pointer<ffi.Int>,
+          ffi.Pointer<TF_ImportGraphDefOptions>, ffi.Pointer<ffi.Int>)>();
+
+  /// Adds a copy of function `func` and optionally its gradient function `grad`
+  /// to `g`. Once `func`/`grad` is added to `g`, it can be called by creating
+  /// an operation using the function's name.
+  /// Any changes to `func`/`grad` (including deleting it) done after this method
+  /// returns, won't affect the copy of `func`/`grad` in `g`.
+  /// If `func` or `grad` are already in `g`, TF_GraphCopyFunction has no
+  /// effect on them, but can establish the function->gradient relationship
+  /// between them if `func` does not already have a gradient. If `func` already
+  /// has a gradient different from `grad`, an error is returned.
+  ///
+  /// `func` must not be null.
+  /// If `grad` is null and `func` is not in `g`, `func` is added without a
+  /// gradient.
+  /// If `grad` is null and `func` is in `g`, TF_GraphCopyFunction is a noop.
+  /// `grad` must have appropriate signature as described in the doc of
+  /// GradientDef in tensorflow/core/framework/function.proto.
+  ///
+  /// If successful, status is set to OK and `func` and `grad` are added to `g`.
+  /// Otherwise, status is set to the encountered error and `g` is unmodified.
+  void TF_GraphCopyFunction(
+    ffi.Pointer<TF_Graph> g,
+    ffi.Pointer<TF_Function> func,
+    ffi.Pointer<TF_Function> grad,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GraphCopyFunction(
+      g,
+      func,
+      grad,
+      status,
+    );
+  }
+
+  late final _TF_GraphCopyFunctionPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<TF_Function>,
+              ffi.Pointer<TF_Function>,
+              ffi.Pointer<ffi.Int>)>>('TF_GraphCopyFunction');
+  late final _TF_GraphCopyFunction = _TF_GraphCopyFunctionPtr.asFunction<
+      void Function(ffi.Pointer<TF_Graph>, ffi.Pointer<TF_Function>,
+          ffi.Pointer<TF_Function>, ffi.Pointer<ffi.Int>)>();
+
+  /// Returns the number of TF_Functions registered in `g`.
+  int TF_GraphNumFunctions(
+    ffi.Pointer<TF_Graph> g,
+  ) {
+    return _TF_GraphNumFunctions(
+      g,
+    );
+  }
+
+  late final _TF_GraphNumFunctionsPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<TF_Graph>)>>(
+          'TF_GraphNumFunctions');
+  late final _TF_GraphNumFunctions = _TF_GraphNumFunctionsPtr.asFunction<
+      int Function(ffi.Pointer<TF_Graph>)>();
+
+  /// Fills in `funcs` with the TF_Function* registered in `g`.
+  /// `funcs` must point to an array of TF_Function* of length at least
+  /// `max_func`. In usual usage, max_func should be set to the result of
+  /// TF_GraphNumFunctions(g). In this case, all the functions registered in
+  /// `g` will be returned. Else, an unspecified subset.
+  ///
+  /// If successful, returns the number of TF_Function* successfully set in
+  /// `funcs` and sets status to OK. The caller takes ownership of
+  /// all the returned TF_Functions. They must be deleted with TF_DeleteFunction.
+  /// On error, returns 0, sets status to the encountered error, and the contents
+  /// of funcs will be undefined.
+  int TF_GraphGetFunctions(
+    ffi.Pointer<TF_Graph> g,
+    ffi.Pointer<ffi.Pointer<TF_Function>> funcs,
+    int max_func,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GraphGetFunctions(
+      g,
+      funcs,
+      max_func,
+      status,
+    );
+  }
+
+  late final _TF_GraphGetFunctionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Pointer<TF_Function>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_GraphGetFunctions');
+  late final _TF_GraphGetFunctions = _TF_GraphGetFunctionsPtr.asFunction<
+      int Function(ffi.Pointer<TF_Graph>, ffi.Pointer<ffi.Pointer<TF_Function>>,
+          int, ffi.Pointer<ffi.Int>)>();
+
+  /// Note: The following function may fail on very large protos in the future.
+  void TF_OperationToNodeDef(
+    ffi.Pointer<TF_Operation> oper,
+    ffi.Pointer<ffi.Int> output_node_def,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_OperationToNodeDef(
+      oper,
+      output_node_def,
+      status,
+    );
+  }
+
+  late final _TF_OperationToNodeDefPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>>('TF_OperationToNodeDef');
+  late final _TF_OperationToNodeDef = _TF_OperationToNodeDefPtr.asFunction<
+      void Function(ffi.Pointer<TF_Operation>, ffi.Pointer<ffi.Int>,
+          ffi.Pointer<ffi.Int>)>();
+
+  /// Creates a TF_WhileParams for creating a while loop in `g`. `inputs` are
+  /// outputs that already exist in `g` used as initial values for the loop
+  /// variables.
+  ///
+  /// The returned TF_WhileParams will have all fields initialized except
+  /// `cond_output`, `body_outputs`, and `name`. The `body_outputs` buffer will be
+  /// allocated to size `ninputs`. The caller should build `cond_graph` and
+  /// `body_graph` starting from the inputs, and store the final outputs in
+  /// `cond_output` and `body_outputs`.
+  ///
+  /// If `status` is OK, the caller must call either TF_FinishWhile or
+  /// TF_AbortWhile on the returned TF_WhileParams. If `status` isn't OK, the
+  /// returned TF_WhileParams is not valid, and the caller should not call
+  /// TF_FinishWhile() or TF_AbortWhile().
+  ///
+  /// Missing functionality (TODO):
+  /// - Gradients
+  /// - Reference-type inputs
+  /// - Directly referencing external tensors from the cond/body graphs (this is
+  /// possible in the Python API)
+  TF_WhileParams TF_NewWhile(
+    ffi.Pointer<TF_Graph> g,
+    ffi.Pointer<TF_Output> inputs,
+    int ninputs,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_NewWhile(
+      g,
+      inputs,
+      ninputs,
+      status,
+    );
+  }
+
+  late final _TF_NewWhilePtr = _lookup<
+      ffi.NativeFunction<
+          TF_WhileParams Function(ffi.Pointer<TF_Graph>, ffi.Pointer<TF_Output>,
+              ffi.Int, ffi.Pointer<ffi.Int>)>>('TF_NewWhile');
+  late final _TF_NewWhile = _TF_NewWhilePtr.asFunction<
+      TF_WhileParams Function(ffi.Pointer<TF_Graph>, ffi.Pointer<TF_Output>,
+          int, ffi.Pointer<ffi.Int>)>();
+
+  /// Builds the while loop specified by `params` and returns the output tensors of
+  /// the while loop in `outputs`. `outputs` should be allocated to size
+  /// `params.ninputs`.
+  ///
+  /// `params` is no longer valid once this returns.
+  ///
+  /// Either this or TF_AbortWhile() must be called after a successful
+  /// TF_NewWhile() call.
+  void TF_FinishWhile(
+    ffi.Pointer<TF_WhileParams> params,
+    ffi.Pointer<ffi.Int> status,
+    ffi.Pointer<TF_Output> outputs,
+  ) {
+    return _TF_FinishWhile(
+      params,
+      status,
+      outputs,
+    );
+  }
+
+  late final _TF_FinishWhilePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_WhileParams>, ffi.Pointer<ffi.Int>,
+              ffi.Pointer<TF_Output>)>>('TF_FinishWhile');
+  late final _TF_FinishWhile = _TF_FinishWhilePtr.asFunction<
+      void Function(ffi.Pointer<TF_WhileParams>, ffi.Pointer<ffi.Int>,
+          ffi.Pointer<TF_Output>)>();
+
+  /// Frees `params`s resources without building a while loop. `params` is no
+  /// longer valid after this returns. Either this or TF_FinishWhile() must be
+  /// called after a successful TF_NewWhile() call.
+  void TF_AbortWhile(
+    ffi.Pointer<TF_WhileParams> params,
+  ) {
+    return _TF_AbortWhile(
+      params,
+    );
+  }
+
+  late final _TF_AbortWhilePtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<TF_WhileParams>)>>(
+      'TF_AbortWhile');
+  late final _TF_AbortWhile = _TF_AbortWhilePtr.asFunction<
+      void Function(ffi.Pointer<TF_WhileParams>)>();
+
+  /// Adds operations to compute the partial derivatives of sum of `y`s w.r.t `x`s,
+  /// i.e., d(y_1 + y_2 + ...)/dx_1, d(y_1 + y_2 + ...)/dx_2...
+  ///
+  /// `dx` are used as initial gradients (which represent the symbolic partial
+  /// derivatives of some loss function `L` w.r.t. `y`).
+  /// `dx` must be nullptr or have size `ny`.
+  /// If `dx` is nullptr, the implementation will use dx of `OnesLike` for all
+  /// shapes in `y`.
+  /// The partial derivatives are returned in `dy`. `dy` should be allocated to
+  /// size `nx`.
+  ///
+  /// Gradient nodes are automatically named under the "gradients/" prefix. To
+  /// guarantee name uniqueness, subsequent calls to the same graph will
+  /// append an incremental tag to the prefix: "gradients_1/", "gradients_2/", ...
+  /// See TF_AddGradientsWithPrefix, which provides a means to specify a custom
+  /// name prefix for operations added to a graph to compute the gradients.
+  ///
+  /// WARNING: This function does not yet support all the gradients that python
+  /// supports. See
+  /// https://www.tensorflow.org/code/tensorflow/cc/gradients/README.md
+  /// for instructions on how to add C++ more gradients.
+  void TF_AddGradients(
+    ffi.Pointer<TF_Graph> g,
+    ffi.Pointer<TF_Output> y,
+    int ny,
+    ffi.Pointer<TF_Output> x,
+    int nx,
+    ffi.Pointer<TF_Output> dx,
+    ffi.Pointer<ffi.Int> status,
+    ffi.Pointer<TF_Output> dy,
+  ) {
+    return _TF_AddGradients(
+      g,
+      y,
+      ny,
+      x,
+      nx,
+      dx,
+      status,
+      dy,
+    );
+  }
+
+  late final _TF_AddGradientsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<TF_Output>,
+              ffi.Int,
+              ffi.Pointer<TF_Output>,
+              ffi.Int,
+              ffi.Pointer<TF_Output>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<TF_Output>)>>('TF_AddGradients');
+  late final _TF_AddGradients = _TF_AddGradientsPtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_Graph>,
+          ffi.Pointer<TF_Output>,
+          int,
+          ffi.Pointer<TF_Output>,
+          int,
+          ffi.Pointer<TF_Output>,
+          ffi.Pointer<ffi.Int>,
+          ffi.Pointer<TF_Output>)>();
+
+  /// Adds operations to compute the partial derivatives of sum of `y`s w.r.t `x`s,
+  /// i.e., d(y_1 + y_2 + ...)/dx_1, d(y_1 + y_2 + ...)/dx_2...
+  /// This is a variant of TF_AddGradients that allows to caller to pass a custom
+  /// name prefix to the operations added to a graph to compute the gradients.
+  ///
+  /// `dx` are used as initial gradients (which represent the symbolic partial
+  /// derivatives of some loss function `L` w.r.t. `y`).
+  /// `dx` must be nullptr or have size `ny`.
+  /// If `dx` is nullptr, the implementation will use dx of `OnesLike` for all
+  /// shapes in `y`.
+  /// The partial derivatives are returned in `dy`. `dy` should be allocated to
+  /// size `nx`.
+  /// `prefix` names the scope into which all gradients operations are being added.
+  /// `prefix` must be unique within the provided graph otherwise this operation
+  /// will fail. If `prefix` is nullptr, the default prefixing behaviour takes
+  /// place, see TF_AddGradients for more details.
+  ///
+  /// WARNING: This function does not yet support all the gradients that python
+  /// supports. See
+  /// https://www.tensorflow.org/code/tensorflow/cc/gradients/README.md
+  /// for instructions on how to add C++ more gradients.
+  void TF_AddGradientsWithPrefix(
+    ffi.Pointer<TF_Graph> g,
+    ffi.Pointer<ffi.Char> prefix,
+    ffi.Pointer<TF_Output> y,
+    int ny,
+    ffi.Pointer<TF_Output> x,
+    int nx,
+    ffi.Pointer<TF_Output> dx,
+    ffi.Pointer<ffi.Int> status,
+    ffi.Pointer<TF_Output> dy,
+  ) {
+    return _TF_AddGradientsWithPrefix(
+      g,
+      prefix,
+      y,
+      ny,
+      x,
+      nx,
+      dx,
+      status,
+      dy,
+    );
+  }
+
+  late final _TF_AddGradientsWithPrefixPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<TF_Output>,
+              ffi.Int,
+              ffi.Pointer<TF_Output>,
+              ffi.Int,
+              ffi.Pointer<TF_Output>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<TF_Output>)>>('TF_AddGradientsWithPrefix');
+  late final _TF_AddGradientsWithPrefix =
+      _TF_AddGradientsWithPrefixPtr.asFunction<
+          void Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<TF_Output>,
+              int,
+              ffi.Pointer<TF_Output>,
+              int,
+              ffi.Pointer<TF_Output>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<TF_Output>)>();
+
+  /// Create a TF_Function from a TF_Graph
+  ///
+  /// Params:
+  /// fn_body - the graph whose operations (or subset of whose operations) will be
+  /// converted to TF_Function.
+  /// fn_name - the name of the new TF_Function. Should match the operation
+  /// name (OpDef.name) regexp [A-Z][A-Za-z0-9_.\\-/]*.
+  /// If `append_hash_to_fn_name` is false, `fn_name` must be distinct
+  /// from other function and operation names (at least those
+  /// registered in graphs where this function will be used).
+  /// append_hash_to_fn_name - Must be 0 or 1. If set to 1, the actual name
+  /// of the function will be `fn_name` appended with
+  /// '_<hash_of_this_function's_definition>'.
+  /// If set to 0, the function's name will be `fn_name`.
+  /// num_opers - `num_opers` contains the number of elements in the `opers` array
+  /// or a special value of -1 meaning that no array is given.
+  /// The distinction between an empty array of operations and no
+  /// array of operations is necessary to distinguish the case of
+  /// creating a function with no body (e.g. identity or permutation)
+  /// and the case of creating a function whose body contains all
+  /// the nodes in the graph (except for the automatic skipping, see
+  /// below).
+  /// opers - Array of operations to become the body of the function or null.
+  /// - If no array is given (`num_opers` = -1), all the
+  /// operations in `fn_body` will become part of the function
+  /// except operations referenced in `inputs`. These operations
+  /// must have a single output (these operations are typically
+  /// placeholders created for the sole purpose of representing
+  /// an input. We can relax this constraint if there are
+  /// compelling use cases).
+  /// - If an array is given (`num_opers` >= 0), all operations
+  /// in it will become part of the function. In particular, no
+  /// automatic skipping of dummy input operations is performed.
+  /// ninputs - number of elements in `inputs` array
+  /// inputs - array of TF_Outputs that specify the inputs to the function.
+  /// If `ninputs` is zero (the function takes no inputs), `inputs`
+  /// can be null. The names used for function inputs are normalized
+  /// names of the operations (usually placeholders) pointed to by
+  /// `inputs`. These operation names should start with a letter.
+  /// Normalization will convert all letters to lowercase and
+  /// non-alphanumeric characters to '_' to make resulting names match
+  /// the "[a-z][a-z0-9_]*" pattern for operation argument names.
+  /// `inputs` cannot contain the same tensor twice.
+  /// noutputs - number of elements in `outputs` array
+  /// outputs - array of TF_Outputs that specify the outputs of the function.
+  /// If `noutputs` is zero (the function returns no outputs), `outputs`
+  /// can be null. `outputs` can contain the same tensor more than once.
+  /// output_names - The names of the function's outputs. `output_names` array
+  /// must either have the same length as `outputs`
+  /// (i.e. `noutputs`) or be null. In the former case,
+  /// the names should match the regular expression for ArgDef
+  /// names - "[a-z][a-z0-9_]*". In the latter case,
+  /// names for outputs will be generated automatically.
+  /// opts - various options for the function, e.g. XLA's inlining control.
+  /// description - optional human-readable description of this function.
+  /// status - Set to OK on success and an appropriate error on failure.
+  ///
+  /// Note that when the same TF_Output is listed as both an input and an output,
+  /// the corresponding function's output will equal to this input,
+  /// instead of the original node's output.
+  ///
+  /// Callers must also satisfy the following constraints:
+  /// - `inputs` cannot refer to TF_Outputs within a control flow context. For
+  /// example, one cannot use the output of "switch" node as input.
+  /// - `inputs` and `outputs` cannot have reference types. Reference types are
+  /// not exposed through C API and are being replaced with Resources. We support
+  /// reference types inside function's body to support legacy code. Do not
+  /// use them in new code.
+  /// - Every node in the function's body must have all of its inputs (including
+  /// control inputs). In other words, for every node in the body, each input
+  /// must be either listed in `inputs` or must come from another node in
+  /// the body. In particular, it is an error to have a control edge going from
+  /// a node outside of the body into a node in the body. This applies to control
+  /// edges going from nodes referenced in `inputs` to nodes in the body when
+  /// the former nodes are not in the body (automatically skipped or not
+  /// included in explicitly specified body).
+  ///
+  /// Returns:
+  /// On success, a newly created TF_Function instance. It must be deleted by
+  /// calling TF_DeleteFunction.
+  ///
+  /// On failure, null.
+  ffi.Pointer<TF_Function> TF_GraphToFunction(
+    ffi.Pointer<TF_Graph> fn_body,
+    ffi.Pointer<ffi.Char> fn_name,
+    int append_hash_to_fn_name,
+    int num_opers,
+    ffi.Pointer<ffi.Pointer<TF_Operation>> opers,
+    int ninputs,
+    ffi.Pointer<TF_Output> inputs,
+    int noutputs,
+    ffi.Pointer<TF_Output> outputs,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> output_names,
+    ffi.Pointer<TF_FunctionOptions> opts,
+    ffi.Pointer<ffi.Char> description,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GraphToFunction(
+      fn_body,
+      fn_name,
+      append_hash_to_fn_name,
+      num_opers,
+      opers,
+      ninputs,
+      inputs,
+      noutputs,
+      outputs,
+      output_names,
+      opts,
+      description,
+      status,
+    );
+  }
+
+  late final _TF_GraphToFunctionPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_Function> Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Char>,
+              ffi.UnsignedChar,
+              ffi.Int,
+              ffi.Pointer<ffi.Pointer<TF_Operation>>,
+              ffi.Int,
+              ffi.Pointer<TF_Output>,
+              ffi.Int,
+              ffi.Pointer<TF_Output>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<TF_FunctionOptions>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>)>>('TF_GraphToFunction');
+  late final _TF_GraphToFunction = _TF_GraphToFunctionPtr.asFunction<
+      ffi.Pointer<TF_Function> Function(
+          ffi.Pointer<TF_Graph>,
+          ffi.Pointer<ffi.Char>,
+          int,
+          int,
+          ffi.Pointer<ffi.Pointer<TF_Operation>>,
+          int,
+          ffi.Pointer<TF_Output>,
+          int,
+          ffi.Pointer<TF_Output>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<TF_FunctionOptions>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Int>)>();
+
+  /// Similar to TF_GraphToFunction but allows specifying control outputs of the
+  /// function.
+  ///
+  /// The arguments of TF_GraphToFunction have the same meaning, but the new
+  /// arguments are as follows:
+  ///
+  /// ncontrol_outputs: Number of control outputs of the function.
+  /// control_outputs: vector of TF_Operation objects to be marked as control
+  /// outputs of the function. Operations marked as control outputs are
+  /// guaranteed to execute.
+  /// control_output_names: Optional. If not nullptr, vector of strings, one
+  /// per control output, with their names to be added to the function's
+  /// OpDef.
+  ffi.Pointer<TF_Function> TF_GraphToFunctionWithControlOutputs(
+    ffi.Pointer<TF_Graph> fn_body,
+    ffi.Pointer<ffi.Char> fn_name,
+    int append_hash_to_fn_name,
+    int num_opers,
+    ffi.Pointer<ffi.Pointer<TF_Operation>> opers,
+    int ninputs,
+    ffi.Pointer<TF_Output> inputs,
+    int noutputs,
+    ffi.Pointer<TF_Output> outputs,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> output_names,
+    int ncontrol_outputs,
+    ffi.Pointer<ffi.Pointer<TF_Operation>> control_outputs,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> control_output_names,
+    ffi.Pointer<TF_FunctionOptions> opts,
+    ffi.Pointer<ffi.Char> description,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GraphToFunctionWithControlOutputs(
+      fn_body,
+      fn_name,
+      append_hash_to_fn_name,
+      num_opers,
+      opers,
+      ninputs,
+      inputs,
+      noutputs,
+      outputs,
+      output_names,
+      ncontrol_outputs,
+      control_outputs,
+      control_output_names,
+      opts,
+      description,
+      status,
+    );
+  }
+
+  late final _TF_GraphToFunctionWithControlOutputsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_Function> Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Char>,
+              ffi.UnsignedChar,
+              ffi.Int,
+              ffi.Pointer<ffi.Pointer<TF_Operation>>,
+              ffi.Int,
+              ffi.Pointer<TF_Output>,
+              ffi.Int,
+              ffi.Pointer<TF_Output>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Pointer<TF_Operation>>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<TF_FunctionOptions>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>)>>('TF_GraphToFunctionWithControlOutputs');
+  late final _TF_GraphToFunctionWithControlOutputs =
+      _TF_GraphToFunctionWithControlOutputsPtr.asFunction<
+          ffi.Pointer<TF_Function> Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Char>,
+              int,
+              int,
+              ffi.Pointer<ffi.Pointer<TF_Operation>>,
+              int,
+              ffi.Pointer<TF_Output>,
+              int,
+              ffi.Pointer<TF_Output>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              int,
+              ffi.Pointer<ffi.Pointer<TF_Operation>>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<TF_FunctionOptions>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>)>();
+
+  /// Returns the name of the graph function.
+  /// The return value points to memory that is only usable until the next
+  /// mutation to *func.
+  ffi.Pointer<ffi.Char> TF_FunctionName(
+    ffi.Pointer<TF_Function> func,
+  ) {
+    return _TF_FunctionName(
+      func,
+    );
+  }
+
+  late final _TF_FunctionNamePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<TF_Function>)>>('TF_FunctionName');
+  late final _TF_FunctionName = _TF_FunctionNamePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<TF_Function>)>();
+
+  /// Write out a serialized representation of `func` (as a FunctionDef protocol
+  /// message) to `output_func_def` (allocated by TF_NewBuffer()).
+  /// `output_func_def`'s underlying buffer will be freed when TF_DeleteBuffer()
+  /// is called.
+  ///
+  /// May fail on very large graphs in the future.
+  void TF_FunctionToFunctionDef(
+    ffi.Pointer<TF_Function> func,
+    ffi.Pointer<ffi.Int> output_func_def,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_FunctionToFunctionDef(
+      func,
+      output_func_def,
+      status,
+    );
+  }
+
+  late final _TF_FunctionToFunctionDefPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_Function>, ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>>('TF_FunctionToFunctionDef');
+  late final _TF_FunctionToFunctionDef =
+      _TF_FunctionToFunctionDefPtr.asFunction<
+          void Function(ffi.Pointer<TF_Function>, ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>();
+
+  /// Construct and return the function whose FunctionDef representation is
+  /// serialized in `proto`. `proto_len` must equal the number of bytes
+  /// pointed to by `proto`.
+  /// Returns:
+  /// On success, a newly created TF_Function instance. It must be deleted by
+  /// calling TF_DeleteFunction.
+  ///
+  /// On failure, null.
+  ffi.Pointer<TF_Function> TF_FunctionImportFunctionDef(
+    ffi.Pointer<ffi.Void> proto,
+    int proto_len,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_FunctionImportFunctionDef(
+      proto,
+      proto_len,
+      status,
+    );
+  }
+
+  late final _TF_FunctionImportFunctionDefPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_Function> Function(ffi.Pointer<ffi.Void>, ffi.Size,
+              ffi.Pointer<ffi.Int>)>>('TF_FunctionImportFunctionDef');
+  late final _TF_FunctionImportFunctionDef =
+      _TF_FunctionImportFunctionDefPtr.asFunction<
+          ffi.Pointer<TF_Function> Function(
+              ffi.Pointer<ffi.Void>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Sets function attribute named `attr_name` to value stored in `proto`.
+  /// If this attribute is already set to another value, it is overridden.
+  /// `proto` should point to a sequence of bytes of length `proto_len`
+  /// representing a binary serialization of an AttrValue protocol
+  /// buffer.
+  void TF_FunctionSetAttrValueProto(
+    ffi.Pointer<TF_Function> func,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Void> proto,
+    int proto_len,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_FunctionSetAttrValueProto(
+      func,
+      attr_name,
+      proto,
+      proto_len,
+      status,
+    );
+  }
+
+  late final _TF_FunctionSetAttrValueProtoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Function>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Pointer<ffi.Int>)>>('TF_FunctionSetAttrValueProto');
+  late final _TF_FunctionSetAttrValueProto =
+      _TF_FunctionSetAttrValueProtoPtr.asFunction<
+          void Function(ffi.Pointer<TF_Function>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Void>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Sets `output_attr_value` to the binary-serialized AttrValue proto
+  /// representation of the value of the `attr_name` attr of `func`.
+  /// If `attr_name` attribute is not present, status is set to an error.
+  void TF_FunctionGetAttrValueProto(
+    ffi.Pointer<TF_Function> func,
+    ffi.Pointer<ffi.Char> attr_name,
+    ffi.Pointer<ffi.Int> output_attr_value,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_FunctionGetAttrValueProto(
+      func,
+      attr_name,
+      output_attr_value,
+      status,
+    );
+  }
+
+  late final _TF_FunctionGetAttrValueProtoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Function>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>>('TF_FunctionGetAttrValueProto');
+  late final _TF_FunctionGetAttrValueProto =
+      _TF_FunctionGetAttrValueProtoPtr.asFunction<
+          void Function(ffi.Pointer<TF_Function>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
+
+  /// Frees the memory used by the `func` struct.
+  /// TF_DeleteFunction is a noop if `func` is null.
+  /// Deleting a function does not remove it from any graphs it was copied to.
+  void TF_DeleteFunction(
+    ffi.Pointer<TF_Function> func,
+  ) {
+    return _TF_DeleteFunction(
+      func,
+    );
+  }
+
+  late final _TF_DeleteFunctionPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<TF_Function>)>>(
+          'TF_DeleteFunction');
+  late final _TF_DeleteFunction = _TF_DeleteFunctionPtr.asFunction<
+      void Function(ffi.Pointer<TF_Function>)>();
+
+  /// Attempts to evaluate `output`. This will only be possible if `output` doesn't
+  /// depend on any graph inputs (this function is safe to call if this isn't the
+  /// case though).
+  ///
+  /// If the evaluation is successful, this function returns true and `output`s
+  /// value is returned in `result`. Otherwise returns false. An error status is
+  /// returned if something is wrong with the graph or input. Note that this may
+  /// return false even if no error status is set.
+  int TF_TryEvaluateConstant(
+    ffi.Pointer<TF_Graph> graph,
+    TF_Output output,
+    ffi.Pointer<ffi.Pointer<ffi.Int>> result,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_TryEvaluateConstant(
+      graph,
+      output,
+      result,
+      status,
+    );
+  }
+
+  late final _TF_TryEvaluateConstantPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.UnsignedChar Function(
+              ffi.Pointer<TF_Graph>,
+              TF_Output,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>,
+              ffi.Pointer<ffi.Int>)>>('TF_TryEvaluateConstant');
+  late final _TF_TryEvaluateConstant = _TF_TryEvaluateConstantPtr.asFunction<
+      int Function(ffi.Pointer<TF_Graph>, TF_Output,
+          ffi.Pointer<ffi.Pointer<ffi.Int>>, ffi.Pointer<ffi.Int>)>();
+
+  /// Return a new execution session with the associated graph, or NULL on
+  /// error. Does not take ownership of any input parameters.
+  ///
+  /// *`graph` must be a valid graph (not deleted or nullptr). `graph` will be
+  /// kept alive for the lifetime of the returned TF_Session. New nodes can still
+  /// be added to `graph` after this call.
+  ffi.Pointer<TF_Session> TF_NewSession(
+    ffi.Pointer<TF_Graph> graph,
+    ffi.Pointer<TF_SessionOptions> opts,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_NewSession(
+      graph,
+      opts,
+      status,
+    );
+  }
+
+  late final _TF_NewSessionPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_Session> Function(
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<TF_SessionOptions>,
+              ffi.Pointer<ffi.Int>)>>('TF_NewSession');
+  late final _TF_NewSession = _TF_NewSessionPtr.asFunction<
+      ffi.Pointer<TF_Session> Function(ffi.Pointer<TF_Graph>,
+          ffi.Pointer<TF_SessionOptions>, ffi.Pointer<ffi.Int>)>();
+
+  /// This function creates a new TF_Session (which is created on success) using
+  /// `session_options`, and then initializes state (restoring tensors and other
+  /// assets) using `run_options`.
+  ///
+  /// Any NULL and non-NULL value combinations for (`run_options, `meta_graph_def`)
+  /// are valid.
+  ///
+  /// - `export_dir` must be set to the path of the exported SavedModel.
+  /// - `tags` must include the set of tags used to identify one MetaGraphDef in
+  /// the SavedModel.
+  /// - `graph` must be a graph newly allocated with TF_NewGraph().
+  ///
+  /// If successful, populates `graph` with the contents of the Graph and
+  /// `meta_graph_def` with the MetaGraphDef of the loaded model.
+  ffi.Pointer<TF_Session> TF_LoadSessionFromSavedModel(
+    ffi.Pointer<TF_SessionOptions> session_options,
+    ffi.Pointer<ffi.Int> run_options,
+    ffi.Pointer<ffi.Char> export_dir,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> tags,
+    int tags_len,
+    ffi.Pointer<TF_Graph> graph,
+    ffi.Pointer<ffi.Int> meta_graph_def,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_LoadSessionFromSavedModel(
+      session_options,
+      run_options,
+      export_dir,
+      tags,
+      tags_len,
+      graph,
+      meta_graph_def,
+      status,
+    );
+  }
+
+  late final _TF_LoadSessionFromSavedModelPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_Session> Function(
+              ffi.Pointer<TF_SessionOptions>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Int,
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>>('TF_LoadSessionFromSavedModel');
+  late final _TF_LoadSessionFromSavedModel =
+      _TF_LoadSessionFromSavedModelPtr.asFunction<
+          ffi.Pointer<TF_Session> Function(
+              ffi.Pointer<TF_SessionOptions>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              int,
+              ffi.Pointer<TF_Graph>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>();
+
+  /// Close a session.
+  ///
+  /// Contacts any other processes associated with the session, if applicable.
+  /// May not be called after TF_DeleteSession().
+  void TF_CloseSession(
+    ffi.Pointer<TF_Session> arg0,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_CloseSession(
+      arg0,
+      status,
+    );
+  }
+
+  late final _TF_CloseSessionPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_Session>,
+              ffi.Pointer<ffi.Int>)>>('TF_CloseSession');
+  late final _TF_CloseSession = _TF_CloseSessionPtr.asFunction<
+      void Function(ffi.Pointer<TF_Session>, ffi.Pointer<ffi.Int>)>();
+
+  /// Destroy a session object.
+  ///
+  /// Even if error information is recorded in *status, this call discards all
+  /// local resources associated with the session.  The session may not be used
+  /// during or after this call (and the session drops its reference to the
+  /// corresponding graph).
+  void TF_DeleteSession(
+    ffi.Pointer<TF_Session> arg0,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_DeleteSession(
+      arg0,
+      status,
+    );
+  }
+
+  late final _TF_DeleteSessionPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_Session>,
+              ffi.Pointer<ffi.Int>)>>('TF_DeleteSession');
+  late final _TF_DeleteSession = _TF_DeleteSessionPtr.asFunction<
+      void Function(ffi.Pointer<TF_Session>, ffi.Pointer<ffi.Int>)>();
+
+  /// Run the graph associated with the session starting with the supplied inputs
+  /// (inputs[0,ninputs-1] with corresponding values in input_values[0,ninputs-1]).
+  ///
+  /// Any NULL and non-NULL value combinations for (`run_options`,
+  /// `run_metadata`) are valid.
+  ///
+  /// - `run_options` may be NULL, in which case it will be ignored; or
+  /// non-NULL, in which case it must point to a `TF_Buffer` containing the
+  /// serialized representation of a `RunOptions` protocol buffer.
+  /// - `run_metadata` may be NULL, in which case it will be ignored; or
+  /// non-NULL, in which case it must point to an empty, freshly allocated
+  /// `TF_Buffer` that may be updated to contain the serialized representation
+  /// of a `RunMetadata` protocol buffer.
+  ///
+  /// The caller retains ownership of `input_values` (which can be deleted using
+  /// TF_DeleteTensor). The caller also retains ownership of `run_options` and/or
+  /// `run_metadata` (when not NULL) and should manually call TF_DeleteBuffer on
+  /// them.
+  ///
+  /// On success, the tensors corresponding to outputs[0,noutputs-1] are placed in
+  /// output_values[]. Ownership of the elements of output_values[] is transferred
+  /// to the caller, which must eventually call TF_DeleteTensor on them.
+  ///
+  /// On failure, output_values[] contains NULLs.
+  void TF_SessionRun(
+    ffi.Pointer<TF_Session> session,
+    ffi.Pointer<ffi.Int> run_options,
+    ffi.Pointer<TF_Output> inputs,
+    ffi.Pointer<ffi.Pointer<ffi.Int>> input_values,
+    int ninputs,
+    ffi.Pointer<TF_Output> outputs,
+    ffi.Pointer<ffi.Pointer<ffi.Int>> output_values,
+    int noutputs,
+    ffi.Pointer<ffi.Pointer<TF_Operation>> target_opers,
+    int ntargets,
+    ffi.Pointer<ffi.Int> run_metadata,
+    ffi.Pointer<ffi.Int> arg11,
+  ) {
+    return _TF_SessionRun(
+      session,
+      run_options,
+      inputs,
+      input_values,
+      ninputs,
+      outputs,
+      output_values,
+      noutputs,
+      target_opers,
+      ntargets,
+      run_metadata,
+      arg11,
+    );
+  }
+
+  late final _TF_SessionRunPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Session>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<TF_Output>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>,
+              ffi.Int,
+              ffi.Pointer<TF_Output>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Pointer<TF_Operation>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>>('TF_SessionRun');
+  late final _TF_SessionRun = _TF_SessionRunPtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_Session>,
+          ffi.Pointer<ffi.Int>,
+          ffi.Pointer<TF_Output>,
+          ffi.Pointer<ffi.Pointer<ffi.Int>>,
+          int,
+          ffi.Pointer<TF_Output>,
+          ffi.Pointer<ffi.Pointer<ffi.Int>>,
+          int,
+          ffi.Pointer<ffi.Pointer<TF_Operation>>,
+          int,
+          ffi.Pointer<ffi.Int>,
+          ffi.Pointer<ffi.Int>)>();
+
+  /// Set up the graph with the intended feeds (inputs) and fetches (outputs) for a
+  /// sequence of partial run calls.
+  ///
+  /// On success, returns a handle that is used for subsequent PRun calls. The
+  /// handle should be deleted with TF_DeletePRunHandle when it is no longer
+  /// needed.
+  ///
+  /// On failure, out_status contains a tensorflow::Status with an error
+  /// message. *handle is set to nullptr.
+  void TF_SessionPRunSetup(
+    ffi.Pointer<TF_Session> arg0,
+    ffi.Pointer<TF_Output> inputs,
+    int ninputs,
+    ffi.Pointer<TF_Output> outputs,
+    int noutputs,
+    ffi.Pointer<ffi.Pointer<TF_Operation>> target_opers,
+    int ntargets,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> handle,
+    ffi.Pointer<ffi.Int> arg8,
+  ) {
+    return _TF_SessionPRunSetup(
+      arg0,
+      inputs,
+      ninputs,
+      outputs,
+      noutputs,
+      target_opers,
+      ntargets,
+      handle,
+      arg8,
+    );
+  }
+
+  late final _TF_SessionPRunSetupPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Session>,
+              ffi.Pointer<TF_Output>,
+              ffi.Int,
+              ffi.Pointer<TF_Output>,
+              ffi.Int,
+              ffi.Pointer<ffi.Pointer<TF_Operation>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Int>)>>('TF_SessionPRunSetup');
+  late final _TF_SessionPRunSetup = _TF_SessionPRunSetupPtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_Session>,
+          ffi.Pointer<TF_Output>,
+          int,
+          ffi.Pointer<TF_Output>,
+          int,
+          ffi.Pointer<ffi.Pointer<TF_Operation>>,
+          int,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Int>)>();
+
+  /// Continue to run the graph with additional feeds and fetches. The
+  /// execution state is uniquely identified by the handle.
+  void TF_SessionPRun(
+    ffi.Pointer<TF_Session> arg0,
+    ffi.Pointer<ffi.Char> handle,
+    ffi.Pointer<TF_Output> inputs,
+    ffi.Pointer<ffi.Pointer<ffi.Int>> input_values,
+    int ninputs,
+    ffi.Pointer<TF_Output> outputs,
+    ffi.Pointer<ffi.Pointer<ffi.Int>> output_values,
+    int noutputs,
+    ffi.Pointer<ffi.Pointer<TF_Operation>> target_opers,
+    int ntargets,
+    ffi.Pointer<ffi.Int> arg10,
+  ) {
+    return _TF_SessionPRun(
+      arg0,
+      handle,
+      inputs,
+      input_values,
+      ninputs,
+      outputs,
+      output_values,
+      noutputs,
+      target_opers,
+      ntargets,
+      arg10,
+    );
+  }
+
+  late final _TF_SessionPRunPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Session>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<TF_Output>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>,
+              ffi.Int,
+              ffi.Pointer<TF_Output>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Pointer<TF_Operation>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_SessionPRun');
+  late final _TF_SessionPRun = _TF_SessionPRunPtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_Session>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<TF_Output>,
+          ffi.Pointer<ffi.Pointer<ffi.Int>>,
+          int,
+          ffi.Pointer<TF_Output>,
+          ffi.Pointer<ffi.Pointer<ffi.Int>>,
+          int,
+          ffi.Pointer<ffi.Pointer<TF_Operation>>,
+          int,
+          ffi.Pointer<ffi.Int>)>();
+
+  /// Deletes a handle allocated by TF_SessionPRunSetup.
+  /// Once called, no more calls to TF_SessionPRun should be made.
+  void TF_DeletePRunHandle(
+    ffi.Pointer<ffi.Char> handle,
+  ) {
+    return _TF_DeletePRunHandle(
+      handle,
+    );
+  }
+
+  late final _TF_DeletePRunHandlePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'TF_DeletePRunHandle');
+  late final _TF_DeletePRunHandle = _TF_DeletePRunHandlePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<TF_DeprecatedSession> TF_NewDeprecatedSession(
+    ffi.Pointer<TF_SessionOptions> arg0,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_NewDeprecatedSession(
+      arg0,
+      status,
+    );
+  }
+
+  late final _TF_NewDeprecatedSessionPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_DeprecatedSession> Function(
+              ffi.Pointer<TF_SessionOptions>,
+              ffi.Pointer<ffi.Int>)>>('TF_NewDeprecatedSession');
+  late final _TF_NewDeprecatedSession = _TF_NewDeprecatedSessionPtr.asFunction<
+      ffi.Pointer<TF_DeprecatedSession> Function(
+          ffi.Pointer<TF_SessionOptions>, ffi.Pointer<ffi.Int>)>();
+
+  void TF_CloseDeprecatedSession(
+    ffi.Pointer<TF_DeprecatedSession> arg0,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_CloseDeprecatedSession(
+      arg0,
+      status,
+    );
+  }
+
+  late final _TF_CloseDeprecatedSessionPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_DeprecatedSession>,
+              ffi.Pointer<ffi.Int>)>>('TF_CloseDeprecatedSession');
+  late final _TF_CloseDeprecatedSession =
+      _TF_CloseDeprecatedSessionPtr.asFunction<
+          void Function(
+              ffi.Pointer<TF_DeprecatedSession>, ffi.Pointer<ffi.Int>)>();
+
+  void TF_DeleteDeprecatedSession(
+    ffi.Pointer<TF_DeprecatedSession> arg0,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_DeleteDeprecatedSession(
+      arg0,
+      status,
+    );
+  }
+
+  late final _TF_DeleteDeprecatedSessionPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_DeprecatedSession>,
+              ffi.Pointer<ffi.Int>)>>('TF_DeleteDeprecatedSession');
+  late final _TF_DeleteDeprecatedSession =
+      _TF_DeleteDeprecatedSessionPtr.asFunction<
+          void Function(
+              ffi.Pointer<TF_DeprecatedSession>, ffi.Pointer<ffi.Int>)>();
+
+  void TF_Reset(
+    ffi.Pointer<TF_SessionOptions> opt,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> containers,
+    int ncontainers,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_Reset(
+      opt,
+      containers,
+      ncontainers,
+      status,
+    );
+  }
+
+  late final _TF_ResetPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_SessionOptions>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_Reset');
+  late final _TF_Reset = _TF_ResetPtr.asFunction<
+      void Function(ffi.Pointer<TF_SessionOptions>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Treat the bytes proto[0,proto_len-1] as a serialized GraphDef and
+  /// add the nodes in that GraphDef to the graph for the session.
+  ///
+  /// Prefer use of TF_Session and TF_GraphImportGraphDef over this.
+  void TF_ExtendGraph(
+    ffi.Pointer<TF_DeprecatedSession> arg0,
+    ffi.Pointer<ffi.Void> proto,
+    int proto_len,
+    ffi.Pointer<ffi.Int> arg3,
+  ) {
+    return _TF_ExtendGraph(
+      arg0,
+      proto,
+      proto_len,
+      arg3,
+    );
+  }
+
+  late final _TF_ExtendGraphPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_DeprecatedSession>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Pointer<ffi.Int>)>>('TF_ExtendGraph');
+  late final _TF_ExtendGraph = _TF_ExtendGraphPtr.asFunction<
+      void Function(ffi.Pointer<TF_DeprecatedSession>, ffi.Pointer<ffi.Void>,
+          int, ffi.Pointer<ffi.Int>)>();
+
+  /// See TF_SessionRun() above.
+  void TF_Run(
+    ffi.Pointer<TF_DeprecatedSession> arg0,
+    ffi.Pointer<ffi.Int> run_options,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> input_names,
+    ffi.Pointer<ffi.Pointer<ffi.Int>> inputs,
+    int ninputs,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> output_names,
+    ffi.Pointer<ffi.Pointer<ffi.Int>> outputs,
+    int noutputs,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> target_oper_names,
+    int ntargets,
+    ffi.Pointer<ffi.Int> run_metadata,
+    ffi.Pointer<ffi.Int> arg11,
+  ) {
+    return _TF_Run(
+      arg0,
+      run_options,
+      input_names,
+      inputs,
+      ninputs,
+      output_names,
+      outputs,
+      noutputs,
+      target_oper_names,
+      ntargets,
+      run_metadata,
+      arg11,
+    );
+  }
+
+  late final _TF_RunPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_DeprecatedSession>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>)>>('TF_Run');
+  late final _TF_Run = _TF_RunPtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_DeprecatedSession>,
+          ffi.Pointer<ffi.Int>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Pointer<ffi.Int>>,
+          int,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Pointer<ffi.Int>>,
+          int,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          int,
+          ffi.Pointer<ffi.Int>,
+          ffi.Pointer<ffi.Int>)>();
+
+  /// See TF_SessionPRunSetup() above.
+  void TF_PRunSetup(
+    ffi.Pointer<TF_DeprecatedSession> arg0,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> input_names,
+    int ninputs,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> output_names,
+    int noutputs,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> target_oper_names,
+    int ntargets,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> handle,
+    ffi.Pointer<ffi.Int> arg8,
+  ) {
+    return _TF_PRunSetup(
+      arg0,
+      input_names,
+      ninputs,
+      output_names,
+      noutputs,
+      target_oper_names,
+      ntargets,
+      handle,
+      arg8,
+    );
+  }
+
+  late final _TF_PRunSetupPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_DeprecatedSession>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Int>)>>('TF_PRunSetup');
+  late final _TF_PRunSetup = _TF_PRunSetupPtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_DeprecatedSession>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          int,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          int,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          int,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Int>)>();
+
+  /// See TF_SessionPRun above.
+  void TF_PRun(
+    ffi.Pointer<TF_DeprecatedSession> arg0,
+    ffi.Pointer<ffi.Char> handle,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> input_names,
+    ffi.Pointer<ffi.Pointer<ffi.Int>> inputs,
+    int ninputs,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> output_names,
+    ffi.Pointer<ffi.Pointer<ffi.Int>> outputs,
+    int noutputs,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> target_oper_names,
+    int ntargets,
+    ffi.Pointer<ffi.Int> arg10,
+  ) {
+    return _TF_PRun(
+      arg0,
+      handle,
+      input_names,
+      inputs,
+      ninputs,
+      output_names,
+      outputs,
+      noutputs,
+      target_oper_names,
+      ntargets,
+      arg10,
+    );
+  }
+
+  late final _TF_PRunPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_DeprecatedSession>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Pointer<ffi.Int>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_PRun');
+  late final _TF_PRun = _TF_PRunPtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_DeprecatedSession>,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Pointer<ffi.Int>>,
+          int,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Pointer<ffi.Int>>,
+          int,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          int,
+          ffi.Pointer<ffi.Int>)>();
+
+  /// Lists all devices in a TF_Session.
+  ///
+  /// Caller takes ownership of the returned TF_DeviceList* which must eventually
+  /// be freed with a call to TF_DeleteDeviceList.
+  ffi.Pointer<TF_DeviceList> TF_SessionListDevices(
+    ffi.Pointer<TF_Session> session,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_SessionListDevices(
+      session,
+      status,
+    );
+  }
+
+  late final _TF_SessionListDevicesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_DeviceList> Function(ffi.Pointer<TF_Session>,
+              ffi.Pointer<ffi.Int>)>>('TF_SessionListDevices');
+  late final _TF_SessionListDevices = _TF_SessionListDevicesPtr.asFunction<
+      ffi.Pointer<TF_DeviceList> Function(
+          ffi.Pointer<TF_Session>, ffi.Pointer<ffi.Int>)>();
+
+  /// Lists all devices in a TF_Session.
+  ///
+  /// Caller takes ownership of the returned TF_DeviceList* which must eventually
+  /// be freed with a call to TF_DeleteDeviceList.
+  ffi.Pointer<TF_DeviceList> TF_DeprecatedSessionListDevices(
+    ffi.Pointer<TF_DeprecatedSession> session,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_DeprecatedSessionListDevices(
+      session,
+      status,
+    );
+  }
+
+  late final _TF_DeprecatedSessionListDevicesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_DeviceList> Function(ffi.Pointer<TF_DeprecatedSession>,
+              ffi.Pointer<ffi.Int>)>>('TF_DeprecatedSessionListDevices');
+  late final _TF_DeprecatedSessionListDevices =
+      _TF_DeprecatedSessionListDevicesPtr.asFunction<
+          ffi.Pointer<TF_DeviceList> Function(
+              ffi.Pointer<TF_DeprecatedSession>, ffi.Pointer<ffi.Int>)>();
+
+  /// Deallocates the device list.
+  void TF_DeleteDeviceList(
+    ffi.Pointer<TF_DeviceList> list,
+  ) {
+    return _TF_DeleteDeviceList(
+      list,
+    );
+  }
+
+  late final _TF_DeleteDeviceListPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<TF_DeviceList>)>>(
+      'TF_DeleteDeviceList');
+  late final _TF_DeleteDeviceList = _TF_DeleteDeviceListPtr.asFunction<
+      void Function(ffi.Pointer<TF_DeviceList>)>();
+
+  /// Counts the number of elements in the device list.
+  int TF_DeviceListCount(
+    ffi.Pointer<TF_DeviceList> list,
+  ) {
+    return _TF_DeviceListCount(
+      list,
+    );
+  }
+
+  late final _TF_DeviceListCountPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<TF_DeviceList>)>>(
+          'TF_DeviceListCount');
+  late final _TF_DeviceListCount = _TF_DeviceListCountPtr.asFunction<
+      int Function(ffi.Pointer<TF_DeviceList>)>();
+
+  /// Retrieves the full name of the device (e.g. /job:worker/replica:0/...)
+  /// The return value will be a pointer to a null terminated string. The caller
+  /// must not modify or delete the string. It will be deallocated upon a call to
+  /// TF_DeleteDeviceList.
+  ///
+  /// If index is out of bounds, an error code will be set in the status object,
+  /// and a null pointer will be returned.
+  ffi.Pointer<ffi.Char> TF_DeviceListName(
+    ffi.Pointer<TF_DeviceList> list,
+    int index,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_DeviceListName(
+      list,
+      index,
+      status,
+    );
+  }
+
+  late final _TF_DeviceListNamePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<TF_DeviceList>, ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_DeviceListName');
+  late final _TF_DeviceListName = _TF_DeviceListNamePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<TF_DeviceList>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Retrieves the type of the device at the given index.
+  ///
+  /// The caller must not modify or delete the string. It will be deallocated upon
+  /// a call to TF_DeleteDeviceList.
+  ///
+  /// If index is out of bounds, an error code will be set in the status object,
+  /// and a null pointer will be returned.
+  ffi.Pointer<ffi.Char> TF_DeviceListType(
+    ffi.Pointer<TF_DeviceList> list,
+    int index,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_DeviceListType(
+      list,
+      index,
+      status,
+    );
+  }
+
+  late final _TF_DeviceListTypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<TF_DeviceList>, ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_DeviceListType');
+  late final _TF_DeviceListType = _TF_DeviceListTypePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<TF_DeviceList>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Retrieve the amount of memory associated with a given device.
+  ///
+  /// If index is out of bounds, an error code will be set in the status object,
+  /// and -1 will be returned.
+  int TF_DeviceListMemoryBytes(
+    ffi.Pointer<TF_DeviceList> list,
+    int index,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_DeviceListMemoryBytes(
+      list,
+      index,
+      status,
+    );
+  }
+
+  late final _TF_DeviceListMemoryBytesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int64 Function(ffi.Pointer<TF_DeviceList>, ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_DeviceListMemoryBytes');
+  late final _TF_DeviceListMemoryBytes =
+      _TF_DeviceListMemoryBytesPtr.asFunction<
+          int Function(
+              ffi.Pointer<TF_DeviceList>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Retrieve the incarnation number of a given device.
+  ///
+  /// If index is out of bounds, an error code will be set in the status object,
+  /// and 0 will be returned.
+  int TF_DeviceListIncarnation(
+    ffi.Pointer<TF_DeviceList> list,
+    int index,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_DeviceListIncarnation(
+      list,
+      index,
+      status,
+    );
+  }
+
+  late final _TF_DeviceListIncarnationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Uint64 Function(ffi.Pointer<TF_DeviceList>, ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TF_DeviceListIncarnation');
+  late final _TF_DeviceListIncarnation =
+      _TF_DeviceListIncarnationPtr.asFunction<
+          int Function(
+              ffi.Pointer<TF_DeviceList>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Load the library specified by library_filename and register the ops and
+  /// kernels present in that library.
+  ///
+  /// Pass "library_filename" to a platform-specific mechanism for dynamically
+  /// loading a library. The rules for determining the exact location of the
+  /// library are platform-specific and are not documented here.
+  ///
+  /// On success, place OK in status and return the newly created library handle.
+  /// The caller owns the library handle.
+  ///
+  /// On failure, place an error status in status and return NULL.
+  ffi.Pointer<TF_Library> TF_LoadLibrary(
+    ffi.Pointer<ffi.Char> library_filename,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_LoadLibrary(
+      library_filename,
+      status,
+    );
+  }
+
+  late final _TF_LoadLibraryPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_Library> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>)>>('TF_LoadLibrary');
+  late final _TF_LoadLibrary = _TF_LoadLibraryPtr.asFunction<
+      ffi.Pointer<TF_Library> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>)>();
+
+  /// Get the OpList of OpDefs defined in the library pointed by lib_handle.
+  ///
+  /// Returns a TF_Buffer. The memory pointed to by the result is owned by
+  /// lib_handle. The data in the buffer will be the serialized OpList proto for
+  /// ops defined in the library.
+  int TF_GetOpList(
+    ffi.Pointer<TF_Library> lib_handle,
+  ) {
+    return _TF_GetOpList(
+      lib_handle,
+    );
+  }
+
+  late final _TF_GetOpListPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<TF_Library>)>>(
+          'TF_GetOpList');
+  late final _TF_GetOpList =
+      _TF_GetOpListPtr.asFunction<int Function(ffi.Pointer<TF_Library>)>();
+
+  /// Frees the memory associated with the library handle.
+  /// Does NOT unload the library.
+  void TF_DeleteLibraryHandle(
+    ffi.Pointer<TF_Library> lib_handle,
+  ) {
+    return _TF_DeleteLibraryHandle(
+      lib_handle,
+    );
+  }
+
+  late final _TF_DeleteLibraryHandlePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<TF_Library>)>>(
+          'TF_DeleteLibraryHandle');
+  late final _TF_DeleteLibraryHandle = _TF_DeleteLibraryHandlePtr.asFunction<
+      void Function(ffi.Pointer<TF_Library>)>();
+
+  /// Get the OpList of all OpDefs defined in this address space.
+  /// Returns a TF_Buffer, ownership of which is transferred to the caller
+  /// (and can be freed using TF_DeleteBuffer).
+  ///
+  /// The data in the buffer will be the serialized OpList proto for ops registered
+  /// in this address space.
+  ffi.Pointer<ffi.Int> TF_GetAllOpList() {
+    return _TF_GetAllOpList();
+  }
+
+  late final _TF_GetAllOpListPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int> Function()>>(
+          'TF_GetAllOpList');
+  late final _TF_GetAllOpList =
+      _TF_GetAllOpListPtr.asFunction<ffi.Pointer<ffi.Int> Function()>();
+
+  /// Creates a new TF_ApiDefMap instance.
+  ///
+  /// Params:
+  /// op_list_buffer - TF_Buffer instance containing serialized OpList
+  /// protocol buffer. (See
+  /// https://www.tensorflow.org/code/tensorflow/core/framework/op_def.proto
+  /// for the OpList proto definition).
+  /// status - Set to OK on success and an appropriate error on failure.
+  ffi.Pointer<TF_ApiDefMap> TF_NewApiDefMap(
+    ffi.Pointer<ffi.Int> op_list_buffer,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_NewApiDefMap(
+      op_list_buffer,
+      status,
+    );
+  }
+
+  late final _TF_NewApiDefMapPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_ApiDefMap> Function(
+              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('TF_NewApiDefMap');
+  late final _TF_NewApiDefMap = _TF_NewApiDefMapPtr.asFunction<
+      ffi.Pointer<TF_ApiDefMap> Function(
+          ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
+
+  /// Deallocates a TF_ApiDefMap.
+  void TF_DeleteApiDefMap(
+    ffi.Pointer<TF_ApiDefMap> apimap,
+  ) {
+    return _TF_DeleteApiDefMap(
+      apimap,
+    );
+  }
+
+  late final _TF_DeleteApiDefMapPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<TF_ApiDefMap>)>>(
+          'TF_DeleteApiDefMap');
+  late final _TF_DeleteApiDefMap = _TF_DeleteApiDefMapPtr.asFunction<
+      void Function(ffi.Pointer<TF_ApiDefMap>)>();
+
+  /// Add ApiDefs to the map.
+  ///
+  /// `text` corresponds to a text representation of an ApiDefs protocol message.
+  /// (https://www.tensorflow.org/code/tensorflow/core/framework/api_def.proto).
+  ///
+  /// The provided ApiDefs will be merged with existing ones in the map, with
+  /// precedence given to the newly added version in case of conflicts with
+  /// previous calls to TF_ApiDefMapPut.
+  void TF_ApiDefMapPut(
+    ffi.Pointer<TF_ApiDefMap> api_def_map,
+    ffi.Pointer<ffi.Char> text,
+    int text_len,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_ApiDefMapPut(
+      api_def_map,
+      text,
+      text_len,
+      status,
+    );
+  }
+
+  late final _TF_ApiDefMapPutPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_ApiDefMap>, ffi.Pointer<ffi.Char>,
+              ffi.Size, ffi.Pointer<ffi.Int>)>>('TF_ApiDefMapPut');
+  late final _TF_ApiDefMapPut = _TF_ApiDefMapPutPtr.asFunction<
+      void Function(ffi.Pointer<TF_ApiDefMap>, ffi.Pointer<ffi.Char>, int,
+          ffi.Pointer<ffi.Int>)>();
+
+  /// Returns a serialized ApiDef protocol buffer for the TensorFlow operation
+  /// named `name`.
+  ffi.Pointer<ffi.Int> TF_ApiDefMapGet(
+    ffi.Pointer<TF_ApiDefMap> api_def_map,
+    ffi.Pointer<ffi.Char> name,
+    int name_len,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_ApiDefMapGet(
+      api_def_map,
+      name,
+      name_len,
+      status,
+    );
+  }
+
+  late final _TF_ApiDefMapGetPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int> Function(
+              ffi.Pointer<TF_ApiDefMap>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size,
+              ffi.Pointer<ffi.Int>)>>('TF_ApiDefMapGet');
+  late final _TF_ApiDefMapGet = _TF_ApiDefMapGetPtr.asFunction<
+      ffi.Pointer<ffi.Int> Function(ffi.Pointer<TF_ApiDefMap>,
+          ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Returns a serialized KernelList protocol buffer containing KernelDefs for all
+  /// registered kernels.
+  ffi.Pointer<ffi.Int> TF_GetAllRegisteredKernels(
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GetAllRegisteredKernels(
+      status,
+    );
+  }
+
+  late final _TF_GetAllRegisteredKernelsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int> Function(
+              ffi.Pointer<ffi.Int>)>>('TF_GetAllRegisteredKernels');
+  late final _TF_GetAllRegisteredKernels = _TF_GetAllRegisteredKernelsPtr
+      .asFunction<ffi.Pointer<ffi.Int> Function(ffi.Pointer<ffi.Int>)>();
+
+  /// Returns a serialized KernelList protocol buffer containing KernelDefs for all
+  /// kernels registered for the operation named `name`.
+  ffi.Pointer<ffi.Int> TF_GetRegisteredKernelsForOp(
+    ffi.Pointer<ffi.Char> name,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_GetRegisteredKernelsForOp(
+      name,
+      status,
+    );
+  }
+
+  late final _TF_GetRegisteredKernelsForOpPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>)>>('TF_GetRegisteredKernelsForOp');
+  late final _TF_GetRegisteredKernelsForOp =
+      _TF_GetRegisteredKernelsForOpPtr.asFunction<
+          ffi.Pointer<ffi.Int> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>)>();
+
+  /// Update edge, switch input/ output in a node
+  void TF_UpdateEdge(
+    ffi.Pointer<TF_Graph> graph,
+    TF_Output new_src,
+    TF_Input dst,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_UpdateEdge(
+      graph,
+      new_src,
+      dst,
+      status,
+    );
+  }
+
+  late final _TF_UpdateEdgePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TF_Graph>, TF_Output, TF_Input,
+              ffi.Pointer<ffi.Int>)>>('TF_UpdateEdge');
+  late final _TF_UpdateEdge = _TF_UpdateEdgePtr.asFunction<
+      void Function(
+          ffi.Pointer<TF_Graph>, TF_Output, TF_Input, ffi.Pointer<ffi.Int>)>();
+
+  /// Creates a new in-process TensorFlow server configured using a serialized
+  /// ServerDef protocol buffer provided via `proto` and `proto_len`.
+  ///
+  /// The server will not serve any requests until TF_ServerStart is invoked.
+  /// The server will stop serving requests once TF_ServerStop or
+  /// TF_DeleteServer is invoked.
+  ffi.Pointer<TF_Server> TF_NewServer(
+    ffi.Pointer<ffi.Void> proto,
+    int proto_len,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_NewServer(
+      proto,
+      proto_len,
+      status,
+    );
+  }
+
+  late final _TF_NewServerPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TF_Server> Function(ffi.Pointer<ffi.Void>, ffi.Size,
+              ffi.Pointer<ffi.Int>)>>('TF_NewServer');
+  late final _TF_NewServer = _TF_NewServerPtr.asFunction<
+      ffi.Pointer<TF_Server> Function(
+          ffi.Pointer<ffi.Void>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Starts an in-process TensorFlow server.
+  void TF_ServerStart(
+    ffi.Pointer<TF_Server> server,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_ServerStart(
+      server,
+      status,
+    );
+  }
+
+  late final _TF_ServerStartPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Server>, ffi.Pointer<ffi.Int>)>>('TF_ServerStart');
+  late final _TF_ServerStart = _TF_ServerStartPtr.asFunction<
+      void Function(ffi.Pointer<TF_Server>, ffi.Pointer<ffi.Int>)>();
+
+  /// Stops an in-process TensorFlow server.
+  void TF_ServerStop(
+    ffi.Pointer<TF_Server> server,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_ServerStop(
+      server,
+      status,
+    );
+  }
+
+  late final _TF_ServerStopPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Server>, ffi.Pointer<ffi.Int>)>>('TF_ServerStop');
+  late final _TF_ServerStop = _TF_ServerStopPtr.asFunction<
+      void Function(ffi.Pointer<TF_Server>, ffi.Pointer<ffi.Int>)>();
+
+  /// Blocks until the server has been successfully stopped (via TF_ServerStop or
+  /// TF_ServerClose).
+  void TF_ServerJoin(
+    ffi.Pointer<TF_Server> server,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_ServerJoin(
+      server,
+      status,
+    );
+  }
+
+  late final _TF_ServerJoinPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TF_Server>, ffi.Pointer<ffi.Int>)>>('TF_ServerJoin');
+  late final _TF_ServerJoin = _TF_ServerJoinPtr.asFunction<
+      void Function(ffi.Pointer<TF_Server>, ffi.Pointer<ffi.Int>)>();
+
+  /// Returns the target string that can be provided to TF_SetTarget() to connect
+  /// a TF_Session to `server`.
+  ///
+  /// The returned string is valid only until TF_DeleteServer is invoked.
+  ffi.Pointer<ffi.Char> TF_ServerTarget(
+    ffi.Pointer<TF_Server> server,
+  ) {
+    return _TF_ServerTarget(
+      server,
+    );
+  }
+
+  late final _TF_ServerTargetPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<TF_Server>)>>('TF_ServerTarget');
+  late final _TF_ServerTarget = _TF_ServerTargetPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<TF_Server>)>();
+
+  /// Destroy an in-process TensorFlow server, frees memory. If server is running
+  /// it will be stopped and joined.
+  void TF_DeleteServer(
+    ffi.Pointer<TF_Server> server,
+  ) {
+    return _TF_DeleteServer(
+      server,
+    );
+  }
+
+  late final _TF_DeleteServerPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<TF_Server>)>>(
+          'TF_DeleteServer');
+  late final _TF_DeleteServer =
+      _TF_DeleteServerPtr.asFunction<void Function(ffi.Pointer<TF_Server>)>();
+
+  /// Register a listener method that processes printed messages.
+  ///
+  /// If any listeners are registered, the print operator will call all listeners
+  /// with the printed messages and immediately return without writing to the
+  /// logs.
+  void TF_RegisterLogListener(
+    ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>
+        listener,
+  ) {
+    return _TF_RegisterLogListener(
+      listener,
+    );
+  }
+
+  late final _TF_RegisterLogListenerPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Void Function(
+                          ffi.Pointer<ffi.Char>)>>)>>('TF_RegisterLogListener');
+  late final _TF_RegisterLogListener = _TF_RegisterLogListenerPtr.asFunction<
+      void Function(
+          ffi.Pointer<
+              ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>)>();
+
+  /// Register a FileSystem plugin from filename `plugin_filename`.
+  ///
+  /// On success, place OK in status.
+  /// On failure, place an error status in status.
+  void TF_RegisterFilesystemPlugin(
+    ffi.Pointer<ffi.Char> plugin_filename,
+    ffi.Pointer<ffi.Int> status,
+  ) {
+    return _TF_RegisterFilesystemPlugin(
+      plugin_filename,
+      status,
+    );
+  }
+
+  late final _TF_RegisterFilesystemPluginPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Int>)>>('TF_RegisterFilesystemPlugin');
+  late final _TF_RegisterFilesystemPlugin = _TF_RegisterFilesystemPluginPtr
+      .asFunction<void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>)>();
 }
+
+/// mbstate_t is an opaque object to keep conversion state, during multibyte
+/// stream conversions.  The content must not be referenced by user programs.
+class __mbstate_t extends ffi.Union {
+  @ffi.Array.multi([128])
+  external ffi.Array<ffi.Char> __mbstate8;
+
+  /// for alignment
+  @ffi.LongLong()
+  external int _mbstateL;
+}
+
+class __darwin_pthread_handler_rec extends ffi.Struct {
+  /// Routine to call
+  external ffi
+          .Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>
+      __routine;
+
+  /// Argument to pass
+  external ffi.Pointer<ffi.Void> __arg;
+
+  external ffi.Pointer<__darwin_pthread_handler_rec> __next;
+}
+
+class _opaque_pthread_attr_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([56])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class _opaque_pthread_cond_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([40])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class _opaque_pthread_condattr_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([8])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class _opaque_pthread_mutex_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([56])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class _opaque_pthread_mutexattr_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([8])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class _opaque_pthread_once_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([8])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class _opaque_pthread_rwlock_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([192])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class _opaque_pthread_rwlockattr_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([16])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class _opaque_pthread_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  external ffi.Pointer<__darwin_pthread_handler_rec> __cleanup_stack;
+
+  @ffi.Array.multi([8176])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+/// --------------------------------------------------------------------------
+/// Used to return strings across the C API. The caller does not take ownership
+/// of the underlying data pointer and is not responsible for freeing it.
+class TF_StringView extends ffi.Struct {
+  external ffi.Pointer<ffi.Char> data;
+
+  @ffi.Size()
+  external int len;
+}
+
+class TF_SessionOptions extends ffi.Opaque {}
+
+class TF_Graph extends ffi.Opaque {}
+
+class TF_OperationDescription extends ffi.Opaque {}
+
+class TF_Operation extends ffi.Opaque {}
+
+/// Represents a specific input of an operation.
+class TF_Input extends ffi.Struct {
+  external ffi.Pointer<TF_Operation> oper;
+
+  /// The index of the input within oper.
+  @ffi.Int()
+  external int index;
+}
+
+/// Represents a specific output of an operation.
+class TF_Output extends ffi.Struct {
+  external ffi.Pointer<TF_Operation> oper;
+
+  /// The index of the output within oper.
+  @ffi.Int()
+  external int index;
+}
+
+class TF_Function extends ffi.Opaque {}
+
+class TF_FunctionOptions extends ffi.Opaque {}
+
+/// TF_AttrMetadata describes the value of an attribute on an operation.
+class TF_AttrMetadata extends ffi.Struct {
+  /// A boolean: 1 if the attribute value is a list, 0 otherwise.
+  @ffi.UnsignedChar()
+  external int is_list;
+
+  /// Length of the list if is_list is true. Undefined otherwise.
+  @ffi.Int64()
+  external int list_size;
+
+  /// Type of elements of the list if is_list != 0.
+  /// Type of the single value stored in the attribute if is_list == 0.
+  @ffi.Int()
+  external int type;
+
+  /// Total size the attribute value.
+  /// The units of total_size depend on is_list and type.
+  /// (1) If type == TF_ATTR_STRING and is_list == 0
+  /// then total_size is the byte size of the string
+  /// valued attribute.
+  /// (2) If type == TF_ATTR_STRING and is_list == 1
+  /// then total_size is the cumulative byte size
+  /// of all the strings in the list.
+  /// (3) If type == TF_ATTR_SHAPE and is_list == 0
+  /// then total_size is the number of dimensions
+  /// of the shape valued attribute, or -1
+  /// if its rank is unknown.
+  /// (4) If type == TF_ATTR_SHAPE and is_list == 1
+  /// then total_size is the cumulative number
+  /// of dimensions of all shapes in the list.
+  /// (5) Otherwise, total_size is undefined.
+  @ffi.Int64()
+  external int total_size;
+}
+
+class TF_ImportGraphDefOptions extends ffi.Opaque {}
+
+class TF_ImportGraphDefResults extends ffi.Opaque {}
+
+class TF_WhileParams extends ffi.Struct {
+  /// The number of inputs to the while loop, i.e. the number of loop variables.
+  /// This is the size of cond_inputs, body_inputs, and body_outputs.
+  @ffi.Int()
+  external int ninputs;
+
+  /// The while condition graph. The inputs are the current values of the loop
+  /// variables. The output should be a scalar boolean.
+  external ffi.Pointer<TF_Graph> cond_graph;
+
+  external ffi.Pointer<TF_Output> cond_inputs;
+
+  external TF_Output cond_output;
+
+  /// The loop body graph. The inputs are the current values of the loop
+  /// variables. The outputs are the updated values of the loop variables.
+  external ffi.Pointer<TF_Graph> body_graph;
+
+  external ffi.Pointer<TF_Output> body_inputs;
+
+  external ffi.Pointer<TF_Output> body_outputs;
+
+  /// Unique null-terminated name for this while loop. This is used as a prefix
+  /// for created operations.
+  external ffi.Pointer<ffi.Char> name;
+}
+
+class TF_Session extends ffi.Opaque {}
+
+class TF_DeprecatedSession extends ffi.Opaque {}
+
+class TF_DeviceList extends ffi.Opaque {}
+
+class TF_Library extends ffi.Opaque {}
+
+class TF_ApiDefMap extends ffi.Opaque {}
+
+class TF_Server extends ffi.Opaque {}
+
+const int __DARWIN_ONLY_64_BIT_INO_T = 1;
+
+const int __DARWIN_ONLY_UNIX_CONFORMANCE = 1;
+
+const int __DARWIN_ONLY_VERS_1050 = 1;
+
+const int __DARWIN_UNIX03 = 1;
+
+const int __DARWIN_64_BIT_INO_T = 1;
+
+const int __DARWIN_VERS_1050 = 1;
+
+const int __DARWIN_NON_CANCELABLE = 0;
+
+const String __DARWIN_SUF_EXTSN = '\$DARWIN_EXTSN';
+
+const int __DARWIN_C_ANSI = 4096;
+
+const int __DARWIN_C_FULL = 900000;
+
+const int __DARWIN_C_LEVEL = 900000;
+
+const int __STDC_WANT_LIB_EXT1__ = 1;
+
+const int __DARWIN_NO_LONG_LONG = 0;
+
+const int _DARWIN_FEATURE_64_BIT_INODE = 1;
+
+const int _DARWIN_FEATURE_ONLY_64_BIT_INODE = 1;
+
+const int _DARWIN_FEATURE_ONLY_VERS_1050 = 1;
+
+const int _DARWIN_FEATURE_ONLY_UNIX_CONFORMANCE = 1;
+
+const int _DARWIN_FEATURE_UNIX_CONFORMANCE = 3;
+
+const int __has_ptrcheck = 0;
+
+const int __DARWIN_NULL = 0;
+
+const int __PTHREAD_SIZE__ = 8176;
+
+const int __PTHREAD_ATTR_SIZE__ = 56;
+
+const int __PTHREAD_MUTEXATTR_SIZE__ = 8;
+
+const int __PTHREAD_MUTEX_SIZE__ = 56;
+
+const int __PTHREAD_CONDATTR_SIZE__ = 8;
+
+const int __PTHREAD_COND_SIZE__ = 40;
+
+const int __PTHREAD_ONCE_SIZE__ = 8;
+
+const int __PTHREAD_RWLOCK_SIZE__ = 192;
+
+const int __PTHREAD_RWLOCKATTR_SIZE__ = 16;
+
+const int __DARWIN_WCHAR_MAX = 2147483647;
+
+const int __DARWIN_WCHAR_MIN = -2147483648;
+
+const int __DARWIN_WEOF = -1;
+
+const int _FORTIFY_SOURCE = 2;
+
+const int NULL = 0;
+
+const int USER_ADDR_NULL = 0;
+
+const int __WORDSIZE = 64;
+
+const int INT8_MAX = 127;
+
+const int INT16_MAX = 32767;
+
+const int INT32_MAX = 2147483647;
+
+const int INT64_MAX = 9223372036854775807;
+
+const int INT8_MIN = -128;
+
+const int INT16_MIN = -32768;
+
+const int INT32_MIN = -2147483648;
+
+const int INT64_MIN = -9223372036854775808;
+
+const int UINT8_MAX = 255;
+
+const int UINT16_MAX = 65535;
+
+const int UINT32_MAX = 4294967295;
+
+const int UINT64_MAX = -1;
+
+const int INT_LEAST8_MIN = -128;
+
+const int INT_LEAST16_MIN = -32768;
+
+const int INT_LEAST32_MIN = -2147483648;
+
+const int INT_LEAST64_MIN = -9223372036854775808;
+
+const int INT_LEAST8_MAX = 127;
+
+const int INT_LEAST16_MAX = 32767;
+
+const int INT_LEAST32_MAX = 2147483647;
+
+const int INT_LEAST64_MAX = 9223372036854775807;
+
+const int UINT_LEAST8_MAX = 255;
+
+const int UINT_LEAST16_MAX = 65535;
+
+const int UINT_LEAST32_MAX = 4294967295;
+
+const int UINT_LEAST64_MAX = -1;
+
+const int INT_FAST8_MIN = -128;
+
+const int INT_FAST16_MIN = -32768;
+
+const int INT_FAST32_MIN = -2147483648;
+
+const int INT_FAST64_MIN = -9223372036854775808;
+
+const int INT_FAST8_MAX = 127;
+
+const int INT_FAST16_MAX = 32767;
+
+const int INT_FAST32_MAX = 2147483647;
+
+const int INT_FAST64_MAX = 9223372036854775807;
+
+const int UINT_FAST8_MAX = 255;
+
+const int UINT_FAST16_MAX = 65535;
+
+const int UINT_FAST32_MAX = 4294967295;
+
+const int UINT_FAST64_MAX = -1;
+
+const int INTPTR_MAX = 9223372036854775807;
+
+const int INTPTR_MIN = -9223372036854775808;
+
+const int UINTPTR_MAX = -1;
+
+const int INTMAX_MAX = 9223372036854775807;
+
+const int UINTMAX_MAX = -1;
+
+const int INTMAX_MIN = -9223372036854775808;
+
+const int PTRDIFF_MIN = -9223372036854775808;
+
+const int PTRDIFF_MAX = 9223372036854775807;
+
+const int SIZE_MAX = -1;
+
+const int RSIZE_MAX = 9223372036854775807;
+
+const int WCHAR_MAX = 2147483647;
+
+const int WCHAR_MIN = -2147483648;
+
+const int WINT_MIN = -2147483648;
+
+const int WINT_MAX = 2147483647;
+
+const int SIG_ATOMIC_MIN = -2147483648;
+
+const int SIG_ATOMIC_MAX = 2147483647;
