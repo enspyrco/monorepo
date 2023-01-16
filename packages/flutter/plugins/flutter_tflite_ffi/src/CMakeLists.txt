@@ -14,4 +14,14 @@ set_target_properties(flutter_tflite_ffi PROPERTIES
   OUTPUT_NAME "flutter_tflite_ffi"
 )
 
+# Add the prebuilt native library
+add_library(native-lib SHARED IMPORTED)
+set_target_properties(
+        native-lib
+        PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_CURRENT_SOURCE_DIR}/android/${ANDROID_ABI}/libtensorflowlite_c.so
+)
+# Link prebuilt native library to the flutter plugin library
+target_link_libraries(flutter_tflite_ffi native-lib)
+
 target_compile_definitions(flutter_tflite_ffi PUBLIC DART_SHARED_LIB)
