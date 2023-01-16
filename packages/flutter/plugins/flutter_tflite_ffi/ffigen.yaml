@@ -7,9 +7,7 @@ description: |
 output: 'lib/flutter_tflite_ffi_bindings_generated.dart'
 headers:
   entry-points:
-    - 'src/flutter_tflite_ffi.h'
-  include-directives:
-    - 'src/flutter_tflite_ffi.h'
+    - 'tensorflow/tensorflow/c/c_api.h'
 preamble: |
   // ignore_for_file: always_specify_types
   // ignore_for_file: camel_case_types
