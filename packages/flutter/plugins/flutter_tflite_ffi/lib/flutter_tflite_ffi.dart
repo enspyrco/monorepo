@@ -11,7 +11,7 @@ String version() => _bindings.TfLiteVersion().cast<Utf8>().toDartString();
 
 final DynamicLibrary _dylib = () {
   if (Platform.isMacOS || Platform.isIOS) {
-    return DynamicLibrary.open(_libName);
+    return DynamicLibrary.process();
   }
   if (Platform.isAndroid || Platform.isLinux) {
     return DynamicLibrary.open('$_libName.so');
