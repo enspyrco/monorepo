@@ -1,11 +1,13 @@
 import 'dart:ffi';
 import 'dart:io';
 
+import 'package:ffi/ffi.dart';
+
 import 'flutter_tflite_ffi_bindings_generated.dart';
 
 const String _libName = 'libtensorflowlite_c';
 
-int version() => _bindings.TfLiteVersion().value;
+String version() => _bindings.TfLiteVersion().cast<Utf8>().toDartString();
 
 final DynamicLibrary _dylib = () {
   if (Platform.isMacOS || Platform.isIOS) {
