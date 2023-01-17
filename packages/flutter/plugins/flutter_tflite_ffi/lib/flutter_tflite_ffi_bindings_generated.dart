@@ -2087,15 +2087,15 @@ class FlutterTfliteFfiBindings {
   /// TensorFlow Lite uses semantic versioning, and the return value should be
   /// in semver 2 format <http://semver.org>, starting with MAJOR.MINOR.PATCH,
   /// e.g. "2.12.0" or "2.13.0-rc2".
-  ffi.Pointer<ffi.Int> TfLiteVersion() {
+  ffi.Pointer<ffi.Char> TfLiteVersion() {
     return _TfLiteVersion();
   }
 
   late final _TfLiteVersionPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int> Function()>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
           'TfLiteVersion');
   late final _TfLiteVersion =
-      _TfLiteVersionPtr.asFunction<ffi.Pointer<ffi.Int> Function()>();
+      _TfLiteVersionPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
 
   /// The supported TensorFlow Lite model file Schema version.
   ///
@@ -2121,15 +2121,130 @@ class FlutterTfliteFfiBindings {
   /// as the lifetime of the `TfLiteModel` and of any `TfLiteInterpreter` objects
   /// created from that `TfLiteModel`, and furthermore the contents of the
   /// `model_data` buffer must not be modified during that time."
-  late final ffi.Pointer<ffi.Int> _TfLiteModel1 =
-      _lookup<ffi.Int>('TfLiteModel');
+  ffi.Pointer<TfLiteModel> TfLiteModelCreate(
+    ffi.Pointer<ffi.Void> model_data,
+    int model_size,
+  ) {
+    return _TfLiteModelCreate(
+      model_data,
+      model_size,
+    );
+  }
 
-  int get TfLiteModel1 => _TfLiteModel1.value;
+  late final _TfLiteModelCreatePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TfLiteModel> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size)>>('TfLiteModelCreate');
+  late final _TfLiteModelCreate = _TfLiteModelCreatePtr.asFunction<
+      ffi.Pointer<TfLiteModel> Function(ffi.Pointer<ffi.Void>, int)>();
 
-  set TfLiteModel1(int value) => _TfLiteModel1.value = value;
+  /// Same as `TfLiteModelCreate` with customizble error reporter.
+  /// * `reporter` takes the provided `user_data` object, as well as a C-style
+  /// format string and arg list (see also vprintf).
+  /// * `user_data` is optional. If non-null, it is owned by the client and must
+  /// remain valid for the duration of the interpreter lifetime.
+  ffi.Pointer<TfLiteModel> TfLiteModelCreateWithErrorReporter(
+    ffi.Pointer<ffi.Void> model_data,
+    int model_size,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Void Function(
+                    ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, va_list)>>
+        reporter,
+    ffi.Pointer<ffi.Void> user_data,
+  ) {
+    return _TfLiteModelCreateWithErrorReporter(
+      model_data,
+      model_size,
+      reporter,
+      user_data,
+    );
+  }
+
+  late final _TfLiteModelCreateWithErrorReporterPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TfLiteModel> Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Void Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Char>, va_list)>>,
+              ffi.Pointer<ffi.Void>)>>('TfLiteModelCreateWithErrorReporter');
+  late final _TfLiteModelCreateWithErrorReporter =
+      _TfLiteModelCreateWithErrorReporterPtr.asFunction<
+          ffi.Pointer<TfLiteModel> Function(
+              ffi.Pointer<ffi.Void>,
+              int,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Void Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Char>, va_list)>>,
+              ffi.Pointer<ffi.Void>)>();
+
+  /// Returns a model from the provided file, or null on failure.
+  ///
+  /// NOTE: The file's contents must not be modified during the lifetime of the
+  /// `TfLiteModel` or of any `TfLiteInterpreter` objects created from that
+  /// `TfLiteModel`.
+  ffi.Pointer<TfLiteModel> TfLiteModelCreateFromFile(
+    ffi.Pointer<ffi.Char> model_path,
+  ) {
+    return _TfLiteModelCreateFromFile(
+      model_path,
+    );
+  }
+
+  late final _TfLiteModelCreateFromFilePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TfLiteModel> Function(
+              ffi.Pointer<ffi.Char>)>>('TfLiteModelCreateFromFile');
+  late final _TfLiteModelCreateFromFile = _TfLiteModelCreateFromFilePtr
+      .asFunction<ffi.Pointer<TfLiteModel> Function(ffi.Pointer<ffi.Char>)>();
+
+  /// Same as `TfLiteModelCreateFromFile` with customizble error reporter.
+  /// * `reporter` takes the provided `user_data` object, as well as a C-style
+  /// format string and arg list (see also vprintf).
+  /// * `user_data` is optional. If non-null, it is owned by the client and must
+  /// remain valid for the duration of the interpreter lifetime.
+  ffi.Pointer<TfLiteModel> TfLiteModelCreateFromFileWithErrorReporter(
+    ffi.Pointer<ffi.Char> model_path,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Void Function(
+                    ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, va_list)>>
+        reporter,
+    ffi.Pointer<ffi.Void> user_data,
+  ) {
+    return _TfLiteModelCreateFromFileWithErrorReporter(
+      model_path,
+      reporter,
+      user_data,
+    );
+  }
+
+  late final _TfLiteModelCreateFromFileWithErrorReporterPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<TfLiteModel> Function(
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Pointer<
+                      ffi.NativeFunction<
+                          ffi.Void Function(ffi.Pointer<ffi.Void>,
+                              ffi.Pointer<ffi.Char>, va_list)>>,
+                  ffi.Pointer<ffi.Void>)>>(
+      'TfLiteModelCreateFromFileWithErrorReporter');
+  late final _TfLiteModelCreateFromFileWithErrorReporter =
+      _TfLiteModelCreateFromFileWithErrorReporterPtr.asFunction<
+          ffi.Pointer<TfLiteModel> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Void Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Char>, va_list)>>,
+              ffi.Pointer<ffi.Void>)>();
 
   /// Destroys the model instance.
-  int TfLiteModelDelete(
+  void TfLiteModelDelete(
     ffi.Pointer<TfLiteModel> model,
   ) {
     return _TfLiteModelDelete(
@@ -2138,22 +2253,47 @@ class FlutterTfliteFfiBindings {
   }
 
   late final _TfLiteModelDeletePtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<TfLiteModel>)>>(
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<TfLiteModel>)>>(
           'TfLiteModelDelete');
   late final _TfLiteModelDelete = _TfLiteModelDeletePtr.asFunction<
-      int Function(ffi.Pointer<TfLiteModel>)>();
+      void Function(ffi.Pointer<TfLiteModel>)>();
 
   /// Returns a new interpreter options instances.
-  late final ffi.Pointer<ffi.Int> _TfLiteInterpreterOptions1 =
-      _lookup<ffi.Int>('TfLiteInterpreterOptions');
+  ffi.Pointer<TfLiteInterpreterOptions> TfLiteInterpreterOptionsCreate() {
+    return _TfLiteInterpreterOptionsCreate();
+  }
 
-  int get TfLiteInterpreterOptions1 => _TfLiteInterpreterOptions1.value;
+  late final _TfLiteInterpreterOptionsCreatePtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<TfLiteInterpreterOptions> Function()>>(
+      'TfLiteInterpreterOptionsCreate');
+  late final _TfLiteInterpreterOptionsCreate =
+      _TfLiteInterpreterOptionsCreatePtr.asFunction<
+          ffi.Pointer<TfLiteInterpreterOptions> Function()>();
 
-  set TfLiteInterpreterOptions1(int value) =>
-      _TfLiteInterpreterOptions1.value = value;
+  /// Creates and returns a shallow copy of an options object.
+  ///
+  /// The caller is responsible for calling `TfLiteInterpreterOptionsDelete` to
+  /// deallocate the object pointed to by the returned pointer.
+  ffi.Pointer<TfLiteInterpreterOptions> TfLiteInterpreterOptionsCopy(
+    ffi.Pointer<TfLiteInterpreterOptions> from,
+  ) {
+    return _TfLiteInterpreterOptionsCopy(
+      from,
+    );
+  }
+
+  late final _TfLiteInterpreterOptionsCopyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<TfLiteInterpreterOptions> Function(
+                  ffi.Pointer<TfLiteInterpreterOptions>)>>(
+      'TfLiteInterpreterOptionsCopy');
+  late final _TfLiteInterpreterOptionsCopy =
+      _TfLiteInterpreterOptionsCopyPtr.asFunction<
+          ffi.Pointer<TfLiteInterpreterOptions> Function(
+              ffi.Pointer<TfLiteInterpreterOptions>)>();
 
   /// Destroys the interpreter options instance.
-  int TfLiteInterpreterOptionsDelete(
+  void TfLiteInterpreterOptionsDelete(
     ffi.Pointer<TfLiteInterpreterOptions> options,
   ) {
     return _TfLiteInterpreterOptionsDelete(
@@ -2163,14 +2303,14 @@ class FlutterTfliteFfiBindings {
 
   late final _TfLiteInterpreterOptionsDeletePtr = _lookup<
           ffi.NativeFunction<
-              ffi.Int Function(ffi.Pointer<TfLiteInterpreterOptions>)>>(
+              ffi.Void Function(ffi.Pointer<TfLiteInterpreterOptions>)>>(
       'TfLiteInterpreterOptionsDelete');
   late final _TfLiteInterpreterOptionsDelete =
       _TfLiteInterpreterOptionsDeletePtr.asFunction<
-          int Function(ffi.Pointer<TfLiteInterpreterOptions>)>();
+          void Function(ffi.Pointer<TfLiteInterpreterOptions>)>();
 
   /// Sets the number of CPU threads to use for the interpreter.
-  int TfLiteInterpreterOptionsSetNumThreads(
+  void TfLiteInterpreterOptionsSetNumThreads(
     ffi.Pointer<TfLiteInterpreterOptions> options,
     int num_threads,
   ) {
@@ -2182,11 +2322,11 @@ class FlutterTfliteFfiBindings {
 
   late final _TfLiteInterpreterOptionsSetNumThreadsPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<TfLiteInterpreterOptions>,
+          ffi.Void Function(ffi.Pointer<TfLiteInterpreterOptions>,
               ffi.Int32)>>('TfLiteInterpreterOptionsSetNumThreads');
   late final _TfLiteInterpreterOptionsSetNumThreads =
       _TfLiteInterpreterOptionsSetNumThreadsPtr.asFunction<
-          int Function(ffi.Pointer<TfLiteInterpreterOptions>, int)>();
+          void Function(ffi.Pointer<TfLiteInterpreterOptions>, int)>();
 
   /// Adds a delegate to be applied during `TfLiteInterpreter` creation.
   ///
@@ -2205,9 +2345,9 @@ class FlutterTfliteFfiBindings {
   /// and existing delegates.  For new delegates, it is recommended to
   /// use `TfLiteOpaqueDelegate` rather than `TfLiteDelegate`.  (See
   /// `TfLiteOpaqueDelegate` in tensorflow/lite/core/c/c_api_types.h.)
-  int TfLiteInterpreterOptionsAddDelegate(
+  void TfLiteInterpreterOptionsAddDelegate(
     ffi.Pointer<TfLiteInterpreterOptions> options,
-    ffi.Pointer<ffi.Int> delegate,
+    ffi.Pointer<TfLiteOpaqueDelegate> delegate,
   ) {
     return _TfLiteInterpreterOptionsAddDelegate(
       options,
@@ -2216,13 +2356,14 @@ class FlutterTfliteFfiBindings {
   }
 
   late final _TfLiteInterpreterOptionsAddDelegatePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<TfLiteInterpreterOptions>,
-              ffi.Pointer<ffi.Int>)>>('TfLiteInterpreterOptionsAddDelegate');
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<TfLiteInterpreterOptions>,
+                  ffi.Pointer<TfLiteOpaqueDelegate>)>>(
+      'TfLiteInterpreterOptionsAddDelegate');
   late final _TfLiteInterpreterOptionsAddDelegate =
       _TfLiteInterpreterOptionsAddDelegatePtr.asFunction<
-          int Function(
-              ffi.Pointer<TfLiteInterpreterOptions>, ffi.Pointer<ffi.Int>)>();
+          void Function(ffi.Pointer<TfLiteInterpreterOptions>,
+              ffi.Pointer<TfLiteOpaqueDelegate>)>();
 
   /// Sets a custom error reporter for interpreter execution.
   ///
@@ -2230,7 +2371,7 @@ class FlutterTfliteFfiBindings {
   /// format string and arg list (see also vprintf).
   /// * `user_data` is optional. If non-null, it is owned by the client and must
   /// remain valid for the duration of the interpreter lifetime.
-  int TfLiteInterpreterOptionsSetErrorReporter(
+  void TfLiteInterpreterOptionsSetErrorReporter(
     ffi.Pointer<TfLiteInterpreterOptions> options,
     ffi.Pointer<
             ffi.NativeFunction<
@@ -2248,7 +2389,7 @@ class FlutterTfliteFfiBindings {
 
   late final _TfLiteInterpreterOptionsSetErrorReporterPtr = _lookup<
           ffi.NativeFunction<
-              ffi.Int Function(
+              ffi.Void Function(
                   ffi.Pointer<TfLiteInterpreterOptions>,
                   ffi.Pointer<
                       ffi.NativeFunction<
@@ -2258,7 +2399,7 @@ class FlutterTfliteFfiBindings {
       'TfLiteInterpreterOptionsSetErrorReporter');
   late final _TfLiteInterpreterOptionsSetErrorReporter =
       _TfLiteInterpreterOptionsSetErrorReporterPtr.asFunction<
-          int Function(
+          void Function(
               ffi.Pointer<TfLiteInterpreterOptions>,
               ffi.Pointer<
                   ffi.NativeFunction<
@@ -2278,7 +2419,7 @@ class FlutterTfliteFfiBindings {
   /// and should ensure that it remains valid for the duration of any created
   /// interpreter's lifetime.
   /// WARNING: This is an experimental API and subject to change.
-  int TfLiteInterpreterOptionsAddRegistrationExternal(
+  void TfLiteInterpreterOptionsAddRegistrationExternal(
     ffi.Pointer<TfLiteInterpreterOptions> options,
     ffi.Pointer<TfLiteRegistrationExternal> registration,
   ) {
@@ -2290,12 +2431,12 @@ class FlutterTfliteFfiBindings {
 
   late final _TfLiteInterpreterOptionsAddRegistrationExternalPtr = _lookup<
           ffi.NativeFunction<
-              ffi.Int Function(ffi.Pointer<TfLiteInterpreterOptions>,
+              ffi.Void Function(ffi.Pointer<TfLiteInterpreterOptions>,
                   ffi.Pointer<TfLiteRegistrationExternal>)>>(
       'TfLiteInterpreterOptionsAddRegistrationExternal');
   late final _TfLiteInterpreterOptionsAddRegistrationExternal =
       _TfLiteInterpreterOptionsAddRegistrationExternalPtr.asFunction<
-          int Function(ffi.Pointer<TfLiteInterpreterOptions>,
+          void Function(ffi.Pointer<TfLiteInterpreterOptions>,
               ffi.Pointer<TfLiteRegistrationExternal>)>();
 
   /// Enables users to cancel in-flight invocations with `TfLiteInterpreterCancel`.
@@ -2304,12 +2445,23 @@ class FlutterTfliteFfiBindings {
   /// return kTfLiteError. See `TfLiteInterpreterCancel`.
   ///
   /// WARNING: This is an experimental API and subject to change.
-  late final ffi.Pointer<ffi.Int> _TfLiteStatus =
-      _lookup<ffi.Int>('TfLiteStatus');
+  int TfLiteInterpreterOptionsEnableCancellation(
+    ffi.Pointer<TfLiteInterpreterOptions> options,
+    bool enable,
+  ) {
+    return _TfLiteInterpreterOptionsEnableCancellation(
+      options,
+      enable ? 1 : 0,
+    );
+  }
 
-  int get TfLiteStatus => _TfLiteStatus.value;
-
-  set TfLiteStatus(int value) => _TfLiteStatus.value = value;
+  late final _TfLiteInterpreterOptionsEnableCancellationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(ffi.Pointer<TfLiteInterpreterOptions>,
+              ffi.Uint8)>>('TfLiteInterpreterOptionsEnableCancellation');
+  late final _TfLiteInterpreterOptionsEnableCancellation =
+      _TfLiteInterpreterOptionsEnableCancellationPtr.asFunction<
+          int Function(ffi.Pointer<TfLiteInterpreterOptions>, int)>();
 
   /// Returns a new interpreter using the provided model and options, or null on
   /// failure.
@@ -2329,15 +2481,27 @@ class FlutterTfliteFfiBindings {
   ///
   /// NOTE: The client *must* explicitly allocate tensors before attempting to
   /// access input tensor data or invoke the interpreter.
-  late final ffi.Pointer<ffi.Int> _TfLiteInterpreter1 =
-      _lookup<ffi.Int>('TfLiteInterpreter');
+  ffi.Pointer<TfLiteInterpreter> TfLiteInterpreterCreate(
+    ffi.Pointer<TfLiteModel> model,
+    ffi.Pointer<TfLiteInterpreterOptions> optional_options,
+  ) {
+    return _TfLiteInterpreterCreate(
+      model,
+      optional_options,
+    );
+  }
 
-  int get TfLiteInterpreter1 => _TfLiteInterpreter1.value;
-
-  set TfLiteInterpreter1(int value) => _TfLiteInterpreter1.value = value;
+  late final _TfLiteInterpreterCreatePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<TfLiteInterpreter> Function(ffi.Pointer<TfLiteModel>,
+                  ffi.Pointer<TfLiteInterpreterOptions>)>>(
+      'TfLiteInterpreterCreate');
+  late final _TfLiteInterpreterCreate = _TfLiteInterpreterCreatePtr.asFunction<
+      ffi.Pointer<TfLiteInterpreter> Function(
+          ffi.Pointer<TfLiteModel>, ffi.Pointer<TfLiteInterpreterOptions>)>();
 
   /// Destroys the interpreter.
-  int TfLiteInterpreterDelete(
+  void TfLiteInterpreterDelete(
     ffi.Pointer<TfLiteInterpreter> interpreter,
   ) {
     return _TfLiteInterpreterDelete(
@@ -2346,17 +2510,28 @@ class FlutterTfliteFfiBindings {
   }
 
   late final _TfLiteInterpreterDeletePtr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<TfLiteInterpreter>)>>(
-      'TfLiteInterpreterDelete');
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TfLiteInterpreter>)>>('TfLiteInterpreterDelete');
   late final _TfLiteInterpreterDelete = _TfLiteInterpreterDeletePtr.asFunction<
-      int Function(ffi.Pointer<TfLiteInterpreter>)>();
+      void Function(ffi.Pointer<TfLiteInterpreter>)>();
 
   /// Returns the number of input tensors associated with the model.
-  late final ffi.Pointer<ffi.Int> _int32_t = _lookup<ffi.Int>('int32_t');
+  int TfLiteInterpreterGetInputTensorCount(
+    ffi.Pointer<TfLiteInterpreter> interpreter,
+  ) {
+    return _TfLiteInterpreterGetInputTensorCount(
+      interpreter,
+    );
+  }
 
-  int get int32_t => _int32_t.value;
-
-  set int32_t(int value) => _int32_t.value = value;
+  late final _TfLiteInterpreterGetInputTensorCountPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Int32 Function(ffi.Pointer<TfLiteInterpreter>)>>(
+      'TfLiteInterpreterGetInputTensorCount');
+  late final _TfLiteInterpreterGetInputTensorCount =
+      _TfLiteInterpreterGetInputTensorCountPtr.asFunction<
+          int Function(ffi.Pointer<TfLiteInterpreter>)>();
 
   /// Returns a pointer to an array of input tensor indices.  The length of the
   /// array can be obtained via a call to `TfLiteInterpreterGetInputTensorCount`.
@@ -2387,12 +2562,141 @@ class FlutterTfliteFfiBindings {
 
   /// Returns the tensor associated with the input index.
   /// REQUIRES: 0 <= input_index < TfLiteInterpreterGetInputTensorCount(tensor)
-  late final ffi.Pointer<ffi.Int> _TfLiteTensor1 =
-      _lookup<ffi.Int>('TfLiteTensor');
+  ffi.Pointer<TfLiteTensor> TfLiteInterpreterGetInputTensor(
+    ffi.Pointer<TfLiteInterpreter> interpreter,
+    int input_index,
+  ) {
+    return _TfLiteInterpreterGetInputTensor(
+      interpreter,
+      input_index,
+    );
+  }
 
-  int get TfLiteTensor1 => _TfLiteTensor1.value;
+  late final _TfLiteInterpreterGetInputTensorPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TfLiteTensor> Function(ffi.Pointer<TfLiteInterpreter>,
+              ffi.Int32)>>('TfLiteInterpreterGetInputTensor');
+  late final _TfLiteInterpreterGetInputTensor =
+      _TfLiteInterpreterGetInputTensorPtr.asFunction<
+          ffi.Pointer<TfLiteTensor> Function(
+              ffi.Pointer<TfLiteInterpreter>, int)>();
 
-  set TfLiteTensor1(int value) => _TfLiteTensor1.value = value;
+  /// Resizes the specified input tensor.
+  ///
+  /// NOTE: After a resize, the client *must* explicitly allocate tensors before
+  /// attempting to access the resized tensor data or invoke the interpreter.
+  ///
+  /// REQUIRES: 0 <= input_index < TfLiteInterpreterGetInputTensorCount(tensor)
+  ///
+  /// This function makes a copy of the input dimensions, so the client can safely
+  /// deallocate `input_dims` immediately after this function returns.
+  int TfLiteInterpreterResizeInputTensor(
+    ffi.Pointer<TfLiteInterpreter> interpreter,
+    int input_index,
+    ffi.Pointer<ffi.Int> input_dims,
+    int input_dims_size,
+  ) {
+    return _TfLiteInterpreterResizeInputTensor(
+      interpreter,
+      input_index,
+      input_dims,
+      input_dims_size,
+    );
+  }
+
+  late final _TfLiteInterpreterResizeInputTensorPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteInterpreter>,
+              ffi.Int32,
+              ffi.Pointer<ffi.Int>,
+              ffi.Int32)>>('TfLiteInterpreterResizeInputTensor');
+  late final _TfLiteInterpreterResizeInputTensor =
+      _TfLiteInterpreterResizeInputTensorPtr.asFunction<
+          int Function(ffi.Pointer<TfLiteInterpreter>, int,
+              ffi.Pointer<ffi.Int>, int)>();
+
+  /// Updates allocations for all tensors, resizing dependent tensors using the
+  /// specified input tensor dimensionality.
+  ///
+  /// This is a relatively expensive operation, and need only be called after
+  /// creating the graph and/or resizing any inputs.
+  int TfLiteInterpreterAllocateTensors(
+    ffi.Pointer<TfLiteInterpreter> interpreter,
+  ) {
+    return _TfLiteInterpreterAllocateTensors(
+      interpreter,
+    );
+  }
+
+  late final _TfLiteInterpreterAllocateTensorsPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Int32 Function(ffi.Pointer<TfLiteInterpreter>)>>(
+      'TfLiteInterpreterAllocateTensors');
+  late final _TfLiteInterpreterAllocateTensors =
+      _TfLiteInterpreterAllocateTensorsPtr.asFunction<
+          int Function(ffi.Pointer<TfLiteInterpreter>)>();
+
+  /// Runs inference for the loaded graph.
+  ///
+  /// Before calling this function, the caller should first invoke
+  /// TfLiteInterpreterAllocateTensors() and should also set the values for the
+  /// input tensors.  After successfully calling this function, the values for the
+  /// output tensors will be set.
+  ///
+  /// NOTE: It is possible that the interpreter is not in a ready state to
+  /// evaluate (e.g., if AllocateTensors() hasn't been called, or if a
+  /// ResizeInputTensor() has been performed without a subsequent call to
+  /// AllocateTensors()).
+  ///
+  /// If the (experimental!) delegate fallback option was enabled in the
+  /// interpreter options, then the interpreter will automatically fall back to
+  /// not using any delegates if execution with delegates fails. For details, see
+  /// TfLiteInterpreterOptionsSetEnableDelegateFallback in c_api_experimental.h.
+  ///
+  /// Returns one of the following status codes:
+  /// - kTfLiteOk: Success. Output is valid.
+  /// - kTfLiteDelegateError: Execution with delegates failed, due to a problem
+  /// with the delegate(s). If fallback was not enabled, output is invalid.
+  /// If fallback was enabled, this return value indicates that fallback
+  /// succeeded, the output is valid, and all delegates previously applied to
+  /// the interpreter have been undone.
+  /// - kTfLiteApplicationError: Same as for kTfLiteDelegateError, except that
+  /// the problem was not with the delegate itself, but rather was
+  /// due to an incompatibility between the delegate(s) and the
+  /// interpreter or model.
+  /// - kTfLiteError: Unexpected/runtime failure. Output is invalid.
+  int TfLiteInterpreterInvoke(
+    ffi.Pointer<TfLiteInterpreter> interpreter,
+  ) {
+    return _TfLiteInterpreterInvoke(
+      interpreter,
+    );
+  }
+
+  late final _TfLiteInterpreterInvokePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteInterpreter>)>>('TfLiteInterpreterInvoke');
+  late final _TfLiteInterpreterInvoke = _TfLiteInterpreterInvokePtr.asFunction<
+      int Function(ffi.Pointer<TfLiteInterpreter>)>();
+
+  /// Returns the number of output tensors associated with the model.
+  int TfLiteInterpreterGetOutputTensorCount(
+    ffi.Pointer<TfLiteInterpreter> interpreter,
+  ) {
+    return _TfLiteInterpreterGetOutputTensorCount(
+      interpreter,
+    );
+  }
+
+  late final _TfLiteInterpreterGetOutputTensorCountPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Int32 Function(ffi.Pointer<TfLiteInterpreter>)>>(
+      'TfLiteInterpreterGetOutputTensorCount');
+  late final _TfLiteInterpreterGetOutputTensorCount =
+      _TfLiteInterpreterGetOutputTensorCountPtr.asFunction<
+          int Function(ffi.Pointer<TfLiteInterpreter>)>();
 
   /// Returns a pointer to an array of output tensor indices.  The length of the
   /// array can be obtained via a call to `TfLiteInterpreterGetOutputTensorCount`.
@@ -2421,19 +2725,164 @@ class FlutterTfliteFfiBindings {
       _TfLiteInterpreterOutputTensorIndicesPtr.asFunction<
           ffi.Pointer<ffi.Int> Function(ffi.Pointer<TfLiteInterpreter>)>();
 
+  /// Returns the tensor associated with the output index.
+  /// REQUIRES: 0 <= output_index < TfLiteInterpreterGetOutputTensorCount(tensor)
+  ///
+  /// NOTE: The shape and underlying data buffer for output tensors may be not
+  /// be available until after the output tensor has been both sized and allocated.
+  /// In general, best practice is to interact with the output tensor *after*
+  /// calling TfLiteInterpreterInvoke().
+  ffi.Pointer<TfLiteTensor> TfLiteInterpreterGetOutputTensor(
+    ffi.Pointer<TfLiteInterpreter> interpreter,
+    int output_index,
+  ) {
+    return _TfLiteInterpreterGetOutputTensor(
+      interpreter,
+      output_index,
+    );
+  }
+
+  late final _TfLiteInterpreterGetOutputTensorPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TfLiteTensor> Function(ffi.Pointer<TfLiteInterpreter>,
+              ffi.Int32)>>('TfLiteInterpreterGetOutputTensor');
+  late final _TfLiteInterpreterGetOutputTensor =
+      _TfLiteInterpreterGetOutputTensorPtr.asFunction<
+          ffi.Pointer<TfLiteTensor> Function(
+              ffi.Pointer<TfLiteInterpreter>, int)>();
+
+  /// Returns modifiable access to the tensor that corresponds to the
+  /// specified `index` and is associated with the provided `interpreter`.
+  ///
+  /// This requires the `index` to be between 0 and N - 1, where N is the
+  /// number of tensors in the model.
+  ///
+  /// Typically the tensors associated with the `interpreter` would be set during
+  /// the `interpreter` initialization, through a mechanism like the
+  /// `InterpreterBuilder`, and remain unchanged throughout the lifetime of the
+  /// interpreter.  However, there are some circumstances in which the pointer may
+  /// not remain valid throughout the lifetime of the interpreter, because calls to
+  /// `AddTensors` on the interpreter invalidate the returned pointer.
+  ///
+  /// Note the difference between this function and
+  /// `TfLiteInterpreterGetInputTensor` (or `TfLiteInterpreterGetOutputTensor` for
+  /// that matter): `TfLiteInterpreterGetTensor` takes an index into the array of
+  /// all tensors associated with the `interpreter`'s model, whereas
+  /// `TfLiteInterpreterGetInputTensor` takes an index into the array of input
+  /// tensors.
+  ///
+  /// The ownership of the tensor remains with the TFLite runtime, meaning the
+  /// caller should not deallocate the pointer.
+  ffi.Pointer<TfLiteTensor> TfLiteInterpreterGetTensor(
+    ffi.Pointer<TfLiteInterpreter> interpreter,
+    int index,
+  ) {
+    return _TfLiteInterpreterGetTensor(
+      interpreter,
+      index,
+    );
+  }
+
+  late final _TfLiteInterpreterGetTensorPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TfLiteTensor> Function(ffi.Pointer<TfLiteInterpreter>,
+              ffi.Int)>>('TfLiteInterpreterGetTensor');
+  late final _TfLiteInterpreterGetTensor =
+      _TfLiteInterpreterGetTensorPtr.asFunction<
+          ffi.Pointer<TfLiteTensor> Function(
+              ffi.Pointer<TfLiteInterpreter>, int)>();
+
+  /// Tries to cancel any in-flight invocation.
+  ///
+  /// NOTE: This only cancels `TfLiteInterpreterInvoke` calls that happen before
+  /// calling this and it does not cancel subsequent invocations.
+  /// NOTE: Calling this function will also cancel any in-flight invocations of
+  /// SignatureRunners constructed from this interpreter.
+  /// Non-blocking and thread safe.
+  ///
+  /// Returns kTfLiteError if cancellation is not enabled via
+  /// `TfLiteInterpreterOptionsEnableCancellation`.
+  ///
+  /// WARNING: This is an experimental API and subject to change.
+  int TfLiteInterpreterCancel(
+    ffi.Pointer<TfLiteInterpreter> interpreter,
+  ) {
+    return _TfLiteInterpreterCancel(
+      interpreter,
+    );
+  }
+
+  late final _TfLiteInterpreterCancelPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteInterpreter>)>>('TfLiteInterpreterCancel');
+  late final _TfLiteInterpreterCancel = _TfLiteInterpreterCancelPtr.asFunction<
+      int Function(ffi.Pointer<TfLiteInterpreter>)>();
+
   /// Returns the type of a tensor element.
-  late final ffi.Pointer<ffi.Int> _TfLiteType = _lookup<ffi.Int>('TfLiteType');
+  int TfLiteTensorType(
+    ffi.Pointer<TfLiteTensor> tensor,
+  ) {
+    return _TfLiteTensorType(
+      tensor,
+    );
+  }
 
-  int get TfLiteType => _TfLiteType.value;
+  late final _TfLiteTensorTypePtr = _lookup<
+          ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<TfLiteTensor>)>>(
+      'TfLiteTensorType');
+  late final _TfLiteTensorType = _TfLiteTensorTypePtr.asFunction<
+      int Function(ffi.Pointer<TfLiteTensor>)>();
 
-  set TfLiteType(int value) => _TfLiteType.value = value;
+  /// Returns the number of dimensions that the tensor has.  Returns -1 in case
+  /// the 'opaque_tensor' does not have its dimensions property set.
+  int TfLiteTensorNumDims(
+    ffi.Pointer<TfLiteTensor> tensor,
+  ) {
+    return _TfLiteTensorNumDims(
+      tensor,
+    );
+  }
+
+  late final _TfLiteTensorNumDimsPtr = _lookup<
+          ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<TfLiteTensor>)>>(
+      'TfLiteTensorNumDims');
+  late final _TfLiteTensorNumDims = _TfLiteTensorNumDimsPtr.asFunction<
+      int Function(ffi.Pointer<TfLiteTensor>)>();
+
+  /// Returns the length of the tensor in the "dim_index" dimension.
+  /// REQUIRES: 0 <= dim_index < TFLiteTensorNumDims(tensor)
+  int TfLiteTensorDim(
+    ffi.Pointer<TfLiteTensor> tensor,
+    int dim_index,
+  ) {
+    return _TfLiteTensorDim(
+      tensor,
+      dim_index,
+    );
+  }
+
+  late final _TfLiteTensorDimPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteTensor>, ffi.Int32)>>('TfLiteTensorDim');
+  late final _TfLiteTensorDim = _TfLiteTensorDimPtr.asFunction<
+      int Function(ffi.Pointer<TfLiteTensor>, int)>();
 
   /// Returns the size of the underlying data in bytes.
-  late final ffi.Pointer<ffi.Int> _size_t = _lookup<ffi.Int>('size_t');
+  int TfLiteTensorByteSize(
+    ffi.Pointer<TfLiteTensor> tensor,
+  ) {
+    return _TfLiteTensorByteSize(
+      tensor,
+    );
+  }
 
-  int get size_t => _size_t.value;
-
-  set size_t(int value) => _size_t.value = value;
+  late final _TfLiteTensorByteSizePtr =
+      _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Pointer<TfLiteTensor>)>>(
+          'TfLiteTensorByteSize');
+  late final _TfLiteTensorByteSize = _TfLiteTensorByteSizePtr.asFunction<
+      int Function(ffi.Pointer<TfLiteTensor>)>();
 
   /// Returns a pointer to the underlying data buffer.
   ///
@@ -2441,7 +2890,7 @@ class FlutterTfliteFfiBindings {
   /// if the Tensor has just been created or resized and `TfLiteAllocateTensors()`
   /// has yet to be called, or if the output tensor is dynamically sized and the
   /// interpreter hasn't been invoked.
-  ffi.Pointer<ffi.Int> TfLiteTensorData(
+  ffi.Pointer<ffi.Void> TfLiteTensorData(
     ffi.Pointer<TfLiteTensor> tensor,
   ) {
     return _TfLiteTensorData(
@@ -2451,13 +2900,13 @@ class FlutterTfliteFfiBindings {
 
   late final _TfLiteTensorDataPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Int> Function(
+          ffi.Pointer<ffi.Void> Function(
               ffi.Pointer<TfLiteTensor>)>>('TfLiteTensorData');
   late final _TfLiteTensorData = _TfLiteTensorDataPtr.asFunction<
-      ffi.Pointer<ffi.Int> Function(ffi.Pointer<TfLiteTensor>)>();
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<TfLiteTensor>)>();
 
   /// Returns the (null-terminated) name of the tensor.
-  ffi.Pointer<ffi.Int> TfLiteTensorName(
+  ffi.Pointer<ffi.Char> TfLiteTensorName(
     ffi.Pointer<TfLiteTensor> tensor,
   ) {
     return _TfLiteTensorName(
@@ -2467,22 +2916,76 @@ class FlutterTfliteFfiBindings {
 
   late final _TfLiteTensorNamePtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Int> Function(
+          ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<TfLiteTensor>)>>('TfLiteTensorName');
   late final _TfLiteTensorName = _TfLiteTensorNamePtr.asFunction<
-      ffi.Pointer<ffi.Int> Function(ffi.Pointer<TfLiteTensor>)>();
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<TfLiteTensor>)>();
 
   /// Returns the parameters for asymmetric quantization. The quantization
   /// parameters are only valid when the tensor type is `kTfLiteUInt8` and the
   /// `scale != 0`. Quantized values can be converted back to float using:
   /// real_value = scale * (quantized_value - zero_point);
-  late final ffi.Pointer<ffi.Int> _TfLiteQuantizationParams =
-      _lookup<ffi.Int>('TfLiteQuantizationParams');
+  TfLiteQuantizationParams TfLiteTensorQuantizationParams(
+    ffi.Pointer<TfLiteTensor> tensor,
+  ) {
+    return _TfLiteTensorQuantizationParams(
+      tensor,
+    );
+  }
 
-  int get TfLiteQuantizationParams => _TfLiteQuantizationParams.value;
+  late final _TfLiteTensorQuantizationParamsPtr = _lookup<
+      ffi.NativeFunction<
+          TfLiteQuantizationParams Function(
+              ffi.Pointer<TfLiteTensor>)>>('TfLiteTensorQuantizationParams');
+  late final _TfLiteTensorQuantizationParams =
+      _TfLiteTensorQuantizationParamsPtr.asFunction<
+          TfLiteQuantizationParams Function(ffi.Pointer<TfLiteTensor>)>();
 
-  set TfLiteQuantizationParams(int value) =>
-      _TfLiteQuantizationParams.value = value;
+  /// Copies from the provided input buffer into the tensor's buffer.
+  /// REQUIRES: input_data_size == TfLiteTensorByteSize(tensor)
+  int TfLiteTensorCopyFromBuffer(
+    ffi.Pointer<TfLiteTensor> tensor,
+    ffi.Pointer<ffi.Void> input_data,
+    int input_data_size,
+  ) {
+    return _TfLiteTensorCopyFromBuffer(
+      tensor,
+      input_data,
+      input_data_size,
+    );
+  }
+
+  late final _TfLiteTensorCopyFromBufferPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(ffi.Pointer<TfLiteTensor>, ffi.Pointer<ffi.Void>,
+              ffi.Size)>>('TfLiteTensorCopyFromBuffer');
+  late final _TfLiteTensorCopyFromBuffer =
+      _TfLiteTensorCopyFromBufferPtr.asFunction<
+          int Function(
+              ffi.Pointer<TfLiteTensor>, ffi.Pointer<ffi.Void>, int)>();
+
+  /// Copies to the provided output buffer from the tensor's buffer.
+  /// REQUIRES: output_data_size == TfLiteTensorByteSize(tensor)
+  int TfLiteTensorCopyToBuffer(
+    ffi.Pointer<TfLiteTensor> output_tensor,
+    ffi.Pointer<ffi.Void> output_data,
+    int output_data_size,
+  ) {
+    return _TfLiteTensorCopyToBuffer(
+      output_tensor,
+      output_data,
+      output_data_size,
+    );
+  }
+
+  late final _TfLiteTensorCopyToBufferPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(ffi.Pointer<TfLiteTensor>, ffi.Pointer<ffi.Void>,
+              ffi.Size)>>('TfLiteTensorCopyToBuffer');
+  late final _TfLiteTensorCopyToBuffer =
+      _TfLiteTensorCopyToBufferPtr.asFunction<
+          int Function(
+              ffi.Pointer<TfLiteTensor>, ffi.Pointer<ffi.Void>, int)>();
 
   /// Returns a new TfLiteRegistrationExternal instance.
   ///
@@ -2490,29 +2993,53 @@ class FlutterTfliteFfiBindings {
   /// the lifetime of the `TfLiteRegistrationExternal` must be at least as long as
   /// the lifetime of the `TfLiteInterpreter`.
   /// WARNING: This is an experimental API and subject to change.
-  late final ffi.Pointer<ffi.Int> _TfLiteRegistrationExternal1 =
-      _lookup<ffi.Int>('TfLiteRegistrationExternal');
+  ffi.Pointer<TfLiteRegistrationExternal> TfLiteRegistrationExternalCreate(
+    int builtin_code,
+    ffi.Pointer<ffi.Char> custom_name,
+    int version,
+  ) {
+    return _TfLiteRegistrationExternalCreate(
+      builtin_code,
+      custom_name,
+      version,
+    );
+  }
 
-  int get TfLiteRegistrationExternal1 => _TfLiteRegistrationExternal1.value;
-
-  set TfLiteRegistrationExternal1(int value) =>
-      _TfLiteRegistrationExternal1.value = value;
+  late final _TfLiteRegistrationExternalCreatePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TfLiteRegistrationExternal> Function(
+              ffi.Int32,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int)>>('TfLiteRegistrationExternalCreate');
+  late final _TfLiteRegistrationExternalCreate =
+      _TfLiteRegistrationExternalCreatePtr.asFunction<
+          ffi.Pointer<TfLiteRegistrationExternal> Function(
+              int, ffi.Pointer<ffi.Char>, int)>();
 
   /// Return the builtin op code of the provided external 'registration'.
   ///
   /// WARNING: This is an experimental API and subject to change.
-  late final ffi.Pointer<ffi.Int> _TfLiteBuiltinOperator =
-      _lookup<ffi.Int>('TfLiteBuiltinOperator');
+  int TfLiteRegistrationExternalGetBuiltInCode(
+    ffi.Pointer<TfLiteRegistrationExternal> registration,
+  ) {
+    return _TfLiteRegistrationExternalGetBuiltInCode(
+      registration,
+    );
+  }
 
-  int get TfLiteBuiltinOperator => _TfLiteBuiltinOperator.value;
-
-  set TfLiteBuiltinOperator(int value) => _TfLiteBuiltinOperator.value = value;
+  late final _TfLiteRegistrationExternalGetBuiltInCodePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Int32 Function(ffi.Pointer<TfLiteRegistrationExternal>)>>(
+      'TfLiteRegistrationExternalGetBuiltInCode');
+  late final _TfLiteRegistrationExternalGetBuiltInCode =
+      _TfLiteRegistrationExternalGetBuiltInCodePtr.asFunction<
+          int Function(ffi.Pointer<TfLiteRegistrationExternal>)>();
 
   /// Returns the custom name of the provided 'registration'.  The returned pointer
   /// will be non-null iff the op is a custom op.
   ///
   /// WARNING: This is an experimental API and subject to change.
-  ffi.Pointer<ffi.Int> TfLiteRegistrationExternalGetCustomName(
+  ffi.Pointer<ffi.Char> TfLiteRegistrationExternalGetCustomName(
     ffi.Pointer<TfLiteRegistrationExternal> registration,
   ) {
     return _TfLiteRegistrationExternalGetCustomName(
@@ -2522,17 +3049,17 @@ class FlutterTfliteFfiBindings {
 
   late final _TfLiteRegistrationExternalGetCustomNamePtr = _lookup<
           ffi.NativeFunction<
-              ffi.Pointer<ffi.Int> Function(
+              ffi.Pointer<ffi.Char> Function(
                   ffi.Pointer<TfLiteRegistrationExternal>)>>(
       'TfLiteRegistrationExternalGetCustomName');
   late final _TfLiteRegistrationExternalGetCustomName =
       _TfLiteRegistrationExternalGetCustomNamePtr.asFunction<
-          ffi.Pointer<ffi.Int> Function(
+          ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<TfLiteRegistrationExternal>)>();
 
   /// Destroys the TfLiteRegistrationExternal instance.
   /// WARNING: This is an experimental API and subject to change.
-  int TfLiteRegistrationExternalDelete(
+  void TfLiteRegistrationExternalDelete(
     ffi.Pointer<TfLiteRegistrationExternal> registration,
   ) {
     return _TfLiteRegistrationExternalDelete(
@@ -2542,23 +3069,23 @@ class FlutterTfliteFfiBindings {
 
   late final _TfLiteRegistrationExternalDeletePtr = _lookup<
           ffi.NativeFunction<
-              ffi.Int Function(ffi.Pointer<TfLiteRegistrationExternal>)>>(
+              ffi.Void Function(ffi.Pointer<TfLiteRegistrationExternal>)>>(
       'TfLiteRegistrationExternalDelete');
   late final _TfLiteRegistrationExternalDelete =
       _TfLiteRegistrationExternalDeletePtr.asFunction<
-          int Function(ffi.Pointer<TfLiteRegistrationExternal>)>();
+          void Function(ffi.Pointer<TfLiteRegistrationExternal>)>();
 
   /// Sets the initialization callback for the registration.
   ///
   /// The callback is called to initialize the op from serialized data.
   /// Please refer `init` of `TfLiteRegistration` for the detail.
   /// WARNING: This is an experimental API and subject to change.
-  int TfLiteRegistrationExternalSetInit(
+  void TfLiteRegistrationExternalSetInit(
     ffi.Pointer<TfLiteRegistrationExternal> registration,
     ffi.Pointer<
             ffi.NativeFunction<
-                ffi.Pointer<ffi.Void> Function(
-                    ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Size)>>
+                ffi.Pointer<ffi.Void> Function(ffi.Pointer<TfLiteOpaqueContext>,
+                    ffi.Pointer<ffi.Char>, ffi.Size)>>
         init,
   ) {
     return _TfLiteRegistrationExternalSetInit(
@@ -2569,22 +3096,24 @@ class FlutterTfliteFfiBindings {
 
   late final _TfLiteRegistrationExternalSetInitPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(
+          ffi.Void Function(
               ffi.Pointer<TfLiteRegistrationExternal>,
               ffi.Pointer<
                   ffi.NativeFunction<
                       ffi.Pointer<ffi.Void> Function(
-                          ffi.Pointer<ffi.Int>,
+                          ffi.Pointer<TfLiteOpaqueContext>,
                           ffi.Pointer<ffi.Char>,
                           ffi.Size)>>)>>('TfLiteRegistrationExternalSetInit');
   late final _TfLiteRegistrationExternalSetInit =
       _TfLiteRegistrationExternalSetInitPtr.asFunction<
-          int Function(
+          void Function(
               ffi.Pointer<TfLiteRegistrationExternal>,
               ffi.Pointer<
                   ffi.NativeFunction<
-                      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Int>,
-                          ffi.Pointer<ffi.Char>, ffi.Size)>>)>();
+                      ffi.Pointer<ffi.Void> Function(
+                          ffi.Pointer<TfLiteOpaqueContext>,
+                          ffi.Pointer<ffi.Char>,
+                          ffi.Size)>>)>();
 
   /// Sets the deallocation callback for the registration.
   ///
@@ -2593,11 +3122,12 @@ class FlutterTfliteFfiBindings {
   /// the `init` callback.
   /// Please refer `free` of `TfLiteRegistration` for the detail.
   /// WARNING: This is an experimental API and subject to change.
-  int TfLiteRegistrationExternalSetFree(
+  void TfLiteRegistrationExternalSetFree(
     ffi.Pointer<TfLiteRegistrationExternal> registration,
     ffi.Pointer<
             ffi.NativeFunction<
-                ffi.Void Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Void>)>>
+                ffi.Void Function(
+                    ffi.Pointer<TfLiteOpaqueContext>, ffi.Pointer<ffi.Void>)>>
         free,
   ) {
     return _TfLiteRegistrationExternalSetFree(
@@ -2608,85 +3138,95 @@ class FlutterTfliteFfiBindings {
 
   late final _TfLiteRegistrationExternalSetFreePtr = _lookup<
           ffi.NativeFunction<
-              ffi.Int Function(
+              ffi.Void Function(
                   ffi.Pointer<TfLiteRegistrationExternal>,
                   ffi.Pointer<
                       ffi.NativeFunction<
-                          ffi.Void Function(
-                              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Void>)>>)>>(
+                          ffi.Void Function(ffi.Pointer<TfLiteOpaqueContext>,
+                              ffi.Pointer<ffi.Void>)>>)>>(
       'TfLiteRegistrationExternalSetFree');
   late final _TfLiteRegistrationExternalSetFree =
       _TfLiteRegistrationExternalSetFreePtr.asFunction<
-          int Function(
+          void Function(
               ffi.Pointer<TfLiteRegistrationExternal>,
               ffi.Pointer<
                   ffi.NativeFunction<
-                      ffi.Void Function(
-                          ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Void>)>>)>();
+                      ffi.Void Function(ffi.Pointer<TfLiteOpaqueContext>,
+                          ffi.Pointer<ffi.Void>)>>)>();
 
   /// Sets the preparation callback for the registration.
   ///
   /// The callback is called when the inputs of operator have been resized.
   /// Please refer `prepare` of `TfLiteRegistration` for the detail.
   /// WARNING: This is an experimental API and subject to change.
-  int TfLiteRegistrationExternalSetPrepare(
+  void TfLiteRegistrationExternalSetPrepare(
     ffi.Pointer<TfLiteRegistrationExternal> registration,
-    ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Int>)>>
-        TfLiteStatus,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int32 Function(ffi.Pointer<TfLiteOpaqueContext>,
+                    ffi.Pointer<TfLiteOpaqueNode>)>>
+        prepare,
   ) {
     return _TfLiteRegistrationExternalSetPrepare(
       registration,
-      TfLiteStatus,
+      prepare,
     );
   }
 
   late final _TfLiteRegistrationExternalSetPreparePtr = _lookup<
           ffi.NativeFunction<
-              ffi.Int Function(
+              ffi.Void Function(
                   ffi.Pointer<TfLiteRegistrationExternal>,
                   ffi.Pointer<
                       ffi.NativeFunction<
-                          ffi.Int Function(ffi.Pointer<ffi.Int>)>>)>>(
+                          ffi.Int32 Function(ffi.Pointer<TfLiteOpaqueContext>,
+                              ffi.Pointer<TfLiteOpaqueNode>)>>)>>(
       'TfLiteRegistrationExternalSetPrepare');
   late final _TfLiteRegistrationExternalSetPrepare =
       _TfLiteRegistrationExternalSetPreparePtr.asFunction<
-          int Function(
+          void Function(
               ffi.Pointer<TfLiteRegistrationExternal>,
               ffi.Pointer<
                   ffi.NativeFunction<
-                      ffi.Int Function(ffi.Pointer<ffi.Int>)>>)>();
+                      ffi.Int32 Function(ffi.Pointer<TfLiteOpaqueContext>,
+                          ffi.Pointer<TfLiteOpaqueNode>)>>)>();
 
   /// Sets the invocation callback for the registration.
   ///
   /// The callback is called when the operator is executed.
   /// Please refer `invoke` of `TfLiteRegistration` for the detail.
   /// WARNING: This is an experimental API and subject to change.
-  int TfLiteRegistrationExternalSetInvoke(
+  void TfLiteRegistrationExternalSetInvoke(
     ffi.Pointer<TfLiteRegistrationExternal> registration,
-    ffi.Pointer<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Int>)>>
-        TfLiteStatus,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int32 Function(ffi.Pointer<TfLiteOpaqueContext>,
+                    ffi.Pointer<TfLiteOpaqueNode>)>>
+        invoke,
   ) {
     return _TfLiteRegistrationExternalSetInvoke(
       registration,
-      TfLiteStatus,
+      invoke,
     );
   }
 
   late final _TfLiteRegistrationExternalSetInvokePtr = _lookup<
           ffi.NativeFunction<
-              ffi.Int Function(
+              ffi.Void Function(
                   ffi.Pointer<TfLiteRegistrationExternal>,
                   ffi.Pointer<
                       ffi.NativeFunction<
-                          ffi.Int Function(ffi.Pointer<ffi.Int>)>>)>>(
+                          ffi.Int32 Function(ffi.Pointer<TfLiteOpaqueContext>,
+                              ffi.Pointer<TfLiteOpaqueNode>)>>)>>(
       'TfLiteRegistrationExternalSetInvoke');
   late final _TfLiteRegistrationExternalSetInvoke =
       _TfLiteRegistrationExternalSetInvokePtr.asFunction<
-          int Function(
+          void Function(
               ffi.Pointer<TfLiteRegistrationExternal>,
               ffi.Pointer<
                   ffi.NativeFunction<
-                      ffi.Int Function(ffi.Pointer<ffi.Int>)>>)>();
+                      ffi.Int32 Function(ffi.Pointer<TfLiteOpaqueContext>,
+                          ffi.Pointer<TfLiteOpaqueNode>)>>)>();
 }
 
 /// mbstate_t is an opaque object to keep conversion state, during multibyte
@@ -3906,6 +4446,261 @@ typedef mode_t = __darwin_mode_t;
 typedef __darwin_mode_t = __uint16_t;
 typedef __uint16_t = ffi.UnsignedShort;
 
+/// The enum for builtin operators.
+/// Note: CUSTOM, DELEGATE, and PLACEHOLDER_FOR_GREATER_OP_CODES are 3 special
+/// ops which are not real built-in ops.
+abstract class TfLiteBuiltinOperator {
+  static const int kTfLiteBuiltinAdd = 0;
+  static const int kTfLiteBuiltinAveragePool2d = 1;
+  static const int kTfLiteBuiltinConcatenation = 2;
+  static const int kTfLiteBuiltinConv2d = 3;
+  static const int kTfLiteBuiltinDepthwiseConv2d = 4;
+  static const int kTfLiteBuiltinDepthToSpace = 5;
+  static const int kTfLiteBuiltinDequantize = 6;
+  static const int kTfLiteBuiltinEmbeddingLookup = 7;
+  static const int kTfLiteBuiltinFloor = 8;
+  static const int kTfLiteBuiltinFullyConnected = 9;
+  static const int kTfLiteBuiltinHashtableLookup = 10;
+  static const int kTfLiteBuiltinL2Normalization = 11;
+  static const int kTfLiteBuiltinL2Pool2d = 12;
+  static const int kTfLiteBuiltinLocalResponseNormalization = 13;
+  static const int kTfLiteBuiltinLogistic = 14;
+  static const int kTfLiteBuiltinLshProjection = 15;
+  static const int kTfLiteBuiltinLstm = 16;
+  static const int kTfLiteBuiltinMaxPool2d = 17;
+  static const int kTfLiteBuiltinMul = 18;
+  static const int kTfLiteBuiltinRelu = 19;
+  static const int kTfLiteBuiltinReluN1To1 = 20;
+  static const int kTfLiteBuiltinRelu6 = 21;
+  static const int kTfLiteBuiltinReshape = 22;
+  static const int kTfLiteBuiltinResizeBilinear = 23;
+  static const int kTfLiteBuiltinRnn = 24;
+  static const int kTfLiteBuiltinSoftmax = 25;
+  static const int kTfLiteBuiltinSpaceToDepth = 26;
+  static const int kTfLiteBuiltinSvdf = 27;
+  static const int kTfLiteBuiltinTanh = 28;
+  static const int kTfLiteBuiltinConcatEmbeddings = 29;
+  static const int kTfLiteBuiltinSkipGram = 30;
+  static const int kTfLiteBuiltinCall = 31;
+  static const int kTfLiteBuiltinCustom = 32;
+  static const int kTfLiteBuiltinEmbeddingLookupSparse = 33;
+  static const int kTfLiteBuiltinPad = 34;
+  static const int kTfLiteBuiltinUnidirectionalSequenceRnn = 35;
+  static const int kTfLiteBuiltinGather = 36;
+  static const int kTfLiteBuiltinBatchToSpaceNd = 37;
+  static const int kTfLiteBuiltinSpaceToBatchNd = 38;
+  static const int kTfLiteBuiltinTranspose = 39;
+  static const int kTfLiteBuiltinMean = 40;
+  static const int kTfLiteBuiltinSub = 41;
+  static const int kTfLiteBuiltinDiv = 42;
+  static const int kTfLiteBuiltinSqueeze = 43;
+  static const int kTfLiteBuiltinUnidirectionalSequenceLstm = 44;
+  static const int kTfLiteBuiltinStridedSlice = 45;
+  static const int kTfLiteBuiltinBidirectionalSequenceRnn = 46;
+  static const int kTfLiteBuiltinExp = 47;
+  static const int kTfLiteBuiltinTopkV2 = 48;
+  static const int kTfLiteBuiltinSplit = 49;
+  static const int kTfLiteBuiltinLogSoftmax = 50;
+  static const int kTfLiteBuiltinDelegate = 51;
+  static const int kTfLiteBuiltinBidirectionalSequenceLstm = 52;
+  static const int kTfLiteBuiltinCast = 53;
+  static const int kTfLiteBuiltinPrelu = 54;
+  static const int kTfLiteBuiltinMaximum = 55;
+  static const int kTfLiteBuiltinArgMax = 56;
+  static const int kTfLiteBuiltinMinimum = 57;
+  static const int kTfLiteBuiltinLess = 58;
+  static const int kTfLiteBuiltinNeg = 59;
+  static const int kTfLiteBuiltinPadv2 = 60;
+  static const int kTfLiteBuiltinGreater = 61;
+  static const int kTfLiteBuiltinGreaterEqual = 62;
+  static const int kTfLiteBuiltinLessEqual = 63;
+  static const int kTfLiteBuiltinSelect = 64;
+  static const int kTfLiteBuiltinSlice = 65;
+  static const int kTfLiteBuiltinSin = 66;
+  static const int kTfLiteBuiltinTransposeConv = 67;
+  static const int kTfLiteBuiltinSparseToDense = 68;
+  static const int kTfLiteBuiltinTile = 69;
+  static const int kTfLiteBuiltinExpandDims = 70;
+  static const int kTfLiteBuiltinEqual = 71;
+  static const int kTfLiteBuiltinNotEqual = 72;
+  static const int kTfLiteBuiltinLog = 73;
+  static const int kTfLiteBuiltinSum = 74;
+  static const int kTfLiteBuiltinSqrt = 75;
+  static const int kTfLiteBuiltinRsqrt = 76;
+  static const int kTfLiteBuiltinShape = 77;
+  static const int kTfLiteBuiltinPow = 78;
+  static const int kTfLiteBuiltinArgMin = 79;
+  static const int kTfLiteBuiltinFakeQuant = 80;
+  static const int kTfLiteBuiltinReduceProd = 81;
+  static const int kTfLiteBuiltinReduceMax = 82;
+  static const int kTfLiteBuiltinPack = 83;
+  static const int kTfLiteBuiltinLogicalOr = 84;
+  static const int kTfLiteBuiltinOneHot = 85;
+  static const int kTfLiteBuiltinLogicalAnd = 86;
+  static const int kTfLiteBuiltinLogicalNot = 87;
+  static const int kTfLiteBuiltinUnpack = 88;
+  static const int kTfLiteBuiltinReduceMin = 89;
+  static const int kTfLiteBuiltinFloorDiv = 90;
+  static const int kTfLiteBuiltinReduceAny = 91;
+  static const int kTfLiteBuiltinSquare = 92;
+  static const int kTfLiteBuiltinZerosLike = 93;
+  static const int kTfLiteBuiltinFill = 94;
+  static const int kTfLiteBuiltinFloorMod = 95;
+  static const int kTfLiteBuiltinRange = 96;
+  static const int kTfLiteBuiltinResizeNearestNeighbor = 97;
+  static const int kTfLiteBuiltinLeakyRelu = 98;
+  static const int kTfLiteBuiltinSquaredDifference = 99;
+  static const int kTfLiteBuiltinMirrorPad = 100;
+  static const int kTfLiteBuiltinAbs = 101;
+  static const int kTfLiteBuiltinSplitV = 102;
+  static const int kTfLiteBuiltinUnique = 103;
+  static const int kTfLiteBuiltinCeil = 104;
+  static const int kTfLiteBuiltinReverseV2 = 105;
+  static const int kTfLiteBuiltinAddN = 106;
+  static const int kTfLiteBuiltinGatherNd = 107;
+  static const int kTfLiteBuiltinCos = 108;
+  static const int kTfLiteBuiltinWhere = 109;
+  static const int kTfLiteBuiltinRank = 110;
+  static const int kTfLiteBuiltinElu = 111;
+  static const int kTfLiteBuiltinReverseSequence = 112;
+  static const int kTfLiteBuiltinMatrixDiag = 113;
+  static const int kTfLiteBuiltinQuantize = 114;
+  static const int kTfLiteBuiltinMatrixSetDiag = 115;
+  static const int kTfLiteBuiltinRound = 116;
+  static const int kTfLiteBuiltinHardSwish = 117;
+  static const int kTfLiteBuiltinIf = 118;
+  static const int kTfLiteBuiltinWhile = 119;
+  static const int kTfLiteBuiltinNonMaxSuppressionV4 = 120;
+  static const int kTfLiteBuiltinNonMaxSuppressionV5 = 121;
+  static const int kTfLiteBuiltinScatterNd = 122;
+  static const int kTfLiteBuiltinSelectV2 = 123;
+  static const int kTfLiteBuiltinDensify = 124;
+  static const int kTfLiteBuiltinSegmentSum = 125;
+  static const int kTfLiteBuiltinBatchMatmul = 126;
+  static const int kTfLiteBuiltinPlaceholderForGreaterOpCodes = 127;
+  static const int kTfLiteBuiltinCumsum = 128;
+  static const int kTfLiteBuiltinCallOnce = 129;
+  static const int kTfLiteBuiltinBroadcastTo = 130;
+  static const int kTfLiteBuiltinRfft2d = 131;
+  static const int kTfLiteBuiltinConv3d = 132;
+  static const int kTfLiteBuiltinImag = 133;
+  static const int kTfLiteBuiltinReal = 134;
+  static const int kTfLiteBuiltinComplexAbs = 135;
+  static const int kTfLiteBuiltinHashtable = 136;
+  static const int kTfLiteBuiltinHashtableFind = 137;
+  static const int kTfLiteBuiltinHashtableImport = 138;
+  static const int kTfLiteBuiltinHashtableSize = 139;
+  static const int kTfLiteBuiltinReduceAll = 140;
+  static const int kTfLiteBuiltinConv3dTranspose = 141;
+  static const int kTfLiteBuiltinVarHandle = 142;
+  static const int kTfLiteBuiltinReadVariable = 143;
+  static const int kTfLiteBuiltinAssignVariable = 144;
+  static const int kTfLiteBuiltinBroadcastArgs = 145;
+  static const int kTfLiteBuiltinRandomStandardNormal = 146;
+  static const int kTfLiteBuiltinBucketize = 147;
+  static const int kTfLiteBuiltinRandomUniform = 148;
+  static const int kTfLiteBuiltinMultinomial = 149;
+  static const int kTfLiteBuiltinGelu = 150;
+  static const int kTfLiteBuiltinDynamicUpdateSlice = 151;
+  static const int kTfLiteBuiltinRelu0To1 = 152;
+  static const int kTfLiteBuiltinUnsortedSegmentProd = 153;
+  static const int kTfLiteBuiltinUnsortedSegmentMax = 154;
+  static const int kTfLiteBuiltinUnsortedSegmentSum = 155;
+  static const int kTfLiteBuiltinAtan2 = 156;
+  static const int kTfLiteBuiltinUnsortedSegmentMin = 157;
+  static const int kTfLiteBuiltinSign = 158;
+}
+
+/// Note that new error status values may be added in future in order to
+/// indicate more fine-grained internal states, therefore, applications should
+/// not rely on status values being members of the enum.
+abstract class TfLiteStatus {
+  static const int kTfLiteOk = 0;
+
+  /// Generally referring to an error in the runtime (i.e. interpreter)
+  static const int kTfLiteError = 1;
+
+  /// Generally referring to an error from a TfLiteDelegate itself.
+  static const int kTfLiteDelegateError = 2;
+
+  /// Generally referring to an error in applying a delegate due to
+  /// incompatibility between runtime and delegate, e.g., this error is returned
+  /// when trying to apply a TF Lite delegate onto a model graph that's already
+  /// immutable.
+  static const int kTfLiteApplicationError = 3;
+
+  /// Generally referring to serialized delegate data not being found.
+  /// See tflite::delegates::Serialization.
+  static const int kTfLiteDelegateDataNotFound = 4;
+
+  /// Generally referring to data-writing issues in delegate serialization.
+  /// See tflite::delegates::Serialization.
+  static const int kTfLiteDelegateDataWriteError = 5;
+
+  /// Generally referring to data-reading issues in delegate serialization.
+  /// See tflite::delegates::Serialization.
+  static const int kTfLiteDelegateDataReadError = 6;
+
+  /// Generally referring to issues when the TF Lite model has ops that cannot be
+  /// resolved at runtime. This could happen when the specific op is not
+  /// registered or built with the TF Lite framework.
+  static const int kTfLiteUnresolvedOps = 7;
+
+  /// Generally referring to invocation cancelled by the user.
+  /// See `interpreter::Cancel`.
+  /// TODO(b/194915839): Implement `interpreter::Cancel`.
+  /// TODO(b/250636993): Cancellation triggered by `SetCancellationFunction`
+  /// should also return this status code.
+  static const int kTfLiteCancelled = 8;
+}
+
+/// Types supported by tensor
+abstract class TfLiteType {
+  static const int kTfLiteNoType = 0;
+  static const int kTfLiteFloat32 = 1;
+  static const int kTfLiteInt32 = 2;
+  static const int kTfLiteUInt8 = 3;
+  static const int kTfLiteInt64 = 4;
+  static const int kTfLiteString = 5;
+  static const int kTfLiteBool = 6;
+  static const int kTfLiteInt16 = 7;
+  static const int kTfLiteComplex64 = 8;
+  static const int kTfLiteInt8 = 9;
+  static const int kTfLiteFloat16 = 10;
+  static const int kTfLiteFloat64 = 11;
+  static const int kTfLiteComplex128 = 12;
+  static const int kTfLiteUInt64 = 13;
+  static const int kTfLiteResource = 14;
+  static const int kTfLiteVariant = 15;
+  static const int kTfLiteUInt32 = 16;
+  static const int kTfLiteUInt16 = 17;
+  static const int kTfLiteInt4 = 18;
+}
+
+/// Legacy. Will be deprecated in favor of TfLiteAffineQuantization.
+/// If per-layer quantization is specified this field will still be populated in
+/// addition to TfLiteAffineQuantization.
+/// Parameters for asymmetric quantization. Quantized values can be converted
+/// back to float using:
+/// real_value = scale * (quantized_value - zero_point)
+class TfLiteQuantizationParams extends ffi.Struct {
+  @ffi.Float()
+  external double scale;
+
+  @ffi.Int32()
+  external int zero_point;
+}
+
+class TfLiteOpaqueContext extends ffi.Opaque {}
+
+class TfLiteOpaqueNode extends ffi.Opaque {}
+
+class TfLiteOpaqueTensor extends ffi.Opaque {}
+
+class TfLiteDelegate extends ffi.Opaque {}
+
+class TfLiteOpaqueDelegateStruct extends ffi.Opaque {}
+
 class TfLiteModel extends ffi.Opaque {}
 
 class TfLiteInterpreterOptions extends ffi.Opaque {}
@@ -3918,6 +4713,7 @@ class TfLiteRegistrationExternal extends ffi.Opaque {}
 
 typedef va_list = __builtin_va_list;
 typedef __builtin_va_list = ffi.Pointer<ffi.Char>;
+typedef TfLiteOpaqueDelegate = TfLiteDelegate;
 
 const int __GNUC_VA_LIST = 1;
 
