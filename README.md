@@ -81,6 +81,7 @@ Three letter acronyms used in commit messages:
 - gau = googleapis_utils
 - gla = gather_link_account
 - gls = gather_link_account_shelf
+- gmg = gamegin
 - iap = identify_affected_packages
 - ips = identity_platform_service
 - jst = json_types
