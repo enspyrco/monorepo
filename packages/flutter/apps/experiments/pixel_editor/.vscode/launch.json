@@ -1,0 +1,9 @@
+{
+  "configurations": [
+    {
+      "name": "pixel_editor",
+      "request": "launch",
+      "type": "dart"
+    }
+  ]
+}
