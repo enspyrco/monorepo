@@ -1,0 +1,18 @@
+name: pixel_editor
+description: An image processing tool with a focus on pixel art.
+publish_to: 'none'
+version: 0.0.0
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
