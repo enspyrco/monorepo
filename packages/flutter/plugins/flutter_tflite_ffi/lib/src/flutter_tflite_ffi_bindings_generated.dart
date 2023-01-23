@@ -2451,17 +2451,17 @@ class FlutterTfliteFfiBindings {
   ) {
     return _TfLiteInterpreterOptionsEnableCancellation(
       options,
-      enable ? 1 : 0,
+      enable,
     );
   }
 
   late final _TfLiteInterpreterOptionsEnableCancellationPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int32 Function(ffi.Pointer<TfLiteInterpreterOptions>,
-              ffi.Uint8)>>('TfLiteInterpreterOptionsEnableCancellation');
+              ffi.Bool)>>('TfLiteInterpreterOptionsEnableCancellation');
   late final _TfLiteInterpreterOptionsEnableCancellation =
       _TfLiteInterpreterOptionsEnableCancellationPtr.asFunction<
-          int Function(ffi.Pointer<TfLiteInterpreterOptions>, int)>();
+          int Function(ffi.Pointer<TfLiteInterpreterOptions>, bool)>();
 
   /// Returns a new interpreter using the provided model and options, or null on
   /// failure.
@@ -4783,8 +4783,6 @@ const int __PTHREAD_RWLOCK_SIZE__ = 192;
 
 const int __PTHREAD_RWLOCKATTR_SIZE__ = 16;
 
-const int USER_ADDR_NULL = 0;
-
 const int INT8_MAX = 127;
 
 const int INT16_MAX = 32767;
@@ -5345,8 +5343,6 @@ const int __DARWIN_WCHAR_MAX = 2147483647;
 
 const int __DARWIN_WCHAR_MIN = -2147483648;
 
-const int __DARWIN_WEOF = -1;
-
 const int _FORTIFY_SOURCE = 2;
 
 const int __DARWIN_NSIG = 32;
@@ -5602,12 +5598,6 @@ const int RUSAGE_INFO_V6 = 6;
 const int RUSAGE_INFO_CURRENT = 6;
 
 const int RU_PROC_RUNS_RESLIDE = 1;
-
-const int RLIM_INFINITY = 9223372036854775807;
-
-const int RLIM_SAVED_MAX = 9223372036854775807;
-
-const int RLIM_SAVED_CUR = 9223372036854775807;
 
 const int RLIMIT_CPU = 0;
 
