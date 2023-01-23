@@ -4,8 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_tflite_ffi/flutter_tflite_ffi.dart'
-    as flutter_tflite_ffi;
+import 'package:flutter_tflite_ffi/flutter_tflite_ffi.dart' as tflite;
 
 void main() {
   runApp(const MyApp());
@@ -20,12 +19,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _version = '?';
-  String _tensorCounts = '?';
+  tflite.Interpeter? _interpreter;
 
   @override
   void initState() {
     super.initState();
-    _version = 'TFLite version: ${flutter_tflite_ffi.version()}';
+    _version = 'TFLite version: ${tflite.version()}';
   }
 
   /// Assets are not individually stored on disk but together in a single asset
@@ -57,12 +56,13 @@ class _MyAppState extends State<MyApp> {
                   return const Text('Snapshot has no data');
                 }
 
-                _tensorCounts = flutter_tflite_ffi
-                    .getTensorInputAndOutputCount(snapshot.data!);
+                _interpreter = tflite.Interpeter(modelPath: snapshot.data!);
+
                 return Column(
                   children: [
                     Text(_version),
-                    Text(_tensorCounts),
+                    Text('inputs: ${_interpreter?.inputTensorCount}\n'
+                        'outputs: ${_interpreter?.outputTensorCount}'),
                   ],
                 );
               })),
