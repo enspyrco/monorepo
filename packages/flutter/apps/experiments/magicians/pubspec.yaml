@@ -1,0 +1,18 @@
+name: magicians
+description: A game made with Flutter and TFLite where players cast spells using gestures recognised during video streaming.
+publish_to: 'none'
+version: 0.0.0
+
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
