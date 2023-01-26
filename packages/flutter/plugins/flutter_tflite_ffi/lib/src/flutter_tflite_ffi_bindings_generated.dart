@@ -3227,6 +3227,444 @@ class FlutterTfliteFfiBindings {
                   ffi.NativeFunction<
                       ffi.Int32 Function(ffi.Pointer<TfLiteOpaqueContext>,
                           ffi.Pointer<TfLiteOpaqueNode>)>>)>();
+
+  /// Given the size (number of elements) in a TfLiteIntArray, calculate its size
+  /// in bytes.
+  int TfLiteIntArrayGetSizeInBytes(
+    int size,
+  ) {
+    return _TfLiteIntArrayGetSizeInBytes(
+      size,
+    );
+  }
+
+  late final _TfLiteIntArrayGetSizeInBytesPtr =
+      _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Int)>>(
+          'TfLiteIntArrayGetSizeInBytes');
+  late final _TfLiteIntArrayGetSizeInBytes =
+      _TfLiteIntArrayGetSizeInBytesPtr.asFunction<int Function(int)>();
+
+  /// Create a array of a given `size` (uninitialized entries).
+  /// This returns a pointer, that you must free using TfLiteIntArrayFree().
+  ffi.Pointer<TfLiteIntArray> TfLiteIntArrayCreate(
+    int size,
+  ) {
+    return _TfLiteIntArrayCreate(
+      size,
+    );
+  }
+
+  late final _TfLiteIntArrayCreatePtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<TfLiteIntArray> Function(ffi.Int)>>(
+      'TfLiteIntArrayCreate');
+  late final _TfLiteIntArrayCreate = _TfLiteIntArrayCreatePtr.asFunction<
+      ffi.Pointer<TfLiteIntArray> Function(int)>();
+
+  /// Check if two intarrays are equal. Returns 1 if they are equal, 0 otherwise.
+  int TfLiteIntArrayEqual(
+    ffi.Pointer<TfLiteIntArray> a,
+    ffi.Pointer<TfLiteIntArray> b,
+  ) {
+    return _TfLiteIntArrayEqual(
+      a,
+      b,
+    );
+  }
+
+  late final _TfLiteIntArrayEqualPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<TfLiteIntArray>,
+              ffi.Pointer<TfLiteIntArray>)>>('TfLiteIntArrayEqual');
+  late final _TfLiteIntArrayEqual = _TfLiteIntArrayEqualPtr.asFunction<
+      int Function(ffi.Pointer<TfLiteIntArray>, ffi.Pointer<TfLiteIntArray>)>();
+
+  /// Check if an intarray equals an array. Returns 1 if equals, 0 otherwise.
+  int TfLiteIntArrayEqualsArray(
+    ffi.Pointer<TfLiteIntArray> a,
+    int b_size,
+    ffi.Pointer<ffi.Int> b_data,
+  ) {
+    return _TfLiteIntArrayEqualsArray(
+      a,
+      b_size,
+      b_data,
+    );
+  }
+
+  late final _TfLiteIntArrayEqualsArrayPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<TfLiteIntArray>, ffi.Int,
+              ffi.Pointer<ffi.Int>)>>('TfLiteIntArrayEqualsArray');
+  late final _TfLiteIntArrayEqualsArray =
+      _TfLiteIntArrayEqualsArrayPtr.asFunction<
+          int Function(
+              ffi.Pointer<TfLiteIntArray>, int, ffi.Pointer<ffi.Int>)>();
+
+  /// Create a copy of an array passed as `src`.
+  /// You are expected to free memory with TfLiteIntArrayFree
+  ffi.Pointer<TfLiteIntArray> TfLiteIntArrayCopy(
+    ffi.Pointer<TfLiteIntArray> src,
+  ) {
+    return _TfLiteIntArrayCopy(
+      src,
+    );
+  }
+
+  late final _TfLiteIntArrayCopyPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TfLiteIntArray> Function(
+              ffi.Pointer<TfLiteIntArray>)>>('TfLiteIntArrayCopy');
+  late final _TfLiteIntArrayCopy = _TfLiteIntArrayCopyPtr.asFunction<
+      ffi.Pointer<TfLiteIntArray> Function(ffi.Pointer<TfLiteIntArray>)>();
+
+  /// Free memory of array `a`.
+  void TfLiteIntArrayFree(
+    ffi.Pointer<TfLiteIntArray> a,
+  ) {
+    return _TfLiteIntArrayFree(
+      a,
+    );
+  }
+
+  late final _TfLiteIntArrayFreePtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<TfLiteIntArray>)>>(
+      'TfLiteIntArrayFree');
+  late final _TfLiteIntArrayFree = _TfLiteIntArrayFreePtr.asFunction<
+      void Function(ffi.Pointer<TfLiteIntArray>)>();
+
+  /// Given the size (number of elements) in a TfLiteFloatArray, calculate its size
+  /// in bytes.
+  int TfLiteFloatArrayGetSizeInBytes(
+    int size,
+  ) {
+    return _TfLiteFloatArrayGetSizeInBytes(
+      size,
+    );
+  }
+
+  late final _TfLiteFloatArrayGetSizeInBytesPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>(
+          'TfLiteFloatArrayGetSizeInBytes');
+  late final _TfLiteFloatArrayGetSizeInBytes =
+      _TfLiteFloatArrayGetSizeInBytesPtr.asFunction<int Function(int)>();
+
+  /// Create a array of a given `size` (uninitialized entries).
+  /// This returns a pointer, that you must free using TfLiteFloatArrayFree().
+  ffi.Pointer<TfLiteFloatArray> TfLiteFloatArrayCreate(
+    int size,
+  ) {
+    return _TfLiteFloatArrayCreate(
+      size,
+    );
+  }
+
+  late final _TfLiteFloatArrayCreatePtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<TfLiteFloatArray> Function(ffi.Int)>>(
+      'TfLiteFloatArrayCreate');
+  late final _TfLiteFloatArrayCreate = _TfLiteFloatArrayCreatePtr.asFunction<
+      ffi.Pointer<TfLiteFloatArray> Function(int)>();
+
+  /// Free memory of array `a`.
+  void TfLiteFloatArrayFree(
+    ffi.Pointer<TfLiteFloatArray> a,
+  ) {
+    return _TfLiteFloatArrayFree(
+      a,
+    );
+  }
+
+  late final _TfLiteFloatArrayFreePtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<TfLiteFloatArray>)>>(
+      'TfLiteFloatArrayFree');
+  late final _TfLiteFloatArrayFree = _TfLiteFloatArrayFreePtr.asFunction<
+      void Function(ffi.Pointer<TfLiteFloatArray>)>();
+
+  /// Return the name of a given type, for error reporting purposes.
+  ffi.Pointer<ffi.Char> TfLiteTypeGetName(
+    int type,
+  ) {
+    return _TfLiteTypeGetName(
+      type,
+    );
+  }
+
+  late final _TfLiteTypeGetNamePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Int32)>>(
+          'TfLiteTypeGetName');
+  late final _TfLiteTypeGetName =
+      _TfLiteTypeGetNamePtr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
+
+  /// Free data memory of tensor `t`.
+  void TfLiteTensorDataFree(
+    ffi.Pointer<TfLiteTensor> t,
+  ) {
+    return _TfLiteTensorDataFree(
+      t,
+    );
+  }
+
+  late final _TfLiteTensorDataFreePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<TfLiteTensor>)>>(
+          'TfLiteTensorDataFree');
+  late final _TfLiteTensorDataFree = _TfLiteTensorDataFreePtr.asFunction<
+      void Function(ffi.Pointer<TfLiteTensor>)>();
+
+  /// Free quantization data.
+  void TfLiteQuantizationFree(
+    ffi.Pointer<TfLiteQuantization> quantization,
+  ) {
+    return _TfLiteQuantizationFree(
+      quantization,
+    );
+  }
+
+  late final _TfLiteQuantizationFreePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TfLiteQuantization>)>>('TfLiteQuantizationFree');
+  late final _TfLiteQuantizationFree = _TfLiteQuantizationFreePtr.asFunction<
+      void Function(ffi.Pointer<TfLiteQuantization>)>();
+
+  /// Free sparsity parameters.
+  void TfLiteSparsityFree(
+    ffi.Pointer<TfLiteSparsity> sparsity,
+  ) {
+    return _TfLiteSparsityFree(
+      sparsity,
+    );
+  }
+
+  late final _TfLiteSparsityFreePtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<TfLiteSparsity>)>>(
+      'TfLiteSparsityFree');
+  late final _TfLiteSparsityFree = _TfLiteSparsityFreePtr.asFunction<
+      void Function(ffi.Pointer<TfLiteSparsity>)>();
+
+  /// Free memory of tensor `t`.
+  void TfLiteTensorFree(
+    ffi.Pointer<TfLiteTensor> t,
+  ) {
+    return _TfLiteTensorFree(
+      t,
+    );
+  }
+
+  late final _TfLiteTensorFreePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<TfLiteTensor>)>>(
+          'TfLiteTensorFree');
+  late final _TfLiteTensorFree = _TfLiteTensorFreePtr.asFunction<
+      void Function(ffi.Pointer<TfLiteTensor>)>();
+
+  /// Set all of a tensor's fields (and free any previously allocated data).
+  void TfLiteTensorReset(
+    int type,
+    ffi.Pointer<ffi.Char> name,
+    ffi.Pointer<TfLiteIntArray> dims,
+    TfLiteQuantizationParams quantization,
+    ffi.Pointer<ffi.Char> buffer,
+    int size,
+    int allocation_type,
+    ffi.Pointer<ffi.Void> allocation,
+    bool is_variable,
+    ffi.Pointer<TfLiteTensor> tensor,
+  ) {
+    return _TfLiteTensorReset(
+      type,
+      name,
+      dims,
+      quantization,
+      buffer,
+      size,
+      allocation_type,
+      allocation,
+      is_variable,
+      tensor,
+    );
+  }
+
+  late final _TfLiteTensorResetPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Int32,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<TfLiteIntArray>,
+              TfLiteQuantizationParams,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size,
+              ffi.Int32,
+              ffi.Pointer<ffi.Void>,
+              ffi.Bool,
+              ffi.Pointer<TfLiteTensor>)>>('TfLiteTensorReset');
+  late final _TfLiteTensorReset = _TfLiteTensorResetPtr.asFunction<
+      void Function(
+          int,
+          ffi.Pointer<ffi.Char>,
+          ffi.Pointer<TfLiteIntArray>,
+          TfLiteQuantizationParams,
+          ffi.Pointer<ffi.Char>,
+          int,
+          int,
+          ffi.Pointer<ffi.Void>,
+          bool,
+          ffi.Pointer<TfLiteTensor>)>();
+
+  /// Copies the contents of 'src' in 'dst'.
+  /// Function does nothing if either 'src' or 'dst' is passed as nullptr and
+  /// return kTfLiteOk.
+  /// Returns kTfLiteError if 'src' and 'dst' doesn't have matching data size.
+  /// Note function copies contents, so it won't create new data pointer
+  /// or change allocation type.
+  /// All Tensor related properties will be copied from 'src' to 'dst' like
+  /// quantization, sparsity, ...
+  int TfLiteTensorCopy(
+    ffi.Pointer<TfLiteTensor> src,
+    ffi.Pointer<TfLiteTensor> dst,
+  ) {
+    return _TfLiteTensorCopy(
+      src,
+      dst,
+    );
+  }
+
+  late final _TfLiteTensorCopyPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(ffi.Pointer<TfLiteTensor>,
+              ffi.Pointer<TfLiteTensor>)>>('TfLiteTensorCopy');
+  late final _TfLiteTensorCopy = _TfLiteTensorCopyPtr.asFunction<
+      int Function(ffi.Pointer<TfLiteTensor>, ffi.Pointer<TfLiteTensor>)>();
+
+  /// Change the size of the memory block owned by `tensor` to `num_bytes`.
+  /// Tensors with allocation types other than kTfLiteDynamic will be ignored.
+  /// `tensor`'s internal data buffer will be assigned a pointer
+  /// which can safely be passed to free or realloc if `num_bytes` is zero.
+  /// Behaviour is undefined if `tensor` is NULL.
+  /// If `preserve_data` is true, tensor data will be unchanged in the range from
+  /// the start of the region up to the minimum of the old and new sizes.
+  void TfLiteTensorResizeMaybeCopy(
+    int num_bytes,
+    ffi.Pointer<TfLiteTensor> tensor,
+    bool preserve_data,
+  ) {
+    return _TfLiteTensorResizeMaybeCopy(
+      num_bytes,
+      tensor,
+      preserve_data,
+    );
+  }
+
+  late final _TfLiteTensorResizeMaybeCopyPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Size, ffi.Pointer<TfLiteTensor>,
+              ffi.Bool)>>('TfLiteTensorResizeMaybeCopy');
+  late final _TfLiteTensorResizeMaybeCopy = _TfLiteTensorResizeMaybeCopyPtr
+      .asFunction<void Function(int, ffi.Pointer<TfLiteTensor>, bool)>();
+
+  /// Change the size of the memory block owned by `tensor` to `num_bytes`.
+  /// Tensors with allocation types other than kTfLiteDynamic will be ignored.
+  /// `tensor`'s internal data buffer will be assigned a pointer
+  /// which can safely be passed to free or realloc if `num_bytes` is zero.
+  /// Behaviour is undefined if `tensor` is NULL.
+  /// Tensor data will be unchanged in the range from the start of the region up to
+  /// the minimum of the old and new sizes.
+  void TfLiteTensorRealloc(
+    int num_bytes,
+    ffi.Pointer<TfLiteTensor> tensor,
+  ) {
+    return _TfLiteTensorRealloc(
+      num_bytes,
+      tensor,
+    );
+  }
+
+  late final _TfLiteTensorReallocPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Size, ffi.Pointer<TfLiteTensor>)>>('TfLiteTensorRealloc');
+  late final _TfLiteTensorRealloc = _TfLiteTensorReallocPtr.asFunction<
+      void Function(int, ffi.Pointer<TfLiteTensor>)>();
+
+  /// Build a 'null' delegate, with all the fields properly set to their default
+  /// values.
+  TfLiteDelegate TfLiteDelegateCreate() {
+    return _TfLiteDelegateCreate();
+  }
+
+  late final _TfLiteDelegateCreatePtr =
+      _lookup<ffi.NativeFunction<TfLiteDelegate Function()>>(
+          'TfLiteDelegateCreate');
+  late final _TfLiteDelegateCreate =
+      _TfLiteDelegateCreatePtr.asFunction<TfLiteDelegate Function()>();
+
+  /// Creates an opaque delegate and returns its address.  The opaque delegate will
+  /// behave according to the provided 'opaque_delegate_builder'.  The lifetime of
+  /// the objects pointed to by any of the fields within the
+  /// 'opaque_delegate_builder' must outlive the returned
+  /// 'TfLiteOpaqueDelegate' and any 'TfLiteInterpreter',
+  /// 'TfLiteInterpreterOptions', 'tflite::Interpreter', or
+  /// 'tflite::InterpreterBuilder' that the delegate is added to.  The returned
+  /// address should be passed to 'TfLiteOpaqueDelegateDelete' for deletion.  If
+  /// 'opaque_delegate_builder' is a null pointer, then a null pointer will be
+  /// returned.
+  ffi.Pointer<TfLiteOpaqueDelegate> TfLiteOpaqueDelegateCreate(
+    ffi.Pointer<TfLiteOpaqueDelegateBuilder> opaque_delegate_builder,
+  ) {
+    return _TfLiteOpaqueDelegateCreate(
+      opaque_delegate_builder,
+    );
+  }
+
+  late final _TfLiteOpaqueDelegateCreatePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<TfLiteOpaqueDelegate> Function(
+                  ffi.Pointer<TfLiteOpaqueDelegateBuilder>)>>(
+      'TfLiteOpaqueDelegateCreate');
+  late final _TfLiteOpaqueDelegateCreate =
+      _TfLiteOpaqueDelegateCreatePtr.asFunction<
+          ffi.Pointer<TfLiteOpaqueDelegate> Function(
+              ffi.Pointer<TfLiteOpaqueDelegateBuilder>)>();
+
+  /// Deletes the provided opaque 'delegate'.  This function has no effect if the
+  /// 'delegate' is a null pointer.
+  void TfLiteOpaqueDelegateDelete(
+    ffi.Pointer<TfLiteOpaqueDelegate> delegate,
+  ) {
+    return _TfLiteOpaqueDelegateDelete(
+      delegate,
+    );
+  }
+
+  late final _TfLiteOpaqueDelegateDeletePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<TfLiteOpaqueDelegate>)>>(
+      'TfLiteOpaqueDelegateDelete');
+  late final _TfLiteOpaqueDelegateDelete = _TfLiteOpaqueDelegateDeletePtr
+      .asFunction<void Function(ffi.Pointer<TfLiteOpaqueDelegate>)>();
+
+  /// Returns a pointer to the data associated with the provided opaque 'delegate'.
+  ///
+  /// A null pointer will be returned when:
+  /// - The 'delegate' is null.
+  /// - The 'data' field of the 'TfLiteOpaqueDelegateBuilder' used to construct the
+  /// 'delegate' was null.
+  /// - Or in case of any other error.
+  /// - The 'delegate' has been constructed via a 'TfLiteOpaqueDelegateBuilder',
+  /// but the 'data' field of the 'TfLiteOpaqueDelegateBuilder' is null.
+  ffi.Pointer<ffi.Void> TfLiteOpaqueDelegateGetData(
+    ffi.Pointer<TfLiteOpaqueDelegate> delegate,
+  ) {
+    return _TfLiteOpaqueDelegateGetData(
+      delegate,
+    );
+  }
+
+  late final _TfLiteOpaqueDelegateGetDataPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<ffi.Void> Function(
+                  ffi.Pointer<TfLiteOpaqueDelegate>)>>(
+      'TfLiteOpaqueDelegateGetData');
+  late final _TfLiteOpaqueDelegateGetData =
+      _TfLiteOpaqueDelegateGetDataPtr.asFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Pointer<TfLiteOpaqueDelegate>)>();
 }
 
 /// mbstate_t is an opaque object to keep conversion state, during multibyte
@@ -4697,7 +5135,803 @@ class TfLiteOpaqueNode extends ffi.Opaque {}
 
 class TfLiteOpaqueTensor extends ffi.Opaque {}
 
-class TfLiteDelegate extends ffi.Opaque {}
+/// WARNING: This is an experimental interface that is subject to change.
+class TfLiteDelegate extends ffi.Struct {
+  /// Data that delegate needs to identify itself. This data is owned by the
+  /// delegate. The delegate is owned in the user code, so the delegate is
+  /// responsible for deallocating this when it is destroyed.
+  external ffi.Pointer<ffi.Void> data_;
+
+  /// Invoked by ModifyGraphWithDelegate. This prepare is called, giving the
+  /// delegate a view of the current graph through TfLiteContext*. It typically
+  /// will look at the nodes and call ReplaceNodeSubsetsWithDelegateKernels()
+  /// to ask the TensorFlow lite runtime to create macro-nodes to represent
+  /// delegated subgraphs of the original graph.
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Int32 Function(
+                  ffi.Pointer<TfLiteContext>, ffi.Pointer<TfLiteDelegate>)>>
+      Prepare;
+
+  /// Copy the data from delegate buffer handle into raw memory of the given
+  /// 'tensor'. Note that the delegate is allowed to allocate the raw bytes as
+  /// long as it follows the rules for kTfLiteDynamic tensors, in which case this
+  /// cannot be null.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteContext>,
+              ffi.Pointer<TfLiteDelegate>,
+              TfLiteBufferHandle,
+              ffi.Pointer<TfLiteTensor>)>> CopyFromBufferHandle;
+
+  /// Copy the data from raw memory of the given 'tensor' to delegate buffer
+  /// handle. This can be null if the delegate doesn't use its own buffer.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteContext>,
+              ffi.Pointer<TfLiteDelegate>,
+              TfLiteBufferHandle,
+              ffi.Pointer<TfLiteTensor>)>> CopyToBufferHandle;
+
+  /// Free the Delegate Buffer Handle. Note: This only frees the handle, but
+  /// this doesn't release the underlying resource (e.g. textures). The
+  /// resources are either owned by application layer or the delegate.
+  /// This can be null if the delegate doesn't use its own buffer.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TfLiteContext>,
+              ffi.Pointer<TfLiteDelegate>,
+              ffi.Pointer<TfLiteBufferHandle>)>> FreeBufferHandle;
+
+  /// Bitmask flags. See the comments in `TfLiteDelegateFlags`.
+  @ffi.Int64()
+  external int flags;
+
+  /// The opaque delegate builder associated with this object.  If set then the
+  /// TF Lite runtime will give precedence to this field.  E.g. instead of
+  /// invoking 'Prepare' via the function pointer inside the 'TfLiteDelegate'
+  /// object, the runtime will first check if the corresponding function
+  /// pointer inside 'opaque_delegate_builder' is set and if so invoke that.
+  ///
+  /// If this field is non-null, then the 'Prepare' field (of the
+  /// 'TfLiteDelegate') should be null.
+  external ffi.Pointer<TfLiteOpaqueDelegateBuilder> opaque_delegate_builder;
+}
+
+/// Forward declare so dependent structs and methods can reference these types
+/// prior to the struct definitions.
+class TfLiteContext extends ffi.Struct {
+  /// Number of tensors in the context.
+  @ffi.Size()
+  external int tensors_size;
+
+  /// The execution plan contains a list of the node indices in execution
+  /// order. execution_plan->size is the current number of nodes. And,
+  /// execution_plan->data[0] is the first node that needs to be run.
+  /// TfLiteDelegates can traverse the current execution plan by iterating
+  /// through each member of this array and using GetNodeAndRegistration() to
+  /// access details about a node. i.e.
+  ///
+  /// TfLiteIntArray* execution_plan;
+  /// TF_LITE_ENSURE_STATUS(context->GetExecutionPlan(context, &execution_plan));
+  /// for (int exec_index = 0; exec_index < execution_plan->size; exec_index++) {
+  /// int node_index = execution_plan->data[exec_index];
+  /// TfLiteNode* node;
+  /// TfLiteRegistration* reg;
+  /// context->GetNodeAndRegistration(context, node_index, &node, &reg);
+  /// }
+  /// Note: the memory pointed by '`*execution_plan` is OWNED by TfLite runtime.
+  /// Future calls to GetExecutionPlan invalidates earlier outputs. The following
+  /// code snippet shows the issue of such an invocation pattern. After calling
+  /// CheckNode, subsequent access to `plan_1st` is undefined.
+  ///
+  /// void CheckNode(const TfLiteNode* node) {
+  /// ...
+  /// TfLiteIntArray* plan_2nd;
+  /// TF_LITE_ENSURE_STATUS(context->GetExecutionPlan(context, &plan_2nd));
+  /// ...
+  /// }
+  ///
+  /// TfLiteIntArray* plan_1st;
+  /// TF_LITE_ENSURE_STATUS(context->GetExecutionPlan(context, &plan_1st));
+  /// for (int exec_index = 0; exec_index < plan_1st->size; exec_index++) {
+  /// int node_index = plan_1st->data[exec_index];
+  /// TfLiteNode* node;
+  /// TfLiteRegistration* reg;
+  /// context->GetNodeAndRegistration(context, node_index, &node, &reg);
+  /// CheckNode(node);
+  /// }
+  ///
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(ffi.Pointer<TfLiteContext>,
+              ffi.Pointer<ffi.Pointer<TfLiteIntArray>>)>> GetExecutionPlan;
+
+  /// An array of tensors in the interpreter context (of length `tensors_size`)
+  external ffi.Pointer<TfLiteTensor> tensors;
+
+  /// opaque full context ptr (an opaque c++ data structure)
+  external ffi.Pointer<ffi.Void> impl_;
+
+  /// Request memory pointer be resized. Updates dimensions on the tensor.
+  /// NOTE: ResizeTensor takes ownership of newSize.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteContext>,
+              ffi.Pointer<TfLiteTensor>,
+              ffi.Pointer<TfLiteIntArray>)>> ResizeTensor;
+
+  /// Request that an error be reported with format string msg.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TfLiteContext>, ffi.Pointer<ffi.Char>)>> ReportError;
+
+  /// Add `tensors_to_add` tensors, preserving pre-existing Tensor entries.  If
+  /// non-null, the value pointed to by `first_new_tensor_index` will be set to
+  /// the index of the first new tensor.
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Int32 Function(
+                  ffi.Pointer<TfLiteContext>, ffi.Int, ffi.Pointer<ffi.Int>)>>
+      AddTensors;
+
+  /// Get a Tensor node by node_index.
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Int32 Function(
+                  ffi.Pointer<TfLiteContext>,
+                  ffi.Int,
+                  ffi.Pointer<ffi.Pointer<TfLiteNode>>,
+                  ffi.Pointer<ffi.Pointer<TfLiteRegistration>>)>>
+      GetNodeAndRegistration;
+
+  /// Replace ops with one or more stub delegate operations. This function
+  /// does not take ownership of `nodes_to_replace`.
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Int32 Function(ffi.Pointer<TfLiteContext>, TfLiteRegistration,
+                  ffi.Pointer<TfLiteIntArray>, ffi.Pointer<TfLiteDelegate>)>>
+      ReplaceNodeSubsetsWithDelegateKernels;
+
+  /// Number of threads that are recommended to subsystems like gemmlowp and
+  /// eigen.
+  @ffi.Int()
+  external int recommended_num_threads;
+
+  /// Access external contexts by type.
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Pointer<TfLiteExternalContext> Function(
+              ffi.Pointer<TfLiteContext>, ffi.Int32)>> GetExternalContext;
+
+  /// Set the value of a external context. Does not take ownership of the
+  /// pointer.
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<TfLiteContext>, ffi.Int32,
+              ffi.Pointer<TfLiteExternalContext>)>> SetExternalContext;
+
+  /// Flag for allowing float16 precision for FP32 calculation.
+  /// default: false.
+  /// WARNING: This is an experimental API and subject to change.
+  @ffi.Bool()
+  external bool allow_fp32_relax_to_fp16;
+
+  /// Pointer to the op-level profiler, if set; nullptr otherwise.
+  external ffi.Pointer<ffi.Void> profiler;
+
+  /// Allocate persistent buffer which has the same life time as the interpreter.
+  /// Returns nullptr on failure.
+  /// The memory is allocated from heap for TFL, and from tail in TFLM.
+  /// This method is only available in Init or Prepare stage.
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<TfLiteContext>, ffi.Size)>> AllocatePersistentBuffer;
+
+  /// Allocate a buffer which will be deallocated right after invoke phase.
+  /// The memory is allocated from heap in TFL, and from volatile arena in TFLM.
+  /// This method is only available in invoke stage.
+  /// NOTE: If possible use RequestScratchBufferInArena method to avoid memory
+  /// allocation during inference time.
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(ffi.Pointer<TfLiteContext>, ffi.Size,
+              ffi.Pointer<ffi.Pointer<ffi.Void>>)>> AllocateBufferForEval;
+
+  /// Request a scratch buffer in the arena through static memory planning.
+  /// This method is only available in Prepare stage and the buffer is allocated
+  /// by the interpreter between Prepare and Eval stage. In Eval stage,
+  /// GetScratchBuffer API can be used to fetch the address.
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Int32 Function(
+                  ffi.Pointer<TfLiteContext>, ffi.Size, ffi.Pointer<ffi.Int>)>>
+      RequestScratchBufferInArena;
+
+  /// Get the scratch buffer pointer.
+  /// This method is only available in Eval stage.
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<TfLiteContext>, ffi.Int)>> GetScratchBuffer;
+
+  /// Resize the memory pointer of the `tensor`. This method behaves the same as
+  /// `ResizeTensor`, except that it makes a copy of the shape array internally
+  /// so the shape array could be deallocated right afterwards.
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteContext>,
+              ffi.Pointer<TfLiteTensor>,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>)>> ResizeTensorExplicit;
+
+  /// This method provides a preview of post-delegation partitioning. Each
+  /// TfLiteDelegateParams in the referenced array corresponds to one instance of
+  /// the delegate kernel.
+  /// Example usage:
+  ///
+  /// TfLiteIntArray* nodes_to_replace = ...;
+  /// TfLiteDelegateParams* params_array;
+  /// int num_partitions = 0;
+  /// TF_LITE_ENSURE_STATUS(context->PreviewDelegatePartitioning(
+  /// context, delegate, nodes_to_replace, &params_array, &num_partitions));
+  /// for (int idx = 0; idx < num_partitions; idx++) {
+  /// const auto& partition_params = params_array[idx];
+  /// ...
+  /// }
+  ///
+  /// NOTE: The context owns the memory referenced by partition_params_array. It
+  /// will be cleared with another call to PreviewDelegateParitioning, or after
+  /// TfLiteDelegateParams::Prepare returns.
+  ///
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteContext>,
+              ffi.Pointer<TfLiteIntArray>,
+              ffi.Pointer<ffi.Pointer<TfLiteDelegateParams>>,
+              ffi.Pointer<ffi.Int>)>> PreviewDelegatePartitioning;
+
+  /// Returns a TfLiteTensor struct for a given index.
+  /// WARNING: This is an experimental interface that is subject to change.
+  /// WARNING: This method may not be available on all platforms.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Pointer<TfLiteTensor> Function(
+              ffi.Pointer<TfLiteContext>, ffi.Int)>> GetTensor;
+
+  /// Returns a TfLiteEvalTensor struct for a given index.
+  /// WARNING: This is an experimental interface that is subject to change.
+  /// WARNING: This method may not be available on all platforms.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Pointer<TfLiteEvalTensor> Function(
+              ffi.Pointer<TfLiteContext>, ffi.Int)>> GetEvalTensor;
+
+  /// Retrieves named metadata buffer from the TFLite model.
+  /// Returns kTfLiteOk if metadata is successfully obtained from the flatbuffer
+  /// Model: that is, there exists a `metadata` entry with given `name` string.
+  /// (see TFLite's schema.fbs).
+  /// The corresponding `buffer` information is populated in `ptr` & `bytes`.
+  /// The data from `ptr` is valid for the lifetime of the Interpreter.
+  ///
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteContext>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Size>)>> GetModelMetadata;
+}
+
+/// Fixed size list of integers. Used for dimensions and inputs/outputs tensor
+/// indices
+class TfLiteIntArray extends ffi.Opaque {}
+
+class TfLiteTensor extends ffi.Struct {
+  /// The data type specification for data stored in `data`. This affects
+  /// what member of `data` union should be used.
+  @ffi.Int32()
+  external int type;
+
+  /// A union of data pointers. The appropriate type should be used for a typed
+  /// tensor based on `type`.
+  external TfLitePtrUnion data;
+
+  /// A pointer to a structure representing the dimensionality interpretation
+  /// that the buffer should have. NOTE: the product of elements of `dims`
+  /// and the element datatype size should be equal to `bytes` below.
+  external ffi.Pointer<TfLiteIntArray> dims;
+
+  /// Quantization information.
+  external TfLiteQuantizationParams params;
+
+  /// How memory is mapped
+  /// kTfLiteMmapRo: Memory mapped read only.
+  /// i.e. weights
+  /// kTfLiteArenaRw: Arena allocated read write memory
+  /// (i.e. temporaries, outputs).
+  @ffi.Int32()
+  external int allocation_type;
+
+  /// The number of bytes required to store the data of this Tensor. I.e.
+  /// (bytes of each element) * dims[0] * ... * dims[n-1].  For example, if
+  /// type is kTfLiteFloat32 and dims = {3, 2} then
+  /// bytes = sizeof(float) * 3 * 2 = 4 * 3 * 2 = 24.
+  @ffi.Size()
+  external int bytes;
+
+  /// An opaque pointer to a tflite::MMapAllocation
+  external ffi.Pointer<ffi.Void> allocation;
+
+  /// Null-terminated name of this tensor.
+  external ffi.Pointer<ffi.Char> name;
+
+  /// The delegate which knows how to handle `buffer_handle`.
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<TfLiteDelegate> delegate;
+
+  /// An integer buffer handle that can be handled by `delegate`.
+  /// The value is valid only when delegate is not null.
+  /// WARNING: This is an experimental interface that is subject to change.
+  @TfLiteBufferHandle()
+  external int buffer_handle;
+
+  /// If the delegate uses its own buffer (e.g. GPU memory), the delegate is
+  /// responsible to set data_is_stale to true.
+  /// `delegate->CopyFromBufferHandle` can be called to copy the data from
+  /// delegate buffer.
+  /// WARNING: This is an // experimental interface that is subject to change.
+  @ffi.Bool()
+  external bool data_is_stale;
+
+  /// True if the tensor is a variable.
+  @ffi.Bool()
+  external bool is_variable;
+
+  /// Quantization information. Replaces params field above.
+  external TfLiteQuantization quantization;
+
+  /// Parameters used to encode a sparse tensor.
+  /// This is optional. The field is NULL if a tensor is dense.
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<TfLiteSparsity> sparsity;
+
+  /// Optional. Encodes shapes with unknown dimensions with -1. This field is
+  /// only populated when unknown dimensions exist in a read-write tensor (i.e.
+  /// an input or output tensor). (e.g.  `dims` contains [1, 1, 1, 3] and
+  /// `dims_signature` contains [1, -1, -1, 3]).  If no unknown dimensions exist
+  /// then `dims_signature` is either null, or set to an empty array.  Note that
+  /// this field only exists when TF_LITE_STATIC_MEMORY is not defined.
+  external ffi.Pointer<TfLiteIntArray> dims_signature;
+}
+
+/// A union of pointers that points to memory for a given tensor.
+class TfLitePtrUnion extends ffi.Union {
+  /// Do not access these members directly, if possible, use
+  /// GetTensorData<TYPE>(tensor) instead, otherwise only access .data, as other
+  /// members are deprecated.
+  external ffi.Pointer<ffi.Int32> i32;
+
+  external ffi.Pointer<ffi.Uint32> u32;
+
+  external ffi.Pointer<ffi.Int64> i64;
+
+  external ffi.Pointer<ffi.Uint64> u64;
+
+  external ffi.Pointer<ffi.Float> f;
+
+  external ffi.Pointer<TfLiteFloat16> f16;
+
+  external ffi.Pointer<ffi.Double> f64;
+
+  external ffi.Pointer<ffi.Char> raw;
+
+  external ffi.Pointer<ffi.Char> raw_const;
+
+  external ffi.Pointer<ffi.Uint8> uint8;
+
+  external ffi.Pointer<ffi.Bool> b;
+
+  external ffi.Pointer<ffi.Int16> i16;
+
+  external ffi.Pointer<ffi.Uint16> ui16;
+
+  external ffi.Pointer<TfLiteComplex64> c64;
+
+  external ffi.Pointer<TfLiteComplex128> c128;
+
+  external ffi.Pointer<ffi.Int8> int8;
+
+  /// Only use this member.
+  external ffi.Pointer<ffi.Void> data;
+}
+
+/// Half precision data type compatible with the C99 definition.
+class TfLiteFloat16 extends ffi.Struct {
+  @ffi.Uint16()
+  external int data;
+}
+
+/// Single-precision complex data type compatible with the C99 definition.
+class TfLiteComplex64 extends ffi.Struct {
+  /// real and imaginary parts, respectively.
+  @ffi.Float()
+  external double re;
+
+  @ffi.Float()
+  external double im;
+}
+
+/// Double-precision complex data type compatible with the C99 definition.
+class TfLiteComplex128 extends ffi.Struct {
+  /// real and imaginary parts, respectively.
+  @ffi.Double()
+  external double re;
+
+  @ffi.Double()
+  external double im;
+}
+
+/// Memory allocation strategies.
+/// * kTfLiteMmapRo: Read-only memory-mapped data, or data externally allocated.
+/// * kTfLiteArenaRw: Arena allocated with no guarantees about persistence,
+/// and available during eval.
+/// * kTfLiteArenaRwPersistent: Arena allocated but persistent across eval, and
+/// only available during eval.
+/// * kTfLiteDynamic: Allocated during eval, or for string tensors.
+/// * kTfLitePersistentRo: Allocated and populated during prepare. This is
+/// useful for tensors that can be computed during prepare and treated
+/// as constant inputs for downstream ops (also in prepare).
+/// * kTfLiteCustom: Custom memory allocation provided by the user. See
+/// TfLiteCustomAllocation below.
+abstract class TfLiteAllocationType {
+  static const int kTfLiteMemNone = 0;
+  static const int kTfLiteMmapRo = 1;
+  static const int kTfLiteArenaRw = 2;
+  static const int kTfLiteArenaRwPersistent = 3;
+  static const int kTfLiteDynamic = 4;
+  static const int kTfLitePersistentRo = 5;
+  static const int kTfLiteCustom = 6;
+}
+
+/// The delegates should use zero or positive integers to represent handles.
+/// -1 is reserved from unallocated status.
+typedef TfLiteBufferHandle = ffi.Int;
+
+/// Structure specifying the quantization used by the tensor, if-any.
+class TfLiteQuantization extends ffi.Struct {
+  /// The type of quantization held by params.
+  @ffi.Int32()
+  external int type;
+
+  /// Holds an optional reference to a quantization param structure. The actual
+  /// type depends on the value of the `type` field (see the comment there for
+  /// the values and corresponding types).
+  external ffi.Pointer<ffi.Void> params;
+}
+
+/// SupportedQuantizationTypes.
+abstract class TfLiteQuantizationType {
+  /// No quantization.
+  static const int kTfLiteNoQuantization = 0;
+
+  /// Affine quantization (with support for per-channel quantization).
+  /// Corresponds to TfLiteAffineQuantization.
+  static const int kTfLiteAffineQuantization = 1;
+}
+
+/// Parameters used to encode a sparse tensor. For detailed explanation of each
+/// field please refer to lite/schema/schema.fbs.
+class TfLiteSparsity extends ffi.Struct {
+  external ffi.Pointer<TfLiteIntArray> traversal_order;
+
+  external ffi.Pointer<TfLiteIntArray> block_map;
+
+  external ffi.Pointer<TfLiteDimensionMetadata> dim_metadata;
+
+  @ffi.Int()
+  external int dim_metadata_size;
+}
+
+/// Metadata to encode each dimension in a sparse tensor.
+class TfLiteDimensionMetadata extends ffi.Struct {
+  @ffi.Int32()
+  external int format;
+
+  @ffi.Int()
+  external int dense_size;
+
+  external ffi.Pointer<TfLiteIntArray> array_segments;
+
+  external ffi.Pointer<TfLiteIntArray> array_indices;
+}
+
+/// Storage format of each dimension in a sparse tensor.
+abstract class TfLiteDimensionType {
+  static const int kTfLiteDimDense = 0;
+  static const int kTfLiteDimSparseCSR = 1;
+}
+
+/// A structure representing an instance of a node.
+/// This structure only exhibits the inputs, outputs, user defined data and some
+/// node properties (like statefulness), not other features like the type.
+class TfLiteNode extends ffi.Struct {
+  /// Inputs to this node expressed as indices into the simulator's tensors.
+  external ffi.Pointer<TfLiteIntArray> inputs;
+
+  /// Outputs to this node expressed as indices into the simulator's tensors.
+  external ffi.Pointer<TfLiteIntArray> outputs;
+
+  /// intermediate tensors to this node expressed as indices into the simulator's
+  /// tensors.
+  external ffi.Pointer<TfLiteIntArray> intermediates;
+
+  /// Temporary tensors uses during the computations. This usually contains no
+  /// tensors, but ops are allowed to change that if they need scratch space of
+  /// any sort.
+  external ffi.Pointer<TfLiteIntArray> temporaries;
+
+  /// Opaque data provided by the node implementer through `Registration.init`.
+  external ffi.Pointer<ffi.Void> user_data;
+
+  /// Opaque data provided to the node if the node is a builtin. This is usually
+  /// a structure defined in builtin_op_data.h
+  external ffi.Pointer<ffi.Void> builtin_data;
+
+  /// Custom initial data. This is the opaque data provided in the flatbuffer.
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<ffi.Void> custom_initial_data;
+
+  @ffi.Int()
+  external int custom_initial_data_size;
+
+  /// The pointer to the delegate. This is non-null only when the node is
+  /// created by calling `interpreter.ModifyGraphWithDelegate`.
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<TfLiteDelegate> delegate;
+
+  /// Whether this op might have side effect (e.g. stateful op).
+  @ffi.Bool()
+  external bool might_have_side_effect;
+}
+
+class TfLiteRegistration extends ffi.Struct {
+  /// Initializes the op from serialized data.
+  /// Called only *once* for the lifetime of the op, so any one-time allocations
+  /// should be made here (unless they depend on tensor sizes).
+  ///
+  /// If a built-in op:
+  /// `buffer` is the op's params data (TfLiteLSTMParams*).
+  /// `length` is zero.
+  /// If custom op:
+  /// `buffer` is the op's `custom_options`.
+  /// `length` is the size of the buffer.
+  ///
+  /// Returns a type-punned (i.e. void*) opaque data (e.g. a primitive pointer
+  /// or an instance of a struct).
+  ///
+  /// The returned pointer will be stored with the node in the `user_data` field,
+  /// accessible within prepare and invoke functions below.
+  /// NOTE: if the data is already in the desired format, simply implement this
+  /// function to return `nullptr` and implement the free function to be a no-op.
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Pointer<ffi.Void> Function(
+                  ffi.Pointer<TfLiteContext>, ffi.Pointer<ffi.Char>, ffi.Size)>>
+      init;
+
+  /// The pointer `buffer` is the data previously returned by an init invocation.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TfLiteContext>, ffi.Pointer<ffi.Void>)>> free;
+
+  /// prepare is called when the inputs this node depends on have been resized.
+  /// context->ResizeTensor() can be called to request output tensors to be
+  /// resized.
+  /// Can be called multiple times for the lifetime of the op.
+  ///
+  /// Returns kTfLiteOk on success.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteContext>, ffi.Pointer<TfLiteNode>)>> prepare;
+
+  /// Execute the node (should read node->inputs and output to node->outputs).
+  /// Returns kTfLiteOk on success.
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteContext>, ffi.Pointer<TfLiteNode>)>> invoke;
+
+  /// profiling_string is called during summarization of profiling information
+  /// in order to group executions together. Providing a value here will cause a
+  /// given op to appear multiple times is the profiling report. This is
+  /// particularly useful for custom ops that can perform significantly
+  /// different calculations depending on their `user-data`.
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Pointer<ffi.Char> Function(
+                  ffi.Pointer<TfLiteContext>, ffi.Pointer<TfLiteNode>)>>
+      profiling_string;
+
+  /// Builtin codes. If this kernel refers to a builtin this is the code
+  /// of the builtin. This is so we can do marshaling to other frameworks like
+  /// NN API.
+  /// Note: It is the responsibility of the registration binder to set this
+  /// properly.
+  @ffi.Int32()
+  external int builtin_code;
+
+  /// Custom op name. If the op is a builtin, this will be null.
+  /// Note: It is the responsibility of the registration binder to set this
+  /// properly.
+  /// WARNING: This is an experimental interface that is subject to change.
+  external ffi.Pointer<ffi.Char> custom_name;
+
+  /// The version of the op.
+  /// Note: It is the responsibility of the registration binder to set this
+  /// properly.
+  @ffi.Int()
+  external int version;
+
+  /// The external version of `TfLiteRegistration`. Since we can't use internal
+  /// types (such as `TfLiteContext`) for C API to maintain ABI stability.
+  /// C API user will provide `TfLiteRegistrationExternal` to implement custom
+  /// ops. We keep it inside of `TfLiteRegistration` and use it to route
+  /// callbacks properly.
+  external ffi.Pointer<TfLiteRegistrationExternal> registration_external;
+}
+
+class TfLiteRegistrationExternal extends ffi.Opaque {}
+
+/// An external context is a collection of information unrelated to the TF Lite
+/// framework, but useful to a subset of the ops. TF Lite knows very little
+/// about the actual contexts, but it keeps a list of them, and is able to
+/// refresh them if configurations like the number of recommended threads
+/// change.
+class TfLiteExternalContext extends ffi.Struct {
+  @ffi.Int32()
+  external int type;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<TfLiteContext>)>>
+      Refresh;
+}
+
+/// The list of external context types known to TF Lite. This list exists solely
+/// to avoid conflicts and to ensure ops can share the external contexts they
+/// need. Access to the external contexts is controlled by one of the
+/// corresponding support files.
+abstract class TfLiteExternalContextType {
+  /// include eigen_support.h to use.
+  static const int kTfLiteEigenContext = 0;
+
+  /// include gemm_support.h to use.
+  static const int kTfLiteGemmLowpContext = 1;
+
+  /// Placeholder for Edge TPU support.
+  static const int kTfLiteEdgeTpuContext = 2;
+
+  /// include cpu_backend_context.h to use.
+  static const int kTfLiteCpuBackendContext = 3;
+  static const int kTfLiteMaxExternalContexts = 4;
+}
+
+/// WARNING: This is an experimental interface that is subject to change.
+///
+/// Currently, TfLiteDelegateParams has to be allocated in a way that it's
+/// trivially destructable. It will be stored as `builtin_data` field in
+/// `TfLiteNode` of the delegate node.
+///
+/// See also the `CreateDelegateParams` function in `interpreter.cc` details.
+class TfLiteDelegateParams extends ffi.Struct {
+  external ffi.Pointer<TfLiteDelegate> delegate;
+
+  external ffi.Pointer<TfLiteIntArray> nodes_to_replace;
+
+  external ffi.Pointer<TfLiteIntArray> input_tensors;
+
+  external ffi.Pointer<TfLiteIntArray> output_tensors;
+}
+
+/// Light-weight tensor struct for TF Micro runtime. Provides the minimal amount
+/// of information required for a kernel to run during TfLiteRegistration::Eval.
+/// TODO(b/160955687): Move this field into TF_LITE_STATIC_MEMORY when TFLM
+/// builds with this flag by default internally.
+class TfLiteEvalTensor extends ffi.Struct {
+  /// A union of data pointers. The appropriate type should be used for a typed
+  /// tensor based on `type`.
+  external TfLitePtrUnion data;
+
+  /// A pointer to a structure representing the dimensionality interpretation
+  /// that the buffer should have.
+  external ffi.Pointer<TfLiteIntArray> dims;
+
+  /// The data type specification for data stored in `data`. This affects
+  /// what member of `data` union should be used.
+  @ffi.Int32()
+  external int type;
+}
+
+/// `TfLiteOpaqueDelegateBuilder` is used for constructing
+/// `TfLiteOpaqueDelegate`, see `TfLiteOpaqueDelegateCreate` below.  Note:
+/// This struct is not ABI stable.
+///
+/// For forward source compatibility `TfLiteOpaqueDelegateBuilder` objects should
+/// be brace-initialized, so that all fields (including any that might be added
+/// in the future) get zero-initialized.  The purpose of each field is exactly
+/// the same as with `TfLiteDelegate`.
+///
+/// WARNING: This is an experimental interface that is subject to change.
+class TfLiteOpaqueDelegateBuilder extends ffi.Struct {
+  /// Data that delegate needs to identify itself. This data is owned by the
+  /// delegate. The delegate is owned in the user code, so the delegate is
+  /// responsible for deallocating this when it is destroyed.
+  external ffi.Pointer<ffi.Void> data;
+
+  /// NOLINT
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteOpaqueContext>,
+              ffi.Pointer<TfLiteOpaqueDelegate>,
+              ffi.Pointer<ffi.Void>)>> Prepare;
+
+  /// NOLINT
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteOpaqueContext>,
+              ffi.Pointer<TfLiteOpaqueDelegate>,
+              ffi.Pointer<ffi.Void>,
+              TfLiteBufferHandle,
+              ffi.Pointer<TfLiteOpaqueTensor>)>> CopyFromBufferHandle;
+
+  /// NOLINT
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteOpaqueContext>,
+              ffi.Pointer<TfLiteOpaqueDelegate>,
+              ffi.Pointer<ffi.Void>,
+              TfLiteBufferHandle,
+              ffi.Pointer<TfLiteOpaqueTensor>)>> CopyToBufferHandle;
+
+  /// NOLINT
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TfLiteOpaqueContext>,
+              ffi.Pointer<TfLiteOpaqueDelegate>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<TfLiteBufferHandle>)>> FreeBufferHandle;
+
+  /// Bitmask flags. See the comments in `TfLiteDelegateFlags`.
+  @ffi.Int64()
+  external int flags;
+}
+
+typedef TfLiteOpaqueDelegate = TfLiteDelegate;
 
 class TfLiteOpaqueDelegateStruct extends ffi.Opaque {}
 
@@ -4707,13 +5941,157 @@ class TfLiteInterpreterOptions extends ffi.Opaque {}
 
 class TfLiteInterpreter extends ffi.Opaque {}
 
-class TfLiteTensor extends ffi.Opaque {}
-
-class TfLiteRegistrationExternal extends ffi.Opaque {}
-
 typedef va_list = __builtin_va_list;
 typedef __builtin_va_list = ffi.Pointer<ffi.Char>;
-typedef TfLiteOpaqueDelegate = TfLiteDelegate;
+
+/// Fixed size list of floats. Used for per-channel quantization.
+class TfLiteFloatArray extends ffi.Opaque {}
+
+/// Parameters for asymmetric quantization across a dimension (i.e per output
+/// channel quantization).
+/// quantized_dimension specifies which dimension the scales and zero_points
+/// correspond to.
+/// For a particular value in quantized_dimension, quantized values can be
+/// converted back to float using:
+/// real_value = scale * (quantized_value - zero_point)
+class TfLiteAffineQuantization extends ffi.Struct {
+  external ffi.Pointer<TfLiteFloatArray> scale;
+
+  external ffi.Pointer<TfLiteIntArray> zero_point;
+
+  @ffi.Int32()
+  external int quantized_dimension;
+}
+
+/// Defines a custom memory allocation not owned by the runtime.
+/// `data` should be aligned to kDefaultTensorAlignment defined in
+/// lite/util.h. (Currently 64 bytes)
+/// NOTE: See Interpreter.SetCustomAllocationForTensor for details on usage.
+class TfLiteCustomAllocation extends ffi.Struct {
+  external ffi.Pointer<ffi.Void> data;
+
+  @ffi.Size()
+  external int bytes;
+}
+
+/// The flags used in `Interpreter::SetCustomAllocationForTensor`.
+/// Note that this is a bitmask, so the values should be 1, 2, 4, 8, ...etc.
+abstract class TfLiteCustomAllocationFlags {
+  static const int kTfLiteCustomAllocationFlagsNone = 0;
+
+  /// Skips checking whether allocation.data points to an aligned buffer as
+  /// expected by the TFLite runtime.
+  /// NOTE: Setting this flag can cause crashes when calling Invoke().
+  /// Use with caution.
+  static const int kTfLiteCustomAllocationFlagsSkipAlignCheck = 1;
+}
+
+/// WARNING: This is an experimental interface that is subject to change.
+///
+/// Currently, TfLiteOpaqueDelegateParams has to be allocated in a way that it's
+/// trivially destructable. It will be stored as `builtin_data` field in
+/// `TfLiteNode` of the delegate node.
+///
+/// See also the `CreateOpaqueDelegateParams` function in `subgraph.cc`
+/// details.
+class TfLiteOpaqueDelegateParams extends ffi.Struct {
+  external ffi.Pointer<TfLiteOpaqueDelegate> delegate;
+
+  external ffi.Pointer<ffi.Void> delegate_data;
+
+  external ffi.Pointer<TfLiteIntArray> nodes_to_replace;
+
+  external ffi.Pointer<TfLiteIntArray> input_tensors;
+
+  external ffi.Pointer<TfLiteIntArray> output_tensors;
+}
+
+/// Old version of `TfLiteRegistration` to maintain binary backward
+/// compatibility.
+/// WARNING: This structure is deprecated / not an official part of the API.
+/// It should be only used for binary backward compatibility.
+class TfLiteRegistration_V1 extends ffi.Struct {
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Pointer<ffi.Void> Function(
+                  ffi.Pointer<TfLiteContext>, ffi.Pointer<ffi.Char>, ffi.Size)>>
+      init;
+
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<TfLiteContext>, ffi.Pointer<ffi.Void>)>> free;
+
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteContext>, ffi.Pointer<TfLiteNode>)>> prepare;
+
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<TfLiteContext>, ffi.Pointer<TfLiteNode>)>> invoke;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Pointer<ffi.Char> Function(
+                  ffi.Pointer<TfLiteContext>, ffi.Pointer<TfLiteNode>)>>
+      profiling_string;
+
+  @ffi.Int32()
+  external int builtin_code;
+
+  external ffi.Pointer<ffi.Char> custom_name;
+
+  @ffi.Int()
+  external int version;
+}
+
+/// The flags used in `TfLiteDelegate`. Note that this is a bitmask, so the
+/// values should be 1, 2, 4, 8, ...etc.
+abstract class TfLiteDelegateFlags {
+  static const int kTfLiteDelegateFlagsNone = 0;
+
+  /// The flag is set if the delegate can handle dynamic sized tensors.
+  /// For example, the output shape of a `Resize` op with non-constant shape
+  /// can only be inferred when the op is invoked.
+  /// In this case, the Delegate is responsible for calling
+  /// `SetTensorToDynamic` to mark the tensor as a dynamic tensor, and calling
+  /// `ResizeTensor` when invoking the op.
+  ///
+  /// If the delegate isn't capable to handle dynamic tensors, this flag need
+  /// to be set to false.
+  static const int kTfLiteDelegateFlagsAllowDynamicTensors = 1;
+
+  /// This flag can be used by delegates (that allow dynamic tensors) to ensure
+  /// applicable tensor shapes are automatically propagated in the case of tensor
+  /// resizing.
+  /// This means that non-dynamic (allocation_type != kTfLiteDynamic) I/O tensors
+  /// of a delegate kernel will have correct shapes before its Prepare() method
+  /// is called. The runtime leverages TFLite builtin ops in the original
+  /// execution plan to propagate shapes.
+  ///
+  /// A few points to note:
+  /// 1. This requires kTfLiteDelegateFlagsAllowDynamicTensors. If that flag is
+  /// false, this one is redundant since the delegate kernels are re-initialized
+  /// every time tensors are resized.
+  /// 2. Enabling this flag adds some overhead to AllocateTensors(), since extra
+  /// work is required to prepare the original execution plan.
+  /// 3. This flag requires that the original execution plan only have ops with
+  /// valid registrations (and not 'dummy' custom ops like with Flex).
+  /// WARNING: This feature is experimental and subject to change.
+  static const int kTfLiteDelegateFlagsRequirePropagatedShapes = 2;
+
+  /// This flag can be used by delegates to request per-operator profiling. If a
+  /// node is a delegate node, this flag will be checked before profiling. If
+  /// set, then the node will not be profiled. The delegate will then add per
+  /// operator information using Profiler::EventType::OPERATOR_INVOKE_EVENT and
+  /// the results will appear in the operator-wise Profiling section and not in
+  /// the Delegate internal section.
+  static const int kTfLiteDelegateFlagsPerOperatorProfiling = 4;
+}
+
+const int kTfLiteNullBufferHandle = -1;
 
 const int __GNUC_VA_LIST = 1;
 
@@ -5772,3 +7150,5 @@ const int EXIT_FAILURE = 1;
 const int EXIT_SUCCESS = 0;
 
 const int RAND_MAX = 2147483647;
+
+const int kTfLiteOptionalTensor = -1;
