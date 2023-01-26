@@ -19,7 +19,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _version = '?';
-  tflite.Interpeter? _interpreter;
+  tflite.Interpreter? _interpreter;
 
   @override
   void initState() {
@@ -56,7 +56,8 @@ class _MyAppState extends State<MyApp> {
                   return const Text('Snapshot has no data');
                 }
 
-                _interpreter = tflite.Interpeter(modelPath: snapshot.data!);
+                _interpreter =
+                    tflite.NativeInterpreter(modelPath: snapshot.data!);
 
                 return Column(
                   children: [

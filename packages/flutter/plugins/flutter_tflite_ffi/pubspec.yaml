@@ -1,6 +1,6 @@
 name: flutter_tflite_ffi
 description: A Flutter plugin TensorFlow Lite, using FFI.
-version: 0.0.0
+version: 0.0.1
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
