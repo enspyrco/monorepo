@@ -8,6 +8,7 @@ output: 'lib/flutter_tflite_ffi_bindings_generated.dart'
 headers:
   entry-points:
     - 'tensorflow/tensorflow/lite/c/c_api.h'
+    - 'tensorflow/tensorflow/lite/c/common.h'
 compiler-opts:
   - '-Itensorflow/'
 
