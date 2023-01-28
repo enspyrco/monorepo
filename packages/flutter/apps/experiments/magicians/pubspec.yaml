@@ -5,10 +5,14 @@ publish_to: 'none'
 version: 0.0.0
 
 environment:
-  sdk: '>=2.19.0 <3.0.0'
+  sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
-  camera: ^0.10.2+1
+  camera:
+    path: ../../../../../../../../forks/flutter/plugins/packages/camera/camera
+  # camera_macos: ^0.0.6+1
+  flutter_tflite_ffi:
+    path:  ../../../plugins/flutter_tflite_ffi
   flutter:
     sdk: flutter
 
