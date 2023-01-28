@@ -1,5 +1,6 @@
 name: magicians
 description: A game made with Flutter and TFLite where players cast spells using gestures recognised during video streaming.
+tla: mgc
 publish_to: 'none'
 version: 0.0.0
 

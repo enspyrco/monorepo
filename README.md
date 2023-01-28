@@ -86,6 +86,7 @@ Three letter acronyms used in commit messages:
 - ips = identity_platform_service
 - jst = json_types
 - lcr = locator
+- mgc = magicians
 - oml = our_meals
 - pae = process_articles_in_emails
 - pdg = package_dependency_graph
