@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "name": "magicians",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart"
+    }
+  ]
+}

@@ -28,5 +28,9 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Spell weaving requires access to the camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Spell weaving requires access to the microphone</string>
 </dict>
 </plist>
