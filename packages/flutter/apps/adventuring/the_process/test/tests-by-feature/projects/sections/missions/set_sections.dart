@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:the_process/projects/models/section_model.dart';
 import 'package:the_process/sections/missions/set_sections.dart';
 
-import '../../../../test-doubles/data/example_data.dart';
+import '../../../../test-data/example_data.dart';
 
 void main() {
   group('StoreSectionsAction', () {
