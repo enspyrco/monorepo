@@ -6,7 +6,7 @@
 
 > the_process exists in the Adventuverse (see monorepo/projects/adventuverse) so Firestore config files (rules, etc.) can be found there.
 
-[Project Notes](https://enspyrco.notion.site/TheProcess-c30833015cb84700b4692ccc897a0de1)
+[Project Notes](https://www.notion.so/the-process)
 
 ## Help Docs
 

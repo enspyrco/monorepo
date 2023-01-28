@@ -124,35 +124,40 @@ packages:
     dependency: transitive
     description:
       name: build_config
-      url: "https://pub.dartlang.org"
+      sha256: bf80fcfb46a29945b423bd9aad884590fb1dc69b330a4d4700cac476af1708d1
+      url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
   build_daemon:
     dependency: transitive
     description:
       name: build_daemon
-      url: "https://pub.dartlang.org"
+      sha256: "6bc5544ea6ce4428266e7ea680e945c68806c4aae2da0eb5e9ccf38df8d6acbf"
+      url: "https://pub.dev"
     source: hosted
     version: "3.1.0"
   build_resolvers:
     dependency: transitive
     description:
       name: build_resolvers
-      url: "https://pub.dartlang.org"
+      sha256: "7c35a3a7868626257d8aee47b51c26b9dba11eaddf3431117ed2744951416aab"
+      url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
   build_runner:
     dependency: "direct dev"
     description:
       name: build_runner
-      url: "https://pub.dartlang.org"
+      sha256: b0a8a7b8a76c493e85f1b84bffa0588859a06197863dba8c9036b15581fd9727
+      url: "https://pub.dev"
     source: hosted
     version: "2.3.3"
   build_runner_core:
     dependency: transitive
     description:
       name: build_runner_core
-      url: "https://pub.dartlang.org"
+      sha256: "14febe0f5bac5ae474117a36099b4de6f1dbc52df6c5e55534b3da9591bf4292"
+      url: "https://pub.dev"
     source: hosted
     version: "7.2.7"
   built_collection:
@@ -183,7 +188,8 @@ packages:
     dependency: transitive
     description:
       name: checked_yaml
-      url: "https://pub.dartlang.org"
+      sha256: "3d1505d91afa809d177efd4eed5bb0eb65805097a1463abdd2add076effae311"
+      url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
   clock:
@@ -271,7 +277,7 @@ packages:
     description:
       path: "packages/flutter/utils/enspyr_lints"
       ref: HEAD
-      resolved-ref: b309be240a752c78becf2cbd0b134269ac7a40f2
+      resolved-ref: bd57996d12fc6219fa362026eef8ef8081157f27
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "1.0.0"
@@ -307,6 +313,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.11.7"
+  firebase_auth_service_flutterfire:
+    dependency: "direct overridden"
+    description:
+      path: "../../../utils/flutterfire/firebase_auth_service_flutterfire"
+      relative: true
+    source: path
+    version: "0.0.0"
+  firebase_auth_service_interface:
+    dependency: transitive
+    description:
+      path: "packages/dart/interfaces/firebase_auth_service_interface"
+      ref: HEAD
+      resolved-ref: bd57996d12fc6219fa362026eef8ef8081157f27
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
+    version: "0.0.0"
   firebase_auth_web:
     dependency: transitive
     description:
@@ -404,7 +426,8 @@ packages:
     dependency: transitive
     description:
       name: graphs
-      url: "https://pub.dartlang.org"
+      sha256: f9e130f3259f52d26f0cfc0e964513796dafed572fa52e45d2f8d6ca14db39b2
+      url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
   http:
@@ -455,12 +478,20 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.5"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      sha256: c33da08e136c3df0190bd5bbe51ae1df4a7d96e7954d1d7249fea2968a72d317
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.8.0"
   json_types:
     dependency: transitive
     description:
       path: "packages/dart/utils/json_types"
       ref: HEAD
-      resolved-ref: b309be240a752c78becf2cbd0b134269ac7a40f2
+      resolved-ref: bd57996d12fc6219fa362026eef8ef8081157f27
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.1"
@@ -572,7 +603,8 @@ packages:
     dependency: transitive
     description:
       name: pubspec_parse
-      url: "https://pub.dartlang.org"
+      sha256: "75f6614d6dde2dc68948dffbaa4fe5dae32cd700eb9fb763fe11dfb45a3c4d0a"
+      url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
   shelf:
@@ -684,6 +716,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  stream_transform:
+    dependency: transitive
+    description:
+      name: stream_transform
+      sha256: "14a00e794c7c11aa145a170587321aedce29769c08d7f58b1d141da75e3b1c6f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   string_scanner:
     dependency: transitive
     description:
@@ -716,14 +756,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.16"
-  test_core:
+  timing:
     dependency: transitive
     description:
-      name: test_core
-      sha256: "0ef9755ec6d746951ba0aabe62f874b707690b5ede0fecc818b138fcc9b14888"
+      name: timing
+      sha256: "70a3b636575d4163c477e6de42f247a23b315ae20e86442bebe32d3cabf61c32"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.20"
+    version: "1.0.1"
   typed_data:
     dependency: transitive
     description:
@@ -748,14 +788,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
-  vm_service:
-    dependency: transitive
-    description:
-      name: vm_service
-      sha256: e7fb6c2282f7631712b69c19d1bff82f3767eea33a2321c14fa59ad67ea391c7
-      url: "https://pub.dev"
-    source: hosted
-    version: "9.4.0"
   watcher:
     dependency: transitive
     description:
@@ -772,14 +804,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
-  webkit_inspection_protocol:
-    dependency: transitive
-    description:
-      name: webkit_inspection_protocol
-      sha256: "67d3a8b6c79e1987d19d848b0892e582dbb0c66c57cc1fef58a177dd2aa2823d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.0"
   yaml:
     dependency: transitive
     description:
