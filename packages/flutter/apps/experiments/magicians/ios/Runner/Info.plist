@@ -47,5 +47,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Spell weaving requires access to the camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Spell weaving requires access to the microphone</string>
 </dict>
 </plist>

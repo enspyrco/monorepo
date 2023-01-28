@@ -1,0 +1,9 @@
+{
+  "configurations": [
+    {
+      "name": "magicians",
+      "request": "launch",
+      "type": "dart"
+    }
+  ]
+}
