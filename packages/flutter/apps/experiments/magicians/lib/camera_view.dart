@@ -10,14 +10,16 @@ class CameraView extends StatefulWidget {
   State<CameraView> createState() => _CameraViewState();
 }
 
-class _CameraViewState extends State<CameraView> {
-  late CameraController controller;
+class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
+  late CameraController _controller;
 
   @override
   void initState() {
     super.initState();
-    controller = CameraController(widget.cameras[0], ResolutionPreset.max);
-    controller.initialize().then((_) {
+
+    _controller = CameraController(widget.cameras[0], ResolutionPreset.max);
+
+    _controller.initialize().then((_) {
       if (!mounted) {
         return;
       }
@@ -37,16 +39,33 @@ class _CameraViewState extends State<CameraView> {
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final CameraController? cameraController = _controller;
+
+    // App state changed before we got the chance to initialize.
+    if (cameraController == null || !cameraController.value.isInitialized) {
+      return;
+    }
+
+    if (state == AppLifecycleState.inactive) {
+      cameraController.dispose();
+    } else if (state == AppLifecycleState.resumed) {
+      // TODO: add something here, this code came from camera plugin README but is incomplete
+      // onNewCameraSelected(cameraController.description);
+    }
+  }
+
+  @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (!controller.value.isInitialized) {
+    if (!_controller.value.isInitialized) {
       return Container();
     }
-    return CameraPreview(controller);
+    return CameraPreview(_controller);
   }
 }
