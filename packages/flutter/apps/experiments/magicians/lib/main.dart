@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'magicians_app.dart';
+import 'app_widget.dart';
 
 void main() {
-  runApp(const MagiciansApp());
+  runApp(const AppWidget());
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'main_screen.dart';
+import 'screens/main/main_screen.dart';
 
-class MagiciansApp extends StatelessWidget {
-  const MagiciansApp({super.key});
+class AppWidget extends StatelessWidget {
+  const AppWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
