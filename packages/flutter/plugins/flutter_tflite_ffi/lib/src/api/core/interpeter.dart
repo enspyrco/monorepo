@@ -2,17 +2,22 @@ import 'dart:ffi';
 
 import 'package:flutter_tflite_ffi/src/extensions.dart';
 
-import 'bindings.dart';
-import 'exceptions/t_f_lite_status_exception.dart';
-import 'flutter_tflite_ffi_bindings_generated.dart';
+import '../../bindings.dart';
+import '../../exceptions/t_f_lite_status_exception.dart';
+import '../../flutter_tflite_ffi_bindings_generated.dart';
 
 abstract class Interpreter {
+  /// The total number of input tensors. 0 if the interpreter creation failed.
   int get inputTensorCount;
+
+  /// The total number of output tensors. 0 if the interpreter creation failed.
   int get outputTensorCount;
+
+  /// An ordered list of the SignatureDef exported method names available in the model.
   List<String> get signatureKeys;
 
-  /// May throw a [TFLiteStatusException], indicating there is a configuration
-  /// issue that needs to be resolved by the plugin user.
+  /// Invokes the interpreter to run inference. May throw [TFLiteStatusException]
+  /// if the underlying C function returned an error code.
   void invoke();
 }
 
@@ -43,8 +48,6 @@ class NativeInterpreter implements Interpreter {
 
   late Pointer<TfLiteInterpreter> _interpreter;
 
-  /// May throw a [TFLiteStatusException], indicating there is a configuration
-  /// issue that needs to be resolved by the plugin user.
   @override
   void invoke() {
     int result = bindings.TfLiteInterpreterInvoke(_interpreter);
