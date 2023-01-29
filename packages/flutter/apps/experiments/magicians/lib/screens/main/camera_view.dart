@@ -17,25 +17,17 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
   void initState() {
     super.initState();
 
-    _controller = CameraController(widget.cameras[0], ResolutionPreset.max);
+    _controller = CameraController(widget.cameras[0], ResolutionPreset.low);
 
     _controller.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
+      if (!mounted) return;
+
+      // now the controller is initialized, build the CameraPreview
       setState(() {});
-    }).catchError((Object e) {
-      if (e is CameraException) {
-        switch (e.code) {
-          case 'CameraAccessDenied':
-            // Handle access errors here.
-            break;
-          default:
-            // Handle other errors here.
-            break;
-        }
-      }
-    });
+
+      // Setup an image stream that creates input tensors and runs inference
+      _controller.startImageStream((CameraImage image) {});
+    }).catchError((e) => _handleInitializationError(e));
   }
 
   @override
@@ -56,16 +48,30 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
   }
 
   @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     if (!_controller.value.isInitialized) {
       return Container();
     }
     return CameraPreview(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+}
+
+// If there is an initialization error... // TODO: handle error and add comment
+dynamic _handleInitializationError(Object e) async {
+  if (e is CameraException) {
+    switch (e.code) {
+      case 'CameraAccessDenied':
+        // Handle access errors here.
+        break;
+      default:
+        // Handle other errors here.
+        break;
+    }
   }
 }
