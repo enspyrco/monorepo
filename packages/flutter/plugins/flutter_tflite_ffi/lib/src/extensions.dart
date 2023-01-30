@@ -24,8 +24,9 @@ extension CharPointerExt on Pointer<Char> {
 // TfLitePtrUnion data;
 extension TfLiteTensorPointerExt on Pointer<TfLiteTensor> {
   toInfo() => TensorInfo(
-      bytes: ref.bytes,
-      typeInt: ref.type,
-      isVariable: ref.is_variable,
-      name: ref.name.toDartString());
+        bytes: ref.bytes,
+        typeInt: ref.type,
+        isVariable: ref.is_variable,
+        name: ref.name.toDartString(),
+      );
 }
