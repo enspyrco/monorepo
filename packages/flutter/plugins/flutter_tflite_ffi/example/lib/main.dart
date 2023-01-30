@@ -19,12 +19,29 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _version = '?';
-  tflite.Interpreter? _interpreter;
+  late tflite.Interpreter _interpreter;
 
   @override
   void initState() {
     super.initState();
     _version = 'TFLite version: ${tflite.version()}';
+
+    // Create the interpreter.
+    _interpreter = tflite.createInterpreter(
+        pathToModel: '/path/to/model.tflite', numThreads: 2);
+
+    // Allocate tensors and populate the input tensor data.
+    _interpreter.allocateTensors();
+  }
+
+  Uint8List _runInference(Uint8List imageData) {
+    _interpreter.populateInputTensor(data: imageData);
+
+    // Execute inference.
+    _interpreter.invoke();
+
+    // Extract the output tensor data.
+    return _interpreter.copyOutputTensorData();
   }
 
   /// Assets are not individually stored on disk but together in a single asset
@@ -57,16 +74,23 @@ class _MyAppState extends State<MyApp> {
                 }
 
                 _interpreter =
-                    tflite.NativeInterpreter(modelPath: snapshot.data!);
+                    tflite.createInterpreter(pathToModel: snapshot.data!);
 
                 return Column(
                   children: [
                     Text(_version),
-                    Text('inputs: ${_interpreter?.inputTensorCount}\n'
-                        'outputs: ${_interpreter?.outputTensorCount}'),
+                    Text('inputs: ${_interpreter.inputTensorCount}\n'
+                        'outputs: ${_interpreter.outputTensorCount}'),
                   ],
                 );
               })),
     );
+  }
+
+  @override
+  void dispose() {
+    // Dispose of the interpreter (along with model & tensors)
+    _interpreter.delete();
+    super.dispose();
   }
 }
