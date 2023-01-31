@@ -1,4 +1,23 @@
+import 'dart:ffi';
+
+import 'string_utils.dart';
 import 'bindings/flutter_tflite_ffi_bindings_generated.dart';
+
+/// The TfLiteTensor struct has the following:
+// // The data type specification for data stored in `data`. This affects
+// // what member of `data` union should be used.
+// TfLiteType type;
+// // A union of data pointers. The appropriate type should be used for a typed
+// // tensor based on `type`.
+// TfLitePtrUnion data;
+extension TfLiteTensorPointerExt on Pointer<TfLiteTensor> {
+  toInfo() => TensorInfo(
+        bytes: ref.bytes,
+        typeInt: ref.type,
+        isVariable: ref.is_variable,
+        name: ref.name.toDartString(),
+      );
+}
 
 /// The TfLiteTensor C struct says:
 /// A tensor in the interpreter system which is a wrapper around a buffer of

@@ -7,7 +7,7 @@ import '../flutter_tflite_ffi.dart';
 import 'bindings/bindings_global.dart';
 import 'exceptions/t_f_lite_status_exception.dart';
 import 'bindings/flutter_tflite_ffi_bindings_generated.dart';
-import 'extensions.dart';
+import 'string_utils.dart';
 
 typedef TensorStruct = TfLiteTensor;
 
