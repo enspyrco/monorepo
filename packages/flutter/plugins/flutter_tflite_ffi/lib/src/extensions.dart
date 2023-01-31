@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:flutter_tflite_ffi/flutter_tflite_ffi.dart';
-import 'package:flutter_tflite_ffi/src/flutter_tflite_ffi_bindings_generated.dart';
+import 'package:flutter_tflite_ffi/src/bindings/flutter_tflite_ffi_bindings_generated.dart';
 
 extension StringExt on String {
   /// Convert a Dart string to a UTF-8 encoded C string.

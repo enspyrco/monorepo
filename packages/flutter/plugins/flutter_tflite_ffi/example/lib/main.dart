@@ -28,7 +28,9 @@ class _MyAppState extends State<MyApp> {
 
     // Create the interpreter.
     _interpreter = tflite.createInterpreter(
-        pathToModel: '/path/to/model.tflite', numThreads: 2);
+      pathToModel: '/path/to/model.tflite',
+      numThreads: 2,
+    );
 
     // Allocate tensors and populate the input tensor data.
     _interpreter.allocateTensors();

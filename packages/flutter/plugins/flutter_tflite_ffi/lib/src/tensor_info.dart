@@ -1,4 +1,4 @@
-import 'flutter_tflite_ffi_bindings_generated.dart';
+import 'bindings/flutter_tflite_ffi_bindings_generated.dart';
 
 /// The TfLiteTensor C struct says:
 /// A tensor in the interpreter system which is a wrapper around a buffer of
@@ -28,8 +28,7 @@ class TensorInfo {
   bool isVariable;
 
   @override
-  String toString() =>
-      'name: $name\n'
+  String toString() => 'name: $name\n'
       'type: $typeString\n'
       'bytes: $bytes\n'
       'isVariable: $isVariable\n';

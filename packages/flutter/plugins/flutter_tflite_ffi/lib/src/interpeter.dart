@@ -4,9 +4,9 @@ import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
 
 import '../flutter_tflite_ffi.dart';
-import 'bindings_global.dart';
+import 'bindings/bindings_global.dart';
 import 'exceptions/t_f_lite_status_exception.dart';
-import 'flutter_tflite_ffi_bindings_generated.dart';
+import 'bindings/flutter_tflite_ffi_bindings_generated.dart';
 import 'extensions.dart';
 
 typedef TensorStruct = TfLiteTensor;
