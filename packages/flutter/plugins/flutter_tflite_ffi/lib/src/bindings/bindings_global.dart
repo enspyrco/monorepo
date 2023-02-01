@@ -3,6 +3,11 @@ import 'dart:io';
 
 import 'flutter_tflite_ffi_bindings_generated.dart';
 
+// There is an issue with ffigen, causing the enum to be erased and turned an int
+// so we use a typedef for now and will replace it with the correct generated enum
+// when the problem in ffigen has been resolved.
+typedef TFLiteStatusInt = int;
+
 const String _libName = 'libtensorflowlite_c';
 
 final DynamicLibrary _dylib = () {
