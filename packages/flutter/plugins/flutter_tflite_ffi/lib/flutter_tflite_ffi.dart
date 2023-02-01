@@ -1,6 +1,6 @@
 import 'package:ffi/ffi.dart';
 
-import 'src/bindings_global.dart';
+import 'src/bindings/bindings_global.dart';
 import 'src/interpeter.dart';
 
 export 'src/interpeter.dart';

@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'dart:typed_data';
 
+import 'package:flutter_tflite_ffi/flutter_tflite_ffi.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,20 +30,23 @@ class _MyAppState extends State<MyApp> {
 
     // Create the interpreter.
     _interpreter = tflite.createInterpreter(
-        pathToModel: '/path/to/model.tflite', numThreads: 2);
+      pathToModel: '/path/to/model.tflite',
+      numThreads: 2,
+    );
 
     // Allocate tensors and populate the input tensor data.
     _interpreter.allocateTensors();
   }
 
-  Uint8List _runInference(Uint8List imageData) {
-    _interpreter.populateInputTensor(data: imageData);
+  Float32List _runInference(Uint8List imageData) {
+    _interpreter.setInputTensorData(
+        data: imageData, format: ImageFormat.rgb888);
 
     // Execute inference.
     _interpreter.invoke();
 
     // Extract the output tensor data.
-    return _interpreter.copyOutputTensorData();
+    return _interpreter.getOutputTensorData();
   }
 
   /// Assets are not individually stored on disk but together in a single asset
@@ -49,7 +54,8 @@ class _MyAppState extends State<MyApp> {
   /// the path.
   Future<String> _extractModelFromBundle() async {
     Directory directory = await getApplicationDocumentsDirectory();
-    ByteData data = await rootBundle.load('assets/model_metadata.tflite');
+    ByteData data = await rootBundle.load(
+        'assets/lite-model_movenet_multipose_lightning_tflite_float16_1.tflite');
     List<int> bytes =
         data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 

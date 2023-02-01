@@ -1,17 +1,46 @@
-import 'flutter_tflite_ffi_bindings_generated.dart';
+import 'dart:ffi';
+
+import 'string_utils.dart';
+import 'bindings/flutter_tflite_ffi_bindings_generated.dart';
+
+/// The TfLiteTensor C struct is fully described in a comment at the end of this file
+
+/// We use an extension to avoid coupling TensorInfo to it's native source,
+/// which has FFI type Pointer<TfLiteTensor>
+extension TfLiteTensorPointerExt on Pointer<TfLiteTensor> {
+  toInfo() {
+    // The TfLiteTensor is an Opaque pointer b/c flexible C arrays are currently
+    // not supported by ffigen. So we get our hands dirty with the pointer.
+    final shape = <int>[];
+    Pointer<Int> dimsIntPtr = ref.dims.cast<Int>();
+    int dimsSize = dimsIntPtr.value;
+    for (int i = 0; i < dimsSize; i++) {
+      shape.insert(i, dimsIntPtr.elementAt(i + 1).value);
+    }
+
+    return TensorInfo(
+      bytes: ref.bytes,
+      typeInt: ref.type,
+      isVariable: ref.is_variable,
+      name: ref.name.toDartString(),
+      shape: shape,
+    );
+  }
+}
 
 /// The TfLiteTensor C struct says:
 /// A tensor in the interpreter system which is a wrapper around a buffer of
 /// data including a dimensionality (or NULL if not currently defined).
 class TensorInfo {
-  TensorInfo(
-      {required this.typeInt,
-      required this.bytes,
-      required this.name,
-      required this.isVariable});
+  TensorInfo({
+    required this.typeInt,
+    required this.bytes,
+    required this.name,
+    required this.isVariable,
+    required this.shape,
+  });
 
-  /// The data type specification for data stored in [data]. This affects
-  /// what member of [data] union should be used.
+  /// The data type specification for the data stored in the tensor.
   final int typeInt;
   String get typeString => _tfLiteTypeOf[typeInt]!;
 
@@ -27,11 +56,15 @@ class TensorInfo {
   // True if the tensor is a variable.
   bool isVariable;
 
+  /// The expected dimensionality of the tensor's data. The product of
+  /// [shape] and the datatype size should equal [bytes].
+  List<int> shape;
+
   @override
-  String toString() =>
-      'name: $name\n'
+  String toString() => 'name: $name\n'
       'type: $typeString\n'
       'bytes: $bytes\n'
+      'shape: $shape\n'
       'isVariable: $isVariable\n';
 }
 

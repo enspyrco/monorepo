@@ -23,12 +23,16 @@ const Map<int, String> _messageFrom = {
 };
 
 class TFLiteStatusException implements Exception {
-  TFLiteStatusException({required int code})
-      : message = _messageFrom[code] ??
+  TFLiteStatusException({required this.intro, required int code})
+      : tfLiteMessage = _messageFrom[code] ??
             'Unknown Error: TensorFlow Lite explicitly reserves the right to add new error '
                 'status values in future in order to indicate more fine-grained internal states.\n'
                 'If you are interested, please feel free to file an issue in the plugin repo and we '
                 'can try and track down where the problem is';
 
-  final String message;
+  final String intro;
+  final String tfLiteMessage;
+
+  @override
+  String toString() => '$intro\n$tfLiteMessage';
 }

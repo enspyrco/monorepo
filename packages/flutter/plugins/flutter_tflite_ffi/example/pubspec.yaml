@@ -22,4 +22,4 @@ dev_dependencies:
 
 flutter:
   assets:
-    - assets/model_metadata.tflite
+    - assets/lite-model_movenet_multipose_lightning_tflite_float16_1.tflite
