@@ -15,12 +15,13 @@ extension TfLiteTensorPointerExt on Pointer<TfLiteTensor> {
     Pointer<Int> dimsIntPtr = ref.dims.cast<Int>();
     int dimsSize = dimsIntPtr.value;
     for (int i = 0; i < dimsSize; i++) {
-      shape.insert(i, dimsIntPtr.elementAt(i + 1).value);
+      var dim = dimsIntPtr[i + 1];
+      shape.insert(i, dim);
     }
 
     return TensorInfo(
       bytes: ref.bytes,
-      typeInt: ref.type,
+      dataTypeCode: ref.type,
       isVariable: ref.is_variable,
       name: ref.name.toDartString(),
       shape: shape,
@@ -33,16 +34,20 @@ extension TfLiteTensorPointerExt on Pointer<TfLiteTensor> {
 /// data including a dimensionality (or NULL if not currently defined).
 class TensorInfo {
   TensorInfo({
-    required this.typeInt,
+    required this.dataTypeCode,
     required this.bytes,
     required this.name,
     required this.isVariable,
     required this.shape,
-  });
+  })  : dataTypeName = _tfLiteTypeOf[dataTypeCode]!,
+        dataTypeSizeInBytes =
+            bytes ~/ shape.reduce((total, element) => total * element);
 
   /// The data type specification for the data stored in the tensor.
-  final int typeInt;
-  String get typeString => _tfLiteTypeOf[typeInt]!;
+  /// The data type is stored as enum/int in TFLite (known as [dataTypeCode] here).
+  final int dataTypeCode;
+  late final String dataTypeName;
+  late final int dataTypeSizeInBytes;
 
   // The number of bytes required to store the data of this Tensor. I.e.
   // (bytes of each element) * dims[0] * ... * dims[n-1].  For example, if
@@ -54,18 +59,22 @@ class TensorInfo {
   final String name;
 
   // True if the tensor is a variable.
-  bool isVariable;
+  final bool isVariable;
 
   /// The expected dimensionality of the tensor's data. The product of
   /// [shape] and the datatype size should equal [bytes].
-  List<int> shape;
+  final List<int> shape;
 
   @override
-  String toString() => 'name: $name\n'
-      'type: $typeString\n'
-      'bytes: $bytes\n'
-      'shape: $shape\n'
-      'isVariable: $isVariable\n';
+  String toString() {
+    final numItems = bytes ~/ dataTypeSizeInBytes;
+    return '<<$name>>\n'
+        '  - type: $dataTypeName\n'
+        '  - shape: $shape\n'
+        '  - size: ${shape.fold('', (shapeString, s) => shapeString.isEmpty ? '$s' : '$shapeString x $s')} = '
+        '$numItems ${dataTypeName}s = $numItems x $dataTypeSizeInBytes = $bytes bytes\n'
+        '  - isVariable: $isVariable\n';
+  }
 }
 
 /// See note in flutter_tflite_ffi.dart for why we have this map
