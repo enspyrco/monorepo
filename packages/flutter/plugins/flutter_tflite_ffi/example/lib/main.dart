@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
     _interpreter.allocateTensors();
   }
 
-  Float32List _runInference(Uint8List imageData) {
+  List<double> _runInference(Uint8List imageData) {
     _interpreter.setInputTensorData(
         data: imageData, format: ImageFormat.rgb888);
 
@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
     _interpreter.invoke();
 
     // Extract the output tensor data.
-    return _interpreter.getOutputTensorData();
+    return _interpreter.getOutputTensorData<double>();
   }
 
   /// Assets are not individually stored on disk but together in a single asset

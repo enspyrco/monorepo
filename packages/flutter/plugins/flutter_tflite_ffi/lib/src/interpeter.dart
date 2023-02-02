@@ -59,7 +59,7 @@ abstract class Interpreter {
 
   /// Copy (?) the C memory into a Dart Uint8List
   /// Copies to the provided output buffer from the tensor's buffer.
-  Float32List getOutputTensorData({int? index});
+  List<T> getOutputTensorData<T extends Object>({int? index});
 
   void delete();
 }
@@ -139,7 +139,7 @@ class NativeInterpreter implements Interpreter {
 
   @override
   void setInputTensorData(
-      {required Uint8List data, required ImageFormat format, int? index}) {
+      {required TypedData data, required ImageFormat format, int? index}) {
     /// We could do this:
     /// bindingsGlobal.TfLiteTensorCopyFromBuffer(inputTensorPtr, ?, data.length);
     ///
@@ -167,15 +167,26 @@ class NativeInterpreter implements Interpreter {
 
     TfLiteTensor tensor = inputTensorPtr.ref;
 
-    if (tensor.bytes != data.length) {
+    if (tensor.bytes != data.lengthInBytes) {
       throw TFLiteStatusException(
           intro: 'When setting input tensor data:',
           code: TfLiteStatus.kTfLiteError);
     }
 
-    Pointer<Uint8> buf = tensor.data.raw.cast<Uint8>();
-    for (var i = 0; i < data.length; i++) {
-      buf.elementAt(i).value = data[i];
+    if (tensor.type == TfLiteType.kTfLiteUInt8) {
+      Pointer<Uint8> buf = tensor.data.raw.cast<Uint8>();
+      final castList = data.buffer.asUint8List();
+      int numUint8s = data.lengthInBytes;
+      for (var i = 0; i < numUint8s; i++) {
+        buf.elementAt(i).value = castList[i];
+      }
+    } else if (tensor.type == TfLiteType.kTfLiteFloat32) {
+      Pointer<Float> buf = tensor.data.raw.cast<Float>();
+      final castList = data.buffer.asFloat32List();
+      int numFloat32s = data.lengthInBytes ~/ 4;
+      for (var i = 0; i < numFloat32s; i++) {
+        buf.elementAt(i).value = castList[i];
+      }
     }
   }
 
@@ -189,33 +200,54 @@ class NativeInterpreter implements Interpreter {
   }
 
   @override
-  Float32List getOutputTensorData({int? index}) {
+  List<T> getOutputTensorData<T extends Object>({int? index}) {
     Pointer<TfLiteTensor> outputTensor =
         bindingsGlobal.TfLiteInterpreterGetOutputTensor(_ptr, index ?? 0);
 
-    final outputBytes = outputTensor.ref.bytes;
+    final tensorSizeInBytes = outputTensor.ref.bytes;
 
-    Pointer<Void> buffer = malloc<Float>(outputBytes).cast();
+    Pointer<Void> buffer = malloc.allocate<Void>(tensorSizeInBytes);
 
     TFLiteStatusInt result = bindingsGlobal.TfLiteTensorCopyToBuffer(
-        outputTensor, buffer, outputBytes);
+        outputTensor, buffer, tensorSizeInBytes);
     if (result != TfLiteStatus.kTfLiteOk) {
       throw TFLiteStatusException(
           intro: 'When getting output tensor data:', code: result);
     }
 
-    // TODO: Could do `castBuffer.asTypedList(length);` to avoid a copy but we may as well copy it out caus it's small
+    final List outputData;
+    int i, numBytes = 0;
+    if (T == double) {
+      if (outputTensor.ref.type == TfLiteType.kTfLiteFloat32) {
+        final Pointer<Float> castBuffer = buffer.cast<Float>();
+        outputData = Float32List(tensorSizeInBytes);
 
-    final outputData = Float32List(outputBytes);
-    final Pointer<Float> castBuffer = buffer.cast<Float>();
+        for (i = 0; numBytes < tensorSizeInBytes; i++) {
+          outputData[i] = castBuffer[i];
+          numBytes += 4;
+        }
+      } else {
+        throw 'outputTensor.ref.type was not recognized.';
+      }
+    } else if (T == int) {
+      if (outputTensor.ref.type == TfLiteType.kTfLiteInt32) {
+        final Pointer<Uint8> castBuffer = buffer.cast<Uint8>();
+        outputData = Uint8List(tensorSizeInBytes);
 
-    for (var i = 0; i < outputBytes; i++) {
-      outputData[i] = castBuffer[i];
+        for (i = 0; numBytes < tensorSizeInBytes; i++) {
+          outputData[i] = castBuffer[i];
+          numBytes++;
+        }
+      } else {
+        throw 'outputTensor.ref.type was not recognized.';
+      }
+    } else {
+      throw 'You called getOutputTensorData with in invalid type parameter.';
     }
 
     malloc.free(buffer);
 
-    return outputData;
+    return outputData as List<T>;
   }
 
   @override

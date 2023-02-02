@@ -1,6 +1,10 @@
 /// These come from TfLiteStatus enum in tensorflow/lite/core/c/c_api_types.h
 /// We really need a way to know if the tensorflow library updates these,
 /// I've created a Notion issue to track the problem for now.
+///
+/// There is a function "TfLiteTypeGetName" in the C API but we have mapped the
+/// int value for each TFLiteStatus enum to a String that uses the relevant comment
+/// from c_api_types.h to provide more info in the exception.
 const Map<int, String> _messageFrom = {
   0: 'Not an error: There is a bug in the plugin, please file an issue if you have time.',
   1: 'kTfLiteError: Generally referring to an error in the runtime (i.e. interpreter).',

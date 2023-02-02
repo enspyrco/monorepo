@@ -25,98 +25,57 @@ void main() {
     interpreter.reshapeInputTensor(shape: [1, 256, 256, 3]);
     interpreter.allocateTensors();
 
-    print('${interpreter.inputTensorCount} input tensor');
-    print('${interpreter.getInputTensorInfo()}');
+    print('input tensor: ${interpreter.getInputTensorInfo()}');
+    print('output tensor: ${interpreter.getOutputTensorInfo()}');
 
-    print('${interpreter.outputTensorCount} output tensor');
-    print('${interpreter.getOutputTensorInfo()}');
+    Uint8List jpegBytes = io.File('test/input_image.jpeg').readAsBytesSync();
 
-    // tensor data type = UInt8
-    // shape = [1, 1, 1, 3]
-    // bytes = 3
+    final ui.ImmutableBuffer buffer =
+        await ui.ImmutableBuffer.fromUint8List(jpegBytes);
+    final ui.ImageDescriptor descriptor =
+        await ui.ImageDescriptor.encoded(buffer);
+    buffer.dispose();
 
-    try {
-      Uint8List jpegBytes = io.File('test/input_image.jpeg').readAsBytesSync();
+    final codec = await descriptor.instantiateCodec(
+      targetWidth: inW,
+      targetHeight: inH,
+    );
+    ui.FrameInfo frameInfo = await codec.getNextFrame();
 
-      final ui.ImmutableBuffer buffer =
-          await ui.ImmutableBuffer.fromUint8List(jpegBytes);
-      final ui.ImageDescriptor descriptor =
-          await ui.ImageDescriptor.encoded(buffer);
-      buffer.dispose();
+    ui.Image image = frameInfo.image;
+    print(
+        'Opened a ${frameInfo.image.width} x ${frameInfo.image.height} image.\n');
 
-      final codec = await descriptor.instantiateCodec(
-        targetWidth: inW,
-        targetHeight: inH,
-      );
-      ui.FrameInfo frameInfo = await codec.getNextFrame();
+    final rgbaByteData =
+        (await image.toByteData(format: ui.ImageByteFormat.rawRgba))!;
 
-      ui.Image image = frameInfo.image;
-      print('${frameInfo.image.width} x ${frameInfo.image.height}');
-
-      final rgbaByteData =
-          (await image.toByteData(format: ui.ImageByteFormat.rawRgba))!;
-
-      // TODO: avoid axtra copy by using a Uint8List backed by C memory
-      //  Actually we can only read C memory that way I guess so no good?
-      final rgbBytes = Uint8List(inW * inH * 3);
-      for (var i = 0; i < inW * inH; i++) {
-        final rgbOffset = i * 3;
-        final rgbaOffset = i * 4;
-        rgbBytes[rgbOffset] = rgbaByteData.getUint8(rgbaOffset); // red
-        rgbBytes[rgbOffset + 1] =
-            rgbaByteData.getUint8(rgbaOffset + 1); // green
-        rgbBytes[rgbOffset + 2] = rgbaByteData.getUint8(rgbaOffset + 2); // blue
-      }
-
-      interpreter.setInputTensorData(
-          data: rgbBytes, format: tflite.ImageFormat.rgb888);
-
-      interpreter.invoke();
-
-      var info = interpreter.getOutputTensorInfo();
-
-      Float32List outputData = interpreter.getOutputTensorData();
-      for (int i = 0; i < 17; i++) {
-        var offset = i * 3;
-        Keypoint(
-            outputData[offset + 1], outputData[offset], outputData[offset + 2]);
-        print(
-            'x: ${outputData[offset + 1]}, y: ${outputData[offset]}, s: ${outputData[offset + 2]}');
-      }
-    } catch (e) {
-      print(e);
+    // TODO: avoid axtra copy by using a Uint8List backed by C memory
+    //  But can we only read C memory that way?
+    //  If we can get hold of the original C memory maybe we could avoid the
+    //  extra copy by manipulating the data with C?
+    final rgbBytes = Uint8List(inW * inH * 3);
+    for (var i = 0; i < inW * inH; i++) {
+      final rgbOffset = i * 3;
+      final rgbaOffset = i * 4;
+      rgbBytes[rgbOffset] = rgbaByteData.getUint8(rgbaOffset); // red
+      rgbBytes[rgbOffset + 1] = rgbaByteData.getUint8(rgbaOffset + 1); // green
+      rgbBytes[rgbOffset + 2] = rgbaByteData.getUint8(rgbaOffset + 2); // blue
     }
 
-    // setInputTensorData
-    // getInputTensorData
-    // getInputTensorInfo
+    interpreter.setInputTensorData(
+        data: rgbBytes, format: tflite.ImageFormat.rgb888);
 
-    // Style Guide: Put interface in same file and above the implementation, put all comments in interface
-    // Only extend on or to your own classes, put the extension in the same file as your class
+    interpreter.invoke();
+
+    List<double> outputData = interpreter.getOutputTensorData<double>();
+
+    print('Output:');
+    for (int i = 0; i < 17; i++) {
+      var offset = i * 3;
+      Keypoint(
+          outputData[offset + 1], outputData[offset], outputData[offset + 2]);
+      print(
+          'x: ${outputData[offset + 1]}, y: ${outputData[offset]}, s: ${outputData[offset + 2]}');
+    }
   });
 }
-
-/// Testing with mock assets
-/// see: https://api.flutter.dev/flutter/widgets/DefaultAssetBundle-class.html
-
-// // Create a separate class
-// class TestAssetBundle extends CachingAssetBundle {
-//   @override
-//   Future<ByteData> load(String key) async {
-//     if (key == 'resources/test') {
-//       return ByteData.view(
-//           Uint8List.fromList(utf8.encode('Hello World!')).buffer);
-//     }
-//     return ByteData(0);
-//   }
-// }
-
-// // Add this in a widget test
-// await tester.pumpWidget(
-//       MaterialApp(
-//         home: DefaultAssetBundle(
-//           bundle: TestAssetBundle(),
-//           child: const TestWidget(),
-//         ),
-//       ),
-//     );
