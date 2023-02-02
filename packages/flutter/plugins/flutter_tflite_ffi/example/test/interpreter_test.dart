@@ -31,10 +31,6 @@ void main() {
     print('${interpreter.outputTensorCount} output tensor');
     print('${interpreter.getOutputTensorInfo()}');
 
-    // tensor data type = UInt8
-    // shape = [1, 1, 1, 3]
-    // bytes = 3
-
     Uint8List jpegBytes = io.File('test/input_image.jpeg').readAsBytesSync();
 
     final ui.ImmutableBuffer buffer =
@@ -73,7 +69,8 @@ void main() {
 
     var info = interpreter.getOutputTensorInfo();
 
-    Float32List outputData = interpreter.getOutputTensorData();
+    List<double> outputData = interpreter.getOutputTensorData<double>();
+
     for (int i = 0; i < 17; i++) {
       var offset = i * 3;
       Keypoint(
@@ -81,37 +78,5 @@ void main() {
       print(
           'x: ${outputData[offset + 1]}, y: ${outputData[offset]}, s: ${outputData[offset + 2]}');
     }
-
-    // setInputTensorData
-    // getInputTensorData
-    // getInputTensorInfo
-
-    // Style Guide: Put interface in same file and above the implementation, put all comments in interface
-    // Only extend on or to your own classes, put the extension in the same file as your class
   });
 }
-
-/// Testing with mock assets
-/// see: https://api.flutter.dev/flutter/widgets/DefaultAssetBundle-class.html
-
-// // Create a separate class
-// class TestAssetBundle extends CachingAssetBundle {
-//   @override
-//   Future<ByteData> load(String key) async {
-//     if (key == 'resources/test') {
-//       return ByteData.view(
-//           Uint8List.fromList(utf8.encode('Hello World!')).buffer);
-//     }
-//     return ByteData(0);
-//   }
-// }
-
-// // Add this in a widget test
-// await tester.pumpWidget(
-//       MaterialApp(
-//         home: DefaultAssetBundle(
-//           bundle: TestAssetBundle(),
-//           child: const TestWidget(),
-//         ),
-//       ),
-//     );
