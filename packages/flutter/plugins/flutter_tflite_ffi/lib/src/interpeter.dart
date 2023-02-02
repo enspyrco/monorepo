@@ -139,7 +139,7 @@ class NativeInterpreter implements Interpreter {
 
   @override
   void setInputTensorData(
-      {required Uint8List data, required ImageFormat format, int? index}) {
+      {required TypedData data, required ImageFormat format, int? index}) {
     /// We could do this:
     /// bindingsGlobal.TfLiteTensorCopyFromBuffer(inputTensorPtr, ?, data.length);
     ///
@@ -167,15 +167,26 @@ class NativeInterpreter implements Interpreter {
 
     TfLiteTensor tensor = inputTensorPtr.ref;
 
-    if (tensor.bytes != data.length) {
+    if (tensor.bytes != data.lengthInBytes) {
       throw TFLiteStatusException(
           intro: 'When setting input tensor data:',
           code: TfLiteStatus.kTfLiteError);
     }
 
-    Pointer<Uint8> buf = tensor.data.raw.cast<Uint8>();
-    for (var i = 0; i < data.length; i++) {
-      buf.elementAt(i).value = data[i];
+    if (tensor.type == TfLiteType.kTfLiteUInt8) {
+      Pointer<Uint8> buf = tensor.data.raw.cast<Uint8>();
+      final castList = data.buffer.asUint8List();
+      int numUint8s = data.lengthInBytes;
+      for (var i = 0; i < numUint8s; i++) {
+        buf.elementAt(i).value = castList[i];
+      }
+    } else if (tensor.type == TfLiteType.kTfLiteFloat32) {
+      Pointer<Float> buf = tensor.data.raw.cast<Float>();
+      final castList = data.buffer.asFloat32List();
+      int numFloat32s = data.lengthInBytes ~/ 4;
+      for (var i = 0; i < numFloat32s; i++) {
+        buf.elementAt(i).value = castList[i];
+      }
     }
   }
 

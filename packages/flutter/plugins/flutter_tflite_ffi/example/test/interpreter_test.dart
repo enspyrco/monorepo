@@ -25,11 +25,8 @@ void main() {
     interpreter.reshapeInputTensor(shape: [1, 256, 256, 3]);
     interpreter.allocateTensors();
 
-    print('${interpreter.inputTensorCount} input tensor');
-    print('${interpreter.getInputTensorInfo()}');
-
-    print('${interpreter.outputTensorCount} output tensor');
-    print('${interpreter.getOutputTensorInfo()}');
+    print('input tensor: ${interpreter.getInputTensorInfo()}');
+    print('output tensor: ${interpreter.getOutputTensorInfo()}');
 
     Uint8List jpegBytes = io.File('test/input_image.jpeg').readAsBytesSync();
 
@@ -46,13 +43,16 @@ void main() {
     ui.FrameInfo frameInfo = await codec.getNextFrame();
 
     ui.Image image = frameInfo.image;
-    print('${frameInfo.image.width} x ${frameInfo.image.height}');
+    print(
+        'Opened a ${frameInfo.image.width} x ${frameInfo.image.height} image.\n');
 
     final rgbaByteData =
         (await image.toByteData(format: ui.ImageByteFormat.rawRgba))!;
 
     // TODO: avoid axtra copy by using a Uint8List backed by C memory
-    //  Actually we can only read C memory that way I guess so no good?
+    //  But can we only read C memory that way?
+    //  If we can get hold of the original C memory maybe we could avoid the
+    //  extra copy by manipulating the data with C?
     final rgbBytes = Uint8List(inW * inH * 3);
     for (var i = 0; i < inW * inH; i++) {
       final rgbOffset = i * 3;
@@ -67,10 +67,9 @@ void main() {
 
     interpreter.invoke();
 
-    var info = interpreter.getOutputTensorInfo();
-
     List<double> outputData = interpreter.getOutputTensorData<double>();
 
+    print('Output:');
     for (int i = 0; i < 17; i++) {
       var offset = i * 3;
       Keypoint(
