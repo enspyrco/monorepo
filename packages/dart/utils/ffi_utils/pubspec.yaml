@@ -1,6 +1,6 @@
 name: ffi_utils
-description: A starting point for Dart libraries or applications.
-version: 0.0.1
+description: Convenience methods for working with Dart FFI.
+version: 0.0.0
 # repository: https://github.com/my_org/my_repo
 
 environment:
