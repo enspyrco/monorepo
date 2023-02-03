@@ -1,6 +1,6 @@
 # flutter_tflite_ffi
 
-A Flutter plugin TensorFlow Lite, using FFI.
+A Flutter FFI plugin for TensorFlow Lite.
 
 ## Using the plugin
 

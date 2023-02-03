@@ -2,12 +2,12 @@ import 'dart:ffi';
 import 'dart:typed_data';
 
 import 'package:ffi/ffi.dart';
+import 'package:ffi_utils/string_extensions.dart';
 
 import '../flutter_tflite_ffi.dart';
 import 'bindings/bindings_global.dart';
 import 'exceptions/t_f_lite_status_exception.dart';
 import 'bindings/flutter_tflite_ffi_bindings_generated.dart';
-import 'string_utils.dart';
 
 typedef TensorStruct = TfLiteTensor;
 
@@ -72,7 +72,7 @@ class InterpreterOptions {
 
 class NativeInterpreter implements Interpreter {
   NativeInterpreter(String modelPath, {int? numThreads}) {
-    final pathPtr = modelPath.toCString();
+    final pathPtr = modelPath.toCStringWithAllocate();
     _modelPtr = bindingsGlobal.TfLiteModelCreateFromFile(pathPtr);
     malloc.free(pathPtr);
 

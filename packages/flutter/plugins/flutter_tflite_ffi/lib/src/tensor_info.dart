@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
-import 'string_utils.dart';
+import 'package:ffi_utils/string_extensions.dart';
+
 import 'bindings/flutter_tflite_ffi_bindings_generated.dart';
 
 /// The TfLiteTensor C struct is fully described in a comment at the end of this file
