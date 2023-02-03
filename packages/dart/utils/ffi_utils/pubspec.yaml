@@ -1,0 +1,14 @@
+name: ffi_utils
+description: Convenience methods for working with Dart FFI.
+version: 0.0.0
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+
+dependencies:
+  ffi: ^2.0.1
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.21.0

@@ -69,6 +69,7 @@ Three letter acronyms used in commit messages:
 - flr = flireator
 - fai = firebase_auth_service_interface
 - faf = firebase_auth_service_flutterfire
+- ffu = ffi_utils
 - fof = flutter_opencv_ffi
 - fot = flutter_opengl_texture
 - fsf = firestore_service_flutterfire
