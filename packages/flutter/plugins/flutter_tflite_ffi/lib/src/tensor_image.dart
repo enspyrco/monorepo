@@ -1,4 +1,4 @@
-import 'dart:ui' as ui;
+import 'dart:ui' as painting;
 import 'dart:io' as io;
 
 import 'package:flutter/services.dart';
@@ -6,41 +6,49 @@ import 'package:flutter/services.dart';
 enum ImageFormat { rgba8888, yuv420 }
 
 class TensorImage {
-  TensorImage._(ImageFormat inputFormat, Uint8List inputImageData,
-      this.targetWidth, this.targetHeight, ui.Image image, Uint8List rgbData)
-      : _rgbData = rgbData,
+  TensorImage._(
+    ImageFormat inputFormat,
+    Uint8List inputImageData,
+    this.targetWidth,
+    this.targetHeight,
+    painting.Image image,
+    Uint8List rgbData,
+  )   : _rgbData = rgbData,
         _paintableImage = image;
 
   final int targetWidth;
   final int targetHeight;
   final Uint8List _rgbData;
-  final ui.Image _paintableImage;
+  final painting.Image _paintableImage;
 
   int get numPixels => targetWidth * targetHeight;
   Uint8List get rgbData => _rgbData;
-  ui.Image get paintableImage => _paintableImage;
+  painting.Image get paintableImage => _paintableImage;
 
-  static Future<TensorImage> loadFromBundle(
-      {required String key,
-      required ImageFormat inputFormat,
-      required int targetWidth,
-      required int targetHeight}) async {
+  static Future<TensorImage> loadFromBundle({
+    required String key,
+    required ImageFormat inputFormat,
+    required int targetWidth,
+    required int targetHeight,
+  }) async {
     // Extract the image file from the bundle
     final byteData = await rootBundle.load(key);
     final inputImageData = byteData.buffer.asUint8List();
 
     return _load(
-        inputImageData: inputImageData,
-        inputFormat: inputFormat,
-        targetWidth: targetWidth,
-        targetHeight: targetHeight);
+      inputImageData: inputImageData,
+      inputFormat: inputFormat,
+      targetWidth: targetWidth,
+      targetHeight: targetHeight,
+    );
   }
 
-  static Future<TensorImage> loadFromFile(
-      {required String path,
-      required ImageFormat inputFormat,
-      required int targetWidth,
-      required int targetHeight}) async {
+  static Future<TensorImage> loadFromFile({
+    required String path,
+    required ImageFormat inputFormat,
+    required int targetWidth,
+    required int targetHeight,
+  }) async {
     // Read in the image file
     Uint8List inputImageData = io.File(path).readAsBytesSync();
 
@@ -51,11 +59,12 @@ class TensorImage {
         targetHeight: targetHeight);
   }
 
-  static Future<TensorImage> _load(
-      {required Uint8List inputImageData,
-      required ImageFormat inputFormat,
-      required int targetWidth,
-      required int targetHeight}) async {
+  static Future<TensorImage> _load({
+    required Uint8List inputImageData,
+    required ImageFormat inputFormat,
+    required int targetWidth,
+    required int targetHeight,
+  }) async {
     final paintableImage = await _convertDataToPaintableImage(
         inputImageData, targetWidth, targetHeight);
 
@@ -66,27 +75,30 @@ class TensorImage {
         paintableImage, rgbData);
   }
 
-  static Future<ui.Image> _convertDataToPaintableImage(
-      Uint8List imageData, int imageWidth, int imageHeight) async {
-    final ui.ImmutableBuffer buffer =
-        await ui.ImmutableBuffer.fromUint8List(imageData);
-    final ui.ImageDescriptor descriptor =
-        await ui.ImageDescriptor.encoded(buffer);
+  static Future<painting.Image> _convertDataToPaintableImage(
+    Uint8List imageData,
+    int imageWidth,
+    int imageHeight,
+  ) async {
+    final painting.ImmutableBuffer buffer =
+        await painting.ImmutableBuffer.fromUint8List(imageData);
+    final painting.ImageDescriptor descriptor =
+        await painting.ImageDescriptor.encoded(buffer);
     buffer.dispose();
 
     final codec = await descriptor.instantiateCodec(
       targetWidth: imageWidth,
       targetHeight: imageHeight,
     );
-    ui.FrameInfo frameInfo = await codec.getNextFrame();
+    painting.FrameInfo frameInfo = await codec.getNextFrame();
 
     return frameInfo.image;
   }
 
   static Future<Uint8List> _extractRgbData(
-      ui.Image paintableImage, int numPixels) async {
-    final rgbaByteData =
-        (await paintableImage.toByteData(format: ui.ImageByteFormat.rawRgba))!;
+      painting.Image paintableImage, int numPixels) async {
+    final rgbaByteData = (await paintableImage.toByteData(
+        format: painting.ImageByteFormat.rawRgba))!;
 
     // TODO: avoid axtra copy by using a Uint8List backed by C memory
     //  But can we only read C memory that way?

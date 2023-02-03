@@ -1,4 +1,4 @@
-import 'dart:ui' as ui;
+import 'dart:ui' as painting;
 import 'dart:io' as io;
 
 import 'package:flutter/services.dart';
@@ -126,7 +126,7 @@ class Keypoint {
 class PosePainter extends CustomPainter {
   PosePainter(this.background, this.keypoints);
 
-  ui.Image background;
+  painting.Image background;
   List<Keypoint> keypoints;
 
   @override
