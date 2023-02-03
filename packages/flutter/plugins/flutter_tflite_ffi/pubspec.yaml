@@ -1,6 +1,7 @@
 name: flutter_tflite_ffi
-description: A Flutter plugin TensorFlow Lite, using FFI.
+description: A Flutter FFI plugin for TensorFlow Lite.
 version: 0.0.1
+publish_to: none
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
@@ -12,6 +13,10 @@ dependencies:
   ffi: ^2.0.0
   plugin_platform_interface: ^2.0.2
   path_provider: ^2.0.11
+  ffi_utils:
+    git:
+      url: https://github.com/enspyrco/monorepo.git
+      path: packages/dart/utils/ffi_utils
 
 dev_dependencies:
   ffigen: ^7.0.0

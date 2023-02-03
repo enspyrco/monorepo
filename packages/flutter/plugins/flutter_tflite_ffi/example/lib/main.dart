@@ -1,18 +1,12 @@
-import 'dart:io' as io;
 import 'dart:ui' as ui;
+import 'dart:io' as io;
 
-import 'package:flutter_tflite_ffi/flutter_tflite_ffi.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_tflite_ffi/flutter_tflite_ffi.dart';
+import 'package:flutter/material.dart';
 
 import 'package:flutter_tflite_ffi/flutter_tflite_ffi.dart' as tflite;
-
-const inputImageWidth = 256;
-const inputImageHeight = 256;
-const inputImageTotalPixels = 256 * 256;
-const modelPath =
-    'assets/lite-model_movenet_multipose_lightning_tflite_float16_1.tflite';
+import 'package:path_provider/path_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,11 +21,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late tflite.Interpreter _interpreter;
+  late tflite.TensorImage _tensorImage;
 
   bool _ready = false;
-  ByteData? _inputImageData;
-  ui.Image? _paintableImage;
-  Uint8List? _rgbData;
   final List<Keypoint> _keypoints = [];
 
   @override
@@ -40,30 +32,14 @@ class _MyAppState extends State<MyApp> {
     _doAllTheWorkThenRebuild();
   }
 
-  List<double> _runInference(Uint8List imageData) {
-    _interpreter.setInputTensorData(
-        data: imageData, format: ImageFormat.rgb888);
+  List<double> _runInference() {
+    _interpreter.setInputTensorData(_tensorImage);
 
     // Execute inference.
     _interpreter.invoke();
 
     // Extract the output tensor data.
     return _interpreter.getOutputTensorData<double>();
-  }
-
-  /// Assets are not individually stored on disk but together in a single asset
-  /// bundle so we extract the model, save it as an individual file and return
-  /// the path.
-  Future<String> _extractModelFromBundle(String path) async {
-    io.Directory directory = await getApplicationDocumentsDirectory();
-    ByteData data = await rootBundle.load(path);
-    List<int> bytes =
-        data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-
-    final file = io.File('${directory.path}/model_metadata.tflite')
-      ..writeAsBytesSync(bytes);
-
-    return file.path;
   }
 
   @override
@@ -76,34 +52,52 @@ class _MyAppState extends State<MyApp> {
             body: (_ready)
                 ? CustomPaint(
                     size: const Size(256, 256),
-                    painter: PosePainter(_paintableImage!, _keypoints),
-                  )
+                    painter:
+                        PosePainter(_tensorImage.paintableImage, _keypoints))
                 : const Center(child: CircularProgressIndicator())));
   }
 
+  /// Assets are not individually stored on disk but together in a single asset
+  /// bundle so we extract the model, save it as an individual file and return
+  /// the path.
+  static Future<Uint8List> _extractModel({required String key}) async {
+    ByteData data = await rootBundle.load(key);
+    return data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+  }
+
+  static Future<io.File> _saveModel({required Uint8List bytes}) async {
+    io.Directory directory = await getApplicationDocumentsDirectory();
+    final file = io.File('${directory.path}/model.tflite')
+      ..writeAsBytesSync(bytes);
+    return file;
+  }
+
   Future<void> _doAllTheWorkThenRebuild() async {
-    // Extract model from bundle & create interpreter.
-    final savedModelPath = await _extractModelFromBundle(modelPath);
+    final modelData =
+        await _extractModel(key: 'assets/model_movenet_multipose.tflite');
+    final modelFile = await _saveModel(bytes: modelData);
+
+    // Load the model & create the interpreter.
     _interpreter = tflite.createInterpreter(
-      pathToModel: savedModelPath,
+      pathToModel: modelFile.path,
       numThreads: 2,
     );
 
+    // Preprocess an image into a tensor image
+    _tensorImage = await TensorImage.loadFromBundle(
+        key: 'assets/input_image.jpeg',
+        inputFormat: ImageFormat.rgba8888,
+        targetWidth: 256,
+        targetHeight: 256);
+
     // Reshape input tensor to fit our image & allocate tensors
-    _interpreter
-        .reshapeInputTensor(shape: [1, inputImageWidth, inputImageHeight, 3]);
+    _interpreter.reshapeInputTensor(
+        shape: [1, _tensorImage.targetWidth, _tensorImage.targetHeight, 3]);
     _interpreter.allocateTensors();
 
-    _inputImageData = await rootBundle.load('assets/input_image.jpeg');
-    _paintableImage = await _convertDataToPaintableImage(
-        _inputImageData!.buffer.asUint8List(),
-        inputImageWidth,
-        inputImageHeight);
-    _rgbData = await _extractRgbData(_paintableImage!, inputImageTotalPixels);
-
     // Populate the input tensor data & invoke to get to get output
-    List<double> outputData = _runInference(_rgbData!);
-    
+    List<double> outputData = _runInference();
+
     for (int i = 0; i < 17; i++) {
       var offset = i * 3;
       _keypoints.add(Keypoint(
@@ -112,44 +106,6 @@ class _MyAppState extends State<MyApp> {
 
     _ready = true;
     if (mounted) setState(() {});
-  }
-
-  Future<Uint8List> _extractRgbData(
-      ui.Image paintableImage, int numPixels) async {
-    final rgbaByteData =
-        (await paintableImage.toByteData(format: ui.ImageByteFormat.rawRgba))!;
-
-    // TODO: avoid axtra copy by using a Uint8List backed by C memory
-    //  But can we only read C memory that way?
-    //  If we can get hold of the original C memory maybe we could avoid the
-    //  extra copy by manipulating the data with C?
-    final rgbBytes = Uint8List(numPixels * 3);
-    for (var i = 0; i < numPixels; i++) {
-      final rgbOffset = i * 3;
-      final rgbaOffset = i * 4;
-      rgbBytes[rgbOffset] = rgbaByteData.getUint8(rgbaOffset); // red
-      rgbBytes[rgbOffset + 1] = rgbaByteData.getUint8(rgbaOffset + 1); // green
-      rgbBytes[rgbOffset + 2] = rgbaByteData.getUint8(rgbaOffset + 2); // blue
-    }
-
-    return rgbBytes;
-  }
-
-  Future<ui.Image> _convertDataToPaintableImage(
-      Uint8List imageData, int imageWidth, int imageHeight) async {
-    final ui.ImmutableBuffer buffer =
-        await ui.ImmutableBuffer.fromUint8List(imageData);
-    final ui.ImageDescriptor descriptor =
-        await ui.ImageDescriptor.encoded(buffer);
-    buffer.dispose();
-
-    final codec = await descriptor.instantiateCodec(
-      targetWidth: imageWidth,
-      targetHeight: imageHeight,
-    );
-    ui.FrameInfo frameInfo = await codec.getNextFrame();
-
-    return frameInfo.image;
   }
 
   @override
