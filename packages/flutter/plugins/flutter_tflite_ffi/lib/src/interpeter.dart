@@ -11,8 +11,6 @@ import 'bindings/flutter_tflite_ffi_bindings_generated.dart';
 
 typedef TensorStruct = TfLiteTensor;
 
-enum ImageFormat { rgb888 }
-
 abstract class Interpreter {
   /// The total number of input tensors. 0 if the interpreter creation failed.
   int get inputTensorCount;
@@ -50,8 +48,7 @@ abstract class Interpreter {
   /// creating the graph and/or resizing any inputs.
   void allocateTensors();
 
-  void setInputTensorData(
-      {required Uint8List data, required ImageFormat format, int? index});
+  void setInputTensorData(TensorImage tensorImage, {int? index});
 
   /// Invokes the interpreter to run inference. May throw [TFLiteStatusException]
   /// if the underlying C function returned an error code.
@@ -138,8 +135,7 @@ class NativeInterpreter implements Interpreter {
   }
 
   @override
-  void setInputTensorData(
-      {required TypedData data, required ImageFormat format, int? index}) {
+  void setInputTensorData(TensorImage tensorImage, {int? index}) {
     /// We could do this:
     /// bindingsGlobal.TfLiteTensorCopyFromBuffer(inputTensorPtr, ?, data.length);
     ///
@@ -167,7 +163,7 @@ class NativeInterpreter implements Interpreter {
 
     TfLiteTensor tensor = inputTensorPtr.ref;
 
-    if (tensor.bytes != data.lengthInBytes) {
+    if (tensor.bytes != tensorImage.rgbData.lengthInBytes) {
       throw TFLiteStatusException(
           intro: 'When setting input tensor data:',
           code: TfLiteStatus.kTfLiteError);
@@ -175,15 +171,15 @@ class NativeInterpreter implements Interpreter {
 
     if (tensor.type == TfLiteType.kTfLiteUInt8) {
       Pointer<Uint8> buf = tensor.data.raw.cast<Uint8>();
-      final castList = data.buffer.asUint8List();
-      int numUint8s = data.lengthInBytes;
+      final castList = tensorImage.rgbData;
+      int numUint8s = tensorImage.rgbData.lengthInBytes;
       for (var i = 0; i < numUint8s; i++) {
         buf.elementAt(i).value = castList[i];
       }
     } else if (tensor.type == TfLiteType.kTfLiteFloat32) {
       Pointer<Float> buf = tensor.data.raw.cast<Float>();
-      final castList = data.buffer.asFloat32List();
-      int numFloat32s = data.lengthInBytes ~/ 4;
+      final castList = tensorImage.rgbData.buffer.asFloat32List();
+      int numFloat32s = tensorImage.rgbData.lengthInBytes ~/ 4;
       for (var i = 0; i < numFloat32s; i++) {
         buf.elementAt(i).value = castList[i];
       }

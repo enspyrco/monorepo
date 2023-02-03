@@ -1,7 +1,3 @@
-import 'dart:typed_data';
-import 'dart:io' as io;
-import 'dart:ui' as ui;
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_tflite_ffi/flutter_tflite_ffi.dart' as tflite;
 
@@ -25,45 +21,13 @@ void main() {
     interpreter.reshapeInputTensor(shape: [1, 256, 256, 3]);
     interpreter.allocateTensors();
 
-    print('input tensor: ${interpreter.getInputTensorInfo()}');
-    print('output tensor: ${interpreter.getOutputTensorInfo()}');
+    final tensorImage = await tflite.TensorImage.loadFromFile(
+        path: 'test/input_image.jpeg',
+        inputFormat: tflite.ImageFormat.rgba8888,
+        targetWidth: 256,
+        targetHeight: 256);
 
-    Uint8List jpegBytes = io.File('test/input_image.jpeg').readAsBytesSync();
-
-    final ui.ImmutableBuffer buffer =
-        await ui.ImmutableBuffer.fromUint8List(jpegBytes);
-    final ui.ImageDescriptor descriptor =
-        await ui.ImageDescriptor.encoded(buffer);
-    buffer.dispose();
-
-    final codec = await descriptor.instantiateCodec(
-      targetWidth: inW,
-      targetHeight: inH,
-    );
-    ui.FrameInfo frameInfo = await codec.getNextFrame();
-
-    ui.Image image = frameInfo.image;
-    print(
-        'Opened a ${frameInfo.image.width} x ${frameInfo.image.height} image.\n');
-
-    final rgbaByteData =
-        (await image.toByteData(format: ui.ImageByteFormat.rawRgba))!;
-
-    // TODO: avoid axtra copy by using a Uint8List backed by C memory
-    //  But can we only read C memory that way?
-    //  If we can get hold of the original C memory maybe we could avoid the
-    //  extra copy by manipulating the data with C?
-    final rgbBytes = Uint8List(inW * inH * 3);
-    for (var i = 0; i < inW * inH; i++) {
-      final rgbOffset = i * 3;
-      final rgbaOffset = i * 4;
-      rgbBytes[rgbOffset] = rgbaByteData.getUint8(rgbaOffset); // red
-      rgbBytes[rgbOffset + 1] = rgbaByteData.getUint8(rgbaOffset + 1); // green
-      rgbBytes[rgbOffset + 2] = rgbaByteData.getUint8(rgbaOffset + 2); // blue
-    }
-
-    interpreter.setInputTensorData(
-        data: rgbBytes, format: tflite.ImageFormat.rgb888);
+    interpreter.setInputTensorData(tensorImage);
 
     interpreter.invoke();
 
