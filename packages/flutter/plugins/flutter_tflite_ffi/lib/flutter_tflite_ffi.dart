@@ -5,7 +5,7 @@ import 'src/interpeter.dart';
 
 export 'src/interpeter.dart';
 export 'src/tensor_info.dart';
-export 'src/tensor_image.dart';
+export 'src/encoded_file_image.dart';
 
 String version() => bindingsGlobal.TfLiteVersion().cast<Utf8>().toDartString();
 

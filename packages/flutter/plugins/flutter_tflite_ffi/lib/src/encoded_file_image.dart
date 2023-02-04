@@ -3,10 +3,26 @@ import 'dart:io' as io;
 
 import 'package:flutter/services.dart';
 
-enum ImageFormat { rgba8888, yuv420 }
+/// The `camera` plugin has [ImageFormatGroup] with:
+///    - `unknown`, `yuv420`, `bgra8888`, `jpeg`,
+enum ImageFormat { rgba8888, bgra8888, yuv420 }
 
-class TensorImage {
-  TensorImage._(
+/// An [EncodedFileImage] takes a [path] (for a file) or a [key] (for a bundle)
+/// and
+///  - decodes the corresponding image
+///  - creates [rgbData] in [ImageFormat.rgb888] format
+///  - a [ui.Image] is created along the way and stored as the [paintableImage]
+///    member, in order to be accessible for displaying with Flutter.
+
+/// The [rgbData] can be passed to an [Interpreter.setInputTensorData] to set a
+/// tensor's data.
+///
+/// Create an [EncodedFileImage] with one of
+///  - [EncodedFileImage.loadFromBundle]
+///  - [EncodedFileImage.loadFromFile]
+///
+class EncodedFileImage {
+  EncodedFileImage._(
     ImageFormat inputFormat,
     Uint8List inputImageData,
     this.targetWidth,
@@ -25,7 +41,7 @@ class TensorImage {
   Uint8List get rgbData => _rgbData;
   painting.Image get paintableImage => _paintableImage;
 
-  static Future<TensorImage> loadFromBundle({
+  static Future<EncodedFileImage> loadFromBundle({
     required String key,
     required ImageFormat inputFormat,
     required int targetWidth,
@@ -35,7 +51,7 @@ class TensorImage {
     final byteData = await rootBundle.load(key);
     final inputImageData = byteData.buffer.asUint8List();
 
-    return _load(
+    return _createImage(
       inputImageData: inputImageData,
       inputFormat: inputFormat,
       targetWidth: targetWidth,
@@ -43,7 +59,7 @@ class TensorImage {
     );
   }
 
-  static Future<TensorImage> loadFromFile({
+  static Future<EncodedFileImage> loadFromFile({
     required String path,
     required ImageFormat inputFormat,
     required int targetWidth,
@@ -52,14 +68,14 @@ class TensorImage {
     // Read in the image file
     Uint8List inputImageData = io.File(path).readAsBytesSync();
 
-    return _load(
+    return _createImage(
         inputImageData: inputImageData,
         inputFormat: inputFormat,
         targetWidth: targetWidth,
         targetHeight: targetHeight);
   }
 
-  static Future<TensorImage> _load({
+  static Future<EncodedFileImage> _createImage({
     required Uint8List inputImageData,
     required ImageFormat inputFormat,
     required int targetWidth,
@@ -71,8 +87,8 @@ class TensorImage {
     final rgbData =
         await _extractRgbData(paintableImage, targetWidth * targetHeight);
 
-    return TensorImage._(inputFormat, inputImageData, targetWidth, targetHeight,
-        paintableImage, rgbData);
+    return EncodedFileImage._(inputFormat, inputImageData, targetWidth,
+        targetHeight, paintableImage, rgbData);
   }
 
   static Future<painting.Image> _convertDataToPaintableImage(
@@ -100,10 +116,6 @@ class TensorImage {
     final rgbaByteData = (await paintableImage.toByteData(
         format: painting.ImageByteFormat.rawRgba))!;
 
-    // TODO: avoid axtra copy by using a Uint8List backed by C memory
-    //  But can we only read C memory that way?
-    //  If we can get hold of the original C memory maybe we could avoid the
-    //  extra copy by manipulating the data with C?
     final rgbBytes = Uint8List(numPixels * 3);
     for (var i = 0; i < numPixels; i++) {
       final rgbOffset = i * 3;

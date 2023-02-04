@@ -1,4 +1,4 @@
-import 'dart:ui' as painting;
+import 'dart:ui' as painting show Image;
 import 'dart:io' as io;
 
 import 'package:flutter/services.dart';
@@ -21,7 +21,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late tflite.Interpreter _interpreter;
-  late tflite.TensorImage _tensorImage;
+  late tflite.EncodedFileImage _tensorImage;
 
   bool _ready = false;
   final List<Keypoint> _keypoints = [];
@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   List<double> _runInference() {
-    _interpreter.setInputTensorData(_tensorImage);
+    _interpreter.setInputTensorData(_tensorImage.rgbData);
 
     // Execute inference.
     _interpreter.invoke();
@@ -84,7 +84,7 @@ class _MyAppState extends State<MyApp> {
     );
 
     // Preprocess an image into a tensor image
-    _tensorImage = await TensorImage.loadFromBundle(
+    _tensorImage = await EncodedFileImage.loadFromBundle(
         key: 'assets/input_image.jpeg',
         inputFormat: ImageFormat.rgba8888,
         targetWidth: 256,
