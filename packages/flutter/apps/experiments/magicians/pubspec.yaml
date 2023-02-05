@@ -8,13 +8,13 @@ environment:
   sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
-  camera:
-    path: ../../../../../../../../forks/flutter/plugins/packages/camera/camera
-  # camera_macos: ^0.0.6+1
+  camera: ^0.10.3
   flutter_tflite_ffi:
     path:  ../../../plugins/flutter_tflite_ffi
   flutter:
     sdk: flutter
+  path_provider: ^2.0.12
+  
 
 dev_dependencies:
   flutter_test:
@@ -22,3 +22,5 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
+  assets:
+    - assets/model_movenet_multipose.tflite

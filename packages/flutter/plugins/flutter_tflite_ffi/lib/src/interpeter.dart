@@ -165,7 +165,8 @@ class NativeInterpreter implements Interpreter {
 
     if (tensor.bytes != rgbData.lengthInBytes) {
       throw TFLiteStatusException(
-          intro: 'When setting input tensor data:',
+          intro:
+              'When setting input tensor data, the passed rgb data was not the same size as the allocated tensor data, which threw:',
           code: TfLiteStatus.kTfLiteError);
     }
 

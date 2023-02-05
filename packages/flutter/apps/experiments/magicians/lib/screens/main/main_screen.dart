@@ -1,7 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/keypoints.dart';
 import 'camera_view.dart';
+import 'keypoints_view.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -11,6 +13,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  ValueNotifier<List<Keypoint>> notifier = ValueNotifier([]);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +25,12 @@ class _MainScreenState extends State<MainScreen> {
           if (!snapshot.hasData) {
             return Container();
           }
-          return CameraView(cameras: snapshot.data!);
+          return Stack(
+            children: [
+              CameraView(notifier, cameras: snapshot.data!),
+              KeypointsView(notifier)
+            ],
+          );
         },
       ),
     );
