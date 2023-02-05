@@ -48,7 +48,7 @@ abstract class Interpreter {
   /// creating the graph and/or resizing any inputs.
   void allocateTensors();
 
-  void setInputTensorData(TensorImage tensorImage, {int? index});
+  void setInputTensorData(Uint8List rgbData, {int? index});
 
   /// Invokes the interpreter to run inference. May throw [TFLiteStatusException]
   /// if the underlying C function returned an error code.
@@ -135,7 +135,7 @@ class NativeInterpreter implements Interpreter {
   }
 
   @override
-  void setInputTensorData(TensorImage tensorImage, {int? index}) {
+  void setInputTensorData(Uint8List rgbData, {int? index}) {
     /// We could do this:
     /// bindingsGlobal.TfLiteTensorCopyFromBuffer(inputTensorPtr, ?, data.length);
     ///
@@ -163,7 +163,7 @@ class NativeInterpreter implements Interpreter {
 
     TfLiteTensor tensor = inputTensorPtr.ref;
 
-    if (tensor.bytes != tensorImage.rgbData.lengthInBytes) {
+    if (tensor.bytes != rgbData.lengthInBytes) {
       throw TFLiteStatusException(
           intro: 'When setting input tensor data:',
           code: TfLiteStatus.kTfLiteError);
@@ -171,15 +171,15 @@ class NativeInterpreter implements Interpreter {
 
     if (tensor.type == TfLiteType.kTfLiteUInt8) {
       Pointer<Uint8> buf = tensor.data.raw.cast<Uint8>();
-      final castList = tensorImage.rgbData;
-      int numUint8s = tensorImage.rgbData.lengthInBytes;
+      final castList = rgbData;
+      int numUint8s = rgbData.lengthInBytes;
       for (var i = 0; i < numUint8s; i++) {
         buf.elementAt(i).value = castList[i];
       }
     } else if (tensor.type == TfLiteType.kTfLiteFloat32) {
       Pointer<Float> buf = tensor.data.raw.cast<Float>();
-      final castList = tensorImage.rgbData.buffer.asFloat32List();
-      int numFloat32s = tensorImage.rgbData.lengthInBytes ~/ 4;
+      final castList = rgbData.buffer.asFloat32List();
+      int numFloat32s = rgbData.lengthInBytes ~/ 4;
       for (var i = 0; i < numFloat32s; i++) {
         buf.elementAt(i).value = castList[i];
       }
