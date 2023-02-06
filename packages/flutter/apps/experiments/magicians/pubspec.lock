@@ -29,10 +29,10 @@ packages:
     dependency: transitive
     description:
       name: camera_android
-      sha256: "4cef01e8e78fe27c809a429bf74352ab94ab76b0c980e3ec708f1414614e3d9f"
+      sha256: e491c836147f60dd8a54cf3895fd2960e13b21b78a9d15b563a1b6c70894f142
       url: "https://pub.dev"
     source: hosted
-    version: "0.10.3"
+    version: "0.10.4"
   camera_avfoundation:
     dependency: transitive
     description:
@@ -110,7 +110,7 @@ packages:
     description:
       path: "packages/dart/utils/ffi_utils"
       ref: HEAD
-      resolved-ref: "5960d54efc2bf8a6fcf7adf91a6d481166e4a74b"
+      resolved-ref: "00b71a13fa9bf21b3bbd287b3588934eae28eccc"
       url: "https://github.com/enspyrco/monorepo.git"
     source: git
     version: "0.0.0"
