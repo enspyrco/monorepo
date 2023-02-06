@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../../inference_runner.dart';
 import '../../models/keypoints.dart';
 import '../../models/tflite_model.dart';
-import 'camera_view.dart';
-import 'keypoints_view.dart';
+import 'views/camera_view.dart';
+import 'views/keypoints_view.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
