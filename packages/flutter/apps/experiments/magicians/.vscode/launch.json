@@ -5,6 +5,13 @@
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart"
-    }
+    },
+    {
+      "name": "magicians (profile)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "profile"
+    } 
   ]
 }
