@@ -38,19 +38,20 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
 
     _controller.initialize().then((_) {
       if (!mounted) return;
-
       setState(() {});
-
-      _controller.startImageStream((CameraImage cameraImage) {
-        /// Convert each [CameraImage] to the correct format for the input
-        /// tensor, then runs inference.
-
-        final inferenceInput =
-            cameraImage.toInferenceInput(targetWidth: 256, targetHeight: 256);
-
-        widget.runner.runInferenceOn(inferenceInput.data);
-      });
+      _controller.startImageStream(_handleCameraImage);
     }).catchError((e) => _handleCameraInitializationError(e));
+  }
+
+  /// Convert each [CameraImage] to the correct format for the input
+  /// tensor, then runs inference.
+  void _handleCameraImage(CameraImage cameraImage) {
+    final inferenceInput =
+        cameraImage.toInferenceInput(targetWidth: 256, targetHeight: 256);
+
+    final stopwatch = Stopwatch()..start();
+    widget.runner.runInferenceOn(inferenceInput.data);
+    print('inference ran in ${stopwatch.elapsedMilliseconds} ms');
   }
 
   @override
