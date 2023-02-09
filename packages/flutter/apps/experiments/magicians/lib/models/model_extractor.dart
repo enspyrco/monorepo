@@ -3,12 +3,12 @@ import 'dart:io' as io;
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 
-class TfliteModel {
-  TfliteModel._(this.path);
+class ModelExtractor {
+  ModelExtractor._(this.path);
 
   late final String path;
 
-  static Future<TfliteModel> loadFromAsset({required String key}) async {
+  static Future<ModelExtractor> loadFromAsset({required String key}) async {
     // Extract model from bundle
     ByteData data = await rootBundle.load(key);
     Uint8List bytes =
@@ -17,6 +17,6 @@ class TfliteModel {
     final file = io.File('${directory.path}/model.tflite')
       ..writeAsBytesSync(bytes);
 
-    return TfliteModel._(file.path);
+    return ModelExtractor._(file.path);
   }
 }

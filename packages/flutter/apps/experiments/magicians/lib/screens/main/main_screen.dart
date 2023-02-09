@@ -1,9 +1,10 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:magicians/inference_runner_isolate.dart';
 
 import '../../inference_runner.dart';
 import '../../models/keypoints.dart';
-import '../../models/tflite_model.dart';
+import '../../models/model_extractor.dart';
 import 'views/camera_view.dart';
 import 'views/keypoints_view.dart';
 
@@ -33,15 +34,15 @@ class _MainScreenState extends State<MainScreen> {
           if (!camerasSnapshot.hasData) {
             return Container();
           }
-          return FutureBuilder<TfliteModel>(
-            future: TfliteModel.loadFromAsset(
+          return FutureBuilder<ModelExtractor>(
+            future: ModelExtractor.loadFromAsset(
                 key: 'assets/model_movenet_multipose.tflite'),
             builder: (context, modelSnapshot) {
               if (!modelSnapshot.hasData) {
                 return Container();
               }
 
-              runner = InferenceRunner(notifier: notifier)
+              runner = InferenceRunnerIsolate(notifier: notifier)
                 ..load(modelSnapshot.data!, 256, 256);
 
               return Stack(
