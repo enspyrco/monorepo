@@ -2,7 +2,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tflite_ffi/flutter_tflite_ffi.dart' as tflite;
-import 'package:magicians/models/tflite_model.dart';
+import 'package:magicians/models/model_extractor.dart';
 
 import 'models/keypoints.dart';
 
@@ -13,11 +13,11 @@ class InferenceRunner {
 
   late tflite.Interpreter _interpreter;
 
-  Future<void> load(TfliteModel model, inputWidth, inputHeight) async {
+  Future<void> load(ModelExtractor model, inputWidth, inputHeight) async {
     // Load the model & create the interpreter.
     _interpreter = tflite.createInterpreter(
       pathToModel: model.path,
-      numThreads: 4,
+      numThreads: 2,
     );
 
     // Reshape input tensor to fit our image & allocate tensors
