@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../models/keypoints.dart';
 
-class KeypointsView extends StatelessWidget {
-  const KeypointsView(this.notifier, {super.key});
+class KeypointsPaint extends StatelessWidget {
+  const KeypointsPaint(this.notifier, {super.key});
 
   final ValueNotifier<List<Keypoint>> notifier;
 
