@@ -17,7 +17,7 @@ class InferenceRunnerIsolate implements InferenceRunner {
   final ReceivePort _receivePort = ReceivePort();
   late final SendPort _sendPort;
   late final StreamQueue<dynamic> _events;
-  bool _ready = true;
+  bool _ready = false;
 
   @override
   Future<void> load(ModelExtractor model, inputWidth, inputHeight) async {
@@ -30,6 +30,7 @@ class InferenceRunnerIsolate implements InferenceRunner {
     // The first message from the spawned isolate is a SendPort. This port is
     // used to communicate with the spawned isolate.
     _sendPort = await _events.next;
+    _ready = true;
 
     _sendPort.send(InterpreterOptions(model.path, inputWidth, inputHeight));
   }
