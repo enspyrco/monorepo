@@ -1,12 +1,16 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:magicians/inference_runner_isolate.dart';
+import 'package:magicians/screens/main/views/snapped_rgb_image_view.dart';
 
 import '../../inference_runner.dart';
 import '../../models/keypoints.dart';
 import '../../models/model_extractor.dart';
 import 'views/camera_view.dart';
-import 'views/keypoints_view.dart';
+import 'views/keypoints_paint.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -17,6 +21,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   ValueNotifier<List<Keypoint>> notifier = ValueNotifier([]);
+  ValueNotifier<Uint8List> snappedRgbNotifier = ValueNotifier(Uint8List(0));
   InferenceRunner? runner;
 
   @override
@@ -48,10 +53,15 @@ class _MainScreenState extends State<MainScreen> {
               return Stack(
                 children: [
                   CameraView(
+                    snappedRgbNotifier: snappedRgbNotifier,
                     cameras: camerasSnapshot.data!,
                     runner: runner!,
                   ),
-                  KeypointsView(notifier),
+                  RotatedBox(
+                    quarterTurns: (Platform.isAndroid) ? 1 : 0,
+                    child: KeypointsPaint(notifier),
+                  ),
+                  SnappedRGBImageView(snappedRgbNotifier),
                 ],
               );
             },

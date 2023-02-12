@@ -1,13 +1,20 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:magicians/inference_runner.dart';
 import 'package:magicians/models/inference_input.dart';
+import 'package:image/image.dart' as img;
 
 class CameraView extends StatefulWidget {
-  const CameraView({super.key, required this.cameras, required this.runner});
+  const CameraView(
+      {super.key,
+      required this.snappedRgbNotifier,
+      required this.cameras,
+      required this.runner});
 
+  final ValueNotifier<Uint8List> snappedRgbNotifier;
   final List<CameraDescription> cameras;
   final InferenceRunner runner;
 
@@ -17,6 +24,7 @@ class CameraView extends StatefulWidget {
 
 class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
   late CameraController _controller;
+  int count = 0;
 
   @override
   void initState() {
@@ -46,8 +54,15 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
   /// Convert each [CameraImage] to the correct format for the input
   /// tensor, then runs inference.
   void _handleCameraImage(CameraImage cameraImage) {
+    count++;
     final inferenceInput =
         cameraImage.toInferenceInput(targetWidth: 256, targetHeight: 256);
+    if (count == 10) {
+      img.Image image = img.Image.fromBytes(
+          width: 256, height: 256, bytes: inferenceInput.data.buffer);
+
+      // widget.snappedRgbNotifier.value = img.encodePng(image);
+    }
 
     final stopwatch = Stopwatch()..start();
     widget.runner.runInferenceOn(inferenceInput.data);
