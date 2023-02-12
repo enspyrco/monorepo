@@ -8,13 +8,14 @@ environment:
   sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
-  camera: ^0.10.3
   flutter_tflite_ffi:
     path:  ../../../plugins/flutter_tflite_ffi
   flutter:
     sdk: flutter
   path_provider: ^2.0.12
   async: ^2.10.0
+  camera: ^0.10.3
+  image: ^4.0.13
 
 dev_dependencies:
   flutter_test:
