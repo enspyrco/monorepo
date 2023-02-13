@@ -15,6 +15,8 @@ If the box2c directory is empty you must run two commands:
 - `git submodule init` to initialize the local configuration file
 - `git submodule update` to fetch all the data and check out the appropriate commit
 
+See: [Git - Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+
 ## Project stucture
 
 This template uses the following structure:
