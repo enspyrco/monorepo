@@ -8,6 +8,13 @@ This project is a Flutter
 [FFI plugin](https://docs.flutter.dev/development/platform-integration/c-interop),
 a specialized package that includes native code directly invoked with Dart FFI.
 
+### Box2C git submodule
+
+If the box2c directory is empty you must run two commands:
+
+- `git submodule init` to initialize the local configuration file
+- `git submodule update` to fetch all the data and check out the appropriate commit
+
 ## Project stucture
 
 This template uses the following structure:

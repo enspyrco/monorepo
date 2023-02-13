@@ -61,6 +61,7 @@ Three letter acronyms used in commit messages:
 - aty = astro_types
 - avm = adventure_maker
 - avs = Adventuverse (project)
+- b2c = flutter_box2c
 - ccv = coding-challenge-verifier
 - ddi = dragndrop_image_effects
 - dip = discord_interaction_to_pubsub_message
