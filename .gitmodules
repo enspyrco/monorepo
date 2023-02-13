@@ -10,3 +10,6 @@
 [submodule "packages/flutter/plugins/flutter_tflite_ffi/tensorflow"]
 	path = packages/flutter/plugins/flutter_tflite_ffi/tensorflow
 	url = https://github.com/tensorflow/tensorflow
+[submodule "packages/flutter/plugins/flutter_box2c/box2c"]
+	path = packages/flutter/plugins/flutter_box2c/box2c
+	url = https://github.com/erincatto/box2c
