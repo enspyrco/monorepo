@@ -42,8 +42,7 @@ const String _libName = 'flutter_box2c';
 /// The dynamic library in which the symbols for [FlutterBox2cBindings] can be found.
 final DynamicLibrary _dylib = () {
   if (Platform.isMacOS || Platform.isIOS) {
-    return DynamicLibrary.process();
-    // return DynamicLibrary.open('$_libName.framework/$_libName');
+    return DynamicLibrary.open('$_libName.framework/$_libName');
   }
   if (Platform.isAndroid || Platform.isLinux) {
     return DynamicLibrary.open('lib$_libName.so');
