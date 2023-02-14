@@ -17,6 +17,12 @@ If the box2c directory is empty you must run two commands:
 
 See: [Git - Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
 
+### Making changes to the build
+
+#### MacOS
+
+Cocoapods caches aggresively but running `run.sh` from `example/macos` should clear out build products and result in any changes being picked up during the build.
+
 ## Project stucture
 
 This template uses the following structure:
