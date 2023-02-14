@@ -18,10 +18,20 @@ A new Flutter FFI plugin project.
   # paths, so Classes contains a forwarder C file that relatively imports
   # `../src/*` so that the C sources can be shared among all target platforms.
   s.source           = { :path => '.' }
-  s.source_files     = 'Classes/**/*'
   s.dependency 'FlutterMacOS'
 
   s.platform = :osx, '10.11'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
+
+  # Box2C source & headers
+  s.source_files        = 'Classes/**/*.{c,h}'
+  s.pod_target_xcconfig = {
+    # Allow relative "#include"s from the project base directory:
+    'HEADER_SEARCH_PATHS' => [
+      '$(PODS_TARGET_SRCROOT)/Classes/include',
+      '$(PODS_TARGET_SRCROOT)/Classes/src',
+    ],
+  }
+
 end
