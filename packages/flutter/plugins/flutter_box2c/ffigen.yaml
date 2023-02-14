@@ -7,9 +7,9 @@ description: |
 output: 'lib/flutter_box2c_bindings_generated.dart'
 headers:
   entry-points:
-    - 'src/flutter_box2c.h'
-  include-directives:
-    - 'src/flutter_box2c.h'
+    - 'src/box2c/include/box2d/box2d.h'
+compiler-opts:
+  - '-Ibox2c/include/'
 preamble: |
   // ignore_for_file: always_specify_types
   // ignore_for_file: camel_case_types

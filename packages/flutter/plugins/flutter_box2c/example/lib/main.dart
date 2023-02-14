@@ -21,8 +21,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    sumResult = flutter_box2c.sum(1, 2);
-    sumAsyncResult = flutter_box2c.sumAsync(3, 4);
   }
 
   @override
