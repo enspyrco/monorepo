@@ -21,7 +21,9 @@ See: [Git - Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
 
 #### MacOS
 
-Cocoapods caches aggresively but running `run.sh` from `example/macos` should clear out build products and result in any changes being picked up during the build.
+Cocoapods can cache rather aggresively so changes may not affect a subsequent build.
+
+Running `bust_cache_then_build.sh` from `example/macos` should clear out build products and result in any changes being picked up during the build.
 
 ## Project stucture
 
