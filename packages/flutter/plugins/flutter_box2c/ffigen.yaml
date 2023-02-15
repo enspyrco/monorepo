@@ -4,7 +4,7 @@ description: |
   Bindings for `src/flutter_box2c.h`.
 
   Regenerate bindings with `flutter pub run ffigen --config ffigen.yaml`.
-output: 'lib/flutter_box2c_bindings_generated.dart'
+output: 'lib/bindings/generated_bindings.dart'
 headers:
   entry-points:
     - 'src/box2c/include/box2d/box2d.h'

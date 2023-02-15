@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'dart:ffi';
-import 'dart:io';
 import 'dart:isolate';
 
-import 'flutter_box2c_bindings_generated.dart';
+import 'package:flutter_box2c/src/bindings/global_bindings.dart';
+
+import 'src/bindings/generated_bindings.dart';
 
 String version() {
-  b2Version version = _bindings.b2_version;
+  b2Version version = globalBindings.b2_version;
   return '${version.major}.${version.major}.${version.revision}';
 }
 
@@ -36,25 +36,6 @@ Future<int> sumAsync(int a, int b) async {
   helperIsolateSendPort.send(request);
   return completer.future;
 }
-
-const String _libName = 'flutter_box2c';
-
-/// The dynamic library in which the symbols for [FlutterBox2cBindings] can be found.
-final DynamicLibrary _dylib = () {
-  if (Platform.isMacOS || Platform.isIOS) {
-    return DynamicLibrary.open('$_libName.framework/$_libName');
-  }
-  if (Platform.isAndroid || Platform.isLinux) {
-    return DynamicLibrary.open('lib$_libName.so');
-  }
-  if (Platform.isWindows) {
-    return DynamicLibrary.open('$_libName.dll');
-  }
-  throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
-}();
-
-/// The bindings to the native functions in [_dylib].
-final FlutterBox2cBindings _bindings = FlutterBox2cBindings(_dylib);
 
 /// A request to compute `sum`.
 ///
