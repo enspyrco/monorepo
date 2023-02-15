@@ -8,6 +8,23 @@ This project is a Flutter
 [FFI plugin](https://docs.flutter.dev/development/platform-integration/c-interop),
 a specialized package that includes native code directly invoked with Dart FFI.
 
+### Box2C git submodule
+
+If the box2c directory is empty you must run two commands:
+
+- `git submodule init` to initialize the local configuration file
+- `git submodule update` to fetch all the data and check out the appropriate commit
+
+See: [Git - Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+
+### Making changes to the build
+
+#### MacOS
+
+Cocoapods can cache rather aggresively so changes may not affect a subsequent build.
+
+Running `bust_cache_then_build.sh` from `example/macos` should clear out build products and result in any changes being picked up during the build.
+
 ## Project stucture
 
 This template uses the following structure:

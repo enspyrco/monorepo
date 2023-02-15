@@ -1,17 +1,21 @@
-
 import 'dart:async';
-import 'dart:ffi';
-import 'dart:io';
 import 'dart:isolate';
 
-import 'flutter_box2c_bindings_generated.dart';
+import 'package:flutter_box2c/src/bindings/global_bindings.dart';
+
+import 'src/bindings/generated_bindings.dart';
+
+String version() {
+  b2Version version = globalBindings.b2_version;
+  return '${version.major}.${version.major}.${version.revision}';
+}
 
 /// A very short-lived native function.
 ///
 /// For very short-lived functions, it is fine to call them on the main isolate.
 /// They will block the Dart execution while running the native function, so
 /// only do this for native functions which are guaranteed to be short-lived.
-int sum(int a, int b) => _bindings.sum(a, b);
+// int sum(int a, int b) => _bindings.sum(a, b);
 
 /// A longer lived native function, which occupies the thread calling it.
 ///
@@ -32,26 +36,6 @@ Future<int> sumAsync(int a, int b) async {
   helperIsolateSendPort.send(request);
   return completer.future;
 }
-
-const String _libName = 'flutter_box2c';
-
-/// The dynamic library in which the symbols for [FlutterBox2cBindings] can be found.
-final DynamicLibrary _dylib = () {
-  if (Platform.isMacOS || Platform.isIOS) {
-    return DynamicLibrary.open('$_libName.framework/$_libName');
-  }
-  if (Platform.isAndroid || Platform.isLinux) {
-    return DynamicLibrary.open('lib$_libName.so');
-  }
-  if (Platform.isWindows) {
-    return DynamicLibrary.open('$_libName.dll');
-  }
-  throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
-}();
-
-/// The bindings to the native functions in [_dylib].
-final FlutterBox2cBindings _bindings = FlutterBox2cBindings(_dylib);
-
 
 /// A request to compute `sum`.
 ///
@@ -113,9 +97,9 @@ Future<SendPort> _helperIsolateSendPort = () async {
       ..listen((dynamic data) {
         // On the helper isolate listen to requests and respond to them.
         if (data is _SumRequest) {
-          final int result = _bindings.sum_long_running(data.a, data.b);
-          final _SumResponse response = _SumResponse(data.id, result);
-          sendPort.send(response);
+          // final int result = _bindings.sum_long_running(data.a, data.b);
+          // final _SumResponse response = _SumResponse(data.id, result);
+          // sendPort.send(response);
           return;
         }
         throw UnsupportedError('Unsupported message type: ${data.runtimeType}');
