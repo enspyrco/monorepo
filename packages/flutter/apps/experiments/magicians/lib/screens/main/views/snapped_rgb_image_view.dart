@@ -15,7 +15,10 @@ class SnappedRGBImageView extends StatelessWidget {
           if (imageData.isEmpty) {
             return Container();
           }
-          return Image(image: MemoryImage(imageData));
+          return SizedBox(
+              width: 100,
+              height: 100,
+              child: Image(image: MemoryImage(imageData)));
         });
   }
 }
