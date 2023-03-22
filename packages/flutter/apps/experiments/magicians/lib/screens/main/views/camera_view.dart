@@ -3,9 +3,10 @@ import 'dart:typed_data';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:magicians/inference_runner.dart';
 import 'package:magicians/models/inference_input.dart';
-import 'package:image/image.dart' as img;
+import 'dart:ui' as ui;
 
 class CameraView extends StatefulWidget {
   const CameraView(
@@ -25,6 +26,7 @@ class CameraView extends StatefulWidget {
 class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
   late CameraController _controller;
   int count = 0;
+  GlobalKey globalKey = GlobalKey();
 
   @override
   void initState() {
@@ -55,14 +57,21 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
   /// tensor, then runs inference.
   void _handleCameraImage(CameraImage cameraImage) {
     count++;
+
     final inferenceInput =
         cameraImage.toInferenceInput(targetWidth: 256, targetHeight: 256);
     if (count == 10) {
-      img.Image image = img.Image.fromBytes(
-          width: 256, height: 256, bytes: inferenceInput.data.buffer);
-
+      // img.Image image = img.Image.fromBytes(
+      //     width: 256, height: 256, bytes: inferenceInput.data.buffer);
       // widget.snappedRgbNotifier.value = img.encodePng(image);
+      final RenderRepaintBoundary boundary = globalKey.currentContext!
+          .findRenderObject()! as RenderRepaintBoundary;
+      final ui.Image uiImage = boundary.toImageSync();
+      print('Image dimensions: ${uiImage.width}x${uiImage.height}');
+      uiImage.toByteData(format: ui.ImageByteFormat.png).then((value) =>
+          widget.snappedRgbNotifier.value = value!.buffer.asUint8List());
     }
+    if (count == 100) {}
 
     final stopwatch = Stopwatch()..start();
     widget.runner.runInferenceOn(inferenceInput.data);
@@ -74,7 +83,10 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
     if (!_controller.value.isInitialized) {
       return Container();
     }
-    return CameraPreview(_controller);
+    return RepaintBoundary(
+      key: globalKey,
+      child: CameraPreview(_controller),
+    );
   }
 
   @override
