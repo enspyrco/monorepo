@@ -67,10 +67,10 @@ Three letter acronyms used in commit messages:
 - dip = discord_interaction_to_pubsub_message
 - dvr = domain_visualiser
 - enl = enspyr_lints
-- flr = flireator
 - fai = firebase_auth_service_interface
 - faf = firebase_auth_service_flutterfire
 - ffu = ffi_utils
+- flr = flireator
 - fof = flutter_opencv_ffi
 - fot = flutter_opengl_texture
 - fsf = firestore_service_flutterfire
@@ -89,6 +89,7 @@ Three letter acronyms used in commit messages:
 - jst = json_types
 - lcr = locator
 - mgc = magicians
+- oap = openapi_parser
 - oml = our_meals
 - pae = process_articles_in_emails
 - pdg = package_dependency_graph
