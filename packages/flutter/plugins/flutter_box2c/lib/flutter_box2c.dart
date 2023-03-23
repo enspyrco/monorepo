@@ -16,7 +16,6 @@ void fun() {
 
   // Construct a world object, which will hold and simulate the rigid bodies.
   b2.WorldDef worldDef = b2.WorldDef();
-
   b2.createWorld(worldDef);
 }
 
