@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'dart:isolate';
 
-import 'package:flutter_box2c/src/bindings/global_bindings.dart';
-
 import 'src/bindings/generated_bindings.dart';
+import 'src/bindings/global_bindings.dart';
+
+export 'src/b2/b2.dart' show createWorld;
+export 'src/enums.dart';
+export 'src/types.dart';
 
 String version() {
   b2Version version = globalBindings.b2_version;

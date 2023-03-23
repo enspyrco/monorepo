@@ -8,9 +8,6 @@
 import 'dart:ffi' as ffi;
 
 /// Bindings for `src/flutter_box2c.h`.
-///
-/// Regenerate bindings with `flutter pub run ffigen --config ffigen.yaml`.
-///
 class FlutterBox2cBindings {
   /// Holds the symbol lookup function.
   final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
@@ -56,6 +53,14 @@ class FlutterBox2cBindings {
   set b2_lengthUnitsPerMeter(double value) =>
       _b2_lengthUnitsPerMeter.value = value;
 
+  /// The time that a body must be still before it will go to sleep.
+  late final ffi.Pointer<ffi.Float> _b2_timeToSleep =
+      _lookup<ffi.Float>('b2_timeToSleep');
+
+  double get b2_timeToSleep => _b2_timeToSleep.value;
+
+  set b2_timeToSleep(double value) => _b2_timeToSleep.value = value;
+
   /// Current version.
   late final ffi.Pointer<b2Version> _b2_version =
       _lookup<b2Version>('b2_version');
@@ -96,41 +101,6 @@ class FlutterBox2cBindings {
           'b2DestroyWorld');
   late final _b2DestroyWorld =
       _b2DestroyWorldPtr.asFunction<void Function(b2WorldId)>();
-
-  /// Create a rigid body given a definition. No reference to the definition is retained.
-  /// @warning This function is locked during callbacks.
-  b2BodyId b2World_CreateBody(
-    b2WorldId worldId,
-    ffi.Pointer<b2BodyDef> def,
-  ) {
-    return _b2World_CreateBody(
-      worldId,
-      def,
-    );
-  }
-
-  late final _b2World_CreateBodyPtr = _lookup<
-      ffi.NativeFunction<
-          b2BodyId Function(
-              b2WorldId, ffi.Pointer<b2BodyDef>)>>('b2World_CreateBody');
-  late final _b2World_CreateBody = _b2World_CreateBodyPtr
-      .asFunction<b2BodyId Function(b2WorldId, ffi.Pointer<b2BodyDef>)>();
-
-  /// Destroy a rigid body given an id.
-  /// @warning This function is locked during callbacks.
-  void b2World_DestroyBody(
-    b2BodyId bodyId,
-  ) {
-    return _b2World_DestroyBody(
-      bodyId,
-    );
-  }
-
-  late final _b2World_DestroyBodyPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(b2BodyId)>>(
-          'b2World_DestroyBody');
-  late final _b2World_DestroyBody =
-      _b2World_DestroyBodyPtr.asFunction<void Function(b2BodyId)>();
 
   /// Take a time step. This performs collision detection, integration,
   /// and constraint solution.
@@ -208,27 +178,54 @@ class FlutterBox2cBindings {
   late final _b2World_GetProfile = _b2World_GetProfilePtr
       .asFunction<ffi.Pointer<b2Profile> Function(b2WorldId)>();
 
-  /// Create a shape and attach it to a body. Contacts are not created until the next time step.
-  /// @warning This function is locked during callbacks.
-  b2ShapeId b2Body_CreatePolygon(
-    b2BodyId bodyId,
-    ffi.Pointer<b2ShapeDef> def,
-    ffi.Pointer<b2Polygon> polygon,
+  b2BodyId b2World_GetGroundBodyId(
+    b2WorldId worldId,
   ) {
-    return _b2Body_CreatePolygon(
-      bodyId,
-      def,
-      polygon,
+    return _b2World_GetGroundBodyId(
+      worldId,
     );
   }
 
-  late final _b2Body_CreatePolygonPtr = _lookup<
+  late final _b2World_GetGroundBodyIdPtr =
+      _lookup<ffi.NativeFunction<b2BodyId Function(b2WorldId)>>(
+          'b2World_GetGroundBodyId');
+  late final _b2World_GetGroundBodyId =
+      _b2World_GetGroundBodyIdPtr.asFunction<b2BodyId Function(b2WorldId)>();
+
+  /// Create a rigid body given a definition. No reference to the definition is retained.
+  /// @warning This function is locked during callbacks.
+  b2BodyId b2World_CreateBody(
+    b2WorldId worldId,
+    ffi.Pointer<b2BodyDef> def,
+  ) {
+    return _b2World_CreateBody(
+      worldId,
+      def,
+    );
+  }
+
+  late final _b2World_CreateBodyPtr = _lookup<
       ffi.NativeFunction<
-          b2ShapeId Function(b2BodyId, ffi.Pointer<b2ShapeDef>,
-              ffi.Pointer<b2Polygon>)>>('b2Body_CreatePolygon');
-  late final _b2Body_CreatePolygon = _b2Body_CreatePolygonPtr.asFunction<
-      b2ShapeId Function(
-          b2BodyId, ffi.Pointer<b2ShapeDef>, ffi.Pointer<b2Polygon>)>();
+          b2BodyId Function(
+              b2WorldId, ffi.Pointer<b2BodyDef>)>>('b2World_CreateBody');
+  late final _b2World_CreateBody = _b2World_CreateBodyPtr
+      .asFunction<b2BodyId Function(b2WorldId, ffi.Pointer<b2BodyDef>)>();
+
+  /// Destroy a rigid body given an id.
+  /// @warning This function is locked during callbacks.
+  void b2World_DestroyBody(
+    b2BodyId bodyId,
+  ) {
+    return _b2World_DestroyBody(
+      bodyId,
+    );
+  }
+
+  late final _b2World_DestroyBodyPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(b2BodyId)>>(
+          'b2World_DestroyBody');
+  late final _b2World_DestroyBody =
+      _b2World_DestroyBodyPtr.asFunction<void Function(b2BodyId)>();
 
   b2Vec2 b2Body_GetPosition(
     b2BodyId bodyId,
@@ -257,6 +254,602 @@ class FlutterBox2cBindings {
           'b2Body_GetAngle');
   late final _b2Body_GetAngle =
       _b2Body_GetAnglePtr.asFunction<double Function(b2BodyId)>();
+
+  b2Vec2 b2Body_GetLocalPoint(
+    b2BodyId bodyId,
+    b2Vec2 globalPoint,
+  ) {
+    return _b2Body_GetLocalPoint(
+      bodyId,
+      globalPoint,
+    );
+  }
+
+  late final _b2Body_GetLocalPointPtr =
+      _lookup<ffi.NativeFunction<b2Vec2 Function(b2BodyId, b2Vec2)>>(
+          'b2Body_GetLocalPoint');
+  late final _b2Body_GetLocalPoint =
+      _b2Body_GetLocalPointPtr.asFunction<b2Vec2 Function(b2BodyId, b2Vec2)>();
+
+  int b2Body_GetType(
+    b2BodyId bodyId,
+  ) {
+    return _b2Body_GetType(
+      bodyId,
+    );
+  }
+
+  late final _b2Body_GetTypePtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(b2BodyId)>>(
+          'b2Body_GetType');
+  late final _b2Body_GetType =
+      _b2Body_GetTypePtr.asFunction<int Function(b2BodyId)>();
+
+  double b2Body_GetMass(
+    b2BodyId bodyId,
+  ) {
+    return _b2Body_GetMass(
+      bodyId,
+    );
+  }
+
+  late final _b2Body_GetMassPtr =
+      _lookup<ffi.NativeFunction<ffi.Float Function(b2BodyId)>>(
+          'b2Body_GetMass');
+  late final _b2Body_GetMass =
+      _b2Body_GetMassPtr.asFunction<double Function(b2BodyId)>();
+
+  void b2Body_SetAwake(
+    b2BodyId bodyId,
+    bool awake,
+  ) {
+    return _b2Body_SetAwake(
+      bodyId,
+      awake,
+    );
+  }
+
+  late final _b2Body_SetAwakePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(b2BodyId, ffi.Bool)>>(
+          'b2Body_SetAwake');
+  late final _b2Body_SetAwake =
+      _b2Body_SetAwakePtr.asFunction<void Function(b2BodyId, bool)>();
+
+  /// Create a shape and attach it to a body. Contacts are not created until the next time step.
+  /// @warning This function is locked during callbacks.
+  b2ShapeId b2Body_CreateCircle(
+    b2BodyId bodyId,
+    ffi.Pointer<b2ShapeDef> def,
+    ffi.Pointer<b2Circle> circle,
+  ) {
+    return _b2Body_CreateCircle(
+      bodyId,
+      def,
+      circle,
+    );
+  }
+
+  late final _b2Body_CreateCirclePtr = _lookup<
+      ffi.NativeFunction<
+          b2ShapeId Function(b2BodyId, ffi.Pointer<b2ShapeDef>,
+              ffi.Pointer<b2Circle>)>>('b2Body_CreateCircle');
+  late final _b2Body_CreateCircle = _b2Body_CreateCirclePtr.asFunction<
+      b2ShapeId Function(
+          b2BodyId, ffi.Pointer<b2ShapeDef>, ffi.Pointer<b2Circle>)>();
+
+  b2ShapeId b2Body_CreatePolygon(
+    b2BodyId bodyId,
+    ffi.Pointer<b2ShapeDef> def,
+    ffi.Pointer<b2Polygon> polygon,
+  ) {
+    return _b2Body_CreatePolygon(
+      bodyId,
+      def,
+      polygon,
+    );
+  }
+
+  late final _b2Body_CreatePolygonPtr = _lookup<
+      ffi.NativeFunction<
+          b2ShapeId Function(b2BodyId, ffi.Pointer<b2ShapeDef>,
+              ffi.Pointer<b2Polygon>)>>('b2Body_CreatePolygon');
+  late final _b2Body_CreatePolygon = _b2Body_CreatePolygonPtr.asFunction<
+      b2ShapeId Function(
+          b2BodyId, ffi.Pointer<b2ShapeDef>, ffi.Pointer<b2Polygon>)>();
+
+  b2BodyId b2Shape_GetBody(
+    b2ShapeId shapeId,
+  ) {
+    return _b2Shape_GetBody(
+      shapeId,
+    );
+  }
+
+  late final _b2Shape_GetBodyPtr =
+      _lookup<ffi.NativeFunction<b2BodyId Function(b2ShapeId)>>(
+          'b2Shape_GetBody');
+  late final _b2Shape_GetBody =
+      _b2Shape_GetBodyPtr.asFunction<b2BodyId Function(b2ShapeId)>();
+
+  bool b2Shape_TestPoint(
+    b2ShapeId shapeId,
+    b2Vec2 point,
+  ) {
+    return _b2Shape_TestPoint(
+      shapeId,
+      point,
+    );
+  }
+
+  late final _b2Shape_TestPointPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(b2ShapeId, b2Vec2)>>(
+          'b2Shape_TestPoint');
+  late final _b2Shape_TestPoint =
+      _b2Shape_TestPointPtr.asFunction<bool Function(b2ShapeId, b2Vec2)>();
+
+  b2JointId b2World_CreateMouseJoint(
+    b2WorldId worldId,
+    ffi.Pointer<b2MouseJointDef> def,
+  ) {
+    return _b2World_CreateMouseJoint(
+      worldId,
+      def,
+    );
+  }
+
+  late final _b2World_CreateMouseJointPtr = _lookup<
+      ffi.NativeFunction<
+          b2JointId Function(b2WorldId,
+              ffi.Pointer<b2MouseJointDef>)>>('b2World_CreateMouseJoint');
+  late final _b2World_CreateMouseJoint =
+      _b2World_CreateMouseJointPtr.asFunction<
+          b2JointId Function(b2WorldId, ffi.Pointer<b2MouseJointDef>)>();
+
+  b2JointId b2World_CreateRevoluteJoint(
+    b2WorldId worldId,
+    ffi.Pointer<b2RevoluteJointDef> def,
+  ) {
+    return _b2World_CreateRevoluteJoint(
+      worldId,
+      def,
+    );
+  }
+
+  late final _b2World_CreateRevoluteJointPtr = _lookup<
+      ffi.NativeFunction<
+          b2JointId Function(b2WorldId,
+              ffi.Pointer<b2RevoluteJointDef>)>>('b2World_CreateRevoluteJoint');
+  late final _b2World_CreateRevoluteJoint =
+      _b2World_CreateRevoluteJointPtr.asFunction<
+          b2JointId Function(b2WorldId, ffi.Pointer<b2RevoluteJointDef>)>();
+
+  void b2World_DestroyJoint(
+    b2JointId jointId,
+  ) {
+    return _b2World_DestroyJoint(
+      jointId,
+    );
+  }
+
+  late final _b2World_DestroyJointPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(b2JointId)>>(
+          'b2World_DestroyJoint');
+  late final _b2World_DestroyJoint =
+      _b2World_DestroyJointPtr.asFunction<void Function(b2JointId)>();
+
+  void b2MouseJoint_SetTarget(
+    b2JointId jointId,
+    b2Vec2 target,
+  ) {
+    return _b2MouseJoint_SetTarget(
+      jointId,
+      target,
+    );
+  }
+
+  late final _b2MouseJoint_SetTargetPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(b2JointId, b2Vec2)>>(
+          'b2MouseJoint_SetTarget');
+  late final _b2MouseJoint_SetTarget =
+      _b2MouseJoint_SetTargetPtr.asFunction<void Function(b2JointId, b2Vec2)>();
+
+  void b2RevoluteJoint_EnableLimit(
+    b2JointId jointId,
+    bool enableLimit,
+  ) {
+    return _b2RevoluteJoint_EnableLimit(
+      jointId,
+      enableLimit,
+    );
+  }
+
+  late final _b2RevoluteJoint_EnableLimitPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(b2JointId, ffi.Bool)>>(
+          'b2RevoluteJoint_EnableLimit');
+  late final _b2RevoluteJoint_EnableLimit = _b2RevoluteJoint_EnableLimitPtr
+      .asFunction<void Function(b2JointId, bool)>();
+
+  void b2RevoluteJoint_EnableMotor(
+    b2JointId jointId,
+    bool enableMotor,
+  ) {
+    return _b2RevoluteJoint_EnableMotor(
+      jointId,
+      enableMotor,
+    );
+  }
+
+  late final _b2RevoluteJoint_EnableMotorPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(b2JointId, ffi.Bool)>>(
+          'b2RevoluteJoint_EnableMotor');
+  late final _b2RevoluteJoint_EnableMotor = _b2RevoluteJoint_EnableMotorPtr
+      .asFunction<void Function(b2JointId, bool)>();
+
+  void b2RevoluteJoint_SetMotorSpeed(
+    b2JointId jointId,
+    double motorSpeed,
+  ) {
+    return _b2RevoluteJoint_SetMotorSpeed(
+      jointId,
+      motorSpeed,
+    );
+  }
+
+  late final _b2RevoluteJoint_SetMotorSpeedPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(b2JointId, ffi.Float)>>(
+          'b2RevoluteJoint_SetMotorSpeed');
+  late final _b2RevoluteJoint_SetMotorSpeed = _b2RevoluteJoint_SetMotorSpeedPtr
+      .asFunction<void Function(b2JointId, double)>();
+
+  double b2RevoluteJoint_GetMotorTorque(
+    b2JointId jointId,
+    double inverseTimeStep,
+  ) {
+    return _b2RevoluteJoint_GetMotorTorque(
+      jointId,
+      inverseTimeStep,
+    );
+  }
+
+  late final _b2RevoluteJoint_GetMotorTorquePtr =
+      _lookup<ffi.NativeFunction<ffi.Float Function(b2JointId, ffi.Float)>>(
+          'b2RevoluteJoint_GetMotorTorque');
+  late final _b2RevoluteJoint_GetMotorTorque =
+      _b2RevoluteJoint_GetMotorTorquePtr
+          .asFunction<double Function(b2JointId, double)>();
+
+  /// Query the world for all shapse that potentially overlap the provided AABB.
+  /// @param callback a user implemented callback function.
+  /// @param aabb the query box.
+  void b2World_QueryAABB(
+    b2WorldId worldId,
+    b2AABB aabb,
+    ffi.Pointer<b2QueryCallbackFcn> fcn,
+    ffi.Pointer<ffi.Void> context,
+  ) {
+    return _b2World_QueryAABB(
+      worldId,
+      aabb,
+      fcn,
+      context,
+    );
+  }
+
+  late final _b2World_QueryAABBPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(b2WorldId, b2AABB, ffi.Pointer<b2QueryCallbackFcn>,
+              ffi.Pointer<ffi.Void>)>>('b2World_QueryAABB');
+  late final _b2World_QueryAABB = _b2World_QueryAABBPtr.asFunction<
+      void Function(b2WorldId, b2AABB, ffi.Pointer<b2QueryCallbackFcn>,
+          ffi.Pointer<ffi.Void>)>();
+
+  b2Polygon b2MakePolygon(
+    ffi.Pointer<b2Hull> hull,
+  ) {
+    return _b2MakePolygon(
+      hull,
+    );
+  }
+
+  late final _b2MakePolygonPtr =
+      _lookup<ffi.NativeFunction<b2Polygon Function(ffi.Pointer<b2Hull>)>>(
+          'b2MakePolygon');
+  late final _b2MakePolygon =
+      _b2MakePolygonPtr.asFunction<b2Polygon Function(ffi.Pointer<b2Hull>)>();
+
+  b2Polygon b2MakeBox(
+    double hx,
+    double hy,
+  ) {
+    return _b2MakeBox(
+      hx,
+      hy,
+    );
+  }
+
+  late final _b2MakeBoxPtr =
+      _lookup<ffi.NativeFunction<b2Polygon Function(ffi.Float, ffi.Float)>>(
+          'b2MakeBox');
+  late final _b2MakeBox =
+      _b2MakeBoxPtr.asFunction<b2Polygon Function(double, double)>();
+
+  b2Polygon b2MakeOffsetBox(
+    double hx,
+    double hy,
+    b2Vec2 center,
+    double angle,
+  ) {
+    return _b2MakeOffsetBox(
+      hx,
+      hy,
+      center,
+      angle,
+    );
+  }
+
+  late final _b2MakeOffsetBoxPtr = _lookup<
+      ffi.NativeFunction<
+          b2Polygon Function(
+              ffi.Float, ffi.Float, b2Vec2, ffi.Float)>>('b2MakeOffsetBox');
+  late final _b2MakeOffsetBox = _b2MakeOffsetBoxPtr
+      .asFunction<b2Polygon Function(double, double, b2Vec2, double)>();
+
+  b2MassData b2ComputeCircleMass(
+    ffi.Pointer<b2Circle> shape,
+    double density,
+  ) {
+    return _b2ComputeCircleMass(
+      shape,
+      density,
+    );
+  }
+
+  late final _b2ComputeCircleMassPtr = _lookup<
+      ffi.NativeFunction<
+          b2MassData Function(
+              ffi.Pointer<b2Circle>, ffi.Float)>>('b2ComputeCircleMass');
+  late final _b2ComputeCircleMass = _b2ComputeCircleMassPtr
+      .asFunction<b2MassData Function(ffi.Pointer<b2Circle>, double)>();
+
+  b2MassData b2ComputeCapsuleMass(
+    ffi.Pointer<b2Capsule> shape,
+    double density,
+  ) {
+    return _b2ComputeCapsuleMass(
+      shape,
+      density,
+    );
+  }
+
+  late final _b2ComputeCapsuleMassPtr = _lookup<
+      ffi.NativeFunction<
+          b2MassData Function(
+              ffi.Pointer<b2Capsule>, ffi.Float)>>('b2ComputeCapsuleMass');
+  late final _b2ComputeCapsuleMass = _b2ComputeCapsuleMassPtr
+      .asFunction<b2MassData Function(ffi.Pointer<b2Capsule>, double)>();
+
+  b2MassData b2ComputePolygonMass(
+    ffi.Pointer<b2Polygon> shape,
+    double density,
+  ) {
+    return _b2ComputePolygonMass(
+      shape,
+      density,
+    );
+  }
+
+  late final _b2ComputePolygonMassPtr = _lookup<
+      ffi.NativeFunction<
+          b2MassData Function(
+              ffi.Pointer<b2Polygon>, ffi.Float)>>('b2ComputePolygonMass');
+  late final _b2ComputePolygonMass = _b2ComputePolygonMassPtr
+      .asFunction<b2MassData Function(ffi.Pointer<b2Polygon>, double)>();
+
+  b2AABB b2ComputeCircleAABB(
+    ffi.Pointer<b2Circle> shape,
+    b2Transform xf,
+  ) {
+    return _b2ComputeCircleAABB(
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2ComputeCircleAABBPtr = _lookup<
+      ffi.NativeFunction<
+          b2AABB Function(
+              ffi.Pointer<b2Circle>, b2Transform)>>('b2ComputeCircleAABB');
+  late final _b2ComputeCircleAABB = _b2ComputeCircleAABBPtr
+      .asFunction<b2AABB Function(ffi.Pointer<b2Circle>, b2Transform)>();
+
+  b2AABB b2ComputeCapsuleAABB(
+    ffi.Pointer<b2Capsule> shape,
+    b2Transform xf,
+  ) {
+    return _b2ComputeCapsuleAABB(
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2ComputeCapsuleAABBPtr = _lookup<
+      ffi.NativeFunction<
+          b2AABB Function(
+              ffi.Pointer<b2Capsule>, b2Transform)>>('b2ComputeCapsuleAABB');
+  late final _b2ComputeCapsuleAABB = _b2ComputeCapsuleAABBPtr
+      .asFunction<b2AABB Function(ffi.Pointer<b2Capsule>, b2Transform)>();
+
+  b2AABB b2ComputePolygonAABB(
+    ffi.Pointer<b2Polygon> shape,
+    b2Transform xf,
+  ) {
+    return _b2ComputePolygonAABB(
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2ComputePolygonAABBPtr = _lookup<
+      ffi.NativeFunction<
+          b2AABB Function(
+              ffi.Pointer<b2Polygon>, b2Transform)>>('b2ComputePolygonAABB');
+  late final _b2ComputePolygonAABB = _b2ComputePolygonAABBPtr
+      .asFunction<b2AABB Function(ffi.Pointer<b2Polygon>, b2Transform)>();
+
+  b2AABB b2ComputeSegmentAABB(
+    ffi.Pointer<b2Segment> shape,
+    b2Transform xf,
+  ) {
+    return _b2ComputeSegmentAABB(
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2ComputeSegmentAABBPtr = _lookup<
+      ffi.NativeFunction<
+          b2AABB Function(
+              ffi.Pointer<b2Segment>, b2Transform)>>('b2ComputeSegmentAABB');
+  late final _b2ComputeSegmentAABB = _b2ComputeSegmentAABBPtr
+      .asFunction<b2AABB Function(ffi.Pointer<b2Segment>, b2Transform)>();
+
+  bool b2PointInCircle(
+    b2Vec2 point,
+    ffi.Pointer<b2Circle> shape,
+    b2Transform xf,
+  ) {
+    return _b2PointInCircle(
+      point,
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2PointInCirclePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(
+              b2Vec2, ffi.Pointer<b2Circle>, b2Transform)>>('b2PointInCircle');
+  late final _b2PointInCircle = _b2PointInCirclePtr
+      .asFunction<bool Function(b2Vec2, ffi.Pointer<b2Circle>, b2Transform)>();
+
+  bool b2PointInCapsule(
+    b2Vec2 point,
+    ffi.Pointer<b2Capsule> shape,
+    b2Transform xf,
+  ) {
+    return _b2PointInCapsule(
+      point,
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2PointInCapsulePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(b2Vec2, ffi.Pointer<b2Capsule>,
+              b2Transform)>>('b2PointInCapsule');
+  late final _b2PointInCapsule = _b2PointInCapsulePtr
+      .asFunction<bool Function(b2Vec2, ffi.Pointer<b2Capsule>, b2Transform)>();
+
+  bool b2PointInPolygon(
+    b2Vec2 point,
+    ffi.Pointer<b2Polygon> shape,
+    b2Transform xf,
+  ) {
+    return _b2PointInPolygon(
+      point,
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2PointInPolygonPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(b2Vec2, ffi.Pointer<b2Polygon>,
+              b2Transform)>>('b2PointInPolygon');
+  late final _b2PointInPolygon = _b2PointInPolygonPtr
+      .asFunction<bool Function(b2Vec2, ffi.Pointer<b2Polygon>, b2Transform)>();
+
+  /// Ray cast versus shape. Initial overlap is treated as a miss.
+  b2RayCastOutput b2RayCastCircle(
+    ffi.Pointer<b2RayCastInput> input,
+    ffi.Pointer<b2Circle> shape,
+    b2Transform xf,
+  ) {
+    return _b2RayCastCircle(
+      input,
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2RayCastCirclePtr = _lookup<
+      ffi.NativeFunction<
+          b2RayCastOutput Function(ffi.Pointer<b2RayCastInput>,
+              ffi.Pointer<b2Circle>, b2Transform)>>('b2RayCastCircle');
+  late final _b2RayCastCircle = _b2RayCastCirclePtr.asFunction<
+      b2RayCastOutput Function(
+          ffi.Pointer<b2RayCastInput>, ffi.Pointer<b2Circle>, b2Transform)>();
+
+  b2RayCastOutput b2RayCastCapsule(
+    ffi.Pointer<b2RayCastInput> input,
+    ffi.Pointer<b2Capsule> shape,
+    b2Transform xf,
+  ) {
+    return _b2RayCastCapsule(
+      input,
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2RayCastCapsulePtr = _lookup<
+      ffi.NativeFunction<
+          b2RayCastOutput Function(ffi.Pointer<b2RayCastInput>,
+              ffi.Pointer<b2Capsule>, b2Transform)>>('b2RayCastCapsule');
+  late final _b2RayCastCapsule = _b2RayCastCapsulePtr.asFunction<
+      b2RayCastOutput Function(
+          ffi.Pointer<b2RayCastInput>, ffi.Pointer<b2Capsule>, b2Transform)>();
+
+  b2RayCastOutput b2RayCastSegment(
+    ffi.Pointer<b2RayCastInput> input,
+    ffi.Pointer<b2Segment> shape,
+    b2Transform xf,
+  ) {
+    return _b2RayCastSegment(
+      input,
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2RayCastSegmentPtr = _lookup<
+      ffi.NativeFunction<
+          b2RayCastOutput Function(ffi.Pointer<b2RayCastInput>,
+              ffi.Pointer<b2Segment>, b2Transform)>>('b2RayCastSegment');
+  late final _b2RayCastSegment = _b2RayCastSegmentPtr.asFunction<
+      b2RayCastOutput Function(
+          ffi.Pointer<b2RayCastInput>, ffi.Pointer<b2Segment>, b2Transform)>();
+
+  b2RayCastOutput b2RayCastPolygon(
+    ffi.Pointer<b2RayCastInput> input,
+    ffi.Pointer<b2Polygon> shape,
+    b2Transform xf,
+  ) {
+    return _b2RayCastPolygon(
+      input,
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2RayCastPolygonPtr = _lookup<
+      ffi.NativeFunction<
+          b2RayCastOutput Function(ffi.Pointer<b2RayCastInput>,
+              ffi.Pointer<b2Polygon>, b2Transform)>>('b2RayCastPolygon');
+  late final _b2RayCastPolygon = _b2RayCastPolygonPtr.asFunction<
+      b2RayCastOutput Function(
+          ffi.Pointer<b2RayCastInput>, ffi.Pointer<b2Polygon>, b2Transform)>();
 }
 
 /// mbstate_t is an opaque object to keep conversion state, during multibyte
@@ -448,26 +1041,6 @@ class b2Mat22 extends ffi.Struct {
   external b2Vec2 cy;
 }
 
-/// This describes the motion of a body/shape for TOI computation. Shapes are defined with respect to the body origin,
-/// which may not coincide with the center of mass. However, to support dynamics we must interpolate the center of mass
-/// position.
-class b2Sweep extends ffi.Struct {
-  /// local center of mass position
-  external b2Vec2 localCenter;
-
-  /// center world positions
-  external b2Vec2 c1;
-
-  external b2Vec2 c2;
-
-  /// world angles
-  @ffi.Float()
-  external double a1;
-
-  @ffi.Float()
-  external double a2;
-}
-
 /// Axis-aligned bounding box
 class b2AABB extends ffi.Struct {
   external b2Vec2 lowerBound;
@@ -527,6 +1100,10 @@ class b2WorldDef extends ffi.Struct {
   /// initial capacity for bodies
   @ffi.Int32()
   external int bodyCapacity;
+
+  /// initial capacity for joints
+  @ffi.Int32()
+  external int jointCapacity;
 
   /// initial capacity for shapes
   @ffi.Int32()
@@ -648,11 +1225,177 @@ class b2ShapeDef extends ffi.Struct {
   external bool isSensor;
 }
 
-class b2Polygon extends ffi.Opaque {}
+/// A mouse joint is used to make a point on a body track a
+/// specified world point. This a soft constraint with a maximum
+/// force. This allows the constraint to stretch without
+/// applying huge forces.
+/// NOTE: this joint is not documented in the manual because it was
+/// developed to be used in samples. If you want to learn how to
+/// use the mouse joint, look at the samples app.
+class b2MouseJointDef extends ffi.Struct {
+  /// The attached body. It should be dynamic.
+  external b2BodyId bodyId;
+
+  /// The initial world target point. This is assumed
+  /// to coincide with the body anchor initially.
+  external b2Vec2 target;
+
+  /// The maximum constraint force that can be exerted
+  /// to move the candidate body. Usually you will express
+  /// as some multiple of the weight (multiplier * mass * gravity).
+  @ffi.Float()
+  external double maxForce;
+
+  /// The linear stiffness in N/m
+  @ffi.Float()
+  external double stiffness;
+
+  /// The linear damping in N*s/m
+  @ffi.Float()
+  external double damping;
+}
+
+/// Revolute joint definition. This requires defining an anchor point where the
+/// bodies are joined. The definition uses local anchor points so that the
+/// initial configuration can violate the constraint slightly. You also need to
+/// specify the initial relative angle for joint limits. This helps when saving
+/// and loading a game.
+/// The local anchor points are measured from the body's origin
+/// rather than the center of mass because:
+/// 1. you might not know where the center of mass will be.
+/// 2. if you add/remove shapes from a body and recompute the mass,
+/// the joints will be broken.
+class b2RevoluteJointDef extends ffi.Struct {
+  /// The first attached body.
+  external b2BodyId bodyIdA;
+
+  /// The second attached body.
+  external b2BodyId bodyIdB;
+
+  /// The local anchor point relative to bodyA's origin.
+  external b2Vec2 localAnchorA;
+
+  /// The local anchor point relative to bodyB's origin.
+  external b2Vec2 localAnchorB;
+
+  /// The bodyB angle minus bodyA angle in the reference state (radians).
+  /// This defines the zero angle for the joint limit.
+  @ffi.Float()
+  external double referenceAngle;
+
+  /// A flag to enable joint limits.
+  @ffi.Bool()
+  external bool enableLimit;
+
+  /// The lower angle for the joint limit (radians).
+  @ffi.Float()
+  external double lowerAngle;
+
+  /// The upper angle for the joint limit (radians).
+  @ffi.Float()
+  external double upperAngle;
+
+  /// A flag to enable the joint motor.
+  @ffi.Bool()
+  external bool enableMotor;
+
+  /// The desired motor speed. Usually in radians per second.
+  @ffi.Float()
+  external double motorSpeed;
+
+  /// The maximum motor torque used to achieve the desired motor speed.
+  /// Usually in N-m.
+  @ffi.Float()
+  external double maxMotorTorque;
+
+  /// Set this flag to true if the attached bodies should collide.
+  @ffi.Bool()
+  external bool collideConnected;
+}
+
+/// A solid circle
+class b2Circle extends ffi.Struct {
+  external b2Vec2 point;
+
+  @ffi.Float()
+  external double radius;
+}
+
+/// A solid convex polygon. It is assumed that the interior of the polygon is to
+/// the left of each edge.
+/// Polygons have a maximum number of vertices equal to b2_maxPolygonVertices.
+/// In most cases you should not need many vertices for a convex polygon.
+class b2Polygon extends ffi.Struct {
+  @ffi.Array.multi([8])
+  external ffi.Array<b2Vec2> vertices;
+
+  @ffi.Array.multi([8])
+  external ffi.Array<b2Vec2> normals;
+
+  external b2Vec2 centroid;
+
+  @ffi.Int32()
+  external int count;
+}
 
 class b2DebugDraw extends ffi.Opaque {}
 
 class b2Profile extends ffi.Opaque {}
+
+/// This function receives shapes found in the AABB query.
+/// @return true if the query should continue
+typedef b2QueryCallbackFcn
+    = ffi.NativeFunction<ffi.Bool Function(b2ShapeId, ffi.Pointer<ffi.Void>)>;
+
+class b2Hull extends ffi.Opaque {}
+
+/// This holds the mass data computed for a shape.
+class b2MassData extends ffi.Struct {
+  /// The mass of the shape, usually in kilograms.
+  @ffi.Float()
+  external double mass;
+
+  /// The position of the shape's centroid relative to the shape's origin.
+  external b2Vec2 center;
+
+  /// The rotational inertia of the shape about the local origin.
+  @ffi.Float()
+  external double I;
+}
+
+/// A solid capsule
+class b2Capsule extends ffi.Struct {
+  external b2Vec2 point1;
+
+  external b2Vec2 point2;
+
+  @ffi.Float()
+  external double radius;
+}
+
+/// A line segment with two-sided collision.
+class b2Segment extends ffi.Struct {
+  external b2Vec2 point1;
+
+  external b2Vec2 point2;
+}
+
+/// A smooth line segment with one-sided collision. Only collides on the right side.
+/// Normally these are generated from a chain shape.
+/// ghost1 -> point1 -> point2 -> ghost2
+/// This is only relevant for contact manifolds, otherwise use a regular segment.
+class b2SmoothSegment extends ffi.Struct {
+  /// The tail ghost vertex
+  external b2Vec2 ghost1;
+
+  /// The line segment
+  external b2Vec2 point1;
+
+  external b2Vec2 point2;
+
+  /// The head ghost vertex
+  external b2Vec2 ghost2;
+}
 
 const int __WORDSIZE = 64;
 
@@ -820,15 +1563,9 @@ const int SIG_ATOMIC_MAX = 2147483647;
 
 const double b2_pi = 3.1415927410125732;
 
-const double b2_aabbMultiplier = 4.0;
-
 const double b2_angularSlop = 0.03490658849477768;
 
 const int b2_maxPolygonVertices = 8;
-
-const int b2_maxSubSteps = 8;
-
-const int b2_maxTOIContacts = 32;
 
 const int b2_maxWorlds = 32;
 
@@ -839,10 +1576,6 @@ const double b2_maxRotation = 1.5707963705062866;
 const double b2_maxRotationSquared = 2.4674012660980225;
 
 const double b2_baumgarte = 0.5;
-
-const double b2_toiBaumgarte = 0.75;
-
-const double b2_timeToSleep = 0.5;
 
 const double b2_angularSleepTolerance = 0.03490658849477768;
 
