@@ -1,26 +1,14 @@
 part of b2;
 
-class FFIWorld implements World {
-  FFIWorld({
-    /// Default values from `box2c/types.h`
-    ///
-    /// Gravity vector. Box2D has no up-vector defined.
-    double gravityX = 0.0,
-    double gravityY = -10.0,
-
-    /// Restitution velocity threshold, usually in m/s. Collisions above this
-    /// speed have restitution applied (will bounce).
-    double restitutionThreshold = 1.0,
-
-    /// Can bodies go to sleep to improve performance
-    bool enableSleep = true,
-
-    /// initial capacity for bodies
-    int bodyCapacity = 8,
-
-    /// initial capacity for shapes
-    int shapeCapacity = 8,
-  }) {
+class _FFIWorld implements World {
+  _FFIWorld(
+    double gravityX,
+    double gravityY,
+    double restitutionThreshold,
+    bool enableSleep,
+    int bodyCapacity,
+    int shapeCapacity,
+  ) {
     /// Make a world definition in C memory, and set values
     final worldDefPtr = calloc<b2WorldDef>();
     worldDefPtr.ref.gravity.x = gravityY;
@@ -36,6 +24,13 @@ class FFIWorld implements World {
   final List<b2BodyId> _bodyIds = [];
   late final b2WorldId _worldId;
 
+  // Typically we use a time step of 1/60 of a second (60Hz) and 10 iterations.
+  // This provides a high quality simulation in most game scenarios.
+  final double _timeStep = 1.0 / 60.0;
+  final int _velocityIterations = 6;
+  final int _positionIterations = 2;
+
+  @override
   Body createBody({
     BodyType type = BodyType.staticBody,
     double xPosition = 0.0,
@@ -86,22 +81,21 @@ class FFIWorld implements World {
     return FFIBody._(bodyId);
   }
 
+  @override
   enableSleeping(bool flag) {
     globalBindings.b2World_EnableSleeping(_worldId, flag);
   }
+
+  @override
+  void step() {
+    // Instruct the world to perform a single step of simulation.
+    // It is generally best to keep the time step and iterations fixed.
+    globalBindings.b2World_Step(
+        _worldId, _timeStep, _velocityIterations, _positionIterations);
+  }
+
+  @override
+  void destroy() {
+    globalBindings.b2DestroyWorld(_worldId);
+  }
 }
-
-// class Vec2 {
-//   Vec2(double x, double y) : _nativeB2Vec2 = malloc<b2Vec2>() {
-//     _nativeB2Vec2.ref.x = x;
-//     _nativeB2Vec2.ref.y = y;
-//   }
-
-//   Vec2._(this._nativeB2Vec2);
-
-//   final Pointer<b2Vec2> _nativeB2Vec2;
-
-//   void dispose() {
-//     calloc.free(_nativeB2Vec2);
-//   }
-// }
