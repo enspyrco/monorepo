@@ -1,8 +1,10 @@
 import 'dart:math';
 
-import 'src/b2_enums.dart';
+import 'enums.dart';
 
 abstract class World {
+  void step();
+
   Body createBody({
     BodyType type = BodyType.staticBody,
     double xPosition = 0.0,
@@ -20,9 +22,20 @@ abstract class World {
     bool isEnabled = true,
   });
 
-  enableSleeping(bool flag);
+  void enableSleeping(bool flag);
+
+  void destroy();
 }
 
 abstract class Body {
+  Shape createBoxShape({
+    required double width,
+    required double height,
+    double density,
+    double friction,
+  });
   Point get position;
+  double get angle;
 }
+
+abstract class Shape {}
