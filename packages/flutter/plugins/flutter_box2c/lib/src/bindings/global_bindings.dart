@@ -7,6 +7,16 @@ const String _libName = 'flutter_box2c';
 
 /// The dynamic library in which the symbols for [FlutterBox2cBindings] can be found.
 final DynamicLibrary _dylib = () {
+  if (Platform.environment.containsKey('FLUTTER_TEST')) {
+    const testLibPath = 'test/flutter_box2c.dylib';
+
+    if (!Platform.isMacOS) {
+      throw 'Tests currently use $testLibPath and check for FLUTTER_TEST '
+          'so only work when using flutter_test on macos, PRs welcome!';
+    }
+    return DynamicLibrary.open(testLibPath);
+  }
+
   if (Platform.isMacOS || Platform.isIOS) {
     return DynamicLibrary.open('$_libName.framework/$_libName');
   }
