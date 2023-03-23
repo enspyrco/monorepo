@@ -1,0 +1,1907 @@
+{
+  "document": {
+    "id": "doc",
+    "name": "New Document",
+    "version": 15.5,
+    "pages": {
+      "page": {
+        "id": "page",
+        "name": "Page 1",
+        "childIndex": 1,
+        "shapes": {
+          "eeaf068f-95f7-4d85-0ec5-07a5cfe580a0": {
+            "id": "eeaf068f-95f7-4d85-0ec5-07a5cfe580a0",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 1,
+            "point": [
+              302.8,
+              -65.17
+            ],
+            "size": [
+              208.74,
+              45.01
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "AndroidCamera",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "c800bc35-e917-4ae1-36e3-a11973a6204d": {
+            "id": "c800bc35-e917-4ae1-36e3-a11973a6204d",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 1,
+            "point": [
+              523.31,
+              199.1
+            ],
+            "size": [
+              230.98,
+              155.26
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "37589b9b-7b94-4cbc-093d-ef0ae2fbaa08": {
+            "id": "37589b9b-7b94-4cbc-093d-ef0ae2fbaa08",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 3,
+            "point": [
+              125.86,
+              -18.99
+            ],
+            "rotation": 0,
+            "text": "createCamera\n(ResolutionPreset.low)",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 0.9925735294117648,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "d2170e3f-b309-4121-349c-1dbb34cd5449": {
+            "id": "d2170e3f-b309-4121-349c-1dbb34cd5449",
+            "type": "arrow",
+            "name": "Arrow",
+            "parentId": "page",
+            "childIndex": 4,
+            "point": [
+              362.27,
+              -20.16
+            ],
+            "rotation": 0,
+            "bend": 0.0000041614189743410825,
+            "handles": {
+              "start": {
+                "id": "start",
+                "index": 0,
+                "point": [
+                  0,
+                  0
+                ],
+                "canBind": true,
+                "bindingId": "436c1879-4b6a-4b24-187b-3b79605dc41d"
+              },
+              "end": {
+                "id": "end",
+                "index": 1,
+                "point": [
+                  1.73,
+                  75.27
+                ],
+                "canBind": true
+              },
+              "bend": {
+                "id": "bend",
+                "index": 2,
+                "point": [
+                  0.87,
+                  37.64
+                ]
+              }
+            },
+            "decorations": {
+              "end": "arrow"
+            },
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "f0d35a19-e073-4ab0-2d14-d28ebdfc2ab5": {
+            "id": "f0d35a19-e073-4ab0-2d14-d28ebdfc2ab5",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 1,
+            "point": [
+              786.29,
+              199.1
+            ],
+            "size": [
+              230.98,
+              155.26
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "f7d533c3-ed0b-4d4d-1cfa-0c942fbbb3a2": {
+            "id": "f7d533c3-ed0b-4d4d-1cfa-0c942fbbb3a2",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 1,
+            "point": [
+              1049.27,
+              199.1
+            ],
+            "size": [
+              230.98,
+              155.26
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "b6de33b5-9a44-4261-1fc0-650ea0ea48f2": {
+            "id": "b6de33b5-9a44-4261-1fc0-650ea0ea48f2",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 5,
+            "point": [
+              -24.14,
+              59.14
+            ],
+            "rotation": 0,
+            "text": "_channel.invokeMapMethod('create'...)",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "cfc2c9ba-0c5a-4912-081b-c9811ac2f83a": {
+            "id": "cfc2c9ba-0c5a-4912-081b-c9811ac2f83a",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 6,
+            "point": [
+              13.433333333333366,
+              267.1066666666667
+            ],
+            "rotation": 0,
+            "text": "MethodCallHandlerImpl.onMethodCall",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "845d4592-c113-421a-359d-8e8c6a468aa4": {
+            "id": "845d4592-c113-421a-359d-8e8c6a468aa4",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 7,
+            "point": [
+              126.61333333333332,
+              362.56
+            ],
+            "rotation": 0,
+            "text": "instantiateCamera",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "c504608d-2663-4047-1243-eaf4b64635e0": {
+            "id": "c504608d-2663-4047-1243-eaf4b64635e0",
+            "type": "arrow",
+            "name": "Arrow",
+            "parentId": "page",
+            "childIndex": 8,
+            "point": [
+              207.42,
+              312.17
+            ],
+            "rotation": 0,
+            "bend": 0.00021656959718683512,
+            "handles": {
+              "start": {
+                "id": "start",
+                "index": 0,
+                "point": [
+                  0.88,
+                  0
+                ],
+                "canBind": true
+              },
+              "end": {
+                "id": "end",
+                "index": 1,
+                "point": [
+                  0,
+                  42.39
+                ],
+                "canBind": true,
+                "bindingId": "2b1367e6-12be-4712-1e79-b64ba03e1a35"
+              },
+              "bend": {
+                "id": "bend",
+                "index": 2,
+                "point": [
+                  0.44,
+                  21.2
+                ]
+              }
+            },
+            "decorations": {
+              "end": "arrow"
+            },
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "f13ab54d-77e0-4a06-1b35-5d7ee75c32f4": {
+            "id": "f13ab54d-77e0-4a06-1b35-5d7ee75c32f4",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 9,
+            "point": [
+              30.646666666666675,
+              435.78666666666663
+            ],
+            "rotation": 0,
+            "text": "new Camera(...\n            resolutionPreset,",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "6c44330c-49f2-473b-0613-f8c6f06bd48b": {
+            "id": "6c44330c-49f2-473b-0613-f8c6f06bd48b",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 9,
+            "point": [
+              287.64666666666665,
+              435.78666666666663
+            ],
+            "rotation": 0,
+            "text": "new Camera(...\n            resolutionPreset,",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          }
+        },
+        "bindings": {
+          "436c1879-4b6a-4b24-187b-3b79605dc41d": {
+            "id": "436c1879-4b6a-4b24-187b-3b79605dc41d",
+            "type": "arrow",
+            "fromId": "d2170e3f-b309-4121-349c-1dbb34cd5449",
+            "toId": "eeaf068f-95f7-4d85-0ec5-07a5cfe580a0",
+            "handleId": "start",
+            "point": [
+              0.31,
+              0.32
+            ],
+            "distance": 16
+          },
+          "2b1367e6-12be-4712-1e79-b64ba03e1a35": {
+            "id": "2b1367e6-12be-4712-1e79-b64ba03e1a35",
+            "type": "arrow",
+            "fromId": "c504608d-2663-4047-1243-eaf4b64635e0",
+            "toId": "845d4592-c113-421a-359d-8e8c6a468aa4",
+            "handleId": "end",
+            "point": [
+              0.45,
+              0.54
+            ],
+            "distance": 8
+          }
+        }
+      },
+      "262b3bed-d6bc-4efa-1dae-55f62de7680b": {
+        "id": "262b3bed-d6bc-4efa-1dae-55f62de7680b",
+        "name": "Page 2",
+        "childIndex": 2,
+        "shapes": {
+          "e1231ee9-d8b1-4477-184f-c2ab24007ba6": {
+            "id": "e1231ee9-d8b1-4477-184f-c2ab24007ba6",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "262b3bed-d6bc-4efa-1dae-55f62de7680b",
+            "childIndex": 1,
+            "point": [
+              395.91,
+              333.75
+            ],
+            "size": [
+              114.45,
+              119.76
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "Shape",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "c81766f7-1efc-4195-32c0-354def6efb92": {
+            "id": "c81766f7-1efc-4195-32c0-354def6efb92",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "262b3bed-d6bc-4efa-1dae-55f62de7680b",
+            "childIndex": 2,
+            "point": [
+              800.91,
+              297.39
+            ],
+            "size": [
+              128.9,
+              127.65
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "Body",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "981c38f5-6312-4d4d-1946-b7f8cd93f0df": {
+            "id": "981c38f5-6312-4d4d-1946-b7f8cd93f0df",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "262b3bed-d6bc-4efa-1dae-55f62de7680b",
+            "childIndex": 3,
+            "point": [
+              536.11,
+              403.59
+            ],
+            "size": [
+              226.5,
+              66.87
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "Fixture",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "68e17971-1551-4c7a-2d8e-b66e0943e2b3": {
+            "id": "68e17971-1551-4c7a-2d8e-b66e0943e2b3",
+            "type": "text",
+            "name": "Text",
+            "parentId": "262b3bed-d6bc-4efa-1dae-55f62de7680b",
+            "childIndex": 4,
+            "point": [
+              90.97,
+              281.14
+            ],
+            "rotation": 0,
+            "text": "A 2D geometrical object,\nsuch as a circle or polygon.",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "4271cdfa-152e-4671-1d30-ec5c70e8343d": {
+            "id": "4271cdfa-152e-4671-1d30-ec5c70e8343d",
+            "type": "draw",
+            "name": "Draw",
+            "parentId": "262b3bed-d6bc-4efa-1dae-55f62de7680b",
+            "childIndex": 5,
+            "point": [
+              343.68,
+              336.98
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "dashed",
+              "scale": 1
+            },
+            "points": [
+              [
+                52.54,
+                41.82,
+                0.5
+              ],
+              [
+                52.54,
+                41.82,
+                0.5
+              ],
+              [
+                52.4,
+                41.54,
+                0.5
+              ],
+              [
+                51.94,
+                41.54,
+                0.5
+              ],
+              [
+                51.74,
+                41.54,
+                0.5
+              ],
+              [
+                50.86,
+                41.54,
+                0.5
+              ],
+              [
+                49.94,
+                41.54,
+                0.5
+              ],
+              [
+                49.1,
+                41.02,
+                0.5
+              ],
+              [
+                47.26,
+                40.1,
+                0.5
+              ],
+              [
+                46,
+                39.6,
+                0.5
+              ],
+              [
+                44.58,
+                39.18,
+                0.5
+              ],
+              [
+                41.98,
+                37.64,
+                0.5
+              ],
+              [
+                40.56,
+                36.76,
+                0.5
+              ],
+              [
+                39.42,
+                36.1,
+                0.5
+              ],
+              [
+                37.98,
+                34.82,
+                0.5
+              ],
+              [
+                36.44,
+                33.36,
+                0.5
+              ],
+              [
+                34.48,
+                31.98,
+                0.5
+              ],
+              [
+                33.16,
+                30.54,
+                0.5
+              ],
+              [
+                31.42,
+                29.12,
+                0.5
+              ],
+              [
+                29.74,
+                27.44,
+                0.5
+              ],
+              [
+                28.58,
+                26.28,
+                0.5
+              ],
+              [
+                27.22,
+                24.92,
+                0.5
+              ],
+              [
+                26.3,
+                24,
+                0.5
+              ],
+              [
+                25.5,
+                22.84,
+                0.5
+              ],
+              [
+                24.66,
+                21.9,
+                0.5
+              ],
+              [
+                23.74,
+                21.36,
+                0.5
+              ],
+              [
+                23.2,
+                20.5,
+                0.5
+              ],
+              [
+                22.72,
+                19.58,
+                0.5
+              ],
+              [
+                21.86,
+                19.04,
+                0.5
+              ],
+              [
+                21.4,
+                18.64,
+                0.5
+              ],
+              [
+                20.94,
+                17.74,
+                0.5
+              ],
+              [
+                20.52,
+                17.3,
+                0.5
+              ],
+              [
+                20.14,
+                16.9,
+                0.5
+              ],
+              [
+                19.96,
+                16.74,
+                0.5
+              ],
+              [
+                19.66,
+                16.18,
+                0.5
+              ],
+              [
+                19.4,
+                16.06,
+                0.5
+              ],
+              [
+                19.4,
+                15.86,
+                0.5
+              ],
+              [
+                19.24,
+                15.62,
+                0.5
+              ],
+              [
+                19.08,
+                15.46,
+                0.5
+              ],
+              [
+                18.9,
+                15.28,
+                0.5
+              ],
+              [
+                18.54,
+                14.92,
+                0.5
+              ],
+              [
+                18.04,
+                14.44,
+                0.5
+              ],
+              [
+                17.76,
+                14.34,
+                0.5
+              ],
+              [
+                17.38,
+                14.14,
+                0.5
+              ],
+              [
+                16.46,
+                13.6,
+                0.5
+              ],
+              [
+                15.96,
+                13.2,
+                0.5
+              ],
+              [
+                15.56,
+                12.78,
+                0.5
+              ],
+              [
+                15.16,
+                12.4,
+                0.5
+              ],
+              [
+                14.78,
+                12,
+                0.5
+              ],
+              [
+                14.36,
+                11.6,
+                0.5
+              ],
+              [
+                13.96,
+                11.2,
+                0.5
+              ],
+              [
+                13.58,
+                10.8,
+                0.5
+              ],
+              [
+                12.68,
+                10.34,
+                0.5
+              ],
+              [
+                12.02,
+                9.82,
+                0.5
+              ],
+              [
+                11.56,
+                9.58,
+                0.5
+              ],
+              [
+                11.14,
+                9.28,
+                0.5
+              ],
+              [
+                10.5,
+                8.86,
+                0.5
+              ],
+              [
+                9.54,
+                8.14,
+                0.5
+              ],
+              [
+                9.34,
+                7.94,
+                0.5
+              ],
+              [
+                8.24,
+                7.28,
+                0.5
+              ],
+              [
+                7.84,
+                6.88,
+                0.5
+              ],
+              [
+                7.42,
+                6.48,
+                0.5
+              ],
+              [
+                7.04,
+                6.24,
+                0.5
+              ],
+              [
+                6.64,
+                6.08,
+                0.5
+              ],
+              [
+                6.42,
+                5.68,
+                0.5
+              ],
+              [
+                6.22,
+                5.28,
+                0.5
+              ],
+              [
+                5.74,
+                5.08,
+                0.5
+              ],
+              [
+                5.46,
+                4.88,
+                0.5
+              ],
+              [
+                5.06,
+                4.5,
+                0.5
+              ],
+              [
+                4.68,
+                4.3,
+                0.5
+              ],
+              [
+                4.18,
+                3.98,
+                0.5
+              ],
+              [
+                4.14,
+                3.64,
+                0.5
+              ],
+              [
+                3.98,
+                3.64,
+                0.5
+              ],
+              [
+                3.82,
+                3.64,
+                0.5
+              ],
+              [
+                3.82,
+                3.48,
+                0.5
+              ],
+              [
+                3.82,
+                3.3,
+                0.5
+              ],
+              [
+                3.66,
+                3.28,
+                0.5
+              ],
+              [
+                3.48,
+                3.1,
+                0.5
+              ],
+              [
+                3.48,
+                2.9,
+                0.5
+              ],
+              [
+                3.3,
+                2.72,
+                0.5
+              ],
+              [
+                2.96,
+                2.54,
+                0.5
+              ],
+              [
+                2.78,
+                2.36,
+                0.5
+              ],
+              [
+                2.46,
+                2.16,
+                0.5
+              ],
+              [
+                2.44,
+                2,
+                0.5
+              ],
+              [
+                2.44,
+                1.82,
+                0.5
+              ],
+              [
+                2.28,
+                1.82,
+                0.5
+              ],
+              [
+                2.1,
+                1.7,
+                0.5
+              ],
+              [
+                2.1,
+                1.5,
+                0.5
+              ],
+              [
+                1.96,
+                1.42,
+                0.5
+              ],
+              [
+                1.78,
+                1.42,
+                0.5
+              ],
+              [
+                1.6,
+                1.28,
+                0.5
+              ],
+              [
+                1.42,
+                1.1,
+                0.5
+              ],
+              [
+                1.24,
+                1.08,
+                0.5
+              ],
+              [
+                1.06,
+                0.9,
+                0.5
+              ],
+              [
+                1.06,
+                0.7,
+                0.5
+              ],
+              [
+                0.9,
+                0.68,
+                0.5
+              ],
+              [
+                0.72,
+                0.5,
+                0.5
+              ],
+              [
+                0.4,
+                0.34,
+                0.5
+              ],
+              [
+                0.18,
+                0.34,
+                0.5
+              ],
+              [
+                0,
+                0,
+                0.5
+              ]
+            ],
+            "isComplete": true
+          },
+          "52b1698a-cfeb-4345-2adc-62c6b635e3c5": {
+            "id": "52b1698a-cfeb-4345-2adc-62c6b635e3c5",
+            "type": "text",
+            "name": "Text",
+            "parentId": "262b3bed-d6bc-4efa-1dae-55f62de7680b",
+            "childIndex": 6,
+            "point": [
+              768.84,
+              134.38
+            ],
+            "rotation": 0,
+            "text": "A chunk of matter so strong, \nthe distance between any two bits of \nmatter on the chunk is constant. ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "dashed",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "9c075f50-6455-41f3-0604-b16a896086ef": {
+            "id": "9c075f50-6455-41f3-0604-b16a896086ef",
+            "type": "text",
+            "name": "Text",
+            "parentId": "262b3bed-d6bc-4efa-1dae-55f62de7680b",
+            "childIndex": 7,
+            "point": [
+              551.9,
+              473.96
+            ],
+            "rotation": 0,
+            "text": "- binds a shape to a body\n- adds material properties such as \n    density, friction, and restitution. \n- puts a shape into the broad-phase\n    collision system",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "dashed",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "start"
+            }
+          },
+          "fd1d9914-dbf4-4499-13b6-439de801369e": {
+            "id": "fd1d9914-dbf4-4499-13b6-439de801369e",
+            "type": "draw",
+            "name": "Draw",
+            "parentId": "262b3bed-d6bc-4efa-1dae-55f62de7680b",
+            "childIndex": 8,
+            "point": [
+              871.98,
+              233.18
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "dashed",
+              "scale": 1,
+              "textAlign": "start"
+            },
+            "points": [
+              [
+                0,
+                56.4,
+                0.5
+              ],
+              [
+                0,
+                56.4,
+                0.5
+              ],
+              [
+                0,
+                56.56,
+                0.5
+              ],
+              [
+                0.16,
+                56.14,
+                0.5
+              ],
+              [
+                0.16,
+                54.24,
+                0.5
+              ],
+              [
+                0.16,
+                51.1,
+                0.5
+              ],
+              [
+                0.16,
+                48.1,
+                0.5
+              ],
+              [
+                1.4,
+                43.74,
+                0.5
+              ],
+              [
+                4.44,
+                37.24,
+                0.5
+              ],
+              [
+                7.6,
+                30.04,
+                0.5
+              ],
+              [
+                15.7,
+                18.92,
+                0.5
+              ],
+              [
+                18.94,
+                15.82,
+                0.5
+              ],
+              [
+                23.14,
+                10.78,
+                0.5
+              ],
+              [
+                26.58,
+                6.54,
+                0.5
+              ],
+              [
+                28.8,
+                4.42,
+                0.5
+              ],
+              [
+                31.04,
+                2.86,
+                0.5
+              ],
+              [
+                33.16,
+                1.12,
+                0.5
+              ],
+              [
+                34.02,
+                0.62,
+                0.5
+              ],
+              [
+                34.66,
+                0.2,
+                0.5
+              ],
+              [
+                35.04,
+                0,
+                0.5
+              ],
+              [
+                35.54,
+                0,
+                0.5
+              ],
+              [
+                35.92,
+                0,
+                0.5
+              ],
+              [
+                36.3,
+                0,
+                0.5
+              ],
+              [
+                36.32,
+                0.16,
+                0.5
+              ],
+              [
+                36.32,
+                0.46,
+                0.5
+              ],
+              [
+                36.32,
+                0.62,
+                0.5
+              ],
+              [
+                36.32,
+                0.8,
+                0.5
+              ],
+              [
+                36.32,
+                0.94,
+                0.5
+              ]
+            ],
+            "isComplete": true
+          },
+          "deb7c1e4-088c-4f30-113f-b9f1c0cf21b2": {
+            "id": "deb7c1e4-088c-4f30-113f-b9f1c0cf21b2",
+            "type": "draw",
+            "name": "Draw",
+            "parentId": "262b3bed-d6bc-4efa-1dae-55f62de7680b",
+            "childIndex": 9,
+            "point": [
+              514.82,
+              429.22
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "dotted",
+              "scale": 1,
+              "textAlign": "start"
+            },
+            "points": [
+              [
+                15.2,
+                6.02,
+                0.5
+              ],
+              [
+                15.2,
+                6.02,
+                0.5
+              ],
+              [
+                15.04,
+                5.74,
+                0.5
+              ],
+              [
+                14.42,
+                5.74,
+                0.5
+              ],
+              [
+                14.22,
+                5.74,
+                0.5
+              ],
+              [
+                13.5,
+                5.74,
+                0.5
+              ],
+              [
+                12.9,
+                5.74,
+                0.5
+              ],
+              [
+                11.92,
+                5.74,
+                0.5
+              ],
+              [
+                10.9,
+                5.32,
+                0.5
+              ],
+              [
+                10,
+                4.86,
+                0.5
+              ],
+              [
+                9.32,
+                4.7,
+                0.5
+              ],
+              [
+                8.84,
+                4.48,
+                0.5
+              ],
+              [
+                8.42,
+                4.36,
+                0.5
+              ],
+              [
+                8.04,
+                4.16,
+                0.5
+              ],
+              [
+                6.82,
+                3.84,
+                0.5
+              ],
+              [
+                6.62,
+                3.66,
+                0.5
+              ],
+              [
+                6.36,
+                3.58,
+                0.5
+              ],
+              [
+                5.98,
+                3.38,
+                0.5
+              ],
+              [
+                5.6,
+                3.18,
+                0.5
+              ],
+              [
+                4.88,
+                3.02,
+                0.5
+              ],
+              [
+                4.5,
+                2.8,
+                0.5
+              ],
+              [
+                4.1,
+                2.8,
+                0.5
+              ],
+              [
+                3.9,
+                2.8,
+                0.5
+              ],
+              [
+                3.72,
+                2.62,
+                0.5
+              ],
+              [
+                3.36,
+                2.44,
+                0.5
+              ],
+              [
+                2.84,
+                2.44,
+                0.5
+              ],
+              [
+                2.48,
+                2.44,
+                0.5
+              ],
+              [
+                2.12,
+                2.12,
+                0.5
+              ],
+              [
+                1.74,
+                2.06,
+                0.5
+              ],
+              [
+                1.36,
+                1.7,
+                0.5
+              ],
+              [
+                1.16,
+                1.66,
+                0.5
+              ],
+              [
+                1,
+                1.48,
+                0.5
+              ],
+              [
+                0.86,
+                1.32,
+                0.5
+              ],
+              [
+                0.68,
+                1.32,
+                0.5
+              ],
+              [
+                0.64,
+                1.16,
+                0.5
+              ],
+              [
+                0.64,
+                0.98,
+                0.5
+              ],
+              [
+                0.64,
+                0.66,
+                0.5
+              ],
+              [
+                0.48,
+                0.36,
+                0.5
+              ],
+              [
+                0.34,
+                0.36,
+                0.5
+              ],
+              [
+                0.32,
+                0.18,
+                0.5
+              ],
+              [
+                0.18,
+                0,
+                0.5
+              ],
+              [
+                0,
+                0,
+                0.5
+              ]
+            ],
+            "isComplete": true
+          },
+          "4e543b9e-ceb0-4120-1fe6-3c9a94eb6693": {
+            "id": "4e543b9e-ceb0-4120-1fe6-3c9a94eb6693",
+            "type": "draw",
+            "name": "Draw",
+            "parentId": "262b3bed-d6bc-4efa-1dae-55f62de7680b",
+            "childIndex": 10,
+            "point": [
+              763.46,
+              404.38
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "dotted",
+              "scale": 1,
+              "textAlign": "start"
+            },
+            "points": [
+              [
+                0,
+                27.18,
+                0.5
+              ],
+              [
+                0,
+                27.18,
+                0.5
+              ],
+              [
+                0.16,
+                27.18,
+                0.5
+              ],
+              [
+                0.62,
+                26.9,
+                0.5
+              ],
+              [
+                1.08,
+                26.9,
+                0.5
+              ],
+              [
+                1.52,
+                26.9,
+                0.5
+              ],
+              [
+                2,
+                26.9,
+                0.5
+              ],
+              [
+                3.42,
+                26.9,
+                0.5
+              ],
+              [
+                5.04,
+                26.9,
+                0.5
+              ],
+              [
+                6.02,
+                26.9,
+                0.5
+              ],
+              [
+                7.62,
+                26.9,
+                0.5
+              ],
+              [
+                8.3,
+                26.78,
+                0.5
+              ],
+              [
+                8.74,
+                26.56,
+                0.5
+              ],
+              [
+                9.42,
+                26.22,
+                0.5
+              ],
+              [
+                11.06,
+                25.26,
+                0.5
+              ],
+              [
+                11.8,
+                24.62,
+                0.5
+              ],
+              [
+                12,
+                24.62,
+                0.5
+              ],
+              [
+                12.52,
+                24.16,
+                0.5
+              ],
+              [
+                13.16,
+                23.52,
+                0.5
+              ],
+              [
+                14.08,
+                22.58,
+                0.5
+              ],
+              [
+                14.78,
+                21.86,
+                0.5
+              ],
+              [
+                15.16,
+                21.46,
+                0.5
+              ],
+              [
+                15.78,
+                21.04,
+                0.5
+              ],
+              [
+                16.5,
+                20.34,
+                0.5
+              ],
+              [
+                17.42,
+                19.54,
+                0.5
+              ],
+              [
+                18.08,
+                18.96,
+                0.5
+              ],
+              [
+                19,
+                18.06,
+                0.5
+              ],
+              [
+                20.16,
+                17.24,
+                0.5
+              ],
+              [
+                20.7,
+                16.4,
+                0.5
+              ],
+              [
+                22.12,
+                15.78,
+                0.5
+              ],
+              [
+                23.14,
+                14.94,
+                0.5
+              ],
+              [
+                23.6,
+                14.44,
+                0.5
+              ],
+              [
+                24.46,
+                13.58,
+                0.5
+              ],
+              [
+                25.38,
+                13.06,
+                0.5
+              ],
+              [
+                25.82,
+                12.66,
+                0.5
+              ],
+              [
+                26.3,
+                12.16,
+                0.5
+              ],
+              [
+                26.5,
+                11.96,
+                0.5
+              ],
+              [
+                26.78,
+                11.86,
+                0.5
+              ],
+              [
+                27.16,
+                11.66,
+                0.5
+              ],
+              [
+                27.82,
+                11.12,
+                0.5
+              ],
+              [
+                28.08,
+                11,
+                0.5
+              ],
+              [
+                28.2,
+                10.6,
+                0.5
+              ],
+              [
+                28.38,
+                10.4,
+                0.5
+              ],
+              [
+                28.64,
+                10.16,
+                0.5
+              ],
+              [
+                29.36,
+                9.42,
+                0.5
+              ],
+              [
+                29.76,
+                9.02,
+                0.5
+              ],
+              [
+                30.14,
+                8.62,
+                0.5
+              ],
+              [
+                30.62,
+                8.14,
+                0.5
+              ],
+              [
+                30.9,
+                8.02,
+                0.5
+              ],
+              [
+                31.28,
+                7.84,
+                0.5
+              ],
+              [
+                31.66,
+                7.44,
+                0.5
+              ],
+              [
+                32.16,
+                6.94,
+                0.5
+              ],
+              [
+                32.5,
+                6.58,
+                0.5
+              ],
+              [
+                32.84,
+                6.56,
+                0.5
+              ],
+              [
+                32.9,
+                6.22,
+                0.5
+              ],
+              [
+                33.24,
+                5.82,
+                0.5
+              ],
+              [
+                33.7,
+                5.34,
+                0.5
+              ],
+              [
+                33.88,
+                5.14,
+                0.5
+              ],
+              [
+                34.16,
+                4.88,
+                0.5
+              ],
+              [
+                34.44,
+                4.32,
+                0.5
+              ],
+              [
+                34.7,
+                4.2,
+                0.5
+              ],
+              [
+                34.7,
+                3.8,
+                0.5
+              ],
+              [
+                34.7,
+                3.6,
+                0.5
+              ],
+              [
+                35.08,
+                3.4,
+                0.5
+              ],
+              [
+                35.22,
+                3,
+                0.5
+              ],
+              [
+                35.46,
+                2.6,
+                0.5
+              ],
+              [
+                35.6,
+                2.36,
+                0.5
+              ],
+              [
+                35.84,
+                2.18,
+                0.5
+              ],
+              [
+                36.02,
+                1.78,
+                0.5
+              ],
+              [
+                36.22,
+                1.6,
+                0.5
+              ],
+              [
+                36.38,
+                1.42,
+                0.5
+              ],
+              [
+                36.56,
+                1.04,
+                0.5
+              ],
+              [
+                36.56,
+                0.54,
+                0.5
+              ],
+              [
+                36.86,
+                0.52,
+                0.5
+              ],
+              [
+                36.92,
+                0.18,
+                0.5
+              ],
+              [
+                36.92,
+                0,
+                0.5
+              ]
+            ],
+            "isComplete": true
+          }
+        },
+        "bindings": {}
+      }
+    },
+    "pageStates": {
+      "page": {
+        "id": "page",
+        "selectedIds": [
+          "6c44330c-49f2-473b-0613-f8c6f06bd48b"
+        ],
+        "camera": {
+          "point": [
+            270.92,
+            -111.49
+          ],
+          "zoom": 0.75
+        }
+      },
+      "262b3bed-d6bc-4efa-1dae-55f62de7680b": {
+        "id": "262b3bed-d6bc-4efa-1dae-55f62de7680b",
+        "selectedIds": [],
+        "camera": {
+          "point": [
+            -313.5416564941406,
+            -226.04165649414062
+          ],
+          "zoom": 1
+        }
+      }
+    },
+    "assets": {}
+  },
+  "assets": {}
+}
