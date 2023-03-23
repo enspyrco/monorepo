@@ -3,20 +3,83 @@ import 'dart:isolate';
 
 import 'package:flutter_box2c/src/bindings/global_bindings.dart';
 
+import 'interfaces.dart' as b2;
 import 'src/bindings/generated_bindings.dart';
-import 'src/b2_wrappers.dart' as b2;
+import 'src/b2.dart' as b2;
 
 String version() {
   b2Version version = globalBindings.b2_version;
   return '${version.major}.${version.major}.${version.revision}';
 }
 
+/// First step - adapt code from box2c/test_world.c
+/// https://github.com/erincatto/box2c/blob/main/test/test_world.c
 void fun() {
-  b2.Vec2 gravity = b2.Vec2(0.0, -10.0);
-
   // Construct a world object, which will hold and simulate the rigid bodies.
-  b2.WorldDef worldDef = b2.WorldDef();
-  b2.createWorld(worldDef);
+  b2.World world = b2.FFIWorld(gravityX: 0.0, gravityY: -10.0);
+
+  // Create the ground body.
+  b2.Body groundBody = world.createBody(xPosition: 0.0, yPosition: -10.0);
+
+  // // Define the ground box shape. The extents are the half-widths of the box.
+  // b2Polygon groundBox = b2MakeBox(50.0f, 10.0f);
+
+  // // Add the box shape to the ground body.
+  // b2ShapeDef groundShapeDef = b2DefaultShapeDef();
+  // b2Body_CreatePolygon(groundBodyId, &groundShapeDef, &groundBox);
+
+  // // Define the dynamic body. We set its position and call the body factory.
+  // b2BodyDef bodyDef = b2DefaultBodyDef();
+  // bodyDef.type = b2_dynamicBody;
+  // bodyDef.position = (b2Vec2){0.0f, 4.0f};
+  // b2BodyId bodyId = b2World_CreateBody(worldId, &bodyDef);
+
+  // // Define another box shape for our dynamic body.
+  // b2Polygon dynamicBox = b2MakeBox(1.0f, 1.0f);
+
+  // // Define the dynamic body fixture.
+  // b2ShapeDef shapeDef = b2DefaultShapeDef();
+
+  // // Set the box density to be non-zero, so it will be dynamic.
+  // shapeDef.density = 1.0f;
+
+  // // Override the default friction.
+  // shapeDef.friction = 0.3f;
+
+  // // Add the shape to the body.
+  // b2Body_CreatePolygon(bodyId, &shapeDef, &dynamicBox);
+
+  // // Prepare for simulation. Typically we use a time step of 1/60 of a
+  // // second (60Hz) and 10 iterations. This provides a high quality simulation
+  // // in most game scenarios.
+  // float timeStep = 1.0f / 60.0f;
+  // int32_t velocityIterations = 6;
+  // int32_t positionIterations = 2;
+
+  // b2Vec2 position = b2Body_GetPosition(bodyId);
+  // float angle = b2Body_GetAngle(bodyId);
+
+  // // This is our little game loop.
+  // for (int32_t i = 0; i < 60; ++i)
+  // {
+  // 	// Instruct the world to perform a single step of simulation.
+  // 	// It is generally best to keep the time step and iterations fixed.
+  // 	b2World_Step(worldId, timeStep, velocityIterations, positionIterations);
+
+  // 	// Now print the position and angle of the body.
+  // 	position = b2Body_GetPosition(bodyId);
+  // 	angle = b2Body_GetAngle(bodyId);
+
+  // 	//printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
+  // }
+
+  // // When the world destructor is called, all bodies and joints are freed. This can
+  // // create orphaned ids, so be careful about your world management.
+  // b2DestroyWorld(worldId);
+
+  // ENSURE(B2_ABS(position.x) < 0.01f);
+  // ENSURE(B2_ABS(position.y - 1.01f) < 0.01f);
+  // ENSURE(B2_ABS(angle) < 0.01f);
 }
 
 /// A very short-lived native function.

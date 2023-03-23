@@ -1,0 +1,1 @@
+/Users/nick/git/orgs/enspyrco/monorepo/packages/flutter/plugins/flutter_box2c/lib/src/bindings/generated_bindings.dart
