@@ -14,7 +14,7 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral
 
 SPEC CHECKSUMS:
-  flutter_box2c: 8cc1669c823f02dda47b9f8f58c743fbc8b962b7
+  flutter_box2c: d39c364cbea67582f1f45e3a8fcec8a9e491a7ab
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
 
 PODFILE CHECKSUM: 353c8bcc5d5b0994e508d035b5431cfe18c1dea7

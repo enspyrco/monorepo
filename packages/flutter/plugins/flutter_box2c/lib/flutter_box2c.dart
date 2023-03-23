@@ -10,6 +10,8 @@ String version() {
   return '${version.major}.${version.major}.${version.revision}';
 }
 
+b2CreateWorld();
+
 /// A very short-lived native function.
 ///
 /// For very short-lived functions, it is fine to call them on the main isolate.
