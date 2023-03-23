@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_box2c/flutter_box2c.dart' as b2;
 import 'package:flutter_test/flutter_test.dart';
 
@@ -27,7 +29,8 @@ void main() {
     // Perform the simulation.
     // This is our little game loop.
     for (int i = 0; i < 60; ++i) {
-      print('${dynamicBody.position} ${dynamicBody.angle}');
+      log('${dynamicBody.position} ${dynamicBody.angle}');
+      world.step();
     }
 
     // When the world destructor is called, all bodies and joints are freed. This can

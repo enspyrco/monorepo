@@ -25,6 +25,16 @@ Cocoapods can cache rather aggresively so changes may not affect a subsequent bu
 
 Running `bust_cache_then_build.sh` from `example/macos` should clear out build products and result in any changes being picked up during the build.
 
+## Running the tests
+
+I am (Mar 5 '23) using a symlink to the built dylib in `test/`
+
+The symlink points to the dylib generated during a debug build so that
+the test can obtain the file from it's local environment (or think it is).
+
+This is a dodgy hack, we will want to at some stage come up with
+a more permanent solution.
+
 ## Project stucture
 
 This template uses the following structure:
