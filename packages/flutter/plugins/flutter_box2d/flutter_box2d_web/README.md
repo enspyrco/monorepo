@@ -1,3 +1,4 @@
+# flutter_box2d_web
 
 Currently, the wasm file `Box2D.wasm` & glue code, `Box2D.js` must be added to `web/` in the project depending on `flutter_box2d`. One more file, `expose-box2d.js` must also be added, which is needed to load Box2D & expose the Box2D classes.
 
@@ -29,7 +30,7 @@ start using the package.
 ## Usage
 
 TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+to `/example` folder.
 
 ```dart
 const like = 'sample';
@@ -37,6 +38,6 @@ const like = 'sample';
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
+TODO: Tell users more about the package: where to find more information, how to
+contribute to the package, how to file issues, what response they can expect
 from the package authors, and more.

@@ -9,9 +9,9 @@ extension B2WorldExtensions on B2World {
   BoxEntity createBoxEntity(double width, double height,
       {bodyType = B2BodyType.dynamicBody,
       gravityScale = 1.0,
-      double x = 0.0,
+      double x = 10.0,
       double y = 0.0,
-      color = Colors.red}) {
+      color = Colors.blue}) {
     var zero = B2Vec2.from2(0, 0);
 
     final shape = B2PolygonShape()..setAsBox2(width, height);
