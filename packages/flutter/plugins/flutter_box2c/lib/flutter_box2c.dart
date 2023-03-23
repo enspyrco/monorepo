@@ -4,13 +4,21 @@ import 'dart:isolate';
 import 'package:flutter_box2c/src/bindings/global_bindings.dart';
 
 import 'src/bindings/generated_bindings.dart';
+import 'src/b2_wrappers.dart' as b2;
 
 String version() {
   b2Version version = globalBindings.b2_version;
   return '${version.major}.${version.major}.${version.revision}';
 }
 
-b2CreateWorld();
+void fun() {
+  b2.Vec2 gravity = b2.Vec2(0.0, -10.0);
+
+  // Construct a world object, which will hold and simulate the rigid bodies.
+  b2.WorldDef worldDef = b2.WorldDef();
+
+  b2.createWorld(worldDef);
+}
 
 /// A very short-lived native function.
 ///
