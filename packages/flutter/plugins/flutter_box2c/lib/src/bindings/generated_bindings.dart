@@ -8,9 +8,6 @@
 import 'dart:ffi' as ffi;
 
 /// Bindings for `src/flutter_box2c.h`.
-///
-/// Regenerate bindings with `flutter pub run ffigen --config ffigen.yaml`.
-///
 class FlutterBox2cBindings {
   /// Holds the symbol lookup function.
   final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
