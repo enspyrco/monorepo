@@ -542,6 +542,314 @@ class FlutterBox2cBindings {
   late final _b2World_QueryAABB = _b2World_QueryAABBPtr.asFunction<
       void Function(b2WorldId, b2AABB, ffi.Pointer<b2QueryCallbackFcn>,
           ffi.Pointer<ffi.Void>)>();
+
+  b2Polygon b2MakePolygon(
+    ffi.Pointer<b2Hull> hull,
+  ) {
+    return _b2MakePolygon(
+      hull,
+    );
+  }
+
+  late final _b2MakePolygonPtr =
+      _lookup<ffi.NativeFunction<b2Polygon Function(ffi.Pointer<b2Hull>)>>(
+          'b2MakePolygon');
+  late final _b2MakePolygon =
+      _b2MakePolygonPtr.asFunction<b2Polygon Function(ffi.Pointer<b2Hull>)>();
+
+  b2Polygon b2MakeBox(
+    double hx,
+    double hy,
+  ) {
+    return _b2MakeBox(
+      hx,
+      hy,
+    );
+  }
+
+  late final _b2MakeBoxPtr =
+      _lookup<ffi.NativeFunction<b2Polygon Function(ffi.Float, ffi.Float)>>(
+          'b2MakeBox');
+  late final _b2MakeBox =
+      _b2MakeBoxPtr.asFunction<b2Polygon Function(double, double)>();
+
+  b2Polygon b2MakeOffsetBox(
+    double hx,
+    double hy,
+    b2Vec2 center,
+    double angle,
+  ) {
+    return _b2MakeOffsetBox(
+      hx,
+      hy,
+      center,
+      angle,
+    );
+  }
+
+  late final _b2MakeOffsetBoxPtr = _lookup<
+      ffi.NativeFunction<
+          b2Polygon Function(
+              ffi.Float, ffi.Float, b2Vec2, ffi.Float)>>('b2MakeOffsetBox');
+  late final _b2MakeOffsetBox = _b2MakeOffsetBoxPtr
+      .asFunction<b2Polygon Function(double, double, b2Vec2, double)>();
+
+  b2MassData b2ComputeCircleMass(
+    ffi.Pointer<b2Circle> shape,
+    double density,
+  ) {
+    return _b2ComputeCircleMass(
+      shape,
+      density,
+    );
+  }
+
+  late final _b2ComputeCircleMassPtr = _lookup<
+      ffi.NativeFunction<
+          b2MassData Function(
+              ffi.Pointer<b2Circle>, ffi.Float)>>('b2ComputeCircleMass');
+  late final _b2ComputeCircleMass = _b2ComputeCircleMassPtr
+      .asFunction<b2MassData Function(ffi.Pointer<b2Circle>, double)>();
+
+  b2MassData b2ComputeCapsuleMass(
+    ffi.Pointer<b2Capsule> shape,
+    double density,
+  ) {
+    return _b2ComputeCapsuleMass(
+      shape,
+      density,
+    );
+  }
+
+  late final _b2ComputeCapsuleMassPtr = _lookup<
+      ffi.NativeFunction<
+          b2MassData Function(
+              ffi.Pointer<b2Capsule>, ffi.Float)>>('b2ComputeCapsuleMass');
+  late final _b2ComputeCapsuleMass = _b2ComputeCapsuleMassPtr
+      .asFunction<b2MassData Function(ffi.Pointer<b2Capsule>, double)>();
+
+  b2MassData b2ComputePolygonMass(
+    ffi.Pointer<b2Polygon> shape,
+    double density,
+  ) {
+    return _b2ComputePolygonMass(
+      shape,
+      density,
+    );
+  }
+
+  late final _b2ComputePolygonMassPtr = _lookup<
+      ffi.NativeFunction<
+          b2MassData Function(
+              ffi.Pointer<b2Polygon>, ffi.Float)>>('b2ComputePolygonMass');
+  late final _b2ComputePolygonMass = _b2ComputePolygonMassPtr
+      .asFunction<b2MassData Function(ffi.Pointer<b2Polygon>, double)>();
+
+  b2AABB b2ComputeCircleAABB(
+    ffi.Pointer<b2Circle> shape,
+    b2Transform xf,
+  ) {
+    return _b2ComputeCircleAABB(
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2ComputeCircleAABBPtr = _lookup<
+      ffi.NativeFunction<
+          b2AABB Function(
+              ffi.Pointer<b2Circle>, b2Transform)>>('b2ComputeCircleAABB');
+  late final _b2ComputeCircleAABB = _b2ComputeCircleAABBPtr
+      .asFunction<b2AABB Function(ffi.Pointer<b2Circle>, b2Transform)>();
+
+  b2AABB b2ComputeCapsuleAABB(
+    ffi.Pointer<b2Capsule> shape,
+    b2Transform xf,
+  ) {
+    return _b2ComputeCapsuleAABB(
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2ComputeCapsuleAABBPtr = _lookup<
+      ffi.NativeFunction<
+          b2AABB Function(
+              ffi.Pointer<b2Capsule>, b2Transform)>>('b2ComputeCapsuleAABB');
+  late final _b2ComputeCapsuleAABB = _b2ComputeCapsuleAABBPtr
+      .asFunction<b2AABB Function(ffi.Pointer<b2Capsule>, b2Transform)>();
+
+  b2AABB b2ComputePolygonAABB(
+    ffi.Pointer<b2Polygon> shape,
+    b2Transform xf,
+  ) {
+    return _b2ComputePolygonAABB(
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2ComputePolygonAABBPtr = _lookup<
+      ffi.NativeFunction<
+          b2AABB Function(
+              ffi.Pointer<b2Polygon>, b2Transform)>>('b2ComputePolygonAABB');
+  late final _b2ComputePolygonAABB = _b2ComputePolygonAABBPtr
+      .asFunction<b2AABB Function(ffi.Pointer<b2Polygon>, b2Transform)>();
+
+  b2AABB b2ComputeSegmentAABB(
+    ffi.Pointer<b2Segment> shape,
+    b2Transform xf,
+  ) {
+    return _b2ComputeSegmentAABB(
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2ComputeSegmentAABBPtr = _lookup<
+      ffi.NativeFunction<
+          b2AABB Function(
+              ffi.Pointer<b2Segment>, b2Transform)>>('b2ComputeSegmentAABB');
+  late final _b2ComputeSegmentAABB = _b2ComputeSegmentAABBPtr
+      .asFunction<b2AABB Function(ffi.Pointer<b2Segment>, b2Transform)>();
+
+  bool b2PointInCircle(
+    b2Vec2 point,
+    ffi.Pointer<b2Circle> shape,
+    b2Transform xf,
+  ) {
+    return _b2PointInCircle(
+      point,
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2PointInCirclePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(
+              b2Vec2, ffi.Pointer<b2Circle>, b2Transform)>>('b2PointInCircle');
+  late final _b2PointInCircle = _b2PointInCirclePtr
+      .asFunction<bool Function(b2Vec2, ffi.Pointer<b2Circle>, b2Transform)>();
+
+  bool b2PointInCapsule(
+    b2Vec2 point,
+    ffi.Pointer<b2Capsule> shape,
+    b2Transform xf,
+  ) {
+    return _b2PointInCapsule(
+      point,
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2PointInCapsulePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(b2Vec2, ffi.Pointer<b2Capsule>,
+              b2Transform)>>('b2PointInCapsule');
+  late final _b2PointInCapsule = _b2PointInCapsulePtr
+      .asFunction<bool Function(b2Vec2, ffi.Pointer<b2Capsule>, b2Transform)>();
+
+  bool b2PointInPolygon(
+    b2Vec2 point,
+    ffi.Pointer<b2Polygon> shape,
+    b2Transform xf,
+  ) {
+    return _b2PointInPolygon(
+      point,
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2PointInPolygonPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(b2Vec2, ffi.Pointer<b2Polygon>,
+              b2Transform)>>('b2PointInPolygon');
+  late final _b2PointInPolygon = _b2PointInPolygonPtr
+      .asFunction<bool Function(b2Vec2, ffi.Pointer<b2Polygon>, b2Transform)>();
+
+  /// Ray cast versus shape. Initial overlap is treated as a miss.
+  b2RayCastOutput b2RayCastCircle(
+    ffi.Pointer<b2RayCastInput> input,
+    ffi.Pointer<b2Circle> shape,
+    b2Transform xf,
+  ) {
+    return _b2RayCastCircle(
+      input,
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2RayCastCirclePtr = _lookup<
+      ffi.NativeFunction<
+          b2RayCastOutput Function(ffi.Pointer<b2RayCastInput>,
+              ffi.Pointer<b2Circle>, b2Transform)>>('b2RayCastCircle');
+  late final _b2RayCastCircle = _b2RayCastCirclePtr.asFunction<
+      b2RayCastOutput Function(
+          ffi.Pointer<b2RayCastInput>, ffi.Pointer<b2Circle>, b2Transform)>();
+
+  b2RayCastOutput b2RayCastCapsule(
+    ffi.Pointer<b2RayCastInput> input,
+    ffi.Pointer<b2Capsule> shape,
+    b2Transform xf,
+  ) {
+    return _b2RayCastCapsule(
+      input,
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2RayCastCapsulePtr = _lookup<
+      ffi.NativeFunction<
+          b2RayCastOutput Function(ffi.Pointer<b2RayCastInput>,
+              ffi.Pointer<b2Capsule>, b2Transform)>>('b2RayCastCapsule');
+  late final _b2RayCastCapsule = _b2RayCastCapsulePtr.asFunction<
+      b2RayCastOutput Function(
+          ffi.Pointer<b2RayCastInput>, ffi.Pointer<b2Capsule>, b2Transform)>();
+
+  b2RayCastOutput b2RayCastSegment(
+    ffi.Pointer<b2RayCastInput> input,
+    ffi.Pointer<b2Segment> shape,
+    b2Transform xf,
+  ) {
+    return _b2RayCastSegment(
+      input,
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2RayCastSegmentPtr = _lookup<
+      ffi.NativeFunction<
+          b2RayCastOutput Function(ffi.Pointer<b2RayCastInput>,
+              ffi.Pointer<b2Segment>, b2Transform)>>('b2RayCastSegment');
+  late final _b2RayCastSegment = _b2RayCastSegmentPtr.asFunction<
+      b2RayCastOutput Function(
+          ffi.Pointer<b2RayCastInput>, ffi.Pointer<b2Segment>, b2Transform)>();
+
+  b2RayCastOutput b2RayCastPolygon(
+    ffi.Pointer<b2RayCastInput> input,
+    ffi.Pointer<b2Polygon> shape,
+    b2Transform xf,
+  ) {
+    return _b2RayCastPolygon(
+      input,
+      shape,
+      xf,
+    );
+  }
+
+  late final _b2RayCastPolygonPtr = _lookup<
+      ffi.NativeFunction<
+          b2RayCastOutput Function(ffi.Pointer<b2RayCastInput>,
+              ffi.Pointer<b2Polygon>, b2Transform)>>('b2RayCastPolygon');
+  late final _b2RayCastPolygon = _b2RayCastPolygonPtr.asFunction<
+      b2RayCastOutput Function(
+          ffi.Pointer<b2RayCastInput>, ffi.Pointer<b2Polygon>, b2Transform)>();
 }
 
 /// mbstate_t is an opaque object to keep conversion state, during multibyte
@@ -1005,9 +1313,30 @@ class b2RevoluteJointDef extends ffi.Struct {
   external bool collideConnected;
 }
 
-class b2Circle extends ffi.Opaque {}
+/// A solid circle
+class b2Circle extends ffi.Struct {
+  external b2Vec2 point;
 
-class b2Polygon extends ffi.Opaque {}
+  @ffi.Float()
+  external double radius;
+}
+
+/// A solid convex polygon. It is assumed that the interior of the polygon is to
+/// the left of each edge.
+/// Polygons have a maximum number of vertices equal to b2_maxPolygonVertices.
+/// In most cases you should not need many vertices for a convex polygon.
+class b2Polygon extends ffi.Struct {
+  @ffi.Array.multi([8])
+  external ffi.Array<b2Vec2> vertices;
+
+  @ffi.Array.multi([8])
+  external ffi.Array<b2Vec2> normals;
+
+  external b2Vec2 centroid;
+
+  @ffi.Int32()
+  external int count;
+}
 
 class b2DebugDraw extends ffi.Opaque {}
 
@@ -1017,6 +1346,56 @@ class b2Profile extends ffi.Opaque {}
 /// @return true if the query should continue
 typedef b2QueryCallbackFcn
     = ffi.NativeFunction<ffi.Bool Function(b2ShapeId, ffi.Pointer<ffi.Void>)>;
+
+class b2Hull extends ffi.Opaque {}
+
+/// This holds the mass data computed for a shape.
+class b2MassData extends ffi.Struct {
+  /// The mass of the shape, usually in kilograms.
+  @ffi.Float()
+  external double mass;
+
+  /// The position of the shape's centroid relative to the shape's origin.
+  external b2Vec2 center;
+
+  /// The rotational inertia of the shape about the local origin.
+  @ffi.Float()
+  external double I;
+}
+
+/// A solid capsule
+class b2Capsule extends ffi.Struct {
+  external b2Vec2 point1;
+
+  external b2Vec2 point2;
+
+  @ffi.Float()
+  external double radius;
+}
+
+/// A line segment with two-sided collision.
+class b2Segment extends ffi.Struct {
+  external b2Vec2 point1;
+
+  external b2Vec2 point2;
+}
+
+/// A smooth line segment with one-sided collision. Only collides on the right side.
+/// Normally these are generated from a chain shape.
+/// ghost1 -> point1 -> point2 -> ghost2
+/// This is only relevant for contact manifolds, otherwise use a regular segment.
+class b2SmoothSegment extends ffi.Struct {
+  /// The tail ghost vertex
+  external b2Vec2 ghost1;
+
+  /// The line segment
+  external b2Vec2 point1;
+
+  external b2Vec2 point2;
+
+  /// The head ghost vertex
+  external b2Vec2 ghost2;
+}
 
 const int __WORDSIZE = 64;
 
