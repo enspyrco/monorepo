@@ -1,4 +1,4 @@
-import 'package:flutter_box2c/src/b2_enums.dart';
+import 'package:flutter_box2c/src/enums.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'generated_bindings.dart';
