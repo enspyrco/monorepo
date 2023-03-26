@@ -9,6 +9,12 @@
       "request": "launch",
       "type": "dart",
       "program": "example/notion_api_client_example.dart"
+    },
+    {
+      "name": "Docs Scraper",
+      "request": "launch",
+      "type": "dart",
+      "program": "bin/scrape_docs.dart"
     }
   ]
 }

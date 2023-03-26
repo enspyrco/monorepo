@@ -12,9 +12,28 @@ const token = '...';
 
 The token can be found at [My integrations | Notion Developers](https://www.notion.so/my-integrations).
 
+## Http Status Codes & Error Messages
+
+From the [Notion Docs](https://developers.notion.com/reference/status-codes):
+
+Responses from the API use HTTP response codes are used to indicate general classes of success and error.
+
+Error responses contain more detail about the error in the response body, in the "code" and "message" properties.
+
+- `api_client_utils`
+
+  - When an API request receives something other than 200, an `ApiException` is thrown
+  - We call `getJsonValue` with key 'message' on the `ApiException` to get the error message
+
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+### Scrape Notion Docs for API Description
+
+#### Http Status Messages
+
+Run `bin/scrape_docs.dart` with the "Docs Scraper" launch config
+
+- Output: `output/api-description/http_status_messages.json`
 
 ## Getting started
 

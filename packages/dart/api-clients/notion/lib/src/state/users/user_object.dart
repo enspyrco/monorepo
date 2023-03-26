@@ -49,6 +49,9 @@ class UserObject {
   factory UserObject.fromJson(JsonMap json) {
     var type = json['type'] as String?;
 
+    if (type == null) {
+      return PartialUserObject.fromJson(json);
+    }
     if (type == 'person') {
       return PersonUserObject.fromJson(json);
     }
@@ -58,6 +61,15 @@ class UserObject {
 
     throw UnrecognizedTypeInJsonException('UserObject.fromJson', type, json);
   }
+}
+
+/// It is not specified outside of being referenced in Block, Comment, Page & Database
+/// docs, but a PartialUser object seems to just have `object` = "user" and `id`
+///
+/// For now we just have a subtype that extends UserObject and assume all nullable
+/// members will be null.
+class PartialUserObject extends UserObject {
+  PartialUserObject.fromJson(JsonMap json) : super._(json);
 }
 
 /// User objects that represent people have the type property set to "person".
