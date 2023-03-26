@@ -47,7 +47,8 @@ If you plan to work on several packages at once you will need to open the `monor
 Three letter acronyms used in commit messages:
 
 - aau = astro_auth
-- acf - authorization code flow
+- acf = authorization code flow
+- acu = api_client_utils
 - aeh = astro_error_handling
 - aei = astro_error_handling_interface
 - agn = astro_generators
@@ -89,6 +90,7 @@ Three letter acronyms used in commit messages:
 - jst = json_types
 - lcr = locator
 - mgc = magicians
+- noc = notion_api_client
 - oap = openapi_parser
 - oml = our_meals
 - pae = process_articles_in_emails

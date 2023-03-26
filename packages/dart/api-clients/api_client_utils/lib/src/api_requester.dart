@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:api_client_utils/http_status_codes.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
@@ -37,10 +38,13 @@ class ApiRequester {
       {String? body, Map<String, List<String>>? queryParams}) async {
     var response = await _request(path, method, body, queryParams ?? {});
 
-    _validateStatusCode(response);
-    _validateMimeType(response);
-
+    // For APIs that use duplicate error codes and differentiate with extra json
+    // we extract json first then pass it into validation so it can potentially
+    // be part of an exception.
     Object? json = await _extractJson(response);
+
+    _validateStatusCode(response, json);
+    _validateMimeType(response, json);
 
     _validateJson(json);
 
@@ -103,7 +107,7 @@ class ApiRequester {
   // For now it is assumed that all API endpoints respond with json so valid means
   // a json MIME type is found. We use the MIME Sniffing Standard found via W3C:
   // https://mimesniff.spec.whatwg.org/#json-mime-type
-  void _validateMimeType(http.StreamedResponse response) {
+  void _validateMimeType(http.StreamedResponse response, Object? json) {
     String? contentType = response.headers['content-type'];
 
     if (contentType == null) {
@@ -116,14 +120,19 @@ class ApiRequester {
         mediaType.mimeType != 'text/json' &&
         !mediaType.subtype.endsWith('+json')) {
       throw APIRequestException(
-          null, 'Unable to read response with content-type $contentType');
+          null, 'Unable to read response with content-type $contentType', json);
     }
   }
 
-  void _validateStatusCode(http.StreamedResponse response) {
+  void _validateStatusCode(http.StreamedResponse response, Object? json) {
     var statusCode = response.statusCode;
     if (statusCode < 200 || statusCode >= 400) {
-      throw APIRequestException(statusCode, 'HTTP status was: $statusCode.');
+      throw APIRequestException(
+        statusCode,
+        messageFor[statusCode] ??
+            'We do not currently have a message for status code $statusCode, feel free to file an issue!',
+        json,
+      );
     }
   }
 
@@ -136,6 +145,13 @@ class APIRequestException {
   final Object? jsonResponse; // Could be List or Map
 
   APIRequestException(this.status, this.message, [this.jsonResponse]);
+
+  Object? getJsonValue({required String key}) {
+    if (jsonResponse is! Map<String, Object?>) {
+      throw 'APIRequestException: attempted to use $key to access the json response as a map, which didn\'t work as the response was $jsonResponse';
+    }
+    return (jsonResponse as Map<String, Object?>)[key];
+  }
 
   @override
   String toString() =>
