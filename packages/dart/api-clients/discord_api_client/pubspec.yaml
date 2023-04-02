@@ -1,13 +1,13 @@
 name: discord_api_client
 description: An API Client for Discord, written in Dart.
-version: 0.0.1
+version: 0.0.0-a1
 
 environment:
-  sdk: '>=2.16.0 <3.0.0'
+  sdk: '>=2.19.0 <3.0.0'
 
 dependencies: 
-  http: ^0.13.4
+  http: ^0.13.5
 
 dev_dependencies:
-  lints: ^1.0.0
-  test: ^1.16.0
+  lints: ^2.0.1
+  test: ^1.24.1
