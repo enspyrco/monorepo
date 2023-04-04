@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "name": "example",
+      "request": "launch",
+      "type": "dart",
+      "program": "example/discord_api_client_example.dart"
+    }
+  ]
+}
