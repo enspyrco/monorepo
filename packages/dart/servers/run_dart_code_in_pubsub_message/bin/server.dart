@@ -19,19 +19,19 @@ Future<Response> handler(Request request) async {
     print('decodedMessageJson: $decodedMessageJson');
 
     // Get required values from the pubsub message
-    var expression = decodedMessageJson['value'] as String;
-    var applicationId = decodedMessageJson['application_id'] as String;
-    var token = decodedMessageJson['token'] as String;
+    // var expression = decodedMessageJson['value'] as String;
+    // var applicationId = decodedMessageJson['application_id'] as String;
+    // var token = decodedMessageJson['token'] as String;
 
-    String result = await evaluate(expression);
-    print('result:\n$result');
+    // String result = await evaluate(expression);
+    // print('result:\n$result');
 
     // Make a http call to edit the interaction response
-    var uri = Uri.parse(
-        "https://discord.com/api/v8/webhooks/$applicationId/$token/messages/@original");
-    var response = await http.patch(uri, body: {'content': result});
+    // var uri = Uri.parse(
+    //     "https://discord.com/api/v8/webhooks/$applicationId/$token/messages/@original");
+    // var response = await http.patch(uri, body: {'content': result});
 
-    print('response:\n${response.body}');
+    // print('response:\n${response.body}');
 
     return Response.ok('...');
   } catch (e, s) {
