@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:discord_interaction_to_pubsub_message/typedefs.dart';
-import 'package:discord_interaction_to_pubsub_message/utils/json_utils.dart';
 import 'package:discord_interaction_to_pubsub_message/utils/logging_utils.dart';
 import 'package:discord_interaction_to_pubsub_message/utils/response_utils.dart';
 import 'package:discord_interaction_to_pubsub_message/verify_signature.dart';
@@ -13,17 +12,15 @@ import 'package:shelf/shelf_io.dart' as shelf_io;
 
 Future<Response> handler(Request request) async {
   try {
-    final String body = await request.readAsString();
+    final String bodyString = await request.readAsString();
 
-    printRequestInfo(request, body);
+    printRequestInfo(request, bodyString);
 
-    if (validSignature(body, request.headers)) {
-      final JsonMap json = jsonDecode(body) as JsonMap;
-      print('decoded json:\n$json');
+    if (validSignature(bodyString, request.headers)) {
+      final JsonMap bodyJson = jsonDecode(bodyString) as JsonMap;
+      print('decoded json:\n$bodyJson');
 
-      if (json['type'] == 1) return ackResponse(); // ACK any valid PING
-
-      final JsonMap extractedInfo = extractMessageCommandInfo(json);
+      if (bodyJson['type'] == 1) return ackResponse(); // ACK any valid PING
 
       final AutoRefreshingAuthClient client =
           await clientViaApplicationDefaultCredentials(
@@ -35,7 +32,9 @@ Future<Response> handler(Request request) async {
 
       final Topic topic = await pubsub.lookupTopic('dart-code-strings');
 
-      await topic.publishString(jsonEncode(extractedInfo));
+      // We currently just re-encode the bodyJson
+      // TODO: just use bodyString but add a test that it is the same as encooding and re-encoding
+      await topic.publishString(jsonEncode(bodyJson));
 
       return respondWait();
     } else {

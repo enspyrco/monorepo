@@ -1,4 +1,4 @@
-import 'package:discord_interaction_to_pubsub_message/enums/application_command_type.dart';
+import '../enums/application_command_type.dart';
 
 class InvalidCommandTypeException implements Exception {
   const InvalidCommandTypeException({

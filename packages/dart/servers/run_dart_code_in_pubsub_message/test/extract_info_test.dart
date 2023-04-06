@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:discord_interaction_to_pubsub_message/typedefs.dart';
-import 'package:discord_interaction_to_pubsub_message/utils/json_utils.dart';
+import 'package:run_dart_code_in_pubsub_message/typedefs.dart';
+import 'package:run_dart_code_in_pubsub_message/utils/json_utils.dart';
 import 'package:test/test.dart';
 
 // import 'data/signature_test_data.dart' as old_test_data;

@@ -1,8 +1,6 @@
-// Extract the incoming value from the json in the body
-import 'package:discord_interaction_to_pubsub_message/enums/application_command_type.dart';
-import 'package:discord_interaction_to_pubsub_message/exceptions/invalid_command_type_exception.dart';
-import 'package:discord_interaction_to_pubsub_message/exceptions/invalid_message_exception.dart';
-
+// Extract the interaction info from the json in the message
+import '../enums/application_command_type.dart';
+import '../exceptions/invalid_command_type_exception.dart';
 import '../exceptions/malformed_json_exception.dart';
 import '../typedefs.dart';
 
@@ -37,12 +35,6 @@ Map<String, Object?> extractMessageCommandInfo(JsonMap json) {
   final content = firstMessage['content'] as String? ??
       (throw MalformedJsonException(
           'Missing "content" key in first value of "messages" object.', json));
-
-  final List<String> contentLines = content.split('\n');
-  if (contentLines.first != '```Dart' || contentLines.last != '```') {
-    throw InvalidMessageContentException(
-        'The message should start with ```Dart and end with ```');
-  }
 
   var applicationId = json['application_id'] as String;
   var token = json['token'] as String;
