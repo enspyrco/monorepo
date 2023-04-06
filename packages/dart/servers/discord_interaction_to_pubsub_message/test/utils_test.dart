@@ -17,10 +17,10 @@ void main() {
   };
 
   test('extractInfo() correctly parses json', () async {
-    var info = extractInfo(testJson);
+    var info = extractMessageCommandInfo(testJson);
     print(info);
     expect(info['application_id'], 'alsdkflaksdf');
     expect(info['token'], 'qoweuropqweurio');
-    expect(info['value'], '3 + 4');
+    expect(info['content'], '3 + 4');
   });
 }
