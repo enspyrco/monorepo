@@ -1,13 +1,18 @@
 import 'dart:async';
 import 'dart:isolate';
 
-Future<String> evaluate(String codeString) async {
+Future<String> evaluate(List<String> contentLines) async {
+  // We keep the last line for returning and join the rest
+  final String lastLine = contentLines.removeLast();
+  final String joinedLines = contentLines.join('\n');
+
   final uri = Uri.dataFromString(
     '''
     import 'dart:isolate';
 
     void main(_, SendPort port) {
-      port.send($codeString);
+      $joinedLines
+      port.send($lastLine);
     }
     ''',
     mimeType: 'application/dart',

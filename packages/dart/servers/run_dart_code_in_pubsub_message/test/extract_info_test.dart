@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:run_dart_code_in_pubsub_message/typedefs.dart';
+import 'package:run_dart_code_in_pubsub_message/interaction_data.dart';
 import 'package:run_dart_code_in_pubsub_message/utils/json_utils.dart';
 import 'package:test/test.dart';
 
@@ -14,12 +14,12 @@ void main() {
         jsonDecode(test_data.invalidMessageWithJustText)['jsonPayload'];
     // final bodyJson = old_test_data.body;
 
-    JsonMap info = extractMessageCommandInfo(bodyJson);
+    InteractionData data = extractMessageCommandInfo(bodyJson);
 
-    expect(info['application_id'], '938746298146885634');
-    expect(info['token'], 'fakeToken0');
+    expect(data.applicationId, '938746298146885634');
+    expect(data.token, 'fakeToken0');
     expect(
-        info['content'],
+        data.content,
         'A Flutter app for presentations (something like Google Slides/Powerpoint/Keynote) with:\n'
         '- a web app that everyone \'warches\'\n'
         '-  the presenter moves through the slides\n'
@@ -32,13 +32,13 @@ void main() {
     final bodyJson =
         jsonDecode(test_data.validMessageWithValidDart)['jsonPayload'];
 
-    JsonMap info = extractMessageCommandInfo(bodyJson);
+    InteractionData data = extractMessageCommandInfo(bodyJson);
 
     // The expected values are from the test data, which was a real message extracted from the server logs
-    expect(info['application_id'], '938746298146885634');
-    expect(info['token'], 'fakeToken1');
+    expect(data.applicationId, '938746298146885634');
+    expect(data.token, 'fakeToken1');
     expect(
-        info['content'],
+        data.token,
         '```Dart\n'
         'int i = 10;\n'
         'int j = 20;\n'

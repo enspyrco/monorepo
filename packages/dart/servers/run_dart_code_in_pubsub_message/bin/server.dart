@@ -50,7 +50,7 @@ Future<Response> handler(Request request) async {
     contentLines.removeLast();
     contentLines.removeAt(0);
 
-    String result = await evaluate(contentLines.join());
+    String result = await evaluate(contentLines);
     print('result:\n$result');
 
     // Make a http call to edit the interaction response

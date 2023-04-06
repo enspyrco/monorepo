@@ -1,3 +1,4 @@
+import 'package:run_dart_code_in_pubsub_message/interaction_data.dart';
 import 'package:run_dart_code_in_pubsub_message/utils/json_utils.dart';
 import 'package:test/test.dart';
 
@@ -17,10 +18,10 @@ void main() {
   };
 
   test('extractInfo() correctly parses json', () async {
-    var info = extractMessageCommandInfo(testJson);
-    print(info);
-    expect(info['application_id'], 'alsdkflaksdf');
-    expect(info['token'], 'qoweuropqweurio');
-    expect(info['content'], '3 + 4');
+    final InteractionData data = extractMessageCommandInfo(testJson);
+    print(data);
+    expect(data.applicationId, 'alsdkflaksdf');
+    expect(data.token, 'qoweuropqweurio');
+    expect(data.token, '3 + 4');
   });
 }
