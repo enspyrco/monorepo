@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:run_dart_code_in_pubsub_message/evaluate.dart';
+import 'package:run_dart_code_in_pubsub_message/exceptions/invalid_message_exception.dart';
 import 'package:run_dart_code_in_pubsub_message/exceptions/malformed_json_exception.dart';
+import 'package:run_dart_code_in_pubsub_message/interaction_data.dart';
 import 'package:run_dart_code_in_pubsub_message/typedefs.dart';
 import 'package:run_dart_code_in_pubsub_message/utils/json_utils.dart';
 import 'package:shelf/shelf.dart' show Request, Response;
@@ -26,24 +28,35 @@ Future<Response> handler(Request request) async {
         json.decode(utf8.decode(base64.decode(encodedMessageData))) as JsonMap;
     print('decodedMessageJson: $decodedMessageJson');
 
-    final JsonMap extractedInfo = extractMessageCommandInfo(decodedMessageJson);
+    final InteractionData interactionData =
+        extractMessageCommandInfo(decodedMessageJson);
 
-    print(extractedInfo);
+    print(interactionData);
 
-    // Get required values from the pubsub message
-    // var expression = decodedMessageJson['value'] as String;
-    // var applicationId = decodedMessageJson['application_id'] as String;
-    // var token = decodedMessageJson['token'] as String;
+    // construct the uri we will use to update the Discord response
+    var uri = Uri.parse(
+        "https://discord.com/api/v8/webhooks/${interactionData.applicationId}/${interactionData.token}/messages/@original");
 
-    // String result = await evaluate(expression);
-    // print('result:\n$result');
+    // check that message content is formatted Dart code
+    final List<String> contentLines = interactionData.content.split('\n');
+    if (contentLines.first != '```Dart' || contentLines.last != '```') {
+      var response = await http.patch(uri, body: {
+        'content': 'The message should contain only formatted Dart code.'
+      });
+      print(response);
+      return Response.ok('...');
+    }
+
+    contentLines.removeLast();
+    contentLines.removeAt(0);
+
+    String result = await evaluate(contentLines.join());
+    print('result:\n$result');
 
     // Make a http call to edit the interaction response
-    // var uri = Uri.parse(
-    //     "https://discord.com/api/v8/webhooks/$applicationId/$token/messages/@original");
-    // var response = await http.patch(uri, body: {'content': result});
+    var response = await http.patch(uri, body: {'content': result});
 
-    // print('response:\n${response.body}');
+    print('response:\n${response.body}');
 
     return Response.ok('...');
   } catch (e, s) {
