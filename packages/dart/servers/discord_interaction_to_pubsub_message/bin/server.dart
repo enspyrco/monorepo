@@ -13,24 +13,29 @@ import 'package:shelf/shelf_io.dart' as shelf_io;
 
 Future<Response> handler(Request request) async {
   try {
-    String body = await request.readAsString();
+    final String body = await request.readAsString();
 
     printRequestInfo(request, body);
 
     if (validSignature(body, request.headers)) {
-      var json = jsonDecode(body) as JsonMap;
+      final JsonMap json = jsonDecode(body) as JsonMap;
       print('decoded json:\n$json');
 
       if (json['type'] == 1) return ackResponse(); // ACK any valid PING
 
-      var extractedRequestInfo = extractInfo(json);
+      final JsonMap extractedInfo = extractMessageCommandInfo(json);
 
-      var client = await clientViaApplicationDefaultCredentials(
-          scopes: [...PubSub.SCOPES]);
-      var pubsub = PubSub(client, Platform.environment['PROJECT_NAME']!);
+      final AutoRefreshingAuthClient client =
+          await clientViaApplicationDefaultCredentials(
+        scopes: [...PubSub.SCOPES],
+      );
 
-      var topic = await pubsub.lookupTopic('dart-code-strings');
-      await topic.publishString(jsonEncode(extractedRequestInfo));
+      final PubSub pubsub =
+          PubSub(client, Platform.environment['PROJECT_NAME']!);
+
+      final Topic topic = await pubsub.lookupTopic('dart-code-strings');
+
+      await topic.publishString(jsonEncode(extractedInfo));
 
       return respondWait();
     } else {
