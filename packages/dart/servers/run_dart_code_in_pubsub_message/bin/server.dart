@@ -2,21 +2,33 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:run_dart_code_in_pubsub_message/evaluate.dart';
+import 'package:run_dart_code_in_pubsub_message/exceptions/malformed_json_exception.dart';
 import 'package:run_dart_code_in_pubsub_message/typedefs.dart';
+import 'package:run_dart_code_in_pubsub_message/utils/json_utils.dart';
 import 'package:shelf/shelf.dart' show Request, Response;
 import 'package:shelf/shelf_io.dart' as shelf_io;
 
 Future<Response> handler(Request request) async {
   try {
-    var body = await request.readAsString();
-    var decodedBodyJson = jsonDecode(body);
-    print('body:\n$decodedBodyJson');
+    final String bodyString = await request.readAsString();
+    final JsonMap bodyJson = jsonDecode(bodyString);
+    print('body:\n$bodyJson');
 
-    var messageJson = decodedBodyJson['message'];
-    var encodedMessageData = messageJson['data'];
-    final decodedMessageJson =
+    final JsonMap messageJson = bodyJson['message'] as JsonMap? ??
+        (throw MalformedJsonException(
+            'The "message" key was not found at the top level', bodyJson));
+
+    final String encodedMessageData = messageJson['data'] as String? ??
+        (throw MalformedJsonException(
+            '"data" key was not found in "message" object', bodyJson));
+
+    final JsonMap decodedMessageJson =
         json.decode(utf8.decode(base64.decode(encodedMessageData))) as JsonMap;
     print('decodedMessageJson: $decodedMessageJson');
+
+    final JsonMap extractedInfo = extractMessageCommandInfo(decodedMessageJson);
+
+    print(extractedInfo);
 
     // Get required values from the pubsub message
     // var expression = decodedMessageJson['value'] as String;
