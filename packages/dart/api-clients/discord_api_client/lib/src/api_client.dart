@@ -33,8 +33,10 @@ class DiscordApi {
   };
 
   Future<Response> createCommand(ApplicationCommand command) async {
-    final response = await post(_uri,
-        headers: headersJson, body: jsonEncode(command.toJson()));
+    final encodedCommand = jsonEncode(command.toJson());
+
+    final response =
+        await post(_uri, headers: headersJson, body: encodedCommand);
 
     return response;
   }
