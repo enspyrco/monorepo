@@ -14,8 +14,6 @@ final _router = Router()
 const locator = Locate();
 
 void main(List<String> args) async {
-  await locator.provideDefaultFirestore();
-
   final ip = InternetAddress.anyIPv4;
 
   final handler =

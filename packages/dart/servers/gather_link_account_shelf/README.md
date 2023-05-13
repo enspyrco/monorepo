@@ -50,14 +50,3 @@ If running in Docker, the logs are in the first terminal:
 2021-05-06T15:47:04.620417  0:00:00.000158 GET     [200] /
 2021-05-06T15:47:08.392928  0:00:00.001216 GET     [200] /echo/I_love_Dart
 ```
-
-## Running the Firebase Emulator
-
-If we use `await locator.provideLocalFirestore();` to provide a Firetore Service to the
-locator, our server will connect the local Firestore Emulator.
-
-To start the emulator, from the project directory:
-
-```sh
-firebase emulators:start --only firestore --project demo-project
-```
