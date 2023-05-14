@@ -1,5 +1,7 @@
 import 'package:shelf/shelf.dart' show Response, Request;
 
+import '../services/locate.dart';
+
 Future<Response> gatherHandler(Request request) async {
   String? nonce, gatherId;
 
@@ -7,8 +9,10 @@ Future<Response> gatherHandler(Request request) async {
     nonce = request.url.queryParameters['nonce']!;
     gatherId = request.url.queryParameters['gatherPlayerId']!;
 
-    // TODO: Mint token with Firebase Admin SDK & send to client
-    final String token = '...';
+    final firebaseAdmin = Locate.firebaseAdmin;
+
+    final String token = await firebaseAdmin
+        .mintToken(uid: gatherId, developerClaims: {'gather-nonce': nonce});
 
     return Response.movedPermanently(
         'https://gather-identity-link.web.app/gather?token=$token');

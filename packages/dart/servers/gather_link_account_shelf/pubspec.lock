@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.1"
+  asn1lib:
+    dependency: transitive
+    description:
+      name: asn1lib
+      sha256: ab96a1cb3beeccf8145c52e449233fe68364c9641623acd3adad66f8184f1039
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
   async:
     dependency: transitive
     description:
@@ -49,6 +57,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  clock:
+    dependency: transitive
+    description:
+      name: clock
+      sha256: cb6d7f03e1de671e34607e909a7213e31d7752be4fb66a86d29fe1eb14bfb5cf
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   collection:
     dependency: transitive
     description:
@@ -81,6 +97,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  crypto_keys:
+    dependency: transitive
+    description:
+      name: crypto_keys
+      sha256: acc19abf34623d990a0e8aec69463d74a824c31f137128f42e2810befc509ad0
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0+1"
+  dotenv:
+    dependency: transitive
+    description:
+      name: dotenv
+      sha256: e169b516bc7b88801919e1c508772bcb8e3d0d1776a43f74ab692c57e741cd8a
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
+  expressions:
+    dependency: transitive
+    description:
+      name: expressions
+      sha256: "75ca4343f9f8a38087bea130cf51395d737d87c6947cc19cbb8fb2732cae1a27"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.5"
+  fake_async:
+    dependency: transitive
+    description:
+      name: fake_async
+      sha256: "511392330127add0b769b75a987850d136345d9227c6b94c96a04cf4a391bf78"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.1"
   file:
     dependency: transitive
     description:
@@ -89,22 +137,31 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.4"
-  firestore_service_googleapis:
-    dependency: "direct overridden"
+  firebase_admin:
+    dependency: "direct main"
     description:
-      path: "../../api-clients/firestore/firestore_service_googleapis"
-      relative: true
-    source: path
-    version: "0.0.1"
-  firestore_service_interface:
+      path: "."
+      ref: HEAD
+      resolved-ref: "598edc873385e475672c52d39d896008545e2dd1"
+      url: "https://github.com/nickmeinhold/firebase_admin"
+    source: git
+    version: "0.3.0-dev.4"
+  firebase_dart:
     dependency: transitive
     description:
-      path: "packages/dart/interfaces/firestore_service_interface"
-      ref: HEAD
-      resolved-ref: "26450f3482776560719c89444c5532ed4fea5b6d"
-      url: "https://github.com/enspyrco/monorepo.git"
-    source: git
-    version: "0.0.1"
+      name: firebase_dart
+      sha256: "705a4b3f19402d9e4b61ec93bb3b8e0ef80f77b1d84331a774e651c874f97a2f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.11"
+  firebaseapis:
+    dependency: transitive
+    description:
+      name: firebaseapis
+      sha256: "20463b2db376612cac8abdafbb839e8500521c30d0ea14e3673c40487a1f362b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
   fixnum:
     dependency: transitive
     description:
@@ -121,6 +178,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
+  gcloud:
+    dependency: transitive
+    description:
+      name: gcloud
+      sha256: d58dc34430387b1994f471ab531072e3cdf9694dcdf69e51dceafe5761546cb7
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.8"
   glob:
     dependency: transitive
     description:
@@ -145,15 +210,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
-  googleapis_utils:
+  hive:
     dependency: transitive
     description:
-      path: "packages/dart/utils/googleapis_utils"
-      ref: HEAD
-      resolved-ref: "26450f3482776560719c89444c5532ed4fea5b6d"
-      url: "https://github.com/enspyrco/monorepo.git"
-    source: git
-    version: "0.0.1"
+      name: hive
+      sha256: "8dcf6db979d7933da8217edcec84e9df1bdb4e4edc7fc77dbd5aa74356d6d941"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.3"
   http:
     dependency: "direct main"
     description:
@@ -186,6 +250,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.17.0"
   io:
     dependency: transitive
     description:
@@ -194,6 +266,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  jose:
+    dependency: transitive
+    description:
+      name: jose
+      sha256: "06d28181b3ca26ffb83bf943f62f29d6b1b55793c852a389d3a29e6a5f54d325"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.3"
   js:
     dependency: transitive
     description:
@@ -205,9 +285,11 @@ packages:
   json_types:
     dependency: "direct main"
     description:
-      path: "../../utils/json_types"
-      relative: true
-    source: path
+      path: "packages/dart/utils/json_types"
+      ref: HEAD
+      resolved-ref: "26450f3482776560719c89444c5532ed4fea5b6d"
+      url: "https://github.com/enspyrco/monorepo.git"
+    source: git
     version: "0.0.1"
   lints:
     dependency: "direct dev"
@@ -257,6 +339,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
+  openid_client:
+    dependency: transitive
+    description:
+      name: openid_client
+      sha256: "514c0ba645b81029c28999831a70cb055dda1a3bc60be759a04d2556f60ec960"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.7"
   package_config:
     dependency: transitive
     description:
@@ -273,6 +363,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.3"
+  petitparser:
+    dependency: transitive
+    description:
+      name: petitparser
+      sha256: cb3798bef7fc021ac45b308f4b51208a152792445cce0448c9a4ba5879dd8750
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.4.0"
+  pointycastle:
+    dependency: transitive
+    description:
+      name: pointycastle
+      sha256: "7c1e5f0d23c9016c5bbd8b1473d0d3fb3fc851b876046039509e18e0c7485f2c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.7.3"
   pool:
     dependency: transitive
     description:
@@ -297,6 +403,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      sha256: b1c1ac5ce6688d77f65f3375a9abb9319b3cb32486bdc7a1e0fdf004d7ba4e47
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.1"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.27.7"
   shelf:
     dependency: "direct main"
     description:
@@ -337,6 +459,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  snapshot:
+    dependency: transitive
+    description:
+      name: snapshot
+      sha256: "04a7910492987d00ca8c6767297ed773e6e206d0fc1ce7365a3cddf6847e92b5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.5"
+  sortedmap:
+    dependency: transitive
+    description:
+      name: sortedmap
+      sha256: "8c9e19b93c7e1b4d795776a02719df229606cb57f46f857a7f6eb80c97fc0600"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.3"
   source_map_stack_trace:
     dependency: transitive
     description:
@@ -385,6 +523,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      sha256: "5fcbd27688af6082f5abd611af56ee575342c30e87541d0245f7ff99faa02c60"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   term_glyph:
     dependency: transitive
     description:
@@ -425,6 +571,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.2"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      sha256: "648e103079f7c64a36dc7d39369cabb358d377078a051d6ae2ad3aa539519313"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.7"
   vm_service:
     dependency: transitive
     description:
@@ -457,6 +611,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  x509:
+    dependency: transitive
+    description:
+      name: x509
+      sha256: "6db77b0baecf54584f886607247e9dedd9fd63f1e2d0ee0a00b5bb353fd7885f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.3"
   yaml:
     dependency: transitive
     description:
@@ -466,4 +628,4 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.0.0-417 <4.0.0"
+  dart: ">=3.0.0 <4.0.0"

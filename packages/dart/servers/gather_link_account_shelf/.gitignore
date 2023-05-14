@@ -7,3 +7,4 @@ build/
 
 # Shhh 
 lib/config/secret.dart
+service-account.json

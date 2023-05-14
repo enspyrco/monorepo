@@ -13,11 +13,13 @@ The secret can be found in the GitHub OAuth app page, eg. <https://github.com/se
 This [shelf](https://pub.dev/packages/shelf) server handles HTTP GET requests via
 several routes. There is also a Dockerfile for running with [Docker](https://www.docker.com/).
 
-## Deploy to Firebase Hosting
+## Deploy to Cloud Run
 
-```sh
-firebase deploy --only hosting
-```
+- Use Cloud Code extension
+- Select `gather-identity-link` project
+- Hit "Deploy to Cloud Run" button (a cloud icon, next to `gather-link-account-shelf` service name)
+- Select "Cloud Build" option
+- Hit "Deploy"
 
 ## Running locally with `dart run`
 

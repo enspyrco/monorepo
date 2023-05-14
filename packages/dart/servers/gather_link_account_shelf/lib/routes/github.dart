@@ -31,20 +31,16 @@ Future<Response> githubHandler(Request request) async {
         jsonDecode(utf8.decode(tokenResponse.bodyBytes)) as Map;
     var accessToken = decodedTokenResponse['access_token'] as String;
 
-    // Use the github API to get the username
-    var userResponse = await http.get(
-        Uri(scheme: 'https', host: 'api.github.com', path: 'user'),
-        headers: {'Authorization': 'token $accessToken'});
-    var decodedUserResponse =
-        jsonDecode(utf8.decode(userResponse.bodyBytes)) as Map;
-    githubUsername = decodedUserResponse['login'] as String;
-
-    // TODO: Mint token with Firebase Admin SDK & send to client
-
-    final String token = '...';
+    // // Use the github API to get the username
+    // var userResponse = await http.get(
+    //     Uri(scheme: 'https', host: 'api.github.com', path: 'user'),
+    //     headers: {'Authorization': 'token $accessToken'});
+    // var decodedUserResponse =
+    //     jsonDecode(utf8.decode(userResponse.bodyBytes)) as Map;
+    // githubUsername = decodedUserResponse['login'] as String;
 
     return Response.movedPermanently(
-        'https://gather-identity-link.web.app/gather?token=$token');
+        'https://gather-identity-link.web.app/github?token=$accessToken');
   } catch (error, trace) {
     return Response.internalServerError(
         body: 'error:\n$error\n\ntrace:\n$trace');
