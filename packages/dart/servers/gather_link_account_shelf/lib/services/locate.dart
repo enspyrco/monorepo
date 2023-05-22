@@ -36,8 +36,8 @@ class Locate {
   }
 
   /// Creates and provides a Firebase Admin Service with the default service account
-  void provideDefaultFirebaseAdmin() =>
-      _firebaseAdmin ??= FirebaseAdminService();
+  Future<void> asyncProvideDefaultFirebaseAdmin() async =>
+      _firebaseAdmin ??= await FirebaseAdminService.asyncCreation();
 
   // Future<void> provideLocalFirestore() async {
   //   if (_firestore == null) {

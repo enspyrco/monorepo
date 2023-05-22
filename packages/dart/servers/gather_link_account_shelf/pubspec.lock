@@ -141,8 +141,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: "598edc873385e475672c52d39d896008545e2dd1"
+      ref: add-adc
+      resolved-ref: b4f6645149d90f23bf4925a7b474a57a36b92d8f
       url: "https://github.com/nickmeinhold/firebase_admin"
     source: git
     version: "0.3.0-dev.4"

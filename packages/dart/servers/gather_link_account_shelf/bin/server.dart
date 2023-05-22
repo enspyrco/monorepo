@@ -14,7 +14,7 @@ final _router = Router()
 const locator = Locate();
 
 void main(List<String> args) async {
-  locator.provideDefaultFirebaseAdmin();
+  await locator.asyncProvideDefaultFirebaseAdmin();
 
   final ip = InternetAddress.anyIPv4;
 
