@@ -13,11 +13,13 @@ The secret can be found in the GitHub OAuth app page, eg. <https://github.com/se
 This [shelf](https://pub.dev/packages/shelf) server handles HTTP GET requests via
 several routes. There is also a Dockerfile for running with [Docker](https://www.docker.com/).
 
-## Deploy to Firebase Hosting
+## Deploy to Cloud Run
 
-```sh
-firebase deploy --only hosting
-```
+- Use Cloud Code extension
+- Select `gather-identity-link` project
+- Hit "Deploy to Cloud Run" button (a cloud icon, next to `gather-link-account-shelf` service name)
+- Select "Cloud Build" option
+- Hit "Deploy"
 
 ## Running locally with `dart run`
 
@@ -49,15 +51,4 @@ If running in Docker, the logs are in the first terminal:
 ```sh
 2021-05-06T15:47:04.620417  0:00:00.000158 GET     [200] /
 2021-05-06T15:47:08.392928  0:00:00.001216 GET     [200] /echo/I_love_Dart
-```
-
-## Running the Firebase Emulator
-
-If we use `await locator.provideLocalFirestore();` to provide a Firetore Service to the
-locator, our server will connect the local Firestore Emulator.
-
-To start the emulator, from the project directory:
-
-```sh
-firebase emulators:start --only firestore --project demo-project
 ```
