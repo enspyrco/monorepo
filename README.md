@@ -66,7 +66,6 @@ Three letter acronyms used in commit messages:
 - ccv = coding-challenge-verifier
 - ddi = dragndrop_image_effects
 - dic = discord_api_client
-- dip = discord_interaction_to_pubsub_message
 - dvr = domain_visualiser
 - enl = enspyr_lints
 - fai = firebase_auth_service_interface
