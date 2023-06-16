@@ -82,7 +82,6 @@ Three letter acronyms used in commit messages:
 - gac = get_google_api_credentials
 - gae = github_api_envoy
 - gau = googleapis_utils
-- gmg = gamegin
 - iap = identify_affected_packages
 - ips = identity_platform_service
 - jst = json_types
