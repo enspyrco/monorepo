@@ -1,9 +1,0 @@
-dependency_overrides:
-  astro:
-    path: ../astro
-  astro_types:
-    path: ../../../flutter/utils/astro_types
-  astro_locator:
-    path: ../../../dart/utils/astro_locator
-  astro_generators:
-    path: ../../../flutter/utils/astro_generators
