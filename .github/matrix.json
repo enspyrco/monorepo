@@ -7,12 +7,6 @@
       "project_type": "flutter"
     },
     {
-      "package": "tech_world",
-      "path" : "flutter/apps/adventuring/tech_world",
-      "source_gen" : false,
-      "project_type": "flutter"
-    },
-    {
       "package": "the_process",
       "path" : "flutter/apps/adventuring/the_process",
       "source_gen" : true,
