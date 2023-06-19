@@ -1,1 +1,0 @@
-class ExampleException implements Exception {}
