@@ -1,3 +1,0 @@
-# Just using the recommended lints for now but will come back and customise later.
-
-include: package:lints/recommended.yaml
