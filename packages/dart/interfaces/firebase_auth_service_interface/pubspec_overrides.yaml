@@ -1,4 +1,0 @@
-dependency_overrides:
-  astro_types:
-    path: ../../../flutter/utils/astro_types
-  
