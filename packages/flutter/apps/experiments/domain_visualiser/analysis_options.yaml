@@ -1,4 +1,0 @@
-include: package:enspyr_lints/flutter.yaml
-
-linter:
-  rules:
