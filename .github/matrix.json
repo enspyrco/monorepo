@@ -7,12 +7,6 @@
       "project_type": "flutter"
     },
     {
-      "package": "the_process",
-      "path" : "flutter/apps/adventuring/the_process",
-      "source_gen" : true,
-      "project_type": "flutter"
-    },
-    {
       "package": "ws_game_server",
       "path" : "dart/servers/ws_game_server",
       "source_gen" : false,
